@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Контакты",
+    "microfrontend": "dashboard",
+    "url": "/personal"
+  },
+  {
+    "name": "О нас",
+    "microfrontend": "script",
+    "url": "/personal/script"
+  },
+  {
+    "name": "Шаблоны",
+    "microfrontend": "template",
+    "url": "/personal/template"
+  }
+]

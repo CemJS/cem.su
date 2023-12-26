@@ -1,0 +1,41 @@
+.header {
+  background-color: var(--back);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.6rem 0;
+
+  &-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-logo {
+    height: 4rem;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  &-nav {
+    display: flex;
+  }
+
+  &-list {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    &__item {
+      cursor: pointer;
+    }
+  }
+
+  &__lang {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
