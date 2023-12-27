@@ -35,7 +35,7 @@
     }
   }
 
-  &_body {
+  &__body {
     min-height: 100%;
     display: flex;
     align-items: center;
@@ -43,18 +43,18 @@
     padding: 1.5rem;
   }
 
-  &_content {
+  &__content {
     border-radius: 1.5rem;
     max-width: 800px;
     width: 100%;
     position: relative;
     padding: 1.5rem;
-    background: var(--back_modal);
+    background: var(--backModal);
     box-shadow: 0 0 15px -10px rgba(221, 221, 221, 0.5);
     color: var(--white);
   }
 
-  &_header {
+  &__header {
     &-title {
       font-size: clamp(1rem, 2vw, 1.5rem);
       line-height: 125%;
@@ -62,20 +62,20 @@
     }
   }
 
-  &_form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  // &_form {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 1.5rem;
 
-    &-row {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-      gap: 1.5rem;
-    }
-  }
+  //   &-row {
+  //     width: 100%;
+  //     display: grid;
+  //     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  //     gap: 1.5rem;
+  //   }
+  // }
 
-  &_footer {
+  &__footer {
     display: flex;
     justify-content: center;
     align-items: center;

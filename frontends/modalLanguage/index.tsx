@@ -27,7 +27,12 @@ front.loader = () => {
 
 front.display = () => {
     return (
-        <div>
+        <div class="modal" ref="modal" init={Func.show}
+            onclick={(e: any) => {
+                if (e.target === Ref.modalBody) {
+                    Func.close()
+                }
+            }}>
             <Navigation />
         </div>
     )
