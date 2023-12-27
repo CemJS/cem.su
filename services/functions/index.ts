@@ -1,6 +1,16 @@
 import { v4 as uuidv4 } from 'uuid';
 
+
+export const makeUrlEvent = function (url: string, params: any = {}) {
+  url += `?uuid=${localStorage.uuid}`
+  for (let key in params) {
+    url += `&${key}=${params[key]}`
+  }
+  return url
+}
+
 export const loader = async function (Variable: any, Fn: any) {
+
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4()
   }
