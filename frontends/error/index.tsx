@@ -16,7 +16,7 @@ front.loader = async () => {
     let listener = [{
         type: "update",
         fn: ({ data }) => {
-            console.log('=f2590b=', data)
+            // console.log('=f2590b=', data)
         },
     }]
 

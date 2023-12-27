@@ -9,7 +9,11 @@ const RenderMenu = function ({ menu }) {
             {
                 menu.map(item => {
                     return (
-                        <li class="header-list__item">
+                        <li class="header-list__item"
+                            onclick={() => {
+                                console.log('=70e373=', 123)
+                                Fn.linkChange("/error", { item: { test: 1 } })
+                            }}>
                             {item.name}
                         </li>
                     )

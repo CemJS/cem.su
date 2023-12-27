@@ -1,6 +1,7 @@
 import { Cemjsx, Fn, Func, Static } from "cemjs-all"
 
 export default function () {
+    console.log('=a09ee2=', Static)
     return (
         <div class="error_wrap">
             <p class="error_text">Страница не найдена</p>
