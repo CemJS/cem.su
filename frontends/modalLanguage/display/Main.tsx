@@ -1,7 +1,18 @@
 import { Cemjsx } from "cemjs-all"
+import languages from '@json/languages'
 
 export default function () {
     return (
-        <div>Empty</div>
+        <main class="modal_main">
+            <ul>
+                {
+                    languages.map(item => {
+                        return (
+                            <li>{item.name}</li>
+                        )
+                    })
+                }
+            </ul>
+        </main>
     )
 }

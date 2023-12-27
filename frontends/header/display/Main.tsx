@@ -31,7 +31,10 @@ export default function () {
                 </nav>
 
                 <div class="header__auth">
-                    <div class="header__lang">
+                    <div
+                        class="header__lang"
+                        onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
+                    >
                         <span>Русский</span>
                         <img src={lang} alt="Выбор основного языка на платформе" />
                     </div>
