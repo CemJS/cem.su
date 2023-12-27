@@ -10,9 +10,8 @@ const RenderMenu = function ({ menu }) {
                 menu.map(item => {
                     return (
                         <li class="header-list__item"
-                            onclick={() => {
-                                console.log('=70e373=', 123)
-                                Fn.linkChange("/error", { item: { test: 1 } })
+                            onclick={async () => {
+                                // Fn.linkChange("/error", { item: 5, test: 7, t: "hhh" })
                             }}>
                             {item.name}
                         </li>
