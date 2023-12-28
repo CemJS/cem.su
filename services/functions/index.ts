@@ -1,8 +1,19 @@
 import { v4 as uuidv4 } from 'uuid';
 
+export const strToJson = function (data: string) {
+  let json = {}
+  if (data && data.length && data[0] == "[") {
+    json = []
+  }
+  try {
+    return JSON.parse(data)
+  } catch (error) {
+    return json
+  }
+}
 
 export const makeUrlEvent = function (url: string, params: any = {}) {
-  url += `?uuid=${localStorage.uuid}`
+  url = `/api/events/${url}?uuid=${localStorage.uuid}`
   for (let key in params) {
     url += `&${key}=${params[key]}`
   }

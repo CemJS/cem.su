@@ -12,15 +12,15 @@ front.func.test = () => {
 
 front.loader = async () => {
 
-    let url = front.Services.functions.makeUrlEvent("/api/events/Course", { live: true })
-    let listener = [{
-        type: "update",
-        fn: ({ data }) => {
-            // console.log('=f2590b=', data)
-        },
-    }]
+    // let url = front.Services.functions.makeUrlEvent("Course", { live: true })
+    // let listener = [{
+    //     type: "update",
+    //     fn: ({ data }) => {
+    //         // console.log('=f2590b=', data)
+    //     },
+    // }]
 
-    Events.course = await Fn.event(url, listener)
+    // Events.course = await Fn.event(url, listener)
     return
 }
 
