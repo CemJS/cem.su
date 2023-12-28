@@ -11,6 +11,9 @@ front.func.test = () => {
 }
 
 front.loader = async () => {
+    Static.color = "purple"
+    Static.doneTimeout = null
+    Static.resetTimeout = null
 
     // let url = front.Services.functions.makeUrlEvent("Course", { live: true })
     // let listener = [{
