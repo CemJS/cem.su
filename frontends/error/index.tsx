@@ -16,7 +16,7 @@ front.loader = async () => {
 
     // Fn.initAuto("records")
 
-    Static.records = []
+    // Static.records = []
     Static.test = 6
     let url = front.Services.functions.makeUrlEvent("CoinsCourses", { live: true })
     let listener = [

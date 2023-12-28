@@ -10,7 +10,7 @@ export default function () {
                 // href="/"
                 onclick={() => {
                     Static.color = "green"
-                    Fn.init()
+                    // Fn.init()
                 }}
                 class="btn btn_timing"
 
@@ -19,7 +19,7 @@ export default function () {
             </button>
             <div>
                 {
-                    Static.records.map((item, index) => {
+                    (Static.records || []).map((item, index) => {
                         return (
                             <p>{item.name} = {item.price}</p>
                         )
