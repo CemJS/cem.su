@@ -1,14 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export const strToJson = function (data: string) {
-  let json = {}
-  if (data && data.length && data[0] == "[") {
-    json = []
-  }
   try {
     return JSON.parse(data)
   } catch (error) {
-    return json
+    return null
   }
 }
 

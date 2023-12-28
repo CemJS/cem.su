@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "cemjs-all": "^1.1.9",
+    "deep-observer": "^1.1.7",
     "uuid": "^9.0.1"
   },
   "main": "index.js",

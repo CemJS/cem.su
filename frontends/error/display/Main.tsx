@@ -17,7 +17,15 @@ export default function () {
             >
                 <span>На главную</span>
             </button>
-
+            <div>
+                {
+                    Static.records.map((item, index) => {
+                        return (
+                            <p>{item.name} = {item.price}</p>
+                        )
+                    })
+                }
+            </div>
             {/* example svg */}
             <svg viewbox="-280 -85 560 170">
                 <defs>
