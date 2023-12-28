@@ -13,6 +13,10 @@ front.loader = async () => {
     Static.doneTimeout = null
     Static.resetTimeout = null
 
+    Static.t = {
+        t1: 1,
+        t2: 5
+    }
 
     // Fn.initAuto("records")
 
@@ -39,6 +43,7 @@ front.loader = async () => {
                         Static.records[index] = json
                     }
                 })
+                Static.t.t2 = 5
                 // for (let item of Static.records) {
                 //     if (item._id == json._id) {
                 //         console.log('=4c44ea=', 1244444444)

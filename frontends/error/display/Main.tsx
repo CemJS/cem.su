@@ -10,6 +10,7 @@ export default function () {
                 // href="/"
                 onclick={() => {
                     Static.color = "green"
+
                     // Fn.init()
                 }}
                 class="btn btn_timing"
