@@ -39,7 +39,8 @@ export default function () {
                         onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
                     >
                         <span>Русский</span>
-                        <img src={lang} alt="Выбор основного языка на платформе" />
+                        <span class="i icon-i-lang"></span>
+                        {/* <img src={lang} alt="Выбор основного языка на платформе" /> */}
                     </div>
 
                     <button class="btn">Регистрация</button>
