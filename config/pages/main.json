@@ -2,6 +2,6 @@
     "url": "/",
     "front": [
         "header",
-        "runLine"
+        "courseLine"
     ]
 }
