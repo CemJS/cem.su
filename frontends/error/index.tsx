@@ -12,16 +12,8 @@ front.loader = async () => {
     Static.color = "purple"
     Static.doneTimeout = null
     Static.resetTimeout = null
-
-    Static.t = {
-        t1: 1,
-        t2: 5
-    }
-
-    // Fn.initAuto("records")
-
+    Static.t = 0
     Static.records = []
-    Static.test = 6
     let url = front.Services.functions.makeUrlEvent("CoinsCourses", { live: true })
     let listener = [
         {
@@ -30,7 +22,6 @@ front.loader = async () => {
                 let json = front.Services.functions.strToJson(data)
                 if (!json) { return }
                 Static.records = json
-                // Fn.init()
             },
         },
         {
@@ -43,14 +34,6 @@ front.loader = async () => {
                         Static.records[index] = json
                     }
                 })
-                Static.t.t2 = 5
-                // for (let item of Static.records) {
-                //     if (item._id == json._id) {
-                //         console.log('=4c44ea=', 1244444444)
-                //         item = json
-                //     }
-                // }
-                // Fn.init()
             },
         }
     ]

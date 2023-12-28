@@ -10,8 +10,6 @@ export default function () {
                 // href="/"
                 onclick={() => {
                     Static.color = "green"
-
-                    // Fn.init()
                 }}
                 class="btn btn_timing"
 
@@ -20,13 +18,15 @@ export default function () {
             </button>
             <div>
                 {
-                    (Static.records || []).map((item, index) => {
+                    (Static.records).map((item, index) => {
                         return (
                             <p>{item.name} = {item.price}</p>
                         )
                     })
                 }
+
             </div>
+            <div>{Static.t ?? 5}</div>
             {/* example svg */}
             <svg viewbox="-280 -85 560 170">
                 <defs>
