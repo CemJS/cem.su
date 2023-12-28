@@ -41,6 +41,8 @@ export default function () {
                         <span>Русский</span>
                         <img src={lang} alt="Выбор основного языка на платформе" />
                     </div>
+
+                    <button class="btn">Регистрация</button>
                 </div>
 
             </div>

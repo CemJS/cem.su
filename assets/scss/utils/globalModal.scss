@@ -81,3 +81,9 @@
     align-items: center;
   }
 }
+
+.modal_scroll {
+  max-height: 30rem;
+  height: 30rem;
+  overflow-y: scroll;
+}

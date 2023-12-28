@@ -4,11 +4,13 @@ import languages from '@json/languages'
 export default function () {
     return (
         <main class="modal_main">
-            <ul>
+            <ul class="list modal_scroll" role="list">
                 {
                     languages.map(item => {
                         return (
-                            <li>{item.name}</li>
+                            <li class="list__item">
+                                {item.name}
+                            </li>
                         )
                     })
                 }

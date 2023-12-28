@@ -1,7 +1,6 @@
 import { Cemjsx, Ref, Func } from "cemjs-all"
 import Header from "./display/Header"
 import Main from "./display/Main"
-import Footer from "./display/Footer"
 
 export default function () {
   return (
@@ -9,7 +8,6 @@ export default function () {
       <div class="modal__content modal__content_lang">
         <Header />
         <Main />
-        <Footer />
       </div>
     </div>
   )

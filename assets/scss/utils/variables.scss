@@ -11,9 +11,14 @@
   --border-color: #2D3243;
 
   // numerical
-  --borderR: 15px;
+  --btnR: 0.5rem;
+  --borderR: 1rem;
   --ellipse: 50%;
 
+  // transition
+  --tran-03: all 0.3s ease-in-out;
+  --tran-05: all 0.5s ease-in-out;
+
   // gradient
-  --main_gradient: linear-gradient(56.57deg, #2973ff 0%, #8846d3 45.56%, #ff22ac 65.28%);
+  --mainGradient: linear-gradient(to left, #2973FF, #8846D3, #FF22AC);
 }
