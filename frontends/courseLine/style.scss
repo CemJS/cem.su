@@ -1,0 +1,72 @@
+@import 'assets/scss/utils/mixins.scss';
+
+.course-line {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+
+  // height: 3.2rem;
+  &:hover {
+    cursor: pointer;
+
+    .course-line__track {
+      animation-play-state: paused;
+    }
+  }
+
+  &::after,
+  &::before {
+    position: absolute;
+    top: 0;
+    width: 9.5rem;
+    height: 100%;
+    content: "";
+    z-index: 2;
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #191E21);
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), #191E21);
+  }
+
+  &__track {
+    display: flex;
+    position: relative;
+    animation: 50s slide infinite linear;
+    -webkit-animation: 50s slide infinite linear;
+  }
+
+
+  &__item {
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+
+
+    &-text {
+      @include text(var(--white), 600, 1.25rem)
+    }
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+  }
+}

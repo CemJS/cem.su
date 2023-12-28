@@ -6,3 +6,9 @@
   font-size: $fontSize;
   color: $fontColor;
 }
+
+@mixin text($fontColor, $fontWeght, $fontSize ) {
+  color: $fontColor;
+  font-weight: $fontWeght;
+  font-size: $fontSize;
+}
