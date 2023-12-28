@@ -2,12 +2,9 @@ import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all"
 import Navigation from "./navigation"
 
 front.degubStatic = true
+front.InitIgnore.push("test")
 
 front.listener.finish = () => {
-    return
-}
-
-front.func.test = () => {
     return
 }
 
@@ -17,9 +14,10 @@ front.loader = async () => {
     Static.resetTimeout = null
 
 
-    Fn.initAuto("records")
+    // Fn.initAuto("records")
 
     Static.records = []
+    Static.test = 6
     let url = front.Services.functions.makeUrlEvent("CoinsCourses", { live: true })
     let listener = [
         {
@@ -28,8 +26,7 @@ front.loader = async () => {
                 let json = front.Services.functions.strToJson(data)
                 if (!json) { return }
                 Static.records = json
-                console.log('=bc89e2=', Static.records)
-                Fn.init()
+                // Fn.init()
             },
         },
         {
@@ -39,7 +36,6 @@ front.loader = async () => {
                 if (!json) { return }
                 Static.records.forEach((item, index) => {
                     if (item._id == json._id) {
-                        console.log('=4c44ea=', 1244444444)
                         Static.records[index] = json
                     }
                 })
@@ -49,7 +45,7 @@ front.loader = async () => {
                 //         item = json
                 //     }
                 // }
-                Fn.init()
+                // Fn.init()
             },
         }
     ]

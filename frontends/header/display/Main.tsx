@@ -11,7 +11,7 @@ const RenderMenu = function ({ menu }) {
                     return (
                         <li class="header-list__item"
                             onclick={async () => {
-                                // Fn.linkChange("/error", { item: 5, test: 7, t: "hhh" })
+                                Fn.linkChange("/error", { item: 5, test: 7, t: "hhh" })
                             }}>
                             {item.name}
                         </li>
