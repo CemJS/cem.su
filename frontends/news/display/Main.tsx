@@ -1,7 +1,8 @@
-import { Cemjsx } from "cemjs-all"
+import { Cemjsx, Static, Fn } from "cemjs-all"
 import news from "@json/news"
 
 export default function () {
+    Fn.log('=3aa4e9=', Static.records)
     return (
         <section class="news">
             {
