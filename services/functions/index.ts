@@ -17,6 +17,15 @@ export const makeUrlEvent = function (url: string, params: any = {}) {
   return url
 }
 
+export const timeStampToDate = function (d: number, separator: string) {
+  let dateObj = new Date(d)
+  let month = dateObj.getMonth() + 1
+  let year = dateObj.getFullYear()
+  let date = dateObj.getDate()
+  let result = `${date}${separator}${month}${separator}${year}`
+  return result
+}
+
 export const loader = async function (Variable: any, Fn: any) {
 
   if (!localStorage.uuid) {
