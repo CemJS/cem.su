@@ -58,3 +58,30 @@
     transform: scale(0.97);
   }
 }
+
+.field {
+  &_error {
+    animation: invalid 300ms;
+  }
+
+  input {
+    border: none;
+    outline: none;
+  }
+}
+
+@keyframes invalid {
+
+  0%,
+  100% {
+    transform: translate(0);
+  }
+
+  25% {
+    transform: translate(0.125rem);
+  }
+
+  75% {
+    transform: translate(0.125rem);
+  }
+}
