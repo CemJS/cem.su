@@ -4,6 +4,7 @@ export const strToJson = function (data: string) {
   try {
     return JSON.parse(data)
   } catch (error) {
+    console.error('strToJson Error', error)
     return null
   }
 }
