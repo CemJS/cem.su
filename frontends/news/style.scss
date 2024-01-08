@@ -1,0 +1,34 @@
+.news {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+
+  &__item {
+    background: var(--backSecond);
+    border-radius: var(--borderR);
+    padding: var(--p);
+
+    &-img {
+      img {
+        border-radius: var(--borderR);
+      }
+    }
+
+    &-title {
+      -webkit-line-clamp: 3;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    &-desc {
+      font-weight: 500;
+      line-height: 24px;
+      -webkit-line-clamp: 3;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      align-self: flex-end;
+    }
+  }
+}
