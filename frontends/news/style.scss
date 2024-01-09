@@ -7,23 +7,31 @@
     background: var(--backSecond);
     border-radius: var(--borderR);
     padding: var(--p);
+    border: 1px solid var(--border-color);
 
     &-img {
+      height: 320px;
+
       img {
         border-radius: var(--borderR);
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
       }
     }
 
     &-title {
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 1;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      padding-top: 1rem;
+      margin-bottom: 1rem;
     }
 
     &-desc {
       font-weight: 500;
-      line-height: 24px;
+      // line-height: 24px;
       -webkit-line-clamp: 3;
       display: -webkit-box;
       -webkit-box-orient: vertical;

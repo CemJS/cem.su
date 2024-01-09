@@ -2,16 +2,21 @@
   {
     "name": "Контакты",
     "microfrontend": "dashboard",
-    "url": "/personal"
+    "url": ""
   },
   {
     "name": "О нас",
     "microfrontend": "script",
-    "url": "/personal/script"
+    "url": ""
   },
   {
     "name": "Шаблоны",
     "microfrontend": "template",
-    "url": "/personal/template"
+    "url": "/error"
+  },
+  {
+    "name": "Новости",
+    "microfrontend": "news",
+    "url": "/news"
   }
 ]

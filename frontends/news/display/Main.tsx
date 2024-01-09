@@ -17,7 +17,13 @@ export default function () {
                             <h3 class="news__item-title">{item.title}</h3>
                             <p class="news__item-desc">{item.text}</p>
                             <div class="new__item-statistic">
-                                <div>{front.Services.functions.timeStampToDate(item.dateCreate, ".")}</div>
+                                <div>
+                                    <i class="i i-comment"></i>{item.statistic.comments}
+                                </div>
+                                <div>
+                                    <i class="i i-calendar"></i>
+                                    {front.Services.functions.timeStampToDate(item.dateCreate, ".")}
+                                </div>
                             </div>
                         </div>
                     )

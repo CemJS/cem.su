@@ -34,13 +34,13 @@
 
     &_ring:nth-child(1) {
       border-bottom-width: 8px;
-      border-color: var(--lilac_lotion);
+      border-color: var(--pink);
       animation: rotate1 2s linear infinite;
     }
 
     &_ring:nth-child(2) {
       border-right-width: 8px;
-      border-color: var(--akebi_purple);
+      border-color: var(--purple);
       animation: rotate2 2s linear infinite;
     }
 

@@ -5,6 +5,12 @@
   margin: 0 auto;
 }
 
+.hide {
+  // opacity: 0;
+  // user-select: none;
+  display: none !important;
+}
+
 .list {
   &__item {
     padding: 10px 15px;
