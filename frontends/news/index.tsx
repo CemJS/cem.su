@@ -12,7 +12,7 @@ front.func.test = () => {
 
 front.loader = async () => {
     Static.records = []
-    let url = front.Services.functions.makeUrlEvent("News")
+    let url = front.Services.functions.makeUrlEvent("News", { lang: "ru" })
     // let url = front.Services.functions.makeUrlEvent("News", { cat: "test" })
     let listener = [
         {
