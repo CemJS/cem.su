@@ -54,7 +54,7 @@ front.loader = () => {
 
 front.display = () => {
     return (
-        <div class="wrapper">
+        <div class="wrapper mt-45">
             <Navigation />
         </div>
     )
