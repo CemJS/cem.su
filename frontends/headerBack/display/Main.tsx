@@ -5,7 +5,7 @@ export default function () {
         <div class="wrapper">
             <div class="back-inner">
                 <span class="back-inner_arrow">
-                    <i class="i i-arrow-left"></i>
+                    <i class="i i-left"></i>
                 </span>
 
                 <h5 class="back-title">Новости</h5>

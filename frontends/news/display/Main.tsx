@@ -1,13 +1,33 @@
-import { Cemjsx, Static, Fn, front } from "cemjs-all"
+import { Cemjsx, Static, Fn, front, Events } from "cemjs-all"
 
 export default function () {
-    // Fn.log('=3aa4e9=', Static.records)
+    Fn.log('=3aa4e9=', Static.records)
     return (
         <section class="news">
             {
                 Static.records.map(item => {
                     return (
-                        <div class="news__item">
+                        <div class="news__item"
+                            onclick={() => {
+                                Static.record = item._id
+                                let listener = [
+                                    {
+                                        type: "add",
+                                        fn: ({ data }) => {
+                                            let json = front.Services.functions.strToJson(data)
+                                            if (!json) { return }
+                                            Static.records = json
+                                        },
+                                    }
+                                ]
+                                Events.news.change(front.Services.functions.makeUrlEvent("News", {
+                                    action: "show",
+                                    id: item._id
+                                }), listener)
+                                Fn.linkChange(`/news/show/${item._id}`)
+                            }}
+
+                        >
                             <div class="news__item-img">
                                 <img
                                     src={`/assets/upload/news/${item.image}`}

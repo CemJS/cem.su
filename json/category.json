@@ -9,19 +9,10 @@
     "name": "GameFi"
   },
   {
-    "name": "Experts"
-  },
-  {
-    "name": "Safety"
-  },
-  {
     "name": "Finance"
   },
   {
     "name": "Ethereum"
-  },
-  {
-    "name": "Altcoins"
   },
   {
     "name": "Mining"
@@ -37,11 +28,5 @@
   },
   {
     "name": "Analytics"
-  },
-  {
-    "name": "CEX"
-  },
-  {
-    "name": "DEX"
   }
 ]

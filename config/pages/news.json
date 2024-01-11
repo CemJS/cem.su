@@ -1,7 +1,7 @@
 {
-    "url": "/news",
+    "regex": "/news",
     "front": [
-        "headerBack",
-        "news"
+        "news",
+        "footer"
     ]
 }

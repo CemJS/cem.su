@@ -34,6 +34,7 @@ export default function () {
             ]}
             onclick={() => {
               Static.activeItem = "all"
+              Events.news.change(front.Services.functions.makeUrlEvent("News", {}))
             }}
           >
             Все
@@ -43,16 +44,18 @@ export default function () {
               return (
                 <li
                   class={["category-line__item",
-                    Static.activeItem == item.name ? "category-line__item_active" : null
+                    Static.activeItem === item.name ? "category-line__item_active" : null
                   ]}
                   onclick={(e) => {
-                    Static.activeItem = item.name
-                    Events.news.change(front.Services.functions.makeUrlEvent("News", { action: "category", category: item.name }))
+                    Static.activeItem = item.name.replace(/ +/g, '').trim()
+                    Events.news.change(front.Services.functions.makeUrlEvent("News", {
+                      action: "category",
+                      category: Static.activeItem
+                    }))
                     e.currentTarget.classList.toggle("category-line__item_active")
                     // e.currentTarget.scrollIntoView({
                     //     inline: "center"
                     // })
-                    // Func.requestNewsCategory(item.name)
                   }}
                 >
                   {item.name}

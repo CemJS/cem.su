@@ -1,8 +1,6 @@
 import { Cemjsx, front, Func, Static, Fn, Events, Ref } from "cemjs-all"
 import Navigation from "./navigation"
 
-front.degubStatic = true
-
 front.listener.finish = () => {
     return
 }
@@ -47,21 +45,6 @@ front.func.updateIcons = (e: any) => {
     return
 }
 
-front.func.requestNewsCategory = async (category) => {
-    let url = front.Services.functions.makeUrlEvent("News", { action: "category", category: category })
-    let listener = [
-        {
-            type: "add",
-            fn: ({ data }) => {
-                let json = front.Services.functions.strToJson(data)
-                if (!json) { return }
-                Static.records = json
-            },
-        }
-    ]
-    Events.news = await Fn.event(url, listener)
-    return
-}
 
 // =============================
 

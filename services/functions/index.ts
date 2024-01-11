@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { editText } from './editText';
 
 export const strToJson = function (data: string) {
   try {
@@ -41,4 +42,8 @@ export const loader = async function (Variable: any, Fn: any) {
     Variable.myInfo = Object.assign(Variable.myInfo, myInfo)
   });
   return
+}
+
+export {
+  editText,
 }
