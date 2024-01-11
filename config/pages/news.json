@@ -2,7 +2,6 @@
     "url": "/news",
     "front": [
         "headerBack",
-        "categoryLine",
         "news"
     ]
 }

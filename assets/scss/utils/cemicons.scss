@@ -6,16 +6,16 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.i-arrow-left:before {
+.i-left:before {
   content: "\e900";
 }
 
-.i-arrow-right:before {
+.i-right:before {
   content: "\e901";
 }
 
@@ -113,4 +113,156 @@
 
 .i-youtube:before {
   content: "\e918";
+}
+
+.i-copy:before {
+  content: "\e925";
+}
+
+.i-phone:before {
+  content: "\e942";
+}
+
+.i-location:before {
+  content: "\e947";
+}
+
+.i-compass:before {
+  content: "\e949";
+}
+
+.i-alarm:before {
+  content: "\e950";
+}
+
+.i-database:before {
+  content: "\e964";
+}
+
+.i-undo:before {
+  content: "\e967";
+}
+
+.i-redo:before {
+  content: "\e968";
+}
+
+.i-forward:before {
+  content: "\e969";
+}
+
+.i-reply:before {
+  content: "\e96a";
+}
+
+.i-bubbles2:before {
+  content: "\e96d";
+}
+
+.i-users:before {
+  content: "\e972";
+}
+
+.i-quotes-left:before {
+  content: "\e977";
+}
+
+.i-quotes-right:before {
+  content: "\e978";
+}
+
+.i-spinner:before {
+  content: "\e97f";
+}
+
+.i-wrench:before {
+  content: "\e991";
+}
+
+.i-equalizer-h:before {
+  content: "\e992";
+}
+
+.i-equalizer-v:before {
+  content: "\e993";
+}
+
+.i-settings:before {
+  content: "\e994";
+}
+
+.i-settings2:before {
+  content: "\e995";
+}
+
+.i-pie-chart:before {
+  content: "\e99a";
+}
+
+.i-cloud-check:before {
+  content: "\e9c4";
+}
+
+.i-link:before {
+  content: "\e9cb";
+}
+
+.i-volume-medium:before {
+  content: "\ea27";
+}
+
+.i-volume-low:before {
+  content: "\ea28";
+}
+
+.i-volume-mute:before {
+  content: "\ea2a";
+}
+
+.i-arrow-up-left:before {
+  content: "\ea39";
+}
+
+.i-arrow-up:before {
+  content: "\ea3a";
+}
+
+.i-arrow-up-right:before {
+  content: "\ea3b";
+}
+
+.i-arrow-right2:before {
+  content: "\ea3c";
+}
+
+.i-arrow-down-right:before {
+  content: "\ea3d";
+}
+
+.i-arrow-down:before {
+  content: "\ea3e";
+}
+
+.i-arrow-down-left:before {
+  content: "\ea3f";
+}
+
+.i-arrow-left2:before {
+  content: "\ea40";
+}
+
+.i-terminal:before {
+  content: "\ea81";
+}
+
+.i-share:before {
+  content: "\ea82";
+}
+
+.i-appleinc:before {
+  content: "\eabe";
+}
+
+.i-android:before {
+  content: "\eac0";
 }

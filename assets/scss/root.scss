@@ -65,3 +65,11 @@ body {
 p {
     margin: 0;
 }
+
+@media(max-width: 464px) {
+
+    html,
+    body {
+        font-size: 14px;
+    }
+}

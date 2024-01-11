@@ -40,9 +40,10 @@ export default function () {
                                 onclick={(e) => {
                                     e.currentTarget.classList.toggle("category-line__item_active")
                                     Static.activeItem = item.name
-                                    e.currentTarget.scrollIntoView({
-                                        inline: "center"
-                                    })
+                                    // e.currentTarget.scrollIntoView({
+                                    //     inline: "center"
+                                    // })
+                                    // Func.requestNews(item.name)
                                 }}
                             >
                                 {item.name}

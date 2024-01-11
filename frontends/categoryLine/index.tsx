@@ -1,4 +1,4 @@
-import { Cemjsx, front, Func, Static, Fn, Ref } from "cemjs-all"
+import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all"
 import Navigation from "./navigation"
 
 
@@ -45,6 +45,8 @@ front.func.updateIcons = (e: any) => {
     Ref.categoryNext.classList.toggle('hide', e.target.scrollWidth - e.target.scrollLeft === e.target.clientWidth)
     return
 }
+
+
 
 front.loader = () => {
     Static.isDragging = false

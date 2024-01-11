@@ -3,6 +3,10 @@
 .wrapper {
   max-width: 1240px;
   margin: 0 auto;
+
+  @media(max-width: 1240px) {
+    padding: 0 1rem;
+  }
 }
 
 .hide {

@@ -3,37 +3,28 @@
     "name": "Crypto Emergency"
   },
   {
+    "name": "Bitcoin"
+  },
+  {
     "name": "GameFi"
   },
   {
-    "name": "Эксперты"
+    "name": "Experts"
   },
   {
-    "name": "Прочее"
+    "name": "Safety"
   },
   {
-    "name": "Безопасность"
+    "name": "Finance"
   },
   {
-    "name": "Регулирование"
+    "name": "Ethereum"
   },
   {
-    "name": "Рынок"
+    "name": "Altcoins"
   },
   {
-    "name": "Финансы"
-  },
-  {
-    "name": "Биткоин"
-  },
-  {
-    "name": "Эфириум"
-  },
-  {
-    "name": "Альткоины"
-  },
-  {
-    "name": "Майнинг"
+    "name": "Mining"
   },
   {
     "name": "ICO"
@@ -45,10 +36,7 @@
     "name": "NFT"
   },
   {
-    "name": "Криптовселенная"
-  },
-  {
-    "name": "Аналитика"
+    "name": "Analytics"
   },
   {
     "name": "CEX"
