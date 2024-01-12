@@ -12,7 +12,7 @@
     cursor: pointer;
 
     &-img {
-      height: 320px;
+      // height: 320px;
 
       img {
         border-radius: var(--borderR);
@@ -48,6 +48,7 @@
       left: var(--p);
       right: var(--p);
       bottom: var(--p);
+      color: var(--textSecond);
 
       &-el {
         display: flex;
@@ -59,7 +60,45 @@
 }
 
 .new {
-  &-content {}
+  &-title {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0.8rem 0;
+  }
 
-  &-img {}
+  &-content {
+    margin-top: 1rem;
+  }
+
+  &-img {
+    width: 50%;
+    float: left;
+    max-height: max-content;
+    margin: 0 1.3rem 1.3rem 0;
+
+    img {
+      border-radius: var(--borderR);
+    }
+  }
+
+  &-statistic {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--textSecond);
+
+    &__el {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+  }
+}
+
+@media(max-width: 600px) {
+  .new {
+    &-img {
+      width: 100%;
+    }
+  }
 }

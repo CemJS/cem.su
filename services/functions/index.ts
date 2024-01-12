@@ -23,7 +23,8 @@ export const timeStampToDate = function (d: number, separator: string) {
   let month = dateObj.getMonth() + 1
   let year = dateObj.getFullYear()
   let date = dateObj.getDate()
-  let result = `${date}${separator}${month}${separator}${year}`
+
+  let result = `${String(date).length == 1 ? `0${date}` : date}${separator}${String(month).length == 1 ? `0${month}` : month}${separator}${year}`
   return result
 }
 

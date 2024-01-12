@@ -35,7 +35,7 @@ export default function () {
                                 />
                             </div>
                             <h3 class="news__item-title">{item.title}</h3>
-                            <p class="news__item-desc">{item.text}</p>
+                            <p class="news__item-desc">{item.preview}</p>
 
                             <div class="news__item-statistic">
                                 <div class="news__item-statistic-el">
