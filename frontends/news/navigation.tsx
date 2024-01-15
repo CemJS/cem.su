@@ -5,6 +5,15 @@ import HeaderBack from "./display/HeaderBack"
 import Category from "./display/Category"
 
 export default function () {
+  if (Static.record) {
+    return (
+      <section>
+        <HeaderBack titleHead={Static.record?.title} />
+        <Show />
+      </section>
+    )
+  }
+
   if (Static.records.length > 1) {
     return (
       <section>
@@ -15,10 +24,5 @@ export default function () {
     )
   }
 
-  return (
-    <section>
-      <HeaderBack titleHead={Static.record?.title} />
-      <Show />
-    </section>
-  )
+
 }

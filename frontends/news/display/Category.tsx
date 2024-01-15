@@ -34,7 +34,7 @@ export default function () {
             ]}
             onclick={() => {
               Static.activeItem = "all"
-              Events.news.change(front.Services.functions.makeUrlEvent("News", {}))
+              Events.news.change(front.Services.functions.makeUrlEvent("News", { lang: "ru" }))
             }}
           >
             Все
@@ -50,6 +50,7 @@ export default function () {
                     Static.activeItem = item.name.replace(/ +/g, '').trim()
                     Events.news.change(front.Services.functions.makeUrlEvent("News", {
                       action: "category",
+                      lang: "ru",
                       category: Static.activeItem
                     }))
                     e.currentTarget.classList.toggle("category-line__item_active")

@@ -1,7 +1,7 @@
 import { Cemjsx, Static, Fn, front } from "cemjs-all"
 
 export default function () {
-  Static.record = Static.records[0]
+  // Static.record = Static.records[0]
   Fn.log("=news show=", Static.record)
   return (
     <div class="mt-45 new">
