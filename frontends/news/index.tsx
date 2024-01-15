@@ -3,55 +3,6 @@ import Navigation from "./navigation"
 
 front.listener.finish = async () => {
     return
-    Static.newsItems = document.querySelectorAll('.news__item')
-    Static.lastNewsItem = Static.newsItems[Static.newsItems.length - 1]
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(async entry => {
-            if (entry.isIntersecting && entry.target == Static.lastNewsItem) {
-                // Fn.log("records", Static.records)
-                // console.log('=d9b9f3=', 'end', front.Services.functions.makeUrlEvent("News", {
-                //     action: "skip",
-                //     lang: "ru",
-                //     category: Static.activeItem,
-                //     skip: Static.records.length
-                // }))
-
-                Events.news.change(front.Services.functions.makeUrlEvent("News", {
-                    action: "skip",
-                    lang: "ru",
-                    category: Static.activeItem,
-                    skip: Static.records.length
-                }))
-
-
-                // Events.news.close()
-                // Events.news.change(front.Services.functions.makeUrlEvent("News", {
-                //     action: "skip",
-                // }))
-                // let url = front.Services.functions.makeUrlEvent("News", {})
-                // let listener = [
-                //     {
-                //         type: "skip",
-                //         fn: ({ data }) => {
-                //             // console.log('=8265b8=', "fnfjkgfkjgjk", data)
-                //             let json = front.Services.functions.strToJson(data)
-                //             if (!json) { return }
-                //             Static.records.push(json)
-                //         },
-                //     }
-                // ]
-                // Events.news = await Fn.event(url, listener)
-
-
-            }
-        })
-    })
-
-    Static.newsItems.forEach((record: HTMLElement) => {
-        observer.observe(record)
-    })
-    return
 }
 // =============================
 front.func.dragging = (e) => {

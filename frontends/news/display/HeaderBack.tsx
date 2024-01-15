@@ -1,28 +1,14 @@
 import { Cemjsx, Fn, front, Static, Events } from "cemjs-all"
 
 export default function () {
+  // Fn.log('=f24bd3=',Static.titleHead)
   return (
     <div class="back">
       <div class="wrapper">
         <div class="back-inner">
           <span
             class="back-inner_arrow"
-          // onclick={async () => {
-          //   let url = front.Services.functions.makeUrlEvent("News", {})
-          //   let listener = [
-          //     {
-          //       type: "add",
-          //       fn: ({ data }) => {
-          //         // console.log('=8265b8=', "fnfjkgfkjgjk", data)
-          //         let json = front.Services.functions.strToJson(data)
-          //         if (!json) { return }
-          //         Static.records = json
-          //       },
-          //     }
-          //   ]
-          //   Events.news = await Fn.event(url, listener)
-          //   Fn.linkChange(`/news`)
-          // }}
+          // onclick={Fn.linkChange(Static.urlHead)}
           >
             <i class="i i-left"></i>
           </span>

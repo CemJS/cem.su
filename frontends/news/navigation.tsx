@@ -8,7 +8,7 @@ export default function () {
   if (Static.record) {
     return (
       <section>
-        <HeaderBack titleHead={Static.record?.title} />
+        <HeaderBack titleHead={Static.record?.title} urlHead="/news" />
         <Show />
       </section>
     )
@@ -17,7 +17,7 @@ export default function () {
   if (Static.records.length > 1) {
     return (
       <section>
-        <HeaderBack titleHead="Новости" />
+        <HeaderBack titleHead="Новости" urlHead="/" />
         <Category />
         <Main />
       </section>

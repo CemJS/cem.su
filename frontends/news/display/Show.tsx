@@ -1,8 +1,7 @@
 import { Cemjsx, Static, Fn, front } from "cemjs-all"
 
 export default function () {
-  // Static.record = Static.records[0]
-  Fn.log("=news show=", Static.record)
+  // Fn.log("=news show=", Static.record)
   return (
     <div class="mt-45 new">
       <h1 class="new-title">{Static.record?.title}</h1>
@@ -17,9 +16,16 @@ export default function () {
         </div>
 
         <p class="new-preview">{Static.record?.preview}</p>
-        <p class="new-desc">{Static.record?.preview}</p>
 
-        <div>{Static.record?.text}</div>
+        {/* <div class="mt-10">{Static.record?.text}</div> */}
+
+        <div
+          class="new-content__text"
+          init={($el) => {
+            // this.Services.functions.editText(Static.record?.text, $el)
+            this.Services.functions.searchLink(Static.record?.text, $el)
+          }}
+        ></div>
       </div>
 
       <div class="new-statistic">
