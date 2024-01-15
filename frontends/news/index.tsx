@@ -6,9 +6,29 @@ front.listener.finish = async () => {
     Static.lastNewsItem = Static.newsItems[Static.newsItems.length - 1]
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach(async entry => {
             if (entry.isIntersecting && entry.target == Static.lastNewsItem) {
-                console.log('=5cf1dd=', 123)
+                // Fn.log("records", Static.records)
+                console.log('=d9b9f3=', 'end')
+                Events.news.close()
+                // Events.news.change(front.Services.functions.makeUrlEvent("News", {
+                //     action: "skip",
+                // }))
+                let url = front.Services.functions.makeUrlEvent("News", {})
+                let listener = [
+                    {
+                        type: "skip",
+                        fn: ({ data }) => {
+                            // console.log('=8265b8=', "fnfjkgfkjgjk", data)
+                            let json = front.Services.functions.strToJson(data)
+                            if (!json) { return }
+                            Static.records.push(json)
+                        },
+                    }
+                ]
+                Events.news = await Fn.event(url, listener)
+
+
             }
         })
     })

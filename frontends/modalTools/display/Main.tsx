@@ -24,24 +24,6 @@ export default function () {
                         <li class="bottomSheet-list__item">Скопировать URL</li>
                         <li class="bottomSheet-list__item">Поделиться</li>
 
-                        <li class="bottomSheet-list__item">Скопировать URL</li>
-                        <li class="bottomSheet-list__item">Поделиться</li>
-
-                        <li class="bottomSheet-list__item">Скопировать URL</li>
-                        <li class="bottomSheet-list__item">Поделиться</li>
-
-                        <li class="bottomSheet-list__item">Скопировать URL</li>
-                        <li class="bottomSheet-list__item">Поделиться</li>
-
-                        <li class="bottomSheet-list__item">Скопировать URL</li>
-                        <li class="bottomSheet-list__item">Поделиться</li>
-
-                        <li class="bottomSheet-list__item">Скопировать URL</li>
-                        <li class="bottomSheet-list__item">Поделиться</li>
-
-                        <li class="bottomSheet-list__item">Скопировать URL</li>
-                        <li class="bottomSheet-list__item">Поделиться</li>
-
                         <li class="bottomSheet-list__item mt-15">
                             Отмена
                         </li>

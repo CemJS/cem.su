@@ -1,7 +1,7 @@
 import { Cemjsx, Static, Fn, front, Events } from "cemjs-all"
 
 export default function () {
-    Fn.log('=3aa4e9=', Static.records)
+    // Fn.log('=3aa4e9=', Static.records)
     return (
         <section class="news">
             {
