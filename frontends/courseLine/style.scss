@@ -1,54 +1,114 @@
 @import '../../assets/scss/utils/mixins.scss';
 
-.course-line {
-  position: relative;
-  overflow: hidden;
-  display: flex;
+.line {
 
-  // height: 3.2rem;
-  &:hover {
-    cursor: pointer;
+  &-wrap {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    height: 50px;
+    text-decoration: none;
 
-    .course-line__track {
-      animation-play-state: paused;
+    &:hover {
+      cursor: pointer;
+
+      .line__track {
+        animation-play-state: paused;
+      }
     }
-  }
 
-  &::after,
-  &::before {
-    position: absolute;
-    top: 0;
-    width: 9.5rem;
-    height: 100%;
-    content: "";
-    z-index: 2;
-  }
+    &::after,
+    &::before {
+      position: absolute;
+      top: 0;
+      width: 150px;
+      height: 100%;
+      content: "";
+      z-index: 2;
 
-  &::after {
-    right: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), #191E21);
-  }
+      @media(max-width: 767px) {
+        width: 50px;
+      }
+    }
 
-  &::before {
-    left: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), #191E21);
+    &::after {
+      right: 0;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), #191E21);
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(to left, rgba(255, 255, 255, 0), #191E21);
+    }
   }
 
   &__track {
     display: flex;
     position: relative;
-    animation: 50s slide infinite linear;
-    -webkit-animation: 50s slide infinite linear;
+    animation: 100s slide infinite linear;
+    -webkit-animation: 100s slide infinite linear;
   }
-
 
   &__item {
     text-transform: uppercase;
-    padding: 0.6rem 1.5rem;
+    font-size: 20px;
+    padding: 10px 25px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 1s;
+    color: #FFFFFF;
 
+    @media(max-width: 767px) {
+      padding: 10px;
+    }
 
-    &-text {
-      @include text(var(--white), 600, 1.25rem)
+    &_img {
+      // width: 15px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+
+      @media(max-width: 767px) {
+        margin-right: 5px;
+      }
+
+      img {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    &_text {
+      margin-right: 10px;
+
+      &-price {
+        color: var(--purple);
+      }
+
+      @media(max-width: 767px) {
+        font-size: 14px;
+      }
+    }
+
+    // &_price {
+    //   color: var(--text_fiolet);
+    // }
+
+    &_change {
+      position: relative;
+      font-size: 14px;
+
+      img {
+        position: absolute;
+        top: -5px;
+        right: -10px;
+      }
     }
   }
 }

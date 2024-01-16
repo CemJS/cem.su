@@ -10,11 +10,6 @@
     "url": ""
   },
   {
-    "name": "Шаблоны",
-    "microfrontend": "template",
-    "url": "/error"
-  },
-  {
     "name": "Новости",
     "microfrontend": "news",
     "url": "/news"

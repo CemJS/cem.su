@@ -11,32 +11,29 @@ front.func.test = () => {
 }
 
 front.loader = async () => {
-
     Static.records = []
+    let url = front.Services.functions.makeUrlEvent("Banners", { lang: "ru" })
 
-    let url = front.Services.functions.makeUrlEvent("CoinsCourses", { line: true })
-    let listener = [{
-        type: "add",
-        fn: ({ data }) => {
-            let json = front.Services.functions.strToJson(data)
-            Static.records = json
-            Fn.init()
+    let listener = [
+        {
+            type: "get",
+            fn: ({ data }) => {
+                let json = front.Services.functions.strToJson(data)
+                if (!json) { return }
+                Static.records = json
+            },
         },
-    },
-    {
-        type: "update",
-        fn: ({ data }) => {
-            let json = front.Services.functions.strToJson(data)
-            for (let item of Static.records) {
-                if (item.name == json.name) {
-                    item.price = json.price
-                }
-            }
-            Fn.init()
+        {
+            type: "add",
+            fn: ({ data }) => {
+                let json = front.Services.functions.strToJson(data)
+                Static.records = json
+                Fn.init()
+            },
         },
-    }]
+    ]
 
-    Events.course = await Fn.event(url, listener)
+    Events.banners = await Fn.event(url, listener)
     return
 }
 

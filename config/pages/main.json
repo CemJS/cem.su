@@ -2,6 +2,7 @@
     "url": "/",
     "front": [
         "header",
-        "courseLine"
+        "courseLine",
+        "banners"
     ]
 }
