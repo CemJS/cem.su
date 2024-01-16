@@ -1,0 +1,25 @@
+.sidebar {
+  background: var(--backModal);
+  width: 18rem;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  overflow-y: auto;
+
+  &-menu {
+    width: 100%;
+
+    &__item {
+      position: relative;
+      cursor: pointer;
+
+      a {
+        color: var(--white);
+        font-size: 1rem;
+        text-decoration: none;
+        display: block;
+        padding: 1rem 2rem;
+      }
+    }
+  }
+}

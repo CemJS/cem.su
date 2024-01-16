@@ -3,9 +3,11 @@ import { Cemjsx, Fn, Static } from "cemjs-all"
 
 
 export default function () {
-    // Fn.log("Static.records...", Static.records)
+    Fn.log("Static.records banners...", Static.records)
     return (
-        <div>Empty</div>
+        <div class="banners">
+
+        </div>
     )
 }
 

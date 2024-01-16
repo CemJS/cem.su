@@ -39,7 +39,7 @@ front.loader = async () => {
 
 front.display = () => {
     return (
-        <div>
+        <div class="wrapper">
             <Navigation />
         </div>
     )

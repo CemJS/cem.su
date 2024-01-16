@@ -24,7 +24,7 @@ export default function () {
                                         return (
                                             <div class="line__item">
                                                 <div class="line__item_img">
-                                                    <img src={`/assets/svg/coins/${item.name}.svg`} alt={item.name} />
+                                                    <img src={`/contents/coins/${item.name}.svg`} alt={item.name} />
                                                 </div>
                                                 <span class="line__item_text">{item.name + "/USDT"}</span>
                                                 <span class="line__item_text line__item_text-price">
