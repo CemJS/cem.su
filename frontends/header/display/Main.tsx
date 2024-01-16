@@ -43,7 +43,7 @@ export default function () {
                         {/* <img src={lang} alt="Выбор основного языка на платформе" /> */}
                     </div>
 
-                    <button class="btn" onclick={() => Fn.initOne("modalTools", {})}>Регистрация</button>
+                    <button class="btn" onclick={() => Fn.initOne("sidebar", {})}>Регистрация</button>
                 </div>
 
             </div>
