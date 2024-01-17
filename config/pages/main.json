@@ -2,6 +2,7 @@
     "url": "/",
     "front": [
         "header",
-        "banners"
+        "banners",
+        "lenta"
     ]
 }
