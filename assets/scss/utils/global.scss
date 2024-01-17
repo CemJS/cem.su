@@ -55,10 +55,14 @@
   outline: none;
   padding: 0.8rem 1rem;
   cursor: pointer;
-  transition: var(--tran-05);
-  height: 3.2rem;
+  transition: all 0.2s ease-out;
   white-space: nowrap;
-  @include button(var(--mainGradient), fit-content, 125%, 1rem, var(--white));
+  @include button(var(--mainGradient), fit-content, 3.2rem, 125%, 1rem, var(--white));
+
+  span {
+    height: 100%;
+    display: block;
+  }
 
   &:hover {
     background-position: right;
@@ -66,6 +70,113 @@
 
   &:active {
     transform: scale(0.97);
+  }
+
+  &_close {
+    padding: 0.5rem 0.6rem;
+    border: 1px solid transparent;
+    @include button(var(--back700), fit-content, fit-content, 125%, 1rem, var(--slate-300));
+
+    .i {
+      display: block;
+    }
+
+    &:hover {
+      border: 1px solid var(--border-color);
+      color: var(--white);
+    }
+  }
+}
+
+.tooltip {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease-in-out;
+
+  &::before {
+    content: "?";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #8d9098;
+    font-size: 16px;
+    font-weight: 700;
+    transition: color 0.3s ease-in-out;
+  }
+
+  &-content {
+    width: 250px;
+
+    border: 1px solid #474c5a;
+    box-shadow: 1px 6px 0px -4px rgba(0, 0, 0, 0.15), 3px 4px 4px -1px rgba(0, 0, 0, 0.15);
+
+    position: absolute;
+    top: 10px;
+    right: -75px;
+    transform: translate(-50%, -50%) translateZ(10px);
+    padding: 15px;
+    border-radius: var(--borderR);
+    background: var(--backModal);
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
+
+    &_text {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      transform: translateZ(20px);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      z-index: -1;
+      border-top: 1px solid #474c5a;
+      border-right: 1px solid #474c5a;
+      background: var(--backModal);
+      top: 50%;
+      right: 0;
+      transform: translateX(50%) rotate(45deg);
+    }
+
+    &__active {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+
+    &::before {
+      color: var(--white);
+    }
+  }
+
+}
+
+.lang {
+  padding: 0.5rem 1rem;
+  border-radius: var(--borderR);
+  background-color: var(--back700);
+  border: 1px solid transparent;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  transition: var(--tran-03);
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid var(--border-color);
   }
 }
 

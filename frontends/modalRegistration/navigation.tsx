@@ -4,8 +4,8 @@ import Main from "./display/Main"
 
 export default function () {
   return (
-    <div class="sidebar-overlay" ref="sidebarOverlay">
-      <div class="sidebar-wrap">
+    <div class="modal__body" ref="modalBody">
+      <div class="modal__content">
         <Header />
         <Main />
       </div>

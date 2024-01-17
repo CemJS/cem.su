@@ -1,0 +1,27 @@
+// ====== flexbox ========
+.d-flex {
+  display: flex;
+}
+
+.aic {
+  align-items: center;
+}
+
+.jcc {
+  justify-content: center;
+}
+
+// ====== grid ========
+.g-colEqual-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+// column style="display: flex; flex-direction: column; gap: 20px;"
+
+.f-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

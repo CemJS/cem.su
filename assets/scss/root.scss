@@ -6,16 +6,37 @@
 @import 'utils/global.scss';
 @import 'utils/globalModal.scss';
 @import 'utils/indents.scss';
+@import 'utils/flexGrid.scss';
 
 
 *,
 ::after,
 ::before {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 * {
     -webkit-tap-highlight-color: transparent;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-button {
+        background-repeat: no-repeat;
+        width: 6px;
+        height: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: var(--slate-600);
+        // background: linear-gradient(45deg, var(--sky100) 0, var(--sky500) 45%, var(--purple) 57%, var(--pink) 70%);
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
 }
 
 :root {
@@ -41,25 +62,6 @@ body {
     font-family: 'Montserrat';
     color: var(--white);
     background-color: var(--back700);
-
-    &::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    &::-webkit-scrollbar-button {
-        background-repeat: no-repeat;
-        width: 6px;
-        height: 0px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background: linear-gradient(45deg, var(--sky100) 0, var(--sky500) 45%, var(--purple) 57%, var(--pink) 70%);
-    }
-
-    &::-webkit-scrollbar-track {
-        background-color: transparent;
-    }
 }
 
 p {

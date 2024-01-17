@@ -1,6 +1,5 @@
-import { Cemjsx, Fn } from "cemjs-all"
+import { Cemjsx, Fn, front } from "cemjs-all"
 import logo from '@svg/logo.svg'
-import lang from '@svg/icons/language.svg'
 import menu from '@json/menu'
 
 const RenderMenu = function ({ menu }) {
@@ -23,6 +22,7 @@ const RenderMenu = function ({ menu }) {
 }
 
 export default function () {
+    console.log('=2ffd0d=', front.Variable.Auth)
     return (
         <div class="wrapper">
             <div class="header-inner">
@@ -33,17 +33,31 @@ export default function () {
                     <RenderMenu menu={menu} />
                 </nav>
 
-                <div class="header__auth">
+                <div class="header-tools">
                     <div
                         class="header__lang"
                         onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
                     >
                         <span>Русский</span>
-                        <span class="i icon-i-lang"></span>
-                        {/* <img src={lang} alt="Выбор основного языка на платформе" /> */}
+                        <span class="i i-lang"></span>
                     </div>
 
-                    <button class="btn" onclick={() => Fn.initOne("sidebar", {})}>Регистрация</button>
+                    {
+                        front.Variable.Auth ?
+                            <div onclick={() => Fn.initOne("sidebar", {})}>Profile</div> :
+                            <div class="header-auth">
+                                <span>Вход</span>
+                                <button
+                                    class="btn"
+                                    onclick={() => Fn.initOne("modalRegistration", {})}
+                                >Регистрация</button>
+                                <i class="i i-equalizer-h"
+                                    onclick={() => Fn.initOne("sidebar", {})}
+                                ></i>
+                            </div>
+
+
+                    }
                 </div>
 
             </div>

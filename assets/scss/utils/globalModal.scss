@@ -15,26 +15,6 @@
     transform: scale(1);
   }
 
-  &_button-close {
-    position: absolute;
-    top: 1.4rem;
-    right: 1.4rem;
-    padding: 0.5rem 0.6rem;
-    border-radius: 0.3rem;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background: var(--green);
-    box-shadow: 0 0 2px var(--green);
-    opacity: 0.5;
-    color: var(--black);
-    transition: all ease-in-out 0.35s;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
   &__body {
     min-height: 100%;
     display: flex;
@@ -49,17 +29,21 @@
     width: 100%;
     position: relative;
     padding: 1.5rem;
-    background: var(--back700Modal);
+    background: var(--backModal);
     box-shadow: 0 0 15px -10px rgba(221, 221, 221, 0.5);
     color: var(--white);
   }
 
-  &__header {
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
 
-    &-title {
+
+    &__title {
       font-size: clamp(1rem, 2vw, 1.5rem);
       line-height: 125%;
-      margin-bottom: 1.2rem;
     }
   }
 

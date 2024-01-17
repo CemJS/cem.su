@@ -1,5 +1,9 @@
+import { Cemjsx, Fn, front } from "cemjs-all"
 import { v4 as uuidv4 } from 'uuid';
 import { editText, searchLink } from './editText';
+
+export * from './validForms'
+export * from './sendApi'
 
 export const strToJson = function (data: string) {
   try {
@@ -42,10 +46,13 @@ export const loader = async function (Variable: any, Fn: any) {
     let myInfo = JSON.parse(answ.data)
     Variable.myInfo = Object.assign(Variable.myInfo, myInfo)
   });
+  Variable.Auth = false
   return
 }
 
 export {
+  uuidv4,
+
   editText,
   searchLink
 }
