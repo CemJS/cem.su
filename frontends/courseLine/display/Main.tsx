@@ -11,8 +11,9 @@ export default function () {
             </div>
         )
     }
-
+    Fn.log("records", Static.records)
     return (
+
         <div class="line-wrap">
             <a class="line-wrap" href="/exchange-rates" onclick={Fn.link} >
                 {
@@ -24,12 +25,12 @@ export default function () {
                                         return (
                                             <div class="line__item">
                                                 <div class="line__item_img">
-                                                    <img src={`/contents/coins/${item.name}.svg`} alt={item.name} />
+                                                    <img src={`/contents/coins/${item.nameCoin}.svg`} alt={item.nameCoin} />
                                                 </div>
-                                                <span class="line__item_text">{item.name + "/USDT"}</span>
+                                                <span class="line__item_text">{item.nameCoin + "/USDT"}</span>
                                                 <span class="line__item_text line__item_text-price">
-                                                    {item.price.toFixed(
-                                                        item.name === "cem" ? 4 : 2
+                                                    {item.currentCourse.toFixed(
+                                                        item.nameCoin === "cem" ? 4 : 2
                                                     )}
                                                 </span>
                                                 <div class="line__item_change">

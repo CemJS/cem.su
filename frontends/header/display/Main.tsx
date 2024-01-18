@@ -22,7 +22,7 @@ const RenderMenu = function ({ menu }) {
 }
 
 export default function () {
-    console.log('=2ffd0d=', front.Variable.Auth)
+    // console.log('=2ffd0d=', front.Variable.Auth)
     return (
         <div class="wrapper">
             <div class="header-inner">
@@ -39,7 +39,7 @@ export default function () {
                         onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
                     >
                         <span>Русский</span>
-                        <span class="i i-lang"></span>
+                        <span class="i i-earth"></span>
                     </div>
 
                     {

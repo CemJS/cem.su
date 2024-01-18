@@ -2,6 +2,7 @@
     "url": "/",
     "front": [
         "header",
+        "courseLine",
         "banners",
         "lenta"
     ]
