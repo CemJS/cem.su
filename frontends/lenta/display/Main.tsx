@@ -6,10 +6,17 @@ const RenderVideo = function () {
             {/* wrapper */}
             <div class="video-wrapper">
 
-                <div class="video-timeline">
+                <div
+                    class="video-timeline"
+                    ref="videoTimeLine"
+                    onclick={(e: any) => {
+                        let timeLineWidth = Ref.videoTimeLine.clientWidth
+                        Ref.video.currentTime = (e.offsetX / timeLineWidth) * Ref.video.duration
+                    }}
+                >
                     {/* progress-area */}
                     <div class="video-timeline__area">
-                        <span>00:00</span>
+                        <span>{Func.formatTime(Static.currentTime)}</span>
                         <div class="video-timeline__progressbar" ref="progressBar"></div>
                     </div>
                 </div>
@@ -48,7 +55,7 @@ const RenderVideo = function () {
                             }}
                         />
                         <div class="video-options__timer">
-                            <span>{`00:00 / 00:00`}</span>
+                            <span>{`${Static.currentTime ? Func.formatTime(Static.currentTime) : "00:00"} / ${Static.duration ? Func.formatTime(Static.duration) : "00:00"}`}</span>
                         </div>
                     </li>
                     <li class="video-options">
@@ -137,6 +144,7 @@ const RenderVideo = function () {
 
             </div>
             <video
+                class="video"
                 ref="video"
                 src="/contents/video/yan.MOV"
                 onplay={() => {
@@ -147,6 +155,9 @@ const RenderVideo = function () {
                 }}
                 ontimeupdate={(e: any) => {
                     Func.timeUpdate(e)
+                }}
+                onloadeddata={(e: any) => {
+                    Static.duration = e.target.duration
                 }}
             >
             </video>
@@ -171,6 +182,14 @@ export default function () {
 
                 <div class="lenta-item__body">
                     <RenderVideo />
+                </div>
+
+                <div class="lenta-item__footer">
+                    <div class="lenta-item__text">
+                        <p>🙌 Гонконгская компания VSFG намерена запустить спотовый BTC-ETF в I квартале 2024 года</p>
+                        <p>📩 Гонконгская компания Venture Smart Financial Holdings (VSFG) планирует подать заявку в местную Комиссию по ценным бумагам и фьючерсам (SFC) на запуск спотового биржевого биткоин-фонда (ETF) и рассчитывает получить одобрение уже в текущем квартале.</p>
+                    </div>
+                    <div class="lenta-item__statistics"></div>
                 </div>
             </div>
         </div>

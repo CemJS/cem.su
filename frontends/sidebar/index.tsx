@@ -1,6 +1,6 @@
 import { Cemjsx, front, Func, Static, Fn, Ref } from "cemjs-all"
 import Navigation from "./navigation"
-
+import languages from '@json/languages'
 
 front.listener.finish = () => {
     return
@@ -21,7 +21,16 @@ front.func.close = function () {
     }, 500)
 }
 
+front.func.searchLang = function (e: any, languages) {
+    let inputValue = e.target.value.toLowerCase();
+    Static.listLanguages = languages.filter((item) => item.name.toLowerCase().includes(inputValue) == true)
+    return
+}
+
 front.loader = () => {
+    Static.activeLangList = false
+    Static.listLanguages = languages
+
     Static.sections = [
         {
             icon: 'calendar',
@@ -90,6 +99,73 @@ front.loader = () => {
             icon: 'phone',
             name: 'Выход',
             link: '#'
+        }
+    ]
+
+    Static.submenu = [
+        {
+            icon: 'settings',
+            name: 'Компания',
+            options: [
+                {
+                    name: 'О нас',
+                    link: '#',
+                },
+                {
+                    name: 'Карьера',
+                    link: '#',
+                },
+                {
+                    name: 'Lite Paper',
+                    link: '#',
+                },
+            ]
+        },
+        {
+            icon: 'support',
+            name: 'Поддержка',
+            options: [
+                {
+                    name: 'Контакты',
+                    link: '#',
+                },
+                {
+                    name: 'Партнёрская программа',
+                    link: '#',
+                }
+            ]
+        },
+        {
+            icon: 'rules',
+            name: 'Правила',
+            options: [
+                {
+                    name: 'Пользовательское соглашение',
+                    link: '#',
+                },
+                {
+                    name: 'Политика использования данных',
+                    link: '#',
+                },
+                {
+                    name: 'Политика cookies',
+                    link: '#',
+                }
+            ]
+        },
+        {
+            icon: 'cem',
+            name: 'CEM',
+            options: [
+                {
+                    name: 'CEM Blockchain',
+                    link: '#',
+                },
+                {
+                    name: 'CEM Explorer',
+                    link: '#',
+                }
+            ]
         }
     ]
     return

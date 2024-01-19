@@ -4,10 +4,8 @@ export default function () {
   return (
     <header class="sidebar-header">
       <div
-        class="lang"
-        onclick={() => {
-          Ref.sidebarLang.classList.toggle('sidebar-content-lang_active')
-        }}
+        class="btn btn_close"
+        onclick={() => { Ref.slideSection.style.marginLeft = `-50%` }}
       >
         Русский<i class="i i-right"></i>
       </div>

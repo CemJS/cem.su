@@ -46,7 +46,18 @@
     transform: translateX(100%);
     transition: var(--tran-03);
     overflow-y: auto;
+    overflow-x: hidden;
     border-left: 1px solid var(--border-color);
+  }
+
+  &-line {
+    display: flex;
+    width: 200%;
+
+    &__section {
+      width: 50%;
+      transition: margin-left 0.35s ease-in-out;
+    }
   }
 
   &-subtitle {
@@ -79,6 +90,7 @@
         display: flex;
         align-items: center;
         transition: var(--tran-03);
+        cursor: pointer;
 
         &:hover {
           background-color: var(--back700);
@@ -97,19 +109,20 @@
           transition: var(--tran-03);
         }
       }
+
+      &_active {
+        .sidebar-submenu {
+          max-height: 100vh;
+        }
+      }
     }
   }
 
   &-submenu {
     background: var(--border-color);
     max-height: 0;
-    // height: auto;
     overflow: hidden;
     transition: 0.5s ease-out;
-
-    &_active {
-      max-height: 100vh;
-    }
 
     &__item {
 
@@ -194,7 +207,16 @@
     }
   }
 
-  &-langList {
-    &__item {}
+  &-lang {
+    &__search {
+      padding: 1rem 2rem;
+      background-color: var(--back700);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+
+      .modalWindow_field_labelLine {
+        background-color: var(--back700);
+      }
+    }
   }
 }

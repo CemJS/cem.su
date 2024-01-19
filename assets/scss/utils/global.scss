@@ -75,6 +75,7 @@
   &_close {
     padding: 0.5rem 0.6rem;
     border: 1px solid transparent;
+    transition: var(--tran-03);
     @include button(var(--back700), fit-content, fit-content, 125%, 1rem, var(--slate-300));
 
     .i {
@@ -86,6 +87,7 @@
       color: var(--white);
     }
   }
+
 }
 
 .tooltip {
@@ -162,22 +164,6 @@
     }
   }
 
-}
-
-.lang {
-  padding: 0.5rem 1rem;
-  border-radius: var(--borderR);
-  background-color: var(--back700);
-  border: 1px solid transparent;
-  display: flex;
-  gap: 0.3rem;
-  align-items: center;
-  transition: var(--tran-03);
-  cursor: pointer;
-
-  &:hover {
-    border: 1px solid var(--border-color);
-  }
 }
 
 .field {
