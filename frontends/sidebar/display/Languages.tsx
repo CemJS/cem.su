@@ -31,7 +31,7 @@ export default function () {
           class="btn btn_close"
           onclick={() => { Ref.slideSection.style.marginLeft = `0` }}
         >
-          <i class="i i-left"></i> Вернуться в меню
+          <i class="i i-arrow-left"></i> Вернуться в меню
         </div>
         <button class="btn btn_close" onclick={Func.close}>
           <i class="i i-cancel"></i>

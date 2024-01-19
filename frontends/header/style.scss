@@ -1,5 +1,5 @@
 .header {
-  background-color: var(--back700);
+  background-color: #24283a;
   border-bottom: 1px solid var(--border-colorH);
   padding: 0.6rem 0;
   font-weight: 500;
@@ -20,6 +20,7 @@
 
   &-nav {
     display: flex;
+    gap: 1rem;
   }
 
   &-list {

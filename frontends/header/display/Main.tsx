@@ -51,9 +51,6 @@ export default function () {
                                     class="btn"
                                     onclick={() => Fn.initOne("modalRegistration", {})}
                                 >Регистрация</button>
-                                <i class="i i-equalizer-h"
-                                    onclick={() => Fn.initOne("sidebar", {})}
-                                ></i>
                             </div>
 
 

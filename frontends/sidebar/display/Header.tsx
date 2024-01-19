@@ -7,7 +7,7 @@ export default function () {
         class="btn btn_close"
         onclick={() => { Ref.slideSection.style.marginLeft = `-50%` }}
       >
-        Русский<i class="i i-right"></i>
+        Русский<i class="i i-arrow-right"></i>
       </div>
       <button class="btn btn_close" onclick={Func.close}>
         <i class="i i-cancel"></i>

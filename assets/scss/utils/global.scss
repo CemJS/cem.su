@@ -75,11 +75,15 @@
   &_close {
     padding: 0.5rem 0.6rem;
     border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
     transition: var(--tran-03);
     @include button(var(--back700), fit-content, fit-content, 125%, 1rem, var(--slate-300));
 
     .i {
       display: block;
+      font-size: 0.85rem;
     }
 
     &:hover {

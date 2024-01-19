@@ -112,17 +112,17 @@
 
       &_active {
         .sidebar-submenu {
-          max-height: 100vh;
+          max-height: 500px;
         }
       }
     }
   }
 
   &-submenu {
-    background: var(--border-color);
+    background: var(--backSecond);
     max-height: 0;
     overflow: hidden;
-    transition: 0.5s ease-out;
+    transition: max-height 0.3s ease-out;
 
     &__item {
 

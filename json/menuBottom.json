@@ -1,32 +1,27 @@
 [
   {
     "name": "Лента",
-    "icon": "user",
+    "icon": "lenta",
     "link": "#"
   },
   {
     "name": "Сообщения",
-    "icon": "user",
+    "icon": "messanger",
     "link": "#"
   },
   {
     "name": "Опубликовать",
-    "icon": "user",
+    "icon": "add",
     "link": "#"
   },
   {
     "name": "Вопросы и ответы",
-    "icon": "user",
+    "icon": "qa",
     "link": "#"
   },
   {
     "name": "Уведомления",
-    "icon": "user",
-    "link": "#"
-  },
-  {
-    "name": "Меню",
-    "icon": "user",
+    "icon": "notice-empty",
     "link": "#"
   }
 ]
