@@ -39,7 +39,7 @@ export default function () {
                         onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
                     >
                         <span>Русский</span>
-                        <span class="i i-earth"></span>
+                        <span class="i i-lang"></span>
                     </div>
 
                     {

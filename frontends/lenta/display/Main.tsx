@@ -100,7 +100,7 @@ const RenderVideo = function () {
                             }}
                         >
                             <span class="video-icon">
-                                <i class="i i-settings"></i>
+                                <i class="i i-speed"></i>
                             </span>
                             <ul class="speed-tools" ref="speedOptions">
                                 {
