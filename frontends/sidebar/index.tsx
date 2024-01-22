@@ -33,12 +33,12 @@ front.loader = () => {
 
     Static.sections = [
         {
-            icon: 'calendar',
+            icon: 'lenta',
             name: 'Лента пользователей',
             link: '#'
         },
         {
-            icon: 'faq',
+            icon: 'qa',
             name: 'Вопросы и ответы',
             link: '#'
         },

@@ -5,11 +5,6 @@
   width: 100%;
   z-index: 5;
 
-  // &-wrapper{
-  //   max-width: 1000px;
-  //   margin: 0 auto;
-  // }
-
   &-inner {
     display: flex;
     width: 100%;
@@ -70,42 +65,5 @@
       }
     }
   }
-
-  // &__circle-1,
-  // &__circle-2{
-  //   width: 80px;
-  //   height: 80px;
-  //   border-radius: 50%;
-  //   background-color: var(--back700);
-  //   position: absolute;
-  //   bottom: 0;
-  //   z-index: 10;
-  // }
-
-  // &__circle-1{
-  //   left: 28px;
-  // }
-
-  // &__circle-2{
-  //   right: 28px;
-  // }
-
-  // &__square-1,
-  // &__square-2{
-  //   height: 32px;
-  //   width: 40px;
-  //   background-color: #24283a;
-  //   position: absolute;
-  //   bottom: 0;
-  //   z-index: 1;
-  // }
-
-  // &__square-1{
-  //   left: 68px;
-  // }
-
-  // &__square-2{
-  //   right: 68px;
-  // }
 
 }

@@ -26,12 +26,6 @@ export default function () {
                     <span class="menu__item-name">Меню</span>
                 </li>
             </ul>
-
-            {/* <div class="menu__circle-1"></div>
-            <div class="menu__circle-2"></div>
-            <div class="menu__square-1"></div>
-            <div class="menu__square-2"></div> */}
-
         </div>
     )
 }

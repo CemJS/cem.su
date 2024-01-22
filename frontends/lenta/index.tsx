@@ -7,7 +7,13 @@ front.listener.finish = () => {
 }
 // ========
 front.func.playAndPause = (video: any) => {
-    video.paused ? video.play() : video.pause()
+    // video.paused ? video.play() : video.pause()
+    if (video.paused) {
+        video.play()
+    } else {
+        video.pause()
+    }
+
     return
 }
 
@@ -16,6 +22,7 @@ front.func.timeUpdate = (e) => {
     let percent = (currentTime / duration) * 100
     Static.currentTime = currentTime
     Ref.progressBar.style.width = `${percent}%`
+    return
 }
 
 front.func.formatTime = (time) => {
@@ -32,10 +39,28 @@ front.func.formatTime = (time) => {
     }
     return `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
 }
+
+front.func.draggableProgressBar = (e: any) => {
+    let timeLineWidth = Ref.videoTimeLine.clientWidth
+    Ref.progressBar.style.width = `${e.offsetX}px`
+    Ref.video.currentTime = (e.offsetX / timeLineWidth) * Ref.video.duration
+    return
+}
+
+// front.func.hideControlls = (video: any) => {
+//     if (video.paused) return
+
+//     setTimeout(() => {
+//         Ref.videoContainer.classList.remove('video-container_showControlls')
+//     }, 3000)
+//     return
+// }
+
+
+
 // ========
 front.loader = () => {
-    Static.video
-    Static.display
+    Static.videoDragStart = false
 
     Static.activeSpeed = 1
     Static.speedOptions = [

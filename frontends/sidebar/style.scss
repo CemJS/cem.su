@@ -106,11 +106,16 @@
           position: absolute;
           right: 0;
           margin: 1rem;
+          font-size: 1rem;
           transition: var(--tran-03);
         }
       }
 
       &_active {
+        .i_dropdown {
+          transform: rotate(180deg);
+        }
+
         .sidebar-submenu {
           max-height: 500px;
         }
@@ -122,12 +127,12 @@
     background: var(--backSecond);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: max-height 0.3s ease-in-out;
 
     &__item {
-
       a {
         padding-left: 4rem;
+        font-size: 0.9rem;
       }
     }
   }
@@ -218,5 +223,18 @@
         background-color: var(--back700);
       }
     }
+  }
+
+  &-downloads {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem 2rem;
+    gap: 0.5rem;
+  }
+
+  &-footer {
+    text-align: center;
+    padding: 1rem 2rem;
+    color: var(--slate-300);
   }
 }

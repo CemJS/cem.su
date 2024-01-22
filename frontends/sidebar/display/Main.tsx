@@ -1,4 +1,6 @@
-import { Cemjsx, Static, Ref } from "cemjs-all"
+import { Cemjsx, Static, Ref, Fn } from "cemjs-all"
+import appStore from '@svg/icons/appStore.svg'
+import playMarket from '@svg/icons/playMarket.svg'
 import socials from '@json/socials'
 
 const RenderSidebarMenu = function ({ menu }) {
@@ -34,7 +36,7 @@ const RenderSidebarSubmenu = function ({ submenu }) {
                             <div class="sidebar-menu__item-btn">
                                 <i class={["i", `i-${item.icon}`]}></i>
                                 {item.name}
-                                <i class="i i-right i_dropdown"></i>
+                                <i class="i i-arrow-down1 i_dropdown"></i>
                             </div>
                             <div class="sidebar-submenu" >
                                 {
@@ -62,7 +64,7 @@ const RenderSocials = function ({ socials }) {
                 socials.map(item => {
                     return (
                         <div >
-                            <a class="sidebar-socials__item" href={item.url}><i class={["i", `i-${item.icon}`]}></i></a>
+                            <a class="sidebar-socials__item" href={item.url} onclick={Fn.link}><i class={["i", `i-${item.icon}`]}></i></a>
                         </div>
                     )
                 })
@@ -81,7 +83,12 @@ export default function () {
             <span class="sidebar-subtitle">Crypto Emergency</span>
             <RenderSidebarSubmenu submenu={Static.submenu} />
             <span class="sidebar-subtitle">Социальные сети</span>
+            <div class="sidebar-downloads">
+                <a href="https://apps.apple.com/ru/app/crypto-emergency/id1635628021" onclick={Fn.link}><img src={appStore} alt="AppStore" /></a>
+                <a href="https://play.google.com/store/apps/details?id=com.cryptoemergency" onclick={Fn.link}><img src={playMarket} alt="PlayMarket" /></a>
+            </div>
             <RenderSocials socials={socials} />
+            <p class="sidebar-footer">©2020-2024 Crypto Emergency</p>
         </main>
     )
 }
