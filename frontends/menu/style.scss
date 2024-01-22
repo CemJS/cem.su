@@ -5,12 +5,12 @@
   width: 100%;
   z-index: 5;
 
-  &-wrapper{
-    max-width: 1000px;
-    margin: 0 auto;
-  }
+  // &-wrapper{
+  //   max-width: 1000px;
+  //   margin: 0 auto;
+  // }
 
-  &-inner{
+  &-inner {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -20,7 +20,7 @@
     border-radius: 2.5rem 2.5rem 0 0;
   }
 
-  &__item{
+  &__item {
     position: relative;
     cursor: pointer;
     display: flex;
@@ -36,18 +36,18 @@
     -moz-box-shadow: 0px -7px 24px -3px rgba(0, 0, 0, 0.12);
     box-shadow: 0px -7px 24px -3px rgba(0, 0, 0, 0.12);
 
-    img{
+    img {
       width: 1.8rem;
     }
 
-    .i{
+    .i {
       font-size: 1.5rem;
     }
 
-    &-name{
+    &-name {
       position: absolute;
       white-space: nowrap;
-      transform: translate(0,-35px);
+      transform: translate(0, -35px);
       background-color: var(--fioletDark);
       font-weight: 500;
       font-size: 0.8rem;
@@ -61,51 +61,51 @@
       color: var(--white);
     }
 
-    &:hover{
+    &:hover {
       background-color: var(--fioletDark);
 
-      .menu__item-name{
+      .menu__item-name {
         opacity: 1;
-        transform: translate(0,-55px);
+        transform: translate(0, -55px);
       }
     }
   }
 
-  &__circle-1,
-  &__circle-2{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: var(--back700);
-    position: absolute;
-    bottom: 0;
-    z-index: 10;
-  }
+  // &__circle-1,
+  // &__circle-2{
+  //   width: 80px;
+  //   height: 80px;
+  //   border-radius: 50%;
+  //   background-color: var(--back700);
+  //   position: absolute;
+  //   bottom: 0;
+  //   z-index: 10;
+  // }
 
-  &__circle-1{
-    left: 28px;
-  }
+  // &__circle-1{
+  //   left: 28px;
+  // }
 
-  &__circle-2{
-    right: 28px;
-  }
+  // &__circle-2{
+  //   right: 28px;
+  // }
 
-  &__square-1,
-  &__square-2{
-    height: 32px;
-    width: 40px;
-    background-color: #24283a;
-    position: absolute;
-    bottom: 0;
-    z-index: 1;
-  }
+  // &__square-1,
+  // &__square-2{
+  //   height: 32px;
+  //   width: 40px;
+  //   background-color: #24283a;
+  //   position: absolute;
+  //   bottom: 0;
+  //   z-index: 1;
+  // }
 
-  &__square-1{
-    left: 68px;
-  }
+  // &__square-1{
+  //   left: 68px;
+  // }
 
-  &__square-2{
-    right: 68px;
-  }
+  // &__square-2{
+  //   right: 68px;
+  // }
 
 }

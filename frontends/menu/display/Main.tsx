@@ -5,7 +5,7 @@ import menuBottom from '@json/menuBottom'
 
 export default function () {
     return (
-        <div class="menu-wrapper">
+        <div class="wrapper">
             <ul class="menu-inner">
                 <li class="menu__item">
                     <img src={cem} alt="Главная страница" />
@@ -27,11 +27,11 @@ export default function () {
                 </li>
             </ul>
 
-            <div class="menu__circle-1"></div>
+            {/* <div class="menu__circle-1"></div>
             <div class="menu__circle-2"></div>
             <div class="menu__square-1"></div>
-            <div class="menu__square-2"></div>
-            
+            <div class="menu__square-2"></div> */}
+
         </div>
     )
 }

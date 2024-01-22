@@ -16,7 +16,7 @@ const searchLink = function (text: string, parent: HTMLElement) {
   let RegValue = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/
 
   for (let i = 0; i <= message.length; i++) {
-    console.log('=556419=', message[i])
+    // console.log('=556419=', message[i])
     if (RegValue.test(message[i])) {
       message[i] = `<a href="${message[i]}" target="_blank">${message[i]}</a>`
     }
@@ -27,7 +27,7 @@ const searchLink = function (text: string, parent: HTMLElement) {
 
 
 
-  console.log('=c0300e=', message)
+  // console.log('=c0300e=', message)
   parent.innerHTML = `${message.join(" ")}`
 }
 

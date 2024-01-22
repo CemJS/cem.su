@@ -8,9 +8,9 @@ export default function () {
         <div class="back-inner">
           <span
             class="back-inner_arrow"
-          // onclick={Fn.linkChange(Static.urlHead)}
+            onclick={Fn.linkChange("/news")}
           >
-            <i class="i i-left"></i>
+            <i class="i i-arrow-left"></i>
           </span>
 
           <h5 class="back-title">Новости</h5>
