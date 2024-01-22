@@ -1,0 +1,56 @@
+.header {
+  background-color: #24283a;
+  border-bottom: 1px solid var(--border-colorH);
+  padding: 0.6rem 0;
+  font-weight: 500;
+
+  &-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-logo {
+    height: 4rem;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  &-nav {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &-list {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+    &__item {
+      cursor: pointer;
+    }
+  }
+
+  &-tools {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__lang {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &-auth {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+  }
+}

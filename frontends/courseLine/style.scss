@@ -1,0 +1,132 @@
+@import '../../assets/scss/utils/mixins.scss';
+
+.line {
+
+  &-wrap {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    height: 50px;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+
+      .line__track {
+        animation-play-state: paused;
+      }
+    }
+
+    &::after,
+    &::before {
+      position: absolute;
+      top: 0;
+      width: 150px;
+      height: 100%;
+      content: "";
+      z-index: 2;
+
+      @media(max-width: 767px) {
+        width: 50px;
+      }
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), #191E21);
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(to left, rgba(255, 255, 255, 0), #191E21);
+    }
+  }
+
+  &__track {
+    display: flex;
+    position: relative;
+    animation: 100s slide infinite linear;
+    -webkit-animation: 100s slide infinite linear;
+  }
+
+  &__item {
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 10px 25px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 1s;
+    color: #FFFFFF;
+
+    @media(max-width: 767px) {
+      padding: 10px;
+    }
+
+    &_img {
+      // width: 15px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+
+      @media(max-width: 767px) {
+        margin-right: 5px;
+      }
+
+      img {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    &_text {
+      margin-right: 10px;
+
+      &-price {
+        color: var(--purple);
+      }
+
+      @media(max-width: 767px) {
+        font-size: 14px;
+      }
+    }
+
+    // &_price {
+    //   color: var(--text_fiolet);
+    // }
+
+    &_change {
+      position: relative;
+      font-size: 14px;
+
+      img {
+        position: absolute;
+        top: -5px;
+        right: -10px;
+      }
+    }
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+  }
+}

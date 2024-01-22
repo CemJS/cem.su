@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Лента",
+    "icon": "lenta",
+    "link": "#"
+  },
+  {
+    "name": "Сообщения",
+    "icon": "messanger",
+    "link": "#"
+  },
+  {
+    "name": "Опубликовать",
+    "icon": "add",
+    "link": "#"
+  },
+  {
+    "name": "Вопросы и ответы",
+    "icon": "qa",
+    "link": "#"
+  },
+  {
+    "name": "Уведомления",
+    "icon": "notice-empty",
+    "link": "#"
+  }
+]

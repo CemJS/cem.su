@@ -1,39 +1,63 @@
-import { Cemjsx, Func, Static, Fn } from "cemjs-all"
-import logo from '@images/logo/logo.jpg'
+import { Cemjsx, Fn, front } from "cemjs-all"
+import logo from '@svg/logo.svg'
+import menu from '@json/menu'
 
+const RenderMenu = function ({ menu }) {
+    return (
+        <ul class="header-list">
+            {
+                menu.map(item => {
+                    return (
+                        <li class="header-list__item"
+                            onclick={async () => {
+                                Fn.linkChange(`${item.url}`, { item: 5, test: 7, t: "hhh" })
+                            }}>
+                            {item.name}
+                        </li>
+                    )
+                })
+            }
+        </ul>
+    )
+}
 
 export default function () {
-  return (
-    <header class="header header_container">
-      <div class="header_inner">
-        <div class="header_logo">
-          <a href="/" onclick={Fn.link}>
-            <img
-              class="header_logo-img"
-              src={logo}
-            ></img>
-          </a>
-        </div>
-        <nav>
-          <ul class="header_menu">
-            <li
-              class={["header_menu_item", Static.page == "cemjs" ? "header_menu_item-active" : null]}
+    // console.log('=2ffd0d=', front.Variable.Auth)
+    return (
+        <div class="wrapper">
+            <div class="header-inner">
+                <nav class="header-nav">
+                    <a href="/" onclick={Fn.link} class="header-logo">
+                        <img src={logo} alt="Crypto Emergency" />
+                    </a>
+                    <RenderMenu menu={menu} />
+                </nav>
 
-            ><a href="/about/" onclick={Fn.link}>Cem JS</a>
-            </li>
-            <li
-              class={["header_menu_item", Static.page == "examples" ? "header_menu_item-active" : null]}
-            ><a href="https://ya.ru" onclick={Fn.link}>Examples</a></li>
-            <li
-              class={["header_menu_item", Static.page == "contacts" ? "header_menu_item-active" : null]}
-              onclick={() => {
-                Static.page = "contacts"
-                Fn.init()
-              }}
-            >Contacts</li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-  )
+                <div class="header-tools">
+                    <div
+                        class="header__lang"
+                        onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
+                    >
+                        <span>Русский</span>
+                        <span class="i i-lang"></span>
+                    </div>
+
+                    {
+                        front.Variable.Auth ?
+                            <div onclick={() => Fn.initOne("sidebar", {})}>Profile</div> :
+                            <div class="header-auth">
+                                <span>Вход</span>
+                                <button
+                                    class="btn"
+                                    onclick={() => Fn.initOne("modalRegistration", {})}
+                                >Регистрация</button>
+                            </div>
+
+
+                    }
+                </div>
+
+            </div>
+        </div>
+    )
 }

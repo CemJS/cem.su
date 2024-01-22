@@ -1,0 +1,22 @@
+[
+  {
+    "nameCoin": "btc",
+    "currentCourse": "42715.20",
+    "change": 0.74
+  },
+  {
+    "nameCoin": "bnb",
+    "currentCourse": "295.00",
+    "change": 7.86
+  },
+  {
+    "nameCoin": "cem",
+    "currentCourse": "0.8730",
+    "change": 0.15
+  },
+  {
+    "nameCoin": "eth",
+    "currentCourse": "2251.23",
+    "change": 1.39
+  }
+]

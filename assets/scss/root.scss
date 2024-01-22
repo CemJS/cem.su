@@ -1,41 +1,22 @@
+@import 'utils/reset.scss';
 @import 'utils/variables.scss';
+@import 'utils/cemicons.scss';
+@import 'utils/mixins.scss';
 @import 'utils/fonts.scss';
+@import 'utils/global.scss';
+@import 'utils/globalModal.scss';
+@import 'utils/indents.scss';
+@import 'utils/flexGrid.scss';
+
 
 *,
 ::after,
 ::before {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 * {
     -webkit-tap-highlight-color: transparent;
-}
-
-:root {
-    --app-height: 100%;
-}
-
-html,
-body {
-    height: var(--app-height);
-}
-
-html {
-    scrollbar-color: $akebi_purple transparent;
-    scrollbar-width: thin;
-}
-
-body {
-    height: 100%;
-    margin: 0px;
-    padding: 0 !important;
-    overflow: overlay;
-    color: $white;
-    background-image: url('images/background/back.jpg');
-    background-position: center center;
-    background-size: cover;
-    width: 100%;
-    font-family: 'Montserrat';
 
     &::-webkit-scrollbar {
         width: 6px;
@@ -49,7 +30,8 @@ body {
 
     &::-webkit-scrollbar-thumb {
         border-radius: 5px;
-        background: linear-gradient(45deg, $summer_sky 0, $blue_oyster_cult 45%, $akebi_purple 57%, $lilac_lotion 70%);
+        background-color: var(--fiolet);
+        // background: linear-gradient(45deg, var(--sky100) 0, var(--sky500) 45%, var(--purple) 57%, var(--pink) 70%);
     }
 
     &::-webkit-scrollbar-track {
@@ -57,10 +39,39 @@ body {
     }
 }
 
+:root {
+    --app-height: 100%;
+}
+
+html,
+body {
+    height: var(--app-height);
+}
+
+html {
+    scrollbar-color: var(--purple) transparent;
+    scrollbar-width: thin;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0;
+    overflow: overlay;
+    width: 100%;
+    font-family: 'Montserrat';
+    color: var(--white);
+    background-color: var(--back700);
+}
+
 p {
     margin: 0;
 }
 
-a {
-    color: $white;
+@media(max-width: 464px) {
+
+    html,
+    body {
+        font-size: 14px;
+    }
 }

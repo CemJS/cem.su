@@ -1,0 +1,7 @@
+{
+    "regex": "/news",
+    "front": [
+        "news",
+        "footer"
+    ]
+}

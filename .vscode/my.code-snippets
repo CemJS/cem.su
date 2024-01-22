@@ -7,6 +7,14 @@
 		],
 		"description": "Лог с рандомным указателем"
 	},
+	"Consolefnlog": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "_fnlog",
+		"body": [
+			"Fn.log('=$RANDOM_HEX=',${1:Переменная})"
+		],
+		"description": "Лог с рандомным указателем"
+	},
 	"Consoleerror": {
 		"scope": "javascript,typescript,typescriptreact",
 		"prefix": "_err",

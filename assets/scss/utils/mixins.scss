@@ -1,0 +1,15 @@
+// работают похожим принципом с функциями
+@mixin button($background, $width, $height, $backgroundSize, $fontSize, $fontColor) {
+  background: $background;
+  width: $width;
+  height: $height;
+  background-size: $backgroundSize;
+  font-size: $fontSize;
+  color: $fontColor;
+}
+
+@mixin text($fontColor, $fontWeght, $fontSize ) {
+  color: $fontColor;
+  font-weight: $fontWeght;
+  font-size: $fontSize;
+}

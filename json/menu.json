@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Контакты",
+    "microfrontend": "dashboard",
+    "url": ""
+  },
+  {
+    "name": "О нас",
+    "microfrontend": "script",
+    "url": ""
+  },
+  {
+    "name": "Новости",
+    "microfrontend": "news",
+    "url": "/news"
+  }
+]
