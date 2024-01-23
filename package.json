@@ -9,7 +9,7 @@
     "prod": "node node_modules/cemjs-all/esbuild.mjs --runServe --runProd"
   },
   "dependencies": {
-    "cemjs-all": "^1.1.10",
+    "cemjs-all": "^1.1.14",
     "uuid": "^9.0.1"
   },
   "main": "index.js",
