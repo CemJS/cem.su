@@ -19,7 +19,6 @@ const RenderVideo = function () {
                     Func.playAndPause(Ref.video)
                 }}
                 ondblclick={(e: any) => {
-                    console.log('=ccdf66=', e.clientX)
                     if (e.clientX <= 250) {
                         Ref.video.currentTime -= 5
                     }
@@ -208,26 +207,6 @@ const RenderVideo = function () {
     )
 }
 
-const RenderAudio = function () {
-    return (
-        <div class="circle">
-            <span
-                class="circle__btn"
-                onclick={(e: any) => {
-                    e.preventDefault()
-                    // Ref.pause.classList.toggle('visibility')
-                }}
-            >
-                {/* <ion-icon class="pause" name="pause" ref="pause"></ion-icon>
-                <ion-icon class="play" name="play" ref="pause"></ion-icon> */}
-                <i class="i i-play3" style="color: black;"></i>
-            </span>
-            <span class="circle__back-1"></span>
-            <span class="circle__back-2"></span>
-        </div>
-    )
-}
-
 const RenderStatistics = function () {
     return (
         <ul class="statistics">
@@ -246,6 +225,30 @@ const RenderStatistics = function () {
 export default function () {
     return (
         <div class="lenta">
+            <div class="lenta-item">
+                <div class="lenta-item__header">
+                    <div class="user-circle"></div>
+                    <div class="lenta-item__header-info">
+                        <span class="lenta-item__header-title">Betarost</span>
+                        <span
+                            class="back-ellipsis"
+                            onclick={() => Fn.initOne("modalTools", {})}
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="lenta-item__body">
+                    <audio-player></audio-player>
+                </div>
+
+                <div class="lenta-item__footer">
+                    <div class="lenta-item__text">
+                        <p>🙌 Гонконгская компания VSFG намерена запустить спотовый BTC-ETF в I квартале 2024 года</p>
+                        <p>📩 Гонконгская компания Venture Smart Financial Holdings (VSFG) планирует подать заявку в местную Комиссию по ценным бумагам и фьючерсам (SFC) на запуск спотового биржевого биткоин-фонда (ETF) и рассчитывает получить одобрение уже в текущем квартале.</p>
+                    </div>
+                    <RenderStatistics />
+                </div>
+            </div>
             <div class="lenta-item">
                 <div class="lenta-item__header">
                     <div class="user-circle"></div>
@@ -271,30 +274,7 @@ export default function () {
                 </div>
             </div>
             {/* more item */}
-            <div class="lenta-item">
-                <div class="lenta-item__header">
-                    <div class="user-circle"></div>
-                    <div class="lenta-item__header-info">
-                        <span class="lenta-item__header-title">Betarost</span>
-                        <span
-                            class="back-ellipsis"
-                            onclick={() => Fn.initOne("modalTools", {})}
-                        ></span>
-                    </div>
-                </div>
 
-                <div class="lenta-item__body">
-                    <RenderAudio />
-                </div>
-
-                <div class="lenta-item__footer">
-                    <div class="lenta-item__text">
-                        <p>🙌 Гонконгская компания VSFG намерена запустить спотовый BTC-ETF в I квартале 2024 года</p>
-                        <p>📩 Гонконгская компания Venture Smart Financial Holdings (VSFG) планирует подать заявку в местную Комиссию по ценным бумагам и фьючерсам (SFC) на запуск спотового биржевого биткоин-фонда (ETF) и рассчитывает получить одобрение уже в текущем квартале.</p>
-                    </div>
-                    <RenderStatistics />
-                </div>
-            </div>
         </div>
     )
 }
