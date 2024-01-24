@@ -1,3 +1,6 @@
-.terms {
-  background-color: var(--backModal);
+.policy {
+  &_wrapper {
+    display: flex;
+    justify-content: center;
+  }
 }
