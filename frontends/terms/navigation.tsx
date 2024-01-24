@@ -1,6 +1,12 @@
-import { Cemjsx } from "cemjs-all"
-import Main from "./display/Main"
+import { Cemjsx } from "cemjs-all";
+import Main from "./display/Main";
+// import HeaderBack from "./display/HeaderBack";
 
 export default function () {
-  return <Main />
+  return (
+    <div>
+      <Main />
+      {/* <HeaderBack /> */}
+    </div>
+  );
 }
