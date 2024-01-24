@@ -3,9 +3,7 @@
   max-width: 900px;
 
   &-item {
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
     border-radius: var(--borderR);
-    border: 1px solid var(--border-color);
     margin-bottom: 1.2rem;
 
     &__header {
@@ -327,7 +325,17 @@
 
       .i {
         cursor: pointer;
+        // animation: likes 0.3s;
+
         transition: var(--tran-03);
+
+        &_likes {
+          animation-name: likes;
+          animation-duration: 0.7s;
+          animation-timing-function: ease-in-out;
+          transform: scale(1);
+          color: var(--fiolet);
+        }
       }
 
       &:hover {
@@ -338,6 +346,20 @@
 
 
     }
+  }
+}
+
+@keyframes likes {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(.95);
   }
 }
 

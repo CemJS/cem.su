@@ -55,12 +55,18 @@ class AudioPlayer extends HTMLElement {
     audioContext: any
     audio: any
     track: any
+    playPauseBtn: any
+    progressIndicator: any
+    currentTime: any
+    progressBar: any
+    duration: any
 
     constructor() {
         super();
         this.attachShadow({ mode: 'open' }); // чтобы видеть содержимое тега в браузере
         this.render();
-        // this.initializeAudio();
+        this.initializeAudio();
+        this.attachEvents()
     }
 
 
@@ -72,30 +78,48 @@ class AudioPlayer extends HTMLElement {
             .connect(this.audioContext.destination)
     }
 
+    attachEvents() {
+        this.playPauseBtn.addEventListener('click', this.toggleAudio.bind(this))
+    }
+
     async toggleAudio() {
-        if (this.audioContext === 'suspended') {
+        if (this.audioContext.state === 'suspended') {
             await this.audioContext.resume()
+            // возобновляет ход времени в аудиоконтексте, который ранее был приостановлен
+            // проверяем статус аудио
         }
 
         if (this.playing) {
             await this.audio.pause()
             this.playing = false
+            this.playPauseBtn.textContent = 'play'
         } else {
             await this.audio.play()
             this.playing = true
+            this.playPauseBtn.textContent = 'pause'
         }
     }
 
 
     render() {
         this.shadowRoot.innerHTML = `
-        <div class="audio">
-            <audio src="/contents/audio/test.mp3" controls></audio>
-            <button class="btn audio-btn__play"><i class="i i-play3"></i></button>
-        </div>
+            <div class="audio">
+                <audio src="/contents/audio/test.mp3" controls></audio>
+                <button class="btn btn_audio" type="button">play</button>
+                <div class="audio-indicator">
+                    <span class="audio-indicator__currentTime">0:00</span>
+                    <input type="range" max="100" value="0"  class="audio-indicator__progress">
+                    <span class="audio-indicator__duration">0:00</span>
+                </div>
+            </div>
         `;
 
-        this.audio = this.shadowRoot.querySelector('audio');
+        this.audio = this.shadowRoot.querySelector('audio')
+        this.playPauseBtn = this.shadowRoot.querySelector('btn_audio')
+        this.progressIndicator = this.shadowRoot.querySelector('audio-indicator')
+        this.currentTime = this.progressIndicator.children[0]
+        this.progressBar = this.progressIndicator.children[1]
+        this.duration = this.progressIndicator.children[2]
     }
 }
 

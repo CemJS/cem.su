@@ -211,8 +211,23 @@ const RenderStatistics = function () {
     return (
         <ul class="statistics">
             <li class="statistics__item">
-                <div class="statistics__item_icon"><i class="i i-likeFull"></i>12</div>
-                <div class="statistics__item_icon"><i class="i i-dislikeFull"></i>12</div>
+                <div class="statistics__item_icon">
+                    <i
+                        class="i i-likeFull"
+                        onclick={(e) => {
+                            e.currentTarget.classList.toggle('i_likes')
+                        }}
+                    ></i>12
+
+                </div>
+                <div class="statistics__item_icon">
+                    <i
+                        class="i i-dislikeFull"
+                        onclick={(e) => {
+                            e.currentTarget.classList.toggle('i_likes')
+                        }}
+                    ></i>12
+                </div>
             </li>
             <li class="statistics__item">
                 <div class="statistics__item_icon"><i class="i i-comments"></i>250</div>

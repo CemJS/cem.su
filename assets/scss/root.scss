@@ -30,7 +30,6 @@
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: var(--fiolet);
-    // background: linear-gradient(45deg, var(--sky100) 0, var(--sky500) 45%, var(--purple) 57%, var(--pink) 70%);
   }
 
   &::-webkit-scrollbar-track {
@@ -72,6 +71,7 @@ p {
 }
 
 @media (max-width: 464px) {
+
   html,
   body {
     font-size: 14px;
