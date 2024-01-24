@@ -5,7 +5,7 @@ export default function () {
     <div class="page">
       <div class="wrapper">
         <h1 class="title-big">Политика Cookies</h1>
-        <p class="page_date">Редакция от 2021-12-16</p>
+        <p class="page__date">Редакция от 2021-12-16</p>
         <div class="title">ЧТО ТАКОЕ ФАЙЛЫ COOKIE?</div>
         <div class="content">
           <p>

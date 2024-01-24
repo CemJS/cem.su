@@ -13,7 +13,7 @@ export default function () {
             <i class="i i-arrow-left"></i>
           </span>
 
-          <h5 class="back-title">Политика cookies</h5>
+          <h5 class="back-title">Контакты</h5>
 
           <span
             class="back-ellipsis"

@@ -127,7 +127,7 @@ front.loader = () => {
       options: [
         {
           name: "Контакты",
-          link: "#",
+          link: "/contacts",
         },
         {
           name: "Партнёрская программа",

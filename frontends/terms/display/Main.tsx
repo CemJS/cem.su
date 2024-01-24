@@ -5,7 +5,7 @@ export default function () {
     <div class="page">
       <div class="wrapper">
         <h1 class="title-big">Добро пожаловать в Crypto Emergency!</h1>
-        <p class="page_date">Редакция от 2022-02-21</p>
+        <p class="page__date">Редакция от 2022-02-21</p>
         <div class="content">
           <p>
             Настоящие Условия использования ("Условия") регулируют использование вами crypto-emergency.com (если прямо не указано, что применяются отдельные условия, а не эти) и содержат информацию о
