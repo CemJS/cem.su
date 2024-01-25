@@ -55,31 +55,156 @@ class AudioPlayer extends HTMLElement {
     audioContext: any
     audio: any
     track: any
+    gainNode: any
+    analyzerNode: any
     playPauseBtn: any
     progressIndicator: any
-    currentTime: any
     progressBar: any
-    duration: any
+    currentTimeEl: any
+    durationEl: any
+    volumeEl: any
+    canvas: any
+    canvasContext: any
+    titleEl: any
+
+    currentTime: any = 0
+    duration: any = 0
+    volume: any = 50
+    bufferLength: any
+    dataArray: any
+    initialized = false
+    title = 'untitled'
 
     constructor() {
         super();
         this.attachShadow({ mode: 'open' }); // чтобы видеть содержимое тега в браузере
         this.render();
-        this.initializeAudio();
+    }
+
+    // атрибуты, которые я заинтересована видеть в просмотре источника
+    static get observedAttributes() {
+        return ['src', 'title', 'muted', 'crossorigin', 'loop', 'preload']
+    }
+
+    // прослушиватель жизненного цикла изменения атрибута
+    async attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'src') {
+
+            if (this.playing) {
+                await this.toggleAudio()
+            }
+
+            this.initialized = false
+            this.render()
+        } else if (name === 'title') {
+            this.title = newValue
+
+            if (this.titleEl) {
+                this.titleEl.textContent = this.title
+            }
+        }
+
+        for (let i = 0; i < this.attributes.length; i++) {
+            const attr = this.attributes[i]
+
+            if (attr.specified && attr.name !== "title") {
+                this.audio.setAttribute(attr.name, attr.value)
+            }
+        }
+
+
+        if (!this.initialized) {
+            this.initializeAudio()
+        }
+    }
+
+    initializeAudio() {
+        if (this.initialized) return
+        this.initialized = true
+
+        this.audioContext = new AudioContext();
+        this.track = this.audioContext.createMediaElementSource(this.audio)
+        // gainNode даст контроль над громкостью звука, с помощью узла усиления подключаюсь и источнику 
+        // gainNode - узел усиления
+        this.gainNode = this.audioContext.createGain()
+        // узел анализатора, для получения волн
+        this.analyzerNode = this.audioContext.createAnalyser()
+        // длина буффера с количеством интервалов частоты
+        this.analyzerNode.fftSize = 2048
+        this.bufferLength = this.analyzerNode.frequencyBinCount
+        this.dataArray = new Uint8Array(this.bufferLength)
+        this.analyzerNode.getByteFrequencyData(this.dataArray)
+
+
+        this.track
+            .connect(this.gainNode)
+            .connect(this.analyzerNode)
+            .connect(this.audioContext.destination)
+
         this.attachEvents()
     }
 
+    updateFrequency() {
+        if (!this.playing) return
+        this.analyzerNode.getByteFrequencyData(this.dataArray)
 
-    initializeAudio() {
-        this.audioContext = new AudioContext();
-        this.track = this.audioContext.createMediaElementSource(this.audio)
+        this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.canvasContext.fillStyle = 'rgba(0, 0, 0, 0)'
+        this.canvasContext.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
-        this.track
-            .connect(this.audioContext.destination)
+        // ширина столбца
+        const barWidth = 1
+        // расстояние между столбцами
+        const gap = 1
+        // количество столбцов для отображения 
+        const barCount = this.bufferLength / ((barWidth + gap) - gap)
+        // x - координата х, положение х каждого столбца
+        let x = 0
+
+
+        for (let i = 0; i < barCount; i++) {
+            // расчёт высоты полосы, исп индекс для доступа к частоте 
+            // 255 -> максимальное значние частоты, 0 -> минимальное значение частоты
+            const per = (this.dataArray[i] * 100) / 255
+            const h = (per * this.canvas.height) / 100
+
+            // окрасим каждый столбец
+            this.canvasContext.fillStyle = `rgba(${this.dataArray[i]}, 100, 255, 1)`
+            this.canvasContext.fillRect(x, this.canvas.height - h, barWidth, h)
+            x += barWidth + gap
+        }
+
+        // снова вызов функции с той же скоростью
+        requestAnimationFrame(this.updateFrequency.bind(this))
     }
 
     attachEvents() {
-        this.playPauseBtn.addEventListener('click', this.toggleAudio.bind(this))
+        this.playPauseBtn.addEventListener('click', this.toggleAudio.bind(this), false)
+
+        this.progressBar.addEventListener('input', () => {
+            this.seekTo(this.progressBar.value)
+        }, false)
+
+        this.volumeEl.addEventListener('input', this.volumeChange.bind(this), false)
+
+        this.audio.addEventListener('loadedmetadata', () => {
+            this.duration = this.audio.duration
+            this.progressBar.max = this.duration
+
+            const sec = parseInt(`${this.duration % 60}`, 10)
+            const min = parseInt(`${(this.duration / 60) % 60}`, 10)
+
+            this.durationEl.textContent = `${min}:${sec}`
+        })
+
+        this.audio.addEventListener('timeupdate', () => {
+            this.updateAudioTime(this.audio.currentTime)
+        })
+
+        this.audio.addEventListener('ended', () => {
+            this.playing = false
+            this.playPauseBtn.textContent = 'play'
+        })
     }
 
     async toggleAudio() {
@@ -97,30 +222,88 @@ class AudioPlayer extends HTMLElement {
             await this.audio.play()
             this.playing = true
             this.playPauseBtn.textContent = 'pause'
+            this.updateFrequency()
         }
     }
 
+    seekTo(value: any) {
+        this.audio.currentTime = value
+    }
+
+    updateAudioTime(time: any) {
+        this.currentTime = time
+        this.progressBar.value = this.currentTime
+
+        const sec = `${parseInt(`${time % 60}`, 10)}`.padStart(2, '0')
+        const min = parseInt(`${(time / 60) % 60}`, 10)
+
+        this.currentTimeEl.textContent = `${min}:${sec}`
+    }
+
+    stylePlayer() {
+        return `
+            <style>
+                :host{
+                    width: 100%;
+                    max-width: 400px;
+                    font-family: sans-serif;
+                }
+
+                :host *{
+                    box-sizing: border-box;
+                }
+
+                .audio{
+                    background: #24283a;
+                    border-radius: 0.6rem;
+                    margin: 0.8rem 1rem;
+                }
+            </style>
+        `
+    }
+
+
+
+    volumeChange() {
+        this.volume = this.volumeEl.value;
+        this.gainNode.gain.value = this.volume
+    }
 
     render() {
         this.shadowRoot.innerHTML = `
-            <div class="audio">
-                <audio src="/contents/audio/test.mp3" controls></audio>
+            ${this.stylePlayer()}
+            <figure class="audio">
+                <figcaption class="audio__name">${this.title}</figcaption>
+                <audio style="display: none;"></audio>
+                <div class="audio-icon">
+                    <img src="./svg/icons/music.svg" alt="Аудиофайл" />
+                </div>
                 <button class="btn btn_audio" type="button">play</button>
+                <canvas style="width: 100%; height: 50px"></canvas>
                 <div class="audio-indicator">
                     <span class="audio-indicator__currentTime">0:00</span>
-                    <input type="range" max="100" value="0"  class="audio-indicator__progress">
+                    <input class="audio-indicator__progress" type="range" max="100" value="0">
                     <span class="audio-indicator__duration">0:00</span>
                 </div>
-            </div>
-        `;
+                <div class="audio-volume">
+                    <input class="audio-volume__progress" type="range" min="0" max="100" step="0.01" value="${this.volume}">
+                </div>
+            </figure>
+        `
 
         this.audio = this.shadowRoot.querySelector('audio')
-        this.playPauseBtn = this.shadowRoot.querySelector('btn_audio')
-        this.progressIndicator = this.shadowRoot.querySelector('audio-indicator')
-        this.currentTime = this.progressIndicator.children[0]
+        this.canvas = this.shadowRoot.querySelector('canvas')
+        this.playPauseBtn = this.shadowRoot.querySelector('.btn_audio')
+        this.titleEl = this.shadowRoot.querySelector('.audio__name')
+        this.progressIndicator = this.shadowRoot.querySelector('.audio-indicator')
+        this.currentTimeEl = this.progressIndicator.children[0]
         this.progressBar = this.progressIndicator.children[1]
-        this.duration = this.progressIndicator.children[2]
+        this.durationEl = this.progressIndicator.children[2]
+        this.volumeEl = this.shadowRoot.querySelector('.audio-volume__progress')
+
+        this.canvasContext = this.canvas.getContext('2d')
     }
+
 }
 
 customElements.define('audio-player', AudioPlayer)

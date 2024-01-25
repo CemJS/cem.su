@@ -11,6 +11,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.i-note:before {
+  content: "\e929";
+}
+
 .i-arrow-down1:before {
   content: "\e927";
 }

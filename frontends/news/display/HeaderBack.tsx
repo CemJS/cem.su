@@ -7,7 +7,7 @@ export default function () {
         <div class="back-inner">
           <span
             class="back-inner_arrow"
-            onclick={Fn.linkChange("/news")}
+            onclick={() => { Fn.linkChange("/news") }}
           >
             <i class="i i-arrow-left"></i>
           </span>
