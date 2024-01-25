@@ -26,17 +26,22 @@ export default function () {
               {advantages.map((item) => {
                 return (
                   <div class="jobs__advantages-item">
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      class="jobs__advantages-img"
-                    />
+                    <div class="jobs__advantages-cover mb-29">
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        class="jobs__advantages-img"
+                      />
+                    </div>
                     <h4 class="jobs__advantages-name">{item.title}</h4>
                     <p class="jobs__advantages-text">{item.text}</p>
                   </div>
                 );
               })}
             </div>
+          </section>
+          <section className="jobs__how">
+            <h2 className="jobs__how-title">Как устроиться в нашу компанию?</h2>
           </section>
         </div>
       </div>

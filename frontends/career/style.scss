@@ -3,13 +3,14 @@
     position: relative;
     &::before {
       content: "";
+      z-index: -1;
       position: absolute;
       left: -434px;
       top: -179px;
       width: 989px;
       height: 989px;
       background: radial-gradient(41.76% 41.76% at 50% 50%, #915dff 0%, rgba(191, 9, 255, 0) 100%);
-      filter: blur(284px);
+      filter: blur(17.75rem);
     }
     &-info {
       padding-top: 8.75rem;
@@ -47,7 +48,7 @@
   &__advantages {
     &-title {
       font-weight: bold;
-      font-size: 4.75rem;
+      font-size: clamp(2.5rem, 4vw, 4.75rem);
       text-align: center;
       margin: 0 auto;
       margin-bottom: 3.75rem;
@@ -56,12 +57,39 @@
     &-list {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      flex-wrap: wrap;
+      gap: 0.625rem;
     }
     &-item {
-      background: #1d1f28;
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 28px;
+      background: var(--black_light);
+      border: 0.0625rem solid var(--border-color);
+      border-radius: 1.125rem;
+      padding: 1.75rem;
+      max-width: 300px;
+      width: 100%;
+    }
+    &-cover {
+      height: 80px;
+      width: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: var(--light-gray);
+    }
+    &-name {
+      font-weight: 600;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    &-text {
+      font-weight: normal;
+      font-size: 15px;
+      color: var(--gray);
+      max-width: 14.625rem;
+      margin-bottom: 0;
     }
   }
 }
@@ -73,6 +101,14 @@
         max-width: 32.8125rem;
         height: 40.625rem;
         transform: translateX(calc(4% - 1.25rem));
+      }
+    }
+    &__advantages {
+      &-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      &-item {
+        margin: 0 auto;
       }
     }
   }
@@ -88,6 +124,16 @@
       }
       &-img {
         display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .jobs {
+    &__advantages {
+      &-list {
+        grid-template-columns: repeat(1, 1fr);
       }
     }
   }

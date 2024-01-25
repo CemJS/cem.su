@@ -1,6 +1,5 @@
 import { Cemjsx, Fn, Func, Static } from "cemjs-all";
 import donation from "@images/donation.png";
-// import background from "@images/contactsBg.png";
 
 const RenderForm = () => {
   return (
@@ -114,12 +113,6 @@ export default function () {
           </a>
         </div>
       </div>
-      {/* <div class="contacts_bg">
-        <img
-          src={background}
-          alt="Задний фон"
-        />
-      </div> */}
     </div>
   );
 }
