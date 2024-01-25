@@ -1,6 +1,6 @@
 import { Cemjsx, Fn, Func, Static } from "cemjs-all";
 import donation from "@images/donation.png";
-import background from "@images/contactsBg.png";
+// import background from "@images/contactsBg.png";
 
 const RenderForm = () => {
   return (
@@ -42,27 +42,6 @@ const RenderForm = () => {
           </div>
           <div class="modalWindow_field__status">{Static.form.email.err}</div>
         </div>
-        {/* <label
-          for="email"
-          class="contacts__form-label"
-        >
-          E-mail
-        </label>
-        <p class={["contacts__form-error", !Static.form.email.err ? "hide" : null]}>{Static.form.email.err}</p>
-        <div class="contacts__form-wrapper">
-          <i class="i i-messanger contacts__form-icon"></i>
-          <input
-            oninput={(e) => {
-              Static.form.email.value = e.target.value;
-              Func.checkEmail();
-              Func.checkForm();
-            }}
-            id="email"
-            type="email"
-            placeholder="Введите ваш E-mail"
-            class={["contacts__form-input", Static.form.email.err ? "contacts__form-input_error" : null, Static.form.email.valid ? "contacts__form-input_success" : null]}
-          />
-        </div> */}
       </div>
       <div class="contacts__form-group">
         <div class={["modalWindow_field textarea", Static.form.message.valid || Static.form.message.err ? "modalWindow_field__valid" : null]}>
@@ -81,23 +60,6 @@ const RenderForm = () => {
           </div>
           <div class="modalWindow_field__status">{Static.form.message.err}</div>
         </div>
-        {/* <label
-          for="message"
-          class="contacts__form-label"
-        >
-          Сообщение
-        </label>
-        <p class={["contacts__form-error", !Static.form.message.err ? "hide" : null]}>{Static.form.message.err}</p>
-        <textarea
-          id="message"
-          oninput={(e) => {
-            Static.form.message.value = e.target.value;
-            Func.checkMessage();
-            Func.checkForm();
-          }}
-          placeholder="Введите ваше сообщение"
-          class={["contacts__form-input textarea", Static.form.message.err ? "contacts__form-input_error" : null, Static.form.message.valid ? "contacts__form-input_success" : null]}
-        ></textarea> */}
       </div>
       <button class={["btn contacts__form-btn", Static.form.isValid ? "contacts__form-btn_active" : null]}>Отправить</button>
     </form>
@@ -131,7 +93,7 @@ const RenderDestination = () => {
 
 export default function () {
   return (
-    <div class="page">
+    <div class="page contacts">
       <div class="wrapper">
         <div class="contacts contacts_margin">
           <RenderForm />
@@ -152,12 +114,12 @@ export default function () {
           </a>
         </div>
       </div>
-      <div class="contacts_bg">
+      {/* <div class="contacts_bg">
         <img
           src={background}
           alt="Задний фон"
         />
-      </div>
+      </div> */}
     </div>
   );
 }
