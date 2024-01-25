@@ -6,6 +6,7 @@
 .page {
   position: relative;
   padding: 100px 0 100px 0;
+  min-height: 100vh;
   &__date {
     display: flex;
     align-items: center;
@@ -54,10 +55,6 @@
     text-align: justify;
     text-indent: 2rem;
   }
-}
-
-.mx-auto {
-  margin: 0 auto;
 }
 
 @media (max-width: 900px) {

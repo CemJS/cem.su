@@ -6,32 +6,43 @@ const RenderForm = () => {
   return (
     <form class="contacts__form">
       <h4 class="contacts__form-title">Связь с нами</h4>
-      <p class="contacts__form-subtitle mb-16">Напишите нам, и мы с вами свяжемся!</p>
+      <p class="contacts__form-subtitle mb-26">Напишите нам, и мы с вами свяжемся!</p>
       <div class="contacts__form-group">
-        <label
-          for="name"
-          class="contacts__form-label"
-        >
-          Имя
-        </label>
-        <p class={["contacts__form-error", !Static.form.name.err ? "hide" : null]}>{Static.form.name.err}</p>
-        <div class="contacts__form-wrapper">
-          <i class="i i-user contacts__form-icon"></i>
+        <div class={["modalWindow_field", Static.form.name.valid || Static.form.name.err ? "modalWindow_field__valid" : null]}>
           <input
             oninput={(e) => {
               Static.form.name.value = e.target.value;
               Func.checkName();
               Func.checkForm();
             }}
-            id="name"
+            class={[Static.form.name.err ? "contacts__form-input_error" : null, Static.form.name.valid ? "contacts__form-input_success" : null]}
             type="text"
-            placeholder="Введите ваше имя"
-            class={["contacts__form-input", Static.form.name.err ? "contacts__form-input_error" : null, Static.form.name.valid ? "contacts__form-input_success" : null]}
           />
+          <div class="modalWindow_field_labelLine contacts__form-labelLine">
+            <i class="i i-user contacts__form-icon"></i>
+            <span>Имя</span>
+          </div>
+          <div class="modalWindow_field__status">{Static.form.name.err}</div>
         </div>
       </div>
       <div class="contacts__form-group">
-        <label
+        <div class={["modalWindow_field", Static.form.email.valid || Static.form.email.err ? "modalWindow_field__valid" : null]}>
+          <input
+            oninput={(e) => {
+              Static.form.email.value = e.target.value;
+              Func.checkEmail();
+              Func.checkForm();
+            }}
+            class={[Static.form.email.err ? "contacts__form-input_error" : null, Static.form.email.valid ? "contacts__form-input_success" : null]}
+            type="text"
+          />
+          <div class="modalWindow_field_labelLine contacts__form-labelLine">
+            <i class="i i-messanger contacts__form-icon"></i>
+            <span>Email</span>
+          </div>
+          <div class="modalWindow_field__status">{Static.form.email.err}</div>
+        </div>
+        {/* <label
           for="email"
           class="contacts__form-label"
         >
@@ -51,10 +62,26 @@ const RenderForm = () => {
             placeholder="Введите ваш E-mail"
             class={["contacts__form-input", Static.form.email.err ? "contacts__form-input_error" : null, Static.form.email.valid ? "contacts__form-input_success" : null]}
           />
-        </div>
+        </div> */}
       </div>
       <div class="contacts__form-group">
-        <label
+        <div class={["modalWindow_field textarea", Static.form.message.valid || Static.form.message.err ? "modalWindow_field__valid" : null]}>
+          <textarea
+            oninput={(e) => {
+              Static.form.message.value = e.target.value;
+              Func.checkMessage();
+              Func.checkForm();
+            }}
+            class={["contacts__form-input textarea", Static.form.message.err ? "contacts__form-input_error" : null, Static.form.message.valid ? "contacts__form-input_success" : null]}
+            type="text"
+          />
+          <div class="modalWindow_field_labelLine contacts__form-labelLine">
+            <i class="i i-messanger contacts__form-icon"></i>
+            <span>Сообщение</span>
+          </div>
+          <div class="modalWindow_field__status">{Static.form.message.err}</div>
+        </div>
+        {/* <label
           for="message"
           class="contacts__form-label"
         >
@@ -70,7 +97,7 @@ const RenderForm = () => {
           }}
           placeholder="Введите ваше сообщение"
           class={["contacts__form-input textarea", Static.form.message.err ? "contacts__form-input_error" : null, Static.form.message.valid ? "contacts__form-input_success" : null]}
-        ></textarea>
+        ></textarea> */}
       </div>
       <button class={["btn contacts__form-btn", Static.form.isValid ? "contacts__form-btn_active" : null]}>Отправить</button>
     </form>

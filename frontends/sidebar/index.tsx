@@ -113,7 +113,7 @@ front.loader = () => {
         },
         {
           name: "Карьера",
-          link: "#",
+          link: "/career",
         },
         {
           name: "Lite Paper",
