@@ -60,7 +60,15 @@ const RenderForm = () => {
           <div class="modalWindow_field__status">{Static.form.message.err}</div>
         </div>
       </div>
-      <button class={["btn contacts__form-btn", Static.form.isValid ? "contacts__form-btn_active" : null]}>Отправить</button>
+      <button
+        onclick={(e) => {
+          e.preventDefault();
+          Func.sendForm();
+        }}
+        class={["btn contacts__form-btn", Static.form.isValid ? "contacts__form-btn_active" : null]}
+      >
+        Отправить
+      </button>
     </form>
   );
 };

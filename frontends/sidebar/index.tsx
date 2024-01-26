@@ -91,6 +91,11 @@ front.loader = () => {
       link: "#",
     },
     {
+      icon: "faq",
+      name: "Партнерская программа",
+      link: "/user/affiliate",
+    },
+    {
       icon: "user",
       name: "Настройки",
       link: "#",

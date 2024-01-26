@@ -1,5 +1,6 @@
 import { Cemjsx, front, Func, Static, Fn } from "cemjs-all";
 import Navigation from "./navigation";
+import success from "@svg/icons/success.svg";
 
 front.listener.finish = () => {
   return;
@@ -41,6 +42,35 @@ front.func.checkMessage = () => {
 
 front.func.checkForm = () => {
   Static.form.name.valid && Static.form.email.valid && Static.form.message.valid ? (Static.form.isValid = true) : (Static.form.isValid = false);
+  return;
+};
+
+front.func.sendForm = async () => {
+  console.log("=ebd78c=", Static.form);
+  Fn.initOne("alert", {
+    icon: success,
+    title: "Спасибо!",
+    text: "Скоро с Вами свяжется наш менеджер!",
+  });
+  if (Static.form.isValid) {
+    let data: Object = {
+      action: "contactForm",
+      formName: "contacts",
+      contactForm: {
+        fullName: Static.form.name.value,
+        email: Static.form.email.value,
+        comment: Static.form.message.value,
+      },
+    };
+    Fn.initOne("alert", {
+      icon: success,
+      title: "Спасибо!",
+      text: "Скоро с Вами свяжется наш менеджер!",
+    });
+    let res = await front.Services.functions.sendApi("api/tg/crypto-emergency", data);
+    Fn.log("=08599b=", res);
+  }
+
   return;
 };
 
