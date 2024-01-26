@@ -258,6 +258,11 @@ export default function () {
                         title="My media file2"
                     >
                     </audio-player>
+                    {/* <audio-player
+                        src="/contents/audio/test.mp3"
+                        title="Technooooo"
+                    >
+                    </audio-player> */}
                 </div>
 
                 <div class="lenta-item__footer">
