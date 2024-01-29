@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import donation from "@images/donation.png";
 
 const RenderForm = () => {
@@ -7,63 +7,67 @@ const RenderForm = () => {
       <h4 class="contacts__form-title">Связь с нами</h4>
       <p class="contacts__form-subtitle mb-26">Напишите нам, и мы с вами свяжемся!</p>
       <div class="contacts__form-group">
-        <div class={["modalWindow_field", Static.form.name.valid || Static.form.name.err ? "modalWindow_field__valid" : null]}>
+        <div class={["modalWindow_field", Static.form.name.valid || Static.form.name.error ? "modalWindow_field__valid" : null]}>
           <input
+            value={Static.form.name.value}
             oninput={(e) => {
               Static.form.name.value = e.target.value;
-              Func.checkName();
+              front.Services.functions.formName(Static.form.name);
               Func.checkForm();
             }}
-            class={[Static.form.name.err ? "contacts__form-input_error" : null, Static.form.name.valid ? "contacts__form-input_success" : null]}
+            class={[Static.form.name.error ? "contacts__form-input_error" : null, Static.form.name.valid ? "contacts__form-input_success" : null]}
             type="text"
           />
           <div class="modalWindow_field_labelLine contacts__form-labelLine">
             <i class="i i-user contacts__form-icon"></i>
             <span>Имя</span>
           </div>
-          <div class="modalWindow_field__status">{Static.form.name.err}</div>
+          <div class="modalWindow_field__status">{Static.form.name.error}</div>
         </div>
       </div>
       <div class="contacts__form-group">
-        <div class={["modalWindow_field", Static.form.email.valid || Static.form.email.err ? "modalWindow_field__valid" : null]}>
+        <div class={["modalWindow_field", Static.form.email.valid || Static.form.email.error ? "modalWindow_field__valid" : null]}>
           <input
+            value={Static.form.email.value}
             oninput={(e) => {
               Static.form.email.value = e.target.value;
-              Func.checkEmail();
+              front.Services.functions.formEmail(Static.form.email);
               Func.checkForm();
             }}
-            class={[Static.form.email.err ? "contacts__form-input_error" : null, Static.form.email.valid ? "contacts__form-input_success" : null]}
+            class={[Static.form.email.error ? "contacts__form-input_error" : null, Static.form.email.valid ? "contacts__form-input_success" : null]}
             type="text"
           />
           <div class="modalWindow_field_labelLine contacts__form-labelLine">
             <i class="i i-messanger contacts__form-icon"></i>
             <span>Email</span>
           </div>
-          <div class="modalWindow_field__status">{Static.form.email.err}</div>
+          <div class="modalWindow_field__status">{Static.form.email.error}</div>
         </div>
       </div>
       <div class="contacts__form-group">
-        <div class={["modalWindow_field textarea", Static.form.message.valid || Static.form.message.err ? "modalWindow_field__valid" : null]}>
+        <div class={["modalWindow_field textarea", Static.form.comment.valid || Static.form.comment.error ? "modalWindow_field__valid" : null]}>
           <textarea
+            value={Static.form.comment.value}
             oninput={(e) => {
-              Static.form.message.value = e.target.value;
-              Func.checkMessage();
+              Static.form.comment.value = e.target.value;
+              front.Services.functions.formComment(Static.form.comment);
               Func.checkForm();
             }}
-            class={["contacts__form-input textarea", Static.form.message.err ? "contacts__form-input_error" : null, Static.form.message.valid ? "contacts__form-input_success" : null]}
+            class={["contacts__form-input textarea", Static.form.comment.error ? "contacts__form-input_error" : null, Static.form.comment.valid ? "contacts__form-input_success" : null]}
             type="text"
           />
           <div class="modalWindow_field_labelLine contacts__form-labelLine">
             <i class="i i-messanger contacts__form-icon"></i>
             <span>Сообщение</span>
           </div>
-          <div class="modalWindow_field__status">{Static.form.message.err}</div>
+          <div class="modalWindow_field__status">{Static.form.comment.error}</div>
         </div>
       </div>
       <button
         onclick={(e) => {
           e.preventDefault();
           Func.sendForm();
+          Func.clearForm();
         }}
         class={["btn contacts__form-btn", Static.form.isValid ? "contacts__form-btn_active" : null]}
       >

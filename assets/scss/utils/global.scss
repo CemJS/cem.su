@@ -9,6 +9,18 @@
   }
 }
 
+.text {
+  &-left {
+    text-align: left;
+  }
+  &-center {
+    text-align: center;
+  }
+  &-right {
+    text-align: right;
+  }
+}
+
 .hide {
   // opacity: 0;
   // user-select: none;
@@ -85,6 +97,23 @@
     &:hover {
       border: 1px solid var(--border-color);
       color: var(--white);
+    }
+  }
+  &_border {
+    @include button(var(--black-gray), 100%, 2.625rem, 100%, 1rem, var(--white));
+    border-radius: var(--btnR);
+    line-height: 2.625rem;
+    text-align: center;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    &-wrap {
+      background: var(--mainGradient);
+      margin: 0 auto;
+      padding: 0.0625rem;
+      border-radius: var(--btnR);
+      width: 12.625rem;
     }
   }
 }

@@ -368,7 +368,12 @@ export default function () {
           </p>
         </div>
         <div class="policy_wrapper">
-          <button class="btn mx-auto">Скачать</button>
+          <a
+            onclick={Fn.link}
+            href="/assets/documents/policyRU.pdf"
+          >
+            <button class="btn mX-auto">Скачать</button>
+          </a>
         </div>
       </div>
     </div>

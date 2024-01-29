@@ -320,6 +320,7 @@
       transition: border 0.1s ease;
       z-index: 3;
       color: var(--white);
+      resize: none;
     }
 
     &_labelLine {

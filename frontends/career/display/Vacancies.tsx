@@ -1,5 +1,5 @@
 import { Cemjsx, Fn, Func, Static } from "cemjs-all";
-import vacancies from "json/careerVacancies.json";
+import vacancies from "json/career/careerVacancies.json";
 
 export default function () {
   return (
@@ -51,8 +51,13 @@ export default function () {
                 return <p class="jobs__vacancies-skill">{item}</p>;
               })}
             </div>
-            <div class="jobs__vacancies-wrap">
-              <button class="jobs__vacancies-button btn">Отликнуться</button>
+            <div class="btn_border-wrap mt-20">
+              <button
+                onclick={() => Fn.initOne("modalVacancy", { title: item.title, name: "Test", email: "test@mail.ru" })}
+                class="btn_border"
+              >
+                Отликнуться
+              </button>
             </div>
           </div>
         );

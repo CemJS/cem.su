@@ -1,3 +1,5 @@
+@import "../../assets/scss/utils/mixins.scss";
+
 .jobs {
   &__title {
     font-weight: bold;
@@ -13,10 +15,10 @@
       content: "";
       z-index: -1;
       position: absolute;
-      left: -434px;
-      top: -179px;
-      width: 989px;
-      height: 989px;
+      left: -27.125rem;
+      top: -11.1875rem;
+      width: 61.8125rem;
+      height: 61.8125rem;
       background: radial-gradient(41.76% 41.76% at 50% 50%, #915dff 0%, rgba(191, 9, 255, 0) 100%);
       filter: blur(17.75rem);
     }
@@ -24,6 +26,7 @@
       padding-top: 8.75rem;
       padding-bottom: 17.5rem;
       width: 50%;
+      text-shadow: 0.125rem 0.125rem 0.625rem black;
     }
     &-title {
       font-weight: bold;
@@ -64,10 +67,13 @@
     &-item {
       background: var(--black_light);
       border: 0.0625rem solid var(--border-color);
-      border-radius: 1.125rem;
+      border-radius: var(--borderR);
       padding: 1.75rem;
       max-width: 300px;
       width: 100%;
+      &:nth-child(odd) {
+        justify-self: right;
+      }
     }
     &-cover {
       height: 80px;
@@ -99,7 +105,7 @@
       background: linear-gradient(129.93deg, #adb6ce 12.75%, rgba(173, 182, 206, 0) 206.18%);
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-weight: bold;
+      font-weight: 500;
       font-size: clamp(0.9rem, 2vw, 1rem);
       margin-bottom: 4px;
       display: inline-block;
@@ -109,12 +115,22 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
+    &-number {
+      background: linear-gradient(129.93deg, #adb6ce 12.75%, rgba(173, 182, 206, 0) 206.18%);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      font-size: 20px;
+    }
     &-item {
       position: relative;
       overflow: hidden;
       padding-top: 2.25rem;
       max-width: 20rem;
-      margin: 0 auto;
+      // margin: 0 auto;
+      &:nth-child(odd) {
+        justify-self: right;
+      }
       &::before {
         position: absolute;
         top: 0;
@@ -147,7 +163,7 @@
       height: 100%;
       padding: 1.0625rem 1.875rem;
       background: #242834;
-      border-radius: 0.9375rem;
+      border-radius: var(--borderR);
       transition: 1s;
     }
     &-list {
@@ -201,7 +217,7 @@
       padding: 1.25rem;
       background: var(--black-gray);
       border: 1px solid var(--border-color);
-      border-radius: 0.3125rem;
+      border-radius: var(--borderR);
     }
     &-status {
       text-transform: uppercase;
@@ -258,30 +274,6 @@
       border: 0.0625rem solid var(--light-gray-2);
       border-radius: 0.3125rem;
     }
-    &-wrap {
-      padding-top: 20px;
-      display: flex;
-      justify-content: center;
-    }
-    // &-button {
-    //   background: var(--black-gray);
-    //   border-radius: 5px;
-    //   position: relative;
-    //   z-index: 0;
-    //   &::before {
-    //     content: "";
-    //     position: absolute;
-    //     top: -2px;
-    //     bottom: -2px;
-    //     left: -2px;
-    //     right: -2px;
-    //     width: 100%;
-    //     height: 100%;
-    //     background: var(--mainGradient);
-    //     border-radius: 6px;
-    //     z-index: -1;
-    //   }
-    // }
   }
 }
 
@@ -297,9 +289,6 @@
     &__advantages {
       &-list {
         grid-template-columns: repeat(2, 1fr);
-      }
-      &-item {
-        margin: 0 auto;
       }
     }
     &__how {
@@ -343,10 +332,22 @@
       &-list {
         grid-template-columns: repeat(1, 1fr);
       }
+      &-item {
+        justify-self: center;
+        &:nth-child(odd) {
+          justify-self: center;
+        }
+      }
     }
     &__how {
       &-list {
         grid-template-columns: repeat(1, 1fr);
+      }
+      &-item {
+        justify-self: center;
+        &:nth-child(odd) {
+          justify-self: center;
+        }
       }
     }
     &__professions {

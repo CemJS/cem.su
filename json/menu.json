@@ -2,7 +2,7 @@
   {
     "name": "Контакты",
     "microfrontend": "dashboard",
-    "url": ""
+    "url": "/contacts"
   },
   {
     "name": "О нас",
