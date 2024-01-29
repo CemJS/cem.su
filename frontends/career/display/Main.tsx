@@ -10,10 +10,10 @@ export default function () {
     <div class="page">
       <div class="wrapper">
         <div class="jobs">
-          {/* <Preview />
+          <Preview />
           <Advantages />
           <How />
-          <Profession /> */}
+          <Profession />
           <Vacancies />
         </div>
       </div>
