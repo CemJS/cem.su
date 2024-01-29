@@ -1,9 +1,36 @@
 import { Cemjsx, Fn, Func, Ref, Static } from "cemjs-all"
 
+
 const RenderVideo = function () {
     return (
-        <div class="video-container" ref="videoContainer">
-            {/* wrapper */}
+        <div class="video-container " ref="videoContainer"
+            onmousemove={(e) => {
+                e.currentTarget.classList.add("video-container_showControlls")
+            }}
+            onmouseleave={() => {
+                setTimeout(() => {
+                    Ref.videoContainer.classList.remove("video-container_showControlls")
+                }, 300)
+            }}
+        >
+            <div
+                class="video-play"
+                onclick={() => {
+                    Func.playAndPause(Ref.video)
+                }}
+                ondblclick={(e: any) => {
+                    if (e.clientX <= 250) {
+                        Ref.video.currentTime -= 5
+                    }
+                    if (e.clientX >= 550) {
+                        Ref.video.currentTime += 5
+                    }
+                }}
+            >
+                <div class="video-play__icon">
+                    <i class="i i-play3" ref="mainPlay"></i>
+                </div>
+            </div>
             <div class="video-wrapper">
 
                 <div
@@ -13,10 +40,17 @@ const RenderVideo = function () {
                         let timeLineWidth = Ref.videoTimeLine.clientWidth
                         Ref.video.currentTime = (e.offsetX / timeLineWidth) * Ref.video.duration
                     }}
+
+                    onmousedown={() => { Static.videoDragStart = true }}
+                    onmousemove={(e: any) => {
+                        if (!Static.videoDragStart) return
+                        Func.draggableProgressBar(e)
+                        Ref.progressTime.style.left = `${e.offsetX}px`
+                    }}
+
                 >
-                    {/* progress-area */}
                     <div class="video-timeline__area">
-                        <span>{Func.formatTime(Static.currentTime)}</span>
+                        <span ref="progressTime">{Func.formatTime(Static.currentTime)}</span>
                         <div class="video-timeline__progressbar" ref="progressBar"></div>
                     </div>
                 </div>
@@ -59,18 +93,15 @@ const RenderVideo = function () {
                         </div>
                     </li>
                     <li class="video-options">
-                        {/* 15сек */}
                         <span
                             class="video-icon"
                             ref="skipBackward"
                             onclick={() => {
-                                console.log('=079bfc=', Ref.video)
                                 Ref.video.currentTime -= 5
                             }}
                         >
                             <i class="i i-undo1"></i>
                         </span>
-                        {/* play */}
                         <span class="video-icon">
                             <i
                                 class="i i-play3"
@@ -80,7 +111,6 @@ const RenderVideo = function () {
                                 }}
                             ></i>
                         </span>
-                        {/* +15cек */}
                         <span
                             class="video-icon"
                             ref="skipForward"
@@ -131,13 +161,20 @@ const RenderVideo = function () {
                         <span class="video-icon" onclick={() => { Ref.video.requestPictureInPicture() }}>
                             <i class="i i-onedrive"></i>
                         </span>
-                        <span
-                            class="video-icon"
-                            onclick={() => {
-                                Ref.videoContainer.classList.toggle("video-container_fullscreen")
-                                // Ref.videoContainer.requestFullScreen()
-                            }}>
-                            <i class="i i-share"></i>
+                        <span class="video-icon">
+                            <i
+                                ref="fullScreen"
+                                class="i i-share"
+                                onclick={(e) => {
+                                    Ref.videoContainer.classList.toggle("video-container_fullscreen")
+                                    if (document.fullscreenElement) {
+                                        Ref.fullScreen.classList.replace("i-user", "i-share")
+                                        return document.exitFullscreen()
+                                    }
+                                    Ref.fullScreen.classList.replace("i-share", "i-user")
+                                    Ref.videoContainer.requestFullscreen()
+                                }}
+                            ></i>
                         </span>
                     </li>
                 </ul>
@@ -149,9 +186,14 @@ const RenderVideo = function () {
                 src="/contents/video/yan.MOV"
                 onplay={() => {
                     Ref.playAndPause.classList.replace("i-play3", "i-pause2")
+                    Ref.mainPlay.classList.replace("i-play3", "i-pause2")
+                    Ref.mainPlay.style.display = 'none'
                 }}
                 onpause={() => {
                     Ref.playAndPause.classList.replace("i-pause2", "i-play3")
+                    Ref.mainPlay.classList.replace("i-pause2", "i-play3")
+                    Ref.mainPlay.style.display = 'block'
+
                 }}
                 ontimeupdate={(e: any) => {
                     Func.timeUpdate(e)
@@ -165,9 +207,72 @@ const RenderVideo = function () {
     )
 }
 
+const RenderStatistics = function () {
+    return (
+        <ul class="statistics">
+            <li class="statistics__item">
+                <div class="statistics__item_icon">
+                    <i
+                        class="i i-likeFull"
+                        onclick={(e) => {
+                            e.currentTarget.classList.toggle('i_likes')
+                        }}
+                    ></i>12
+
+                </div>
+                <div class="statistics__item_icon">
+                    <i
+                        class="i i-dislikeFull"
+                        onclick={(e) => {
+                            e.currentTarget.classList.toggle('i_likes')
+                        }}
+                    ></i>12
+                </div>
+            </li>
+            <li class="statistics__item">
+                <div class="statistics__item_icon"><i class="i i-comments"></i>250</div>
+                <div class="statistics__item_icon"><i class="i i-eye"></i>1021</div>
+            </li>
+        </ul>
+    )
+}
+
 export default function () {
     return (
         <div class="lenta">
+            <div class="lenta-item">
+                <div class="lenta-item__header">
+                    <div class="user-circle"></div>
+                    <div class="lenta-item__header-info">
+                        <span class="lenta-item__header-title">Betarost</span>
+                        <span
+                            class="back-ellipsis"
+                            onclick={() => Fn.initOne("modalTools", {})}
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="lenta-item__body">
+                    <audio-player
+                        src="/contents/audio/test2.mp3"
+                        title="My media file2"
+                    >
+                    </audio-player>
+                    {/* <audio-player
+                        src="/contents/audio/test.mp3"
+                        title="Technooooo"
+                    >
+                    </audio-player> */}
+                </div>
+
+                <div class="lenta-item__footer">
+                    <div class="lenta-item__text">
+                        <p>🙌 Гонконгская компания VSFG намерена запустить спотовый BTC-ETF в I квартале 2024 года</p>
+                        <p>📩 Гонконгская компания Venture Smart Financial Holdings (VSFG) планирует подать заявку в местную Комиссию по ценным бумагам и фьючерсам (SFC) на запуск спотового биржевого биткоин-фонда (ETF) и рассчитывает получить одобрение уже в текущем квартале.</p>
+                    </div>
+                    <RenderStatistics />
+                </div>
+            </div>
             <div class="lenta-item">
                 <div class="lenta-item__header">
                     <div class="user-circle"></div>
@@ -189,9 +294,11 @@ export default function () {
                         <p>🙌 Гонконгская компания VSFG намерена запустить спотовый BTC-ETF в I квартале 2024 года</p>
                         <p>📩 Гонконгская компания Venture Smart Financial Holdings (VSFG) планирует подать заявку в местную Комиссию по ценным бумагам и фьючерсам (SFC) на запуск спотового биржевого биткоин-фонда (ETF) и рассчитывает получить одобрение уже в текущем квартале.</p>
                     </div>
-                    <div class="lenta-item__statistics"></div>
+                    <RenderStatistics />
                 </div>
             </div>
+            {/* more item */}
+
         </div>
     )
 }

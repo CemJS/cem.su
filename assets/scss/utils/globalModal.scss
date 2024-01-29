@@ -40,7 +40,6 @@
     align-items: center;
     margin-bottom: 1.2rem;
 
-
     &__title {
       font-size: clamp(1rem, 2vw, 1.5rem);
       line-height: 125%;
@@ -71,4 +70,10 @@
   max-height: 30rem;
   height: 30rem;
   overflow-y: scroll;
+}
+
+.notice {
+  position: absolute;
+  top: 50px;
+  right: 20px;
 }

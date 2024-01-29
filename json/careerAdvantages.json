@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Дружная команда",
+    "text": "Молодой и дружный коллектив",
+    "img": "/contents/images/advantages/team.svg"
+  },
+  {
+    "title": "Интернациональная компания",
+    "text": "У нас работают специалисты со всего мира",
+    "img": "/contents/images/advantages/international.svg"
+  },
+  {
+    "title": "Комфортабельные условия труда",
+    "text": "Современный офис, удобное расположение, индивидуальный подход к каждому",
+    "img": "/contents/images/advantages/comfort.svg"
+  },
+  {
+    "title": "Трудоустройство по современным стандартам",
+    "text": "Контракт, система бонусов, премий и поощрений",
+    "img": "/contents/images/advantages/trud.svg"
+  }
+]

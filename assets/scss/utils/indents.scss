@@ -45,11 +45,15 @@ $indents: (
   43: 43px,
   44: 44px,
   45: 45px,
+  46: 46px,
+  47: 47px,
+  48: 48px,
+  49: 49px,
+  50: 50px,
 );
 
 // padding, margin
-@each $index,
-$indent in $indents {
+@each $index, $indent in $indents {
   .pt-#{$index} {
     padding-top: $indent;
   }

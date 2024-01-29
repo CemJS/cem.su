@@ -11,6 +11,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.i-note:before {
+  content: "\e929";
+}
+
+.i-arrow-down1:before {
+  content: "\e927";
+}
+
+.i-arrow-up1:before {
+  content: "\e928";
+}
+
 .i-dislikeFull:before {
   content: "\e900";
 }

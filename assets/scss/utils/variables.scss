@@ -2,19 +2,28 @@
   // colors
   --backSecond: #303545;
   --backModal: #202432;
-  --back700: #1D2029;
-  --textSecond: #909CBF;
+  --back700: #1d2029;
+  --textSecond: #909cbf;
+  --textGray: #5b6274;
+  --textGray-light: #cacaca;
 
-  --white: #FFFFFF;
+  --white: #ffffff;
   --pink: #ff357f;
-  --noble_black: #1D2029;
+  --noble_black: #1d2029;
+  --black_light: #1d1f28;
+  --gray: #b6b6b6;
+  --light-gray: #2f3240;
+  --light-gray-2: #32384b;
+  --black-gray: #2b3040;
   --sky100: #3bade3;
   --sky500: #576fe6;
   --purple: #9844b7;
-  --fiolet: #5F479B;
-  --fioletDark: #3B2D4A;
-  --border-colorH: #2D3243;
+  --fiolet: #5f479b;
+  --orangeH: #f57707;
+  --fioletDark: #3b2d4a;
+  --border-colorH: #2d3243;
   --border-color: #434954;
+  --success-color: rgb(37, 249, 48);
 
   // numerical
   --btnR: 0.5rem;
@@ -29,7 +38,9 @@
   --tran-05: all 0.5s ease-in-out;
 
   // gradient
-  --mainGradient: linear-gradient(to left, #2973FF, #8846D3, #FF22AC);
+  --mainGradient: linear-gradient(to left, #2973ff, #8846d3, #ff22ac);
+  --grayGradient: linear-gradient(149.17deg, #282d3c 0.97%, rgba(40, 45, 60, 0) 86.74%);
+  --blueGradient: linear-gradient(89.03deg, #679fef 0.54%, #a87fff 97.66%);
   // =========================================================
   // variables color tailwind
   --slate-50: #f8fafc;

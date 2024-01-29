@@ -38,8 +38,7 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition:
-      opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
     &__active {
       opacity: 1;
@@ -54,7 +53,6 @@
     align-items: center;
     gap: 15px;
     position: relative;
-
 
     &_input {
       border: none;
@@ -140,9 +138,7 @@
       padding: 15px;
       position: relative;
       background-color: rgba(255, 255, 255, 0.1);
-      transition:
-        background-color 0.3s ease-in-out,
-        color 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
       &::before {
         content: ">";
@@ -186,9 +182,7 @@
     color: #999;
     font-weight: 700;
     font-size: clamp(16px, 5vw, 20px);
-    transition:
-      border 0.3s ease-in-out,
-      color 0.3s ease-in-out;
+    transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
 
     &__active {
       border: 3px solid var(--fiolet);
@@ -251,7 +245,7 @@
     // box-shadow: 0 0 15px -10px rgba(221, 221, 221, 0.5);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(7px);
-    color: #FFFFFF;
+    color: #ffffff;
     // animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 
     &_gallery {
@@ -308,8 +302,12 @@
     position: relative;
     height: 50px;
     line-height: 50px;
+    &.textarea {
+      height: 10rem;
+    }
 
-    input {
+    input,
+    textarea {
       position: absolute;
       width: 100%;
       outline: none;
@@ -337,7 +335,8 @@
       color: var(--secondary_text);
     }
 
-    input:focus+.modalWindow_field_labelLine {
+    input:focus + .modalWindow_field_labelLine,
+    textarea:focus + .modalWindow_field_labelLine {
       height: 30px;
       line-height: 30px;
       transform: translate(-15px, -16px) scale(0.88);
@@ -379,17 +378,16 @@
 
       .modalWindow_field-status {
         color: var(--red);
-
       }
     }
 
     &__disabled {
-      input {
+      input,
+      textarea {
         opacity: 0.5;
         pointer-events: none;
         position: relative;
       }
-
 
       // &::before {
       //   content: "";
@@ -402,7 +400,6 @@
       //   transform: translateY(-50%);
       //   background-image: url('svg/icon/edit.svg');
       //   transition: all 0.3s ease-in-out;
-
 
       //   &:hover {
       //     fill: #FFFFFF;
@@ -428,7 +425,6 @@
 
       .modalWindow_field-status {
         color: var(--green);
-
       }
     }
 
@@ -446,7 +442,6 @@
     &__eye {
       transition: 0.3s ease-in-out;
     }
-
   }
 
   &_footer {
@@ -463,5 +458,4 @@
       line-height: 1.5;
     }
   }
-
 }
