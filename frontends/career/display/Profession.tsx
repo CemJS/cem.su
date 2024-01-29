@@ -1,5 +1,5 @@
 import { Cemjsx, Fn, Func, Static } from "cemjs-all";
-import professions from "json/careerProfessions.json";
+import professions from "json/career/careerProfessions.json";
 
 export default function () {
   return (

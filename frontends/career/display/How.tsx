@@ -1,5 +1,5 @@
 import { Cemjsx, Fn, Func, Static } from "cemjs-all";
-import steps from "json/careerSteps.json";
+import steps from "json/career/careerSteps.json";
 
 export default function () {
   return (
