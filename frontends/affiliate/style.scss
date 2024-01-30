@@ -1,120 +1,70 @@
-.affiliate {
-  &__card {
-    margin: 0 auto;
-    width: 90%;
+.program {
+  &__title {
+    color: var(--gray);
+    font-weight: 500;
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
     text-align: center;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 0 2.5rem;
-    padding-top: 5rem;
-    padding-bottom: 6rem;
-    border-radius: 3.8125rem;
-    position: relative;
-    &::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      top: 0;
-      background-image: url("./images/affiliateBg.png");
-      background-position: -3.125rem -1.875rem;
-      background-repeat: no-repeat;
-      width: 100%;
-      height: 100%;
-    }
-    &-title {
-      font-weight: bold;
-      font-size: clamp(1.5rem, 2vw, 2rem);
-      margin-bottom: 0.75rem;
-    }
-    &-text {
-      font-weight: normal;
-      font-size: clamp(0.8rem, 2vw, 1rem);
-      line-height: 1.5;
-      max-width: 56.125rem;
-      margin: 0 auto;
+    &_margin {
+      margin-bottom: 6.875rem;
     }
   }
-  &__link {
-    margin: 3.875rem auto;
-    width: 80%;
-    max-width: 48.4375rem;
-    border-bottom: 1px solid #484c59;
-    padding-bottom: 1.25rem;
-    &-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    &-title {
-      text-align: left;
-      font-weight: 600;
-      font-size: (0.7rem, 2vw, 0.8125rem);
-      color: var(--textGray-light);
-      margin-bottom: 0.625rem;
-      display: block;
-    }
-    &-text {
-      text-decoration: underline;
-      white-space: nowrap;
-    }
-    &-buttons {
-      display: flex;
-      gap: 24px;
-    }
-    &-btn {
-      height: 34px;
-      width: 34px;
-      border-radius: 5px;
-      position: relative;
-      display: inline-block;
-      margin-left: 14px;
-      background: var(--blueGradient);
-      cursor: pointer;
-      border: none;
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    text-align: center;
+    gap: 0.625rem;
+    grid-row-gap: 5rem;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9375rem;
+    width: 260px;
+    &-img {
+      margin: 0 auto;
+      width: 6.25rem;
+      height: 6.25rem;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: var(--light-gray);
+      position: relative;
+      &::before {
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        position: absolute;
+        top: 0.3125rem;
+        left: 0.3125rem;
+        background: var(--blueGradient);
+        border-radius: 50%;
+      }
+    }
+    &-text {
+      color: #c5d1f7;
+      font-weight: 500;
+      font-size: (0.8rem, 2vw, 0.9375rem);
+      max-width: 17rem;
     }
   }
 }
 
-@media (max-width: 970px) {
-  .affiliate {
-    &__link {
-      &-wrapper {
-        flex-direction: column;
-        gap: 0.625rem;
-      }
-      &-title {
-        text-align: center;
-      }
-      &-text {
-        white-space: unset;
-        word-break: break-all;
-      }
-    }
-    &__card {
-      padding-top: 3rem;
-      background-size: cover;
+@media (max-width: 1100px) {
+  .program {
+    &__list {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
 
-@media (max-width: 700px) {
-  .affiliate {
-    &__link {
-      margin: 2.5rem auto;
-    }
-  }
-}
-
-@media (max-width: 522px) {
-  .affiliate {
-    &__card {
-      width: 100%;
-      background-position: -4.375rem -1.875rem;
-      padding-bottom: 0;
+@media (max-width: 650px) {
+  .program {
+    &__list {
+      grid-template-columns: repeat(1, 1fr);
+      grid-row-gap: 3rem;
     }
   }
 }

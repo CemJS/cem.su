@@ -136,7 +136,7 @@ front.loader = () => {
         },
         {
           name: "Партнёрская программа",
-          link: "#",
+          link: "/affiliate",
         },
       ],
     },
