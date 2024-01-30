@@ -1,4 +1,4 @@
-import { Cemjsx } from "cemjs-all";
+import { Cemjsx, Static } from "cemjs-all";
 import copy from "@svg/icons/copy.svg";
 import share from "@svg/icons/share.svg";
 import empty from "@svg/icons/affiliateEmptyPartners.svg";
@@ -15,15 +15,35 @@ const RenderCard = () => {
       <div class="affiliate__link">
         <p class="affiliate__link-title">Реферальная ссылка</p>
         <div class="affiliate__link-wrapper">
-          <p class="affiliate__link-text">https://crypto-emergency.com/user/MatveyShul</p>
+          <p class="affiliate__link-text">{Static.refLink}</p>
           <div class="affiliate__link-buttons">
-            <button class="affiliate__link-btn">
+            <button
+              onclick={(e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(Static.refLink);
+                e.target.classList.add("active");
+                setTimeout(() => {
+                  e.target.classList.remove("active");
+                }, 1500);
+              }}
+              class="affiliate__link-btn copy"
+            >
               <img
                 src={copy}
                 alt="Скопировать"
               />
             </button>
-            <button class="affiliate__link-btn">
+            <button
+              onclick={(e) => {
+                if (navigator.share) {
+                  navigator.share({
+                    title: "Реферальная ссылка",
+                    url: Static.refLink,
+                  });
+                }
+              }}
+              class="affiliate__link-btn"
+            >
               <img
                 src={share}
                 alt="Поделиться"
@@ -55,37 +75,44 @@ const RenderScores = () => {
 
 const RenderPartners = () => {
   return (
-    <div class="affiliate__partners">
+    <div class={["affiliate__partners", !Static.partners.length ? "empty" : null]}>
       <h3 class="affiliate__partners-title">Мои партнеры</h3>
       <div class="affiliate__partners-list">
-        <div class="affiliate__item">
-          <div class="affiliate__item-left">
-            <div class="affiliate__item-img">
-              {/* <img
+        {Static.partners.length ? (
+          Static.partners?.map((item) => {
+            return (
+              <div class="affiliate__item">
+                <div class="affiliate__item-left">
+                  <div class="affiliate__item-img">
+                    {/* <img
                     src=""
                     alt="Партнёр"
                     class="affiliate__item-img"
                   /> */}
-            </div>
-            <p class="affiliate__item-text">Hunter</p>
-          </div>
-          <p class="affiliate__item-text">2023:05:28</p>
-          <p class="affiliate__item-text">0 CEM</p>
-          <div class="affiliate__item-watch">
-            <img
-              src={time}
-              alt="Время"
-            />
-          </div>
-        </div>
-      </div>
-      {/* <div class="affiliate__empty">
+                  </div>
+                  <p class="affiliate__item-text">{item.name}</p>
+                </div>
+                <p class="affiliate__item-text">{item.date}</p>
+                <p class="affiliate__item-text">{item.cem} CEM</p>
+                <div class="affiliate__item-watch">
+                  <img
+                    src={time}
+                    alt="Время"
+                  />
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <div class="affiliate__empty">
             <img
               src={empty}
               alt="У вас пока нет партнёров"
             />
             <p class="affiliate__empty-text">У вас пока нет партнёров</p>
-          </div> */}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
