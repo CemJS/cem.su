@@ -67,7 +67,6 @@ const RenderForm = () => {
         onclick={(e) => {
           e.preventDefault();
           Func.sendForm();
-          Func.clearForm();
         }}
         class={["btn contacts__form-btn", Static.form.isValid ? "contacts__form-btn_active" : null]}
       >
@@ -92,7 +91,7 @@ const RenderDestination = () => {
         <h4 class="contacts__destination-title">E-mail:</h4>
         <a
           onclick={Fn.link}
-          href="support@crypto-emergency.com"
+          href="mailto:support@crypto-emergency.com"
           class="contacts__destination-text link"
         >
           support@crypto-emergency.com

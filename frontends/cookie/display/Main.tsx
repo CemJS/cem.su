@@ -70,8 +70,8 @@ export default function () {
         </div>
         <div class="cookie__wrapper">
           <a
-            onclick={Fn.link}
-            href="/assets/documents/cookieRU.pdf"
+            target="_blank"
+            href="/contents/docs/cookieRU.pdf"
           >
             <button class="btn mX-auto">Скачать</button>
           </a>

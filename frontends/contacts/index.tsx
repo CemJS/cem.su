@@ -35,13 +35,22 @@ front.func.sendForm = async () => {
         comment: Static.form.comment.value,
       },
     };
-    Fn.initOne("alert", {
-      icon: success,
-      title: "Спасибо!",
-      text: "Скоро с Вами свяжется наш менеджер!",
-    });
     let res = await front.Services.functions.sendApi("api/tg/crypto-emergency", data);
-    console.log("=08599b=", res);
+    if (!res.error) {
+      Func.clearForm();
+      Fn.initOne("alert", {
+        icon: success,
+        title: "Спасибо!",
+        text: "Скоро с Вами свяжется наш менеджер!",
+      });
+    } else {
+      Fn.initOne("alert", {
+        icon: success,
+        title: "Повторите попытку",
+        text: "Ошибка запроса!",
+        type: "danger",
+      });
+    }
   } else {
     Static.form.name.error = "Введите имя";
     Static.form.email.error = "Введите email";
