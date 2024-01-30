@@ -79,7 +79,14 @@ front.loader = () => {
     },
     isValid: false,
   };
-  Static.e;
+
+  // front.Variable.auth = true;
+  if (front.Variable.auth) {
+    Static.form.name.value = "myInfoName";
+    Static.form.name.valid = true;
+    Static.form.email.value = "myInfoEmail";
+    Static.form.email.valid = true;
+  }
   return;
 };
 
