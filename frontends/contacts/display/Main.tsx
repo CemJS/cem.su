@@ -10,7 +10,7 @@ const RenderForm = () => {
         <div class={["modalWindow_field", Static.form.name.valid || Static.form.name.error ? "modalWindow_field__valid" : null]}>
           <input
             value={Static.form.name.value}
-            disabled={front.Variable.auth ? "disabled" : null}
+            disabled={front.Variable.Auth ? "disabled" : null}
             oninput={(e) => {
               Static.form.name.value = e.target.value;
               front.Services.functions.formName(Static.form.name);
@@ -35,7 +35,7 @@ const RenderForm = () => {
         <div class={["modalWindow_field", Static.form.email.valid || Static.form.email.error ? "modalWindow_field__valid" : null]}>
           <input
             value={Static.form.email.value}
-            disabled={front.Variable.auth ? "disabled" : null}
+            disabled={front.Variable.Auth ? "disabled" : null}
             oninput={(e) => {
               Static.form.email.value = e.target.value;
               front.Services.functions.formEmail(Static.form.email);

@@ -7,7 +7,7 @@ export default function () {
         <div class={["modalWindow_field", Static.form?.name.valid || Static.form?.name.error ? "modalWindow_field__valid" : null]}>
           <input
             value={Static.form.name.value}
-            disabled={front.Variable.auth ? "disabled" : null}
+            disabled={front.Variable.Auth ? "disabled" : null}
             oninput={(e: any) => {
               Static.form.name.value = e.target.value;
               front.Services.functions.formName(Static.form.name);
@@ -38,7 +38,7 @@ export default function () {
             required
             autocomplete="off"
             value={Static.form.email.value}
-            disabled={front.Variable.auth ? "disabled" : null}
+            disabled={front.Variable.Auth ? "disabled" : null}
             class={[Static.form.email.error ? "contacts__form-input_error" : null, Static.form.email.valid ? "contacts__form-input_success" : null]}
           />
           <div class="modalWindow_field_labelLine">

@@ -80,8 +80,8 @@ front.loader = () => {
     isValid: false,
   };
 
-  // front.Variable.auth = true;
-  if (front.Variable.auth) {
+  // front.Variable.Auth = true;
+  if (front.Variable.Auth) {
     Static.form.name.value = "myInfoName";
     Static.form.name.valid = true;
     Static.form.email.value = "myInfoEmail";
