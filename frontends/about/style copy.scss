@@ -1,13 +1,13 @@
 @import "../../assets/scss/utils/mixins.scss";
 
-:root {
-  // --marquee_width: 80vw;
-  --marquee_width: 1240px;
-  --marquee_height: 18vh;
-  --marquee_elements_displayed: 4;
-  --marquee_element_width: calc(var(--marquee_width) / var(--marquee_elements_displayed));
-  --marquee_animation_duration: 100s;
-}
+// :root {
+//   // --marquee_width: 80vw;
+//   --marquee_width: 1240px;
+//   --marquee_height: 18vh;
+//   --marquee_elements_displayed: 4;
+//   --marquee_element_width: calc(var(--marquee_width) / var(--marquee_elements_displayed));
+//   --marquee_animation_duration: 100s;
+// }
 
 .about {
   background: #232733;
@@ -1139,10 +1139,10 @@
     height: 100%;
     display: flex;
     gap: 10px;
-    animation: scrolling 100s linear infinite;
+    animation: scrolling var(--marquee_animation_duration) linear infinite;
 
     &_end {
-      animation: scrolling calc(100s - 5s) linear infinite;
+      animation: scrolling calc(var(--marquee_animation_duration) - 5s) linear infinite;
     }
 
     &:hover {
@@ -2068,29 +2068,6 @@
 
 
 @media(max-width: 1100px) {
-  .about {
-    .developments {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-areas:
-        'emergency emergency'
-        'assistant wallet';
-
-      &_item {
-        &_1 {
-          grid-area: assistant;
-        }
-
-        &_2 {
-          grid-area: wallet;
-        }
-
-        &_3 {
-          grid-area: emergency;
-        }
-      }
-    }
-  }
-
   .about .team {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -2251,22 +2228,6 @@
   }
 }
 
-@media(max-width: 700px) {
-  .about .developments {
-    .developments_item {
-      margin: 10px;
-    }
-
-    display: contents;
-    // grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    transform-style: preserve-3d;
-    perspective: 800px;
-    max-width: 1100px;
-    margin: 0px auto;
-  }
-}
-
 @media(max-width: 600px) {
   :root {
     --marquee_elements_displayed: 3;
@@ -2294,13 +2255,9 @@
 
 @media (max-width: 464px) {
   :root {
-    --marquee_height: 12vh;
-    --marquee_elements_displayed: 2;
-    --marquee_animation_duration: 35s;
-  }
-
-  .about .socials_list {
-    gap: 5px;
+      --marquee_height: 12vh;
+      --marquee_elements_displayed: 2;
+      --marquee_animation_duration: 35s;
   }
 }
 
