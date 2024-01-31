@@ -18,7 +18,7 @@ export default function () {
           />
           <div class="modalWindow_field_labelLine contacts__form-labelLine">
             <i class="i i-user contacts__form-icon"></i>
-            <span>Имя</span>
+            <span>{Static.form.name.placeholder}</span>
           </div>
           <div
             style="color:#E84142"
@@ -51,6 +51,28 @@ export default function () {
           >
             {Static.form.email.error}
           </p>
+        </div>
+        <div class={["modalWindow_field", Static.form.telegram.valid || Static.form.telegram.error ? "modalWindow_field__valid" : null]}>
+          <input
+            value={Static.form.telegram.value}
+            oninput={(e) => {
+              Static.form.telegram.value = e.target.value;
+              front.Services.functions.formTelegram(Static.form.telegram);
+              Func.checkForm();
+            }}
+            class={[Static.form.telegram.error ? "contacts__form-input_error" : null, Static.form.telegram.valid ? "contacts__form-input_success" : null]}
+            type="text"
+          />
+          <div class="modalWindow_field_labelLine contacts__form-labelLine">
+            <i class="i i-user contacts__form-icon"></i>
+            <span>{Static.form.telegram.placeholder}</span>
+          </div>
+          <div
+            style="color:#E84142"
+            class="modalWindow_field__status"
+          >
+            {Static.form.telegram.error}
+          </div>
         </div>
         <div class={["modalWindow_field textarea", ["modalWindow_field", Static.form.comment.valid || Static.form.comment.error ? "modalWindow_field__valid" : null]]}>
           <textarea

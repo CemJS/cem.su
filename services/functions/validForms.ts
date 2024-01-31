@@ -1,4 +1,4 @@
-import { validLogin, validEmail, validNickName, validLang, validCountry, validPassword, validConfirmPassword, validName, validComment } from "./validator";
+import { validLogin, validEmail, validNickName, validLang, validCountry, validPassword, validConfirmPassword, validName, validComment, validTelegram } from "./validator";
 
 interface Form {
   value: string;
@@ -91,6 +91,23 @@ export const formName = async function (form: Form) {
     return true;
   } else {
     form.error = "Введите имя";
+    form.valid = false;
+    return false;
+  }
+};
+
+export const formTelegram = async function (form: Form) {
+  if (!form.value.length) {
+    form.error = false;
+    form.valid = false;
+    return false;
+  }
+  let check = validTelegram(form.value);
+  if (check) {
+    form.error = false;
+    form.valid = true;
+    return true;
+  } else {
     form.valid = false;
     return false;
   }
