@@ -6,7 +6,7 @@ const RenderMenu = function ({ menu }) {
     return (
         <ul class="header-list">
             {
-                menu.map(item => {
+                menu.map((item: any) => {
                     return (
                         <li class="header-list__item"
                             onclick={async () => {
