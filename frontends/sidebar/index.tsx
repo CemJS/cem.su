@@ -45,7 +45,7 @@ front.loader = () => {
     {
       icon: "faq",
       name: "ICO Рейтинг",
-      link: "#",
+      link: "/list-icostartaps",
     },
     {
       icon: "user",
@@ -136,7 +136,7 @@ front.loader = () => {
         },
         {
           name: "Партнёрская программа",
-          link: "#",
+          link: "/affiliate",
         },
       ],
     },

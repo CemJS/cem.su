@@ -369,8 +369,8 @@ export default function () {
         </div>
         <div class="policy_wrapper">
           <a
-            onclick={Fn.link}
-            href="/assets/documents/policyRU.pdf"
+            target="_blank"
+            href="/contents/docs/policyRU.pdf"
           >
             <button class="btn mX-auto">Скачать</button>
           </a>
