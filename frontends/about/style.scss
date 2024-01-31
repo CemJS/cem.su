@@ -221,12 +221,12 @@
         }
       }
 
-      &:hover .goal__img {
+      &:hover .goal_img {
         top: 0%;
         transform: translateY(0%);
       }
 
-      &:hover .goal__content {
+      &:hover .goal_content {
         height: 210px;
 
         @media(max-width: 464px) {
@@ -234,7 +234,7 @@
         }
       }
 
-      &:hover .goal__content .goal__content_description {
+      &:hover .goal_content .goal_content__desc {
         visibility: visible;
         opacity: 1;
         transition-delay: 0.5s;
@@ -2135,7 +2135,17 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
   }
-  .about .team_item_front, .about .team_item_back {
+
+  .about .team_item_front,
+  .about .team_item_back {
     background-size: contain;
+  }
 }
+
+@media(max-width: 280px) {
+ 
+  .about .team_item_front,
+  .about .team_item_back {
+    background-size: cover;
+  }
 }

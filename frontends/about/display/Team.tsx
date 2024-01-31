@@ -34,13 +34,9 @@ const team = [
     }
 ]
 
-
-
-
 export default function () {
     return (
         <div>
-            <div style="padding-bottom: 100px"/>
             <h2 class="about_subtitle">Команда</h2>
             <div class="team">
                 {
