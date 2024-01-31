@@ -22,7 +22,7 @@ front.func.close = function () {
 };
 
 front.func.checkForm = async function () {
-  if (Static.form.email.valid && Static.form.nickname.valid && Static.form.comment.valid) {
+  if (Static.form.email.valid && Static.form.name.valid && Static.form.comment.valid) {
     Static.form.isValid = true;
   } else {
     Static.form.isValid = false;
@@ -31,9 +31,9 @@ front.func.checkForm = async function () {
 };
 
 front.func.clearForm = () => {
-  Static.form.nickname.value = "";
-  Static.form.nickname.valid = false;
-  Static.form.nickname.error = false;
+  Static.form.name.value = "";
+  Static.form.name.valid = false;
+  Static.form.name.error = false;
   Static.form.email.value = "";
   Static.form.email.valid = false;
   Static.form.email.error = false;
@@ -49,19 +49,27 @@ front.func.sendForm = async () => {
       action: "contactForm",
       formName: `Страница Вакансии, Вакансия: ${Static.title}`,
       contactForm: {
-        fullName: Static.name,
-        email: Static.email,
+        fullName: Static.form.name.value,
+        email: Static.form.email.value,
         comment: Static.form.comment.value,
       },
     };
-    Fn.initOne("alert", {
-      icon: success,
-      title: "Спасибо!",
-      text: "Скоро с Вами свяжется наш менеджер!",
-    });
     let res = await front.Services.functions.sendApi("api/tg/crypto-emergency", data);
-    Func.clearForm();
-    Func.close();
+    if (!res.error) {
+      Fn.initOne("alert", {
+        icon: success,
+        title: "Спасибо!",
+        text: "Скоро с Вами свяжется наш менеджер!",
+      });
+      Func.close();
+    } else {
+      Fn.initOne("alert", {
+        icon: success,
+        title: "Повторите попытку",
+        text: "Ошибка запроса!",
+        type: "danger",
+      });
+    }
   } else {
     Static.form.name.error = "Введите имя";
     Static.form.email.error = "Введите email";
@@ -89,7 +97,7 @@ front.loader = () => {
       view: false,
       disable: false,
     },
-    nickname: {
+    name: {
       value: "",
       valid: false,
       error: false,
@@ -99,10 +107,14 @@ front.loader = () => {
     },
     isValid: false,
   };
-  Static.form.nickname.value = Static.name;
-  Static.form.nickname.valid = true;
-  Static.form.email.value = Static.email;
-  Static.form.email.valid = true;
+
+  // front.Variable.Auth = true;
+  if (front.Variable.Auth) {
+    Static.form.name.value = "testMyInfoName";
+    Static.form.name.valid = true;
+    Static.form.email.value = "testMyinfoEmail";
+    Static.form.email.valid = true;
+  }
   return;
 };
 

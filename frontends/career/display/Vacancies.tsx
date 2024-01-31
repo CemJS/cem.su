@@ -53,7 +53,7 @@ export default function () {
             </div>
             <div class="btn_border-wrap mt-20">
               <button
-                onclick={() => Fn.initOne("modalVacancy", { title: item.title, name: "Test", email: "test@mail.ru" })}
+                onclick={() => Fn.initOne("modalVacancy", { title: item.title })}
                 class="btn_border"
               >
                 Отликнуться

@@ -10,6 +10,7 @@ const RenderForm = () => {
         <div class={["modalWindow_field", Static.form.name.valid || Static.form.name.error ? "modalWindow_field__valid" : null]}>
           <input
             value={Static.form.name.value}
+            disabled={front.Variable.Auth ? "disabled" : null}
             oninput={(e) => {
               Static.form.name.value = e.target.value;
               front.Services.functions.formName(Static.form.name);
@@ -22,13 +23,19 @@ const RenderForm = () => {
             <i class="i i-user contacts__form-icon"></i>
             <span>Имя</span>
           </div>
-          <div class="modalWindow_field__status">{Static.form.name.error}</div>
+          <div
+            style="color:#E84142"
+            class="modalWindow_field__status"
+          >
+            {Static.form.name.error}
+          </div>
         </div>
       </div>
       <div class="contacts__form-group">
         <div class={["modalWindow_field", Static.form.email.valid || Static.form.email.error ? "modalWindow_field__valid" : null]}>
           <input
             value={Static.form.email.value}
+            disabled={front.Variable.Auth ? "disabled" : null}
             oninput={(e) => {
               Static.form.email.value = e.target.value;
               front.Services.functions.formEmail(Static.form.email);
@@ -41,7 +48,12 @@ const RenderForm = () => {
             <i class="i i-messanger contacts__form-icon"></i>
             <span>Email</span>
           </div>
-          <div class="modalWindow_field__status">{Static.form.email.error}</div>
+          <div
+            style="color:#E84142"
+            class="modalWindow_field__status"
+          >
+            {Static.form.email.error}
+          </div>
         </div>
       </div>
       <div class="contacts__form-group">
@@ -60,14 +72,18 @@ const RenderForm = () => {
             <i class="i i-messanger contacts__form-icon"></i>
             <span>Сообщение</span>
           </div>
-          <div class="modalWindow_field__status">{Static.form.comment.error}</div>
+          <div
+            style="color:#E84142"
+            class="modalWindow_field__status"
+          >
+            {Static.form.comment.error}
+          </div>
         </div>
       </div>
       <button
         onclick={(e) => {
           e.preventDefault();
           Func.sendForm();
-          Func.clearForm();
         }}
         class={["btn contacts__form-btn", Static.form.isValid ? "contacts__form-btn_active" : null]}
       >
@@ -92,7 +108,7 @@ const RenderDestination = () => {
         <h4 class="contacts__destination-title">E-mail:</h4>
         <a
           onclick={Fn.link}
-          href="support@crypto-emergency.com"
+          href="mailto:support@crypto-emergency.com"
           class="contacts__destination-text link"
         >
           support@crypto-emergency.com

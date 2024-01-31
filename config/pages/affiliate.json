@@ -1,4 +1,4 @@
 {
-  "url": "/user/affiliate",
-  "front": ["header", "affiliate", "menu"]
+  "url": "/affiliate",
+  "front": ["affiliate", "menu"]
 }
