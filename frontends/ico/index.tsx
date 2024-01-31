@@ -36,6 +36,9 @@ front.loader = async () => {
   ];
   Events.icos = await Fn.event(url, listener);
 
+  setTimeout(() => {
+    Fn.log(Static.records);
+  }, 100);
   return;
 };
 

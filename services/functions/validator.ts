@@ -53,6 +53,14 @@ export const validComment = function (comment: string) {
   return true;
 };
 
+export const validTelegram = function (comment: string) {
+  if (comment.length < 1) {
+    return false;
+  }
+
+  return true;
+};
+
 export const validLogin = function (login: string) {
   let checkEmail = validEmail(login);
   let checkNickName = validNickName(login);

@@ -18,6 +18,9 @@ front.func.clearForm = () => {
   Static.form.email.value = "";
   Static.form.email.valid = false;
   Static.form.email.error = false;
+  Static.form.telegram.value = "";
+  Static.form.telegram.valid = false;
+  Static.form.telegram.error = false;
   Static.form.comment.value = "";
   Static.form.comment.valid = false;
   Static.form.comment.error = false;
@@ -32,6 +35,7 @@ front.func.sendForm = async () => {
       contactForm: {
         fullName: Static.form.name.value,
         email: Static.form.email.value,
+        telegram: Static.form.telegram.value,
         comment: Static.form.comment.value,
       },
     };
@@ -52,9 +56,9 @@ front.func.sendForm = async () => {
       });
     }
   } else {
-    Static.form.name.error = "Введите имя";
-    Static.form.email.error = "Введите email";
-    Static.form.comment.error = "Введите сообщение";
+    !Static.form.name.valid ? (Static.form.name.error = "Введите имя") : null;
+    !Static.form.email.valid ? (Static.form.email.error = "Введите email") : null;
+    !Static.form.comment.valid ? (Static.form.comment.error = "Введите сообщение") : null;
   }
 
   return;
@@ -68,6 +72,11 @@ front.loader = () => {
       error: false,
     },
     email: {
+      value: "",
+      valid: false,
+      error: false,
+    },
+    telegram: {
       value: "",
       valid: false,
       error: false,

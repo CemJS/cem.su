@@ -3,7 +3,7 @@ import { Cemjsx, Static, Func, Ref } from "cemjs-all";
 export default function () {
   return (
     <header class="modal-header">
-      <h2 class="modal-header__title">Связь с нами</h2>
+      <h2 class="modal-header__title">Отликнуться на вакансию</h2>
 
       <button
         class="btn btn_close"

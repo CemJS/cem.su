@@ -21,7 +21,7 @@ const RenderForm = () => {
           />
           <div class="modalWindow_field_labelLine contacts__form-labelLine">
             <i class="i i-user contacts__form-icon"></i>
-            <span>Имя</span>
+            <span>Имя*</span>
           </div>
           <div
             style="color:#E84142"
@@ -46,13 +46,37 @@ const RenderForm = () => {
           />
           <div class="modalWindow_field_labelLine contacts__form-labelLine">
             <i class="i i-messanger contacts__form-icon"></i>
-            <span>Email</span>
+            <span>Email*</span>
           </div>
           <div
             style="color:#E84142"
             class="modalWindow_field__status"
           >
             {Static.form.email.error}
+          </div>
+        </div>
+      </div>
+      <div class="contacts__form-group">
+        <div class={["modalWindow_field", Static.form.telegram.valid || Static.form.telegram.error ? "modalWindow_field__valid" : null]}>
+          <input
+            value={Static.form.telegram.value}
+            oninput={(e) => {
+              Static.form.telegram.value = e.target.value;
+              front.Services.functions.formTelegram(Static.form.telegram);
+              Func.checkForm();
+            }}
+            class={[Static.form.telegram.error ? "contacts__form-input_error" : null, Static.form.telegram.valid ? "contacts__form-input_success" : null]}
+            type="text"
+          />
+          <div class="modalWindow_field_labelLine contacts__form-labelLine">
+            <i class="i i-user contacts__form-icon"></i>
+            <span>Телеграм</span>
+          </div>
+          <div
+            style="color:#E84142"
+            class="modalWindow_field__status"
+          >
+            {Static.form.telegram.error}
           </div>
         </div>
       </div>
@@ -70,7 +94,7 @@ const RenderForm = () => {
           />
           <div class="modalWindow_field_labelLine contacts__form-labelLine">
             <i class="i i-messanger contacts__form-icon"></i>
-            <span>Сообщение</span>
+            <span>Сообщение*</span>
           </div>
           <div
             style="color:#E84142"
@@ -126,7 +150,7 @@ export default function () {
           <RenderForm />
           <RenderDestination />
         </div>
-        <div class="help__wrapper">
+        {/* <div class="help__wrapper">
           <a
             href="https://www.donationalerts.com/r/crypto_emergency"
             class="help"
@@ -139,7 +163,7 @@ export default function () {
             />
             <p class="help__text">Поддержать проект</p>
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

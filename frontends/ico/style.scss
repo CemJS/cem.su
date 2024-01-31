@@ -1,6 +1,12 @@
 .ico {
+  padding-top: 4.75rem;
   &__tags {
-    padding-top: 1.0625rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 1.0625rem 0;
     display: flex;
     justify-content: space-between;
     gap: 1.875rem;
@@ -13,7 +19,7 @@
     background: #363b4b;
     border-radius: 50px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 2vw, 1rem);
     line-height: 1rem;
     text-align: center;
     cursor: pointer;
@@ -30,6 +36,7 @@
       height: 100%;
       top: 0;
       left: 0;
+      transition: all 0.2s ease-in-out;
       background: var(--mainGradient);
       z-index: -1;
       opacity: 0;
@@ -43,6 +50,73 @@
       &::before {
         opacity: 1;
       }
+    }
+  }
+  &__list {
+    border: 1px solid var(--border-color);
+    min-height: 33.75rem;
+  }
+  &__navs {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  &__nav {
+    width: 100%;
+    text-align: center;
+    background: var(--gray-600);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    opacity: 0.7;
+    z-index: 1;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--mainGradient);
+      opacity: 0;
+      transition: all 0.2s ease-in-out;
+      z-index: -1;
+    }
+    &:hover::before {
+      opacity: 1;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &__items {
+    min-height: 100%;
+  }
+}
+
+.wrapper {
+  &_ico {
+    position: relative;
+  }
+}
+
+@media (max-width: 1240px) {
+  .ico {
+    &__tags {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .ico {
+    &__tags {
+      gap: 0.25rem;
     }
   }
 }
