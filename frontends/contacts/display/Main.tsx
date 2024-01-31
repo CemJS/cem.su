@@ -89,13 +89,10 @@ const RenderForm = () => {
               front.Services.functions.formComment(Static.form.comment);
               Func.checkForm();
             }}
+            placeholder="Введите ваше сообщение*"
             class={["contacts__form-input textarea", Static.form.comment.error ? "contacts__form-input_error" : null, Static.form.comment.valid ? "contacts__form-input_success" : null]}
             type="text"
           />
-          <div class="modalWindow_field_labelLine contacts__form-labelLine">
-            <i class="i i-messanger contacts__form-icon"></i>
-            <span>Сообщение*</span>
-          </div>
           <div
             style="color:#E84142"
             class="modalWindow_field__status"
