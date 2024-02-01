@@ -1,4 +1,4 @@
-import { Cemjsx, Static, Ref } from "cemjs-all";
+import { Cemjsx, Static, Ref, Fn, front } from "cemjs-all";
 
 let x1,
   y1 = null;
@@ -71,14 +71,26 @@ export default function ({ items, active }) {
           <li
             ref="categoryEl"
             draggable="false"
-            class={["category-item", active == index ? "category-item_active" : null]}
+            class={["category-item", active == item.name ? "category-item_active" : null]}
             onclick={() => {
-              Static.catActive = index;
+              // Fn.log('=ac9ca7=', 12424)
 
-              if (Static.makeFilter.cat == index) {
+              Static.catActive = item.name;
+
+              if (Static.makeFilter.cat == item.name) {
                 return;
               }
-              Static.makeFilter.cat = index;
+              Static.makeFilter.cat = item.name;
+
+              Fn.log("=a16437=", Static.makeFilter.active);
+
+              front.Services.functions.sendApi("/api/events/Icos", {
+                action: "get",
+                category: Static.catActive == "Все" ? "All" : Static.catActive,
+                type: Static.makeFilter.active,
+              });
+
+              // Fn.log("=1ca9ec=", Static.makeFilter);
 
               //   fn("addEvent");
               // init()

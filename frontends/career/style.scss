@@ -26,7 +26,6 @@
       padding-top: 8.75rem;
       padding-bottom: 17.5rem;
       width: 50%;
-      text-shadow: 0.125rem 0.125rem 0.625rem black;
     }
     &-title {
       font-weight: bold;
@@ -202,6 +201,10 @@
         margin: 0 auto;
         max-width: 43.5rem;
         padding: 5rem 0;
+      }
+      &_team {
+        padding: 3rem 0;
+        font-size: clamp(2rem, 3vw, 4rem);
       }
     }
     &-top {

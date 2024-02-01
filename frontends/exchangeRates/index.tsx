@@ -12,7 +12,7 @@ front.func.test = () => {
 
 front.loader = async () => {
     Static.records = []
-    let url = front.Services.functions.makeUrlEvent("Banners", { lang: "ru" })
+    let url = front.Services.functions.makeUrlEvent("CoinsCourses", {})
 
     let listener = [
         {
@@ -20,15 +20,23 @@ front.loader = async () => {
             fn: ({ data }) => {
                 let json = front.Services.functions.strToJson(data)
                 if (!json) { return }
+                Fn.log('=2efb55= get', json)
                 Static.records = json
             },
         },
         {
-            type: "add",
+            type: "update",
             fn: ({ data }) => {
                 let json = front.Services.functions.strToJson(data)
-                Static.records = json
-                Fn.init()
+                if (!json) { return }
+                Fn.log('=2efb55= update', json)
+
+                for (let item of Static.records) {
+                    if (item.coin == json.coin) {
+                        item.price = json.price
+                    }
+                }
+                Fn.log('=06e685=', Static.records)
             },
         },
     ]

@@ -10,9 +10,9 @@ front.func.test = () => {
 };
 
 front.loader = async () => {
-  Static.catActive = 0;
+  Static.catActive = "ICO";
   Static.makeFilter = {
-    cat: 0,
+    cat: "ICO",
     active: "Active",
   };
   // fn("addEvent");
@@ -46,7 +46,9 @@ front.loader = async () => {
       name: "IFO",
     },
   ];
+  // let url = front.Services.functions.makeUrlEvent("Icos", { action: "category", category: Static.makeFilter.cat });
   let url = front.Services.functions.makeUrlEvent("Icos", {});
+  Fn.log("=7e27b3=", url);
   let listener = [
     {
       type: "get",
@@ -55,6 +57,8 @@ front.loader = async () => {
         if (!json) {
           return;
         }
+
+        Fn.log('=ae9096=', 123, json)
         Static.records = json;
       },
     },
