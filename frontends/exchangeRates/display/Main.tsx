@@ -2,12 +2,36 @@ import { Cemjsx, Static } from "cemjs-all"
 import star from '@svg/icon/star.svg'
 import lineB from '@svg/lines/linesB.svg'
 
+Static.records1 = [
+    {
+        nameCoin: 'btc',
+        currentCours: "142 543.1",
+        change: '-1.22%'
+    },
+    {
+        nameCoin: 'BTC',
+        currentCours: "142 543.1",
+        change: '-1.22%'
+    },
+   
+    {
+        nameCoin: 'BTC',
+        currentCours: "142 543.1",
+        change: '-1.22%'
+    },
+    {
+        nameCoin: 'BTC',
+        currentCours: "142 543.1",
+        change: '-1.22%'
+    },
+   
+]
 export default function () {
 
     return (
-        <section class="exchangerates effect_lines page">
+        <section class="exchangerates effect_lines pageTable">
             <div class="wrapper">
-                <h1 class="general_title">{Static.title}</h1>
+                <h1 class="general_title">Курсы валют</h1>
                 <table class="exchangerates_table" cellspacing="0" cellpadding="10" align="center">
                     <thead class="exchangerates_table_head">
                         <tr class="exchangerates_table_row">
@@ -20,7 +44,9 @@ export default function () {
                     </thead>
                     <tbody class="exchangerates_table_body">
                         {
-                            Static.records?.map((item, index) => {
+                            Static.records1?.map((item, index) => {
+                                console.log("item", item);
+                                
                                 return (
                                     <tr class="exchangerates_table_row">
                                         <td class="exchangerates_favorites">
@@ -43,9 +69,7 @@ export default function () {
                                         <td>
                                             <div class="exchangerates_cellwrap">
                                                 <span class="exchangerates_price">
-                                                    ${item.currentCourse.toFixed(
-                                                        item.nameCoin === "cem" ? 4 : 2
-                                                    )}
+                                                    {item.currentCours}
                                                 </span>
                                             </div>
                                         </td>
@@ -60,7 +84,8 @@ export default function () {
                                                     ]}
                                                 >
                                                     {item.change >= 0 ? '+' : null}
-                                                    {item.change.toFixed(2)}%
+                                                    {/* {item.change.toFixed(2)}% */}
+                                                    {item.change}
                                                 </span>
                                             </div>
                                         </td>
@@ -71,7 +96,7 @@ export default function () {
                     </tbody>
                 </table>
             </div>
-            <img src={lineB} class="listExchange_lineB"></img>
+            {/* <img src={lineB} class="listExchange_lineB"></img> */}
         </section>
     )
 }
