@@ -15,7 +15,7 @@ export const strToJson = function (data: string) {
 }
 
 export const makeUrlEvent = function (url: string, params: any = {}) {
-  url = `/api/events/${url}?uuid=${localStorage.uuid}`
+  url = `/api/events/${url}?uuid=${localStorage.uuid}&suuid=${localStorage.suuid}`
   for (let key in params) {
     url += `&${key}=${params[key]}`
   }
@@ -38,15 +38,20 @@ export const loader = async function (Variable: any, Fn: any) {
     localStorage.uuid = uuidv4()
   }
   let eventSource = new EventSource(`/api/events/MyInfo?uuid=${localStorage.uuid}`)
-  eventSource.addEventListener('update', (answ) => {
-    console.log('=5dcbec=', answ)
-    if (!answ.data || answ.data == "null") {
-      return
-    }
-    let myInfo = JSON.parse(answ.data)
-    Variable.myInfo = Object.assign(Variable.myInfo, myInfo)
+  eventSource.addEventListener('update', ({ data }) => {
+    let json = strToJson(data)
+    if (!json) { return }
+    localStorage.suuid = json.suuid
+    Variable.Auth = json.auth
+    Variable.myInfo = json.info
+    console.log('=5dcbec=', Variable.Auth, Variable.myInfo)
+    // if (!answ.data || answ.data == "null") {
+    //   return
+    // }
+    // let myInfo = JSON.parse(answ.data)
+    // Variable.myInfo = Object.assign(Variable.myInfo, myInfo)
   });
-  Variable.Auth = false
+  // Variable.Auth = false
   return
 }
 

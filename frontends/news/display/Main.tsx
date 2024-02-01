@@ -4,6 +4,20 @@ export default function () {
     // Fn.log('=3aa4e9=', Static.records)
     return (
         <section class="news">
+
+            <button
+                onclick={() => {
+                    Fn.log('=ac9ca7=', 12424)
+                    let data: Object = {
+                        suuid: localStorage.suuid,
+                        action: "test",
+                        category: "Bitcoin",
+                    };
+                    front.Services.functions.sendApi("/api/events/News?uuid=" + localStorage.uuid, data);
+                }}
+            >
+                sdhgkjhdkjghkdjg
+            </button>
             {
                 Static.records.map((item, index) => {
                     return (

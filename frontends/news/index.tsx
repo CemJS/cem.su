@@ -61,6 +61,8 @@ front.loader = async () => {
             fn: ({ data }) => {
                 let json = front.Services.functions.strToJson(data)
                 if (!json) { return }
+                Fn.log('=0b636f=', "Static.records", "get", json)
+
                 Static.records = json
             },
         },
