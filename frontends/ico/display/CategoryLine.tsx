@@ -73,11 +73,7 @@ export default function ({ items, active }) {
             draggable="false"
             class={["category-item", active == item.name ? "category-item_active" : null]}
             onclick={() => {
-
-
               // Fn.log('=ac9ca7=', 12424)
-
-
 
               Static.catActive = item.name;
 
@@ -86,10 +82,12 @@ export default function ({ items, active }) {
               }
               Static.makeFilter.cat = item.name;
 
+              Fn.log("=a16437=", Static.makeFilter.active);
 
               front.Services.functions.sendApi("/api/events/Icos", {
                 action: "get",
-                category: Static.catActive,
+                category: Static.catActive == "Все" ? "All" : Static.catActive,
+                type: Static.makeFilter.active,
               });
 
               // Fn.log("=1ca9ec=", Static.makeFilter);

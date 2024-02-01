@@ -33,6 +33,11 @@ const RenderItems = function ({ items }) {
                   }
                   Static.makeFilter.active = item.name;
                   // fn("addEvent");
+                  front.Services.functions.sendApi("/api/events/Icos", {
+                    action: "get",
+                    category: Static.catActive == "Все" ? "All" : Static.catActive,
+                    type: Static.makeFilter.active,
+                  });
                   Static.activeIndex = index;
                   Ref.tabsSlider.style.left = `${Ref.tabsItem.offsetWidth * Static.activeIndex}px`;
                   Ref.icoList.classList.add("animated");
