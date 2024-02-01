@@ -35,7 +35,7 @@ const RenderItems = function ({ items }) {
                   // fn("addEvent");
                   front.Services.functions.sendApi("/api/events/Icos", {
                     action: "get",
-                    category: Static.catActive == "Все" ? "All" : Static.catActive,
+                    category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
                     type: Static.makeFilter.active,
                   });
                   Static.activeIndex = index;
@@ -63,7 +63,7 @@ const RenderItems = function ({ items }) {
           {!items.length ? (
             <p>not found</p>
           ) : (
-            items.map((item, index) => {
+            items.map((item: any, index: number) => {
               return (
                 <a
                   class="ico_list_item"
@@ -76,6 +76,25 @@ const RenderItems = function ({ items }) {
                     if (index == items.length - 3) {
                       Static.moreid = items[items.length - 1].id;
                       // fn("addEvent");
+                    }
+                  }}
+                  init={($el: any) => {
+                    if (index == Static.records?.length - 1) {
+                      const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(async (entry) => {
+                          if (entry.isIntersecting) {
+                            observer.unobserve($el);
+                            let res = front.Services.functions.sendApi("/api/events/Icos", {
+                              action: "skip",
+                              category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
+                              type: Static.makeFilter.active,
+                              skip: 20,
+                            });
+                            Fn.log("=e26cda=", res);
+                          }
+                        });
+                      });
+                      observer.observe($el);
                     }
                   }}
                 >
@@ -126,7 +145,7 @@ export default function () {
       <div class="wrapper">
         <CategoryLine
           items={Static.categories}
-          active={Static.catActive}
+          active={Static.makeFilter.cat}
         />
 
         <RenderItems items={Static.records} />

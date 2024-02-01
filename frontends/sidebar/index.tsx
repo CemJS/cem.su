@@ -45,12 +45,12 @@ front.loader = () => {
     {
       icon: "faq",
       name: "ICO Рейтинг",
-      link: "/list-icostartaps",
+      link: "/list-icostartups",
     },
     {
       icon: "user",
       name: "Стартапы",
-      link: "#",
+      link: "/list-startups",
     },
     {
       icon: "phone",

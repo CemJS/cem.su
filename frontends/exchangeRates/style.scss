@@ -1,4 +1,15 @@
 .exchangerates {
+  &_favorites {
+    // display: none;
+    // @media (max-width: 450px) {
+    //   display: none !important;
+    // }
+    img {
+     
+      height: 20px;
+      width: 20px;
+    }
+  }
 
   &_table {
     border-collapse: collapse;
@@ -32,8 +43,6 @@
       }
     }
 
-
-
     &_body {
       // border: 1px solid var(--border);
       border-top: none;
@@ -64,15 +73,10 @@
       font-weight: 700;
     }
 
-    &_favorites {
-      img {
-        height: 20px;
-        width: 20px;
-      }
-    }
+
     // &_row {
     //     position: relative;
-  
+
     //     &::after {
     //       position: absolute;
     //       content: '';
@@ -83,38 +87,58 @@
     //       background: #474E61;
     //     }
     //   }
-  
-      th {
-        padding: 25px 0;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 16px;
-        color: #8991A8;
-      }
-  
-      tbody {
-  
-        tr {
-          &:last-child::after {
-            background: transparent;
-          }
-        }
-  
-      }
-  
-  }
-  &_cellwrap {
-      display: flex;
-      padding: 15px 0;
-  
-      &>* {
-        margin: auto;
-      }
+
+    th {
+      padding: 25px 0;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 16px;
+      color: #8991A8;
     }
 
-}
+    tbody {
 
+      tr {
+        &:last-child::after {
+          background: transparent;
+        }
+      }
+
+    }
+
+  }
+
+  &_cellwrap {
+    display: flex;
+    padding: 15px 0;
+
+    &>* {
+      margin: auto;
+    }
+  }
+  &_percent {
+      font-weight: 600;
+  
+      &--rise {
+        color: #2DCA73;
+      }
+  
+      &--recession {
+        color: #E84142;
+      }
+    }
+    .red {
+      color: #e35454;
+    }
+    .green {
+      color: #6bd16b;
+    }
+  
+}
+.blockMini {
+  display: block;
+}
 .general_title {
   font-size: 44px;
   line-height: 58px;
@@ -122,6 +146,7 @@
   margin: 10px 0 25px 0;
   text-align: center;
 }
+
 .effect_lines,
 .effect_linesRL {
   &::before {
@@ -184,7 +209,18 @@
   display: flex;
   align-items: center;
 }
+
 .pageTable {
   position: relative;
   padding: 6.25rem 0;
 }
+
+@media(max-width: 350px) {
+  .exchangerates_table_row   {
+    display: flex !important;
+  }
+  .blockMini {
+     display: none !important;
+   }
+  
+ }
