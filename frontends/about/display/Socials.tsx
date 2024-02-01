@@ -63,6 +63,11 @@ const socials = [
   },
 ];
 
+const sand=(e: any) => {
+  Fn.link
+  e.stopPropagation();
+  e.currentTarget.parentNode.parentNode.classList.remove("active");
+}
 export default function () {
   return (
     <div class="socials">
@@ -75,24 +80,23 @@ export default function () {
                 class={["socials_link", `socials_link_${item.name.toLocaleLowerCase()}`]}
                 style={`background-image: url(${item.logo});`}
                 aria-label={item.name}
-                onclick={(e) => {
+                onclick={(e: any) => {
                   e.target.classList.toggle("active");
-                }}
-              >
+                }}>
                 <span>{item.name}</span>
                 <div class="socials_link_languages">
-                  <a
-                    href={item.url}
-                    onclick={Fn.link}
-                    class="socials_link_language"
-                  >
+                  <a href={item.url}
+                    onclick={sand}
+                    class="socials_link_language">
                     RU
                   </a>
-                  <a
-                    href={item.url}
-                    onclick={Fn.link}
-                    class="socials_link_language"
-                  >
+                  <a href={item.urlENG}
+                    onclick={(e: any) => {
+                      Fn.link
+                      e.stopPropagation();
+                      e.currentTarget.parentNode.parentNode.classList.remove("active");
+                    }}
+                    class="socials_link_language">
                     EN
                   </a>
                 </div>
