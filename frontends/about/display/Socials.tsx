@@ -63,10 +63,8 @@ const socials = [
   },
 ];
 
-const sand=(e: any) => {
-  Fn.link
-  e.stopPropagation();
-  e.currentTarget.parentNode.parentNode.classList.remove("active");
+const sand = (e: any) => {
+  e.target.classList.toggle("active");
 }
 export default function () {
   return (
@@ -76,31 +74,41 @@ export default function () {
         {socials.map((item) => {
           return (
             <li>
-              <div
-                class={["socials_link", `socials_link_${item.name.toLocaleLowerCase()}`]}
-                style={`background-image: url(${item.logo});`}
-                aria-label={item.name}
-                onclick={(e: any) => {
-                  e.target.classList.toggle("active");
-                }}>
-                <span>{item.name}</span>
-                <div class="socials_link_languages">
-                  <a href={item.url}
-                    onclick={sand}
-                    class="socials_link_language">
-                    RU
-                  </a>
-                  <a href={item.urlENG}
-                    onclick={(e: any) => {
-                      Fn.link
-                      e.stopPropagation();
-                      e.currentTarget.parentNode.parentNode.classList.remove("active");
-                    }}
-                    class="socials_link_language">
-                    EN
-                  </a>
+              {item.urlENG ?
+                <div
+                  class={["socials_link", `socials_link_${item.name.toLocaleLowerCase()}`]}
+                  style={`background-image: url(${item.logo});`}
+                  aria-label={item.name}
+                  onclick={(e: any) => {
+                    e.target.classList.toggle("active")
+                    setTimeout(() => {
+                      e.target.classList.toggle("active")
+                    }, 1500)
+                  }}>
+                  <span>{item.name}</span>
+                  <div class="socials_link_languages">
+                    <a href={item.url}
+                      target="_blank"
+                      onclick={sand}
+                      class="socials_link_language">
+                      RU
+                    </a>
+                    <a href={item.urlENG}
+                      target="_blank"
+                      onclick={sand}
+                      class="socials_link_language">
+                      EN
+                    </a>
+                  </div>
                 </div>
-              </div>
+                :
+                <a href={item.url}
+                  class={["socials_link", `socials_link_${item.name.toLocaleLowerCase()}`]}
+                  style={`background-image: url(${item.logo});`}
+                  aria-label={item.name}
+                  onclick={Fn.link}>
+                  <span>{item.name}</span>
+                </a>}
             </li>
           );
         })}

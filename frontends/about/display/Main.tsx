@@ -61,12 +61,12 @@ export default function () {
         options={titleOptions}
       />
       <div class="wrapper">
-        {/* <Goals />
+        <Goals />
         <Faq />
         <Team />
         <RoadMap />
         <Partners />
-        <Developments /> */}
+        <Developments />
         <Socials />
       </div>
     </div>
