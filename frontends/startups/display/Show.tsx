@@ -7,7 +7,7 @@ export default function () {
     <div class="startaps_show effect_lines">
       <div class="wrapper">
         <div class="back">
-          <div class="back_arrow">
+          <div class="back__arrow">
             <a
               href="/startups"
               class="back_arrow"
@@ -29,17 +29,17 @@ export default function () {
               // });
             }}
           >
-            <span class="tool_item"></span>
-            <span class="tool_item"></span>
-            <span class="tool_item"></span>
+            <span class="tool__item"></span>
+            <span class="tool__item"></span>
+            <span class="tool__item"></span>
           </div>
         </div>
 
-        <h2 class="general_title">{Static.record.title}</h2>
+        <h2 class="general__title">{Static.record.title}</h2>
 
-        <section class="startap_info">
-          <div class="startap_info_item startap_info_item_media">
-            <div class="startap_info_cover">
+        <section class="startap__info">
+          <div class="startap__info-item startap__info-item-media">
+            <div class="startap__info_cover">
               {Static.record.cover ? (
                 <img src={`/assets/upload/worldPress/${Static.record.cover}`}></img>
               ) : Static.record.coverVideo ? (
@@ -56,10 +56,10 @@ export default function () {
                 ></iframe>
               ) : null}
             </div>
-            <div class="startap_box">
-              <p class="startap_text">{Static.record.descriptionShort}</p>
+            <div class="startap__box">
+              <p class="startap__text">{Static.record.descriptionShort}</p>
             </div>
-            <div class="startap_btns">
+            <div class="startap__btns">
               <a
                 onclick={Fn.link}
                 href={Static.record.whitePaperLink}
@@ -76,16 +76,16 @@ export default function () {
               </a>
             </div>
           </div>
-          <div class="startap_info_item startap_info_item_desc">
+          <div class="startap__info-item startap__info-item-desc">
             <p class="startap_text">{Static.record.description}</p>
             {Static.record.social.length ? (
-              <div class="startap_socials">
+              <div class="startap__socials">
                 {Static.record.social.map((item, index) => {
                   return (
                     <a
                       href={item.url}
                       onclick={Fn.link}
-                      class="startap_socials_item"
+                      class="startap__socials-item"
                     >
                       <img
                         src={`/contents/icons/social_networks/${item.channel}.svg`}
@@ -100,17 +100,17 @@ export default function () {
         </section>
 
         {Static.record.roadMap?.length ? (
-          <section class="startap_roadmap">
-            <h2 class="general_title">Дорожная карта</h2>
+          <section class="startap__roadmap">
+            <h2 class="general__title">Дорожная карта</h2>
             {Static.record.roadMap.length && Static.record.roadMap[0].image ? (
-              <div class="startap_roadmap_image">
+              <div class="startap__roadmap-image">
                 <img src={`/assets/upload/worldPress/${Static.record.roadMap[0].image}`} />
               </div>
             ) : (
-              <div class="startap_roadmap_board">
+              <div class="startap__roadmap-board">
                 {Static.record.map((item, index) => {
                   return (
-                    <div class="startap_roadmap_board_item">
+                    <div class="startap__roadmap-board-item">
                       <span class="text_important">{item.year}</span>
                       <p>{item.description}</p>
                     </div>
@@ -122,10 +122,10 @@ export default function () {
         ) : null}
 
         {Static.record.tokenomica.length ? (
-          <section class="startap_tokenomica">
-            <h2 class="general_title">Токеномика</h2>
-            <div class="tokenomica_board">
-              <div class="tokenomica_pie">
+          <section class="startap__tokenomica">
+            <h2 class="general__title">Токеномика</h2>
+            <div class="tokenomica__board">
+              <div class="tokenomica__pie">
                 <svg
                   width="230"
                   height="140"
@@ -141,14 +141,14 @@ export default function () {
                   />
                 </svg>
               </div>
-              <div class="tokenomica_desc">
+              <div class="tokenomica__desc">
                 {Static.record.tokenomica.map((item, index) => {
                   return (
-                    <div class="tokenomica_desc_item">
-                      <div class={["tokenomica_desc_item_line", `tokenomica_desc_item_line-${index}`]}>
-                        <span class={["tokenomica_desc_item_value", `tokenomica_desc_item_value-${index}`]}>{item.value}%</span>
+                    <div class="tokenomica__desc-item">
+                      <div class={["tokenomica__desc-item-line", `tokenomica__desc-item-line-${index}`]}>
+                        <span class={["tokenomica__desc-item-value", `tokenomica__desc-item-value-${index}`]}>{item.value}%</span>
                       </div>
-                      <span class="tokenomica_desc_item_name">{item.name}</span>
+                      <span class="tokenomica__desc-item-name">{item.name}</span>
                     </div>
                   );
                 })}
@@ -158,24 +158,24 @@ export default function () {
         ) : null}
 
         {Static.record.team.length ? (
-          <section class="startap_team">
-            <h2 class="general_title">Команда</h2>
-            <div class="startap_team_wrap">
+          <section class="startap__team">
+            <h2 class="general__title">Команда</h2>
+            <div class="startap__team_wrap">
               <button class="icoItem_btn icoItem_btn_prev">
                 <img src={back} />
               </button>
               <button class="icoItem_btn icoItem_btn_next">
                 <img src={next} />
               </button>
-              <div class="startap_team_carousel">
+              <div class="startap__team-carousel">
                 {Static.record.team.map((item, index) => {
                   return (
-                    <div class="startap_team_item">
-                      <div class="startap_team_item_img">
+                    <div class="startap__team-item">
+                      <div class="startap__team-item-img">
                         <img src={`/assets/upload/worldPress/${item.foto}`}></img>
                       </div>
-                      <span class="startap_team_item_name">{item.name}</span>
-                      <span class="startap_team_item_pos">{item.position}</span>
+                      <span class="startap__team-item-name">{item.name}</span>
+                      <span class="startap__team-item-pos">{item.position}</span>
                     </div>
                   );
                 })}
@@ -185,20 +185,20 @@ export default function () {
         ) : null}
 
         {Static.record.media.length ? (
-          <section class="icoItem_gallery pt_25">
-            <h2 class="often_title">Галерея</h2>
-            <div class="icoItem_gallery_wrap pt_20">
-              <button class="icoItem_btn icoItem_btn_prev">
+          <section class="icoItem__gallery pt_25">
+            <h2 class="often__title">Галерея</h2>
+            <div class="icoItem__gallery_wrap pt_20">
+              <button class="icoItem__btn icoItem__btn_prev">
                 <img src={back} />
               </button>
-              <button class="icoItem_btn icoItem_btn_next">
+              <button class="icoItem__btn icoItem__btn_next">
                 <img src={next} />
               </button>
-              <div class="icoItem_carousel">
+              <div class="icoItem__carousel">
                 {Static.record.media.map((item, index) => {
                   return (
                     <div
-                      class="icoItem_carousel_item"
+                      class="icoItem__carousel-item"
                       onclick={() => {
                         // Fn.initOne({
                         //   name: "modalGallery", ifOpen: (front) => {

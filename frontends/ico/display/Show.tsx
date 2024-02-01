@@ -14,33 +14,33 @@ export default function () {
           <div class="back_arrow">
             <a
               href="/ico"
-              class="back_arrow"
+              class="back__arrow"
               onclick={Fn.link}
             >
               <img src={back}></img>
             </a>
           </div>
           <div class="tool">
-            <span class="tool_item"></span>
-            <span class="tool_item"></span>
-            <span class="tool_item"></span>
+            <span class="tool__item"></span>
+            <span class="tool__item"></span>
+            <span class="tool__item"></span>
           </div>
         </div>
 
-        <section class="icoItem_header">
-          <div class="icoItem_header_icon">
+        <section class="icoItem__header">
+          <div class="icoItem__header-icon">
             <img src={`/assets/upload/worldPress/${Static.record.icon}`} />
           </div>
-          <div class="icoItem_header_desc">
-            <h2 class="main_title">{Static.record.title}</h2>
+          <div class="icoItem__header-desc">
+            <h2 class="main__title">{Static.record.title}</h2>
             <p>{Static.record.description}</p>
           </div>
         </section>
 
         <section class="icoItem">
-          <div class="icoItem_info">
+          <div class="icoItem__info">
             {Static.record.cover ? (
-              <div class="icoItem_info_cover">
+              <div class="icoItem__info_cover">
                 <img src={`/assets/upload/worldPress/${Static.record.cover}`} />
               </div>
             ) : Static.record.coverVideo ? (
@@ -56,9 +56,9 @@ export default function () {
               ></iframe>
             ) : null}
 
-            <div class="icoItem_info_desc">
-              <div class="icoItem_info_desc_item">
-                <div class="icoItem_category">
+            <div class="icoItem__info-desc">
+              <div class="icoItem__info-desc-item">
+                <div class="icoItem__category">
                   <span class=" text_important">{Static.record.category}</span>
                 </div>
                 <a
@@ -76,8 +76,8 @@ export default function () {
                   <span>WhitePaper</span>
                 </a>
               </div>
-              <div class="icoItem_info_desc_item">
-                <h5 class="icoItem_info_desc_title">
+              <div class="icoItem__info-desc-item">
+                <h5 class="icoItem__info-desc-title">
                   Token sale:
                   {Static.record.dateIsKnow ? (
                     <span class="ml_10">TBA</span>
@@ -87,7 +87,7 @@ export default function () {
                     </span>
                   )}
                 </h5>
-                <ul class="token_list">
+                <ul class="token__list">
                   <li>
                     Name: <span class="ttu bold ml_5">{Static.record.name}</span>
                   </li>
@@ -122,9 +122,9 @@ export default function () {
           </div>
         </section>
 
-        <section class="icoItem_tallage pt_50">
+        <section class="icoItem__tallage pt_50">
           <div
-            class="icoItem_tallage_wrap"
+            class="icoItem__tallage_wrap"
             ref="card"
             onmousemove={(e) => {
               const xVal = e.layerX;
@@ -138,13 +138,13 @@ export default function () {
               Ref.card.style.transform = `scale(1) rotateX(0) rotateY(0)`;
             }}
           >
-            <div class="icoItem_tallage_item">
-              <span class="text_important icoItem_tallage_text">{Static.record.nowMoney && Static.record.nowMoney > 0 ? `$ ${Static.record.nowMoney}` : "$0"}</span>
+            <div class="icoItem__tallage-item">
+              <span class="text_important icoItem__tallage-text">{Static.record.nowMoney && Static.record.nowMoney > 0 ? `$ ${Static.record.nowMoney}` : "$0"}</span>
               <span style="font-size: 40px; font-weight: 600;">of</span>
-              <span class="icoItem_tallage_text">{Static.record.targetMoney ? `$ ${Static.record.targetMoney}` : "$0"}</span>
+              <span class="icoItem__tallage-text">{Static.record.targetMoney ? `$ ${Static.record.targetMoney}` : "$0"}</span>
             </div>
-            <div class="icoItem_tallage_item">
-              <span class="icoItem_tallage_item_percent">
+            <div class="icoItem__tallage-item">
+              <span class="icoItem__tallage-item-percent">
                 {Static.record.targetMoney <= 0 ? "0%" : Math.round(((Static.record.nowMoney && Static.record.nowMoney > 0 ? Static.record.nowMoney : 0) * 100) / Static.record.targetMoney)}
               </span>
             </div>
@@ -152,20 +152,20 @@ export default function () {
         </section>
 
         {Static.record.media.length ? (
-          <section class="icoItem_gallery pt_25">
-            <h2 class="general_title">Галерея</h2>
-            <div class="icoItem_gallery_wrap pt_20">
-              <button class="icoItem_btn icoItem_btn_prev">
+          <section class="icoItem__gallery pt_25">
+            <h2 class="general__title">Галерея</h2>
+            <div class="icoItem__gallery_wrap pt_20">
+              <button class="icoItem__btn icoItem__btn_prev">
                 <img src={back} />
               </button>
-              <button class="icoItem_btn icoItem_btn_next">
+              <button class="icoItem__btn icoItem__btn_next">
                 <img src={next} />
               </button>
-              <div class="icoItem_carousel">
+              <div class="icoItem__carousel">
                 {Static.record.media.map((item, index) => {
                   return (
                     <div
-                      class="icoItem_carousel_item"
+                      class="icoItem__carousel-item"
                       onclick={() => {
                         let records = Static.record.media;
                         let activeIndex = index;

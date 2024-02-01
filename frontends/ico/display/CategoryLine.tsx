@@ -71,7 +71,7 @@ export default function ({ items, active }) {
           <li
             ref="categoryEl"
             draggable="false"
-            class={["category-item", active == item.name ? "category-item_active" : null]}
+            class={["category__item", active == item.name ? "category__item_active" : null]}
             onclick={() => {
               if (Static.makeFilter.cat == item.name) {
                 return;
