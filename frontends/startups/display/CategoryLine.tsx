@@ -1,8 +1,7 @@
-import { Cemjsx, Static, Ref, Fn, front } from "cemjs-all";
-
+import { Cemjsx, Ref, Static } from "cemjs-all";
 let x1,
   y1 = null;
-export default function ({ items, active }) {
+export default function ({ items }) {
   return (
     <ul
       class="category-carousel"
@@ -71,18 +70,12 @@ export default function ({ items, active }) {
           <li
             ref="categoryEl"
             draggable="false"
-            class={["category-item", active == item.name ? "category-item_active" : null]}
+            class={["category-item", Static.catActive == index ? "category-item_active" : null]}
             onclick={() => {
-              if (Static.makeFilter.cat == item.name) {
+              if (Static.catActive == index) {
                 return;
               }
-              Static.makeFilter.cat = item.name;
-
-              front.Services.functions.sendApi("/api/events/Icos", {
-                action: "get",
-                category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
-                type: Static.makeFilter.active,
-              });
+              Static.catActive = index;
             }}
           >
             <span>{item.name}</span>

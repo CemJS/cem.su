@@ -2,15 +2,51 @@ import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all";
 import Navigation from "./navigation";
 
 front.listener.finish = () => {
+  front.Services.functions.sendApi("/api/events/Icos", {
+    action: "get",
+    category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
+    type: Static.makeFilter.active,
+  });
   return;
 };
 
-front.func.test = () => {
-  return;
+front.func.throttle = (timeout) => {
+  let timer = null;
+
+  return function perform(...args) {
+    if (timer) return;
+
+    timer = setTimeout(() => {
+      Func.checkPosition(...args);
+
+      clearTimeout(timer);
+      timer = null;
+    }, timeout);
+  };
 };
+
+// front.func.checkPosition = () => {
+//   const height = document.body.offsetHeight;
+//   const screenHeight = window.innerHeight;
+
+//   const scrolled = window.scrollY;
+
+//   const threshold = height - screenHeight / 4;
+
+//   const position = scrolled + screenHeight;
+
+//   if (position >= threshold) {
+//     Fn.log("=447881=", 1);
+//     front.Services.functions.sendApi("/api/events/Icos", {
+//       action: "skip",
+//       category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
+//       type: Static.makeFilter.active,
+//       skip: 20,
+//     });
+//   }
+// };
 
 front.loader = async () => {
-  Static.catActive = "ICO";
   Static.makeFilter = {
     cat: "ICO",
     active: "Active",
@@ -58,7 +94,6 @@ front.loader = async () => {
           return;
         }
 
-        Fn.log('=ae9096=', 123, json)
         Static.records = json;
       },
     },
@@ -75,6 +110,11 @@ front.loader = async () => {
   ];
   Events.icos = await Fn.event(url, listener);
 
+  front.Services.functions.sendApi("/api/events/Icos", {
+    action: "get",
+    category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
+    type: Static.makeFilter.active,
+  });
   setTimeout(() => {
     Fn.log(Static.records);
   }, 1000);
