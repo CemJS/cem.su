@@ -152,7 +152,14 @@ const Step1 = function () {
                                 // }
                                 // Func.sendCode()
                                 // return
-                                Func.clickNext()
+                                Fn.log('=6c0602=', 123)
+                                let answer = await front.Services.functions.sendApi(`/api/Auth`, { email: "1@yandex.ru", password: "2" })
+                                Fn.log('=c2e447=', answer)
+                                // if (answer.error) {
+                                //     Static.form.nickName.error = "Логин занят!"
+                                //     Static.form.nickName.valid = false
+                                // }
+                                // Func.clickNext()
                             }}>
                             <span>Получить код подтверждение</span>
                         </button>
