@@ -57,7 +57,7 @@
     &-title {
       font-size: clamp(0.9rem, 2vw, 1.1rem);
       &_margin {
-        margin-bottom: 0.625rem;
+        margin-bottom: 1.875rem;
       }
     }
     &-languages {
@@ -222,6 +222,12 @@
     &__banners {
       flex-direction: column;
       align-items: center;
+      &-languages {
+        justify-content: space-evenly;
+      }
+      &-title {
+        text-align: center;
+      }
     }
   }
 }

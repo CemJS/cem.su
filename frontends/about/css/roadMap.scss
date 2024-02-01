@@ -1,0 +1,254 @@
+.roadmapNew {
+    &_wrapper {
+      max-width: 1080px;
+      margin: 50px auto;
+      padding: 0 20px;
+      position: relative;
+      color: #2B3040;
+    }
+  
+    &_centerLine {
+      position: absolute;
+      height: 100%;
+      width: 4px;
+      background: var(--white);
+      left: 50%;
+      top: 20px;
+      transform: translateX(-50%);
+      animation: moveline 5s linear forwards;
+    }
+  
+    &_icon,
+    &_scrollIcon {
+      position: absolute;
+      background: #f2f2f2;
+      height: 40px;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--white), inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+  
+      img {
+        width: 20px;
+      }
+    }
+  
+    &_scrollIcon {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  
+  
+    &_row {
+      display: flex;
+      justify-content: start;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 1s ease-in-out;
+      position: relative;
+      z-index: 3;
+  
+      &:nth-of-type(odd) section {
+        transform: translate3d(-100px, -10px, 0) rotate(10deg);
+      }
+  
+      &:nth-of-type(even) section {
+        transform: translate3d(-100px, -10px, 0) rotate(10deg);
+      }
+  
+      section {
+        background: var(--white);
+        border-radius: var(--borderR);
+        width: calc(50% - 40px);
+        padding: 20px;
+        position: relative;
+        transition: all .5s ease-in-out;
+  
+        &::before {
+          position: absolute;
+          content: "";
+          height: 15px;
+          width: 15px;
+          background: var(--white);
+          top: 30px;
+          transform: rotate(45deg);
+          z-index: 0;
+        }
+      }
+  
+      &.in_view {
+        visibility: visible;
+        opacity: 1;
+  
+        section {
+          transform: none;
+        }
+      }
+  
+      &_1 {
+        top: 0;
+  
+        .roadmapNew_icon {
+          right: -60px;
+        }
+  
+        section {
+          &::before {
+            right: -7px;
+          }
+        }
+      }
+  
+      &_2 {
+        top: 15px;
+        justify-content: end;
+        transition: all .8s ease-in-out;
+  
+        .roadmapNew_icon {
+          left: -60px;
+        }
+  
+        section {
+          &::before {
+            left: -7px;
+          }
+        }
+      }
+  
+      &_3 {
+        top: 15px;
+        justify-content: start;
+        transition: all 1.2s ease-in-out;
+  
+        .roadmapNew_icon {
+          right: -60px;
+        }
+  
+        section {
+          &::before {
+            right: -7px;
+          }
+        }
+      }
+  
+      &_4 {
+        top: 15px;
+        justify-content: end;
+        transition: all 1.5s ease-in-out;
+  
+        .roadmapNew_icon {
+          left: -60px;
+        }
+  
+        section {
+          &::before {
+            left: -7px;
+          }
+        }
+      }
+  
+      &_5 {
+        top: 15px;
+        justify-content: start;
+        transition: all 1.8s ease-in-out;
+  
+        .roadmapNew_icon {
+          right: -60px;
+        }
+  
+        section {
+          &::before {
+            right: -7px;
+          }
+        }
+      }
+  
+      &_6 {
+        top: 15px;
+        justify-content: end;
+        transition: all 2s ease-in-out;
+  
+        .roadmapNew_icon {
+          left: -60px;
+        }
+  
+        section {
+          &::before {
+            left: -7px;
+          }
+        }
+      }
+  
+      &_7 {
+        top: 15px;
+        justify-content: start;
+        transition: all 2.2s ease-in-out;
+  
+        .roadmapNew_icon {
+          right: -60px;
+        }
+  
+        section {
+          &::before {
+            right: -7px;
+          }
+        }
+      }
+    }
+  
+    &_details {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    &_title,
+    &_date {
+      font-size: clamp(22px, 5vw, 16px);
+      font-weight: 600;
+    }
+  
+    &_text {
+      font-size: clamp(18px, 5vw, 14px);
+      font-weight: 400;
+      margin: 10px 0;
+    }
+  }
+
+  @media(max-width: 772px) {
+    .roadmapNew {
+  
+      &_centerLine {
+        left: 40px;
+      }
+  
+      &_row {
+        margin: 30px 0 3px 60px;
+  
+        section {
+          width: 100%;
+        }
+  
+        &_1,
+        &_3,
+        &_5,
+        &_7 {
+          section {
+            &::before {
+              left: -7px;
+              right: auto;
+            }
+          }
+  
+          .roadmapNew_icon {
+            left: -60px;
+          }
+        }
+      }
+  
+  
+    }
+  }
+  

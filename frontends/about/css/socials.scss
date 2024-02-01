@@ -1,0 +1,119 @@
+.socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+
+    &_list {
+        list-style: none;
+        display: flex;
+        padding: 0;
+        gap: 15px;
+
+        li {
+            flex: 1 1 0;
+            text-align: center;
+            margin: 0.75rem 0;
+        }
+    }
+
+    &_link {
+        color: #000;
+        position: relative;
+        display: inline-block;
+        padding: 0.125em;
+        border-radius: 50%;
+        text-decoration: none;
+        background-color: #3B2D4A;
+        outline: 0 solid;
+        width: 3rem;
+        height: 3rem;
+        box-shadow: 0 0.25em 0.25em rgba(0, 0, 0, .3);
+        transition: all .3s ease-out;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        span {
+            display: none;
+        }
+
+        &::before {
+            content: attr(aria-label);
+            position: absolute;
+            left: 50%;
+            bottom: -100%;
+            font-size: .8rem;
+            white-space: nowrap;
+            color: white;
+            background-color: #3B2D4A;
+            padding: 0.5em 0.7em 0.4em;
+            box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, .4);
+            opacity: 0;
+            transform: translate(-50%, -180%) scale(0.7);
+            border-radius: 2em;
+            transition: .3s;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: currentColor;
+            outline: 0 solid;
+            transform: scale(1.12);
+            box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, .4);
+
+            &::before {
+                opacity: 1;
+                transform: translate(-50%, -70%) scale(1);
+            }
+        }
+
+        &_instagram {
+            color: #FF007A;
+        }
+
+        &_youtube {
+            color: #c00;
+        }
+
+        &_twitter {
+            color: #37A7DF;
+        }
+
+        &_linkedin {
+            color: #00388d;
+        }
+
+        &_discord {
+            color: #5865F2;
+        }
+
+        &_github {
+            color: #4A2779;
+        }
+
+        &_vkontakte {
+            color: #4C75A3;
+        }
+
+    }
+
+    &_text {
+        max-width: 900px;
+
+        p {
+            font-size: clamp(14px, 2vw, 16px);
+            font-style: italic;
+            font-weight: 500;
+            padding-bottom: 25px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+    }
+}
+
+@media (max-width: 464px) {
+    .socials_list {
+        gap: 5px;
+    }
+}

@@ -85,10 +85,11 @@ const RenderTagInput = () => {
     <div class="program__banners-group">
       <textarea
         disabled
-        value={Static.tagLink}
         type="text"
         class="program__banners-input"
-      />
+      >
+        {Static.tagLink}
+      </textarea>
       <button
         onclick={(e) => {
           e.stopPropagation();

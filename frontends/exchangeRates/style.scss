@@ -1,0 +1,76 @@
+.exchangerates {
+
+  &_table {
+    border-collapse: collapse;
+    width: 100%;
+    // background: #313541;
+    // box-shadow: 15px 15px 25px #212531;
+
+    &_head {
+      font-size: 18px;
+      border-top-left-radius: var(--borderR);
+      border-top-right-radius: var(--borderR);
+
+      .exchangerates_table_row {
+        background: var(--back_opacity);
+        border-top-left-radius: var(--borderR);
+        border-top-right-radius: var(--borderR);
+      }
+    }
+
+    &_row {
+      display: grid;
+      grid-template-columns: 40px 40px 1fr 1fr 1fr;
+      height: 55px;
+
+      th,
+      td {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+
+
+    &_body {
+      border: 1px solid var(--border);
+      border-top: none;
+      font-weight: 600;
+
+      .exchangerates_table_name {
+        text-transform: uppercase;
+      }
+
+      .exchangerates_table_row {
+        height: 70px;
+      }
+
+      .exchangerates_table_row:not(:last-child) {
+        border-bottom: 1px solid var(--border);
+      }
+
+    }
+
+    &_index {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &_name {
+      justify-content: flex-start !important;
+      font-weight: 700;
+    }
+
+    &_favorites {
+      img {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+
+
+}

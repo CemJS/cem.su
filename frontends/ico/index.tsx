@@ -10,7 +10,42 @@ front.func.test = () => {
 };
 
 front.loader = async () => {
+  Static.catActive = 0;
+  Static.makeFilter = {
+    cat: 0,
+    active: "Active",
+  };
+  // fn("addEvent");
+  Static.activeIndex = 0;
+
+  //Categories
+  Static.isDrag = false;
+  Static.startX;
+  Static.startScrollLeft;
+  Static.body = document.querySelector("body");
+  Static.x1 = null;
+  Static.y1 = null;
   Static.records = [];
+  Static.categories = [
+    {
+      name: "Все",
+    },
+    {
+      name: "ICO",
+    },
+    {
+      name: "IDO",
+    },
+    {
+      name: "IEO",
+    },
+    {
+      name: "IGO",
+    },
+    {
+      name: "IFO",
+    },
+  ];
   let url = front.Services.functions.makeUrlEvent("Icos", {});
   let listener = [
     {
@@ -38,7 +73,7 @@ front.loader = async () => {
 
   setTimeout(() => {
     Fn.log(Static.records);
-  }, 100);
+  }, 1000);
   return;
 };
 
