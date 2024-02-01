@@ -50,12 +50,184 @@
       max-width: 17rem;
     }
   }
+  &__banners {
+    margin-top: 3.75rem;
+    display: flex;
+    gap: 1.875rem;
+    &-title {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      &_margin {
+        margin-bottom: 1.875rem;
+      }
+    }
+    &-languages {
+      display: flex;
+      gap: 0.625rem;
+    }
+    &-language {
+      border-radius: 1.875rem;
+      font-weight: 500;
+      padding: 0.3125rem 0.625rem;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      z-index: 2;
+      position: relative;
+      cursor: pointer;
+      background: var(--light-gray);
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: var(--mainGradient);
+        opacity: 0;
+        z-index: -1;
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover::before {
+        opacity: 0.8;
+      }
+      &.active::before {
+        opacity: 1;
+      }
+    }
+    &-sizes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3125rem;
+      justify-content: space-evenly;
+      padding-top: 0.625rem;
+    }
+    &-size {
+      padding: 0.3125rem 0;
+      width: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--light-gray);
+      border-radius: 0.3125rem;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      z-index: 2;
+      position: relative;
+      overflow: hidden;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: var(--blueGradient);
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        z-index: -1;
+      }
+      &:hover::before {
+        opacity: 0.7;
+      }
+      &.active::before {
+        opacity: 1;
+      }
+    }
+    &-group {
+      display: flex;
+      gap: 0.625rem;
+      justify-content: space-between;
+      & input {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    &-copy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3125rem;
+      width: 8.75rem;
+      background: var(--blueGradient);
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      height: 2.0625rem;
+      font-size: clamp(0.5rem, 2vw, 0.7rem);
+      font-weight: 500;
+      border-radius: 0.3125rem;
+      position: relative;
+      &.active {
+        &::before {
+          content: "Скопировано!";
+          font-size: clamp(0.5rem, 2vw, 0.8rem);
+          position: absolute;
+          bottom: -0.5rem;
+          left: 50%;
+          color: var(--white);
+          border-radius: 0.1875rem;
+          padding: 0.155rem 0.2875rem;
+          background: var(--gray-600);
+          transform: translate(-50%, 100%);
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -0.6rem;
+          left: 50%;
+          transform: translateX(-50%);
+          border: 0.5rem solid transparent;
+          border-bottom: 0.5rem solid var(--gray-600);
+        }
+      }
+    }
+    &-input {
+      padding: 0.625rem 0.625rem;
+      background: var(--light-gray);
+      resize: none;
+      width: 100%;
+      color: var(--gray);
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      border-radius: 0.3125rem;
+      border: 0.0625rem solid var(--border-color);
+    }
+    &-preview {
+      align-self: start;
+    }
+    &-left {
+      max-width: 17.625rem;
+    }
+    &-right {
+      max-width: 37.25rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
 }
 
 @media (max-width: 1100px) {
   .program {
     &__list {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .program {
+    &__banners {
+      flex-direction: column;
+      align-items: center;
+      &-languages {
+        justify-content: space-evenly;
+      }
+      &-title {
+        text-align: center;
+      }
     }
   }
 }
