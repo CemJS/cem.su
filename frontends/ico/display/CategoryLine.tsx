@@ -1,4 +1,4 @@
-import { Cemjsx, Static, Ref } from "cemjs-all";
+import { Cemjsx, Static, Ref, Fn } from "cemjs-all";
 
 let x1,
   y1 = null;
@@ -71,14 +71,15 @@ export default function ({ items, active }) {
           <li
             ref="categoryEl"
             draggable="false"
-            class={["category-item", active == index ? "category-item_active" : null]}
+            class={["category-item", active == item.name ? "category-item_active" : null]}
             onclick={() => {
-              Static.catActive = index;
+              Static.catActive = item.name;
 
-              if (Static.makeFilter.cat == index) {
+              if (Static.makeFilter.cat == item.name) {
                 return;
               }
-              Static.makeFilter.cat = index;
+              Static.makeFilter.cat = item.name;
+              Fn.log("=1ca9ec=", Static.makeFilter);
 
               //   fn("addEvent");
               // init()

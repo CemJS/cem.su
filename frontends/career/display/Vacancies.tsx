@@ -62,7 +62,12 @@ export default function () {
           </div>
         );
       })}
-      <h2 class="jobs__vacancies-title_big">Ждем ТЕБЯ в нашей команде!</h2>
+      <h2 class="jobs__vacancies-title_big jobs__vacancies-title_team">
+        Ждем ТЕБЯ
+        <br />в нашей
+        <br />
+        команде!
+      </h2>
     </section>
   );
 }
