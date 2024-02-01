@@ -56,8 +56,12 @@ const socials = [
     },
 ]
 
-
 export default function () {
+    const showModals = () => {
+        Static.showWindow = true
+    }
+    console.log("Static.showWindow", Static.showWindow);
+
     return (
         <div class="socials">
             <h2 class="about_subtitle">Социальные сети</h2>
@@ -66,12 +70,11 @@ export default function () {
                     socials.map(item => {
                         return (
                             <li>
-                                <a
-                                    href={item.url}
+                                <a  // href={item.url}
                                     class={["socials_link", `socials_link_${item.name.toLocaleLowerCase()}`]}
                                     style={`background-image: url(${item.logo});`}
                                     aria-label={item.name}
-                                    onclick={this.Fn.link}>
+                                    onclick={showModals}>
                                     <span>{item.name}</span>
                                 </a>
                             </li>

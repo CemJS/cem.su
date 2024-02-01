@@ -114,7 +114,7 @@ front.loader = () => {
       options: [
         {
           name: "О нас",
-          link: "#",
+          link: "/about",
         },
         {
           name: "Карьера",
