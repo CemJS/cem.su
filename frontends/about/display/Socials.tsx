@@ -4,7 +4,7 @@ import facebook from '@svg/social_networks/facebook.svg'
 import github from '@images/social_networks/github.png'
 import instagram from '@images/social_networks/instagram.png'
 import linkedin from '@images/social_networks/linkedin.png'
-import telegram from '@svg/social_networks/telegram.svg'
+import telegram from '@images/social_networks/telegram.png'
 import tiktok from '@images/social_networks/tiktok.png'
 import twitter from '@images/social_networks/twitter.png'
 import vk from '@images/social_networks/vk.png'
@@ -18,16 +18,23 @@ const socials = [
         urlENG: 'https://www.instagram.com/cryptoemergency/?hl=ru'
     },
     {
-        logo: tiktok,
-        name: 'Tiktok',
-        url: 'https://www.tiktok.com/@cryptoemergencyrussia',
+        logo: telegram,
+        name: 'Telegram',
+        url: 'https://t.me/cryptoemergencychat',
         urlENG: 'https://www.tiktok.com/@cryptoemergency'
     },
+   
     {
         logo: youtube,
         name: 'Youtube',
         url: 'https://www.youtube.com/channel/UCb9Fx-fNikzs-OZwnTXepLg/',
         urlENG: 'https://www.youtube.com/channel/UCdDWOveIuvqkyusDK1gv4ig/'
+    },
+    {
+        logo: tiktok,
+        name: 'Tiktok',
+        url: 'https://www.tiktok.com/@cryptoemergencyrussia',
+        urlENG: 'https://www.tiktok.com/@cryptoemergency'
     },
     {
         logo: vk,
@@ -56,12 +63,8 @@ const socials = [
     },
 ]
 
-export default function () {
-    const showModals = () => {
-        Static.showWindow = true
-    }
-    console.log("Static.showWindow", Static.showWindow);
 
+export default function () {
     return (
         <div class="socials">
             <h2 class="about_subtitle">Социальные сети</h2>
@@ -70,11 +73,12 @@ export default function () {
                     socials.map(item => {
                         return (
                             <li>
-                                <a  // href={item.url}
+                                <a
+                                    href={item.url}
                                     class={["socials_link", `socials_link_${item.name.toLocaleLowerCase()}`]}
                                     style={`background-image: url(${item.logo});`}
                                     aria-label={item.name}
-                                    onclick={showModals}>
+                                    onclick={this.Fn.link}>
                                     <span>{item.name}</span>
                                 </a>
                             </li>
