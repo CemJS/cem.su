@@ -1,5 +1,11 @@
 @import "./mixins.scss";
 
+.disable_scroll {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
 .wrapper {
   max-width: 1240px;
   margin: 0 auto;
