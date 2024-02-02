@@ -11,7 +11,7 @@
   margin: 0 auto;
 
   @media (max-width: 1240px) {
-    padding: 0 1rem;
+    // padding: 0 1rem;
   }
 }
 
@@ -19,9 +19,11 @@
   &-left {
     text-align: left;
   }
+
   &-center {
     text-align: center;
   }
+
   &-right {
     text-align: right;
   }
@@ -105,6 +107,7 @@
       color: var(--white);
     }
   }
+
   &_border {
     @include button(var(--black-gray), 100%, 2.625rem, 100%, 1rem, var(--white));
     border-radius: var(--btnR);
@@ -114,6 +117,7 @@
     border: none;
     font-weight: 600;
     cursor: pointer;
+
     &-wrap {
       background: var(--mainGradient);
       margin: 0 auto;
@@ -207,11 +211,13 @@
     outline: none;
   }
 }
+
 .mr_10 {
   margin-right: 10px;
 }
 
 @keyframes invalid {
+
   0%,
   100% {
     transform: translate(0);

@@ -49,6 +49,7 @@ const init = function ($el: HTMLElement, options: Options) {
 const display = function (params: Params) {
     const { items, options } = params
     const { name, mainClass } = options
+
     return (
         <div class={mainClass}>
             <div class={`${mainClass}_slide`} init={($el: HTMLElement) => init.bind(this)($el, options)}>
