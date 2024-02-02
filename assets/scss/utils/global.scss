@@ -29,6 +29,14 @@
   &-right {
     text-align: right;
   }
+  &_important {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.375rem;
+    font-weight: 700;
+    background: var(--mainGradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .general__title {
