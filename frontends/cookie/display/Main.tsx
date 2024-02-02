@@ -3,7 +3,7 @@ import { Cemjsx, Fn } from "cemjs-all";
 export default function () {
   return (
     <div class="page">
-      <div class="wrapper">
+      <div class="wrapper wrapper_padding">
         <h1 class="title-big">Политика Cookies</h1>
         <p class="page__date">Редакция от 2021-12-16</p>
         <div class="title">ЧТО ТАКОЕ ФАЙЛЫ COOKIE?</div>

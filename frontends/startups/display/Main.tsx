@@ -49,7 +49,7 @@ const RenderItems = function ({ items }) {
                   }
                 }}
               >
-                <span class="category">{item.category}</span>
+                {/* <span class="category">{item.category}</span> */}
                 <div class="startaps__item-image">
                   <img src={`/assets/upload/worldPress/${item.icon}`}></img>
                 </div>
