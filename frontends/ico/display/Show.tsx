@@ -6,12 +6,11 @@ export default function () {
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
-  Fn.log("=388b23=", Static.record);
 
   return (
     <div class="ico_show effect_lines effect_figure">
-      <div class="page">
-        <div class="wrapper">
+      <div class="page page_list">
+        <div class="wrapper wrapper_padding">
           <section class="icoItem__header">
             <div class="icoItem__header-icon">
               <img src={`/assets/upload/worldPress/${Static.record.icon}`} />
@@ -63,15 +62,11 @@ export default function () {
                 </div>
                 <div class="icoItem__info-desc-item">
                   <h5 class="icoItem__info-desc-title">
-                    Token sale:
+                    Token sale:{" "}
                     {Static.record.dateIsKnow ? (
                       <span class="ml_10">TBA</span>
                     ) : (
-                      <span class="ml_10">
-                        {Fn.log("=9e27c4=", Static.record.startDate)}
-                        {Fn.log("=dbfdd2=", Static.record.endDate)}
-                        {front.Services.functions.timeStampToDate(Static.record.startDate, ".")} - {front.Services.functions.timeStampToDate(Static.record.endDate, ".")}
-                      </span>
+                      <span class="ml_10">{`${front.Services.functions.timeStampToDate(Static.record.startDate, ".")} - ${front.Services.functions.timeStampToDate(Static.record.endDate, ".")}`}</span>
                     )}
                   </h5>
                   <ul class="token__list">

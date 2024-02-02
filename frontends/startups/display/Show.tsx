@@ -7,7 +7,7 @@ export default function () {
   Fn.log("=3f0299=", Static.record);
   return (
     <div class="startaps_show effect_lines">
-      <div class="page">
+      <div class="page page_list">
         <div class="wrapper wrapper_padding">
           <h2 class="general__title">{Static.record.title}</h2>
 
