@@ -50,8 +50,8 @@ front.func.throttle = (timeout) => {
 
 front.loader = async () => {
   Static.makeFilter = {
-    cat: "ICO",
-    active: "Active",
+    cat: "All",
+    active: "Last",
   };
   // fn("addEvent");
   Static.activeIndex = 0;
