@@ -33,6 +33,7 @@
   &-ellipsis {
     position: relative;
     cursor: pointer;
+    width: 1.925rem;
 
     &::after {
       position: absolute;
@@ -40,7 +41,7 @@
       font-size: 3rem;
       top: 0;
       left: 0;
-      transform: translate(-100%, -70%);
+      transform: translate(-10%, -70%);
     }
 
     &:hover {
