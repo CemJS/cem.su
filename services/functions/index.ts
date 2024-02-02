@@ -44,7 +44,7 @@ export const loader = async function (Variable: any, Fn: any) {
     localStorage.suuid = json.suuid
     Variable.Auth = json.auth
     Variable.myInfo = json.info
-    console.log('=5dcbec=', Variable.Auth, Variable.myInfo)
+    // console.log('=5dcbec=', Variable.Auth, Variable.myInfo)
     // if (!answ.data || answ.data == "null") {
     //   return
     // }
