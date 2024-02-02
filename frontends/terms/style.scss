@@ -13,6 +13,9 @@
     background-size: cover;
     background-image: url("./images/contactsBg.png");
   }
+  &_list {
+    padding-top: 2rem;
+  }
   &__date {
     display: flex;
     align-items: center;

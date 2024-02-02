@@ -311,6 +311,7 @@
       width: 5rem;
       border-radius: var(--borderR);
       overflow: hidden;
+      min-width: 3.75rem;
 
       img {
         width: 100%;
@@ -417,6 +418,8 @@
 
   &__carousel {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 0.9375rem;
     overflow: hidden;
 
@@ -437,7 +440,8 @@
 
   &__tallage {
     &_wrap {
-      width: 34.375rem;
+      width: 100%;
+      max-width: 34.375rem;
       height: 15.625rem;
       background: rgba(221, 221, 221, 0.25);
       margin: 0 auto;
@@ -457,7 +461,7 @@
       width: 100%;
 
       &-percent {
-        font-size: 4rem;
+        font-size: clamp(3rem, 2vw, 4rem);
         line-height: 4.75rem;
         font-weight: 700;
         position: relative;
@@ -476,9 +480,9 @@
     }
 
     &-text {
-      font-size: 3.375rem;
-      line-height: 4.25rem;
+      font-size: clamp(2rem, 2vw, 2.375rem);
       font-weight: 700;
+      line-height: 1;
     }
   }
 }
@@ -510,6 +514,12 @@
     &__percent {
       color: var(--white);
       font-size: 1.375rem;
+    }
+  }
+  .icoItem {
+    &__info {
+      display: flex;
+      flex-direction: column;
     }
   }
 }
@@ -566,6 +576,17 @@
             font-size: 0.875rem;
           }
         }
+      }
+    }
+  }
+  .icoItem {
+    &__tallage {
+      &_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        flex-direction: column;
       }
     }
   }
