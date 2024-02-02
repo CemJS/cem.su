@@ -1,4 +1,4 @@
 {
-  "url": "/list-startups",
+  "regex": "/list-startups",
   "front": ["header", "startups", "menu"]
 }

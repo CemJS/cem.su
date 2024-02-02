@@ -333,7 +333,7 @@ $tokenomicaBack: (
       position: relative;
     }
 
-    &_carousel {
+    &-carousel {
       max-width: 68.75rem;
       margin: 0 auto;
       display: flex;
@@ -347,13 +347,13 @@ $tokenomicaBack: (
       transition: all 0.4s linear;
     }
 
-    &_item {
+    &-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.625rem;
 
-      &_img {
+      &-img {
         height: 21.875rem;
         width: 21.875rem;
 
@@ -365,14 +365,14 @@ $tokenomicaBack: (
         }
       }
 
-      &_name,
-      &_pos {
+      &-name,
+      &-pos {
         font-size: 1.125rem;
         line-height: 1.625rem;
         font-weight: 600;
       }
 
-      &_pos {
+      &-pos {
         color: var(--secondary_text);
       }
     }
