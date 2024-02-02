@@ -4,7 +4,7 @@ import donation from "@images/donation.png";
 const RenderForm = () => {
   return (
     <form class="contacts__form">
-      <h4 class="contacts__form-title">Связь с нами</h4>
+      <h4 class="contacts__form-title">Обратная связь</h4>
       <p class="contacts__form-subtitle mb-26">Напишите нам, и мы с вами свяжемся!</p>
       <div class="contacts__form-group">
         <div class={["modalWindow_field", Static.form.name.valid || Static.form.name.error ? "modalWindow_field__valid" : null]}>
@@ -141,8 +141,8 @@ const RenderDestination = () => {
 
 export default function () {
   return (
-    <div class="page contacts">
-      <div class="wrapper">
+    <div class="page page_contacts">
+      <div class="wrapper wrapper_padding">
         <div class="contacts contacts_margin">
           <RenderForm />
           <RenderDestination />

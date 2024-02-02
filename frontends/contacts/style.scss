@@ -12,10 +12,10 @@
     &-text {
       font-size: clamp(1rem, 3vw, 2rem);
       line-height: 2rem;
-      word-wrap: nowrap;
       color: var(--white);
       &.link {
         white-space: nowrap;
+        line-height: 2.3rem;
       }
     }
     &-title {
