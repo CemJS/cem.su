@@ -7,7 +7,6 @@ export default function () {
   if (Static.record) {
     if (front.Variable.$el.header) {
       front.Variable.$el.header.classList.add("hide");
-      Fn.log("=1581ce=", front.Variable.$el.header.classList);
     }
     return (
       <section>

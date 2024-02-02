@@ -40,37 +40,9 @@ const RenderItems = function ({ items }) {
                   }
                 }}
                 onclick={(e) => {
-                  // Static.record = item._id;
-                  // let listener = [
-                  //   {
-                  //     type: "get",
-                  //     fn: ({ data }) => {
-                  //       let json = front.Services.functions.strToJson(data);
-                  //       if (!json) {
-                  //         return;
-                  //       }
-                  //       Static.record = json;
-                  //     },
-                  //   },
-                  // ];
-                  // Events.new = await Fn.event(
-                  //   front.Services.functions.makeUrlEvent("News", {
-                  //     action: "show",
-                  //     id: item._id,
-                  //   }),
-                  //   listener
-                  // );
-                  // Events.news.change(front.Services.functions.makeUrlEvent("News", {
-                  //     action: "show",
-                  //     id: item._id
-                  // }), listener)
-
                   Static.record = item;
                   Fn.log("=af157b=", item);
                   Fn.linkChange(`/list-startups/show/${item.id}`);
-
-                  // Fn.log("=efa796=", item);
-                  // Fn.link(e);
                 }}
                 isVisible={() => {
                   if (index == items.length - 3) {

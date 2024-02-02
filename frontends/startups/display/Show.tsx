@@ -4,6 +4,7 @@ import next from "@svg/icon/next.svg";
 // import HeaderBack from "./Show";
 
 export default function () {
+  Fn.log("=3f0299=", Static.record);
   return (
     <div class="startaps_show effect_lines">
       <div class="page">
@@ -51,7 +52,7 @@ export default function () {
             </div>
             <div class="startap__info-item startap__info-item-desc">
               <p class="startap_text">{Static.record.description}</p>
-              {Static.record.social.length ? (
+              {Static.record.social?.length ? (
                 <div class="startap__socials">
                   {Static.record.social.map((item, index) => {
                     return (
@@ -134,18 +135,18 @@ export default function () {
             <section class="startap__team">
               <h2 class="general__title">Команда</h2>
               <div class="startap__team_wrap">
-                <button class="icoItem__btn icoItem__btn_prev">
+                {/* <button class="icoItem__btn icoItem__btn_prev">
                   <img src={back} />
                 </button>
                 <button class="icoItem__btn icoItem__btn_next">
                   <img src={next} />
-                </button>
+                </button> */}
                 <div class="startap__team-carousel">
                   {Static.record.team.map((item, index) => {
                     return (
                       <div class="startap__team-item">
                         <div class="startap__team-item-img">
-                          <img src={`/assets/upload/worldPress/${item.foto}`}></img>
+                          <img src={`/assets/upload/worldPress/${item.photo}`}></img>
                         </div>
                         <span class="startap__team-item-name">{item.descriptionShort}</span>
                         <span class="startap__team-item-pos">{item.position}</span>
@@ -161,12 +162,12 @@ export default function () {
             <section class="icoItem__gallery pt_25">
               <h2 class="general__title">Галерея</h2>
               <div class="icoItem__gallery_wrap pt_20">
-                <button class="icoItem__btn icoItem__btn_prev">
+                {/* <button class="icoItem__btn icoItem__btn_prev">
                   <img src={back} />
                 </button>
                 <button class="icoItem__btn icoItem__btn_next">
                   <img src={next} />
-                </button>
+                </button> */}
                 <div class="icoItem__carousel">
                   {Static.record.media.map((item, index) => {
                     return (

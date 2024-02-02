@@ -68,9 +68,10 @@ const RenderItems = function ({ items }) {
               return (
                 <a
                   class="ico__list-item"
-                  href={`/ico/show/${item.id}`}
+                  href={`/list-icostartups/show/${item.id}`}
                   onclick={(e) => {
                     Static.record = item;
+                    Fn.log("=2ee8bf=", Static.record);
                     Fn.link(e);
                   }}
                   isVisible={() => {
