@@ -6,12 +6,11 @@ export default function () {
     return (
         <section class="exchangerates effect_lines pageTable">
             <div>
-                <h1 class="general-title">Курсы валют</h1>
-                <table class="exchangerates-table" cellspacing="0" cellpadding="10" align="center">
-                    <thead class="exchangerates-table__head blockMini">
+                <h1 class="general_title">Курсы валют</h1>
+                <table class="" cellspacing="0" cellpadding="10" align="center">
+                    <thead class="exchangerates-table__head">
                         <tr class="exchangerates-table__row">
-                            <th class="blockMini"></th>
-                            <th class="exchangerates-table__index blockMini">#</th>
+                            <th class="exchangerates-table__index">#</th>
                             <th class="exchangerates-table__name">Название</th>
                             <th class="exchangerates-table__price">Цена (USDT)</th>
                             <th class="exchangerates-table__change">Изм.(24ч)</th>
@@ -22,16 +21,15 @@ export default function () {
                             Static.records?.map((item: any, index: number) => {
                                 return (
                                     <tr class="exchangerates-table__row">
-                                        <td class="exchangerates_favorites blockMini">
-                                            <img src={star} alt="Избранные курсы" class="listExchange_icon" />
-                                        </td>
-                                        <td class="exchangerates-table__index blockMini">{index + 1}</td>
+                                        <td class="exchangerates-table__index">{index + 1}</td>
+
                                         <td class="exchangerates-table__name">
                                             <div class="coins_wrap mr_10">
                                                 <img src={`/contents/coins/${item.coin}.svg`}></img>
                                             </div>
                                             <span>{item.coin}</span>
                                         </td>
+
                                         <td>
                                             <div class="exchangerates_cellwrap">
                                                 <span class="exchangerates_price">
@@ -39,6 +37,7 @@ export default function () {
                                                 </span>
                                             </div>
                                         </td>
+
                                         <td>
                                             <div class="exchangerates_cellwrap">
                                                 <span
