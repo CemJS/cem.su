@@ -4,9 +4,9 @@ import star from '@svg/icon/star.svg'
 export default function () {
 
     return (
-        <section class="exchangerates effect_lines pageTable">
+        <section class="exchangerates effect_lines">
             <div>
-                <h1 class="general_title">Курсы валют</h1>
+                <h1 class="general__title">Курсы валют</h1>
                 <table class="" cellspacing="0" cellpadding="10" align="center">
                     <thead class="exchangerates-table__head">
                         <tr class="exchangerates-table__row">
