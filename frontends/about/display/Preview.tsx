@@ -37,8 +37,8 @@ class TitlePreview {
         }
         return
     }
-}
 
+}
 
 const init = function ($el: HTMLElement, options: Options) {
     const { name, mainClass } = options
@@ -54,9 +54,11 @@ const display = function (params: Params) {
         <div class={mainClass}>
             <div class={`${mainClass}_slide`} init={($el: HTMLElement) => init.bind(this)($el, options)}>
                 {
-                    items.map(item => {
+                    items.map((item: any, key: number) => {
                         return (
-                            <div class={`${mainClass}_item`} style={`background-image: url(${item.cover}); padding-top: 50px;`}>
+                            <div onclick={() => {
+                                this.Static[name].buttonPress("next")
+                            }} class={`${mainClass}_item`} style={`background-image: url(${item.cover}); padding-top: 50px;`}>
                                 <div class={`${mainClass}_item_content`}>
                                     <div class={`${mainClass}_item_name`}>{item.name}</div>
                                     <div class={`${mainClass}_item_desc`}>{item.desc}</div>
@@ -78,8 +80,8 @@ const display = function (params: Params) {
                     class={["glass", `${mainClass}_arrow`, `${mainClass}_arrow_next`]}
                     onclick={() => {
                         this.Static[name].buttonPress("next")
-                    }}
-                ></button>
+                    }}>
+                </button>
             </div>
         </div>
     )
