@@ -1,0 +1,4 @@
+{
+  "regex": "/question",
+  "front": ["header", "questions", "menu"]
+}

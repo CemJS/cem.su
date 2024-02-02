@@ -19,38 +19,31 @@ import lineB from '@svg/lines/linesB.svg'
 
 
 export default function () {
+  console.log("Static.records", Static.records);
 
   return (
-    <section class="listExchange effect_lines">
+    <section class="listTrade effect_lines">
       <div class="wrapper">
-        <h1 class="general__title">Список обменных пунктов</h1>
+        <h1 class="general__title">Список бирж</h1>
 
-        <div class="listExchange_table_wrapper">
-          <table class="listExchange_table table">
-            <thead class="listExchange_table_head">
-              <tr class="listExchange_table_row">
-       
-                <th class="listExchange_table_name disable-tableName">Название</th>
-                <th class="listExchange_table_coins disable-tableName">Коины</th>
+        <div class="listTrade_table_wrapper">
+          <table class="listTrade_table table">
+            <thead class="listTrade_table_head">
+              <tr class="listTrade_table_row">
+                <th class="disable-tableName justStart">Название</th>
+                <th class="disable-tableName justStart">Рейтинг</th>
                 <th class="listExchange_table_filter">
-                  <img
-                    src={filter}
-                  // onclick={() => {
-                  //   Fn.initOne({
-                  //     name: "modalFilterExchange", data: { coinss: Static.network }
-                  //   })
-                  //   console.log('=page=', Static.network)
-                  // }}
-                  />
+                  <button class="listTrade-btnListTrade">CEX</button>
+                  <button class="listTrade-btnListTrade">DEX</button>
                 </th>
               </tr>
             </thead>
-            <tbody class="table_body listExchange_table_body">
+            <tbody class="table_body listTrade_table_body">
               {
                 Static.records?.map((item: any, index: any) => {
                   return (
                     <tr
-                      class="table_row listExchange_table_row"
+                      class="table_row listTrade_table_row"
                       isVisible={() => {
                         if (index == Static.records.length - 3) {
                           // console.log('=индкекс равен =', index, 'Static.records.length - 3', Static.records.length - 3)
@@ -65,8 +58,9 @@ export default function () {
                               if (entry.isIntersecting) {
                                 observer.unobserve($el)
                                 console.log("trueeeeeeeeeeee");
-                                let res = front.Services.functions.sendApi("/api/events/Exchanges", {
+                                let res = front.Services.functions.sendApi("/api/events/Trades", {
                                   "action": "skip",
+                                  "category": Static.tradeFilter.cat,
                                   "skip": Static.records?.length,
                                   "uuid": `${localStorage?.uuid}`,
                                 })
@@ -76,9 +70,14 @@ export default function () {
                           observer.observe($el)
                         }
                       }}>
-           
-                      <td class="listExchange_table_name">{item.name}</td>
-                      <td class="listExchange_table_coins">
+
+                      <td class="justStart">
+                        <img class="crypto_coin_icon"
+                          src={`/assets/upload/worldPress/${item?.logo}`}>
+                        </img>
+                        {item.name}
+                      </td>
+                      {/* <td class="listTrade_table_coins">
                         <div class="coins_wrap">
                           {
                             item.listCoins?.map((el: any, index: number) => {
@@ -90,10 +89,11 @@ export default function () {
                             })
                           }
                         </div>
-                      </td>
-                      <td class="listExchange_table_btn">
+                      </td> */}
+                      <td class="justStart">{item.score}</td>
+                      <td class="listTrade_table_btn">
                         <a class="btn btn_gradient" href={item.url} onclick={Fn.link}>
-                          <span>Обменять</span>
+                          <span>Торговать</span>
                         </a>
                       </td>
                     </tr>
@@ -104,7 +104,6 @@ export default function () {
           </table>
         </div>
       </div>
-      {/* <img src={lineB} class="listExchange_lineB"></img> */}
     </section>
   )
 }

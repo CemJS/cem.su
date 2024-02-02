@@ -1,0 +1,188 @@
+.listTrade {
+  // padding-bottom: 100px;
+  padding-top: 60px;
+  position: relative;
+
+  &-btnListTrade {
+    cursor: pointer;
+    margin: 0 5px;
+  }
+
+  &_lineB {
+    position: absolute;
+    bottom: 0px;
+    height: 400px;
+    right: 0;
+    z-index: -1;
+  }
+
+  &_favourites {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &_table_wrapper {
+    // height: 630px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &_table {
+
+
+    &_head {
+      font-size: 18px;
+
+      .listTrade_table_row {
+        background: var(--back_opacity);
+        border-top-left-radius: var(--borderR);
+        border-top-right-radius: var(--borderR);
+      }
+    }
+
+    &_row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      // border: 1px solid var(--borderR);
+
+      th,
+      td {
+        padding: 10px 15px;
+      }
+
+      // &:hover {
+      //   background: var(--back_opacity);
+      // }
+    }
+
+    &_name,
+    &_coins,
+    &_filter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // padding: 0 15px;
+    }
+
+    .coins_wrap {
+      display: flex;
+      align-items: center;
+    }
+
+    &_index,
+    &_btn {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+    }
+
+    &_filter {
+      justify-content: flex-end;
+
+      img {
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    &_btn {
+      .btn {
+        max-width: 300px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .coins_wrap {
+      &_item {
+        // transform: translateX(-5px);
+        width: 32px;
+        height: 32px;
+        transition: all ease-in-out 0.3s;
+
+        &:hover {
+          transform: translateY(-10px);
+        }
+      }
+
+      // &_item:first-child {
+      //   transform: translateX(0);
+      // }
+    }
+
+
+
+    // &_body {
+    //   font-size: 16px;
+    //   font-weight: 500;
+    //   border: 1px solid var(--border);
+    //   border-top: none;
+    //   border-bottom-left-radius: var(--borderR);
+    //   border-bottom-right-radius: var(--borderR);
+
+    //   .listTrade_table_row:not(:last-child) {
+    //     border-bottom: 1px solid var(--border)
+    //   }
+    // }
+
+    &_coins {
+      display: flex;
+    }
+  }
+
+  .disable-tableName {
+    display: block;
+  }
+.crypto_coin_icon {
+  position: relative;
+  top: -2px;
+  margin-right: 10px;
+  max-height: 40px;
+}
+
+.justStart {
+  display: flex !important;
+  justify-content: start;
+}
+  @media (max-width: 650px) {
+    .disable-tableName {
+      display: none !important;
+    }
+    .justStart {
+      display: flex !important;
+      justify-content: center;
+    }
+    .listTrade_table_row {
+      grid-template-columns: 1fr;
+      grid-auto-flow: row;
+    }
+
+    .listTrade_table_index,
+    .listTrade_table_btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .listTrade_table_coins {
+      justify-content: center;
+      display: flex;
+    }
+
+    .listTrade_table_name,
+    .listTrade_table_coins {
+      display: flex;
+      justify-content: center;
+      // /* align-items: center; */
+    }
+  }
+}
+
