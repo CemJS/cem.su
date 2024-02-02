@@ -31,6 +31,14 @@
   }
 }
 
+.general__title {
+  font-size: clamp(2rem, 2vw, 2.75rem);
+  line-height: 3.625rem;
+  font-weight: 700;
+  margin: 0.625rem 0 1.5625rem 0;
+  text-align: center;
+}
+
 .hide {
   // opacity: 0;
   // user-select: none;
@@ -265,7 +273,6 @@
         padding: 0;
       }
     }
-
   }
 
   &_graph {
@@ -311,7 +318,6 @@
 
   &_partner {
     .table_body {
-
       .table_partner_row {
         display: grid;
         grid-template-columns: 80px 1fr 0.5fr 0.5fr 0.5fr;
@@ -320,15 +326,13 @@
 
     &_row {
       cursor: pointer;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
 
       &:hover {
         transform: scale(0.98);
-
       }
     }
   }
-
 }
 @keyframes invalid {
   0%,
