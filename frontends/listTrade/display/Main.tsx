@@ -30,11 +30,11 @@ export default function () {
           <table class="listTrade_table table">
             <thead class="listTrade_table_head">
               <tr class="listTrade_table_row">
-                <th class="listTrade_table_name disable-tableName">Название</th>
-                <th class="listTrade_table_coins disable-tableName">Рейтинг</th>
+                <th class="disable-tableName justStart">Название</th>
+                <th class="disable-tableName justStart">Рейтинг</th>
                 <th class="listExchange_table_filter">
-                 <button class="listTrade-btnListTrade">CEX</button>
-                 <button class="listTrade-btnListTrade">DEX</button>
+                  <button class="listTrade-btnListTrade">CEX</button>
+                  <button class="listTrade-btnListTrade">DEX</button>
                 </th>
               </tr>
             </thead>
@@ -60,6 +60,7 @@ export default function () {
                                 console.log("trueeeeeeeeeeee");
                                 let res = front.Services.functions.sendApi("/api/events/Trades", {
                                   "action": "skip",
+                                  "category": Static.tradeFilter.cat,
                                   "skip": Static.records?.length,
                                   "uuid": `${localStorage?.uuid}`,
                                 })
@@ -69,9 +70,14 @@ export default function () {
                           observer.observe($el)
                         }
                       }}>
-           
-                      <td class="listTrade_table_name">{item.name}</td>
-                      <td class="listTrade_table_coins">
+
+                      <td class="justStart">
+                        <img class="crypto_coin_icon"
+                          src={`/assets/upload/worldPress/${item?.logo}`}>
+                        </img>
+                        {item.name}
+                      </td>
+                      {/* <td class="listTrade_table_coins">
                         <div class="coins_wrap">
                           {
                             item.listCoins?.map((el: any, index: number) => {
@@ -83,7 +89,8 @@ export default function () {
                             })
                           }
                         </div>
-                      </td>
+                      </td> */}
+                      <td class="justStart">{item.score}</td>
                       <td class="listTrade_table_btn">
                         <a class="btn btn_gradient" href={item.url} onclick={Fn.link}>
                           <span>Торговать</span>
@@ -97,7 +104,6 @@ export default function () {
           </table>
         </div>
       </div>
-      {/* <img src={lineB} class="listTrade_lineB"></img> */}
     </section>
   )
 }
