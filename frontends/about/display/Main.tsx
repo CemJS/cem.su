@@ -53,6 +53,7 @@ const titleOptions = {
   name: "TitlePreview",
   mainClass: "about_main",
 };
+
 export default function () {
   return (
     <div class="about">

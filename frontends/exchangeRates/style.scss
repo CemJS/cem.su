@@ -11,25 +11,25 @@
     }
   }
 
-  &_table {
+  &-table {
     border-collapse: collapse;
     width: 100%;
     background: #313541;
     box-shadow: 0px 5px 10px #6d6d6d;
 
-    &_head {
+    &__head {
       font-size: 18px;
       border-top-left-radius: var(--borderR);
       border-top-right-radius: var(--borderR);
 
-      .exchangerates_table_row {
+      .exchangerates-table__row {
         background: var(--back_opacity);
         border-top-left-radius: var(--borderR);
         border-top-right-radius: var(--borderR);
       }
     }
 
-    &_row {
+    &__row {
       display: grid;
       grid-template-columns: 40px 40px 1fr 1fr 1fr;
       height: 55px;
@@ -43,32 +43,32 @@
       }
     }
 
-    &_body {
+    &__body {
       // border: 1px solid var(--border);
       border-top: none;
       font-weight: 600;
 
-      .exchangerates_table_name {
+      .exchangerates-table__name {
         text-transform: uppercase;
       }
 
-      .exchangerates_table_row {
+      .exchangerates-table__row {
         height: 70px;
       }
 
-      .exchangerates_table_row:not(:last-child) {
+      .exchangerates-table__row:not(:last-child) {
         border-bottom: 1px solid var(--border);
       }
 
     }
 
-    &_index {
+    &__index {
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    &_name {
+    &__name {
       justify-content: flex-start !important;
       font-weight: 700;
     }
@@ -139,7 +139,7 @@
 .blockMini {
   display: block;
 }
-.general_title {
+.general-title {
   font-size: 44px;
   line-height: 58px;
   font-weight: 700;
@@ -216,7 +216,7 @@
 }
 
 @media(max-width: 350px) {
-  .exchangerates_table_row   {
+  .exchangerates-table__row   {
     display: flex !important;
   }
   .blockMini {
