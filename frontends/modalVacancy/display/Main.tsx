@@ -97,7 +97,7 @@ export default function () {
         </div>
         <button
           onclick={Func.sendForm}
-          class={["btn mX-auto", !Static.form.isValid ? "hide" : null]}
+          class={["modalVacancy__btn btn mX-auto", !Static.form.isValid ? "disabled" : null]}
         >
           Отправить
         </button>

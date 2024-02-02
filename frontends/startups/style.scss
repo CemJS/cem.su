@@ -157,6 +157,11 @@ $tokenomicaBack: (
       max-width: 40.625rem;
       height: 21.875rem;
 
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+
       img {
         width: 100%;
         height: 100%;
@@ -333,7 +338,7 @@ $tokenomicaBack: (
       position: relative;
     }
 
-    &_carousel {
+    &-carousel {
       max-width: 68.75rem;
       margin: 0 auto;
       display: flex;
@@ -347,13 +352,13 @@ $tokenomicaBack: (
       transition: all 0.4s linear;
     }
 
-    &_item {
+    &-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.625rem;
 
-      &_img {
+      &-img {
         height: 21.875rem;
         width: 21.875rem;
 
@@ -365,14 +370,14 @@ $tokenomicaBack: (
         }
       }
 
-      &_name,
-      &_pos {
+      &-name,
+      &-pos {
         font-size: 1.125rem;
         line-height: 1.625rem;
         font-weight: 600;
       }
 
-      &_pos {
+      &-pos {
         color: var(--secondary_text);
       }
     }
@@ -449,6 +454,21 @@ $tokenomicaBack: (
       }
     }
   }
+  .startap {
+    &_text {
+      height: auto !important;
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      &-item {
+        gap: 1.5625rem;
+      }
+      &_cover {
+        margin: 0 auto;
+      }
+    }
+  }
 }
 
 @media (max-width: 767px) {
@@ -473,5 +493,47 @@ $tokenomicaBack: (
   }
   .category {
     top: 0.1rem;
+  }
+}
+
+.slider_section {
+  height: 198px;
+  overflow: hidden;
+
+  .slider_container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 4) - 12px);
+    grid-template-rows: 198px;
+    gap: 16px;
+    transition: all 0.4s linear;
+    scroll-behavior: smooth;
+    overflow-x: scroll;
+
+    div {
+      height: 100%;
+    }
+
+    div img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      vertical-align: middle;
+      border-radius: 5px;
+    }
+  }
+
+  .slider-container::-webkit-scrollbar {
+    width: 0;
+  }
+
+  /* ie 10+ */
+  .slider-container {
+    -ms-overflow-style: none;
+  }
+
+  /* фф (свойство больше не работает, других способов тоже нет)*/
+  .slider-container {
+    overflow: -moz-scrollbars-none;
   }
 }

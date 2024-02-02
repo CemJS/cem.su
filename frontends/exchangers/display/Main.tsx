@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Static } from "cemjs-all"
+import { Cemjsx, Fn, Static, front } from "cemjs-all"
 import btc from '@svg/coins/btc.svg'
 import trx from '@svg/coins/trx.svg'
 import ada from '@svg/coins/ada.svg'
@@ -22,34 +22,33 @@ export default function () {
   console.log("Static.records", Static.records);
 
   return (
-    <section class="listExchange effect_lines pageTable">
+    <section class="listExchange effect_lines">
       <div class="wrapper">
-        <h1 class="general_title">Список обменных пунктов</h1>
+        <h1 class="general__title">Список обменных пунктов</h1>
 
         <div class="listExchange_table_wrapper">
           <table class="listExchange_table table">
             <thead class="listExchange_table_head">
               <tr class="listExchange_table_row">
-                <th></th>
-                <th class="listExchange_table_index">#</th>
-                <th class="listExchange_table_name">Название</th>
-                <th class="listExchange_table_coins">Коины</th>
+       
+                <th class="listExchange_table_name disable-tableName">Название</th>
+                <th class="listExchange_table_coins disable-tableName">Коины</th>
                 <th class="listExchange_table_filter">
                   <img
                     src={filter}
-                    // onclick={() => {
-                    //   Fn.initOne({
-                    //     name: "modalFilterExchange", data: { coinss: Static.network }
-                    //   })
-                    //   console.log('=page=', Static.network)
-                    // }}
+                  // onclick={() => {
+                  //   Fn.initOne({
+                  //     name: "modalFilterExchange", data: { coinss: Static.network }
+                  //   })
+                  //   console.log('=page=', Static.network)
+                  // }}
                   />
                 </th>
               </tr>
             </thead>
             <tbody class="table_body listExchange_table_body">
               {
-                Static.records?.map((item, index) => {
+                Static.records?.map((item: any, index: any) => {
                   return (
                     <tr
                       class="table_row listExchange_table_row"
@@ -59,19 +58,35 @@ export default function () {
                           Static.moreid = Static.records[Static.records.length - 1]._id
                           // fn("addEvent")
                         }
+                      }}
+                      init={($el: any) => {
+                        if (index == Static.records?.length - 1) {
+                          const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(async entry => {
+                              if (entry.isIntersecting) {
+                                observer.unobserve($el)
+                                console.log("trueeeeeeeeeeee");
+                                let res = front.Services.functions.sendApi("/api/events/Exchanges", {
+                                  "action": "skip",
+                                  "skip": Static.records?.length,
+                                  "uuid": `${localStorage?.uuid}`,
+                                })
+                              }
+                            })
+                          })
+                          observer.observe($el)
+                        }
                       }}>
-                      <td class="listExchange_favourites">
-                        <img src={star} alt="Избранные обменники" class="listExchange_icon" />
-                      </td>
-                      <td class="listExchange_table_index">{index + 1}</td>
+           
                       <td class="listExchange_table_name">{item.name}</td>
                       <td class="listExchange_table_coins">
                         <div class="coins_wrap">
                           {
-                            item.List_coins?.map((el, index) => {
+                            item.listCoins?.map((el: any, index: number) => {
+                              console.log("el", el);
 
                               return (
-                                <img src={`/contents/icons/coins/${el.icon}.svg`} class="coins_wrap_item"></img>
+                                <img src={`/contents/coins/${el?.icon}.svg`} class="coins_wrap_item"></img>
                               )
                             })
                           }
@@ -88,44 +103,9 @@ export default function () {
               }
             </tbody>
           </table>
-          {/* <div class="listExchange_pagination mt_25">
-                        <div class="pag_list">
-                            <button class="pag_list_item" onclick={() => { fn("pagBtn", 'startPrev') }}>
-                                <img src={startPrev} />
-                            </button>
-                            <button class="pag_list_item" onclick={() => { fn("pagBtn", 'prev') }}>
-                                <img src={prev} />
-                            </button>
-
-                            <ul class="pag_list_count" ref="numCarousel">
-                                {
-                                    Static.arrPag.map((item, index) => {
-                                        return (
-                                            <li
-                                                ref="numSlide"
-                                                class={["pag_list_item", index == Static.currentPage ? "pag_list_item_active" : null]}
-                                                onclick={() => { fn("pagBtn", 'numeral', index) }}
-                                            >
-                                                {index + 1}
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
-
-                            <button class="pag_list_item" onclick={() => { fn("pagBtn", 'next') }}>
-                                <img src={next} />
-                            </button>
-                            <button class="pag_list_item" onclick={() => { fn("pagBtn", 'endNext') }}>
-                                <img src={endNext} />
-                            </button>
-                        </div>
-                    </div> */}
         </div>
-
-
       </div>
-      <img src={lineB} class="listExchange_lineB"></img>
+      {/* <img src={lineB} class="listExchange_lineB"></img> */}
     </section>
   )
 }

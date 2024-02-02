@@ -72,9 +72,9 @@ front.func.sendForm = async () => {
       });
     }
   } else {
-    Static.form.name.error = "Введите имя";
-    Static.form.email.error = "Введите email";
-    Static.form.comment.error = "Введите сообщение";
+    !Static.form.name.valid ? (Static.form.name.error = "Введите имя") : null;
+    !Static.form.email.valid ? (Static.form.email.error = "Введите email") : null;
+    !Static.form.comment.valid ? (Static.form.comment.error = "Введите сообщение") : null;
   }
 
   return;

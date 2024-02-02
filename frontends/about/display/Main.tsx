@@ -12,6 +12,7 @@ import coin from "@images/about/main/cem.jpg";
 import Partners from "./Partners";
 import Socials from "./Socials";
 import Developments from "./Developments";
+import PreviewStandart from "./PreviewStandart";
 
 const aboutSlides: any = [
   {
@@ -57,10 +58,10 @@ const titleOptions = {
 export default function () {
   return (
     <div class="about">
-      <Preview
+      <PreviewStandart />
+      {/* <Preview
         items={aboutSlides}
-        options={titleOptions}
-      />
+        options={titleOptions}/> */}
       <div class="wrapper">
         <Goals />
         <Faq />

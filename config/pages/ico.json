@@ -1,4 +1,4 @@
 {
-  "url": "/list-icostartups",
+  "regex": "/list-icostartups",
   "front": ["header", "ico", "menu"]
 }

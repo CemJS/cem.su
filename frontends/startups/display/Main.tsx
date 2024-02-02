@@ -1,5 +1,6 @@
 import { Cemjsx, Fn, Static, front } from "cemjs-all";
 import CategoryLine from "./CategoryLine";
+import Show from "./Show";
 
 const RenderItems = function ({ items }) {
   if (!items.length) {
@@ -18,7 +19,7 @@ const RenderItems = function ({ items }) {
             return (
               <a
                 class="startaps__item"
-                href={`/startups/show/${item.id}`}
+                // href={`/list-startups/show/${item.id}`}
                 init={($el: any) => {
                   if (index == Static.records?.length - 1) {
                     const observer = new IntersectionObserver((entries) => {
@@ -32,7 +33,6 @@ const RenderItems = function ({ items }) {
                             category: Static.catActive == "Все" ? "All" : Static.catActive,
                             skip: Static.records.length,
                           });
-                          Fn.log("=e26cda=", res);
                         }
                       });
                     });
@@ -41,7 +41,8 @@ const RenderItems = function ({ items }) {
                 }}
                 onclick={(e) => {
                   Static.record = item;
-                  Fn.link(e);
+                  Fn.log("=af157b=", item);
+                  Fn.linkChange(`/list-startups/show/${item.id}`);
                 }}
                 isVisible={() => {
                   if (index == items.length - 3) {
@@ -71,6 +72,7 @@ export default function () {
     <section class="wrapper">
       <CategoryLine items={Static.categories} />
       <RenderItems items={Static.records} />
+      {/* {Static.record ? <Show /> : null} */}
     </section>
   );
 }

@@ -114,14 +114,23 @@ front.loader = async () => {
   ];
   Events.icos = await Fn.event(url, listener);
 
-  // front.Services.functions.sendApi("/api/events/Icos", {
-  //   action: "get",
-  //   category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
-  //   type: Static.makeFilter.active,
-  // });
-  setTimeout(() => {
-    Fn.log(Static.records);
-  }, 1000);
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
+    let url = front.Services.functions.makeUrlEvent("Icos", { action: "show", id: front.Variable.DataUrl[2] });
+
+    let listener = [
+      {
+        type: "get",
+        fn: ({ data }) => {
+          let json = front.Services.functions.strToJson(data);
+          if (!json) {
+            return;
+          }
+          Static.record = json;
+        },
+      },
+    ];
+    Events.icos = await Fn.event(url, listener);
+  }
   return;
 };
 
