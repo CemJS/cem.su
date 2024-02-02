@@ -1,4 +1,4 @@
-import { Cemjsx, Ref, Static } from "cemjs-all";
+import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
 let x1,
   y1 = null;
 export default function ({ items }) {
@@ -70,12 +70,18 @@ export default function ({ items }) {
           <li
             ref="categoryEl"
             draggable="false"
-            class={["category-item", Static.catActive == index ? "category-item_active" : null]}
+            class={["category__item", Static.catActive == item.name ? "category__item_active" : null]}
             onclick={() => {
-              if (Static.catActive == index) {
+              if (Static.catActive == item.name) {
                 return;
               }
-              Static.catActive = index;
+
+              Static.catActive = item.name;
+              Fn.log("=0cf81d=", Static.catActive);
+              front.Services.functions.sendApi("/api/events/Startups", {
+                action: "get",
+                category: Static.catActive == "Все" ? "All" : Static.catActive,
+              });
             }}
           >
             <span>{item.name}</span>

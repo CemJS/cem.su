@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Static } from "cemjs-all";
+import { Cemjsx, Fn, Static, front } from "cemjs-all";
 import CategoryLine from "./CategoryLine";
 
 const RenderItems = function ({ items }) {
@@ -7,42 +7,60 @@ const RenderItems = function ({ items }) {
   }
   return (
     <section class="startaps">
-      <div class="wrapper">
-        <div
-          class="startaps_inner"
-          ref="startapsList"
-        >
-          {!items.length ? (
-            <p>not found</p>
-          ) : (
-            items.map((item, index) => {
-              return (
-                <a
-                  class="startaps_item"
-                  href={`/startups/show/${item._id}`}
-                  onclick={(e) => {
-                    Static.record = item;
-                    Fn.link(e);
-                  }}
-                  isVisible={() => {
-                    if (index == items.length - 3) {
-                      Static.moreid = items[items.length - 1]._id;
-                    }
-                  }}
-                >
-                  <span class="category">{item.category}</span>
-                  <div class="startaps_item_image">
-                    <img src={`/assets/upload/worldPress/${item.icon}`}></img>
-                  </div>
-                  <div class="startaps_item_info">
-                    <h5 class="startaps_item_info_title">{item.title}</h5>
-                    <p class="startaps_item_info_text">{item.description}</p>
-                  </div>
-                </a>
-              );
-            })
-          )}
-        </div>
+      <div
+        class="startaps_inner"
+        ref="startapsList"
+      >
+        {!items.length ? (
+          <p>not found</p>
+        ) : (
+          items.map((item, index) => {
+            return (
+              <a
+                class="startaps__item"
+                href={`/startups/show/${item.id}`}
+                init={($el: any) => {
+                  if (index == Static.records?.length - 1) {
+                    const observer = new IntersectionObserver((entries) => {
+                      entries.forEach(async (entry) => {
+                        // Fn.log("=6ba7c1=111111", entry.isIntersecting, entry);
+                        if (entry.isIntersecting) {
+                          // Fn.log("=2a3c8e=", 6666666);
+                          observer.unobserve($el);
+                          let res = front.Services.functions.sendApi("/api/events/Startups", {
+                            action: "skip",
+                            category: Static.catActive == "Все" ? "All" : Static.catActive,
+                            skip: Static.records.length,
+                          });
+                          Fn.log("=e26cda=", res);
+                        }
+                      });
+                    });
+                    observer.observe($el);
+                  }
+                }}
+                onclick={(e) => {
+                  Static.record = item;
+                  Fn.link(e);
+                }}
+                isVisible={() => {
+                  if (index == items.length - 3) {
+                    Static.moreid = items[items.length - 1].id;
+                  }
+                }}
+              >
+                <span class="category">{item.category}</span>
+                <div class="startaps__item-image">
+                  <img src={`/assets/upload/worldPress/${item.icon}`}></img>
+                </div>
+                <div class="startaps__item-info">
+                  <h5 class="startaps__item-info-title">{item.title}</h5>
+                  <p class="startaps__item-info-text">{item.description}</p>
+                </div>
+              </a>
+            );
+          })
+        )}
       </div>
     </section>
   );
@@ -52,9 +70,7 @@ export default function () {
   return (
     <section class="wrapper">
       <CategoryLine items={Static.categories} />
-      <div class="wrapper">
-        <RenderItems items={Static.records} />
-      </div>
+      <RenderItems items={Static.records} />
     </section>
   );
 }

@@ -11,7 +11,7 @@ front.func.test = () => {
 
 front.loader = async () => {
   Static.records = [];
-  Static.catActive = 0;
+  Static.catActive = "Все";
   Static.categories = [
     {
       name: "Все",
@@ -56,7 +56,7 @@ front.loader = async () => {
   Static.x1 = null;
   Static.y1 = null;
 
-  let url = front.Services.functions.makeUrlEvent("Icos", {});
+  let url = front.Services.functions.makeUrlEvent("Startups", { category: Static.catActive == "Все" ? "All" : Static.catActive });
   Fn.log("=7e27b3=", url);
   let listener = [
     {
@@ -83,9 +83,6 @@ front.loader = async () => {
   ];
   Events.icos = await Fn.event(url, listener);
 
-  setTimeout(() => {
-    Fn.log(Static.records);
-  }, 1000);
   return;
 };
 
