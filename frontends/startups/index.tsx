@@ -57,7 +57,7 @@ front.loader = async () => {
   Static.y1 = null;
 
   let url = front.Services.functions.makeUrlEvent("Startups", { category: Static.catActive == "Все" ? "All" : Static.catActive });
-  Fn.log("=7e27b3=", url);
+
   let listener = [
     {
       type: "get",
@@ -82,6 +82,26 @@ front.loader = async () => {
     },
   ];
   Events.icos = await Fn.event(url, listener);
+
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
+    let url = front.Services.functions.makeUrlEvent("Startups", { action: "show", id: front.Variable.DataUrl[2] });
+
+    let listener = [
+      {
+        type: "get",
+        fn: ({ data }) => {
+          let json = front.Services.functions.strToJson(data);
+          if (!json) {
+            return;
+          }
+          Static.record = json;
+          // Fn.initAll();
+        },
+      },
+    ];
+    Events.icos = await Fn.event(url, listener);
+  }
+  // Fn.log("=872519=", front.Variable.DataUrl);
 
   return;
 };
