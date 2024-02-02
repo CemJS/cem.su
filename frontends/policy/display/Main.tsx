@@ -3,7 +3,7 @@ import { Cemjsx, Fn } from "cemjs-all";
 export default function () {
   return (
     <div class="page">
-      <div class="wrapper">
+      <div class="wrapper wrapper_padding">
         <h1 class="title-big">Политика использования данных</h1>
         <p class="page__date">Редакция от 2022-02-21</p>
         <div class="content">
