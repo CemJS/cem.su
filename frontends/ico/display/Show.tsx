@@ -127,7 +127,7 @@ export default function () {
               </div>
               <div class="icoItem__tallage-item">
                 <span class="icoItem__tallage-item-percent">
-                  {Static.record.targetMoney <= 0 ? "0%" : Math.round(((Static.record.nowMoney && Static.record.nowMoney > 0 ? Static.record.nowMoney : 0) * 100) / Static.record.targetMoney)}
+                  {Static.record?.targetMoney <= 0 ? "0%" : Math.round(((Static.record.nowMoney && Static.record.nowMoney > 0 ? Static.record.nowMoney : 0) * 100) / Static.record.targetMoney)}
                 </span>
               </div>
             </div>
@@ -151,7 +151,7 @@ export default function () {
                         onclick={() => {
                           let records = Static.record.media;
                           let activeIndex = index;
-                          // Fn.initOne({ name: "modalGallery", data: { records, activeIndex } })
+                          Fn.initOne("modalGallery", { records, activeIndex });
                         }}
                       >
                         <img

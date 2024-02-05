@@ -3,56 +3,58 @@ import Navigation from "./navigation"
 
 
 front.listener.finish = () => {
-    return
+  return
 }
 const filterCoin = function ({ choosenCoin }) {
-    this.Static.network = choosenCoin
+  this.Static.network = choosenCoin
 
-    
+
 }
 front.func.test = () => {
-    return
+  return
 }
 
 front.loader = async () => {
-    let url = front.Services.functions.makeUrlEvent("Exchanges");
+  Static.filterCoins = []
 
-    let listener = [
-        {
-          type: "get",
-          fn: ({ data }) => {
-            let json = front.Services.functions.strToJson(data);
-            if (!json) {
-              return;
-            }
-            // Fn.log("=68682c=", "get", json);
-    
-            Static.records = json;
-          },
-        },
-        {
-          type: "add",
-          fn: ({ data }) => {
-            let json = front.Services.functions.strToJson(data);
-            if (!json) {
-              return;
-            }
-            // Fn.log("=68682c=", "add", json);
-            Static.records.push(...json);
-          },
-        },
-      ];
-      Events.exchangers = await Fn.event(url, listener);
-      
-    return
+  let url = front.Services.functions.makeUrlEvent("Exchanges");
+
+  let listener = [
+    {
+      type: "get",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        // Fn.log("=68682c=", "get", json);
+
+        Static.records = json;
+      },
+    },
+    {
+      type: "add",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        // Fn.log("=68682c=", "add", json);
+        Static.records.push(...json);
+      },
+    },
+  ];
+  Events.exchangers = await Fn.event(url, listener);
+
+  return
 }
 
 front.display = () => {
-    return (
-        <div class="wrapper">
-            <Navigation />
-        </div>
-    )
+  return (
+    <div class="wrapper">
+      <Navigation />
+    </div>
+  )
 }
 
 export { front }

@@ -249,8 +249,12 @@
     // animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 
     &_gallery {
-      max-width: 90%;
+      // max-width: 90%;
       height: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px;
     }
 
     &__narrow {

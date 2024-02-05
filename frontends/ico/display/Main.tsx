@@ -129,8 +129,8 @@ const RenderItems = function ({ items }) {
                     </span>
                   ) : (
                     <div class="ico__list-item-date">
-                      <span>{front.Services.functions.timeStampToDate(item.dateCreate, "-")}</span>
-                      <span>{front.Services.functions.timeStampToDate(item.dateUpdate, "-")}</span>
+                      <span>{front.Services.functions.timeStampToDate(item.dateCreate, ".")}</span>
+                      <span>{front.Services.functions.timeStampToDate(item.dateUpdate, ".")}</span>
                     </div>
                   )}
                 </a>

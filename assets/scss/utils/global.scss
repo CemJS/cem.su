@@ -29,6 +29,7 @@
   &-right {
     text-align: right;
   }
+
   &_important {
     font-size: clamp(1rem, 2vw, 1.125rem);
     line-height: 1.375rem;
@@ -144,6 +145,16 @@
       width: 12.625rem;
     }
   }
+
+  &_passive {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.7;
+  }
+
+  &_reset {
+    filter: grayscale(1);
+  }
 }
 
 .tooltip {
@@ -219,16 +230,53 @@
   }
 }
 
-.field {
-  &_error {
-    animation: invalid 300ms;
-  }
-
-  input {
-    border: none;
-    outline: none;
-  }
+.notFound {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
 }
+
+// .field {
+//   width: 100%;
+//   position: relative;
+//   height: 3rem;
+//   line-height: 3rem;
+
+//   input {
+//     outline: none;
+//     border: 1px solid var(--fiolet);
+//     height: 3rem;
+//     width: 100%;
+//     font-size: 1rem;
+//     padding: 0 2.5rem 0 1.5rem;
+//     border-radius: var(--borderR);
+//     background: transparent;
+//     transition: border 0.1s ease-in-out;
+//   }
+
+//   &__label{
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     font-size: 1rem;
+//     padding: 0.3rem;
+//     margin: 0 1.5rem;
+//     background: ;
+//   }
+
+
+//   // &_error {
+//   //   animation: invalid 300ms;
+//   // }
+
+
+// }
 
 .mr_10 {
   margin-right: 10px;
@@ -336,7 +384,9 @@
     }
   }
 }
+
 @keyframes invalid {
+
   0%,
   100% {
     transform: translate(0);
@@ -349,4 +399,8 @@
   75% {
     transform: translate(0.125rem);
   }
+}
+
+.p-relative {
+  position: relative;
 }
