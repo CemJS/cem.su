@@ -1,49 +1,49 @@
-import { Cemjsx, Fn, Static, front } from "cemjs-all"
-import btc from '@svg/coins/btc.svg'
-import trx from '@svg/coins/trx.svg'
-import ada from '@svg/coins/ada.svg'
-import bnb from '@svg/coins/bnb.svg'
-import doge from '@svg/coins/doge.svg'
-import eth from '@svg/coins/eth.svg'
-import zrx from '@svg/coins/zrx.svg'
-import usdt from '@svg/coins/usdt.svg'
-import usd from '@svg/coins/usd.svg'
-import mana from '@svg/coins/mana.svg'
-import star from '@svg/icon/star.svg'
-import prev from '@svg/icon/prev.svg'
-import startPrev from '@svg/icon/startPrev.svg'
-import next from '@svg/icon/next.svg'
-import endNext from '@svg/icon/endNext.svg'
-import filter from '@svg/icon/filter.svg'
-import lineB from '@svg/lines/linesB.svg'
-
+import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all"
 
 export default function () {
-  console.log("Static.records", Static.records);
 
   return (
-    <section class="listTrade effect_lines">
+    <section class="listTrade">
       <div class="wrapper">
         <h1 class="general__title">Список бирж</h1>
 
-        <div class="listTrade_table_wrapper">
-          <table class="listTrade_table table">
-            <thead class="listTrade_table_head">
-              <tr class="listTrade_table_row">
+        <div class="listTrade___table-wrapper">
+          <table class="listTrade__table table">
+            <thead class="listTrade__table__head ">
+              <tr class="listTrade__table__row">
                 <th class="disable-tableName justStart">Название</th>
-                <th class="disable-tableName justStart">Рейтинг</th>
-                <th class="listExchange_table_filter">
-                  <button class="listTrade-btnListTrade">CEX</button>
-                  <button class="listTrade-btnListTrade">DEX</button>
+                <th class="disable-tableName">Рейтинг</th>
+                <th class="disable-tableName">График</th>
+                <th class="listTrade__table__position-end">
+                  <div ref="cex" class="listTrade-btnListTrade tag__button tag__button_active"
+                    onclick={(e: any) => {
+                      e.target.classList.toggle("tag__button_active");
+                      Ref.dex.classList.remove("tag__button_active")
+                      let res = front.Services.functions.sendApi("/api/events/Trades", {
+                        "action": "get",
+                        "category": "CEX",
+                        "uuid": `${localStorage?.uuid}`,
+                      })
+                    }}>CEX</div>
+                  <div ref="dex" class="listTrade-btnListTrade tag__button"
+                    onclick={(e: any) => {
+                      e.target.classList.toggle("tag__button_active");
+                      Ref.cex.classList.remove("tag__button_active")
+                      let res = front.Services.functions.sendApi("/api/events/Trades", {
+                        "action": "get",
+                        "category": "DEX",
+                        "uuid": `${localStorage?.uuid}`,
+                      })
+                    }}>DEX</div>
                 </th>
               </tr>
             </thead>
-            <tbody class="table_body listTrade_table_body">
+            <tbody class="table_body listTrade__table__body">
               {
                 Static.records?.map((item: any, index: any) => {
                   return (
                     <tr
-                      class="table_row listTrade_table_row"
+                      class="table_row listTrade__table__row"
                       isVisible={() => {
                         if (index == Static.records.length - 3) {
                           // console.log('=индкекс равен =', index, 'Static.records.length - 3', Static.records.length - 3)
@@ -77,21 +77,15 @@ export default function () {
                         </img>
                         {item.name}
                       </td>
-                      {/* <td class="listTrade_table_coins">
-                        <div class="coins_wrap">
-                          {
-                            item.listCoins?.map((el: any, index: number) => {
-                              console.log("el", el);
-
-                              return (
-                                <img src={`/contents/coins/${el?.icon}.svg`} class="coins_wrap_item"></img>
-                              )
-                            })
-                          }
-                        </div>
-                      </td> */}
-                      <td class="justStart">{item.score}</td>
-                      <td class="listTrade_table_btn">
+                      <td class="justStart" style="justify-content: center">{item.score}</td>
+                      <td class="table_graph justStart" style="justify-content: center">
+                        <img
+                          class="trades-chart"
+                          src={`https://s3.coinmarketcap.com/generated/sparklines/exchanges/web/7d/usd/${item.marketId}.svg`}
+                        >
+                        </img>
+                      </td>
+                      <td class="listTrade__table__btn">
                         <a class="btn btn_gradient" href={item.url} onclick={Fn.link}>
                           <span>Торговать</span>
                         </a>
