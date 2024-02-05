@@ -34,8 +34,12 @@ export default function () {
                 <th
                   class="listExchange_table_filter"
                   onclick={() => Fn.initOne("modalFilterExchange", {
-                    callback: async (filterCoins) => {
-                      Fn.log('=ea10c7=', filterCoins)
+                    filterCoins: Static.filterCoins,
+                    callback: async (filterCoinsFromModal: []) => {
+                      Static.filterCoins = filterCoinsFromModal
+                      if (!filterCoinsFromModal.length) {
+                        return;
+                      }
                       // filterCoins - список выбранных монет для фильтрации
                     }
                   })}
@@ -63,7 +67,6 @@ export default function () {
                             entries.forEach(async entry => {
                               if (entry.isIntersecting) {
                                 observer.unobserve($el)
-                                console.log("trueeeeeeeeeeee");
                                 let res = front.Services.functions.sendApi("/api/events/Exchanges", {
                                   "action": "skip",
                                   "skip": Static.records?.length,

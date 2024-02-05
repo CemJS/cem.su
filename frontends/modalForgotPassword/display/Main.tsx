@@ -28,7 +28,7 @@ export default function () {
 
             <div
                 class={[
-                    "modalWindow_field", "mt-15",
+                    "modalWindow_field",
                     Static.form.pass.value.length ? "modalWindow_field__valid" : null,
                     Static.form.pass.error ? "modalWindow_field__error" : null,
                     Static.form.pass.valid ? "modalWindow_field__success" : null
@@ -48,11 +48,6 @@ export default function () {
                 </div>
                 <p class="modalWindow_field__status" style="color:#E84142">{Static.form.pass.error}</p>
             </div>
-
-            <p class="mt-15">При использовании платформы вы соглашаетесь с <a href="/terms-of-service/" class="link" onclick={() => { Fn.link }}>поликикой сайта.</a>
-            </p>
-
-            <span class="link" onclick={() => Fn.initOne("modalForgotPassword", {})}>Забыли пароль?</span>
         </main>
     )
 }

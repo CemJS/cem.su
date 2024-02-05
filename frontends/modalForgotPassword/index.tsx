@@ -23,7 +23,6 @@ front.func.close = function () {
 
 
 front.loader = () => {
-    Static.passType = "password"
     //-----------------------
 
     Static.form = {
@@ -32,14 +31,6 @@ front.loader = () => {
             valid: false,
             error: false,
             placeholder: "Email",
-            view: false,
-            disable: false
-        },
-        pass: {
-            value: "",
-            valid: false,
-            error: false,
-            placeholder: "Введите пароль:",
             view: false,
             disable: false
         },

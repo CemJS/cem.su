@@ -8,7 +8,7 @@ export default function () {
                     class={[
                         "btn",
                         "w100",
-                        Static.filterCoins.length ? null : "btn_passive"
+                        Static.filterCoins?.length ? null : "btn_passive"
                     ]}
                     onclick={() => {
                         Static.callback(Static.filterCoins)
@@ -17,11 +17,12 @@ export default function () {
                 >
                     Применить
                 </button>
-                <div class="btn_border-wrap">
+                <div class="btn_border-wrap w100">
                     <button
                         class="btn_border h100"
                         onclick={() => {
                             Static.filterCoins = ""
+                            Static.callback(Static.filterCoins)
                         }}
                     >
                         Сбросить

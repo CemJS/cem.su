@@ -1,7 +1,7 @@
 import { Cemjsx } from "cemjs-all"
 import Header from "./display/Header"
 import Main from "./display/Main"
-import Footer from './display/Footer'
+import Footer from "./display/Footer"
 
 export default function () {
   return (
