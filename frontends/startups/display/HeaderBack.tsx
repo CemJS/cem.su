@@ -14,6 +14,7 @@ export default function () {
                 Static.record = null;
                 Fn.log("=1581ce=", front.Variable.$el.header.classList);
               }
+              // Fn.clearData();
             }}
           >
             <i class="i i-arrow-left"></i>

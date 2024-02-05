@@ -296,6 +296,14 @@ $tokenomicaBack: (
         width: 15.625rem;
       }
 
+      &__unit {
+        fill: none;
+        stroke-width: 10;
+        // &-1 {
+        //   stroke: var(--gray);
+        // }
+      }
+
       &__desc {
         display: flex;
         flex-wrap: wrap;
@@ -339,10 +347,17 @@ $tokenomicaBack: (
       flex-direction: column;
       align-items: center;
       gap: 0.625rem;
+      display: flex;
+      align-items: center;
+      text-align: center;
 
       &-img {
         height: 28.875rem;
         width: 21.875rem;
+        max-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img {
           border-radius: var(--borderR);
@@ -367,12 +382,19 @@ $tokenomicaBack: (
 }
 
 @each $index, $back in $tokenomicaBack {
-  .tokenomica_desc_item_line-#{$index} {
+  .tokenomica__desc-item-line-#{$index} {
     background: $back;
   }
 
-  .tokenomica_desc_item_value-#{$index} {
+  .tokenomica__desc-item-value-#{$index} {
     color: $back;
+  }
+}
+
+@each $index, $back in $tokenomicaBack {
+  .tokenomica__unit-#{$index} {
+    stroke: $back;
+    stroke-dasharray: 8 100;
   }
 }
 
@@ -517,6 +539,12 @@ $tokenomicaBack: (
     width: 100%;
     float: left;
     transform: translateZ(0);
+    & img {
+      pointer-events: none;
+      object-fit: cover;
+      width: 100%;
+      min-height: 100%;
+    }
   }
 
   &_nav {
@@ -591,10 +619,11 @@ $tokenomicaBack: (
     height: 2.5rem;
     display: flex;
     justify-content: center;
+    z-index: 11;
     align-items: center;
     transition: all 0.3s ease;
     border-radius: var(--ellipse);
-    background: rgba(255, 255, 255, 0.09);
+    background: var(--light-gray);
     box-shadow: 0rem 0.3125rem 2.75rem 0rem rgba(29, 33, 45, 0.8);
 
     img {

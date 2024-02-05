@@ -499,6 +499,98 @@
   }
 }
 
+.buttonsShow {
+  position: relative;
+
+  .prevBtnEvents,
+  .nextBtnEvents {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    z-index: 3;
+    border-radius: 50%;
+    width: 2.8125rem;
+    height: 2.8125rem;
+    background: rgba(255, 255, 255, 0.09);
+    cursor: pointer;
+    transition: 0.5s;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nextBtnEvents {
+    right: -0.625rem;
+  }
+
+  .prevBtnEvents {
+    left: -0.625rem;
+  }
+
+  .prevBtnEvents:hover,
+  .nextBtnEvents:hover {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.09);
+    top: 50%;
+    transform: scale(0.95) translateY(-50%);
+  }
+}
+
+.slider-hidden {
+  // height: 156px;
+  overflow: hidden;
+
+  .gallery-container {
+    overflow: hidden;
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 4) - 12px);
+    // grid-template-rows: 156px;
+    justify-items: center;
+    align-content: center;
+    gap: 0.8125rem;
+    transition: all 0.4s linear;
+    scroll-behavior: smooth;
+
+    div {
+      height: 100%;
+    }
+
+    div img {
+      object-fit: cover;
+      width: 64%;
+      max-height: 18.75rem;
+      vertical-align: middle;
+      border-radius: 0.3125rem;
+    }
+  }
+
+  /* хром, сафари */
+  .gallery-container::-webkit-scrollbar {
+    width: 0;
+  }
+
+  /* ie 10+ */
+  .gallery-container {
+    -ms-overflow-style: none;
+  }
+
+  /* фф (свойство больше не работает, других способов тоже нет)*/
+  .gallery-container {
+    overflow: -moz-scrollbars-none;
+  }
+}
+
+@media (max-width: 1280px) {
+  .slider-hidden {
+    .gallery-container {
+      grid-auto-columns: calc((100% / 2) - 0.75rem);
+    }
+  }
+}
+
 @media (max-width: 1050px) {
   .ico {
     &__list {
@@ -554,6 +646,11 @@
       &-item {
         grid-template-columns: 17% 83%;
       }
+    }
+  }
+  .slider-hidden {
+    .gallery-container {
+      grid-auto-columns: calc(100%);
     }
   }
 }

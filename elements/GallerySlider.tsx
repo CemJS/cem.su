@@ -42,7 +42,7 @@ class Gallery {
     this.next = next;
     this.prev = prev;
     this.size = element.childElementCount; // определяем кол-во слайдов галереи
-    this.currentSlide = 0;
+    this.currentSlide = Static.activeIndex;
     this.currentSlideWasChanged = false;
     this.settings = {
       margin: options.margin || 0,
@@ -69,8 +69,12 @@ class Gallery {
     this.setParameters();
     this.destroyEvents();
     this.setEvents();
-    this.clickNext();
-    this.clickPrev();
+    setTimeout(() => {
+      Fn.log("=df3ba1=", 1);
+      window.dispatchEvent(new Event("resize"));
+    }, 200);
+    // this.clickNext();
+    // this.clickPrev();
     // setInterval(this.clickNext, 3000);
   }
 
@@ -281,7 +285,7 @@ export { Gallery };
 
 export const init = function (element: HTMLElement) {
   if (!Static.galleryRun) {
-    Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.next, Ref.prev, {
+    Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextGallery, Ref.prevGallery, {
       margin: 10,
     });
   }
@@ -293,22 +297,16 @@ export const Display = function ({ items }) {
   if (!items || !items.length) {
     return <div />;
   }
+  Fn.log("=45caef=", items[0].name);
   return (
     <div style="position: relative;">
       <div init={init}>
         {items?.map((item) => {
           return (
-            <div class="slide">
-              {
-                <div class="startap__team-item slider__item">
-                  <div class="startap__team-item-img">
-                    <img src={`/assets/upload/worldPress/${item.photo}`}></img>
-                  </div>
-                  <span class="startap__team-item-name">{item.descriptionShort}</span>
-                  <span class="startap__team-item-pos">{item.position}</span>
-                </div>
-              }
-            </div>
+            <img
+              src={`/assets/upload/worldPress/${item.name}`}
+              alt="Gallery photo"
+            />
           );
         })}
       </div>
@@ -317,13 +315,13 @@ export const Display = function ({ items }) {
         ref="galleryDots"
       ></div>
       <button
-        ref="prev"
+        ref="prevGallery"
         class="slide__btn slide__btn_prev"
       >
         <img src={back} />
       </button>
       <button
-        ref="next"
+        ref="nextGallery"
         class="slide__btn slide__btn_next"
       >
         <img src={next} />

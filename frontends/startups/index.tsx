@@ -48,6 +48,16 @@ front.loader = async () => {
     },
   ];
 
+  //СЛАЙДЕР
+  Static.currentSlide = 0;
+  Static.maxSlidesPerShift = 2;
+  // Слайдер onmouse
+  Static.isDragging = false;
+  Static.startX;
+  Static.startScrollLeft;
+  Static.x1 = null;
+  Static.y1 = null;
+
   //Categories
   Static.isDrag = false;
   Static.startX;
