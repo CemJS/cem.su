@@ -11,6 +11,11 @@ front.func.test = () => {
 }
 
 front.loader = () => {
+    Static.state = {
+        button: {
+
+        }
+    }
     return
 }
 

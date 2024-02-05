@@ -58,7 +58,7 @@ export default function () {
             <div onclick={() => Fn.initOne("sidebar", {})}>Profile</div>
           ) : (
             <div class="header-auth">
-              <span>Вход</span>
+              <span onclick={() => Fn.initOne("modalAuthtorization", {})}>Вход</span>
               <button
                 class="btn"
                 onclick={() => Fn.initOne("modalRegistration", {})}

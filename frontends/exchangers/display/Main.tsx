@@ -19,7 +19,6 @@ import lineB from '@svg/lines/linesB.svg'
 
 
 export default function () {
-
   return (
     <section class="listExchange effect_lines">
       <div class="wrapper">
@@ -29,19 +28,19 @@ export default function () {
           <table class="listExchange_table table">
             <thead class="listExchange_table_head">
               <tr class="listExchange_table_row">
-       
+
                 <th class="listExchange_table_name disable-tableName">Название</th>
                 <th class="listExchange_table_coins disable-tableName">Коины</th>
-                <th class="listExchange_table_filter">
-                  <img
-                    src={filter}
-                  // onclick={() => {
-                  //   Fn.initOne({
-                  //     name: "modalFilterExchange", data: { coinss: Static.network }
-                  //   })
-                  //   console.log('=page=', Static.network)
-                  // }}
-                  />
+                <th
+                  class="listExchange_table_filter"
+                  onclick={() => Fn.initOne("modalFilterExchange", {
+                    callback: async (filterCoins) => {
+                      Fn.log('=ea10c7=', filterCoins)
+                      // filterCoins - список выбранных монет для фильтрации
+                    }
+                  })}
+                >
+                  <img src={filter} />
                 </th>
               </tr>
             </thead>
@@ -76,13 +75,13 @@ export default function () {
                           observer.observe($el)
                         }
                       }}>
-           
+
                       <td class="listExchange_table_name">{item.name}</td>
                       <td class="listExchange_table_coins">
                         <div class="coins_wrap">
                           {
                             item.listCoins?.map((el: any, index: number) => {
-                              console.log("el", el);
+                              // console.log("el", el);
 
                               return (
                                 <img src={`/contents/coins/${el?.icon}.svg`} class="coins_wrap_item"></img>
