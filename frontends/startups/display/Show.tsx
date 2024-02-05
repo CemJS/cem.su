@@ -1,10 +1,9 @@
 import { Cemjsx, Fn, Static } from "cemjs-all";
 import back from "@svg/icon/prev.svg";
 import next from "@svg/icon/next.svg";
-// import HeaderBack from "./Show";
+import { Display } from "@elements/TeamSlider";
 
 export default function () {
-  Fn.log("=3f0299=", Static.record);
   return (
     <div class="startaps_show effect_lines">
       <div class="page page_list">
@@ -134,26 +133,31 @@ export default function () {
           {Static.record.team?.length ? (
             <section class="startap__team">
               <h2 class="general__title">Команда</h2>
+              <Display items={Static.record.team} />
               <div class="startap__team_wrap">
-                {/* <button class="icoItem__btn icoItem__btn_prev">
+                <button class="icoItem__btn icoItem__btn_prev">
                   <img src={back} />
                 </button>
                 <button class="icoItem__btn icoItem__btn_next">
                   <img src={next} />
-                </button> */}
-                <div class="startap__team-carousel">
-                  {Static.record.team.map((item, index) => {
-                    return (
-                      <div class="startap__team-item">
-                        <div class="startap__team-item-img">
-                          <img src={`/assets/upload/worldPress/${item.photo}`}></img>
-                        </div>
-                        <span class="startap__team-item-name">{item.descriptionShort}</span>
-                        <span class="startap__team-item-pos">{item.position}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+                </button>
+                {/* <div class="startap__team-carousel slider">
+                  <div class="slider__list-wrap">
+                    <ul class="slider__list">
+                      {Static.record.team.map((item, index) => {
+                        return (
+                          <div class="startap__team-item slider__item">
+                            <div class="startap__team-item-img">
+                              <img src={`/assets/upload/worldPress/${item.photo}`}></img>
+                            </div>
+                            <span class="startap__team-item-name">{item.descriptionShort}</span>
+                            <span class="startap__team-item-pos">{item.position}</span>
+                          </div>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div> */}
               </div>
             </section>
           ) : null}

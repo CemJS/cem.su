@@ -334,24 +334,6 @@ $tokenomicaBack: (
   }
 
   &__team {
-    &_wrap {
-      position: relative;
-    }
-
-    &-carousel {
-      max-width: 68.75rem;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      white-space: nowrap;
-      gap: 0.9375rem;
-      overflow: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      scrollbar-width: 0;
-      transition: all 0.4s linear;
-    }
-
     &-item {
       display: flex;
       flex-direction: column;
@@ -359,7 +341,7 @@ $tokenomicaBack: (
       gap: 0.625rem;
 
       &-img {
-        height: 21.875rem;
+        height: 28.875rem;
         width: 21.875rem;
 
         img {
@@ -496,44 +478,141 @@ $tokenomicaBack: (
   }
 }
 
-.slider_section {
-  height: 198px;
-  overflow: hidden;
-
-  .slider_container {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc((100% / 4) - 12px);
-    grid-template-rows: 198px;
-    gap: 16px;
-    transition: all 0.4s linear;
-    scroll-behavior: smooth;
-    overflow-x: scroll;
-
-    div {
-      height: 100%;
+.slider {
+  &__list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    &-wrap {
+      overflow: hidden;
     }
-
-    div img {
-      object-fit: cover;
+  }
+  &__item {
+    flex-basis: 100%;
+    flex-shrink: 0;
+    & img {
       width: 100%;
-      height: 100%;
-      vertical-align: middle;
-      border-radius: 5px;
+    }
+  }
+}
+
+.gallery {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+
+  &_line {
+    overflow: hidden;
+  }
+
+  &_draggable {
+    cursor: grabbing;
+  }
+
+  &_slide {
+    min-height: 1px;
+    width: 100%;
+    float: left;
+    transform: translateZ(0);
+  }
+
+  &_nav {
+    padding: 1rem 0 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  &_dots {
+    display: flex;
+    justify-content: center;
+  }
+
+  &_dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #000;
+    margin: 0.4rem;
+    cursor: pointer;
+    transition: background-color 0.5s, width 0.5s, border-radius 0.5s;
+    border: none;
+    outline: none;
+    padding: 0;
+
+    &_active {
+      background-color: #725790;
+      box-shadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.3);
+      width: 20px;
+      border-radius: 20px;
+    }
+
+    &:hover {
+      background-color: #725790;
+      box-shadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.3);
     }
   }
 
-  .slider-container::-webkit-scrollbar {
-    width: 0;
-  }
+  // &_btns {
+  //   position: absolute;
+  //   top: 40%;
+  //   transform: translateY(-40%);
+  // }
 
-  /* ie 10+ */
-  .slider-container {
-    -ms-overflow-style: none;
+  .card {
+    height: 25rem;
   }
+}
 
-  /* фф (свойство больше не работает, других способов тоже нет)*/
-  .slider-container {
-    overflow: -moz-scrollbars-none;
+.slide {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+    border-radius: var(--borderR);
+  }
+  &__btn {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-radius: var(--ellipse);
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0rem 0.3125rem 2.75rem 0rem rgba(29, 33, 45, 0.8);
+
+    img {
+      height: 1.5625rem;
+    }
+
+    &_prev {
+      left: 1rem;
+    }
+
+    &_next {
+      right: 1rem;
+    }
+
+    &:hover {
+      background: transparent;
+      border: 0.0625rem solid var(--border);
+      transform: translateY(-50%) scale(1.1);
+    }
   }
 }
