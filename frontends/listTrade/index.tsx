@@ -28,7 +28,7 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        Fn.log("=68682c=", "get", json);
+        // Fn.log("=68682c=", "get", json);
 
         Static.records = json;
       },
