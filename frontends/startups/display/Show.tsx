@@ -1,7 +1,9 @@
-import { Cemjsx, Fn, Static } from "cemjs-all";
+import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
 import back from "@svg/icon/prev.svg";
 import next from "@svg/icon/next.svg";
 import { Display } from "@elements/TeamSlider";
+import test from "@images/events/test.jpg";
+import test2 from "@images/events/test2.png";
 
 export default function () {
   return (
@@ -99,20 +101,25 @@ export default function () {
               <h2 class="general__title">Токеномика</h2>
               <div class="tokenomica__board">
                 <div class="tokenomica__pie">
-                  <svg
-                    width="230"
-                    height="140"
-                  >
-                    <rect
-                      x="5"
-                      y="5"
-                      width="220"
-                      height="130"
-                      fill="skyblue"
-                      stroke="steelblue"
-                      stroke-width="5"
-                    />
-                  </svg>
+                  <div class="tokenomica__canvas">
+                    <svg
+                      class="tokenomica__chart"
+                      width="500"
+                      height="500"
+                      viewBox="0 0 50 50"
+                    >
+                      {Static.record.Tokenomica.map((item, index) => {
+                        return (
+                          <circle
+                            class={[`tokenomica__unit-${index}`]}
+                            r="15.9"
+                            cx="50%"
+                            cy="50%"
+                          ></circle>
+                        );
+                      })}
+                    </svg>
+                  </div>
                 </div>
                 <div class="tokenomica__desc">
                   {Static.record.Tokenomica.map((item, index) => {
@@ -121,7 +128,7 @@ export default function () {
                         <div class={["tokenomica__desc-item-line", `tokenomica__desc-item-line-${index}`]}>
                           <span class={["tokenomica__desc-item-value", `tokenomica__desc-item-value-${index}`]}>{item.value}%</span>
                         </div>
-                        <span class="tokenomica__desc-item-name">{item.name}</span>
+                        <span class="tokenomica__desc-item-name">{item.descriptionShort}</span>
                       </div>
                     );
                   })}
@@ -133,7 +140,7 @@ export default function () {
           {Static.record.team?.length ? (
             <section class="startap__team">
               <h2 class="general__title">Команда</h2>
-              <Display items={Static.record.team} />
+              {/* <Display items={Static.record.team} /> */}
               <div class="startap__team_wrap">
                 <button class="icoItem__btn icoItem__btn_prev">
                   <img src={back} />
@@ -141,6 +148,107 @@ export default function () {
                 <button class="icoItem__btn icoItem__btn_next">
                   <img src={next} />
                 </button>
+                <div class="buttonsShow">
+                  <button
+                    ref="next"
+                    class="nextBtnEvents"
+                    onclick={() => {
+                      let gap = 13;
+                      let slidesNum = Ref.gallery_container.children.length;
+                      let itemWidth = Ref.gallery_container_slide.offsetWidth + gap;
+                      let maxWidth = slidesNum * itemWidth;
+                      if (Ref.gallery_container.scrollLeft < maxWidth) {
+                        Ref.gallery_container.scrollLeft += itemWidth * 2;
+                      }
+                    }}
+                  >
+                    <img
+                      src={next}
+                      alt=""
+                    />
+                  </button>
+                  <button
+                    ref="back"
+                    class="prevBtnEvents"
+                    onclick={() => {
+                      let gap = 13;
+                      let itemWidth = Ref.gallery_container_slide.offsetWidth + gap;
+                      Fn.log("=bc4c99=", itemWidth);
+
+                      if (Ref.gallery_container.scrollLeft > 0) {
+                        Ref.gallery_container.scrollLeft -= itemWidth * 2;
+                      }
+                    }}
+                  >
+                    <img
+                      src={back}
+                      alt=""
+                    />
+                  </button>
+                  <div class="slider-hidden">
+                    <div
+                      class="gallery-container"
+                      ref="gallery_container"
+                      onmousedown={(e) => {
+                        Static.isDragging = true;
+                        Static.startX = e.pageX;
+                        Static.startScrollLeft = Ref.gallery_container.scrollLeft;
+                      }}
+                      onmousemove={(e) => {
+                        if (!Static.isDragging) return;
+                        // console.log('=ab8faf=',e.pageX - Static.startX)
+                        e.preventDefault();
+                        Ref.gallery_container.scrollLeft = Static.startScrollLeft - (e.pageX - Static.startX);
+                      }}
+                      onmouseup={() => {
+                        Static.isDragging = false;
+                      }}
+                      ontouchstart={(e) => {
+                        console.log("=d004e1=", e);
+                        const firstTouch = e.touches[0];
+                        Static.x1 = firstTouch.clientX;
+                        Static.y1 = firstTouch.clientY;
+                      }}
+                      ontouchmove={(e) => {
+                        if (!Static.x1 || !Static.y1) return false;
+                        let x2 = e.touches[0].clientX;
+                        let y2 = e.touches[0].clientY;
+                        let xDiff = x2 - Static.x1;
+                        let yDiff = y2 - Static.y1;
+                        console.log("=cb2f82=", xDiff);
+
+                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                          if (xDiff > -5) {
+                            Ref.gallery_container.scrollLeft -= Ref.gallery_container_slide.offsetWidth + 16;
+                          } else if (xDiff > 5) {
+                            Ref.gallery_container.scrollLeft += Ref.gallery_container_slide.offsetWidth + 16;
+                          }
+                        }
+                        Static.x1 = null;
+                        Static.y1 = null;
+                      }}
+                    >
+                      {Static.record.team.map((item) => {
+                        return (
+                          <div
+                            ref="gallery_container_slide"
+                            class=""
+                          >
+                            {
+                              <div class="startap__team-item slider__item">
+                                <div class="startap__team-item-img">
+                                  <img src={`/assets/upload/worldPress/${item.photo}`}></img>
+                                </div>
+                                <span class="startap__team-item-name">{item.descriptionShort}</span>
+                                <span class="startap__team-item-pos">{item.position}</span>
+                              </div>
+                            }
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
                 {/* <div class="startap__team-carousel slider">
                   <div class="slider__list-wrap">
                     <ul class="slider__list">

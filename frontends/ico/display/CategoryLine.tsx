@@ -66,29 +66,31 @@ export default function ({ items, active }) {
         y1 = null;
       }}
     >
-      {items.map((item: any, index: number) => {
-        return (
-          <li
-            ref="categoryEl"
-            draggable="false"
-            class={["category__item", active == item.name ? "category__item_active" : null]}
-            onclick={() => {
-              if (Static.makeFilter.cat == item.name) {
-                return;
-              }
-              Static.makeFilter.cat = item.name;
+      {items
+        ? items.map((item: any, index: number) => {
+            return (
+              <li
+                ref="categoryEl"
+                draggable="false"
+                class={["category__item", active == item.name ? "category__item_active" : null]}
+                onclick={() => {
+                  if (Static.makeFilter.cat == item.name) {
+                    return;
+                  }
+                  Static.makeFilter.cat = item.name;
 
-              front.Services.functions.sendApi("/api/events/Icos", {
-                action: "get",
-                category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
-                type: Static.makeFilter.active,
-              });
-            }}
-          >
-            <span>{item.name}</span>
-          </li>
-        );
-      })}
+                  front.Services.functions.sendApi("/api/events/Icos", {
+                    action: "get",
+                    category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
+                    type: Static.makeFilter.active,
+                  });
+                }}
+              >
+                <span>{item.name}</span>
+              </li>
+            );
+          })
+        : null}
     </ul>
   );
 }
