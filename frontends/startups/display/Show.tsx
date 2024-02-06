@@ -6,6 +6,7 @@ import test from "@images/events/test.jpg";
 import test2 from "@images/events/test2.png";
 
 export default function () {
+  let currentTokenomica = -0;
   return (
     <div class="startaps_show effect_lines">
       <div class="page page_list">
@@ -115,7 +116,11 @@ export default function () {
                             r="15.9"
                             cx="50%"
                             cy="50%"
-                          ></circle>
+                            stroke-dasharray={`${item.value} 100`}
+                            stroke-dashoffset={index == 0 ? "-0" : currentTokenomica}
+                          >
+                            {(currentTokenomica -= item.value)}
+                          </circle>
                         );
                       })}
                     </svg>
@@ -158,7 +163,7 @@ export default function () {
                       let itemWidth = Ref.gallery_container_slide.offsetWidth + gap;
                       let maxWidth = slidesNum * itemWidth;
                       if (Ref.gallery_container.scrollLeft < maxWidth) {
-                        Ref.gallery_container.scrollLeft += itemWidth * 2;
+                        Ref.gallery_container.scrollLeft += itemWidth;
                       }
                     }}
                   >
@@ -173,10 +178,9 @@ export default function () {
                     onclick={() => {
                       let gap = 13;
                       let itemWidth = Ref.gallery_container_slide.offsetWidth + gap;
-                      Fn.log("=bc4c99=", itemWidth);
 
                       if (Ref.gallery_container.scrollLeft > 0) {
-                        Ref.gallery_container.scrollLeft -= itemWidth * 2;
+                        Ref.gallery_container.scrollLeft -= itemWidth;
                       }
                     }}
                   >
@@ -286,14 +290,9 @@ export default function () {
                       <div
                         class="icoItem__carousel-item"
                         onclick={() => {
-                          // Fn.initOne({
-                          //   name: "modalGallery", ifOpen: (front) => {
-                          //     setTimeout(() => {
-                          //       front.clearData()
-                          //     }, 500);
-                          //   }
-                          // })
-                          // cross({ records: Static.record.media })
+                          let records = Static.record.media;
+                          let activeIndex = index;
+                          Fn.initOne("modalGallery", { records, activeIndex });
                         }}
                       >
                         <img
