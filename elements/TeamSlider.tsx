@@ -15,11 +15,13 @@ const GalleryNavRightClassName = "gallery_nav_right";
 
 class Gallery {
   element: HTMLElement;
+  elementCount: number;
   dots: HTMLElement;
   next: HTMLElement;
   prev: HTMLElement;
   size: number; // количество слайдов галереи
   currentSlide: number; // первый слайд
+  countSlides: number;
   lineNode: any;
   dotsNode: any;
   slideItems: any;
@@ -38,10 +40,19 @@ class Gallery {
 
   constructor(element: HTMLElement, dots: HTMLElement, next: HTMLElement, prev: HTMLElement, options = { margin: 10 }) {
     this.element = element;
+    this.elementCount = element.childElementCount;
     this.dots = dots;
     this.next = next;
     this.prev = prev;
-    this.size = element.childElementCount; // определяем кол-во слайдов галереи
+    if (window.innerWidth > 1100) {
+      this.countSlides = 3;
+    } else if (window.innerWidth > 768) {
+      this.countSlides = 2;
+    } else {
+      this.countSlides = 1;
+    }
+    Fn.log("=f83b49=", this.countSlides);
+    this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
     this.settings = {
@@ -69,8 +80,7 @@ class Gallery {
     this.setParameters();
     this.destroyEvents();
     this.setEvents();
-    this.clickNext();
-    this.clickPrev();
+    this.resizeGallery();
     // setInterval(this.clickNext, 3000);
   }
 
@@ -100,16 +110,19 @@ class Gallery {
   }
 
   setParameters() {
+    // this.manageHTML()
     const coordsContainer = this.element.getBoundingClientRect();
     this.widthContainer = coordsContainer.width;
     this.maximumX = -(this.size - 1) * (this.widthContainer + this.settings.margin);
     this.x = -this.currentSlide * (this.widthContainer + this.settings.margin);
+    this.size = Math.ceil(this.elementCount / this.countSlides);
+    Fn.log("=e64005=", this.countSlides);
 
     this.setStyleTransition();
     this.lineNode.style.width = `${this.size * (this.widthContainer + this.settings.margin)}px`;
     this.setStylePosition();
     Array.from(this.lineNode.children).forEach((slideNode: any) => {
-      slideNode.style.width = `${this.widthContainer}px`;
+      slideNode.style.width = `${this.widthContainer / this.countSlides}px`;
       slideNode.style.marginRight = `${this.settings.margin}px`;
     });
   }
@@ -137,6 +150,7 @@ class Gallery {
 
   resizeGallery() {
     this.setParameters();
+    // Fn.initAll();
   }
 
   clickDots(e) {
@@ -281,7 +295,7 @@ export { Gallery };
 
 export const init = function (element: HTMLElement) {
   if (!Static.galleryRun) {
-    Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.next, Ref.prev, {
+    Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextTeam, Ref.prevTeam, {
       margin: 10,
     });
   }
@@ -317,13 +331,13 @@ export const Display = function ({ items }) {
         ref="galleryDots"
       ></div>
       <button
-        ref="prev"
+        ref="prevTeam"
         class="slide__btn slide__btn_prev"
       >
         <img src={back} />
       </button>
       <button
-        ref="next"
+        ref="nextTeam"
         class="slide__btn slide__btn_next"
       >
         <img src={next} />

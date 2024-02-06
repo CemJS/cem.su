@@ -84,7 +84,7 @@ export default function () {
                 </div>
               ) : (
                 <div class="startap__roadmap-board">
-                  {Static.record.map((item, index) => {
+                  {Static.record.roadMap.map((item, index) => {
                     return (
                       <div class="startap__roadmap-board-item">
                         <span class="text_important">{item.year}</span>
@@ -112,6 +112,7 @@ export default function () {
                       {Static.record.Tokenomica.map((item, index) => {
                         return (
                           <circle
+                            ref={`circle-${index}`}
                             class={[`tokenomica__unit-${index}`]}
                             r="15.9"
                             cx="50%"
@@ -129,7 +130,15 @@ export default function () {
                 <div class="tokenomica__desc">
                   {Static.record.Tokenomica.map((item, index) => {
                     return (
-                      <div class="tokenomica__desc-item">
+                      <div
+                        onmouseover={() => {
+                          Ref[`circle-${index}`].classList.add("hovered");
+                        }}
+                        onmouseout={() => {
+                          Ref[`circle-${index}`].classList.remove("hovered");
+                        }}
+                        class="tokenomica__desc-item"
+                      >
                         <div class={["tokenomica__desc-item-line", `tokenomica__desc-item-line-${index}`]}>
                           <span class={["tokenomica__desc-item-value", `tokenomica__desc-item-value-${index}`]}>{item.value}%</span>
                         </div>
@@ -145,8 +154,8 @@ export default function () {
           {Static.record.team?.length ? (
             <section class="startap__team">
               <h2 class="general__title">Команда</h2>
-              {/* <Display items={Static.record.team} /> */}
-              <div class="startap__team_wrap">
+              <Display items={Static.record.team} />
+              {/* <div class="startap__team_wrap">
                 <button class="icoItem__btn icoItem__btn_prev">
                   <img src={back} />
                 </button>
@@ -270,7 +279,7 @@ export default function () {
                     </ul>
                   </div>
                 </div> */}
-              </div>
+              {/* </div> */}
             </section>
           ) : null}
 
