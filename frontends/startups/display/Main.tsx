@@ -1,10 +1,19 @@
 import { Cemjsx, Fn, Static, front } from "cemjs-all";
 import CategoryLine from "./CategoryLine";
 import Show from "./Show";
+import notFound from "@svg/icon/notFound.svg";
 
 const RenderItems = function ({ items }) {
   if (!items.length) {
-    return <div class="news__inner">нет записей</div>;
+    return (
+      <div class="notFound">
+        <img
+          src={notFound}
+          alt="Нет записей"
+        />
+        Нет записей
+      </div>
+    );
   }
   return (
     <section class="startaps">
