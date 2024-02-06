@@ -115,7 +115,9 @@ const RenderItems = function ({ items }) {
                     <p>{item.description}</p>
                     <p class="ico__list-item-finance pt_15">
                       <span class="text_important">${item.nowMoney}</span> / ${item.targetMoney}
-                      <span class="pl_15 ico__percent">{item.targetMoney <= 0 ? "0" : Math.round(((item.nowMoney && item.nowMoney > 0 ? item.nowMoney : 0) * 100) / item.targetMoney)}%</span>
+                      <span class="pl_15 ico__percent">
+                        {item.targetMoney ? (item.targetMoney <= 0 ? "0" : Math.round(((item.nowMoney && item.nowMoney > 0 ? item.nowMoney : 0) * 100) / item.targetMoney)) : "0"}%
+                      </span>
                     </p>
                   </div>
 
