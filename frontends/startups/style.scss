@@ -396,47 +396,11 @@ $tokenomicaBack: (
   .tokenomica__unit-#{$index} {
     stroke: $back;
     stroke-width: 2;
-  }
-}
-
-.unit {
-  fill: none;
-  stroke-width: 3;
-  cursor: pointer;
-
-  animation-name: render;
-  animation-duration: 1.5s;
-  transition-property: all;
-  transition-duration: 0.5s;
-}
-
-.unit:hover,
-.hovered {
-  opacity: 0.8;
-  stroke-width: 4;
-}
-
-.unit:nth-child(1) {
-  stroke: var(--akebi_purple);
-  stroke-dasharray: 33.3 100;
-  // stroke-dashoffset: -33.3;
-}
-
-.unit:nth-child(2) {
-  stroke: var(--blue_oyster_cult);
-  stroke-dasharray: 33.3 100;
-  stroke-dashoffset: -33.3;
-}
-
-.unit:nth-child(3) {
-  stroke: var(--blue_oyster_cult);
-  stroke-dasharray: 33.3 100;
-  stroke-dashoffset: -66.6;
-}
-
-@keyframes render {
-  0% {
-    stroke-dasharray: 0 100;
+    transition: all 0.3s ease;
+    &:hover {
+      opacity: 0.8;
+      stroke-width: 4;
+    }
   }
 }
 
