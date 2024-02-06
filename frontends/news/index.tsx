@@ -61,8 +61,7 @@ front.loader = async () => {
             fn: ({ data }) => {
                 let json = front.Services.functions.strToJson(data)
                 if (!json) { return }
-                Fn.log('=0b636f=', "Static.records", "get", json)
-
+                // Fn.log('=0b636f=', "Static.records", "get", json)
                 Static.records = json
             },
         },
@@ -76,6 +75,27 @@ front.loader = async () => {
         }
     ]
     Events.news = await Fn.event(url, listener)
+
+    if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
+        let url = front.Services.functions.makeUrlEvent("News", {
+            action: "show",
+            id: front.Variable.DataUrl[2]
+        });
+
+        let listener = [
+            {
+                type: "get",
+                fn: ({ data }) => {
+                    let json = front.Services.functions.strToJson(data);
+                    if (!json) {
+                        return;
+                    }
+                    Static.record = json;
+                },
+            },
+        ];
+        Events.news = await Fn.event(url, listener);
+    }
 
     return
 }
