@@ -27,8 +27,6 @@ export default function () {
 
   let answer: any = []
   let value: any = ""
-console.log("static", Static.records);
-
 
   return (
     <div class="users">
@@ -130,10 +128,10 @@ console.log("static", Static.records);
                       "role": checkBox,
                       "uuid": `${localStorage?.uuid}`,
                     })
+                    console.log("static", Static.records);
                   }}/>
                 <label class="checkbox__label" for="expert">Эксперты</label>
               </div>
-
               <button class="users__reset_filters"
                 onclick={() => {
                   // this.fn("resetFilter")
