@@ -31,16 +31,20 @@ export default function () {
 
                 <th class="listExchange_table_name disable-tableName">Название</th>
                 <th class="listExchange_table_coins disable-tableName">Коины</th>
-                <th
-                  class="listExchange_table_filter"
+                <th class="listExchange_table_filter"
                   onclick={() => Fn.initOne("modalFilterExchange", {
                     filterCoins: Static.filterCoins,
                     callback: async (filterCoinsFromModal: []) => {
                       Static.filterCoins = filterCoinsFromModal
+                      // console.log("filterCoins", Static.filterCoins);
+                      let res = front.Services.functions.sendApi("/api/events/Exchanges", {
+                        "action": "get",
+                        "coins": Static.filterCoins,
+                        "uuid": `${localStorage?.uuid}`,
+                      })
                       if (!filterCoinsFromModal.length) {
                         return;
                       }
-                      // filterCoins - список выбранных монет для фильтрации
                     }
                   })}
                 >
