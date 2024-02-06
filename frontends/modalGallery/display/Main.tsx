@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
+import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
 import { Display } from "@elements/GallerySlider";
 
 export default function () {
@@ -10,6 +10,8 @@ export default function () {
         if (e.target === Ref.modalBody) {
           setTimeout(() => {
             Fn.clearData();
+            front.Variable.$el.body.classList.remove("activeModal");
+            front.Variable.$el.body.style.overflow = "auto";
           }, 5);
         }
       }}
@@ -19,20 +21,6 @@ export default function () {
         ref="modalBody"
       >
         <div class="modalWindow_content modalWindow_content_gallery">
-          <button
-            class="modalWindow_button_close"
-            onclick={(e) => {
-              setTimeout(() => {
-                Fn.clearData();
-              }, 5);
-              Ref.modalWindow.classList.remove("activeModal");
-              Static.body.classList.remove("activeModal");
-              Static.body.style.overflow = "auto";
-            }}
-          >
-            X
-          </button>
-
           <main class="modalWindow_main">
             <div class="modalGallery_carousel">
               <Display items={Static.records} />

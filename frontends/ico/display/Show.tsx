@@ -3,6 +3,7 @@ import back from "@svg/icon/prev.svg";
 import next from "@svg/icon/next.svg";
 
 export default function () {
+  Fn.log("=3dd67e=", Static.record?.targetMoney);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
@@ -127,7 +128,11 @@ export default function () {
               </div>
               <div class="icoItem__tallage-item">
                 <span class="icoItem__tallage-item-percent">
-                  {Static.record?.targetMoney <= 0 ? "0%" : Math.round(((Static.record.nowMoney && Static.record.nowMoney > 0 ? Static.record.nowMoney : 0) * 100) / Static.record.targetMoney)}
+                  {Static.record?.targetMoney
+                    ? Static.record?.targetMoney <= 0
+                      ? "0%"
+                      : Math.round(((Static.record.nowMoney && Static.record.nowMoney > 0 ? Static.record.nowMoney : 0) * 100) / Static.record.targetMoney)
+                    : "0"}
                 </span>
               </div>
             </div>

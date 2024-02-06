@@ -284,7 +284,7 @@ $tokenomicaBack: (
     .tokenomica {
       &__board {
         border-radius: var(--borderR);
-        background: rgba(255, 255, 255, 0.09);
+        background: var(--light-gray);
         box-shadow: 0rem 0.3125rem 2.75rem 0rem rgba(29, 33, 45, 0.8);
         padding: 1.5625rem 1.5625rem 2.1875rem 1.5625rem;
         display: grid;
@@ -292,8 +292,8 @@ $tokenomicaBack: (
         gap: 1.5625rem;
       }
 
-      &__pie {
-        width: 15.625rem;
+      &__chart {
+        fill: var(--light-gray);
       }
 
       &__unit {
@@ -309,6 +309,7 @@ $tokenomicaBack: (
         flex-wrap: wrap;
         column-gap: 1.875rem;
         row-gap: 2.5rem;
+        justify-content: space-evenly;
 
         &-item {
           display: flex;
@@ -394,7 +395,7 @@ $tokenomicaBack: (
 @each $index, $back in $tokenomicaBack {
   .tokenomica__unit-#{$index} {
     stroke: $back;
-    stroke-dasharray: 8 100;
+    stroke-width: 2;
   }
 }
 
@@ -436,67 +437,6 @@ $tokenomicaBack: (
 @keyframes render {
   0% {
     stroke-dasharray: 0 100;
-  }
-}
-
-@media (max-width: 992px) {
-  .startaps {
-    &__item {
-      grid-template-columns: 15% 80%;
-      gap: 0.9375rem;
-
-      &-info {
-        h5 {
-          font-size: 1.125rem;
-          margin-bottom: 0.625rem;
-        }
-
-        p {
-          font-size: 1rem;
-          line-height: 1.375rem;
-        }
-      }
-    }
-  }
-  .startap {
-    &_text {
-      height: auto !important;
-    }
-    &__info {
-      display: flex;
-      flex-direction: column;
-      &-item {
-        gap: 1.5625rem;
-      }
-      &_cover {
-        margin: 0 auto;
-      }
-    }
-  }
-}
-
-@media (max-width: 767px) {
-  .startaps {
-    &_inner {
-      grid-template-columns: 1fr;
-      grid-template-rows: 8.125rem;
-    }
-
-    &__item {
-      &-info {
-        h5 {
-          font-size: 1.25rem;
-          margin-bottom: 0.9375rem;
-        }
-
-        p {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
-  .category {
-    top: 0.1rem;
   }
 }
 
@@ -543,7 +483,7 @@ $tokenomicaBack: (
       pointer-events: none;
       object-fit: cover;
       width: 100%;
-      min-height: 100%;
+      min-height: 434px;
     }
   }
 
@@ -643,5 +583,87 @@ $tokenomicaBack: (
       border: 0.0625rem solid var(--border);
       transform: translateY(-50%) scale(1.1);
     }
+  }
+}
+
+@media (max-width: 992px) {
+  .startaps {
+    &__item {
+      grid-template-columns: 15% 80%;
+      gap: 0.9375rem;
+
+      &-info {
+        h5 {
+          font-size: 1.125rem;
+          margin-bottom: 0.625rem;
+        }
+
+        p {
+          font-size: 1rem;
+          line-height: 1.375rem;
+        }
+      }
+    }
+  }
+  .startap {
+    &__tokenomica {
+      .tokenomica {
+        &__board {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+    &_text {
+      height: auto !important;
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      &-item {
+        gap: 1.5625rem;
+      }
+      &_cover {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .startaps {
+    &_inner {
+      grid-template-columns: 1fr;
+      grid-template-rows: 8.125rem;
+    }
+
+    &__item {
+      &-info {
+        h5 {
+          font-size: 1.25rem;
+          margin-bottom: 0.9375rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .startap {
+    &__tokenomica {
+      .tokenomica {
+        &__chart {
+          width: 18.75rem;
+          height: 18.75rem;
+        }
+      }
+    }
+  }
+
+  .category {
+    top: 0.1rem;
   }
 }
