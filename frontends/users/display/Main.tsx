@@ -92,7 +92,7 @@ export default function () {
                       "role": checkBox,
                       "uuid": `${localStorage?.uuid}`,
                     })
-                  }}/>
+                  }} />
                 <label class="checkbox__label" for="basic">Пользователи</label>
               </div>
 
@@ -110,7 +110,7 @@ export default function () {
                       "role": checkBox,
                       "uuid": `${localStorage?.uuid}`,
                     })
-                  }}/>
+                  }} />
                 <label class="checkbox__label" for="creator">Создатели контента</label>
               </div>
 
@@ -129,7 +129,7 @@ export default function () {
                       "uuid": `${localStorage?.uuid}`,
                     })
                     console.log("static", Static.records);
-                  }}/>
+                  }} />
                 <label class="checkbox__label" for="expert">Эксперты</label>
               </div>
               <button class="users__reset_filters"
@@ -149,7 +149,19 @@ export default function () {
                   <div class="users__item">
                     <div class="users__card-top">
                       <div class="users__item_header">
-                        <a class="avatar avatar__users" href="#">
+                        <a class="avatar avatar__users" 
+                        href="#"
+                        onclick={async () => {
+                          const getUser = {
+                            "action": "Get",
+                            "id": item?.id,
+                            "uuid": `${localStorage?.uuid}`
+                          }
+                          let userContent = await front.Services.functions.sendApi("/api/private/Users", getUser)
+                          //проверка на error
+                          Static.contentUser = userContent?.result
+                          Fn.linkChange(`/user/${item?.id}`)
+                        }}>
                           <div class="avatar__icon">
                             <img class="avatar__photo"
                               src={item.avatar?.name
@@ -217,8 +229,8 @@ export default function () {
                       </div>
                     </div>
                     <div class="users__item_buttons">
-                      <button class="users__btn btn btn_gradient">Написать</button>
-                      <button class="users__btn btn btn_gradient">Подписаться</button>
+                      <button class="users_btn-padding btn btn_gradient mt-10">Написать</button>
+                      <button class="users_btn-padding btn btn_gradient mt-10">Подписаться</button>
                     </div>
                   </div>
                 )

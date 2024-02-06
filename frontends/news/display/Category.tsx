@@ -1,13 +1,6 @@
-import { Cemjsx, Func, Static, Ref, Events, front } from "cemjs-all"
+import { Cemjsx, Func, Static, Ref, Events, front, Fn } from "cemjs-all"
 import category from '@json/category'
 
-
-const lang = {
-  category: {
-    finince: "Финансы",
-    blockchain: "Блокчейн"
-  }
-}
 export default function () {
   return (
     <div class="wrapper mt-45">
@@ -33,8 +26,14 @@ export default function () {
               Static.activeItem === "all" ? "category-line__item_active" : null
             ]}
             onclick={() => {
+              // if (Static.activeItem == "all") return
               Static.activeItem = "all"
-              Events.news.change(front.Services.functions.makeUrlEvent("News", { lang: "ru" }))
+              // Events.news.change(front.Services.functions.makeUrlEvent("News", { lang: "ru" }))
+              front.Services.functions.sendApi("/api/events/News", {
+                action: "category",
+                category: Static.activeItem,
+                lang: "ru",
+              });
             }}
           >
             Все
@@ -47,20 +46,18 @@ export default function () {
                     Static.activeItem === item.name ? "category-line__item_active" : null
                   ]}
                   onclick={(e) => {
+                    // if (Static.activeItem == item.name) return
+
                     Static.activeItem = item.name.replace(/ +/g, '').trim()
-                    Events.news.change(front.Services.functions.makeUrlEvent("News", {
+                    front.Services.functions.sendApi("/api/events/News", {
                       action: "category",
+                      category: Static.activeItem,
                       lang: "ru",
-                      category: Static.activeItem
-                    }))
-                    e.currentTarget.classList.toggle("category-line__item_active")
-                    // e.currentTarget.scrollIntoView({
-                    //     inline: "center"
-                    // })
+                    });
+
                   }}
                 >
                   {item.name}
-                  {/* {lang.category[item.name]} */}
                 </li>
               )
             })

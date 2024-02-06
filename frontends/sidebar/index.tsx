@@ -40,7 +40,7 @@ front.loader = () => {
     {
       icon: "qa",
       name: "Вопросы и ответы",
-      link: "#",
+      link: "/question",
     },
     {
       icon: "faq",
