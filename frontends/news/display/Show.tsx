@@ -31,7 +31,7 @@ export default function () {
   return (
     <div>
       <HeaderBack title={Static.record?.title} />
-      <div class="mt-45 new">
+      <div class="mt-65 new">
         <h1 class="new-title">{Static.record?.title}</h1>
 
         <div class="new-content">
