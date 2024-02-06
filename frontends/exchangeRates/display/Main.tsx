@@ -7,7 +7,7 @@ export default function () {
         <section class="exchangerates effect_lines">
             <div>
                 <h1 class="general__title">Курсы валют</h1>
-                <table class="" cellspacing="0" cellpadding="10" align="center">
+                <table class="table" cellspacing="0" cellpadding="10" align="center">
                     <thead class="exchangerates-table__head">
                         <tr class="exchangerates-table__row">
                             <th class="exchangerates-table__index">#</th>

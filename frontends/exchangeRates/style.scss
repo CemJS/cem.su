@@ -1,5 +1,6 @@
 .exchangerates {
   padding-top: 60px;
+
   &_favorites {
     img {
       height: 20px;
@@ -14,6 +15,7 @@
 
     &__head {
       font-size: 18px;
+
       .exchangerates-table__row {
         background: var(--back_opacity);
       }
@@ -21,11 +23,13 @@
 
     &__row {
       display: grid;
+      border-bottom: 1px solid var(--border);
       grid-template-columns: repeat(4, 1fr);
       height: 55px;
 
       th,
       td {
+        font-size: clamp(10px, 3vw, 18px);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -34,6 +38,7 @@
 
     &__body {
       font-weight: 600;
+      border: 1px solid var(--border);
 
       .exchangerates-table__row {
         height: 70px;
@@ -57,9 +62,11 @@
 
   &_percent {
     font-weight: 600;
+
     &--rise {
       color: #2DCA73;
     }
+
     &--recession {
       color: #E84142;
     }
