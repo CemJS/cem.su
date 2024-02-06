@@ -1,7 +1,6 @@
 import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all"
 
 export default function () {
-
   return (
     <section class="listTrade">
       <div class="wrapper">
@@ -57,7 +56,6 @@ export default function () {
                             entries.forEach(async entry => {
                               if (entry.isIntersecting) {
                                 observer.unobserve($el)
-                                console.log("trueeeeeeeeeeee");
                                 let res = front.Services.functions.sendApi("/api/events/Trades", {
                                   "action": "skip",
                                   "category": Static.tradeFilter.cat,

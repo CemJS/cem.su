@@ -22,7 +22,7 @@ front.func.close = function () {
 }
 
 front.loader = async () => {
-
+    // Static.filterCoins
     Static.records, Static.coins = []
     let url = front.Services.functions.makeUrlEvent("Coins", {})
     let listener = [
@@ -31,7 +31,7 @@ front.loader = async () => {
             fn: ({ data }) => {
                 let json = front.Services.functions.strToJson(data)
                 if (!json) { return }
-                Fn.log('=0b636f=', "Static.records", "get", json)
+                // Fn.log('=0b636f=', "Static.records", "get", json)
                 Static.records = json
                 Static.coins = json
             },
@@ -46,9 +46,6 @@ front.loader = async () => {
         }
     ]
     Events.coins = await Fn.event(url, listener)
-    // Static.coins = Static.records
-
-    Static.filterCoins = []
 
     return
 }
