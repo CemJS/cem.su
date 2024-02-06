@@ -68,6 +68,7 @@ export default function ({ items, active }) {
     >
       {items
         ? items.map((item: any, index: number) => {
+            item.name == "Все" ? (item.name = "All") : null;
             return (
               <li
                 ref="categoryEl"
