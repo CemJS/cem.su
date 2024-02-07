@@ -1,9 +1,6 @@
 import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
-import back from "@svg/icon/prev.svg";
-import next from "@svg/icon/next.svg";
 
 export default function () {
-  Fn.log("=3dd67e=", Static.record?.targetMoney);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }

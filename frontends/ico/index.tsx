@@ -4,11 +4,6 @@ import Navigation from "./navigation";
 // front.degubStatic = true;
 
 front.listener.finish = () => {
-  // front.Services.functions.sendApi("/api/events/Icos", {
-  //   action: "get",
-  //   category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
-  //   type: Static.makeFilter.active,
-  // });
   return;
 };
 
@@ -49,11 +44,11 @@ front.func.throttle = (timeout) => {
 // };
 
 front.loader = async () => {
+  Fn.log("=38f35e=", Static.record);
   Static.makeFilter = {
     cat: "All",
     active: "Last",
   };
-  // fn("addEvent");
   Static.activeIndex = 0;
 
   //Categories
