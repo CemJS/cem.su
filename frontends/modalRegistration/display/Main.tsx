@@ -30,7 +30,7 @@ const Step1 = function () {
                         autocomplete="off"
                         oninput={(e: any) => {
                             Static.form.email.value = e.target.value;
-                            // front.Services.functions.formEmail(this.Static.form.email)
+                            front.Services.functions.formEmail(Static.form.email)
                             Func.checkForm()
                         }} />
                     <div class="modalWindow_field_labelLine">
@@ -147,14 +147,13 @@ const Step1 = function () {
                                 // Static.waitCode ? "btn_hidden" : null
                             ]}
                             onclick={async () => {
-                                // if (!Static.form.isValid) {
-                                //     return
-                                // }
-                                // Func.sendCode()
-                                // return
-                                Fn.log('=6c0602=', 123)
-                                let answer = await front.Services.functions.sendApi(`/api/Auth`, { email: "1@yandex.ru", password: "2" })
-                                Fn.log('=c2e447=', answer)
+                                if (!Static.form.isValid) {
+                                    return
+                                }
+
+                                Func.sendCode()
+                                return
+
                                 // if (answer.error) {
                                 //     Static.form.nickName.error = "Логин занят!"
                                 //     Static.form.nickName.valid = false
