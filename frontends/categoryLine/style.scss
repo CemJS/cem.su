@@ -111,3 +111,11 @@
     }
   }
 }
+
+@media(max-width: 464px) {
+  .category-line {
+    &__arrow {
+      width: 3rem;
+    }
+  }
+}

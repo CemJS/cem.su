@@ -264,3 +264,9 @@
   --rose-800: #9f1239;
   --rose-900: #881337;
 }
+
+@media(max-width: 464px) {
+  :root {
+    --p: 1rem;
+  }
+}

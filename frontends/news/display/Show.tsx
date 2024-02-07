@@ -31,7 +31,7 @@ export default function () {
   return (
     <div>
       <HeaderBack title={Static.record?.title} />
-      <div class="mt-65 new">
+      <div class="mt-50 new">
         <h1 class="new-title">{Static.record?.title}</h1>
 
         <div class="new-content">
@@ -45,8 +45,8 @@ export default function () {
           <div
             class="new-content__text"
             init={($el) => {
-              this.Services.functions.editText(Static.record?.text, $el)
-              // this.Services.functions.searchLink(Static.record?.text, $el)
+              // this.Services.functions.editText(Static.record?.text, $el)
+              this.Services.functions.searchLink(Static.record?.text, $el)
             }}
           ></div>
         </div>
