@@ -11,9 +11,9 @@ export default function () {
                 <div class="c-avataricon  ">
                     <img class="c-avataricon__photo" src={`/assets/upload/avatar/${Static.record?.avatar?.name}`} />
                     <img class="c-avataricon__frame"
-                        src={"/contents/images/" + (Static.record?.frame?.name === "rainbow.gif" ? "rainbow.gif" :
-                            Static.record?.frame?.name === "default.svg" ? "default.svg" :
-                                Static.record?.frame?.name === "animate.gif" ? "animate.gif" : "")} />
+                        src={`/contents/images/${Static.record?.frame?.name}`
+                        
+                        } />
                     <div>
                         <div class="c-avataricon__level dn">
                             <img src="" />
