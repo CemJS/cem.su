@@ -82,7 +82,7 @@ front.func.checkForm = async function () {
             //     return
             // }
 
-            Func.clickNext()
+            // Func.clickNext()
             return
         } else {
             Static.form.isValid = false

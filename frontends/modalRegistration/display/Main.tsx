@@ -258,6 +258,7 @@ const Step2 = function () {
                             Static.form.country.valid = true
                             Static.form.country.value = "ru"
                             Static.form.country.nameOrig = "Россия"
+                            Static.form.isValid = true
                             // Fn.initOne("modalCountry", {})
                         }}
                     >
@@ -274,11 +275,11 @@ const Step2 = function () {
                             Static.form.isValid ? null : "btn_passive"
                         ]}
                         onclick={async () => {
-                            // if (!Static.form.isValid) {
-                            //     return
-                            // }
+                            if (!Static.form.isValid) {
+                                return
+                            }
 
-                            let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "registration", email: Static.form.email.value, step: Static.currentStep })
+                            let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "registration", lang: Static.form.mainLang.value, country: Static.form.country.value, email: Static.form.email.value, step: Static.currentStep })
                             if (answer.error) {
                                 alert("Error")
                                 return
@@ -384,9 +385,27 @@ const Step3 = function () {
                             Static.form.isValid ? null : "btn_passive"
                         ]}
                         onclick={async () => {
-                            // if (!Static.form.isValid) {
-                            //     return
-                            // }
+                            if (!Static.form.isValid) {
+                                return
+                            }
+
+                            let answer = await front.Services.functions.sendApi(`/api/Register`, {
+                                action: "registration",
+                                email: Static.form.email.value,
+                                nickname: Static.form.nickName.value,
+                                lang: Static.form.mainLang.value,
+                                country: Static.form.country.value,
+                                pass: Static.form.pass.value,
+                                repass: Static.form.rePass.value,
+                                step: Static.currentStep
+                            })
+                            if (answer.error) {
+                                Static.form.email.error = "Пользователь с таким email уже существует!"
+                                Static.form.email.valid = false
+                                // Fn.init()
+                                return
+                            }
+
                             Func.clickNext()
                             return
                         }}>
@@ -411,8 +430,10 @@ const Step4 = function () {
                         class="btn btn_timing"
                         onclick={() => {
                             // setTimeout(() => {
-                            //     this.clearData()
-                            // }, 5)
+                            //     // Fn.clearData()
+                            // Func.close()
+
+                            // }, 2000)
                             Func.close()
                             // Fn.initOne("modalAuth", {})
                         }}

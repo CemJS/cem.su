@@ -1,4 +1,4 @@
-// import validator from "validator";
+import validator from "validator";
 
 export const validEmail = function (email: string) {
   return String(email)

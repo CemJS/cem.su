@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "cemjs-all": "^1.1.14",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "validator": "^13.11.0"
   },
   "main": "index.js",
   "author": "crypto-emergency.com",
