@@ -19,6 +19,11 @@
 
     &__head {
       font-size: 18px;
+
+   &-btnBlock {
+    display: flex;
+    justify-content: center;
+   }
     }
 
     &__row {
@@ -68,6 +73,10 @@
     @media(max-width: 750px) {
       .listTrade__table__position-end {
         justify-content: start;
+      }
+
+      .listTrade__table__head-btnBlock {
+        padding-bottom: 30px;
       }
     }
   }
@@ -191,8 +200,7 @@
   z-index: 1;
 
   @media (max-width: 750px) {
-    padding: 0 12px;
-    height: 30px;
+
     font-size: 18px;
     line-height: 14px;
     border: 0;
@@ -213,7 +221,7 @@
   transition: 1s;
 
   @media (max-width: 750px) {
-    height: 30px;
+    // height: 30px;
   }
 }
 
