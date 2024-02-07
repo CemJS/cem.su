@@ -25,7 +25,7 @@
       display: grid;
       align-items: center;
       grid-template-columns: 1fr 1fr 1fr 1fr;
-      // border: 1px solid var(--borderR);
+      min-height: 80px;
 
       th {
         padding: 10px 0;
@@ -67,7 +67,7 @@
 
     @media(max-width: 750px) {
       .listTrade__table__position-end {
-        justify-content: center;
+        justify-content: start;
       }
     }
   }

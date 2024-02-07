@@ -3,7 +3,7 @@ import category from '@json/category'
 
 export default function () {
   return (
-    <div class="wrapper mt-45">
+    <div class="mt-45">
       <div class="category-line">
         <div class="category-line__arrow hide" ref="categoryPrev">
           <span

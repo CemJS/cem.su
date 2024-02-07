@@ -186,27 +186,23 @@ const Step2 = function () {
                             required
                             autocomplete="off"
                             oninput={async (e: any) => {
-                                // Static.form.nickName.value = e.target.value;
-                                // front.Services.functions.formNickName(Static.form.nickName)
-                                // if (Static.form.nickName.valid) {
-                                //     if (Static.setTimeout) {
-                                //         clearTimeout(Number(Static.setTimeout))
-                                //     }
-                                //     Static.setTimeout = setTimeout(async () => {
-                                //         let data = {
-                                //             action: "avalibleNick",
-                                //             nickname: Static.form.nickName.value
-                                //         }
+                                Static.form.nickName.value = e.target.value;
+                                front.Services.functions.formNickName(Static.form.nickName)
+                                if (Static.form.nickName.valid) {
+                                    if (Static.setTimeout) {
+                                        clearTimeout(Number(Static.setTimeout))
+                                    }
+                                    Static.setTimeout = Number(setTimeout(async () => {
 
-                                //         let answer = await front.Services.functions.sendApi(`/api/events/Users?uuid=${front.Variable.myInfo.uuid}`, data)
+                                        let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "checkNick", step: Static.currentStep, nickname: Static.form.nickName.value })
 
-                                //         if (answer.error) {
-                                //             Static.form.nickName.error = "Логин занят!"
-                                //             Static.form.nickName.valid = false
-                                //         }
-                                //         Func.checkForm()
-                                //     }, 300);
-                                // } 
+                                        if (answer.error) {
+                                            Static.form.nickName.error = "Логин занят!"
+                                            Static.form.nickName.valid = false
+                                        }
+                                        Func.checkForm()
+                                    }, 300));
+                                }
                             }} />
                         <div class="modalWindow_field_labelLine">
                             {/* <img src={user}></img> */}
@@ -241,7 +237,10 @@ const Step2 = function () {
                             Static.form.mainLang.valid ? "modalReg-choose_item__success" : null
                         ]}
                         onclick={() => {
-                            Fn.initOne("modalLanguage", {})
+                            Static.form.mainLang.valid = true
+                            Static.form.mainLang.value = "ru"
+                            Static.form.mainLang.nameOrig = "Русский"
+                            // Fn.initOne("modalLanguage", {})
                         }}
                     >
                         <span>
@@ -256,6 +255,10 @@ const Step2 = function () {
                             Static.form.country.valid ? "modalReg-choose_item__success" : null
                         ]}
                         onclick={() => {
+                            Static.form.country.valid = true
+                            Static.form.country.value = "ru"
+                            Static.form.country.nameOrig = "Россия"
+                            Static.form.isValid = true
                             // Fn.initOne("modalCountry", {})
                         }}
                     >
@@ -272,9 +275,15 @@ const Step2 = function () {
                             Static.form.isValid ? null : "btn_passive"
                         ]}
                         onclick={async () => {
-                            // if (!Static.form.isValid) {
-                            //     return
-                            // }
+                            if (!Static.form.isValid) {
+                                return
+                            }
+
+                            let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "registration", lang: Static.form.mainLang.value, country: Static.form.country.value, email: Static.form.email.value, step: Static.currentStep })
+                            if (answer.error) {
+                                alert("Error")
+                                return
+                            }
                             Func.clickNext()
                             return
                         }}>
@@ -376,9 +385,27 @@ const Step3 = function () {
                             Static.form.isValid ? null : "btn_passive"
                         ]}
                         onclick={async () => {
-                            // if (!Static.form.isValid) {
-                            //     return
-                            // }
+                            if (!Static.form.isValid) {
+                                return
+                            }
+
+                            let answer = await front.Services.functions.sendApi(`/api/Register`, {
+                                action: "registration",
+                                email: Static.form.email.value,
+                                nickname: Static.form.nickName.value,
+                                lang: Static.form.mainLang.value,
+                                country: Static.form.country.value,
+                                pass: Static.form.pass.value,
+                                repass: Static.form.rePass.value,
+                                step: Static.currentStep
+                            })
+                            if (answer.error) {
+                                Static.form.email.error = "Пользователь с таким email уже существует!"
+                                Static.form.email.valid = false
+                                // Fn.init()
+                                return
+                            }
+
                             Func.clickNext()
                             return
                         }}>
@@ -403,8 +430,10 @@ const Step4 = function () {
                         class="btn btn_timing"
                         onclick={() => {
                             // setTimeout(() => {
-                            //     this.clearData()
-                            // }, 5)
+                            //     // Fn.clearData()
+                            // Func.close()
+
+                            // }, 2000)
                             Func.close()
                             // Fn.initOne("modalAuth", {})
                         }}
