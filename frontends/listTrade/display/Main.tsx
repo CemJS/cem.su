@@ -3,9 +3,7 @@ import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all"
 export default function () {
   return (
     <section class="listTrade">
-      <div class="wrapper">
         <h1 class="general__title">Список бирж</h1>
-
         <div class="listTrade___table-wrapper">
           <table class="listTrade__table table">
             <thead class="listTrade__table__head ">
@@ -102,7 +100,6 @@ export default function () {
             </tbody>
           </table>
         </div>
-      </div>
     </section >
   )
 }

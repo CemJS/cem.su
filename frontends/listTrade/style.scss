@@ -86,18 +86,20 @@
   .justStart {
     display: flex;
     justify-content: start;
+    align-items: center;
   }
+
   .bgMW {
     background: #1d2029;
     min-width: 150px
   }
+
   @media (max-width: 650px) {
     .bgMW {
       background: #3b3d49;
       min-width: 150px
     }
-   
-
+    
     .disable-tableName {
       display: none !important;
     }
@@ -135,23 +137,22 @@
       // align-items: center;
     }
 
-    .trades-chart {
-      height: 50px;
-      position: absolute;
-      padding-right: 55px;
-    }
+    // .trades-chart {
+    //   height: 50px;
+    //   position: absolute;
+    //   padding-right: 55px;
+    // }
   }
 
   @media (max-width: 450px) {
-    .bgMW {
-      background: #3b3d49;
-      min-width: 150px
-    }
+
     .listTrade__table__row {
       grid-template-columns: 1fr;
       grid-auto-flow: row;
     }
-
+    .listTrade__table__btn{
+      max-width: 100%;
+    }
     .trades-chart {
       height: 70px;
       position: static;
