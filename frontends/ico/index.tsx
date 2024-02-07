@@ -86,7 +86,6 @@ front.loader = async () => {
   ];
   // let url = front.Services.functions.makeUrlEvent("Icos", { action: "category", category: Static.makeFilter.cat });
   let url = front.Services.functions.makeUrlEvent("Icos", { category: Static.makeFilter.cat, type: Static.makeFilter.active });
-  Fn.log("=7e27b3=", url);
   let listener = [
     {
       type: "get",

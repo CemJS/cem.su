@@ -1,7 +1,6 @@
 import { Cemjsx, Fn, Static, front } from "cemjs-all";
-import CategoryLine from "./CategoryLine";
-import Show from "./Show";
 import notFound from "@svg/icon/notFound.svg";
+import Category from "./Category";
 
 const RenderItems = function ({ items }) {
   if (!items.length) {
@@ -28,14 +27,11 @@ const RenderItems = function ({ items }) {
             return (
               <a
                 class="startaps__item"
-                // href={`/list-startups/show/${item.id}`}
                 init={($el: any) => {
                   if (index == Static.records?.length - 1) {
                     const observer = new IntersectionObserver((entries) => {
                       entries.forEach(async (entry) => {
-                        // Fn.log("=6ba7c1=111111", entry.isIntersecting, entry);
                         if (entry.isIntersecting) {
-                          // Fn.log("=2a3c8e=", 6666666);
                           observer.unobserve($el);
                           let res = front.Services.functions.sendApi("/api/events/Startups", {
                             action: "skip",
@@ -79,9 +75,8 @@ const RenderItems = function ({ items }) {
 export default function () {
   return (
     <section class="wrapper">
-      <CategoryLine items={Static.categories} />
+      <Category items={Static.categories} />
       <RenderItems items={Static.records} />
-      {/* {Static.record ? <Show /> : null} */}
     </section>
   );
 }

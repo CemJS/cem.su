@@ -355,7 +355,7 @@ $tokenomicaBack: (
       &-img {
         height: 28.875rem;
         width: 21.875rem;
-        max-height: 300px;
+        // max-height: 300px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -382,6 +382,16 @@ $tokenomicaBack: (
   }
 }
 
+.slider_new {
+  position: relative;
+}
+
+@keyframes render {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
 @each $index, $back in $tokenomicaBack {
   .tokenomica__desc-item-line-#{$index} {
     background: $back;
@@ -394,14 +404,22 @@ $tokenomicaBack: (
 
 @each $index, $back in $tokenomicaBack {
   .tokenomica__unit-#{$index} {
+    fill: none;
     stroke: $back;
     stroke-width: 2;
     transition: all 0.3s ease;
+    animation-name: render;
+    animation-duration: 1.5s;
     &:hover {
       opacity: 0.8;
       stroke-width: 4;
     }
   }
+}
+
+.hovered {
+  opacity: 0.8;
+  stroke-width: 4;
 }
 
 .slider {
@@ -415,7 +433,7 @@ $tokenomicaBack: (
     }
   }
   &__item {
-    flex-basis: 100%;
+    flex-basis: 30%;
     flex-shrink: 0;
     & img {
       width: 100%;

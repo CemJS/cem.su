@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   gap: 1.2rem;
+  padding-bottom: 6.5rem;
 
   &__item {
     background: var(--backSecond);
@@ -12,8 +13,6 @@
     cursor: pointer;
 
     &-img {
-      // height: 320px;
-
       img {
         border-radius: var(--borderR);
         object-fit: cover;
@@ -60,10 +59,17 @@
 }
 
 .new {
+  padding-bottom: 6.5rem;
+
   &-title {
-    font-size: 1.5rem;
     text-align: center;
     padding: 0.8rem 0;
+    line-height: clamp(1.5rem, 3.5vw, 3.5rem);
+    font-size: clamp(1.1rem, 3vw, 2.5rem);
+  }
+
+  &-preview {
+    font-size: clamp(1rem, 3vw, 1.15rem);
   }
 
   &-content {
@@ -72,6 +78,7 @@
 
     &__text {
       margin-top: 0.5rem;
+      font-size: clamp(1rem, 3vw, 1.15rem);
 
       p {
         padding-bottom: 0.5rem;
@@ -86,6 +93,7 @@
     margin: 0 1.3rem 1.3rem 0;
 
     img {
+      width: 100%;
       border-radius: var(--borderR);
     }
   }

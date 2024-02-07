@@ -11,9 +11,7 @@
   margin: 0 auto;
 
   @media (max-width: 1240px) {
-    &_padding {
-      padding: 0 1rem;
-    }
+    padding: 0 1rem;
   }
 }
 
@@ -279,7 +277,23 @@
 
 
 // }
+// =======animation test invalid for field
+// @keyframes invalid {
 
+//   0%,
+//   100% {
+//     transform: translate(0);
+//   }
+
+//   25% {
+//     transform: translate(0.125rem);
+//   }
+
+//   75% {
+//     transform: translate(0.125rem);
+//   }
+// }
+// =======animation test invalid for field
 .mr_10 {
   margin-right: 10px;
 }
@@ -390,22 +404,10 @@
   }
 }
 
-@keyframes invalid {
-
-  0%,
-  100% {
-    transform: translate(0);
-  }
-
-  25% {
-    transform: translate(0.125rem);
-  }
-
-  75% {
-    transform: translate(0.125rem);
-  }
-}
-
 .p-relative {
   position: relative;
+}
+
+.fz1 {
+  font-size: 1rem;
 }
