@@ -15,9 +15,7 @@ front.func.test = () => {
 }
 
 front.loader = async () => {
-  Static.tradeFilter = {
-    cat: "CEX",
-  }
+
   let url = front.Services.functions.makeUrlEvent("Users");
 
   let listener = [
@@ -45,7 +43,7 @@ front.loader = async () => {
       },
     },
   ];
-  Events.exchangers = await Fn.event(url, listener);
+  Events.users = await Fn.event(url, listener);
 
   return
 }

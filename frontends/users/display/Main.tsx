@@ -24,7 +24,7 @@ let checkBox = {
 
 }
 export default function () {
-
+  // Fn.log('=d77b33=',Static.records)
   let answer: any = []
   let value: any = ""
 
@@ -149,19 +149,18 @@ export default function () {
                   <div class="users__item">
                     <div class="users__card-top">
                       <div class="users__item_header">
-                        <a class="avatar avatar__users" 
-                        href="#"
-                        onclick={async () => {
-                          const getUser = {
-                            "action": "Get",
-                            "id": item?.id,
-                            "uuid": `${localStorage?.uuid}`
-                          }
-                          let userContent = await front.Services.functions.sendApi("/api/private/Users", getUser)
-                          //проверка на error
-                          Static.contentUser = userContent?.result
-                          Fn.linkChange(`/user/${item?.id}`)
-                        }}>
+                        <a class="avatar avatar__users"
+                          onclick={async () => {
+                            const getUser = {
+                              "action": "Get",
+                              "id": item?.id,
+                              "uuid": `${localStorage?.uuid}`
+                            }
+                            let userContent = await front.Services.functions.sendApi("/api/events/Users", getUser)
+                            //проверка на error
+                            Static.contentUser = userContent?.result
+                            Fn.linkChange(`/user/${item?.nickname}`)
+                          }}>
                           <div class="avatar__icon">
                             <img class="avatar__photo"
                               src={item.avatar?.name

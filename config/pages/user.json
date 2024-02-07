@@ -1,5 +1,5 @@
 {
-    "url": "/user",
+    "regex": "/user",
     "front": [
         "header",
         "user"
