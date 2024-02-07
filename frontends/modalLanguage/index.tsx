@@ -1,5 +1,6 @@
 import { Cemjsx, front, Func, Static, Fn, Ref } from "cemjs-all"
 import Navigation from "./navigation"
+import languages from '@json/languages'
 
 
 front.listener.finish = () => {
@@ -22,6 +23,7 @@ front.func.close = function () {
 }
 
 front.loader = () => {
+    Static.languages = languages
     return
 }
 

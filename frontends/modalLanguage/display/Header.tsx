@@ -1,12 +1,12 @@
-import { Cemjsx } from "cemjs-all"
+import { Cemjsx, Func } from "cemjs-all"
 
 export default function () {
     return (
-        <div class="d-flex">
-            <div class="field">
-                <input type="text" />
-            </div>
-            <button></button>
-        </div>
+        <header class="modal-header">
+            <h2 class="modal-header__title">Выбрать язык</h2>
+            <button class="btn btn_close" onclick={Func.close}>
+                <i class="i i-cancel"></i>
+            </button>
+        </header>
     )
 }
