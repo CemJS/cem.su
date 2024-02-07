@@ -366,10 +366,13 @@
   &_body {
     font-size: 16px;
     font-weight: 500;
+
+    border-radius: var(--borderR);
+    -webkit-border-radius: var(--borderR);
+    -moz-border-radius: var(--borderR);
+    -khtml-border-radius: var(--borderR);
     border: 1px solid var(--border);
-    // border-top: none;
-    border-bottom-left-radius: var(--borderR);
-    border-bottom-right-radius: var(--borderR);
+    display: block;
 
     .table_row:not(:last-child) {
       border-bottom: 1px solid var(--border);

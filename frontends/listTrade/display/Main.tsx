@@ -37,7 +37,7 @@ export default function () {
                 </th>
               </tr>
             </thead>
-            <tbody class="table_body listTrade__table__body">
+            <tbody class="table_body listTrade__table__body table_test">
               {
                 Static.records?.map((item: any, index: any) => {
                   return (
@@ -84,9 +84,16 @@ export default function () {
                         </img>
                       </td>
                       <td class="listTrade__table__btn">
-                        <a class="btn btn_gradient" href={item.url} onclick={Fn.link}>
+                        <div class="btn_border-wrap w100 h100">
+                          <a href={item.url} onclick={Fn.link}>
+                            <button class="btn_border bgMW">
+                              Торговать
+                            </button>
+                          </a>
+                        </div>
+                        {/* <a class="btn_border-wrap btn_border" >
                           <span>Торговать</span>
-                        </a>
+                        </a> */}
                       </td>
                     </tr>
                   )
@@ -96,6 +103,6 @@ export default function () {
           </table>
         </div>
       </div>
-    </section>
+    </section >
   )
 }

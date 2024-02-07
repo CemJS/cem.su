@@ -7,7 +7,6 @@ export default function () {
   switch (param) {
     case 'user':
       return <Main />
-
   }
 }
 
