@@ -35,19 +35,11 @@ front.func.checkForm = async function () {
 
         if (Static.form.code.valid && Static.form.email.valid) {
 
-            // let data = {
-            //     action: "checkEmailCode",
-            //     email: Static.form.email.value,
-            //     code: Static.form.code.value
-            // }
-
-            // let answer = await front.Services.functions.sendApi(`/api/events/Users?uuid=${this.Variable.myInfo.uuid}`, data)
-
-            // if (answer.error) {
-            //     Static.form.code.error = "Код указан не верно!"
-            //     return
-            // }
-
+            let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "checkCode", email: Static.form.email.value, step: Static.currentStep, code: Static.form.code.value })
+            if (answer.error) {
+                Static.form.code.error = "Код указан не верно!"
+                return
+            }
             Static.waitCode = false
             Static.form.isValid = false
             if (Static.setInterval) {
@@ -112,40 +104,36 @@ front.func.changeEmail = function () {
 }
 
 front.func.sendCode = async function () {
-    // let data = {
-    //     action: "registration",
-    //     email: this.Static.form.email.value,
-    //     step: this.Static.currentStep,
-    // }
-
-    // let answer = await this.Services.functions.sendApi(`/api/events/Users?uuid=${this.Variable.myInfo.uuid}`, data)
-
-    // if (answer.error) {
-    //     this.Static.form.email.error = "Пользователь с таким email уже существует!"
-    //     this.Static.form.email.valid = false
-    //     this.init()
-    //     return
-    // }
+    let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "registration", email: Static.form.email.value, step: Static.currentStep })
+    if (answer.error) {
+        Static.form.email.error = "Пользователь с таким email уже существует!"
+        Static.form.email.valid = false
+        // Fn.init()
+        return
+    }
 
     Static.waitCode = true
     Static.form.email.disable = true
-    Func.timer(60)
-    this.init()
+    // Func.timer(60)
+    Func.timer(5)
+    // this.init()
+    return
+
 }
 
-// front.func.timer = function (sec: number) {
-//     Static.time = sec
-//     if (Static.setInterval) {
-//         clearInterval(Number(Static.setInterval))
-//     }
+front.func.timer = function (sec: number) {
+    Static.time = sec
+    if (Static.setInterval) {
+        clearInterval(Number(Static.setInterval))
+    }
 
-//     Static.setInterval = setInterval(() => {
-//         Static.time = Static.time - 1
-//         if (Static.time <= 0) {
-//             clearInterval(Number(Static.setInterval))
-//         }
-//     }, 1000);
-// }
+    Static.setInterval = Number(setInterval(() => {
+        Static.time = Static.time - 1
+        if (Static.time <= 0) {
+            clearInterval(Number(Static.setInterval))
+        }
+    }, 1000));
+}
 
 front.loader = () => {
     Static.steps = [1, 2, 3, 4]
