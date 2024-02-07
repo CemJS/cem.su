@@ -1,5 +1,5 @@
 {
-  "version": "v1.0.22",
+  "version": "v1.1.0",
   "port": 3000,
   "live": true,
   "hook": {
