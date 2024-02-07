@@ -82,7 +82,7 @@ export default function () {
                         </img>
                       </td>
                       <td class="listTrade__table__btn">
-                        <div class="btn_border-wrap w100 h100">
+                        <div class="btn_border-wrap mY-auto h100">
                           <a href={item.url} onclick={Fn.link}>
                             <button class="btn_border bgMW">
                               Торговать
