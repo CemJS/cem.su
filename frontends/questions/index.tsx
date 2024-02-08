@@ -16,7 +16,7 @@ front.loader = async () => {
       text: "Все запросы",
     },
     {
-      name: "answers",
+      name: "opened",
       text: "Ожидающие ответа",
     },
     {
@@ -29,7 +29,13 @@ front.loader = async () => {
     },
   ];
 
-  Static.sortBy = [
+  Static.chooseLanguage = {
+    eng_name: "Russian",
+    orig_name: "Русский",
+    code: "ru",
+  };
+
+  Static.sort = [
     {
       name: "date",
       text: "По дате",
@@ -46,10 +52,12 @@ front.loader = async () => {
 
   Static.makeFilter = {
     type: "All",
-    sortBy: "date",
-    language: "ru",
+    sort: "date",
+    language: Static.chooseLanguage.code,
   };
+
   let url = front.Services.functions.makeUrlEvent("Questions");
+
   let listener = [
     {
       type: "get",
