@@ -4,13 +4,14 @@ import filter from '@svg/icon/filter.svg'
 
 export default function () {
     return (
-        <table class="listExchange_table table">
-            <thead class="listExchange_table_head">
-                <tr class="listExchange_table_row">
-                    <th class="listExchange_table_name disable-tableName" style="justify-content: start;">Название</th>
-                    <th class="listExchange_table_coins disable-tableName">Коины</th>
-                    <th class="listExchange_table_filter"
-                        onclick={() => Fn.initOne("modalFilterExchange", {
+        <table class="listExchange__table table">
+            <thead class="listExchange__table-head">
+                <tr class="listExchange__table-row">
+                    <th class="listExchange__table-name disable-tableName" style="justify-content: start;">Название</th>
+                    <th class="listExchange__table-coins disable-tableName">Коины</th>
+                    <th class="listExchange__table-filter">
+                        <img src={filter} 
+                         onclick={() => Fn.initOne("modalFilterExchange", {
                             filterCoins: Static.filterCoins,
                             callback: async (filterCoinsFromModal: []) => {
                                 Static.filterCoins = filterCoinsFromModal
@@ -24,35 +25,35 @@ export default function () {
                                     return;
                                 }
                             }
-                        })}>
-                        <img src={filter} />
+                        })}/>
                     </th>
                 </tr>
             </thead>
-            <tbody class="table_body listExchange_table_body">
-                <div class="filterShow" onclick={() => Fn.initOne("modalFilterExchange", {
-                    filterCoins: Static.filterCoins,
-                    callback: async (filterCoinsFromModal: []) => {
-                        Static.filterCoins = filterCoinsFromModal
-                        // console.log("filterCoins", Static.filterCoins);
-                        let res = front.Services.functions.sendApi("/api/events/Exchanges", {
-                            "action": "get",
-                            "coins": Static.filterCoins,
-                            "uuid": `${localStorage?.uuid}`,
-                        })
-                        if (!filterCoinsFromModal.length) {
-                            return;
+            <tbody class="table_body listExchange__table-body">
+                <div class="filterShow">
+                    <img src={filter} 
+                     onclick={() => Fn.initOne("modalFilterExchange", {
+                        filterCoins: Static.filterCoins,
+                        callback: async (filterCoinsFromModal: []) => {
+                            Static.filterCoins = filterCoinsFromModal
+                            // console.log("filterCoins", Static.filterCoins);
+                            let res = front.Services.functions.sendApi("/api/events/Exchanges", {
+                                "action": "get",
+                                "coins": Static.filterCoins,
+                                "uuid": `${localStorage?.uuid}`,
+                            })
+                            if (!filterCoinsFromModal.length) {
+                                return;
+                            }
                         }
-                    }
-                })}>
-                    <img src={filter} />
+                    })}/>
                 </div>
                 {
                     Static.records?.map((item: any, index: any) => {
                         return (
                             <div>
                                 <tr
-                                    class="table_row listExchange_table_row"
+                                    class="table_row listExchange__table-row"
                                     isVisible={() => {
                                         if (index == Static.records?.length - 3) {
                                             // console.log('=индкекс равен =', index, 'Static.records.length - 3', Static.records.length - 3)
@@ -78,8 +79,8 @@ export default function () {
                                         }
                                     }}>
 
-                                    <td class="listExchange_table_name" style="justify-content: start;">{item?.name}</td>
-                                    <td class="listExchange_table_coins">
+                                    <td class="listExchange__table-name" style="justify-content: start;">{item?.name}</td>
+                                    <td class="listExchange__table-coins">
                                         <div class="coins_wrap">
                                             {
                                                 item?.listCoins?.map((el: any, index: number) => {
@@ -90,7 +91,7 @@ export default function () {
                                             }
                                         </div>
                                     </td>
-                                    <td class="listExchange_table_btn">
+                                    <td class="listExchange__table-btn">
                                         <div class="btn_border-wrap mY-auto h100">
                                             <a href={item?.url} onclick={Fn.link}>
                                                 <button class="btn_border bgMW">

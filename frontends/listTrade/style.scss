@@ -20,10 +20,10 @@
     &__head {
       font-size: 18px;
 
-   &-btnBlock {
-    display: flex;
-    justify-content: center;
-   }
+      &-btnBlock {
+        display: flex;
+        justify-content: center;
+      }
     }
 
     &__row {
@@ -59,7 +59,7 @@
       justify-content: end;
     }
 
-    &__position-end {
+    &_position-end {
       display: flex;
       justify-content: flex-end;
     }
@@ -71,10 +71,69 @@
     }
 
     @media(max-width: 750px) {
-      .listTrade__table__position-end {
+      .listTrade__table_position-end {
         justify-content: start;
       }
     }
+
+    @media (max-width: 700px) {
+
+      .listTrade {
+        padding-top: 10px !important;
+      }
+
+      .listTrade .crypto_coin_icon {
+        // top: -2px;
+        margin-right: 0;
+        max-height: 50px;
+      }
+
+      .listTrade__table__head-btnBlock {
+        padding-bottom: 30px;
+      }
+      .disable-tableName {
+        display: none !important;
+      }
+
+      .table_body {
+        border: none;
+      }
+
+      .table_row {
+        margin-bottom: 10px;
+        background: #3b3d49;
+        border-radius: var(--borderR);
+      }
+
+      .justStart {
+        display: flex;
+        justify-content: center;
+      }
+
+      .listTrade__table__row {
+        display: none;
+      }
+
+      .listTrade__table__index,
+      .listTrade__table__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .listTrade__table__name {
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+      }
+
+      // .trades-chart {
+      //   height: 50px;
+      //   position: absolute;
+      //   padding-right: 55px;
+      // }
+    }
+
   }
 
   .disable-tableName {
@@ -99,67 +158,6 @@
     min-width: 150px
   }
 
-  @media (max-width: 700px) {
-
-    .listTrade {
-      padding-top: 10px !important;
-    }
-    .listTrade .crypto_coin_icon {
-      // top: -2px;
-      margin-right: 0;
-      max-height: 50px;
-    }
-
-    .listTrade__table__head-btnBlock {
-      padding-bottom: 30px;
-    }
-    .bgMW {
-      background: #3b3d49;
-      min-width: 150px
-    }
-
-    .disable-tableName {
-      display: none !important;
-    }
-
-    .table_body {
-      border: none;
-    }
-
-    .table_row {
-      margin-bottom: 10px;
-      background: #3b3d49;
-      border-radius: var(--borderR);
-    }
-
-    .justStart {
-      display: flex;
-      justify-content: center;
-    }
-
-    .listTrade__table__row {
-      display: none;
-    }
-
-    .listTrade__table__index,
-    .listTrade__table__btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .listTrade__table__name {
-      display: flex;
-      justify-content: center;
-      // align-items: center;
-    }
-
-    // .trades-chart {
-    //   height: 50px;
-    //   position: absolute;
-    //   padding-right: 55px;
-    // }
-  }
 
   @media (max-width: 410px) {
 
@@ -256,7 +254,7 @@
   max-width: 500px;
 
   // &__btn_size {}
-  
+
   &_font-size {
     font-size: 18px;
     text-align: center;
@@ -282,12 +280,23 @@
     justify-content: center;
     align-items: center;
   }
+  .bgMW {
+    background: #3b3d49 !important;
+    min-width: 150px
+  }
+}
+
+@media (max-width: 650px) {
+  .listTrade {
+    padding-top: 5px;
+  }
 }
 
 @media (max-width: 410px) {
   .bodyCard__container__main-block {
     flex-direction: column;
   }
+
   .bodyCard__container_btn_size {
     width: 100% !important;
   }

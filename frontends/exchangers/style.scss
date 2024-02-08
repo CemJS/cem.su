@@ -22,7 +22,7 @@
     height: 20px;
   }
 
-  &_table {
+  &__table {
 
     &_wrapper {
       // height: 630px;
@@ -31,7 +31,7 @@
       justify-content: space-between;
     }
 
-    &_head {
+    &-head {
       font-size: 18px;
 
       .listExchange_table_row {
@@ -41,7 +41,7 @@
       }
     }
 
-    &_row {
+    &-row {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       // border: 1px solid var(--borderR);
@@ -61,9 +61,9 @@
       // }
     }
 
-    &_name,
-    &_coins,
-    &_filter {
+    &-name,
+    &-coins,
+    &-filter {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -76,14 +76,14 @@
       // align-items: center;
     }
 
-    &_index,
-    &_btn {
+    &-index,
+    &-btn {
       display: flex;
       align-items: center;
       justify-content: end;
     }
 
-    &_filter {
+    &-filter {
       justify-content: flex-end;
 
       img {
@@ -93,7 +93,7 @@
       }
     }
 
-    &_btn {
+    &-btn {
       .btn {
         max-width: 300px;
         width: 100%;
@@ -133,7 +133,7 @@
     //   }
     // }
 
-    &_coins {
+    &-coins {
       display: flex;
     }
   }
@@ -142,73 +142,75 @@
   //   display: block;
   // }
 
-  @media (max-width: 650px) {
+  @media (max-width: 700px) {
+    .filterShow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 15px;
+      cursor: pointer;
+    }
+
+    .bgMW {
+      background: #3b3d49;
+      min-width: 150px
+    }
+
+    .listExchange__table-row {
+      display: none;
+    }
+
     .disable-tableName {
       display: none !important;
     }
 
-    .listExchange_table_row {
-      grid-template-columns: 1fr;
-      grid-auto-flow: row;
+    .table_body {
+      border: none;
     }
 
-    .listExchange_table_index,
-    .listExchange_table_btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .table_row {
+      margin-bottom: 10px;
+      background: #3b3d49;
+      border-radius: var(--borderR);
     }
 
-    .listExchange_table_coins {
-      justify-content: center;
-      display: flex;
-    }
-
-    .listExchange_table_name,
-    .listExchange_table_coins {
-      display: flex;
-      justify-content: center;
-      // /* align-items: center; */
-    }
   }
 }
-.filterShow {
-  display: none;
-}
-@media (max-width: 700px) {
-  .filterShow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 15px;
-    cursor: pointer;
-  }
-
+@media(max-width: 700px) {
   .listExchange {
-    padding-top: 10px !important;
+    padding-top: 5px;
   }
+}
 
-  .bgMW {
-    background: #3b3d49;
-    min-width: 150px
-  }
-
-  .listExchange_table_row {
-    display: none;
-  }
-
+@media (max-width: 650px) {
   .disable-tableName {
     display: none !important;
   }
 
-  .table_body {
-    border: none;
+  .listExchange__table-row {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
   }
 
-  .table_row {
-    margin-bottom: 10px;
-    background: #3b3d49;
-    border-radius: var(--borderR);
+  .listExchange__table-index,
+  .listExchange__table-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
+  .listExchange_table_coins {
+    justify-content: center;
+    display: flex;
+  }
+  .listExchange__table-name,
+  .listExchange__table-coins {
+    display: flex;
+    justify-content: center;
+    // /* align-items: center; */
+  }
+}
+
+.filterShow {
+  display: none;
 }

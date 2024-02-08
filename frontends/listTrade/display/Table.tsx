@@ -31,13 +31,13 @@ export default function () {
                     <th class="disable-tableName justStart">Название</th>
                     <th class="disable-tableName">Рейтинг</th>
                     <th class="disable-tableName">График</th>
-                    <th class="listTrade__table__position-end">
+                    <th class="listTrade__table_position-end">
 
                     </th>
                 </tr>
             </thead>
 
-            <tbody class="table_body listTrade__table__body table_test">
+            <tbody class="table_body listTrade__table__body">
 
                 {
                     Static.records?.map((item: any, index: any) => {
