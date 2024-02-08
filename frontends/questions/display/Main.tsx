@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Ref, Static, front, Events } from "cemjs-all";
+import { Cemjsx, Fn, Ref, Static, front, Events, Func } from "cemjs-all";
 import frameDefault from "@svg/lenta/default.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
@@ -17,7 +17,7 @@ const RenderTypeFilter = () => {
     >
       <div class="filter__left">
         <p class="filter__title">Сортировать</p>
-        <p class="filter__current">{Static.types.filter((item) => item.name == Static.makeFilter.type)[0].text}</p>
+        <p class="filter__current">{Static.types.filter((item) => item.name == Static.type)[0].text}</p>
       </div>
       <img
         src={openDrop}
@@ -32,7 +32,8 @@ const RenderTypeFilter = () => {
           return (
             <div
               onclick={() => {
-                Static.makeFilter.type = item.name;
+                Static.type = item.name;
+                Func.updateFilter();
               }}
               class="filter__drop"
             >
@@ -57,7 +58,7 @@ const RenderSortFilter = () => {
     >
       <div class="filter__left">
         <p class="filter__title">Сортировать</p>
-        <p class="filter__current">{Static.sort.filter((item) => item.name == Static.makeFilter.sort)[0].text}</p>
+        <p class="filter__current">{Static.sorts.filter((item) => item.name == Static.sort)[0].text}</p>
       </div>
       <img
         src={openDrop}
@@ -68,11 +69,12 @@ const RenderSortFilter = () => {
         ref="filterSortDrops"
         class="filter__drops"
       >
-        {Static.sort.map((item) => {
+        {Static.sorts.map((item) => {
           return (
             <div
               onclick={() => {
-                Static.makeFilter.sort = item.name;
+                Static.sort = item.name;
+                Func.updateFilter();
               }}
               class="filter__drop"
             >
@@ -92,7 +94,6 @@ const RenderLanguageFilter = () => {
         Fn.initOne("modalLanguage", {
           full: true,
           callback: (chooseLanguage) => {
-            Fn.log("=7baba8=", chooseLanguage);
             Static.chooseLanguage = chooseLanguage;
           },
         });
@@ -112,7 +113,6 @@ const RenderLanguageFilter = () => {
 };
 
 export default function () {
-  Fn.log("=18e445=", Static.records);
   return (
     <div
       onclick={(e) => {
@@ -155,7 +155,12 @@ export default function () {
             </div>
             <div class="questions__filters">
               <RenderTypeFilter />
-              <RenderSortFilter />
+              <div class="questions__filter">
+                <RenderSortFilter />
+                <div class="questions__filter-wrapper">
+                  <div class="questions__filter-triangle"></div>
+                </div>
+              </div>
               <RenderLanguageFilter />
             </div>
 
