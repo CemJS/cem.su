@@ -1,18 +1,18 @@
-import { Cemjsx, Static } from "cemjs-all"
+import { Cemjsx, Static, Fn, Func } from "cemjs-all"
 
-const RenderListLanguages = function ({ languages }) {
+const RenderListCountries = function ({ countries }) {
     return (
         <ul class="list modal_scroll" role="list">
             {
-                languages.map(item => {
+                countries.map(item => {
                     return (
-                        <li class="list__item">
-                            <img
-                                class="list__item-img"
-                                src={`/contents/svg/flags/${item.icon}.svg`}
-                                alt={item.name}
-                            />
-                            <span>{item.name}</span>
+                        <li class="list__item"
+                            onclick={() => {
+                                Static.callback(item)
+                                Func.close()
+                            }}
+                        >
+                            <span>{item.orig_name}</span>
                         </li>
                     )
                 })
@@ -22,10 +22,11 @@ const RenderListLanguages = function ({ languages }) {
 }
 
 export default function () {
+    Fn.log('=dd00ae=', Static.records)
     return (
         <main class="modal_main">
             <div class="mt-15">
-                <RenderListLanguages languages={Static.languages} />
+                <RenderListCountries countries={Static.records} />
             </div>
         </main>
     )

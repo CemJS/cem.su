@@ -14,8 +14,8 @@ const RenderSearch = function () {
                 autocomplete="off"
                 oninput={(e: any) => {
                     Static.searchText = e.target.value.toLowerCase();
-                    Static.coins = Static.records.filter((item) => {
-                        if (item.name.toLowerCase().includes(Static.searchText)) {
+                    Static.recordsAll = Static.records.filter((item) => {
+                        if (item.eng_name.toLowerCase().includes(Static.searchText)) {
                             return true;
                         }
                     })
@@ -68,16 +68,16 @@ const RenderNotFound = function () {
 }
 
 export default function () {
-    Fn.log("= records =", Static.records)
+    Fn.log("= records 12=", Static.recordsAll)
 
     return (
         <main class="modal_main">
-            {Static.full ? <RenderSearch /> : null}
+            {/* {Static.full ? <RenderSearch /> : null} */}
             <div class="mt-15">
                 {
                     Static.full ?
-                        Static.records.length > 0 ?
-                            <RenderListLanguages languages={Static.records} /> :
+                        Static.recordsAll ?
+                            <RenderListLanguages languages={Static.recordsAll} /> :
                             <RenderNotFound /> : <RenderListLanguages languages={Static.languages} />
                 }
             </div>

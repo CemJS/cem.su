@@ -54,7 +54,12 @@ export default function () {
           </div>
 
           {front.Variable.Auth ? (
-            <div onclick={() => Fn.initOne("modalCountry", {})}>Profile</div>
+            <div onclick={() => Fn.initOne("modalCountry", {
+              callback: (chooseCountry) => {
+                Fn.log(chooseCountry)
+                // chooseCountry выбранная страна
+              }
+            })}>Profile</div>
           ) : (
             <div class="header-auth">
               <span onclick={() => Fn.initOne("modalAuthtorization", {})}>Вход</span>
