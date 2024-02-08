@@ -8,6 +8,7 @@ import points from "@svg/lenta/points.svg";
 import sendMessage from "@svg/lenta/send_message.svg";
 
 export default function () {
+  Fn.log("=cc19c9=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
@@ -150,6 +151,15 @@ export default function () {
                         </a>
                         <div class="user-comment__body">
                           <span init={(e) => (e.innerHTML = answer.text)}></span>
+                          {answer.media.map((item) => {
+                            return (
+                              <img
+                                src={`/assets/upload/answers/${item.name}`}
+                                alt={item.type}
+                                class="user-comment__media"
+                              />
+                            );
+                          })}
                           <div
                             class="user-comment__answer questions-show__tell"
                             onclick={(e) => {

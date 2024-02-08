@@ -841,6 +841,9 @@
       cursor: pointer;
     }
   }
+  &__media {
+    display: block;
+  }
 }
 
 .filter {
@@ -852,6 +855,7 @@
   width: 100%;
   border-radius: var(--borderR);
   background: var(--light-gray);
+  min-height: 70px;
   cursor: pointer;
   position: relative;
   &_active {
@@ -895,9 +899,18 @@
   .questions {
     &__ask {
       flex-direction: column;
+      & button {
+        width: 100%;
+      }
     }
     &__search {
       order: 1;
+    }
+    &__filters {
+      flex-direction: column;
+      & .filter {
+        max-width: 100%;
+      }
     }
   }
 }
