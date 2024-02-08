@@ -74,10 +74,6 @@
       .listTrade__table__position-end {
         justify-content: start;
       }
-
-      .listTrade__table__head-btnBlock {
-        padding-bottom: 30px;
-      }
     }
   }
 
@@ -104,7 +100,9 @@
   }
 
   @media (max-width: 700px) {
-
+    .listTrade__table__head-btnBlock {
+      padding-bottom: 30px;
+    }
     .bgMW {
       background: #3b3d49;
       min-width: 150px
@@ -153,7 +151,7 @@
     // }
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 410px) {
 
     .listTrade__table__row {
       grid-template-columns: 1fr;
@@ -243,7 +241,7 @@
   background: #3b3d49;
   border-radius: var(--borderR);
   margin-bottom: 15px;
-  padding: 15px;
+  padding: 10px;
   width: 100%;
   max-width: 500px;
 
@@ -258,7 +256,7 @@
     display: flex;
     justify-content: space-between !important;
     align-items: center;
-    padding: 0 15px 15px 15px;
+    padding: 0 10px 15px 10px;
   }
 
   &__btn-block {
@@ -269,6 +267,14 @@
 }
 
 @media (max-width: 700px) {
+  .listTrade {
+    padding-top: 10px !important;
+  }
+  .listTrade .crypto_coin_icon {
+    // top: -2px;
+    margin-right: 0;
+    max-height: 50px;
+  }
   .body-card {
     display: flex;
     justify-content: center;
@@ -277,17 +283,11 @@
 }
 
 @media (max-width: 650px) {
-  .listTrade {
-    padding-top: 10px !important;
-  }
-  .listTrade .crypto_coin_icon {
-    top: -2px;
-    margin-right: 10px;
-    max-height: 50px;
-  }
+  
+
 }
 
-@media (max-width: 450px) {
+@media (max-width: 410px) {
   .bodyCard__container__main-block {
     flex-direction: column;
   }
