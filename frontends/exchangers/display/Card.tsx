@@ -2,7 +2,23 @@ import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all"
 
 export default function ({ item, index }) {
     return (
-        <div class="body-card">
+        <div init={($el: any) => {
+            if (index == Static.records?.length - 1) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(async entry => {
+                        if (entry.isIntersecting) {
+                            observer.unobserve($el)
+                            let res = front.Services.functions.sendApi("/api/events/Exchanges", {
+                                "action": "skip",
+                                "skip": Static.records?.length,
+                                "uuid": `${localStorage?.uuid}`,
+                            })
+                        }
+                    })
+                })
+                observer.observe($el)
+            }
+        }} class="body-card">
             <div class="bodyCard__container">
                 <div class="bodyCard__container__main-block" style="flex-direction: column">
                     <div class="bodyCard__container_font-size pt-10">{item?.name}</div>
