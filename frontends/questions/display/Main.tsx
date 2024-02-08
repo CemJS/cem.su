@@ -4,6 +4,7 @@ import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import openDrop from "@svg/icons/openDropDown.svg";
+import order from "@svg/icons/order.svg";
 
 const RenderTypeFilter = () => {
   return (
@@ -95,6 +96,7 @@ const RenderLanguageFilter = () => {
           full: true,
           callback: (chooseLanguage) => {
             Static.chooseLanguage = chooseLanguage;
+            Func.updateFilter();
           },
         });
       }}
@@ -133,6 +135,15 @@ export default function () {
             <div class="questions__ask">
               <div class="questions__search">
                 <input
+                  oninput={(e) => {
+                    Static.search = e.target.value;
+                    if (Static.timer) return;
+                    Static.timer = setTimeout(() => {
+                      Func.updateFilter();
+                      e.target.dispatchEvent(new Event("input"));
+                      Static.timer = undefined;
+                    }, 1000);
+                  }}
                   type="text"
                   placeholder="Поиск по вопросам"
                 />
@@ -154,14 +165,29 @@ export default function () {
               </button>
             </div>
             <div class="questions__filters">
-              <RenderTypeFilter />
+              <div class="questions__filter">
+                <RenderTypeFilter />
+              </div>
               <div class="questions__filter">
                 <RenderSortFilter />
-                <div class="questions__filter-wrapper">
-                  <div class="questions__filter-triangle"></div>
+                <div
+                  onclick={(e) => {
+                    e.target.classList.toggle("questions__filter-order_active");
+                    Static.order == 1 ? (Static.order = -1) : (Static.order = 1);
+                    Func.updateFilter();
+                  }}
+                  class="questions__filter-order"
+                >
+                  <img
+                    src={order}
+                    alt="Сортировать"
+                    class="questions__filter-triangles"
+                  />
                 </div>
               </div>
-              <RenderLanguageFilter />
+              <div class="questions__filter">
+                <RenderLanguageFilter />
+              </div>
             </div>
 
             <div class="questions__list">

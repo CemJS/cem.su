@@ -31,14 +31,29 @@
   }
 
   &__filter {
-    max-width: 18.75rem;
+    max-width: 300px;
     width: 100%;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    cursor: pointer;
+    &-order {
+      width: 40px;
+      height: 100%;
+      cursor: pointer;
+      &_active {
+        transform: rotate(180deg);
+      }
+    }
+    & img {
+      display: block;
+    }
   }
 
   &__filters {
     margin-top: 20px;
     display: flex;
-    gap: 20px;
+    gap: 15px;
   }
 
   &__page {
@@ -330,7 +345,7 @@
 
     &_preview {
       max-width: 330px;
-      height: 70px;
+      height: 75px;
       margin-top: 10px;
       font-weight: 500;
       font-size: 18px;
@@ -357,7 +372,7 @@
       &_row {
         flex-direction: column;
         align-items: flex-start;
-        height: 68px;
+        // height: 68px;
       }
     }
 
@@ -860,7 +875,7 @@
   width: 100%;
   border-radius: var(--borderR);
   background: var(--light-gray);
-  min-height: 70px;
+  min-height: 80px;
   cursor: pointer;
   position: relative;
   &_active {
@@ -917,6 +932,9 @@
       & .filter {
         max-width: 100%;
       }
+    }
+    &__filter {
+      max-width: 100%;
     }
   }
 }
