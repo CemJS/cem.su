@@ -30,8 +30,10 @@
     padding: 100px 0;
   }
 
-  &__filter {
+  &__filters {
     margin-top: 20px;
+    display: flex;
+    gap: 20px;
   }
 
   &__page {
@@ -851,8 +853,41 @@
   border-radius: var(--borderR);
   background: var(--light-gray);
   cursor: pointer;
+  position: relative;
+  &_active {
+    border-end-end-radius: 0;
+    border-end-start-radius: 0;
+  }
   &__title {
     color: var(--textGray);
+  }
+  &__drops {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transform: translateY(100%);
+    overflow: hidden;
+    background: var(--light-gray);
+    z-index: 4;
+    border-end-end-radius: var(--borderR);
+    border-end-start-radius: var(--borderR);
+    &_active {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+  &__drop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    &:hover {
+      background: var(--light-gray-2);
+    }
   }
 }
 

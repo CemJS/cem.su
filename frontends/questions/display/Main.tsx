@@ -1,33 +1,124 @@
-import { Cemjsx, Fn, Static, front } from "cemjs-all";
+import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
 import frameDefault from "@svg/lenta/default.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import openDrop from "@svg/icons/openDropDown.svg";
 
-const RenderFilter = (title: string, items: any[], outStatic: string) => {
-  <div class="filter questions__filter">
-    <div class="filter__left">
-      <p class="filter__title">{title}</p>
-      <p class="filter__current">{items.filter((item) => item.name == Static["outStatic"])[0].text}</p>
+const RenderTypeFilter = () => {
+  return (
+    <div
+      ref="filterType"
+      onclick={(e) => {
+        Ref.filterTypeDrops.classList.toggle("filter__drops_active");
+        Ref.filterType.classList.toggle("filter_active");
+      }}
+      class="filter"
+    >
+      <div class="filter__left">
+        <p class="filter__title">Сортировать</p>
+        <p class="filter__current">{Static.types.filter((item) => item.name == Static.makeFilter.type)[0].text}</p>
+      </div>
+      <img
+        src={openDrop}
+        alt=""
+        class="filter__img"
+      />
+      <div
+        ref="filterTypeDrops"
+        class="filter__drops"
+      >
+        {Static.types.map((item) => {
+          return (
+            <div
+              onclick={() => {
+                Static.makeFilter.type = item.name;
+              }}
+              class="filter__drop"
+            >
+              {item.text}
+            </div>
+          );
+        })}
+      </div>
     </div>
-    <img
-      src={openDrop}
-      alt=""
-      class="filter__img"
-    />
-    <div class="filter__drops">
-      {items.map((item) => {
-        return <div class="filter__drop"></div>;
-      })}
+  );
+};
+
+const RenderSortFilter = () => {
+  return (
+    <div
+      ref="filterSort"
+      onclick={(e) => {
+        Ref.filterSortDrops.classList.toggle("filter__drops_active");
+        Ref.filterSort.classList.toggle("filter_active");
+      }}
+      class="filter"
+    >
+      <div class="filter__left">
+        <p class="filter__title">Сортировать</p>
+        <p class="filter__current">{Static.sortBy.filter((item) => item.name == Static.makeFilter.sortBy)[0].text}</p>
+      </div>
+      <img
+        src={openDrop}
+        alt=""
+        class="filter__img"
+      />
+      <div
+        ref="filterSortDrops"
+        class="filter__drops"
+      >
+        {Static.sortBy.map((item) => {
+          return (
+            <div
+              onclick={() => {
+                Static.makeFilter.sortBy = item.name;
+              }}
+              class="filter__drop"
+            >
+              {item.text}
+            </div>
+          );
+        })}
+      </div>
     </div>
-  </div>;
+  );
+};
+
+const RenderLanguageFilter = () => {
+  return (
+    <div
+      onclick={(e) => {
+        Fn.initOne("modalLanguage", {});
+      }}
+      class="filter"
+    >
+      <div class="filter__left">
+        <p class="filter__current">Русский</p>
+      </div>
+      <img
+        src={openDrop}
+        alt=""
+        class="filter__img"
+      />
+    </div>
+  );
 };
 
 export default function () {
   // Fn.log("=18e445=", Static.records);
   return (
-    <div class="page">
+    <div
+      onclick={(e) => {
+        if (!e.target.closest(".filter")) {
+          Ref.filterTypeDrops.classList.remove("filter__drops_active");
+          Ref.filterType.classList.remove("filter_active");
+          Ref.filterSortDrops.classList.remove("filter__drops_active");
+          Ref.filterSort.classList.remove("filter_active");
+        }
+      }}
+      class="page"
+    >
       <div class="questions">
         <div class="wrapper wrapper_padding">
           <div class="questions__container">
@@ -56,7 +147,11 @@ export default function () {
                 задать вопрос
               </button>
             </div>
-            <div class="questions__filters"></div>
+            <div class="questions__filters">
+              <RenderTypeFilter />
+              <RenderSortFilter />
+              <RenderLanguageFilter />
+            </div>
 
             <div class="questions__list">
               {Static.records?.map((item: any, index: number) => {

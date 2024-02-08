@@ -29,7 +29,7 @@ front.loader = async () => {
     },
   ];
 
-  Static.answers = [
+  Static.sortBy = [
     {
       name: "date",
       text: "По дате",
