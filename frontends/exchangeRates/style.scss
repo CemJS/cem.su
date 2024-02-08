@@ -141,8 +141,6 @@
     display: none !important;
   }
 
-
-
   .table_row {
     margin-bottom: 10px;
     background: #3b3d49;
@@ -161,11 +159,11 @@
   }
 
   .exchange-rates__table__row {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 0.5fr;
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 330px) {
   .exchange-rates__table__row {
     grid-template-columns: 1fr;
   }
