@@ -22,15 +22,14 @@
     height: 20px;
   }
 
-  &_table_wrapper {
-    // height: 630px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
   &_table {
 
+    &_wrapper {
+      // height: 630px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
     &_head {
       font-size: 18px;
@@ -52,6 +51,11 @@
         padding: 10px 15px;
       }
 
+      .bgMW {
+        background: #1d2029;
+        min-width: 150px
+      }
+
       // &:hover {
       //   background: var(--back_opacity);
       // }
@@ -67,8 +71,9 @@
     }
 
     .coins_wrap {
-      display: flex;
-      align-items: center;
+      margin-top: 10px;
+      // display: flex;
+      // align-items: center;
     }
 
     &_index,
@@ -132,6 +137,7 @@
       display: flex;
     }
   }
+
   // .disable-tableName {
   //   display: block;
   // }
@@ -140,6 +146,7 @@
     .disable-tableName {
       display: none !important;
     }
+
     .listExchange_table_row {
       grid-template-columns: 1fr;
       grid-auto-flow: row;
@@ -164,4 +171,44 @@
       // /* align-items: center; */
     }
   }
+}
+.filterShow {
+  display: none;
+}
+@media (max-width: 700px) {
+  .filterShow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    cursor: pointer;
+  }
+
+  .listExchange {
+    padding-top: 10px !important;
+  }
+
+  .bgMW {
+    background: #3b3d49;
+    min-width: 150px
+  }
+
+  .listExchange_table_row {
+    display: none;
+  }
+
+  .disable-tableName {
+    display: none !important;
+  }
+
+  .table_body {
+    border: none;
+  }
+
+  .table_row {
+    margin-bottom: 10px;
+    background: #3b3d49;
+    border-radius: var(--borderR);
+  }
+
 }

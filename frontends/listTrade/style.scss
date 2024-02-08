@@ -100,6 +100,16 @@
   }
 
   @media (max-width: 700px) {
+
+    .listTrade {
+      padding-top: 10px !important;
+    }
+    .listTrade .crypto_coin_icon {
+      // top: -2px;
+      margin-right: 0;
+      max-height: 50px;
+    }
+
     .listTrade__table__head-btnBlock {
       padding-bottom: 30px;
     }
@@ -267,24 +277,11 @@
 }
 
 @media (max-width: 700px) {
-  .listTrade {
-    padding-top: 10px !important;
-  }
-  .listTrade .crypto_coin_icon {
-    // top: -2px;
-    margin-right: 0;
-    max-height: 50px;
-  }
   .body-card {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-}
-
-@media (max-width: 650px) {
-  
-
 }
 
 @media (max-width: 410px) {
