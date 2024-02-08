@@ -878,6 +878,7 @@
     z-index: 4;
     border-end-end-radius: var(--borderR);
     border-end-start-radius: var(--borderR);
+    transition: all 0.2s ease-in-out;
     &_active {
       opacity: 1;
       pointer-events: all;

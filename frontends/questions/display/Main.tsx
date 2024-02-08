@@ -57,7 +57,7 @@ const RenderSortFilter = () => {
     >
       <div class="filter__left">
         <p class="filter__title">Сортировать</p>
-        <p class="filter__current">{Static.sortBy.filter((item) => item.name == Static.makeFilter.sortBy)[0].text}</p>
+        <p class="filter__current">{Static.sort.filter((item) => item.name == Static.makeFilter.sort)[0].text}</p>
       </div>
       <img
         src={openDrop}
@@ -68,11 +68,11 @@ const RenderSortFilter = () => {
         ref="filterSortDrops"
         class="filter__drops"
       >
-        {Static.sortBy.map((item) => {
+        {Static.sort.map((item) => {
           return (
             <div
               onclick={() => {
-                Static.makeFilter.sortBy = item.name;
+                Static.makeFilter.sort = item.name;
               }}
               class="filter__drop"
             >
@@ -89,18 +89,18 @@ const RenderLanguageFilter = () => {
   return (
     <div
       onclick={async (e) => {
-
         Fn.initOne("modalLanguage", {
           full: true,
           callback: (chooseLanguage) => {
-            console.log('=chooseLang=', chooseLanguage)
-          }
+            Fn.log("=7baba8=", chooseLanguage);
+            Static.chooseLanguage = chooseLanguage;
+          },
         });
       }}
       class="filter"
     >
       <div class="filter__left">
-        <p class="filter__current">Русский</p>
+        <p class="filter__current">{`${Static.chooseLanguage?.eng_name} (${Static.chooseLanguage?.orig_name})`}</p>
       </div>
       <img
         src={openDrop}
@@ -240,10 +240,10 @@ export default function () {
                       <a
                         // href={`/questions/show/${item._id}`}
                         class="btn btn_gradient"
-                      // onclick={(e) => {
-                      //   Static.recordsShow = item;
-                      //   Fn.link(e);
-                      // }}
+                        // onclick={(e) => {
+                        //   Static.recordsShow = item;
+                        //   Fn.link(e);
+                        // }}
                       >
                         Ответить
                       </a>
