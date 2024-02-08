@@ -1,0 +1,211 @@
+[
+  {
+    "id": 3,
+    "photo": "speaker3",
+    "speaker": "Александр Бражников",
+    "about_speaker": "Исполнительный директор РАКИБ",
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 27,
+    "photo": "speaker27",
+    "speaker": "Павел Гудимов",
+    "about_speaker": "Директор по развитию РАКИБ",
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 5,
+    "photo": "speaker5",
+    "speaker": "Алексей Зюзин",
+    "about_speaker": "Организатор Crypto Summit",
+    "visited": ["CryptoЮГ2023"]
+  },
+  {
+    "id": 15,
+    "photo": "speaker15",
+    "speaker": "Владимир Туров",
+    "about_speaker": "Turov Invest",
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 1,
+    "photo": "speaker1",
+    "speaker": "Ян Кривоносов",
+    "about_speaker": "CEO Crypto Emergency",
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 14,
+    "photo": "speaker14",
+    "speaker": "Сергей Павлович",
+    "about_speaker": "Люди PRO",
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 2,
+    "photo": "speaker2",
+    "speaker": "Андрей Тугарин",
+    "about_speaker": "CEO компании GMT Legal",
+
+    "visited": ["CryptoЮГ2022"]
+  },
+  {
+    "id": 6,
+    "photo": "speaker6",
+    "speaker": "Вероника Близнец",
+    "about_speaker": "Адвокат, юрист-международник",
+    "visited": ["CryptoЮГ2023"]
+  },
+  {
+    "id": 7,
+    "photo": "speaker7",
+    "speaker": "Mr. Sailer YouTube",
+    "about_speaker": "Блогер журналист",
+
+    "visited": ["CryptoЮГ2023"]
+  },
+  {
+    "id": 29,
+    "photo": "speaker29",
+    "speaker": "Олег Иванов",
+    "about_speaker": "Серийный предприниматель, инвестор",
+
+    "visited": ["CryptoЮГ2023"]
+  },
+  {
+    "id": 8,
+    "photo": "speaker8",
+    "speaker": "Валерий Осипов",
+    "about_speaker": "ArtEmotioChain",
+
+    "visited": ["CryptoЮГ2023"]
+  },
+  {
+    "id": 9,
+    "photo": "speaker9",
+    "speaker": "Александр Изюрьев",
+    "about_speaker": "Основатель клуба инвесторов UnionClub",
+
+    "visited": ["CryptoЮГ2023"]
+  },
+  {
+    "id": 10,
+    "photo": "speaker10",
+    "speaker": "Ярослав Кожухов",
+    "about_speaker": "Metis",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 25,
+    "photo": "speaker25",
+    "speaker": "Кирилл Филимонов",
+    "about_speaker": "Основатель Россграм",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 30,
+    "photo": "speaker30",
+    "speaker": "Владислав Судьин",
+    "about_speaker": "Зам. председателя Комиссии по инновациям и инвестициям IFSPD",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 12,
+    "photo": "speaker12",
+    "speaker": "Вячеслав Носков",
+    "about_speaker": "PRO BLOCKCHAIN MEDIA",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 26,
+    "photo": "speaker26",
+    "speaker": "Бурков Максим",
+    "about_speaker": "Основатель группы web3 компаний Pro Blockchain Media",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 13,
+    "photo": "speaker13",
+    "speaker": "Денис Магданов",
+    "about_speaker": "DUMA NETWORK",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 17,
+    "photo": "speaker17",
+    "speaker": "Сергей Грабский",
+    "about_speaker": "Руководитель Ассоциации цифрового развития Краснодарского края",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 18,
+    "photo": "speaker18",
+    "speaker": "Евгений Сапожников",
+    "about_speaker": "Основатель обменника криптовалют Keine-exchange",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 19,
+    "photo": "speaker19",
+    "speaker": "Денис Стригун",
+    "about_speaker": "CEO WEB3Space",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 20,
+    "photo": "speaker20",
+    "speaker": "Иван Деркач",
+    "about_speaker": "CTO WEB3Space",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 21,
+    "photo": "speaker21",
+    "speaker": "Дмитрий Романов",
+    "about_speaker": "Консультант блокчейн-проектов",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 22,
+    "photo": "speaker22",
+    "speaker": "Илья Ткаченко",
+    "about_speaker": "Криптоэксперт",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 23,
+    "photo": "speaker23",
+    "speaker": "Тимофей Григоренко",
+    "about_speaker": "Майнинг, владелец 1GHS",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 24,
+    "photo": "speaker24",
+    "speaker": "Лев Пониманский",
+    "about_speaker": "Криптоэнтузиаст",
+
+    "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
+  },
+  {
+    "id": 28,
+    "photo": "speaker28",
+    "speaker": "Наталья Сазонова",
+    "about_speaker": "CEO Rabotavkripte",
+
+    "visited": ["CryptoЮГ2023"]
+  }
+]

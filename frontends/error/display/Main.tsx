@@ -1,44 +1,22 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all"
+import { Cemjsx, Fn, Func, Static } from "cemjs-all";
 
 export default function () {
-    return (
-        <div class="error_wrap">
-            <p class="error_text">Страница не найдена</p>
-            <h1 class="error_title">Error 404</h1>
-            <p class="error_subtitle">Вернитесь на главную страницу</p>
-            <button
-                // href="/"
-                onclick={() => {
-                    Static.color = "green"
-                }}
-                class="btn btn_timing"
+  return (
+    <div class="error_wrap">
+      <p class="error_text">Страница не найдена</p>
+      <h1 class="error_title">Error 404</h1>
+      <p class="error_subtitle">Вернитесь на главную страницу</p>
+      <a
+        class="btn"
+        href="/"
+        onclick={Fn.link}
+      >
+        На главную
+      </a>
 
-            >
-                <span>На главную</span>
-            </button>
-            <div>
-                {
-                    (Static.records).map((item, index) => {
-                        return (
-                            <p>{item.name} = {item.price}</p>
-                        )
-                    })
-                }
+      {/* example svg */}
 
-            </div>
-            <div>{Static.t ?? 5}</div>
-
-            <div class="test">
-                <ul class="list">
-                    <li class="list__item">
-                        <span>1</span>
-                    </li>
-                </ul>
-            </div>
-
-            {/* example svg */}
-
-            <svg class='loader-example' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'>
+      {/* <svg class='loader-example' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'>
                 <g transform='translate(300, 300)'>
                     <g class='gear-A'>
                         <g transform='translate(-300, -300)'>
@@ -53,10 +31,9 @@ export default function () {
                         </g>
                     </g>
                 </g>
-            </svg>
+            </svg> */}
 
-            {/* example svg */}
-
-        </div >
-    )
+      {/* example svg */}
+    </div>
+  );
 }

@@ -22,7 +22,6 @@ const RenderMenu = function ({ menu }) {
 };
 
 export default function () {
-  // console.log('=2ffd0d=', front.Variable.Auth)
   return (
     <div
       class="wrapper"
@@ -55,7 +54,12 @@ export default function () {
           </div>
 
           {front.Variable.Auth ? (
-            <div onclick={() => Fn.initOne("sidebar", {})}>Profile</div>
+            <div onclick={() => Fn.initOne("modalCountry", {
+              callback: (chooseCountry) => {
+                Fn.log(chooseCountry)
+                // chooseCountry выбранная страна
+              }
+            })}>Profile</div>
           ) : (
             <div class="header-auth">
               <span onclick={() => Fn.initOne("modalAuthtorization", {})}>Вход</span>

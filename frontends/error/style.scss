@@ -1,3 +1,65 @@
+.error {
+  overflow: hidden;
+  background-image: url("images/error/background_image.jpg");
+  background-repeat: no-repeat;
+  background-position: calc(50% - 4.375rem) 50%;
+  gap: 1.5625rem;
+  height: 90vh;
+  position: relative;
+  text-align: center;
+
+  &_wrap {
+    padding: 0 0.625rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5625rem;
+    max-width: 41.875rem;
+    width: 100%;
+  }
+
+  &_title {
+    font-size: clamp(3rem, 2vw, 5.375rem);
+    line-height: 5.75rem;
+    font-weight: 700;
+    text-shadow: 0.125rem 0.625rem 0.625rem #000;
+  }
+
+  &_text {
+    text-align: center;
+    font-size: clamp(2.5rem, 2vw, 3.75rem);
+    line-height: 4.25rem;
+    font-weight: 600;
+    text-shadow: 0.125rem 0.625rem 0.625rem #000;
+    margin-bottom: 3.125rem;
+  }
+
+  &_subtitle {
+    font-size: clamp(1rem, 2vw, 1.375rem);
+    line-height: 1.75rem;
+    font-weight: 600;
+    text-shadow: 0.125rem 0.625rem 0.625rem #000;
+  }
+
+  .btn {
+    font-size: clamp(1rem, 2vw, 1.375rem);
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .error {
+    &_text {
+      margin-bottom: 0;
+    }
+  }
+}
+
 @keyframes rotate-gear {
   from {
     transform: rotate(0);
@@ -7,8 +69,6 @@
     transform: rotate(360deg);
   }
 }
-
-
 
 // original styles
 // .loader-example {

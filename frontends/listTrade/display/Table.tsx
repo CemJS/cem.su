@@ -5,35 +5,40 @@ export default function () {
     return (
         <table class="listTrade__table table">
             <thead class="listTrade__table__head ">
+                <div class="listTrade__table__head-btnBlock">
+                    <div ref="cex" class="listTrade-btnListTrade tag__button tag__button_active"
+                        onclick={(e: any) => {
+                            e.target.classList.toggle("tag__button_active");
+                            Ref.dex.classList.remove("tag__button_active")
+                            let res = front.Services.functions.sendApi("/api/events/Trades", {
+                                "action": "get",
+                                "category": "CEX",
+                                "uuid": `${localStorage?.uuid}`,
+                            })
+                        }}>CEX</div>
+                    <div ref="dex" class="listTrade-btnListTrade tag__button"
+                        onclick={(e: any) => {
+                            e.target.classList.toggle("tag__button_active");
+                            Ref.cex.classList.remove("tag__button_active")
+                            let res = front.Services.functions.sendApi("/api/events/Trades", {
+                                "action": "get",
+                                "category": "DEX",
+                                "uuid": `${localStorage?.uuid}`,
+                            })
+                        }}>DEX</div>
+                </div>
                 <tr class="listTrade__table__row">
                     <th class="disable-tableName justStart">Название</th>
                     <th class="disable-tableName">Рейтинг</th>
                     <th class="disable-tableName">График</th>
-                    <th class="listTrade__table__position-end">
-                        <div ref="cex" class="listTrade-btnListTrade tag__button tag__button_active"
-                            onclick={(e: any) => {
-                                e.target.classList.toggle("tag__button_active");
-                                Ref.dex.classList.remove("tag__button_active")
-                                let res = front.Services.functions.sendApi("/api/events/Trades", {
-                                    "action": "get",
-                                    "category": "CEX",
-                                    "uuid": `${localStorage?.uuid}`,
-                                })
-                            }}>CEX</div>
-                        <div ref="dex" class="listTrade-btnListTrade tag__button"
-                            onclick={(e: any) => {
-                                e.target.classList.toggle("tag__button_active");
-                                Ref.cex.classList.remove("tag__button_active")
-                                let res = front.Services.functions.sendApi("/api/events/Trades", {
-                                    "action": "get",
-                                    "category": "DEX",
-                                    "uuid": `${localStorage?.uuid}`,
-                                })
-                            }}>DEX</div>
+                    <th class="listTrade__table_position-end">
+
                     </th>
                 </tr>
             </thead>
-            <tbody class="table_body listTrade__table__body table_test">
+
+            <tbody class="table_body listTrade__table__body">
+
                 {
                     Static.records?.map((item: any, index: any) => {
                         return (
@@ -93,7 +98,7 @@ export default function () {
                         </a> */}
                                     </td>
                                 </tr>
-                                <Card item={item} index={index}/>
+                                <Card item={item} index={index} />
                             </div>
                         )
                     })

@@ -1,50 +1,62 @@
 [
   {
-    "name": "俄语"
+    "orig_name": "俄语",
+    "code": "cn"
   },
   {
-    "name": "Deutsch"
+    "orig_name": "Deutsch",
+    "code": "de"
   },
   {
-    "name": "Ελληνικά"
+    "orig_name": "Ελληνικά",
+    "code": "gr"
   },
   {
-    "name": "English"
+    "orig_name": "English",
+    "code": "gb"
   },
   {
-    "name": "Español"
+    "orig_name": "Español",
+    "code": "es"
   },
   {
-    "name": "Français"
+    "orig_name": "Français",
+    "code": "fr"
   },
   {
-    "name": "רובית"
+    "orig_name": "רובית",
+    "code": "il"
   },
   {
-    "name": "ռուսերեն"
+    "orig_name": "ռուսերեն",
+    "code": "am"
   },
   {
-    "name": "Bahasa Indonesia"
+    "orig_name": "Bahasa Indonesia",
+    "code": "mc"
   },
   {
-    "name": "Italiano"
+    "orig_name": "Italiano",
+    "code": "it"
   },
   {
-    "name": "日本語"
+    "orig_name": "polszczyzna",
+    "code": "pl"
   },
   {
-    "name": "polszczyzna"
+    "orig_name": "Português",
+    "code": "pt"
   },
   {
-    "name": "Português"
+    "orig_name": "Русский",
+    "code": "ru"
   },
   {
-    "name": "Русский"
+    "orig_name": "Türkçe",
+    "code": "tr"
   },
   {
-    "name": "Türkçe"
-  },
-  {
-    "name": "Український"
+    "orig_name": "Український",
+    "code": "ua"
   }
 ]

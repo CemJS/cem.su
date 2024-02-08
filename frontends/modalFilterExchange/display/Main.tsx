@@ -39,11 +39,11 @@ const RenderNotFound = function () {
 
 const RenderListCoins = function ({ coins }) {
     return (
-        <div class="list-coins">
+        <ul class="list-coins">
             {
                 coins.map(item => {
                     return (
-                        <div
+                        <li
                             class={[
                                 "list-coins__item",
                                 Static.filterCoins.includes(item.name) ? "list-coins__item_active" : null
@@ -61,11 +61,11 @@ const RenderListCoins = function ({ coins }) {
                                 alt={item.name}
                             />
                             <span>{item.name}</span>
-                        </div>
+                        </li>
                     )
                 })
             }
-        </div>
+        </ul>
     )
 }
 

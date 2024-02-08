@@ -54,7 +54,7 @@
 
 .list {
   &__item {
-    padding: 10px 15px;
+    padding: .6rem .9rem;
     border-radius: var(--borderR);
     border: 1px solid #474c5a;
     margin: 0 5px;
@@ -62,7 +62,7 @@
     align-items: center;
     gap: 10px;
     box-shadow: 1px 6px 0px -4px rgba(0, 0, 0, 0.15), 3px 4px 4px -1px rgba(0, 0, 0, 0.15);
-    background-color: rgba(255, 255, 255, 0.09);
+    background-color: rgba(255, 255, 255, 0.07);
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, transform 0.3s ease-in-out;
 
@@ -78,6 +78,10 @@
 
     &:not(:last-child) {
       margin-bottom: 0.5rem;
+    }
+
+    &-img {
+      width: 2rem;
     }
   }
 }
