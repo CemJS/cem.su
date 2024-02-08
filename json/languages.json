@@ -1,62 +1,62 @@
 [
   {
-    "name": "俄语",
-    "icon": "cn"
+    "orig_name": "俄语",
+    "code": "cn"
   },
   {
-    "name": "Deutsch",
-    "icon": "de"
+    "orig_name": "Deutsch",
+    "code": "de"
   },
   {
-    "name": "Ελληνικά",
-    "icon": "gr"
+    "orig_name": "Ελληνικά",
+    "code": "gr"
   },
   {
-    "name": "English",
-    "icon": "gb"
+    "orig_name": "English",
+    "code": "gb"
   },
   {
-    "name": "Español",
-    "icon": "es"
+    "orig_name": "Español",
+    "code": "es"
   },
   {
-    "name": "Français",
-    "icon": "fr"
+    "orig_name": "Français",
+    "code": "fr"
   },
   {
-    "name": "רובית",
-    "icon": "il"
+    "orig_name": "רובית",
+    "code": "il"
   },
   {
-    "name": "ռուսերեն",
-    "icon": "am"
+    "orig_name": "ռուսերեն",
+    "code": "am"
   },
   {
-    "name": "Bahasa Indonesia",
-    "icon": "mc"
+    "orig_name": "Bahasa Indonesia",
+    "code": "mc"
   },
   {
-    "name": "Italiano",
-    "icon": "it"
+    "orig_name": "Italiano",
+    "code": "it"
   },
   {
-    "name": "polszczyzna",
-    "icon": "pl"
+    "orig_name": "polszczyzna",
+    "code": "pl"
   },
   {
-    "name": "Português",
-    "icon": "pt"
+    "orig_name": "Português",
+    "code": "pt"
   },
   {
-    "name": "Русский",
-    "icon": "ru"
+    "orig_name": "Русский",
+    "code": "ru"
   },
   {
-    "name": "Türkçe",
-    "icon": "tr"
+    "orig_name": "Türkçe",
+    "code": "tr"
   },
   {
-    "name": "Український",
-    "icon": "ua"
+    "orig_name": "Український",
+    "code": "ua"
   }
 ]

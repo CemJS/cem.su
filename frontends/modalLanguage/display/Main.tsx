@@ -1,4 +1,32 @@
-import { Cemjsx, Static } from "cemjs-all"
+import { Cemjsx, Static, Fn, Func } from "cemjs-all"
+import notFound from '@svg/notFound.svg'
+
+const RenderSearch = function () {
+    return (
+        <div
+            class={[
+                "modalWindow_field",
+                Static.searchText ? "modalWindow_field__valid" : null
+            ]}
+        >
+            <input
+                type="text"
+                autocomplete="off"
+                oninput={(e: any) => {
+                    Static.searchText = e.target.value.toLowerCase();
+                    Static.coins = Static.records.filter((item) => {
+                        if (item.name.toLowerCase().includes(Static.searchText)) {
+                            return true;
+                        }
+                    })
+                }} />
+            <div class="modalWindow_field_labelLine">
+                <i class="i i-user"></i>
+                <span>Поиск</span>
+            </div>
+        </div>
+    )
+}
 
 const RenderListLanguages = function ({ languages }) {
     return (
@@ -6,13 +34,22 @@ const RenderListLanguages = function ({ languages }) {
             {
                 languages.map(item => {
                     return (
-                        <li class="list__item">
-                            <img
-                                class="list__item-img"
-                                src={`/contents/svg/flags/${item.icon}.svg`}
-                                alt={item.name}
-                            />
-                            <span>{item.name}</span>
+                        <li
+                            class="list__item"
+                            onclick={() => {
+                                Static.callback(item)
+                                Func.close()
+                            }}
+                        >
+                            {
+                                Static.full ? null :
+                                    <img
+                                        class="list__item-img"
+                                        src={`/contents/svg/flags/${item.code}.svg`}
+                                        alt={item.orig_name}
+                                    />
+                            }
+                            <span>{item.orig_name}</span>
                         </li>
                     )
                 })
@@ -21,11 +58,28 @@ const RenderListLanguages = function ({ languages }) {
     )
 }
 
+const RenderNotFound = function () {
+    return (
+        <div class="notFound">
+            <img src={notFound} alt="Not found" />
+            <span>Не найдено</span>
+        </div>
+    )
+}
+
 export default function () {
+    Fn.log("= records =", Static.records)
+
     return (
         <main class="modal_main">
+            {Static.full ? <RenderSearch /> : null}
             <div class="mt-15">
-                <RenderListLanguages languages={Static.languages} />
+                {
+                    Static.full ?
+                        Static.records.length > 0 ?
+                            <RenderListLanguages languages={Static.records} /> :
+                            <RenderNotFound /> : <RenderListLanguages languages={Static.languages} />
+                }
             </div>
         </main>
     )

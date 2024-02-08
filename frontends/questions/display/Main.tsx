@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
+import { Cemjsx, Fn, Ref, Static, front, Events } from "cemjs-all";
 import frameDefault from "@svg/lenta/default.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
@@ -88,8 +88,14 @@ const RenderSortFilter = () => {
 const RenderLanguageFilter = () => {
   return (
     <div
-      onclick={(e) => {
-        Fn.initOne("modalLanguage", {});
+      onclick={async (e) => {
+
+        Fn.initOne("modalLanguage", {
+          full: true,
+          callback: (chooseLanguage) => {
+            console.log('=chooseLang=', chooseLanguage)
+          }
+        });
       }}
       class="filter"
     >
@@ -234,10 +240,10 @@ export default function () {
                       <a
                         // href={`/questions/show/${item._id}`}
                         class="btn btn_gradient"
-                        // onclick={(e) => {
-                        //   Static.recordsShow = item;
-                        //   Fn.link(e);
-                        // }}
+                      // onclick={(e) => {
+                      //   Static.recordsShow = item;
+                      //   Fn.link(e);
+                      // }}
                       >
                         Ответить
                       </a>
