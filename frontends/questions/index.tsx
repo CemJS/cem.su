@@ -10,6 +10,45 @@ front.func.test = () => {
 };
 
 front.loader = async () => {
+  Static.types = [
+    {
+      name: "All",
+      text: "Все запросы",
+    },
+    {
+      name: "answers",
+      text: "Ожидающие ответа",
+    },
+    {
+      name: "closed",
+      text: "Закрытые вопросы",
+    },
+    {
+      name: "best",
+      text: "Закрытые с лучшим ответом",
+    },
+  ];
+
+  Static.answers = [
+    {
+      name: "date",
+      text: "По дате",
+    },
+    {
+      name: "views",
+      text: "По просмотрам",
+    },
+    {
+      name: "answers",
+      text: "По ответам",
+    },
+  ];
+
+  Static.makeFilter = {
+    type: "All",
+    sortBy: "date",
+    language: "ru",
+  };
   let url = front.Services.functions.makeUrlEvent("Questions");
   let listener = [
     {
@@ -40,7 +79,7 @@ front.loader = async () => {
   Events.questions = await Fn.event(url, listener);
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-    let url = front.Services.functions.makeUrlEvent("Icos", { action: "show", id: front.Variable.DataUrl[2] });
+    let url = front.Services.functions.makeUrlEvent("Questions", { action: "show", id: front.Variable.DataUrl[2] });
 
     let listener = [
       {
@@ -55,6 +94,24 @@ front.loader = async () => {
       },
     ];
     Events.questions = await Fn.event(url, listener);
+
+    // let urlAns = front.Services.functions.makeUrlEvent("Answers", { id: front.Variable.DataUrl[2] });
+
+    // let listenerAns = [
+    //   {
+    //     type: "get",
+    //     fn: ({ data }) => {
+    //       let json = front.Services.functions.strToJson(data);
+    //       if (!json) {
+    //         return;
+    //       }
+    //       Static.answers = json;
+    //       Fn.log("=280e42=", 1123);
+    //     },
+    //   },
+    // ];
+    // Events.answers = await Fn.event(urlAns, listenerAns);
+    // Fn.log("=550655=", 1);
   }
   return;
 };

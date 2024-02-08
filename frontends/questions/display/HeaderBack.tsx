@@ -8,7 +8,7 @@ export default function () {
           <span
             class="back-inner_arrow"
             onclick={() => {
-              Fn.linkChange("/list-icostartups");
+              Fn.linkChange("/questions");
               if (front.Variable.$el.header) {
                 front.Variable.$el.header.classList.remove("hide");
                 Static.record = null;
@@ -18,7 +18,7 @@ export default function () {
             <i class="i i-arrow-left"></i>
           </span>
 
-          <h5 class="back-title">Ico</h5>
+          <h5 class="back-title">Вопрос</h5>
 
           <span
             class="back-ellipsis"

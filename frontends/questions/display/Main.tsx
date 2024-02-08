@@ -3,13 +3,29 @@ import frameDefault from "@svg/lenta/default.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
-import views from "@svg/news/views.svg";
-import comments from "@svg/news/comments.svg";
-// import Show from './display/show'
+import openDrop from "@svg/icons/openDropDown.svg";
+
+const RenderFilter = (title: string, items: any[], outStatic: string) => {
+  <div class="filter questions__filter">
+    <div class="filter__left">
+      <p class="filter__title">{title}</p>
+      <p class="filter__current">{items.filter((item) => item.name == Static["outStatic"])[0].text}</p>
+    </div>
+    <img
+      src={openDrop}
+      alt=""
+      class="filter__img"
+    />
+    <div class="filter__drops">
+      {items.map((item) => {
+        return <div class="filter__drop"></div>;
+      })}
+    </div>
+  </div>;
+};
 
 export default function () {
-  console.log("=a5992d=", Static.records);
-
+  // Fn.log("=18e445=", Static.records);
   return (
     <div class="page">
       <div class="questions">
@@ -25,6 +41,7 @@ export default function () {
                 />
               </div>
               <button
+                class="btn"
                 onclick={() => {
                   //   Fn.initOne({
                   //     name: "modalQuestion",
@@ -39,15 +56,35 @@ export default function () {
                 задать вопрос
               </button>
             </div>
+            <div class="questions__filters"></div>
 
             <div class="questions__list">
-              {Static.records?.map((item) => {
-                Fn.log("=f65505=", item);
+              {Static.records?.map((item: any, index: number) => {
                 return (
                   <div
                     class="questions__item"
                     onclick={() => {
                       Static.record = item;
+                      Fn.linkChange(`/questions/show/${item.id}`);
+                    }}
+                    init={($el: any) => {
+                      if (index == Static.records?.length - 1) {
+                        const observer = new IntersectionObserver((entries) => {
+                          entries.forEach(async (entry) => {
+                            // Fn.log("=6ba7c1=111111", entry.isIntersecting, entry);
+                            if (entry.isIntersecting) {
+                              // Fn.log("=2a3c8e=", 6666666);
+                              observer.unobserve($el);
+                              let res = await front.Services.functions.sendApi("/api/events/Questions", {
+                                action: "skip",
+                                skip: Static.records.length,
+                              });
+                              console.log("=e26cda=", res);
+                            }
+                          });
+                        });
+                        observer.observe($el);
+                      }
                     }}
                   >
                     <div class="questions__item_header questions__user">
@@ -84,8 +121,8 @@ export default function () {
                       </div>
                     </div>
                     <div class={["questions__item_preview", item.title.length < 15 && item.text ? "questions__item_preview_row" : null]}>
-                      <span>{front.Services.functions.sliceString(item.title)}</span>
-                      {item.title.length < 15 && item.text ? <span>{item.text}</span> : null}
+                      <span>{item.title}</span>
+                      {item.title.length < 15 && item.text ? <span init={(e) => (e.innerHTML = item.text)}></span> : null}
                     </div>
                     <div class="questions__item_statistic">
                       <span>
@@ -96,16 +133,16 @@ export default function () {
                         <i class="i i-faq"></i>
                         {item.statistic.view}
                       </span>
-                      <span>{front.Services.functions.dateFormat(item.showDate, "now")}</span>
+                      <span>{front.Services.functions.timeStampToDate(item.showDate, ".")}</span>
                     </div>
                     <div class="questions__item_footer">
                       <a
-                        href={`/questions/${item._id}`}
+                        // href={`/questions/show/${item._id}`}
                         class="btn btn_gradient"
-                        onclick={(e) => {
-                          Static.recordsShow = item;
-                          Fn.link(e);
-                        }}
+                        // onclick={(e) => {
+                        //   Static.recordsShow = item;
+                        //   Fn.link(e);
+                        // }}
                       >
                         Ответить
                       </a>

@@ -1,50 +1,62 @@
 [
   {
-    "name": "俄语"
+    "name": "俄语",
+    "icon": "cn"
   },
   {
-    "name": "Deutsch"
+    "name": "Deutsch",
+    "icon": "de"
   },
   {
-    "name": "Ελληνικά"
+    "name": "Ελληνικά",
+    "icon": "gr"
   },
   {
-    "name": "English"
+    "name": "English",
+    "icon": "gb"
   },
   {
-    "name": "Español"
+    "name": "Español",
+    "icon": "es"
   },
   {
-    "name": "Français"
+    "name": "Français",
+    "icon": "fr"
   },
   {
-    "name": "רובית"
+    "name": "רובית",
+    "icon": "il"
   },
   {
-    "name": "ռուսերեն"
+    "name": "ռուսերեն",
+    "icon": "am"
   },
   {
-    "name": "Bahasa Indonesia"
+    "name": "Bahasa Indonesia",
+    "icon": "mc"
   },
   {
-    "name": "Italiano"
+    "name": "Italiano",
+    "icon": "it"
   },
   {
-    "name": "日本語"
+    "name": "polszczyzna",
+    "icon": "pl"
   },
   {
-    "name": "polszczyzna"
+    "name": "Português",
+    "icon": "pt"
   },
   {
-    "name": "Português"
+    "name": "Русский",
+    "icon": "ru"
   },
   {
-    "name": "Русский"
+    "name": "Türkçe",
+    "icon": "tr"
   },
   {
-    "name": "Türkçe"
-  },
-  {
-    "name": "Український"
+    "name": "Український",
+    "icon": "ua"
   }
 ]
