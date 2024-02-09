@@ -26,7 +26,7 @@ let checkBox = {
 export default function () {
   // Fn.log('=d77b33=',Static.records)
   let answer: any = []
-  let value: any = ""
+  let value: any
 
   Fn.log('=bb81bd=', Static.lang)
   return (
@@ -46,7 +46,8 @@ export default function () {
                     answer = await front.Services.functions.sendApi("/api/events/Users", {
                       "action": "get",
                       "uuid": `${localStorage?.uuid}`,
-                      "search": value
+                      "search": value,
+                      "lang": Static.lang?.code
                     });
                   }
                 }, 400)} />
@@ -61,9 +62,12 @@ export default function () {
                     // console.log("filterLangFromModal", filterLangFromModal);
                     let res = front.Services.functions.sendApi("/api/events/Users", {
                       "action": "get",
-                      "lang": Static.lang,
+                      "lang": Static.lang?.code,
+                      "search": value,
                       "uuid": `${localStorage?.uuid}`,
                     })
+                    console.log("res", res);
+                    
                     if (!filterLangFromModal.length) {
                       return;
                     }
@@ -145,12 +149,13 @@ export default function () {
                 }}>
                 <img src={resetFilters} width="30" height="30"
                   onclick={() => {
-                    Static.lang.orig_name = ""
+                    Static.lang.code = "ru"
                     // console.log("filterLangFromModal", filterLangFromModal);
                     let res = front.Services.functions.sendApi("/api/events/Users", {
                       "action": "get",
-                      "lang": Static.lang,
+                      "lang": Static.lang?.code,
                       "uuid": `${localStorage?.uuid}`,
+                      "search": value,
                     })
                   }} />
               </button>
