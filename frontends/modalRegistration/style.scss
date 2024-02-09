@@ -129,7 +129,7 @@
       }
 
       &__success {
-        border: 1px solid var(--green);
+        border: 1px solid var(--green-700);
       }
     }
 
@@ -306,6 +306,7 @@
     position: relative;
     height: 50px;
     line-height: 50px;
+
     &.textarea {
       height: 10rem;
     }
@@ -345,8 +346,8 @@
       color: var(--secondary_text);
     }
 
-    input:focus + .modalWindow_field_labelLine,
-    textarea:focus + .modalWindow_field_labelLine {
+    input:focus+.modalWindow_field_labelLine,
+    textarea:focus+.modalWindow_field_labelLine {
       height: 30px;
       line-height: 30px;
       transform: translate(-15px, -16px) scale(0.88);
@@ -380,19 +381,21 @@
       font-size: clamp(0.7rem, 2vw, 0.8rem);
       top: -38px;
       right: 0.9375rem;
+      font-weight: 500;
     }
 
     &__error {
       input {
-        border: 1px solid var(--red);
+        border: 1px solid var(--rose-600);
       }
 
       .modalWindow_field-status {
-        color: var(--red);
+        color: var(--rose-600);
       }
     }
 
     &__disabled {
+
       input,
       textarea {
         opacity: 0.5;
@@ -421,21 +424,25 @@
     &__edit {
       position: absolute;
       right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 20px;
-      width: 20px;
+      top: 0;
       cursor: pointer;
+      height: 100%;
+      display: flex;
+      align-items: center;
       transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--fiolet);
+      }
     }
 
     &__success {
       input {
-        border: 1px solid var(--green);
+        border: 1px solid var(--green-700);
       }
 
       .modalWindow_field-status {
-        color: var(--green);
+        color: var(--green-700);
       }
     }
 
