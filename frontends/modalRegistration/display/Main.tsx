@@ -384,8 +384,18 @@ const Step3 = function () {
                         <span>{Static.form.rePass.placeholder}</span>
                     </div>
                     <p class="modalWindow_field__status" style="color:#E84142">{Static.form.rePass.error}</p>
-                    <div class="modalWindow_field__tooltip">
-                        <img
+                    <div
+                        class="modalWindow_field__tooltip"
+                        onclick={() => {
+                            if (Static.passType == "password") {
+                                Static.passType = "text"
+                            } else {
+                                Static.passType = "password"
+                            }
+                        }}
+                    >
+                        <i class="i i-eye"></i>
+                        {/* <img
                             alt="Показать пароль"
                             class="modalWindow_field__eye"
                             // src={this.Static.passType == "password" ? eye : eyeSlash}
@@ -396,7 +406,7 @@ const Step3 = function () {
                                     Static.passType = "password"
                                 }
                             }}
-                        />
+                        /> */}
                     </div>
                 </div>
                 <div class="f-center modalReg_btns">
@@ -456,7 +466,7 @@ const Step4 = function () {
 
                             // }, 2000)
                             Func.close()
-                            // Fn.initOne("modalAuth", {})
+                            Fn.initOne("modalAuthtorization", {})
                         }}
                     >
                         Авторизоваться

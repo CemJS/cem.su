@@ -244,6 +244,7 @@ export default function () {
                 <div class="lenta-item__header">
                     <div class="user-circle"
                         onclick={() => Fn.initOne("modalRegistration", {})}
+                    // onclick={() => { Fn.initOne("modalAuthtorization", {}) }}
 
                     ></div>
                     <div class="lenta-item__header-info">
