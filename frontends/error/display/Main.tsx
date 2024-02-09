@@ -1,18 +1,24 @@
 import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import error from "@svg/icons/error.svg";
 
 export default function () {
   return (
     <div class="error_wrap">
       <p class="error_text">Страница не найдена</p>
-      <h1 class="error_title">Error 404</h1>
+      <img
+        src={error}
+        alt="Ошибка"
+        class="error_title"
+      />
       <p class="error_subtitle">Вернитесь на главную страницу</p>
-      <a
-        class="btn"
-        href="/"
-        onclick={Fn.link}
-      >
-        На главную
-      </a>
+      <div class="btn_border-wrap">
+        <button
+          class="btn_border"
+          onclick={() => Fn.linkChange("/")}
+        >
+          На главную
+        </button>
+      </div>
 
       {/* example svg */}
 

@@ -1,49 +1,49 @@
 [
   {
     "id": 3,
-    "photo": "speaker3",
+    "photo": "speaker3.jpg",
     "speaker": "Александр Бражников",
     "about_speaker": "Исполнительный директор РАКИБ",
     "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
   },
   {
     "id": 27,
-    "photo": "speaker27",
+    "photo": "speaker27.jpg",
     "speaker": "Павел Гудимов",
     "about_speaker": "Директор по развитию РАКИБ",
     "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
   },
   {
     "id": 5,
-    "photo": "speaker5",
+    "photo": "speaker5.jpg",
     "speaker": "Алексей Зюзин",
     "about_speaker": "Организатор Crypto Summit",
     "visited": ["CryptoЮГ2023"]
   },
   {
     "id": 15,
-    "photo": "speaker15",
+    "photo": "speaker15.jpg",
     "speaker": "Владимир Туров",
     "about_speaker": "Turov Invest",
     "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
   },
   {
     "id": 1,
-    "photo": "speaker1",
+    "photo": "speaker1.jpg",
     "speaker": "Ян Кривоносов",
     "about_speaker": "CEO Crypto Emergency",
     "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
   },
   {
     "id": 14,
-    "photo": "speaker14",
+    "photo": "speaker14.jpg",
     "speaker": "Сергей Павлович",
     "about_speaker": "Люди PRO",
     "visited": ["CryptoЮГ2023", "CryptoЮГ2022"]
   },
   {
     "id": 2,
-    "photo": "speaker2",
+    "photo": "speaker2.jpg",
     "speaker": "Андрей Тугарин",
     "about_speaker": "CEO компании GMT Legal",
 
@@ -51,14 +51,14 @@
   },
   {
     "id": 6,
-    "photo": "speaker6",
+    "photo": "speaker6.jpg",
     "speaker": "Вероника Близнец",
     "about_speaker": "Адвокат, юрист-международник",
     "visited": ["CryptoЮГ2023"]
   },
   {
     "id": 7,
-    "photo": "speaker7",
+    "photo": "speaker7.jpg",
     "speaker": "Mr. Sailer YouTube",
     "about_speaker": "Блогер журналист",
 
@@ -66,7 +66,7 @@
   },
   {
     "id": 29,
-    "photo": "speaker29",
+    "photo": "speaker29.jpg",
     "speaker": "Олег Иванов",
     "about_speaker": "Серийный предприниматель, инвестор",
 
@@ -74,7 +74,7 @@
   },
   {
     "id": 8,
-    "photo": "speaker8",
+    "photo": "speaker8.png",
     "speaker": "Валерий Осипов",
     "about_speaker": "ArtEmotioChain",
 
@@ -82,7 +82,7 @@
   },
   {
     "id": 9,
-    "photo": "speaker9",
+    "photo": "speaker9.jpg",
     "speaker": "Александр Изюрьев",
     "about_speaker": "Основатель клуба инвесторов UnionClub",
 
@@ -90,7 +90,7 @@
   },
   {
     "id": 10,
-    "photo": "speaker10",
+    "photo": "speaker10.jpg",
     "speaker": "Ярослав Кожухов",
     "about_speaker": "Metis",
 
@@ -98,7 +98,7 @@
   },
   {
     "id": 25,
-    "photo": "speaker25",
+    "photo": "speaker25.jpg",
     "speaker": "Кирилл Филимонов",
     "about_speaker": "Основатель Россграм",
 
@@ -106,7 +106,7 @@
   },
   {
     "id": 30,
-    "photo": "speaker30",
+    "photo": "speaker30.jpg",
     "speaker": "Владислав Судьин",
     "about_speaker": "Зам. председателя Комиссии по инновациям и инвестициям IFSPD",
 
@@ -114,7 +114,7 @@
   },
   {
     "id": 12,
-    "photo": "speaker12",
+    "photo": "speaker12.jpg",
     "speaker": "Вячеслав Носков",
     "about_speaker": "PRO BLOCKCHAIN MEDIA",
 
@@ -122,7 +122,7 @@
   },
   {
     "id": 26,
-    "photo": "speaker26",
+    "photo": "speaker26.jpg",
     "speaker": "Бурков Максим",
     "about_speaker": "Основатель группы web3 компаний Pro Blockchain Media",
 
@@ -130,7 +130,7 @@
   },
   {
     "id": 13,
-    "photo": "speaker13",
+    "photo": "speaker13.png",
     "speaker": "Денис Магданов",
     "about_speaker": "DUMA NETWORK",
 
@@ -138,7 +138,7 @@
   },
   {
     "id": 17,
-    "photo": "speaker17",
+    "photo": "speaker17.jpg",
     "speaker": "Сергей Грабский",
     "about_speaker": "Руководитель Ассоциации цифрового развития Краснодарского края",
 
@@ -146,7 +146,7 @@
   },
   {
     "id": 18,
-    "photo": "speaker18",
+    "photo": "speaker18.jpg",
     "speaker": "Евгений Сапожников",
     "about_speaker": "Основатель обменника криптовалют Keine-exchange",
 
@@ -154,7 +154,7 @@
   },
   {
     "id": 19,
-    "photo": "speaker19",
+    "photo": "speaker19.jpg",
     "speaker": "Денис Стригун",
     "about_speaker": "CEO WEB3Space",
 
@@ -162,7 +162,7 @@
   },
   {
     "id": 20,
-    "photo": "speaker20",
+    "photo": "speaker20.jpg",
     "speaker": "Иван Деркач",
     "about_speaker": "CTO WEB3Space",
 
@@ -170,7 +170,7 @@
   },
   {
     "id": 21,
-    "photo": "speaker21",
+    "photo": "speaker21.jpg",
     "speaker": "Дмитрий Романов",
     "about_speaker": "Консультант блокчейн-проектов",
 
@@ -178,7 +178,7 @@
   },
   {
     "id": 22,
-    "photo": "speaker22",
+    "photo": "speaker22.jpg",
     "speaker": "Илья Ткаченко",
     "about_speaker": "Криптоэксперт",
 
@@ -186,7 +186,7 @@
   },
   {
     "id": 23,
-    "photo": "speaker23",
+    "photo": "speaker23.jpg",
     "speaker": "Тимофей Григоренко",
     "about_speaker": "Майнинг, владелец 1GHS",
 
@@ -194,7 +194,7 @@
   },
   {
     "id": 24,
-    "photo": "speaker24",
+    "photo": "speaker24.jpg",
     "speaker": "Лев Пониманский",
     "about_speaker": "Криптоэнтузиаст",
 
@@ -202,7 +202,7 @@
   },
   {
     "id": 28,
-    "photo": "speaker28",
+    "photo": "speaker28.jpg",
     "speaker": "Наталья Сазонова",
     "about_speaker": "CEO Rabotavkripte",
 

@@ -213,36 +213,6 @@ $tokenomicaBack: (
     gap: 0.9375rem;
   }
 
-  &__socials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5625rem;
-    padding-top: 0.9375rem;
-
-    &-item {
-      // padding: .9375rem;
-      width: 3.125rem;
-      height: 3.125rem;
-      border-radius: var(--ellipse);
-      background: rgba(255, 255, 255, 0.09);
-      box-shadow: 0rem 0.3125rem 2.75rem 0rem rgba(29, 33, 45, 0.8);
-      transition: all 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
-        height: 1.25rem;
-      }
-
-      &:hover {
-        background: transparent;
-        border: 0.0625rem solid var(--border);
-        transform: scale(1.1);
-      }
-    }
-  }
-
   &__roadmap {
     &-image {
       display: flex;
@@ -378,6 +348,47 @@ $tokenomicaBack: (
       &-pos {
         color: var(--secondary_text);
       }
+    }
+  }
+}
+
+.social-networks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5625rem;
+
+  &_footer {
+    gap: 0.9375rem;
+    justify-content: center;
+    & .social-networks__item {
+      width: 2rem;
+      height: 2rem;
+      & img {
+        height: 0.7rem;
+      }
+    }
+  }
+
+  &__item {
+    // padding: .9375rem;
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: var(--ellipse);
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0rem 0.3125rem 2.75rem 0rem rgba(29, 33, 45, 0.8);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 1.25rem;
+    }
+
+    &:hover {
+      background: transparent;
+      border: 0.0625rem solid var(--border);
+      transform: scale(1.1);
     }
   }
 }

@@ -54,7 +54,7 @@
 
 .list {
   &__item {
-    padding: .6rem .9rem;
+    padding: 0.6rem 0.9rem;
     border-radius: var(--borderR);
     border: 1px solid #474c5a;
     margin: 0 5px;
@@ -132,12 +132,34 @@
   &_border {
     @include button(var(--black-gray), 100%, 2.625rem, 100%, 1rem, var(--white));
     border-radius: var(--btnR);
+    overflow: hidden;
     line-height: 2.625rem;
     text-align: center;
     outline: none;
     border: none;
     font-weight: 600;
     cursor: pointer;
+    position: relative;
+    z-index: 1;
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: var(--mainGradient);
+      transition: all 0.3s ease-in-out;
+    }
 
     &-wrap {
       background: var(--mainGradient);
@@ -157,8 +179,6 @@
   &_reset {
     filter: grayscale(1);
   }
-
-
 }
 
 .tooltip {
@@ -274,11 +294,9 @@
 //     background: ;
 //   }
 
-
 //   // &_error {
 //   //   animation: invalid 300ms;
 //   // }
-
 
 // }
 // =======animation test invalid for field

@@ -55,13 +55,13 @@ export default function () {
             <div class="startap__info-item startap__info-item-desc">
               <p class="startap_text">{Static.record.description}</p>
               {Static.record.social?.length ? (
-                <div class="startap__socials">
+                <div class="social-networks pt-15">
                   {Static.record.social.map((item, index) => {
                     return (
                       <a
                         href={item.url}
                         onclick={Fn.link}
-                        class="startap__socials-item"
+                        class="social-networks__item"
                       >
                         <img
                           src={`/contents/icons/social_networks/${item.channel}.svg`}
