@@ -77,6 +77,14 @@
   }
 }
 
+@media (max-width: 992px) {
+  .page {
+    &_contacts {
+      background-position: top center;
+    }
+  }
+}
+
 @media (max-width: 900px) {
   .content {
     & p {

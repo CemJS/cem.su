@@ -1,9 +1,10 @@
-import { Cemjsx, Fn, Ref, Static, front, Events } from "cemjs-all";
+import { Cemjsx, Fn, Ref, Static, front, Events, Func } from "cemjs-all";
 import frameDefault from "@svg/lenta/default.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import openDrop from "@svg/icons/openDropDown.svg";
+import order from "@svg/icons/order.svg";
 
 const RenderTypeFilter = () => {
   return (
@@ -17,7 +18,7 @@ const RenderTypeFilter = () => {
     >
       <div class="filter__left">
         <p class="filter__title">Сортировать</p>
-        <p class="filter__current">{Static.types.filter((item) => item.name == Static.makeFilter.type)[0].text}</p>
+        <p class="filter__current">{Static.types.filter((item) => item.name == Static.type)[0].text}</p>
       </div>
       <img
         src={openDrop}
@@ -32,7 +33,8 @@ const RenderTypeFilter = () => {
           return (
             <div
               onclick={() => {
-                Static.makeFilter.type = item.name;
+                Static.type = item.name;
+                Func.updateFilter();
               }}
               class="filter__drop"
             >
@@ -57,7 +59,7 @@ const RenderSortFilter = () => {
     >
       <div class="filter__left">
         <p class="filter__title">Сортировать</p>
-        <p class="filter__current">{Static.sort.filter((item) => item.name == Static.makeFilter.sort)[0].text}</p>
+        <p class="filter__current">{Static.sorts.filter((item) => item.name == Static.sort)[0].text}</p>
       </div>
       <img
         src={openDrop}
@@ -68,11 +70,12 @@ const RenderSortFilter = () => {
         ref="filterSortDrops"
         class="filter__drops"
       >
-        {Static.sort.map((item) => {
+        {Static.sorts.map((item) => {
           return (
             <div
               onclick={() => {
-                Static.makeFilter.sort = item.name;
+                Static.sort = item.name;
+                Func.updateFilter();
               }}
               class="filter__drop"
             >
@@ -92,8 +95,8 @@ const RenderLanguageFilter = () => {
         Fn.initOne("modalLanguage", {
           full: true,
           callback: (chooseLanguage) => {
-            Fn.log("=7baba8=", chooseLanguage);
             Static.chooseLanguage = chooseLanguage;
+            Func.updateFilter();
           },
         });
       }}
@@ -112,7 +115,6 @@ const RenderLanguageFilter = () => {
 };
 
 export default function () {
-  Fn.log("=18e445=", Static.records);
   return (
     <div
       onclick={(e) => {
@@ -133,6 +135,15 @@ export default function () {
             <div class="questions__ask">
               <div class="questions__search">
                 <input
+                  oninput={(e) => {
+                    Static.search = e.target.value;
+                    if (Static.timer) return;
+                    Static.timer = setTimeout(() => {
+                      Func.updateFilter();
+                      e.target.dispatchEvent(new Event("input"));
+                      Static.timer = undefined;
+                    }, 1000);
+                  }}
                   type="text"
                   placeholder="Поиск по вопросам"
                 />
@@ -154,9 +165,29 @@ export default function () {
               </button>
             </div>
             <div class="questions__filters">
-              <RenderTypeFilter />
-              <RenderSortFilter />
-              <RenderLanguageFilter />
+              <div class="questions__filter">
+                <RenderTypeFilter />
+              </div>
+              <div class="questions__filter">
+                <RenderSortFilter />
+                <div
+                  onclick={(e) => {
+                    e.target.classList.toggle("questions__filter-order_active");
+                    Static.order == 1 ? (Static.order = -1) : (Static.order = 1);
+                    Func.updateFilter();
+                  }}
+                  class="questions__filter-order"
+                >
+                  <img
+                    src={order}
+                    alt="Сортировать"
+                    class="questions__filter-triangles"
+                  />
+                </div>
+              </div>
+              <div class="questions__filter">
+                <RenderLanguageFilter />
+              </div>
             </div>
 
             <div class="questions__list">
