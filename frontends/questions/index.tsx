@@ -14,6 +14,7 @@ front.func.updateFilter = async () => {
     isBest: Static.type == "best",
     language: Static.chooseLanguage.code,
   };
+  Static.makeFilter.action = "get";
   Fn.log("=827b36=", Static.makeFilter);
   let res = await front.Services.functions.sendApi("/api/events/Questions", Static.makeFilter);
   console.log("=f9b841=", res);

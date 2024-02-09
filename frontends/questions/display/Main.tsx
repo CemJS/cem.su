@@ -115,6 +115,7 @@ const RenderLanguageFilter = () => {
 };
 
 export default function () {
+  // Fn.log("=8757bd=", Static.records);
   return (
     <div
       onclick={(e) => {
@@ -142,7 +143,7 @@ export default function () {
                       Func.updateFilter();
                       e.target.dispatchEvent(new Event("input"));
                       Static.timer = undefined;
-                    }, 1000);
+                    }, 600);
                   }}
                   type="text"
                   placeholder="Поиск по вопросам"
