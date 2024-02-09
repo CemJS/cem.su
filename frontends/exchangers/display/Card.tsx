@@ -38,7 +38,7 @@ export default function ({ item, index }) {
                     <div class="btn_border-wrap bodyCard__container_btn_size mY-auto h100">
                         <a href={item?.url} onclick={Fn.link}>
                             <button class="btn_border bgMW">
-                                Торговать
+                                Обменять
                             </button>
                         </a>
                     </div>

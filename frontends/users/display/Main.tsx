@@ -3,7 +3,7 @@ import avatarDefault from "@images/lenta/avatar_default.png"
 import frameDefault from "@svg/lenta/default.svg"
 import teamLogo from "@svg/lenta/mini_logo.svg"
 import leveGray from "@svg/lenta/level_gray.svg"
-import Filters from "./Filters"
+import Filters from "./Filters/Filters"
 
 export default function () {
 

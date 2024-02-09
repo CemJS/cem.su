@@ -95,7 +95,7 @@ export default function () {
                                         <div class="btn_border-wrap mY-auto h100">
                                             <a href={item?.url} onclick={Fn.link}>
                                                 <button class="btn_border bgMW">
-                                                    Торговать
+                                                    Обменять
                                                 </button>
                                             </a>
                                         </div>
