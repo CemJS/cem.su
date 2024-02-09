@@ -7,7 +7,7 @@ export default function () {
     return (
         <section class="exchangerates effect_lines">
             <div>
-                <h1 class="general__title">Курсы валют</h1>
+                <h1 class="general__title">Курсы <t/> валют</h1>
               <Table />
             </div>
             {/* <img src={lineB} class="listExchange_lineB"></img> */}
