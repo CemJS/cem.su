@@ -28,6 +28,7 @@ export default function () {
   let answer: any = []
   let value: any = ""
 
+  Fn.log('=bb81bd=', Static.lang)
   return (
     <div class="users">
       <div class="wrapper">
@@ -53,27 +54,33 @@ export default function () {
 
             <div class='users__select'>
               <div class="users__lang" style="padding: 0 10px"
-                onclick={() => {
-                  this.Fn.initOne({
-                    name: "changeLanguage"
-                  })
-                }}>
+                onclick={() => Fn.initOne("modalLanguage", {
+                  filterLang: Static.lang,
+                  callback: async (filterLangFromModal: "") => {
+                    Static.lang = filterLangFromModal
+                    // console.log("filterLangFromModal", filterLangFromModal);
+                    let res = front.Services.functions.sendApi("/api/events/Users", {
+                      "action": "get",
+                      "lang": Static.lang,
+                      "uuid": `${localStorage?.uuid}`,
+                    })
+                    if (!filterLangFromModal.length) {
+                      return;
+                    }
+                  }
+                })}>
                 <input
                   type="text"
                   readonly="true"
-                  value={this.Static?.lang?.value.length != 0 ? this.Static?.lang?.value : "Язык"} />
+                  value={Static.lang?.orig_name ? Static.lang?.orig_name : "Язык"} />
               </div>
 
               <div class="users__lang" style="padding: 0 10px"
-                onclick={() => {
-                  this.Fn.initOne({
-                    name: "modalSelectCountry"
-                  })
-                }}>
+                onclick={() => Fn.initOne("modalCountry", {})}>
                 <input
                   type="text"
                   readonly="true"
-                  value={this.Static.country?.value.length != 0 ? this.Static.country?.value : "Страна"} />
+                  value={this.Static.country ? this.Static.country?.value : "Страна"} />
               </div>
             </div>
 
@@ -136,7 +143,16 @@ export default function () {
                 onclick={() => {
                   // this.fn("resetFilter")
                 }}>
-                <img src={resetFilters} width="30" height="30" />
+                <img src={resetFilters} width="30" height="30"
+                  onclick={() => {
+                    Static.lang.orig_name = ""
+                    // console.log("filterLangFromModal", filterLangFromModal);
+                    let res = front.Services.functions.sendApi("/api/events/Users", {
+                      "action": "get",
+                      "lang": Static.lang,
+                      "uuid": `${localStorage?.uuid}`,
+                    })
+                  }} />
               </button>
             </div>
 
