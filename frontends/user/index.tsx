@@ -10,10 +10,14 @@ front.listener.clickAny = function (e) {
 }
 
 front.loader = async () => {
-  Fn.log('=be3efb=',5555)
+
+  Static.aboutMe = true
+
+
+  // Fn.log('=be3efb=', 5555)
   if (front.Variable.DataUrl[0] && front.Variable.DataUrl[0] == "user") {
-    let url = front.Services.functions.makeUrlEvent("Users", { action: "show", id: front.Variable.DataUrl[1] });
-// Fn.log('=2b8a89=',url)
+    let url = front.Services.functions.makeUrlEvent("Users/profile", { action: "get", nickname: front.Variable.DataUrl[1] });
+    // Fn.log('=2b8a89=',url)
     let listener = [
       {
         type: "get",

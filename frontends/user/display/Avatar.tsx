@@ -4,16 +4,14 @@ import defaultIcon from "@svg/profile/frame/default.svg";
 let parent = null
 
 export default function () {
-    Fn.log("Static.record", Static.record);
+    // Fn.log("Static.record", Static.record);
     return (
         <div class="c-userpreview__avatar">
             <a href="">
                 <div class="c-avataricon  ">
                     <img class="c-avataricon__photo" src={`/assets/upload/avatar/${Static.record?.avatar?.name}`} />
                     <img class="c-avataricon__frame"
-                        src={`/contents/images/${Static.record?.frame?.name}`
-                        
-                        } />
+                        src={`/contents/images/${Static.record?.frame?.name}`} />
                     <div>
                         <div class="c-avataricon__level dn">
                             <img src="" />
