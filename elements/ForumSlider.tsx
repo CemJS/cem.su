@@ -3,6 +3,7 @@ import back from "@svg/icon/prev.svg";
 import next from "@svg/icon/next.svg";
 
 const GalleryClassName = "gallery";
+const GalleryClassNamePartners = "gallery_partners";
 const GalleryLineClassName = "gallery_line";
 const GallerySlideClassName = "gallery_slide";
 const GalleryGraggableClassName = "gallery_draggable";
@@ -45,11 +46,11 @@ class Gallery {
     this.next = next;
     this.prev = prev;
     if (window.innerWidth > 1100) {
-      this.countSlides = 3;
+      this.countSlides = 5;
     } else if (window.innerWidth > 768) {
-      this.countSlides = 2;
+      this.countSlides = 4;
     } else {
-      this.countSlides = 1;
+      this.countSlides = 3;
     }
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
@@ -85,6 +86,7 @@ class Gallery {
 
   manageHTML() {
     this.element.classList.add(GalleryClassName);
+    this.element.classList.add(GalleryClassNamePartners);
     this.element.innerHTML = `
             <div class="${GalleryLineClassName}">
                 ${this.element.innerHTML}
@@ -115,13 +117,13 @@ class Gallery {
     this.maximumX = -(this.size - 1) * (this.widthContainer + this.settings.margin);
     this.x = -this.currentSlide * (this.widthContainer + this.settings.margin);
     this.size = Math.ceil(this.elementCount / this.countSlides);
-    Fn.log("=e64005=", this.countSlides);
 
     this.setStyleTransition();
     this.lineNode.style.width = `${this.size * (this.widthContainer + this.settings.margin)}px`;
     this.setStylePosition();
     Array.from(this.lineNode.children).forEach((slideNode: any) => {
-      slideNode.style.width = `${this.widthContainer / this.countSlides}px`;
+      let width = (this.widthContainer - 10 * (this.countSlides - 1)) / this.countSlides;
+      slideNode.style.width = `${width}px`;
       slideNode.style.marginRight = `${this.settings.margin}px`;
     });
   }
@@ -311,17 +313,17 @@ export const Display = function ({ items }) {
       <div init={init}>
         {items?.map((item) => {
           return (
-            <div class="slide">
-              {
-                <div class="startap__team-item slider__item">
-                  <div class="startap__team-item-img">
-                    <img src={`/assets/upload/worldPress/${item.photo}`}></img>
-                  </div>
-                  <span class="startap__team-item-name">{item.descriptionShort}</span>
-                  <span class="startap__team-item-pos">{item.position}</span>
-                </div>
-              }
-            </div>
+            <a
+              ref="slide"
+              target="_blank"
+              href={item.url}
+              class={["partners_list_item", item.visited.includes(Static.partnersTabName) ? null : null]}
+            >
+              <img
+                src={`/contents/forum/partners/${item.logo}`}
+                alt="img"
+              />
+            </a>
           );
         })}
       </div>

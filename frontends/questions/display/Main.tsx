@@ -212,7 +212,7 @@ export default function () {
                                 action: "skip",
                                 skip: Static.records.length,
                               });
-                              console.log("=e26cda=", res);
+                              // console.log("=e26cda=", res);
                             }
                           });
                         });

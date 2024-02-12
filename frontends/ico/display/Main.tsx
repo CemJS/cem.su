@@ -102,7 +102,7 @@ const RenderItems = function ({ items }) {
                                 type: Static.makeFilter.active,
                                 skip: Static.records.length,
                               });
-                              Fn.log("=e26cda=", res);
+                              // Fn.log("=e26cda=", res);
                             }
                           });
                         });
