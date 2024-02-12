@@ -167,6 +167,7 @@
     font-size: 300%;
   }
 }
+
 .buttons {
   position: relative;
 
@@ -200,9 +201,8 @@
     transform: scale(0.95);
   }
 }
-.partners_section {
-  overflow: hidden;
 
+.partners_section {
   h4 {
     margin: 25px 0;
     text-align: center;
@@ -236,6 +236,9 @@
         width: 100%;
         height: 100%;
       }
+      &_active {
+        display: flex;
+      }
     }
 
     &_item img {
@@ -244,6 +247,7 @@
     }
   }
 }
+
 .forum::before {
   content: "";
   position: fixed;
@@ -255,6 +259,17 @@
   width: 400px;
   filter: blur(250px);
   z-index: -3;
+}
+
+.gallery {
+  &_partners {
+    & .gallery_slide img {
+      min-height: auto;
+    }
+    & .slide__btn {
+      top: 105%;
+    }
+  }
 }
 
 @media (max-width: 992px) {

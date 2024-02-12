@@ -115,7 +115,6 @@ class Gallery {
     this.maximumX = -(this.size - 1) * (this.widthContainer + this.settings.margin);
     this.x = -this.currentSlide * (this.widthContainer + this.settings.margin);
     this.size = Math.ceil(this.elementCount / this.countSlides);
-    Fn.log("=e64005=", this.countSlides);
 
     this.setStyleTransition();
     this.lineNode.style.width = `${this.size * (this.widthContainer + this.settings.margin)}px`;

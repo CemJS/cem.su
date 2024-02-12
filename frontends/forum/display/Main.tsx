@@ -70,6 +70,8 @@ const contentAbout = [
   },
 ];
 
+Static.partners = partners;
+
 export default function () {
   return (
     <div class="forum effect_lines">
@@ -296,12 +298,7 @@ export default function () {
                       Static.activeIndex = index;
                       Ref.activeTab2.style.left = `${Ref.tabItem2.offsetWidth * Static.activeIndex}px`;
                       Static.partnersTabName = item.name;
-                      Ref.partners_content.classList.add("animated");
-                      setTimeout(() => {
-                        Ref.partners_content.classList.remove("animated");
-                      }, 500);
-                      Ref.partners_content.style.transform = null;
-                      // console.log('=1b762b=',Ref.slide.offsetWidth)
+                      Static.partners = partners.filter((item) => item.visited.includes(Static.partnersTabName));
                       Fn.init();
                     }}
                   >
@@ -316,7 +313,10 @@ export default function () {
             </div>
             {/*partners  slider */}
             {/* partners  */}
-            <Display items={partners} />
+            <Display
+              items={Static.partners}
+              tabName={Static.partnersTabName}
+            />
           </section>
         </div>
         {/* </div> */}

@@ -224,12 +224,10 @@ const RenderVideo = function (src: any) {
 };
 
 export default function () {
-  Fn.log("=cc19c9=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
   Static.showComments = "Показать комментарии";
-  Fn.log("=6ba981=", Static.record);
   let image = `/contents/images/lenta/avatar_default.png`;
   return (
     <div>
@@ -437,7 +435,6 @@ export default function () {
                               onclick={(e) => {
                                 let el = e.currentTarget;
                                 let elemComments = el.parentElement.parentElement.parentElement.lastChild;
-                                console.log("=f5e71d=", elemComments);
 
                                 if (elemComments.style.display == "none") {
                                   Static.showComments = "Скрыть комментарии";

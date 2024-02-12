@@ -458,11 +458,6 @@ $tokenomicaBack: (
   width: 100%;
   user-select: none;
   -webkit-user-select: none;
-  &_partners {
-    & .gallery_slide img {
-      min-height: auto;
-    }
-  }
 
   &_line {
     overflow: hidden;

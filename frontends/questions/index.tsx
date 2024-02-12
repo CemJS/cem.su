@@ -58,9 +58,7 @@ front.func.updateFilter = async () => {
     language: Static.chooseLanguage.code,
   };
   Static.makeFilter.action = "get";
-  Fn.log("=827b36=", Static.makeFilter);
   let res = await front.Services.functions.sendApi("/api/events/Questions", Static.makeFilter);
-  // console.log("=f9b841=", res);
   return;
 };
 
@@ -123,10 +121,8 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        // Fn.log("=68682c=", "get", json);
 
         Static.records = json;
-        // Fn.log("=8ec152=", Static.records);
       },
     },
     {
@@ -136,7 +132,6 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        // Fn.log("=68682c=", "add", json);
         Static.records.push(...json);
       },
     },
@@ -171,12 +166,10 @@ front.loader = async () => {
     //         return;
     //       }
     //       Static.answers = json;
-    //       Fn.log("=280e42=", 1123);
     //     },
     //   },
     // ];
     // Events.answers = await Fn.event(urlAns, listenerAns);
-    // Fn.log("=550655=", 1);
   }
 
   return;

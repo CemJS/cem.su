@@ -49,8 +49,10 @@ class Gallery {
       this.countSlides = 5;
     } else if (window.innerWidth > 768) {
       this.countSlides = 4;
-    } else {
+    } else if (window.innerWidth > 500) {
       this.countSlides = 3;
+    } else {
+      this.countSlides = 1;
     }
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
@@ -81,12 +83,11 @@ class Gallery {
     this.destroyEvents();
     this.setEvents();
     this.resizeGallery();
-    // setInterval(this.clickNext, 3000);
+    setInterval(this.clickNext, 4000);
   }
 
   manageHTML() {
     this.element.classList.add(GalleryClassName);
-    this.element.classList.add(GalleryClassNamePartners);
     this.element.innerHTML = `
             <div class="${GalleryLineClassName}">
                 ${this.element.innerHTML}
@@ -123,7 +124,8 @@ class Gallery {
     this.setStylePosition();
     Array.from(this.lineNode.children).forEach((slideNode: any) => {
       let width = (this.widthContainer - 10 * (this.countSlides - 1)) / this.countSlides;
-      slideNode.style.width = `${width}px`;
+      slideNode.style.minWidth = `${width}px`;
+      slideNode.style.maxWidth = `${width}px`;
       slideNode.style.marginRight = `${this.settings.margin}px`;
     });
   }
@@ -304,20 +306,23 @@ export const init = function (element: HTMLElement) {
   // this.init();
 };
 
-export const Display = function ({ items }) {
+export const Display = function ({ items, tabName }) {
   if (!items || !items.length) {
     return <div />;
   }
   return (
-    <div style="position: relative;">
+    <div
+      class={GalleryClassNamePartners}
+      style="position: relative;"
+    >
       <div init={init}>
-        {items?.map((item) => {
+        {items?.map((item: any) => {
           return (
             <a
               ref="slide"
               target="_blank"
               href={item.url}
-              class={["partners_list_item", item.visited.includes(Static.partnersTabName) ? null : null]}
+              class={["partners_list_item", item.visited.includes(tabName) ? null : null]}
             >
               <img
                 src={`/contents/forum/partners/${item.logo}`}

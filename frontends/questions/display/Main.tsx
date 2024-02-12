@@ -115,7 +115,6 @@ const RenderLanguageFilter = () => {
 };
 
 export default function () {
-  // Fn.log("=8757bd=", Static.records);
   return (
     <div
       onclick={(e) => {
@@ -204,15 +203,12 @@ export default function () {
                       if (index == Static.records?.length - 1) {
                         const observer = new IntersectionObserver((entries) => {
                           entries.forEach(async (entry) => {
-                            // Fn.log("=6ba7c1=111111", entry.isIntersecting, entry);
                             if (entry.isIntersecting) {
-                              // Fn.log("=2a3c8e=", 6666666);
                               observer.unobserve($el);
                               let res = await front.Services.functions.sendApi("/api/events/Questions", {
                                 action: "skip",
                                 skip: Static.records.length,
                               });
-                              // console.log("=e26cda=", res);
                             }
                           });
                         });
