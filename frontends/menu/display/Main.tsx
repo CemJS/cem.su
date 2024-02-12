@@ -7,16 +7,20 @@ export default function () {
     return (
         <div class="wrapper">
             <ul class="menu-inner">
-                <li class="menu__item">
-                    <img src={cem} alt="Главная страница" />
-                    <span class="menu__item-name">Главная</span>
+                <li>
+                    <a href="/" class="menu__item">
+                        <img src={cem} alt="Главная страница" />
+                        <span class="menu__item-name">Главная</span>
+                    </a>
                 </li>
                 {
                     menuBottom.map(item => {
                         return (
-                            <li class="menu__item">
-                                <i class={["i", `i-${item.icon}`]}></i>
-                                <span class="menu__item-name">{item.name}</span>
+                            <li>
+                                <a href={item.link} class="menu__item">
+                                    <i class={["i", `i-${item.icon}`]}></i>
+                                    <span class="menu__item-name">{item.name}</span>
+                                </a>
                             </li>
                         )
                     })

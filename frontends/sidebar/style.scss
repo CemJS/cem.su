@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 6;
+  z-index: 100;
   opacity: 0;
   pointer-events: none;
   transition: var(--tran-03);
@@ -243,5 +243,13 @@
     text-align: center;
     padding: 1rem 2rem;
     color: var(--slate-300);
+  }
+}
+
+@media(max-width: 464px) {
+  .sidebar {
+    &-wrap {
+      width: 100%;
+    }
   }
 }

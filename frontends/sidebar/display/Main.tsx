@@ -78,7 +78,6 @@ const RenderSocials = function ({ socials }) {
 };
 
 export default function () {
-  Fn.log('=d06d9b=', front.Variable.Lang)
   return (
     <main class="sidebar-content">
       <span class="sidebar-subtitle border-top-none">Разделы</span>

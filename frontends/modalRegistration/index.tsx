@@ -64,25 +64,6 @@ front.func.checkForm = async function () {
         if (Static.form.pass.valid && Static.form.rePass.valid) {
             Static.form.isValid = true
 
-            // let data = {
-            //     action: "registrated",
-            //     email: Static.form.email.value,
-            //     code: Static.form.code.value,
-            //     nikName: Static.form.nickName,
-            //     lang: Static.form.mainLang.value,
-            //     country: Static.form.country,
-            //     password: Static.form.pass.value
-            // }
-
-            // let answer = await front.Services.functions.sendApi(`/api/events/Users?uuid=${front.Variable.myInfo.uuid}`, data)
-
-            // if (answer.error) {
-            //     Static.form.email.error = "Пароль не совпадают"
-            //     Static.form.rePass.valid = false
-            //     return
-            // }
-
-            // Func.clickNext()
             return
         } else {
             Static.form.isValid = false

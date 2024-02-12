@@ -423,8 +423,8 @@ const Step3 = function () {
                             })
                             Fn.log('=a028de=', answer)
                             if (answer.error) {
-                                Static.form.email.error = "Пользователь с таким email уже существует!"
-                                Static.form.email.valid = false
+                                Static.form.isValid = false
+                                Static.form.error = "Неверные данные"
                                 return
                             }
 

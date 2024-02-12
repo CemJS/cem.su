@@ -3,7 +3,7 @@ import services from '@json/services'
 
 const RenderListServices = function () {
     return (
-        <div class="services" role="list">
+        <div class="services">
             {
                 services.map(item => {
                     return (
@@ -15,7 +15,7 @@ const RenderListServices = function () {
                             <div class="services__item-img">
                                 <i class={["i", `i-${item.icon}`]}></i>
                             </div>
-                            <span>{item.name}</span>
+                            <span class="services__item-text">{item.name}</span>
                         </a>
                     )
                 })
