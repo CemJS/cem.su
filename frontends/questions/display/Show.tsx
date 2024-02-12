@@ -373,10 +373,10 @@ export default function () {
                                 class="user-comment__media"
                               />
                             ) : item.type == "video" ? (
-                              <RenderVideo src={`/assets/upload/answers/${item.name}`} />
+                              // <RenderVideo src={`/assets/upload/answers/${item.name}`} />
+                              {}
                             ) : null;
                           })}
-                          <RenderVideo src="/contents/video/yan.MOV" />
                           <div
                             class="user-comment__answer questions-show__tell"
                             onclick={(e) => {
