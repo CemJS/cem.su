@@ -1,17 +1,16 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all"
-import AboutMe from "./blocks/AboutMe"
-import Interests from "./blocks/Interests"
+import Information from "./blocks/information/Information"
+import Questions from "./blocks/questions/Questions"
 
 export default function () {
     return (
         <div class="userMainBlock">
-            <div class="about-user c-container">
-                <h2>Личная информация</h2>
-                <div class="user__info">
-                    <AboutMe />
-                    <Interests />
-                </div>
-            </div>
+            {Static.aboutMe === true ?
+                <Information />
+                : null}
+            {Static.questions === true ?
+                <Questions />
+                : null}
         </div>
     )
 }

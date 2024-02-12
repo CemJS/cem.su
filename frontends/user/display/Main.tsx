@@ -7,14 +7,16 @@ import UserMainBlock from "./UserMainBlock"
 export default function () {
 
   return (
-    <div class="c-main__body">
-      <div class="c-userpreview c-container">
-        <Preview />
-        <ShortPreview />
-      </div>
-      <Categories />
-      <UserMainBlock />
 
+    <div class="c-main__body">
+      <div>
+        <div class="c-userpreview c-container">
+          <Preview />
+          <ShortPreview />
+        </div>
+        <Categories />
+        <UserMainBlock/>
+      </div>
     </div>
   )
 }

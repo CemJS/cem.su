@@ -12,7 +12,7 @@ front.listener.clickAny = function (e) {
 front.loader = async () => {
 
   Static.aboutMe = true
-
+  Static.questions = false
 
   // Fn.log('=be3efb=', 5555)
   if (front.Variable.DataUrl[0] && front.Variable.DataUrl[0] == "user") {

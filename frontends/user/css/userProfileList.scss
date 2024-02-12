@@ -1271,9 +1271,9 @@
     }
 }
 
-.user_category {
+.user__category {
 
-    &_gradient {
+    &__gradient {
 
         &_frame {
             background: linear-gradient(45deg, #3bade3 0, #576fe6 45%, #9844b7 57%, #ff357f 70%);
@@ -1293,7 +1293,7 @@
         }
     }
 
-    &_gray {
+    &__gray {
 
         &_background {
             background: #30384A;

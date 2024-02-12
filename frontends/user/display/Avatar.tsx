@@ -9,7 +9,7 @@ export default function () {
         <div class="c-userpreview__avatar">
             <a href="">
                 <div class="c-avataricon  ">
-                    <img class="c-avataricon__photo" src={`/assets/upload/avatar/${Static.record?.avatar?.name}`} />
+                        <img class="c-avataricon__photo" src={`/assets/upload/avatar/${Static.record?.avatar?.name}`} />
                     <img class="c-avataricon__frame"
                         src={`/contents/images/${Static.record?.frame?.name}`} />
                     <div>
