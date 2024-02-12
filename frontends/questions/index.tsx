@@ -63,6 +63,8 @@ front.func.updateFilter = async () => {
 };
 
 front.loader = async () => {
+  Static.open = "Ответить";
+
   Static.search = "";
   Static.order = 1;
   Static.types = [

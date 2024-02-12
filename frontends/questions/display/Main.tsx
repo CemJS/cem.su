@@ -115,6 +115,7 @@ const RenderLanguageFilter = () => {
 };
 
 export default function () {
+  Fn.log("=ba46b8=", Static.records);
   return (
     <div
       onclick={(e) => {
@@ -245,8 +246,8 @@ export default function () {
                           <span>{item.authorDetails.nickname}</span>
                         </div>
                       </div>
-                      <div class="questions__item_languages btn btn_gradient">
-                        <span>Русский</span>
+                      <div class="questions__item_languages btn_border-wrap">
+                        <button class="btn_border">Русский</button>
                       </div>
                     </div>
                     <div class={["questions__item_preview", item.title.length < 15 && item.text ? "questions__item_preview_row" : null]}>
@@ -265,16 +266,18 @@ export default function () {
                       <span>{front.Services.functions.timeStampToDate(item.showDate, ".")}</span>
                     </div>
                     <div class="questions__item_footer">
-                      <a
-                        // href={`/questions/show/${item._id}`}
-                        class="btn btn_gradient"
-                        // onclick={(e) => {
-                        //   Static.recordsShow = item;
-                        //   Fn.link(e);
-                        // }}
-                      >
-                        Ответить
-                      </a>
+                      <div class="btn_border-wrap">
+                        <button
+                          // href={`/questions/show/${item._id}`}
+                          class="btn_border"
+                          // onclick={(e) => {
+                          //   Static.recordsShow = item;
+                          //   Fn.link(e);
+                          // }}
+                        >
+                          Ответить
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );

@@ -224,6 +224,7 @@ const RenderVideo = function () {
 };
 
 export default function () {
+  Fn.log("=97c779=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
@@ -283,6 +284,16 @@ export default function () {
                 {Static.record.statistic.view}
               </span>
               <span>{front.Services.functions.timeStampToDate(Static.record.showDate, ".")}</span>
+            </div>
+            <div class="questions__item-open btn_border-wrap">
+              <button
+                onclick={(e: any) => {
+                  Static.open == "Ответить" ? (Static.open = "Отменить") : (Static.open = "Ответить");
+                }}
+                class="btn_border"
+              >
+                {Static.open}
+              </button>
             </div>
           </div>
 
