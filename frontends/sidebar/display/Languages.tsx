@@ -1,27 +1,28 @@
-import { Cemjsx, Static, Func, Ref } from "cemjs-all"
+import { Cemjsx, Static, Func, Ref, front, Fn } from "cemjs-all"
+import languages from '@json/languages'
 
-const RenderSearchLanguages = function ({ languages }) {
-  return (
-    <div class="sidebar-lang__search">
-      <div class={[
-        "modalWindow_field"
-      ]}>
-        <input
-          type="text"
-          required
-          autocomplete="off"
-          oninput={(e: any) => {
-            Func.searchLang(e, languages)
-          }}
-        />
-        <div class="modalWindow_field_labelLine">
-          <i class="i i-user"></i>
-          <span>Поиск по языкам</span>
-        </div>
-      </div>
-    </div>
-  )
-}
+// const RenderSearchLanguages = function ({ languages }) {
+//   return (
+//     <div class="sidebar-lang__search">
+//       <div class={[
+//         "modalWindow_field"
+//       ]}>
+//         <input
+//           type="text"
+//           required
+//           autocomplete="off"
+//           oninput={(e: any) => {
+//             Func.searchLang(e, languages)
+//           }}
+//         />
+//         <div class="modalWindow_field_labelLine">
+//           <i class="i i-user"></i>
+//           <span>Поиск по языкам</span>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
 
 export default function () {
   return (
@@ -37,18 +38,28 @@ export default function () {
           <i class="i i-cancel"></i>
         </button>
       </div>
-      <RenderSearchLanguages languages={Static.listLanguages} />
+      {/* <RenderSearchLanguages languages={Static.listLanguages} /> */}
       <div class="sidebar-menu">
         {
-          Static.listLanguages.map(item => {
+          languages.map(item => {
             return (
               <div
-                class="sidebar-menu__item-btn"
+                class={[
+                  "sidebar-menu__item-btn",
+                  front.Variable.Lang == item.orig_name ? "sidebar-menu__item-btn_active" : null
+                ]}
                 onclick={() => {
-                  Func.close()
+                  front.Variable.Lang = item.orig_name
+                  Fn.initAll()
                 }}
               >
-                {item.name}
+                <img
+                  class="list__item-img"
+                  src={`/contents/svg/flags/${item.code}.svg`}
+                  alt={item.orig_name}
+                />
+
+                <span>{item.orig_name}</span>
               </div>
             )
           })

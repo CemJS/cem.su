@@ -5,6 +5,11 @@
   width: 100%;
   z-index: 5;
 
+  &-wrapper {
+    max-width: 1240px;
+    margin: 0 auto
+  }
+
   &-inner {
     display: flex;
     width: 100%;
@@ -63,6 +68,20 @@
         opacity: 1;
         transform: translate(0, -55px);
       }
+    }
+  }
+}
+
+@media(max-width: 1240px) {
+  .menu {
+    .wrapper {
+      width: 100%;
+      padding: 0;
+    }
+
+    &-inner {
+      border-radius: 0;
+      padding: 0.8rem 1.5rem;
     }
   }
 }

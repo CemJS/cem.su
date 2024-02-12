@@ -1,32 +1,34 @@
 import { Cemjsx, Static, Fn, Func } from "cemjs-all"
+import services from '@json/services'
 
-const RenderListCountries = function ({ countries }) {
+const RenderListServices = function () {
     return (
-        <ul class="list modal_scroll" role="list">
+        <div class="services" role="list">
             {
-                countries.map(item => {
+                services.map(item => {
                     return (
-                        <li class="list__item"
+                        <a class="services__item"
                             onclick={() => {
-                                Static.callback(item)
                                 Func.close()
                             }}
                         >
-                            <span>{item.orig_name}</span>
-                        </li>
+                            <div class="services__item-img">
+                                <i class={["i", `i-${item.icon}`]}></i>
+                            </div>
+                            <span>{item.name}</span>
+                        </a>
                     )
                 })
             }
-        </ul>
+        </div>
     )
 }
 
 export default function () {
-    // Fn.log('=dd00ae=', Static.records)
     return (
         <main class="modal_main">
             <div class="mt-15">
-                <RenderListCountries countries={Static.records} />
+                <RenderListServices />
             </div>
         </main>
     )

@@ -1,4 +1,4 @@
-import { Cemjsx, Static, Ref, Fn } from "cemjs-all";
+import { Cemjsx, Static, Ref, Fn, front } from "cemjs-all";
 import appStore from "@svg/icons/appStore.svg";
 import playMarket from "@svg/icons/playMarket.svg";
 import socials from "@json/socials";
@@ -78,12 +78,15 @@ const RenderSocials = function ({ socials }) {
 };
 
 export default function () {
+  Fn.log('=d06d9b=', front.Variable.Lang)
   return (
     <main class="sidebar-content">
-      <span class="sidebar-subtitle">Разделы</span>
+      <span class="sidebar-subtitle border-top-none">Разделы</span>
       <RenderSidebarMenu menu={Static.sections} />
-      <span class="sidebar-subtitle">Меню</span>
-      <RenderSidebarMenu menu={Static.menu} />
+      {front.Variable.Auth ? <span class="sidebar-subtitle">Меню</span> : null}
+      {front.Variable.Auth ? <RenderSidebarMenu menu={Static.menu} /> : null}
+      {/* <span class="sidebar-subtitle">Меню</span>
+      <RenderSidebarMenu menu={Static.menu} /> */}
       <span class="sidebar-subtitle">Crypto Emergency</span>
       <RenderSidebarSubmenu submenu={Static.submenu} />
       <span class="sidebar-subtitle">Социальные сети</span>

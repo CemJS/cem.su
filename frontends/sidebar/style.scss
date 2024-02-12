@@ -23,6 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
   }
 
   &-overlay {
@@ -89,6 +90,7 @@
         padding: 1rem 2rem;
         display: flex;
         align-items: center;
+        gap: 1rem;
         transition: var(--tran-03);
         cursor: pointer;
 
@@ -96,10 +98,15 @@
           background-color: var(--back700);
           color: var(--white);
         }
+
+        &_active {
+          background-color: var(--back700);
+          color: var(--white);
+        }
       }
 
       .i {
-        margin-right: 1rem;
+        // margin-right: 1rem;
         font-size: 1.5rem;
 
         &_dropdown {
@@ -228,7 +235,7 @@
   &-downloads {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding: 1rem 2rem;
+    padding: 1rem 2rem 0 2rem;
     gap: 0.5rem;
   }
 
