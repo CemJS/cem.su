@@ -6,7 +6,7 @@ export default function () {
       <h2 class="modal-header__title">Отликнуться на вакансию</h2>
 
       <button
-        class="btn btn_close"
+        class="btn btn_dark"
         onclick={Func.close}
       >
         <i class="i i-cancel"></i>

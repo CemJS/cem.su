@@ -114,8 +114,8 @@ front.func.sendCode = async function () {
 
     Static.waitCode = true
     Static.form.email.disable = true
-    // Func.timer(60)
-    Func.timer(5)
+    Func.timer(60)
+    // Func.timer(5)
     // this.init()
     return
 

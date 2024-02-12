@@ -96,8 +96,8 @@
   &_circle {
     position: relative;
     z-index: 1;
-    height: 50px;
-    width: 50px;
+    height: 3.125rem;
+    width: 3.125rem;
     border-radius: 50%;
     border: 3px solid #e0e0e0;
     display: flex;
@@ -106,11 +106,11 @@
     background: var(--backModal);
     color: #999;
     font-weight: 700;
-    font-size: clamp(16px, 5vw, 20px);
+    font-size: clamp(1rem, 5vw, 1.25rem);
     transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
 
     &__active {
-      border: 3px solid var(--fiolet);
+      border-color: var(--fiolet);
       color: var(--fiolet);
     }
   }
@@ -129,6 +129,18 @@
     width: 0%;
     background: var(--fiolet);
     transition: width 0.3s ease-in-out;
+  }
+
+  @media(max-width: 464px) {
+    &_circle {
+      height: 2.5rem;
+      width: 2.5rem;
+      border-width: 2px;
+    }
+
+    &-progress {
+      height: 2px;
+    }
   }
 }
 
@@ -155,11 +167,12 @@
     transform: scale(0.97);
   }
 
-  &_close {
+  &_dark {
     padding: 0.5rem 0.6rem;
     border: 1px solid transparent;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0.3rem;
     transition: var(--tran-03);
     @include button(var(--back700), fit-content, fit-content, 125%, 1rem, var(--slate-300));
@@ -314,58 +327,11 @@
   gap: 0.5rem;
 }
 
-// .field {
-//   width: 100%;
-//   position: relative;
-//   height: 3rem;
-//   line-height: 3rem;
 
-//   input {
-//     outline: none;
-//     border: 1px solid var(--fiolet);
-//     height: 3rem;
-//     width: 100%;
-//     font-size: 1rem;
-//     padding: 0 2.5rem 0 1.5rem;
-//     border-radius: var(--borderR);
-//     background: transparent;
-//     transition: border 0.1s ease-in-out;
-//   }
-
-//   &__label{
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     font-size: 1rem;
-//     padding: 0.3rem;
-//     margin: 0 1.5rem;
-//     background: ;
-//   }
-
-//   // &_error {
-//   //   animation: invalid 300ms;
-//   // }
-
-// }
-// =======animation test invalid for field
-// @keyframes invalid {
-
-//   0%,
-//   100% {
-//     transform: translate(0);
-//   }
-
-//   25% {
-//     transform: translate(0.125rem);
-//   }
-
-//   75% {
-//     transform: translate(0.125rem);
-//   }
-// }
-// =======animation test invalid for field
-.mr_10 {
-  margin-right: 10px;
+.border {
+  &_success {
+    border: 1px solid var(--green700);
+  }
 }
 
 .table {

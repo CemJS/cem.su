@@ -28,12 +28,12 @@ export default function () {
     <div class="sidebar-lang">
       <div class="sidebar-header">
         <div
-          class="btn btn_close"
+          class="btn btn_dark"
           onclick={() => { Ref.slideSection.style.marginLeft = `0` }}
         >
           <i class="i i-arrow-left"></i> Вернуться в меню
         </div>
-        <button class="btn btn_close" onclick={Func.close}>
+        <button class="btn btn_dark" onclick={Func.close}>
           <i class="i i-cancel"></i>
         </button>
       </div>
