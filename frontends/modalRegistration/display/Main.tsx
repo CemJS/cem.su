@@ -451,11 +451,6 @@ const Step4 = function () {
                     <button
                         class="btn btn_timing"
                         onclick={() => {
-                            // setTimeout(() => {
-                            //     // Fn.clearData()
-                            // Func.close()
-
-                            // }, 2000)
                             Func.close()
                             Fn.initOne("modalAuthtorization", {})
                         }}

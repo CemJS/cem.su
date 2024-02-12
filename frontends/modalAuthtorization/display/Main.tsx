@@ -17,7 +17,7 @@ export default function () {
                     oninput={(e: any) => {
                         Static.form.email.value = e.target.value;
                         front.Services.functions.formEmail(this.Static.form.email)
-                        // Func.checkForm()
+                        Func.checkForm()
                     }} />
                 <div class="modalWindow_field_labelLine">
                     <i class="i i-user"></i>
@@ -39,7 +39,7 @@ export default function () {
                     oninput={(e: any) => {
                         Static.form.pass.value = e.target.value;
                         front.Services.functions.formPassword(Static.form.pass)
-                        // Func.checkForm()
+                        Func.checkForm()
                     }}
                 />
                 <div class="modalWindow_field_labelLine">

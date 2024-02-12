@@ -1,0 +1,10 @@
+.modal {
+  @media(max-width: 464px) {
+    &-footer {
+      &_auth {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+  }
+}
