@@ -6,12 +6,11 @@
     z-index: 100;
     display: flex;
     justify-content: space-between;
-    // width: calc(100% - 174px);
-    // margin: 10px auto 0;
-
-    padding-top: 15px;
+    width: calc(100% - 174px);
+    margin: 10px auto 0;
+    padding-top: 10px;
     background: #1D2029;
-    /* border-bottom: 2px solid #353C50;*/
+    /* border-bottom: 2px solid #353C50; */
     overflow-y: hidden;
     overflow-x: auto;
 
@@ -1272,9 +1271,9 @@
     }
 }
 
-.user_category {
+.user__category {
 
-    &_gradient {
+    &__gradient {
 
         &_frame {
             background: linear-gradient(45deg, #3bade3 0, #576fe6 45%, #9844b7 57%, #ff357f 70%);
@@ -1294,7 +1293,7 @@
         }
     }
 
-    &_gray {
+    &__gray {
 
         &_background {
             background: #30384A;

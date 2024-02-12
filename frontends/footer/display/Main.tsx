@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Ref } from "cemjs-all";
+import { Cemjsx, Fn, Ref, front } from "cemjs-all";
 import footer from "@json/footer";
 import appStore from "@svg/icons/appStore.svg";
 import playMarket from "@svg/icons/playMarket.svg";
@@ -7,7 +7,12 @@ import show from "@svg/icons/footerShow.svg";
 
 export default function () {
   return (
-    <footer class="footer">
+    <footer
+      init={($el) => {
+        front.Variable.$el.footer = $el;
+      }}
+      class="footer"
+    >
       <div class="wrapper footer_wrapper">
         <div class="footer__top">
           {footer.map((item, i) => {

@@ -10,6 +10,7 @@ import education from "@svg/forum/education.svg";
 import crypto_emergency from "@svg/forum/crypto_emergency.svg";
 import speakers from "@json/forumSpeakers";
 import partners from "@json/forumPartners";
+import { Display } from "@elements/ForumSlider";
 
 const tabs = [
   {
@@ -68,6 +69,8 @@ const contentAbout = [
     text: "На форуме выступают дальновидные спикеры, которые могут вдохновить тебя вывести собственные идеи и проекты на новый уровень.",
   },
 ];
+
+Static.partners = partners;
 
 export default function () {
   return (
@@ -226,8 +229,8 @@ export default function () {
             </div>
           </section>
 
-          <div class="buttons">
-            {/* next */}
+          {/* <div class="buttons">
+            next
             <button
               ref="next"
               class="nextBtn"
@@ -257,7 +260,7 @@ export default function () {
                 alt=""
               />
             </button>
-            {/* back */}
+            back
             <button
               ref="back"
               class="prevBtn"
@@ -276,68 +279,47 @@ export default function () {
                 src={back}
                 alt=""
               />
-            </button>
+            </button> */}
 
-            {/* partners tabs*/}
-            <section class="partners_section">
-              <h4>Партнеры</h4>
+          {/* partners tabs*/}
+          <section class="partners_section">
+            <h4>Партнеры</h4>
 
+            <div
+              class="tabs"
+              ref="forumTabs"
+            >
+              {tabs.map((item, index) => {
+                return (
+                  <span
+                    class="tab"
+                    ref="tabItem2"
+                    onclick={() => {
+                      Static.activeIndex = index;
+                      Ref.activeTab2.style.left = `${Ref.tabItem2.offsetWidth * Static.activeIndex}px`;
+                      Static.partnersTabName = item.name;
+                      Static.partners = partners.filter((item) => item.visited.includes(Static.partnersTabName));
+                      Fn.init();
+                    }}
+                  >
+                    {item.name}
+                  </span>
+                );
+              })}
               <div
-                class="tabs"
-                ref="forumTabs"
-              >
-                {tabs.map((item, index) => {
-                  return (
-                    <span
-                      class="tab"
-                      ref="tabItem2"
-                      onclick={() => {
-                        Static.activeIndex = index;
-                        Ref.activeTab2.style.left = `${Ref.tabItem2.offsetWidth * Static.activeIndex}px`;
-                        Static.partnersTabName = item.name;
-                        Ref.partners_content.classList.add("animated");
-                        setTimeout(() => {
-                          Ref.partners_content.classList.remove("animated");
-                        }, 500);
-                        Ref.partners_content.style.transform = null;
-                        // console.log('=1b762b=',Ref.slide.offsetWidth)
-                        Fn.init();
-                      }}
-                    >
-                      {item.name}
-                    </span>
-                  );
-                })}
-                <div
-                  class="activeTab"
-                  ref="activeTab2"
-                ></div>
-              </div>
-              {/*partners  slider */}
-              {/* partners  */}
-              <div
-                class="partners_list"
-                ref="partners_content"
-              >
-                {partners.map((item, index) => {
-                  return (
-                    <a
-                      ref="slide"
-                      target="_blank"
-                      href={item.url}
-                      class={["partners_list_item", item.visited.includes(Static.partnersTabName) ? null : null]}
-                    >
-                      <img
-                        src={`/contents/forum/partners/${item.logo}`}
-                        alt="img"
-                      />
-                    </a>
-                  );
-                })}
-              </div>
-            </section>
-          </div>
+                class="activeTab"
+                ref="activeTab2"
+              ></div>
+            </div>
+            {/*partners  slider */}
+            {/* partners  */}
+            <Display
+              items={Static.partners}
+              tabName={Static.partnersTabName}
+            />
+          </section>
         </div>
+        {/* </div> */}
       </div>
     </div>
   );

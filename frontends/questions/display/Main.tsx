@@ -115,7 +115,7 @@ const RenderLanguageFilter = () => {
 };
 
 export default function () {
-  // Fn.log("=8757bd=", Static.records);
+  Fn.log("=ba46b8=", Static.records);
   return (
     <div
       onclick={(e) => {
@@ -152,14 +152,11 @@ export default function () {
               <button
                 class="btn"
                 onclick={() => {
-                  //   Fn.initOne({
-                  //     name: "modalQuestion",
-                  //     ifOpen: (front) => {
-                  //       setTimeout(() => {
-                  //         front.clearData();
-                  //       }, 500);
-                  //     },
-                  //   });
+                  if (!front.Variable.Auth) {
+                    Fn.initOne("modalAuthtorization", {})
+                  } else {
+                    Fn.initOne("modalAskQuestion", {})
+                  }
                 }}
               >
                 задать вопрос
@@ -204,15 +201,12 @@ export default function () {
                       if (index == Static.records?.length - 1) {
                         const observer = new IntersectionObserver((entries) => {
                           entries.forEach(async (entry) => {
-                            // Fn.log("=6ba7c1=111111", entry.isIntersecting, entry);
                             if (entry.isIntersecting) {
-                              // Fn.log("=2a3c8e=", 6666666);
                               observer.unobserve($el);
                               let res = await front.Services.functions.sendApi("/api/events/Questions", {
                                 action: "skip",
                                 skip: Static.records.length,
                               });
-                              console.log("=e26cda=", res);
                             }
                           });
                         });
@@ -249,8 +243,8 @@ export default function () {
                           <span>{item.authorDetails.nickname}</span>
                         </div>
                       </div>
-                      <div class="questions__item_languages btn btn_gradient">
-                        <span>Русский</span>
+                      <div class="questions__item_languages btn_border-wrap">
+                        <button class="btn_border">Русский</button>
                       </div>
                     </div>
                     <div class={["questions__item_preview", item.title.length < 15 && item.text ? "questions__item_preview_row" : null]}>
@@ -272,10 +266,10 @@ export default function () {
                       <a
                         // href={`/questions/show/${item._id}`}
                         class="btn btn_gradient"
-                        // onclick={(e) => {
-                        //   Static.recordsShow = item;
-                        //   Fn.link(e);
-                        // }}
+                      // onclick={(e) => {
+                      //   Static.recordsShow = item;
+                      //   Fn.link(e);
+                      // }}
                       >
                         Ответить
                       </a>

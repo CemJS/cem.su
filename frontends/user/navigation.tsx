@@ -6,7 +6,7 @@ export default function () {
   let param = front.Variable.DataUrl[0] || ""
   switch (param) {
     case 'user':
-      return <Main />
+      return <Main class="c-main"/>
   }
 }
 

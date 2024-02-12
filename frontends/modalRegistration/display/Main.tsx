@@ -41,13 +41,6 @@ const Step1 = function () {
 
                     {
                         Static.form.email.disable ?
-                            // <img
-                            //     class="modalWindow_field__edit"
-                            //     src={edit} alt="Редактирование email"
-                            //     onclick={() => {
-                            //         this.fn("changeEmail")
-                            //     }}
-                            // /> 
                             <span
                                 class="modalWindow_field__edit"
                                 onclick={() => {
@@ -123,8 +116,8 @@ const Step1 = function () {
                                 Static.time > 0
                                     ?
                                     <div>
-                                        <p class="modalReg_timer__text">Запросить новый код подтверждения можно через</p>
-                                        <p class="modalReg_timer__text pl-10">{Static.time < 10 ? `0 : 0${Static.time}` : `0 : ${Static.time}`}</p>
+                                        <p class="modalReg_timer__text">Запросить новый код подтверждения можно через <span class="pl-10">{Static.time < 10 ? `0 : 0${Static.time}` : `0 : ${Static.time}`}</span></p>
+                                        {/* <p class="modalReg_timer__text pl-10"></p> */}
                                     </div>
                                     :
                                     <button
@@ -142,9 +135,7 @@ const Step1 = function () {
                         <button
                             class={[
                                 "btn",
-                                // "btn_timing",
-                                // Static.form.isValid ? null : "btn_passive",
-                                // Static.waitCode ? "btn_hidden" : null
+                                Static.form.isValid ? null : "btn_passive",
                             ]}
                             onclick={async () => {
                                 if (!Static.form.isValid) {
@@ -153,12 +144,6 @@ const Step1 = function () {
 
                                 Func.sendCode()
                                 return
-
-                                // if (answer.error) {
-                                //     Static.form.nickName.error = "Логин занят!"
-                                //     Static.form.nickName.valid = false
-                                // }
-                                // Func.clickNext()
                             }}>
                             <span>Получить код подтверждение</span>
                         </button>
@@ -236,6 +221,9 @@ const Step2 = function () {
                 <div class="g-colEqual-2 modalReg-choose">
                     <div
                         class={[
+                            "w100",
+                            "btn",
+                            "btn_dark",
                             "modalReg-choose_item",
                             Static.form.mainLang.valid ? "modalReg-choose_item__success" : null
                         ]}
@@ -257,11 +245,14 @@ const Step2 = function () {
                         <span>
                             {Static.form.mainLang.nameOrig ? Static.form.mainLang.nameOrig : Static.form.mainLang.placeholder}
                         </span>
-                        <span class="modalReg-choose_arrow"></span>
+                        <i class="i i-arrow-right"></i>
                     </div>
 
                     <div
                         class={[
+                            "w100",
+                            "btn",
+                            "btn_dark",
                             "modalReg-choose_item",
                             Static.form.country.valid ? "modalReg-choose_item__success" : null
                         ]}
@@ -280,7 +271,7 @@ const Step2 = function () {
                         }}
                     >
                         <span>{Static.form.country.nameOrig ? Static.form.country.nameOrig : Static.form.country.placeholder}</span>
-                        <span class="modalReg-choose_arrow"></span>
+                        <i class="i i-arrow-right"></i>
                     </div>
                 </div>
 
@@ -432,8 +423,8 @@ const Step3 = function () {
                             })
                             Fn.log('=a028de=', answer)
                             if (answer.error) {
-                                Static.form.email.error = "Пользователь с таким email уже существует!"
-                                Static.form.email.valid = false
+                                Static.form.isValid = false
+                                Static.form.error = "Неверные данные"
                                 return
                             }
 
@@ -460,11 +451,6 @@ const Step4 = function () {
                     <button
                         class="btn btn_timing"
                         onclick={() => {
-                            // setTimeout(() => {
-                            //     // Fn.clearData()
-                            // Func.close()
-
-                            // }, 2000)
                             Func.close()
                             Fn.initOne("modalAuthtorization", {})
                         }}

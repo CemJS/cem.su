@@ -8,6 +8,9 @@ export default function () {
     if (front.Variable.$el.header) {
       front.Variable.$el.header.classList.add("hide");
     }
+    if (front.Variable.$el.footer) {
+      front.Variable.$el.footer.classList.add("hide");
+    }
     return (
       <section>
         <HeaderBack />

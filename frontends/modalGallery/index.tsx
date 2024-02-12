@@ -24,7 +24,7 @@ front.display = () => {
     <div>
       <header class="modal-header">
         <button
-          class="btn btn_close"
+          class="btn btn_dark"
           onclick={Func.close}
         >
           <i class="i i-cancel"></i>

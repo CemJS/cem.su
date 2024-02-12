@@ -1,0 +1,17 @@
+.modal {
+  @media(max-width: 464px) {
+    &-footer {
+      &_auth {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+.form-error {
+  font-weight: 500;
+  top: -2rem;
+  right: -3px;
+  color: var(--rose-600);
+}

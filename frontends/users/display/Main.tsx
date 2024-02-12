@@ -24,10 +24,10 @@ export default function () {
                           onclick={async () => {
                             const getUser = {
                               "action": "Get",
-                              "id": item?.id,
+                              "nickname": item?.nickname,
                               "uuid": `${localStorage?.uuid}`
                             }
-                            let userContent = await front.Services.functions.sendApi("/api/events/Users", getUser)
+                            let userContent = await front.Services.functions.sendApi("/api/events/Users/profile", getUser)
                             //проверка на error
                             Static.contentUser = userContent?.result
                             Fn.linkChange(`/user/${item?.nickname}`)
