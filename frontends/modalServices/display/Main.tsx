@@ -1,11 +1,11 @@
 import { Cemjsx, Static, Fn, Func } from "cemjs-all"
-import services from '@json/services'
+import platformServices from '@json/platformServices'
 
 const RenderListServices = function () {
     return (
         <div class="services">
             {
-                services.map(item => {
+                platformServices.map(item => {
                     return (
                         <a class="services__item"
                             onclick={() => {
