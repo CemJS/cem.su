@@ -155,6 +155,24 @@ front.loader = async () => {
     ];
     Events.questions = await Fn.event(url, listener);
 
+    Static.videoDragStart = false;
+
+    Static.activeSpeed = 1;
+    Static.speedOptions = [
+      {
+        value: 2,
+      },
+      {
+        value: 1.5,
+      },
+      {
+        value: 0.75,
+      },
+      {
+        value: 0.5,
+      },
+    ];
+
     // let urlAns = front.Services.functions.makeUrlEvent("Answers", { id: front.Variable.DataUrl[2] });
 
     // let listenerAns = [

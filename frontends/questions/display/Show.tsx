@@ -7,7 +7,7 @@ import like from "@svg/lenta/like.svg";
 import points from "@svg/lenta/points.svg";
 import sendMessage from "@svg/lenta/send_message.svg";
 
-const RenderVideo = function (src: any) {
+const RenderVideo = function () {
   return (
     <div
       class="video-container "
@@ -201,7 +201,7 @@ const RenderVideo = function (src: any) {
       <video
         class="video"
         ref="video"
-        src={src}
+        src="/contents/video/yan.MOV"
         onplay={() => {
           Ref.playAndPause.classList.replace("i-play3", "i-pause2");
           Ref.mainPlay.classList.replace("i-play3", "i-pause2");
@@ -376,6 +376,7 @@ export default function () {
                               <RenderVideo src={`/assets/upload/answers/${item.name}`} />
                             ) : null;
                           })}
+                          <RenderVideo src="/contents/video/yan.MOV" />
                           <div
                             class="user-comment__answer questions-show__tell"
                             onclick={(e) => {
