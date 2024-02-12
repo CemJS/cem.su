@@ -152,14 +152,11 @@ export default function () {
               <button
                 class="btn"
                 onclick={() => {
-                  //   Fn.initOne({
-                  //     name: "modalQuestion",
-                  //     ifOpen: (front) => {
-                  //       setTimeout(() => {
-                  //         front.clearData();
-                  //       }, 500);
-                  //     },
-                  //   });
+                  if (!front.Variable.Auth) {
+                    Fn.initOne("modalAuthtorization", {})
+                  } else {
+                    Fn.initOne("modalAskQuestion", {})
+                  }
                 }}
               >
                 задать вопрос
@@ -266,18 +263,16 @@ export default function () {
                       <span>{front.Services.functions.timeStampToDate(item.showDate, ".")}</span>
                     </div>
                     <div class="questions__item_footer">
-                      <div class="btn_border-wrap">
-                        <button
-                          // href={`/questions/show/${item._id}`}
-                          class="btn_border"
-                          // onclick={(e) => {
-                          //   Static.recordsShow = item;
-                          //   Fn.link(e);
-                          // }}
-                        >
-                          Ответить
-                        </button>
-                      </div>
+                      <a
+                        // href={`/questions/show/${item._id}`}
+                        class="btn btn_gradient"
+                      // onclick={(e) => {
+                      //   Static.recordsShow = item;
+                      //   Fn.link(e);
+                      // }}
+                      >
+                        Ответить
+                      </a>
                     </div>
                   </div>
                 );

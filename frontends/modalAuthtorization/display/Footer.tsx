@@ -20,17 +20,40 @@ export default function () {
             })
 
             if (answer.error) {
-              Static.form.error = true
-              alert("Wrong")
+              Ref.email.value = ""
+              Ref.pass.value = ""
+
+              Static.form = {
+                email: {
+                  value: "",
+                  valid: false,
+                  error: false,
+                  placeholder: "Email",
+                  view: false,
+                  disable: false
+                },
+                pass: {
+                  value: "",
+                  valid: false,
+                  error: false,
+                  placeholder: "Введите пароль:",
+                  view: false,
+                  disable: false
+                },
+                isValid: false,
+                error: false
+              }
+              Static.form.error = "Неверно введены данные!"
+
               return
             }
             Fn.log('=139d14=', answer)
 
-            Fn.initOne("alert", {
-              icon: success,
-              title: "Спасибо!",
-              text: "Скоро с Вами свяжется наш менеджер!",
-            });
+            // Fn.initOne("alert", {
+            //   icon: success,
+            //   title: "Спасибо!",
+            //   text: "Скоро с Вами свяжется наш менеджер!",
+            // });
 
             Func.close()
           }}>

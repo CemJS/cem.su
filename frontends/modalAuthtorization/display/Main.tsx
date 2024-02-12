@@ -3,7 +3,9 @@ import { Cemjsx, Static, front, Func, Ref, Fn } from "cemjs-all"
 
 export default function () {
     return (
-        <main class="modal_main mt-25">
+        <main class="modal_main mt-40 p-relative">
+            <span class="form-error p-absolute">{Static.form.error ? Static.form.error : null}</span>
+
             <div class={[
                 "modalWindow_field",
                 Static.form.email.value.length ? "modalWindow_field__valid" : null,
@@ -11,11 +13,13 @@ export default function () {
                 Static.form.email.valid ? "modalWindow_field__success" : null,
             ]}>
                 <input
+                    ref="email"
                     type="email"
                     required
                     autocomplete="off"
                     oninput={(e: any) => {
                         Static.form.email.value = e.target.value;
+                        Static.form.error = false
                         front.Services.functions.formEmail(this.Static.form.email)
                         Func.checkForm()
                     }} />
@@ -34,10 +38,12 @@ export default function () {
                     Static.form.pass.valid ? "modalWindow_field__success" : null
                 ]}>
                 <input
+                    ref="pass"
                     type="password"
                     required
                     oninput={(e: any) => {
                         Static.form.pass.value = e.target.value;
+                        Static.form.error = false
                         front.Services.functions.formPassword(Static.form.pass)
                         Func.checkForm()
                     }}

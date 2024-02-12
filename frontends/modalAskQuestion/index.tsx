@@ -1,5 +1,6 @@
-import { Cemjsx, front, Func, Static, Fn, Ref } from "cemjs-all"
+import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all"
 import Navigation from "./navigation"
+import languages from '@json/languages'
 
 
 front.listener.finish = () => {
@@ -9,7 +10,7 @@ front.listener.finish = () => {
 front.func.show = function ($el: HTMLElement) {
     setTimeout(() => {
         $el.classList.add('modal__active');
-        this.Variable.$el.body.style.overflow = 'hidden';
+        // this.Variable.$el.body.style.overflow = 'hidden';
     }, 100);
 }
 
@@ -17,26 +18,15 @@ front.func.close = function () {
     Ref.modal.classList.remove('modal__active');
     setTimeout(() => {
         Fn.clearData()
-        this.Variable.$el.body.style.overflow = 'auto';
+        // this.Variable.$el.body.style.overflow = 'auto';
     }, 500)
 }
 
-front.func.checkForm = async function () {
-    if (Static.form.email.valid && Static.form.pass.valid) {
-        Static.form.isValid = true
-    } else {
-        Static.form.isValid = false
-    }
-    return
-}
-
-
-front.loader = () => {
-    Static.passType = "password"
-    //-----------------------
+front.loader = async () => {
+    Static.langQuestion = "Русский"
 
     Static.form = {
-        email: {
+        question: {
             value: "",
             valid: false,
             error: false,
@@ -44,7 +34,7 @@ front.loader = () => {
             view: false,
             disable: false
         },
-        pass: {
+        comment: {
             value: "",
             valid: false,
             error: false,
@@ -53,14 +43,19 @@ front.loader = () => {
             disable: false
         },
         isValid: false,
-        error: false
     }
+
     return
 }
 
 front.display = () => {
     return (
-        <div class="modal" ref="modal" init={Func.show}>
+        <div class="modal" ref="modal" init={Func.show}
+            onclick={(e: any) => {
+                if (e.target === Ref.modalBody) {
+                    Func.close()
+                }
+            }}>
             <Navigation />
         </div>
     )

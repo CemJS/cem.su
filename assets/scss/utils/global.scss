@@ -440,8 +440,18 @@
   }
 }
 
-.p-relative {
-  position: relative;
+.p {
+  &-relative {
+    position: relative;
+  }
+
+  &-absolute {
+    position: absolute;
+  }
+
+  .p-fixed {
+    position: fixed;
+  }
 }
 
 .fz1 {
