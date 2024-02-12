@@ -162,50 +162,7 @@
   }
 }
 
-.steps {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
 
-  &_circle {
-    position: relative;
-    z-index: 1;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: 3px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--backModal);
-    color: #999;
-    font-weight: 700;
-    font-size: clamp(16px, 5vw, 20px);
-    transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
-
-    &__active {
-      border: 3px solid var(--fiolet);
-      color: var(--fiolet);
-    }
-  }
-
-  &_progress {
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background: #e0e0e0;
-    z-index: 0;
-  }
-
-  &_indicator {
-    position: absolute;
-    height: 4px;
-    width: 0%;
-    background: var(--fiolet);
-    transition: width 0.3s ease-in-out;
-  }
-}
 
 .modalWindow {
   position: fixed;
