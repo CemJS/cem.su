@@ -68,8 +68,6 @@ const RenderNotFound = function () {
 }
 
 export default function () {
-    Fn.log("= records 12=", Static.recordsAll)
-
     return (
         <main class="modal_main">
             {/* {Static.full ? <RenderSearch /> : null} */}

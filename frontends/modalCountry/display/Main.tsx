@@ -22,7 +22,7 @@ const RenderListCountries = function ({ countries }) {
 }
 
 export default function () {
-    Fn.log('=dd00ae=', Static.records)
+    // Fn.log('=dd00ae=', Static.records)
     return (
         <main class="modal_main">
             <div class="mt-15">

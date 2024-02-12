@@ -124,7 +124,7 @@ const Step1 = function () {
                                     ?
                                     <div>
                                         <p class="modalReg_timer__text">Запросить новый код подтверждения можно через</p>
-                                        <p class="modalReg_timer__text pl_10">{Static.time < 10 ? `0 : 0${Static.time}` : `0 : ${Static.time}`}</p>
+                                        <p class="modalReg_timer__text pl-10">{Static.time < 10 ? `0 : 0${Static.time}` : `0 : ${Static.time}`}</p>
                                     </div>
                                     :
                                     <button
@@ -194,7 +194,11 @@ const Step2 = function () {
                                     }
                                     Static.setTimeout = Number(setTimeout(async () => {
 
-                                        let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "checkNick", step: Static.currentStep, nickname: Static.form.nickName.value })
+                                        let answer = await front.Services.functions.sendApi(`/api/Register`, {
+                                            action: "checkNick",
+                                            step: Static.currentStep,
+                                            nickname: Static.form.nickName.value
+                                        })
 
                                         if (answer.error) {
                                             Static.form.nickName.error = "Логин занят!"
@@ -205,7 +209,6 @@ const Step2 = function () {
                                 }
                             }} />
                         <div class="modalWindow_field_labelLine">
-                            {/* <img src={user}></img> */}
                             <i class="i i-user"></i>
                             <span>{Static.form.nickName.placeholder}</span>
                         </div>
@@ -237,10 +240,18 @@ const Step2 = function () {
                             Static.form.mainLang.valid ? "modalReg-choose_item__success" : null
                         ]}
                         onclick={() => {
-                            Static.form.mainLang.valid = true
-                            Static.form.mainLang.value = "ru"
-                            Static.form.mainLang.nameOrig = "Русский"
-                            // Fn.initOne("modalLanguage", {})
+                            Fn.initOne("modalLanguage", {
+                                full: false,
+                                callback: (chooseLang) => {
+                                    if (!chooseLang) return
+
+                                    Static.form.mainLang.nameOrig = chooseLang.orig_name
+                                    Static.form.mainLang.value = chooseLang.code
+
+                                    front.Services.functions.formLang(Static.form.mainLang)
+                                    Func.checkForm()
+                                }
+                            })
                         }}
                     >
                         <span>
@@ -255,11 +266,17 @@ const Step2 = function () {
                             Static.form.country.valid ? "modalReg-choose_item__success" : null
                         ]}
                         onclick={() => {
-                            Static.form.country.valid = true
-                            Static.form.country.value = "ru"
-                            Static.form.country.nameOrig = "Россия"
-                            Static.form.isValid = true
-                            // Fn.initOne("modalCountry", {})
+                            Fn.initOne("modalCountry", {
+                                callback: (chooseCountry) => {
+                                    if (!chooseCountry) return
+
+                                    Static.form.country.nameOrig = chooseCountry.orig_name
+                                    Static.form.country.value = chooseCountry.code
+
+                                    front.Services.functions.formCountry(Static.form.country)
+                                    Func.checkForm()
+                                }
+                            })
                         }}
                     >
                         <span>{Static.form.country.nameOrig ? Static.form.country.nameOrig : Static.form.country.placeholder}</span>
@@ -279,7 +296,14 @@ const Step2 = function () {
                                 return
                             }
 
-                            let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "registration", lang: Static.form.mainLang.value, country: Static.form.country.value, email: Static.form.email.value, step: Static.currentStep })
+                            let answer = await front.Services.functions.sendApi(`/api/Register`, {
+                                step: Static.currentStep,
+                                lang: Static.form.mainLang.value,
+                                country: Static.form.country.value,
+                                action: "checkNick",
+                                email: Static.form.email.value,
+                                nickName: Static.form.nickName.value
+                            })
                             if (answer.error) {
                                 alert("Error")
                                 return
@@ -317,7 +341,6 @@ const Step3 = function () {
                         }}
                     />
                     <div class="modalWindow_field_labelLine">
-                        {/* <img src={lock}></img> */}
                         <i class="i i-lock"></i>
                         <span>{Static.form.pass.placeholder}</span>
                     </div>
@@ -357,13 +380,22 @@ const Step3 = function () {
                         }}
                     />
                     <div class="modalWindow_field_labelLine">
-                        {/* <img src={lock}></img> */}
                         <i class="i i-lock"></i>
                         <span>{Static.form.rePass.placeholder}</span>
                     </div>
                     <p class="modalWindow_field__status" style="color:#E84142">{Static.form.rePass.error}</p>
-                    <div class="modalWindow_field__tooltip">
-                        <img
+                    <div
+                        class="modalWindow_field__tooltip"
+                        onclick={() => {
+                            if (Static.passType == "password") {
+                                Static.passType = "text"
+                            } else {
+                                Static.passType = "password"
+                            }
+                        }}
+                    >
+                        <i class="i i-eye"></i>
+                        {/* <img
                             alt="Показать пароль"
                             class="modalWindow_field__eye"
                             // src={this.Static.passType == "password" ? eye : eyeSlash}
@@ -374,7 +406,7 @@ const Step3 = function () {
                                     Static.passType = "password"
                                 }
                             }}
-                        />
+                        /> */}
                     </div>
                 </div>
                 <div class="f-center modalReg_btns">
@@ -390,19 +422,18 @@ const Step3 = function () {
                             }
 
                             let answer = await front.Services.functions.sendApi(`/api/Register`, {
-                                action: "registration",
+                                step: Static.currentStep,
                                 email: Static.form.email.value,
                                 nickname: Static.form.nickName.value,
                                 lang: Static.form.mainLang.value,
                                 country: Static.form.country.value,
                                 pass: Static.form.pass.value,
                                 repass: Static.form.rePass.value,
-                                step: Static.currentStep
                             })
+                            Fn.log('=a028de=', answer)
                             if (answer.error) {
                                 Static.form.email.error = "Пользователь с таким email уже существует!"
                                 Static.form.email.valid = false
-                                // Fn.init()
                                 return
                             }
 
@@ -435,7 +466,7 @@ const Step4 = function () {
 
                             // }, 2000)
                             Func.close()
-                            // Fn.initOne("modalAuth", {})
+                            Fn.initOne("modalAuthtorization", {})
                         }}
                     >
                         Авторизоваться

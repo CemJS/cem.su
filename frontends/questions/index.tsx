@@ -5,11 +5,25 @@ front.listener.finish = () => {
   return;
 };
 
-front.func.test = () => {
+front.func.updateFilter = async () => {
+  Static.makeFilter = {
+    sort: Static.sort,
+    order: Static.order,
+    search: Static.search,
+    isClosed: Static.type == "opened" ? false : Static.type == "closed" ? true : undefined,
+    isBest: Static.type == "best",
+    language: Static.chooseLanguage.code,
+  };
+  Static.makeFilter.action = "get";
+  Fn.log("=827b36=", Static.makeFilter);
+  let res = await front.Services.functions.sendApi("/api/events/Questions", Static.makeFilter);
+  console.log("=f9b841=", res);
   return;
 };
 
 front.loader = async () => {
+  Static.search = "";
+  Static.order = 1;
   Static.types = [
     {
       name: "All",
@@ -29,13 +43,15 @@ front.loader = async () => {
     },
   ];
 
+  Static.type = "All";
+
   Static.chooseLanguage = {
     eng_name: "Russian",
     orig_name: "Русский",
     code: "ru",
   };
 
-  Static.sort = [
+  Static.sorts = [
     {
       name: "date",
       text: "По дате",
@@ -50,11 +66,9 @@ front.loader = async () => {
     },
   ];
 
-  Static.makeFilter = {
-    type: "All",
-    sort: "date",
-    language: Static.chooseLanguage.code,
-  };
+  Static.sort = "date";
+
+  Func.updateFilter();
 
   let url = front.Services.functions.makeUrlEvent("Questions");
 

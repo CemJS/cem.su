@@ -129,7 +129,7 @@
       }
 
       &__success {
-        border: 1px solid var(--green);
+        border: 1px solid var(--green-700);
       }
     }
 
@@ -162,50 +162,7 @@
   }
 }
 
-.steps {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
 
-  &_circle {
-    position: relative;
-    z-index: 1;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: 3px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--backModal);
-    color: #999;
-    font-weight: 700;
-    font-size: clamp(16px, 5vw, 20px);
-    transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
-
-    &__active {
-      border: 3px solid var(--fiolet);
-      color: var(--fiolet);
-    }
-  }
-
-  &_progress {
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background: #e0e0e0;
-    z-index: 0;
-  }
-
-  &_indicator {
-    position: absolute;
-    height: 4px;
-    width: 0%;
-    background: var(--fiolet);
-    transition: width 0.3s ease-in-out;
-  }
-}
 
 .modalWindow {
   position: fixed;
@@ -306,6 +263,7 @@
     position: relative;
     height: 50px;
     line-height: 50px;
+
     &.textarea {
       height: 10rem;
     }
@@ -345,8 +303,8 @@
       color: var(--secondary_text);
     }
 
-    input:focus + .modalWindow_field_labelLine,
-    textarea:focus + .modalWindow_field_labelLine {
+    input:focus+.modalWindow_field_labelLine,
+    textarea:focus+.modalWindow_field_labelLine {
       height: 30px;
       line-height: 30px;
       transform: translate(-15px, -16px) scale(0.88);
@@ -380,19 +338,21 @@
       font-size: clamp(0.7rem, 2vw, 0.8rem);
       top: -38px;
       right: 0.9375rem;
+      font-weight: 500;
     }
 
     &__error {
       input {
-        border: 1px solid var(--red);
+        border: 1px solid var(--rose-600);
       }
 
       .modalWindow_field-status {
-        color: var(--red);
+        color: var(--rose-600);
       }
     }
 
     &__disabled {
+
       input,
       textarea {
         opacity: 0.5;
@@ -421,21 +381,25 @@
     &__edit {
       position: absolute;
       right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 20px;
-      width: 20px;
+      top: 0;
       cursor: pointer;
+      height: 100%;
+      display: flex;
+      align-items: center;
       transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--fiolet);
+      }
     }
 
     &__success {
       input {
-        border: 1px solid var(--green);
+        border: 1px solid var(--green-700);
       }
 
       .modalWindow_field-status {
-        color: var(--green);
+        color: var(--green-700);
       }
     }
 

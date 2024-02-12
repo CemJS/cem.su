@@ -242,7 +242,11 @@ export default function () {
         <div class="lenta">
             <div class="lenta-item">
                 <div class="lenta-item__header">
-                    <div class="user-circle"></div>
+                    <div class="user-circle"
+                        onclick={() => Fn.initOne("modalRegistration", {})}
+                    // onclick={() => { Fn.initOne("modalAuthtorization", {}) }}
+
+                    ></div>
                     <div class="lenta-item__header-info">
                         <span class="lenta-item__header-title">Betarost</span>
                         <span

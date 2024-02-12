@@ -1,0 +1,38 @@
+[
+  {
+    "img": "/contents/icons/social_networks/youtube.svg",
+    "alt": "youtube"
+  },
+  {
+    "img": "/contents/icons/social_networks/twitter.svg",
+    "alt": "twitter"
+  },
+  {
+    "img": "/contents/icons/social_networks/discord.svg",
+    "alt": "discord"
+  },
+  {
+    "img": "/contents/icons/social_networks/instagram.svg",
+    "alt": "instagram"
+  },
+  {
+    "img": "/contents/icons/social_networks/tiktok.svg",
+    "alt": "tiktok"
+  },
+  {
+    "img": "/contents/icons/social_networks/telegram.svg",
+    "alt": "telegram"
+  },
+  {
+    "img": "/contents/icons/social_networks/vk.svg",
+    "alt": "vk"
+  },
+  {
+    "img": "/contents/icons/social_networks/github.svg",
+    "alt": "github"
+  },
+  {
+    "img": "/contents/icons/social_networks/linkedin.svg",
+    "alt": "linkedin"
+  }
+]
