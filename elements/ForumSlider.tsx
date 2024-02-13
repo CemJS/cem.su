@@ -92,7 +92,6 @@ class Gallery {
             <div>
         `;
 
-      console.log("=415bdd=", this.element);
       this.lineNode = this.element.querySelector(`.${GalleryLineClassName}`);
 
       this.slideItems = Array.from(this.lineNode.children).map((childNode) => {
