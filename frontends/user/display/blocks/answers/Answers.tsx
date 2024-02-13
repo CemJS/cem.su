@@ -1,5 +1,5 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all"
-import QuestionCreate from "./QuestionCreate";
+import AnswerCreateDate from "./AnswerCreateDate";
 import defaultGray from "@svg/lenta/defaultGray.svg"
 import leveGray from "@svg/lenta/level_gray.svg"
 import avatarDefault from "@images/lenta/avatar_default.png"
@@ -13,12 +13,12 @@ export default function () {
 
     return (
         <div class="block-one c-container">
-            <h2>Заданные вопросы</h2>
+            <h2>Предложенные ответы</h2>
             <div class="questions-table__labels">
                 <span>Вопрос</span>
-                <span>Ответов</span>
-                <span>Просмотров</span>
-                <span>Лучший ответ</span>
+                <span>Комментариев</span>
+                <span>Рейтинг</span>
+                <span>Ответ</span>
             </div>
             <div class="questions-table">
                 {Static.record?.questions?.map((item: any, key: number) => {
@@ -31,7 +31,7 @@ export default function () {
                                 </a>
                                 <div>
                                     <div class="questions-table__created">
-                                        <QuestionCreate item={item} key={key} />
+                                        <AnswerCreateDate item={item} key={key} />
                                     </div>
                                 </div>
                             </div>

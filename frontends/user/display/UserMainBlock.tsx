@@ -1,6 +1,7 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all"
 import Information from "./blocks/information/Information"
 import Questions from "./blocks/questions/Questions"
+import Answers from "./blocks/answers/Answers"
 
 export default function () {
     return (
@@ -10,6 +11,9 @@ export default function () {
                 : null}
             {Static.questions === true ?
                 <Questions />
+                : null}
+            {Static.answers === true ?
+                <Answers />
                 : null}
         </div>
     )

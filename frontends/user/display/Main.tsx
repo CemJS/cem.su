@@ -15,7 +15,7 @@ export default function () {
           <ShortPreview />
         </div>
         <Categories />
-        <UserMainBlock/>
+        <UserMainBlock />
       </div>
     </div>
   )

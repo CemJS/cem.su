@@ -1,5 +1,5 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all"
-import QuestionCreate from "./QuestionCreate";
+import QuestionCreateDate from "./QuestionCreateDate";
 import defaultGray from "@svg/lenta/defaultGray.svg"
 import leveGray from "@svg/lenta/level_gray.svg"
 import avatarDefault from "@images/lenta/avatar_default.png"
@@ -31,7 +31,7 @@ export default function () {
                                 </a>
                                 <div>
                                     <div class="questions-table__created">
-                                        <QuestionCreate item={item} key={key} />
+                                        <QuestionCreateDate item={item} key={key} />
                                     </div>
                                 </div>
                             </div>
