@@ -6,7 +6,6 @@ import socials from "@json/footerSocial";
 import show from "@svg/icons/footerShow.svg";
 
 export default function () {
-  Fn.log("=14e8b9=", footer);
   return (
     <footer
       init={($el) => {

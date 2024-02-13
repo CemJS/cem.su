@@ -289,8 +289,6 @@ export default function () {
                 onclick={(e: any) => {
                   Static.open == "Ответить" ? (Static.open = "Отменить") : (Static.open = "Ответить");
                   Ref[`ans${Static.record.id}`].classList.toggle("answer_active");
-                  Fn.log("=d4e4ec=", Ref);
-                  Fn.log("=6a1489=", Static.record.id);
                 }}
                 class="btn_border"
               >
