@@ -52,6 +52,11 @@
   display: none !important;
 }
 
+.opacity {
+  opacity: 0;
+  user-select: none;
+}
+
 .list {
   &__item {
     padding: 0.6rem 0.9rem;

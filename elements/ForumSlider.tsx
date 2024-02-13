@@ -16,6 +16,7 @@ const GalleryNavRightClassName = "gallery_nav_right";
 
 class Gallery {
   element: HTMLElement;
+  elementEmpty: any;
   elementCount: number;
   dots: HTMLElement;
   next: HTMLElement;
@@ -38,22 +39,17 @@ class Gallery {
   settings: any;
   dotsItem: any;
   dotNodes: any;
+  firstManage: boolean;
 
   constructor(element: HTMLElement, dots: HTMLElement, next: HTMLElement, prev: HTMLElement, options = { margin: 10 }) {
     this.element = element;
+    this.elementEmpty = undefined;
     this.elementCount = element.childElementCount;
     this.dots = dots;
     this.next = next;
     this.prev = prev;
-    if (window.innerWidth > 1100) {
-      this.countSlides = 5;
-    } else if (window.innerWidth > 768) {
-      this.countSlides = 4;
-    } else if (window.innerWidth > 500) {
-      this.countSlides = 3;
-    } else {
-      this.countSlides = 1;
-    }
+    this.firstManage = false;
+    this.countSlides = 5;
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
@@ -83,36 +79,57 @@ class Gallery {
     this.destroyEvents();
     this.setEvents();
     this.resizeGallery();
-    setInterval(this.clickNext, 4000);
+    // setInterval(this.clickNext, 4000);
   }
 
   manageHTML() {
-    this.element.classList.add(GalleryClassName);
-    this.element.innerHTML = `
+    if (!this.firstManage) {
+      this.element.classList.add(GalleryClassName);
+      this.element.innerHTML = `
             <div class="${GalleryLineClassName}">
                 ${this.element.innerHTML}
             <div>
         `;
 
-    this.lineNode = this.element.querySelector(`.${GalleryLineClassName}`);
+      console.log("=415bdd=", this.element);
+      this.lineNode = this.element.querySelector(`.${GalleryLineClassName}`);
 
-    this.slideItems = Array.from(this.lineNode.children).map((childNode) => {
-      wrapElementByDiv({
-        element: childNode,
-        className: GallerySlideClassName,
+      this.slideItems = Array.from(this.lineNode.children).map((childNode) => {
+        wrapElementByDiv({
+          element: childNode,
+          className: GallerySlideClassName,
+        });
       });
-    });
+    }
     this.dots.classList.add(GalleryDotsClassName);
+    this.dots.innerHTML = "";
 
-    this.dotsItem = Array.from(Array(this.size).keys()).map((key) => {
-      wrapElementBtn(this.dots, GalleryDotClassName, key, this.currentSlide);
-    });
+    if (this.countSlides > 1) {
+      this.dotsItem = Array.from(Array(this.size).keys()).map((key) => {
+        wrapElementBtn(this.dots, GalleryDotClassName, key, this.currentSlide);
+      });
+    }
 
     this.dotNodes = this.dots.querySelectorAll(`.${GalleryDotClassName}`);
+    this.firstManage = true;
+  }
+
+  adaptive() {
+    if (window.innerWidth > 1300) {
+      this.countSlides = 5;
+    } else if (window.innerWidth > 1000) {
+      this.countSlides = 4;
+    } else if (window.innerWidth > 850) {
+      this.countSlides = 3;
+    } else if (window.innerWidth > 600) {
+      this.countSlides = 2;
+    } else {
+      this.countSlides = 1;
+    }
   }
 
   setParameters() {
-    // this.manageHTML()
+    this.adaptive();
     const coordsContainer = this.element.getBoundingClientRect();
     this.widthContainer = coordsContainer.width;
     this.maximumX = -(this.size - 1) * (this.widthContainer + this.settings.margin);
@@ -128,6 +145,7 @@ class Gallery {
       slideNode.style.maxWidth = `${width}px`;
       slideNode.style.marginRight = `${this.settings.margin}px`;
     });
+    this.manageHTML();
   }
 
   setEvents() {
@@ -153,7 +171,6 @@ class Gallery {
 
   resizeGallery() {
     this.setParameters();
-    // Fn.initAll();
   }
 
   clickDots(e) {
@@ -208,10 +225,10 @@ class Gallery {
 
   changeActiveDotClass() {
     for (let i = 0; i < this.dotNodes.length; i++) {
-      this.dotNodes[i].classList.remove(GalleryDotActiveClassName);
+      this.dotNodes[i]?.classList.remove(GalleryDotActiveClassName);
     }
 
-    this.dotNodes[this.currentSlide].classList.add(GalleryDotActiveClassName);
+    this.dotNodes[this.currentSlide]?.classList.add(GalleryDotActiveClassName);
   }
 
   startDrag(e) {
@@ -306,8 +323,8 @@ export const init = function (element: HTMLElement) {
   // this.init();
 };
 
-export const Display = function ({ items, tabName }) {
-  if (!items || !items.length) {
+export const Display = function ({ items }) {
+  if (!items || !items?.length) {
     return <div />;
   }
   return (
@@ -321,11 +338,12 @@ export const Display = function ({ items, tabName }) {
             <a
               ref="slide"
               target="_blank"
-              href={item.url}
-              class={["partners_list_item", item.visited.includes(tabName) ? null : null]}
+              href={item?.url}
+              class="partners_list_item"
+              onclick={Fn.link}
             >
               <img
-                src={`/contents/forum/partners/${item.logo}`}
+                src={`/contents/forum/partners/${item?.logo}`}
                 alt="img"
               />
             </a>
