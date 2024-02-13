@@ -4,7 +4,7 @@ import Questions from "./blocks/questions/Questions"
 
 export default function () {
     return (
-        <div class="userMainBlock">
+        <div class="user-main-block">
             {Static.aboutMe === true ?
                 <Information />
                 : null}

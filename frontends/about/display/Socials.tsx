@@ -21,7 +21,7 @@ const socials = [
     logo: telegram,
     name: "Telegram",
     url: "https://t.me/cryptoemergencychat",
-    urlENG: "https://www.tiktok.com/@cryptoemergency",
+    urlENG: "https://t.me/emergencycrypto",
   },
 
   {
