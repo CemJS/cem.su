@@ -11,7 +11,9 @@ export default function () {
               Fn.linkChange("/questions");
               if (front.Variable.$el.header) {
                 front.Variable.$el.header.classList.remove("hide");
+                front.Variable.$el.footer.classList.remove("hide");
                 Static.record = null;
+                Events.questions.close();
               }
             }}
           >

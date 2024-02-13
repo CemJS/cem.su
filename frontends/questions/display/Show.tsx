@@ -224,7 +224,6 @@ const RenderVideo = function () {
 };
 
 export default function () {
-  Fn.log("=97c779=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
@@ -289,6 +288,7 @@ export default function () {
               <button
                 onclick={(e: any) => {
                   Static.open == "Ответить" ? (Static.open = "Отменить") : (Static.open = "Ответить");
+                  Ref[`ans${Static.record.id}`].classList.toggle("answer_active");
                 }}
                 class="btn_border"
               >
@@ -298,7 +298,10 @@ export default function () {
           </div>
 
           <div class="user-comment questions-show__answers">
-            <div class="answer">
+            <div
+              ref={`ans${Static.record.id}`}
+              class="answer"
+            >
               <textarea
                 class="answer__field"
                 cols="20"

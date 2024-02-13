@@ -52,6 +52,11 @@
   display: none !important;
 }
 
+.opacity {
+  opacity: 0;
+  user-select: none;
+}
+
 .list {
   &__item {
     padding: 0.6rem 0.9rem;
@@ -131,7 +136,7 @@
     transition: width 0.3s ease-in-out;
   }
 
-  @media(max-width: 464px) {
+  @media (max-width: 464px) {
     &_circle {
       height: 2.5rem;
       width: 2.5rem;
@@ -192,7 +197,6 @@
     @include button(var(--black-gray), 100%, 2.625rem, 100%, 1rem, var(--white));
     border-radius: var(--btnR);
     overflow: hidden;
-    line-height: 2.625rem;
     text-align: center;
     outline: none;
     border: none;
@@ -326,7 +330,6 @@
   flex-direction: column;
   gap: 0.5rem;
 }
-
 
 .border {
   &_success {

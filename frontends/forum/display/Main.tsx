@@ -284,21 +284,21 @@ export default function () {
           {/* partners tabs*/}
           <section class="partners_section">
             <h4>Партнеры</h4>
-
             <div
-              class="tabs"
+              class="tabs tabs_partners"
               ref="forumTabs"
             >
               {tabs.map((item, index) => {
                 return (
                   <span
+                    index={index}
                     class="tab"
                     ref="tabItem2"
                     onclick={() => {
                       Static.activeIndex = index;
                       Ref.activeTab2.style.left = `${Ref.tabItem2.offsetWidth * Static.activeIndex}px`;
-                      Static.partnersTabName = item.name;
-                      Static.partners = partners.filter((item) => item.visited.includes(Static.partnersTabName));
+                      Static.partnersTabName = item?.name;
+                      Fn.log("=ef43b1=", Static.partners);
                       Fn.init();
                     }}
                   >
@@ -313,10 +313,18 @@ export default function () {
             </div>
             {/*partners  slider */}
             {/* partners  */}
-            <Display
-              items={Static.partners}
-              tabName={Static.partnersTabName}
-            />
+            <Display items={Static.partners2023} />
+            {/* <div class={Static.partnersTabName == "CryptoЮГ2023" ? "opacity" : null}>
+              <Display items={Static.partners2023} />
+            </div>
+            <div class={Static.partnersTabName == "CryptoЮГ2022" ? "opacity" : null}>
+              <Display items={Static.partners2022} />
+            </div> */}
+            {/* <div class={Static.partnersTabName == "CryptoЮГ2022" ? "hide" : null}>
+              <Display
+                items={Static.partners2022}
+              />
+            </div> */}
           </section>
         </div>
         {/* </div> */}
