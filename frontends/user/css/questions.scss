@@ -8,6 +8,18 @@
     font-size: 14px;
     line-height: 20px;
 
+    &__user-name {
+        position: relative;
+        top: -21px;
+
+        p:first-child {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0;
+        }
+    }
+
     &__avatar {
         display: flex;
         align-items: flex-end;
@@ -82,6 +94,52 @@
         span:nth-child(3) {
             text-align: center;
         }
+    }
+
+    &__status {
+        position: relative;
+
+        img {
+            position: relative;
+            top: 50%;
+            transform: translateY(-20%);
+            height: 30px;
+        }
+
+        &_inner {
+            position: relative;
+            top: 50%;
+            transform: translateY(-10%);
+            cursor: pointer;
+        }
+    }
+
+    &__optional {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+
+        &__icon {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            margin-left: 10px;
+
+            img {
+                left: 50%;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%) translateX(-50%);
+            }
+        }
+    }
+
+    &__title {
+        font-size: 18px;
+        margin-bottom: 10px
     }
 }
 

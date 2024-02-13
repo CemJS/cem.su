@@ -1,11 +1,12 @@
 import { Cemjsx, Fn, Static, front } from "cemjs-all"
 import avatarDefault from "@images/lenta/avatar_default.png"
-import frameDefault from "@svg/lenta/default.svg"
 import teamLogo from "@svg/lenta/mini_logo.svg"
 import leveGray from "@svg/lenta/level_gray.svg"
 import Filters from "./Filters/Filters"
+import defaultGray from "@svg/lenta/defaultGray.svg"
 
 export default function () {
+  Fn.log("Static.record", Static.records);
 
   return (
     <div class="users">
@@ -41,11 +42,10 @@ export default function () {
                                 avatarDefault
                               } />
                             <img class="avatar__frame"
-                              src={item.frame?.name && item.frame?.name != "default.svg"
-                                ?
+                              src={item.frame?.name ?
                                 `/contents/images/lenta/${item.frame?.name}`
                                 :
-                                frameDefault} />
+                                defaultGray} />
                             {
                               item.status?.team
                                 ?
