@@ -298,8 +298,7 @@ export default function () {
                       Static.activeIndex = index;
                       Ref.activeTab2.style.left = `${Ref.tabItem2.offsetWidth * Static.activeIndex}px`;
                       Static.partnersTabName = item?.name;
-                      Fn.log("=ef43b1=", Static.partners);
-                      Fn.init();
+                      Static.partners = Static.partners.filter((item) => item.visited.includes(Static.partnersTabName));
                     }}
                   >
                     {item.name}
@@ -313,17 +312,13 @@ export default function () {
             </div>
             {/*partners  slider */}
             {/* partners  */}
-            <Display items={Static.partners2023} />
+            <Display items={Static.partners} />
+
             {/* <div class={Static.partnersTabName == "CryptoЮГ2023" ? "opacity" : null}>
               <Display items={Static.partners2023} />
             </div>
             <div class={Static.partnersTabName == "CryptoЮГ2022" ? "opacity" : null}>
               <Display items={Static.partners2022} />
-            </div> */}
-            {/* <div class={Static.partnersTabName == "CryptoЮГ2022" ? "hide" : null}>
-              <Display
-                items={Static.partners2022}
-              />
             </div> */}
           </section>
         </div>

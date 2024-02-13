@@ -2,6 +2,7 @@ import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
 import back from "@svg/icon/prev.svg";
 import next from "@svg/icon/next.svg";
 
+const key = Math.floor(Math.random() * 1000);
 const GalleryClassName = "gallery";
 const GalleryClassNamePartners = "gallery_partners";
 const GalleryLineClassName = "gallery_line";
@@ -228,7 +229,7 @@ class Gallery {
       this.dotNodes[i]?.classList.remove(GalleryDotActiveClassName);
     }
 
-    this.dotNodes[this.currentSlide]?.classList.add(GalleryDotActiveClassName);
+    this.dotNodes[this.currentSlide]?.classList?.add(GalleryDotActiveClassName);
   }
 
   startDrag(e) {
@@ -340,7 +341,6 @@ export const Display = function ({ items }) {
               target="_blank"
               href={item?.url}
               class="partners_list_item"
-              onclick={Fn.link}
             >
               <img
                 src={`/contents/forum/partners/${item?.logo}`}
