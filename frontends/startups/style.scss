@@ -361,6 +361,7 @@ $tokenomicaBack: (
     gap: 0.9375rem;
     justify-content: center;
     & .social-networks__item {
+      position: relative;
       width: 2rem;
       height: 2rem;
       & img {

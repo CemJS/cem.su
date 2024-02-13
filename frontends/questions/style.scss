@@ -339,7 +339,7 @@
       button {
         font-size: 12px;
         font-weight: 600;
-        height: 22px;
+        height: 27px;
       }
     }
 
@@ -493,6 +493,9 @@
 
       & .answer {
         display: none;
+        &_active {
+          display: block;
+        }
         &__field {
           width: 100%;
           padding: 20px;
@@ -502,11 +505,6 @@
           resize: none;
           border: 0;
           border-radius: 15px;
-
-          &_active {
-            display: block;
-          }
-
           &:focus {
             outline: 0;
           }

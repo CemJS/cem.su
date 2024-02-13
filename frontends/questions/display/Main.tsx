@@ -126,7 +126,6 @@ export default function () {
           Ref.filterSort.classList.remove("filter_active");
         }
       }}
-      class="page"
     >
       <div class="questions">
         <div class="wrapper wrapper_padding">
@@ -153,9 +152,9 @@ export default function () {
                 class="btn"
                 onclick={() => {
                   if (!front.Variable.Auth) {
-                    Fn.initOne("modalAuthtorization", {})
+                    Fn.initOne("modalAuthtorization", {});
                   } else {
-                    Fn.initOne("modalAskQuestion", {})
+                    Fn.initOne("modalAskQuestion", {});
                   }
                 }}
               >
@@ -193,8 +192,23 @@ export default function () {
                 return (
                   <div
                     class="questions__item"
-                    onclick={() => {
-                      Static.record = item;
+                    onclick={async () => {
+                      let url = front.Services.functions.makeUrlEvent("Questions", { action: "show", id: item.id });
+
+                      let listener = [
+                        {
+                          type: "get",
+                          fn: ({ data }) => {
+                            let json = front.Services.functions.strToJson(data);
+                            if (!json) {
+                              return;
+                            }
+                            Static.record = json;
+                            Fn.log("=728e57=", Static.record);
+                          },
+                        },
+                      ];
+                      Events.questions = await Fn.event(url, listener);
                       Fn.linkChange(`/questions/show/${item.id}`);
                     }}
                     init={($el: any) => {
@@ -223,7 +237,7 @@ export default function () {
                           />
                           <img
                             class="avatar__frame"
-                            src={item.authorDetails?.frame?.name ? `/assets/images/lenta/${item.authorDetails.frame?.name}` : frameDefault}
+                            src={item.authorDetails?.frame?.name ? `/contents/images/lenta/${item.authorDetails.frame?.name}` : frameDefault}
                           />
                           {item.authorDetails?.status?.team ? (
                             <img
@@ -262,17 +276,17 @@ export default function () {
                       </span>
                       <span>{front.Services.functions.timeStampToDate(item.showDate, ".")}</span>
                     </div>
-                    <div class="questions__item_footer">
-                      <a
+                    <div class="questions__item_footer btn_border-wrap">
+                      <button
                         // href={`/questions/show/${item._id}`}
-                        class="btn btn_gradient"
-                      // onclick={(e) => {
-                      //   Static.recordsShow = item;
-                      //   Fn.link(e);
-                      // }}
+                        class="btn_border"
+                        // onclick={(e) => {
+                        //   Static.recordsShow = item;
+                        //   Fn.link(e);
+                        // }}
                       >
                         Ответить
-                      </a>
+                      </button>
                     </div>
                   </div>
                 );

@@ -12,6 +12,8 @@ export default function () {
               if (front.Variable.$el.header) {
                 front.Variable.$el.header.classList.remove("hide");
                 Static.record = null;
+                Events.questions.close();
+                Fn.log("=e309df=", Events.questions.close);
               }
             }}
           >
