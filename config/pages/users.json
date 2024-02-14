@@ -1,4 +1,8 @@
 {
   "url": "/users",
-  "front": ["header", "users"]
+  "front": [
+    "header",
+    "users",
+    "menu"
+  ]
 }

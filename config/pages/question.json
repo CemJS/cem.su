@@ -1,4 +1,9 @@
 {
   "regex": "/questions",
-  "front": ["header", "questions", "footer"]
+  "front": [
+    "header",
+    "questions",
+    "footer",
+    "menu"
+  ]
 }

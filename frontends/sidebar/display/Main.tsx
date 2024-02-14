@@ -1,4 +1,4 @@
-import { Cemjsx, Static, Ref, Fn, front } from "cemjs-all";
+import { Cemjsx, Static, Ref, Fn, front, Func } from "cemjs-all";
 import appStore from "@svg/icons/appStore.svg";
 import playMarket from "@svg/icons/playMarket.svg";
 import socials from "@json/socials";
@@ -9,10 +9,15 @@ const RenderSidebarMenu = function ({ menu }) {
       {menu.map((item) => {
         return (
           <div class="sidebar-menu__item">
-            <a href={item.link}>
+            <span
+              onclick={() => {
+                Func.close()
+                Fn.linkChange(`${item.link}`);
+              }}
+            >
               <i class={["i", `i-${item.icon}`]}></i>
               {item.name}
-            </a>
+            </span>
           </div>
         );
       })}
@@ -39,14 +44,25 @@ const RenderSidebarSubmenu = function ({ submenu }) {
             <div class="sidebar-submenu">
               {item.options.map((element) => {
                 return (
-                  <div class="sidebar-submenu__item">
-                    <a
-                      href={element.link}
-                      onclick={Fn.link}
-                    >
-                      {element.name}
-                    </a>
-                  </div>
+                  element.target ?
+                    <div class="sidebar-submenu__item">
+                      <a
+                        href={element.link}
+                        target="_blank"
+                      >
+                        {element.name}
+                      </a>
+                    </div> :
+                    <div class="sidebar-submenu__item">
+                      <span
+                        onclick={() => {
+                          Func.close()
+                          Fn.linkChange(`${element.link}`);
+                        }}
+                      >
+                        {element.name}
+                      </span>
+                    </div>
                 );
               })}
             </div>
@@ -66,7 +82,7 @@ const RenderSocials = function ({ socials }) {
             <a
               class="sidebar-socials__item"
               href={item.url}
-              onclick={Fn.link}
+              target="_blank"
             >
               <i class={["i", `i-${item.icon}`]}></i>
             </a>

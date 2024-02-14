@@ -81,6 +81,7 @@
       transition: var(--tran-03);
 
       &-btn,
+      span,
       a {
         font-weight: 500;
         color: var(--slate-300);
@@ -137,6 +138,8 @@
     transition: max-height 0.3s ease-in-out;
 
     &__item {
+
+      span,
       a {
         padding-left: 4rem;
         font-size: 0.9rem;
