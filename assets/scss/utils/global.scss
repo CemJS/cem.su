@@ -6,6 +6,12 @@
   height: 100vh;
 }
 
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .wrapper {
   max-width: 1240px;
   margin: 0 auto;

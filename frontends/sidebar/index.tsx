@@ -33,7 +33,7 @@ front.loader = async () => {
     {
       icon: "lenta",
       name: "Лента пользователей",
-      link: "#",
+      link: "/lenta",
     },
     {
       icon: "qa",
@@ -53,22 +53,22 @@ front.loader = async () => {
     {
       icon: "phone",
       name: "Обменники",
-      link: "#",
+      link: "/exchangers",
     },
     {
       icon: "copy",
       name: "Пользователи",
-      link: "#",
+      link: "/users",
     },
     {
       icon: "bubbles2",
       name: "Эксперты",
-      link: "#",
+      link: "/experts",
     },
     {
       icon: "users",
       name: "Создатели контента",
-      link: "#",
+      link: "/content-creator",
     },
   ];
 
@@ -113,14 +113,17 @@ front.loader = async () => {
         {
           name: "О нас",
           link: "/about",
+          target: false
         },
         {
           name: "Карьера",
           link: "/career",
+          target: false
         },
         {
           name: "Lite Paper",
-          link: "#",
+          link: "/contents/docs/LitePaperRu.pdf",
+          target: true
         },
       ],
     },
@@ -131,10 +134,12 @@ front.loader = async () => {
         {
           name: "Контакты",
           link: "/contacts",
+          target: false
         },
         {
           name: "Партнёрская программа",
           link: "/affiliate",
+          target: false
         },
       ],
     },
@@ -145,14 +150,17 @@ front.loader = async () => {
         {
           name: "Пользовательское соглашение",
           link: "/terms-of-service",
+          target: false
         },
         {
           name: "Политика использования данных",
           link: "/data-policy",
+          target: false
         },
         {
           name: "Политика cookies",
           link: "/cookies-policy",
+          target: false
         },
       ],
     },
@@ -162,11 +170,11 @@ front.loader = async () => {
       options: [
         {
           name: "CEM Blockchain",
-          link: "#",
+          link: "https://cemblockchain.com/",
         },
         {
           name: "CEM Explorer",
-          link: "#",
+          link: "https://cemscan.com/",
         },
       ],
     },

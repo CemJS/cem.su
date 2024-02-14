@@ -1,6 +1,9 @@
 import { Cemjsx, Fn, Ref, Static, front, Events, Func } from "cemjs-all";
 import frameDefault from "@svg/lenta/default.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
+import avatarGpt from "@images/lenta/avatarGpt.png";
+import appStore from "@images/questions/appStore.png";
+import playMarket from "@images/questions/playMarket.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import openDrop from "@svg/icons/openDropDown.svg";
@@ -115,6 +118,7 @@ const RenderLanguageFilter = () => {
 };
 
 export default function () {
+  Fn.log("=7e98df=", Static.records);
   return (
     <div
       onclick={(e) => {
@@ -131,6 +135,52 @@ export default function () {
           <div class="questions__container">
             <h4>Последние вопросы</h4>
             <p class="questions__description">Задавайте свои вопросы, получайте грамотные и понятные ответы на родном языке, совершенно бесплатно.</p>
+            <div class="questions__gpt questions__gpt_margin">
+              <div class="avatar__icon">
+                <img
+                  class="avatar__photo"
+                  src={avatarGpt}
+                />
+                <img
+                  class="avatar__frame"
+                  src={frameDefault}
+                />
+                <img
+                  class="avatar__team"
+                  src={teamLogo}
+                />
+              </div>
+              <div class="questions__right">
+                <div class="questions__gpt-desc">
+                  <p class="questions__gpt-title">ChatGPT</p>
+                  <div class="questions__gpt-aps">
+                    <a
+                      target="_blank"
+                      href="https://play.google.com/store/apps/details?id=com.cemassistant"
+                      onclick={Fn.link}
+                    >
+                      <img
+                        src={playMarket}
+                        alt="playMarket"
+                        class="questions__gpt-app"
+                      />
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://apps.apple.com/by/app/cem-assistant/id6448629326"
+                      onclick={Fn.link}
+                    >
+                      <img
+                        src={appStore}
+                        alt="appStore"
+                        class="questions__gpt-app"
+                      />
+                    </a>
+                  </div>
+                </div>
+                <button class="questions__gpt-btn btn">Спросить Chat GPT</button>
+              </div>
+            </div>
             <div class="questions__ask">
               <div class="questions__search">
                 <input
@@ -243,10 +293,11 @@ export default function () {
                               src={item.authorDetails.status?.team ? teamLogo : null}
                             />
                           ) : (
-                            <div>
-                              <div class="avatar__level">
+                            <div class="avatar__level">
+                              <div class="avatar__wrap">
                                 <img src={leveGray} />
                                 <span>{item.authorDetails.statistic?.level}</span>
+                                <div class={["avatar__online", item.authorDetails.online ? "avatar__online_active" : null]}></div>
                               </div>
                             </div>
                           )}

@@ -1,5 +1,8 @@
 {
-    "url": "/exchangers",
-    "front": ["header", "exchangers"]
-  }
-  
+  "url": "/exchangers",
+  "front": [
+    "header",
+    "exchangers",
+    "menu"
+  ]
+}
