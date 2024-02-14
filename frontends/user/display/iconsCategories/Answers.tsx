@@ -6,15 +6,19 @@ export default function () {
             <i
                 onclick={async () => {
                     Static.answers = true
-                    Static.questions = false,
-                        Static.aboutMe = false
+                    Static.questions = false
+                    Static.aboutMe = false
+                    Static.subscribers = false
+                    Static.subscriptions = false
+                    Static.awards = false
+                    Static.socials = false
                     const getAnswers = {
                         "action": "getAnswers",
                         "id": Static.record?.id,
                         "uuid": `${localStorage?.uuid}`
                     }
                     let content = await front.Services.functions.sendApi("/api/Users/profile", getAnswers)
-                  Fn.log('=4b78f5=',Static.record?.statistics)
+                    //   Fn.log('=4b78f5=',Static.record?.statistics)
                 }}
                 class={`c-usercategories__icon c-usercategories__icon--${Static.answers === true ? "answers"
                     : "answers_inactive"}`}
