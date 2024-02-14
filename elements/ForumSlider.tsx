@@ -52,7 +52,6 @@ class Gallery {
     this.firstManage = false;
     this.countSlides = 5;
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
-    Fn.log("=1df663=", this.elementCount);
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
     this.settings = {
@@ -85,7 +84,6 @@ class Gallery {
   }
 
   manageHTML() {
-    Fn.log("=manageHTML=", this.firstManage);
     // if (!this.firstManage) {
     this.element.classList.add(GalleryClassName);
     // this.element.innerHTML = `
@@ -113,7 +111,6 @@ class Gallery {
     }
 
     this.dotNodes = this.dots.querySelectorAll(`.${GalleryDotClassName}`);
-    this.firstManage = true;
   }
 
   adaptive() {
@@ -323,7 +320,6 @@ export const init = function (element: HTMLElement) {
 };
 
 export const Display = function ({ items }) {
-  Fn.log("!!!!", items);
   {
     Ref.slider ? init(Ref.slider) : null;
   }
