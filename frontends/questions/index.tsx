@@ -70,7 +70,7 @@ front.loader = async () => {
   Static.types = [
     {
       name: "All",
-      text: "Все запросы",
+      text: "Все вопросы",
     },
     {
       name: "opened",
