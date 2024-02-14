@@ -1,0 +1,4 @@
+{
+  "regex": "/university",
+  "front": ["header", "university", "menu"]
+}

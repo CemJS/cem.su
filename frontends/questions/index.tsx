@@ -124,6 +124,8 @@ front.loader = async () => {
     language: Static.chooseLanguage.code,
   };
 
+  delete Static.makeFilter.isClosed; //== undefined ? Static.makeFilter.
+
   let url = front.Services.functions.makeUrlEvent("Questions", Static.makeFilter);
   Fn.log("=55d7c3=", url);
   let listener = [
