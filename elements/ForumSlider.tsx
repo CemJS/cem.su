@@ -45,13 +45,14 @@ class Gallery {
   constructor(element: HTMLElement, dots: HTMLElement, next: HTMLElement, prev: HTMLElement, options = { margin: 10 }) {
     this.element = element;
     this.elementEmpty = undefined;
-    this.elementCount = element.childElementCount;
+    this.elementCount = element.children[0].childElementCount;
     this.dots = dots;
     this.next = next;
     this.prev = prev;
     this.firstManage = false;
     this.countSlides = 5;
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
+    Fn.log("=1df663=", this.elementCount);
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
     this.settings = {
@@ -85,7 +86,8 @@ class Gallery {
 
   manageHTML() {
     Fn.log("=manageHTML=", this.firstManage);
-    // this.element.classList.add(GalleryClassName);
+    // if (!this.firstManage) {
+    this.element.classList.add(GalleryClassName);
     // this.element.innerHTML = `
     //       <div class="${GalleryLineClassName}">
     //           ${this.element.innerHTML}
@@ -100,7 +102,7 @@ class Gallery {
     //     className: GallerySlideClassName,
     //   });
     // });
-
+    // }
     this.dots.classList.add(GalleryDotsClassName);
     this.dots.innerHTML = "";
 
@@ -314,17 +316,17 @@ function debounce(func, time = 100) {
 export { Gallery };
 
 export const init = function (element: HTMLElement) {
-  if (!Static.galleryRun) {
-    Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextTeam, Ref.prevTeam, {
-      margin: 10,
-    });
-  }
-  Static.callGallery = true;
+  Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextTeam, Ref.prevTeam, {
+    margin: 10,
+  });
   // this.init();
 };
 
 export const Display = function ({ items }) {
   Fn.log("!!!!", items);
+  {
+    Ref.slider ? init(Ref.slider) : null;
+  }
   if (!items || !items?.length) {
     return <div />;
   }
@@ -333,7 +335,10 @@ export const Display = function ({ items }) {
       class={GalleryClassNamePartners}
       style="position: relative;"
     >
-      <div init={init}>
+      <div
+        init={init}
+        ref="slider"
+      >
         <div class="gallery_line">
           {items?.map((item: any) => {
             return (
