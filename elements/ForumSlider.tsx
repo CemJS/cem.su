@@ -141,10 +141,8 @@ class Gallery {
     Array.from(this.lineNode.children).forEach((slideNode: any) => {
       let width = (this.widthContainer - 10 * (this.countSlides - 1)) / this.countSlides;
       if (this.currentSlide + 1 == this.size) {
-        Fn.log("=ed1dce=", this.elementCount);
-        Fn.log("=45fae1=", this.size);
-        Fn.log("=bf3bc8=", Math.floor(this.elementCount / this.size));
-        // width = (this.widthContainer - 10 * Math.floor(this.elementCount / this.size)) / this.countSlides;
+        let rest = this.elementCount - this.countSlides * (this.size - 1);
+        width = (this.widthContainer - 10 * (rest - 1)) / rest;
       }
       slideNode.style.minWidth = `${width}px`;
       slideNode.style.maxWidth = `${width}px`;
