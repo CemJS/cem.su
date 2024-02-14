@@ -1,5 +1,7 @@
 {
-    "url": "/about",
-    "front": ["about"]
-  }
-  
+  "url": "/about",
+  "front": [
+    "about",
+    "menu"
+  ]
+}
