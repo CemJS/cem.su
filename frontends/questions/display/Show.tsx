@@ -6,6 +6,7 @@ import dislike from "@svg/lenta/dislike.svg";
 import like from "@svg/lenta/like.svg";
 import points from "@svg/lenta/points.svg";
 import sendMessage from "@svg/lenta/send_message.svg";
+import notFound from "@svg/icon/notFound.svg";
 
 const RenderVideo = function () {
   return (
@@ -875,7 +876,15 @@ export default function () {
                   );
                 })}
               </div>
-            ) : null}
+            ) : (
+              <div class="questions__notFound notFound notFound_bg notFound_relative mX-auto">
+                <img
+                  src={notFound}
+                  alt="Нет записей"
+                />
+                Нет записей
+              </div>
+            )}
           </div>
         </div>
       </div>
