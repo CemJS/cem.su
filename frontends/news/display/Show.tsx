@@ -53,15 +53,15 @@ export default function () {
 
         <div class="new-statistic mt-15">
           <div class="new-statistic__el">
-            <i class="i i-comment"></i>
-            {Static.record?.statistic?.comments}</div>
+            {front.Services.functions.timeStampToDate(Static.record?.dateCreate, '.')}
+          </div>
           <div class="new-statistic__el">
             <i class="i i-eye"></i>
             {/* {Static.record.statistic?.rating} */}
           </div>
           <div class="new-statistic__el">
-            {/* <i class="i i-calendar"></i> */}
-            {front.Services.functions.timeStampToDate(Static.record?.dateCreate, '.')}
+            <i class="i i-comment"></i>
+            {Static.record?.statistic?.comments}
           </div>
         </div>
       </div>
