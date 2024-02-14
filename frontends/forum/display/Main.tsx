@@ -298,7 +298,7 @@ export default function () {
                       Static.activeIndex = index;
                       Ref.activeTab2.style.left = `${Ref.tabItem2.offsetWidth * Static.activeIndex}px`;
                       Static.partnersTabName = item?.name;
-                      Static.partners = Static.partners.filter((item) => item.visited.includes(Static.partnersTabName));
+                      Static.partners = partners.filter((item) => item.visited.includes(Static.partnersTabName));
                     }}
                   >
                     {item.name}

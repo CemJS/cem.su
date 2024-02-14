@@ -84,23 +84,23 @@ class Gallery {
   }
 
   manageHTML() {
-    if (!this.firstManage) {
-      this.element.classList.add(GalleryClassName);
-      this.element.innerHTML = `
-            <div class="${GalleryLineClassName}">
-                ${this.element.innerHTML}
-            <div>
-        `;
+    Fn.log("=manageHTML=", this.firstManage);
+    // this.element.classList.add(GalleryClassName);
+    // this.element.innerHTML = `
+    //       <div class="${GalleryLineClassName}">
+    //           ${this.element.innerHTML}
+    //       <div>
+    //   `;
 
-      this.lineNode = this.element.querySelector(`.${GalleryLineClassName}`);
+    this.lineNode = this.element.querySelector(`.${GalleryLineClassName}`);
 
-      this.slideItems = Array.from(this.lineNode.children).map((childNode) => {
-        wrapElementByDiv({
-          element: childNode,
-          className: GallerySlideClassName,
-        });
-      });
-    }
+    // this.slideItems = Array.from(this.lineNode.children).map((childNode) => {
+    //   wrapElementByDiv({
+    //     element: childNode,
+    //     className: GallerySlideClassName,
+    //   });
+    // });
+
     this.dots.classList.add(GalleryDotsClassName);
     this.dots.innerHTML = "";
 
@@ -324,6 +324,7 @@ export const init = function (element: HTMLElement) {
 };
 
 export const Display = function ({ items }) {
+  Fn.log("!!!!", items);
   if (!items || !items?.length) {
     return <div />;
   }
@@ -333,21 +334,25 @@ export const Display = function ({ items }) {
       style="position: relative;"
     >
       <div init={init}>
-        {items?.map((item: any) => {
-          return (
-            <a
-              ref="slide"
-              target="_blank"
-              href={item?.url}
-              class="partners_list_item"
-            >
-              <img
-                src={`/contents/forum/partners/${item?.logo}`}
-                alt="img"
-              />
-            </a>
-          );
-        })}
+        <div class="gallery_line">
+          {items?.map((item: any) => {
+            return (
+              <div class="gallery_slide">
+                <a
+                  ref="slide"
+                  target="_blank"
+                  // href={item?.url}
+                  class="partners_list_item"
+                >
+                  <img
+                    src={`/contents/forum/partners/${item?.logo}`}
+                    alt="img"
+                  />
+                </a>
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div
         class="gallery_dots"
