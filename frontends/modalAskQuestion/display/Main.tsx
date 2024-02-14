@@ -18,25 +18,42 @@ export default function () {
                 {Static.langQuestion}<i class="i i-arrow-right"></i>
             </button>
 
-            <div class="mt-15">
+            <div class="mt-25">
                 <div class={[
                     "modalWindow_field",
-                    Static.form.email.value.length ? "modalWindow_field__valid" : null
+                    Static.form.question.value.length ? "modalWindow_field__valid" : null
                 ]}>
                     <input
-                        type="email"
+                        type="text"
                         required
                         autocomplete="off"
                         oninput={(e: any) => {
-                            Static.form.email.value = e.target.value;
-                            front.Services.functions.formEmail(this.Static.form.email)
-                            Func.checkForm()
+                            Static.form.question.value = e.target.value;
+                            // front.Services.functions.formEmail(this.Static.form.email)
+                            // Func.checkForm()
                         }} />
                     <div class="modalWindow_field_labelLine">
                         <i class="i i-user"></i>
-                        <span>{Static.form.email.placeholder}</span>
+                        <span>{Static.form.question.placeholder}</span>
                     </div>
-                    <p class="modalWindow_field__status" style="color:#E84142">{Static.form.email.error}</p>
+                    <p class="modalWindow_field__status" style="color:#E84142">{Static.form.question.error}</p>
+                </div>
+
+                <div
+                    class={[
+                        "modalWindow_field",
+                        Static.form.question.value.length ? "modalWindow_field__valid" : null
+                    ]}
+
+                >
+                    <textarea
+                        rows="3"
+                        oninput={(e: any) => {
+                            Static.form.comment.value = e.target.value;
+                            // front.Services.functions.formComment(Static.form.comment)
+                            // Func.checkForm()
+                        }}
+                    ></textarea>
                 </div>
             </div>
         </main>
