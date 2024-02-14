@@ -265,10 +265,11 @@ export default function () {
                           entries.forEach(async (entry) => {
                             if (entry.isIntersecting) {
                               observer.unobserve($el);
-                              let res = await front.Services.functions.sendApi("/api/events/Questions", {
-                                action: "skip",
-                                skip: Static.records.length,
-                              });
+                              let skip = { ...Static.makeFilter };
+                              skip.action = "skip";
+                              skip.skip = Static.records.length;
+                              Fn.log("=fb5e4b=", Static.makeFilter);
+                              let res = await front.Services.functions.sendApi("/api/events/Questions", skip);
                             }
                           });
                         });
