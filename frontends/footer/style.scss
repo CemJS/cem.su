@@ -43,6 +43,16 @@
     font-weight: 300;
     color: var(--white);
     text-decoration: none;
+    &-link {
+      display: block;
+      position: relative;
+      &:hover {
+        background: var(--mainGradient);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
     & img {
       max-width: 9.375rem;
       width: 100%;

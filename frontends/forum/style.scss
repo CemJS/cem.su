@@ -7,7 +7,7 @@
   &_preview {
     height: 500px;
     background: url("./images/forum/bg4.png");
-    margin-top: 70px;
+    background-size: cover;
     position: relative;
     background-repeat: no-repeat;
     background-position: center;
@@ -72,6 +72,11 @@
   cursor: pointer;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+
+  &_partners {
+    margin-bottom: 25px;
+    border-radius: 15px;
+  }
 
   span {
     padding: 20px;
@@ -236,6 +241,8 @@
       & img {
         width: 100%;
         height: 100%;
+        max-height: 210px;
+        max-width: 215px;
       }
       &_active {
         display: flex;
@@ -264,11 +271,12 @@
 
 .gallery {
   &_partners {
+    & .gallery {
+      width: calc(100% - 100px);
+      margin: 0 auto;
+    }
     & .gallery_slide img {
       min-height: auto;
-    }
-    & .slide__btn {
-      top: 105%;
     }
   }
 }

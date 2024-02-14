@@ -361,6 +361,7 @@ $tokenomicaBack: (
     gap: 0.9375rem;
     justify-content: center;
     & .social-networks__item {
+      position: relative;
       width: 2rem;
       height: 2rem;
       & img {
@@ -565,11 +566,11 @@ $tokenomicaBack: (
     }
 
     &_prev {
-      left: 1rem;
+      left: 0;
     }
 
     &_next {
-      right: 1rem;
+      right: 0;
     }
 
     &:hover {

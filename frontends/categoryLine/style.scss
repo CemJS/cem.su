@@ -32,13 +32,13 @@
     }
 
     &:first-child {
-      left: 0;
+      left: -2px;
       justify-content: start;
       background: linear-gradient(to left, rgba(255, 255, 255, 0), var(--back700));
     }
 
     &:last-child {
-      right: 0;
+      right: -2px;
       justify-content: end;
       background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--back700));
     }
@@ -114,6 +114,18 @@
 
 @media(max-width: 464px) {
   .category-line {
+    padding: 0;
+    padding-bottom: 0.5rem;
+
+    &__list {
+      gap: 0.5rem;
+    }
+
+    &__item {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+    }
+
     &__arrow {
       width: 3rem;
     }

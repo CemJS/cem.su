@@ -2,6 +2,7 @@ import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
 import back from "@svg/icon/prev.svg";
 import next from "@svg/icon/next.svg";
 
+const key = Math.floor(Math.random() * 1000);
 const GalleryClassName = "gallery";
 const GalleryClassNamePartners = "gallery_partners";
 const GalleryLineClassName = "gallery_line";
@@ -16,6 +17,7 @@ const GalleryNavRightClassName = "gallery_nav_right";
 
 class Gallery {
   element: HTMLElement;
+  elementEmpty: any;
   elementCount: number;
   dots: HTMLElement;
   next: HTMLElement;
@@ -38,22 +40,17 @@ class Gallery {
   settings: any;
   dotsItem: any;
   dotNodes: any;
+  firstManage: boolean;
 
   constructor(element: HTMLElement, dots: HTMLElement, next: HTMLElement, prev: HTMLElement, options = { margin: 10 }) {
     this.element = element;
-    this.elementCount = element.childElementCount;
+    this.elementEmpty = undefined;
+    this.elementCount = element.children[0].childElementCount;
     this.dots = dots;
     this.next = next;
     this.prev = prev;
-    if (window.innerWidth > 1100) {
-      this.countSlides = 5;
-    } else if (window.innerWidth > 768) {
-      this.countSlides = 4;
-    } else if (window.innerWidth > 500) {
-      this.countSlides = 3;
-    } else {
-      this.countSlides = 1;
-    }
+    this.firstManage = false;
+    this.countSlides = 5;
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
@@ -83,36 +80,55 @@ class Gallery {
     this.destroyEvents();
     this.setEvents();
     this.resizeGallery();
-    setInterval(this.clickNext, 4000);
+    // setInterval(this.clickNext, 4000);
   }
 
   manageHTML() {
+    // if (!this.firstManage) {
     this.element.classList.add(GalleryClassName);
-    this.element.innerHTML = `
-            <div class="${GalleryLineClassName}">
-                ${this.element.innerHTML}
-            <div>
-        `;
+    // this.element.innerHTML = `
+    //       <div class="${GalleryLineClassName}">
+    //           ${this.element.innerHTML}
+    //       <div>
+    //   `;
 
     this.lineNode = this.element.querySelector(`.${GalleryLineClassName}`);
 
-    this.slideItems = Array.from(this.lineNode.children).map((childNode) => {
-      wrapElementByDiv({
-        element: childNode,
-        className: GallerySlideClassName,
-      });
-    });
+    // this.slideItems = Array.from(this.lineNode.children).map((childNode) => {
+    //   wrapElementByDiv({
+    //     element: childNode,
+    //     className: GallerySlideClassName,
+    //   });
+    // });
+    // }
     this.dots.classList.add(GalleryDotsClassName);
+    this.dots.innerHTML = "";
 
-    this.dotsItem = Array.from(Array(this.size).keys()).map((key) => {
-      wrapElementBtn(this.dots, GalleryDotClassName, key, this.currentSlide);
-    });
+    if (this.countSlides > 1) {
+      this.dotsItem = Array.from(Array(this.size).keys()).map((key) => {
+        wrapElementBtn(this.dots, GalleryDotClassName, key, this.currentSlide);
+      });
+    }
 
     this.dotNodes = this.dots.querySelectorAll(`.${GalleryDotClassName}`);
   }
 
+  adaptive() {
+    if (window.innerWidth > 1300) {
+      this.countSlides = 5;
+    } else if (window.innerWidth > 1000) {
+      this.countSlides = 4;
+    } else if (window.innerWidth > 850) {
+      this.countSlides = 3;
+    } else if (window.innerWidth > 600) {
+      this.countSlides = 2;
+    } else {
+      this.countSlides = 1;
+    }
+  }
+
   setParameters() {
-    // this.manageHTML()
+    this.adaptive();
     const coordsContainer = this.element.getBoundingClientRect();
     this.widthContainer = coordsContainer.width;
     this.maximumX = -(this.size - 1) * (this.widthContainer + this.settings.margin);
@@ -128,6 +144,7 @@ class Gallery {
       slideNode.style.maxWidth = `${width}px`;
       slideNode.style.marginRight = `${this.settings.margin}px`;
     });
+    this.manageHTML();
   }
 
   setEvents() {
@@ -153,7 +170,6 @@ class Gallery {
 
   resizeGallery() {
     this.setParameters();
-    // Fn.initAll();
   }
 
   clickDots(e) {
@@ -208,10 +224,10 @@ class Gallery {
 
   changeActiveDotClass() {
     for (let i = 0; i < this.dotNodes.length; i++) {
-      this.dotNodes[i].classList.remove(GalleryDotActiveClassName);
+      this.dotNodes[i]?.classList.remove(GalleryDotActiveClassName);
     }
 
-    this.dotNodes[this.currentSlide].classList.add(GalleryDotActiveClassName);
+    this.dotNodes[this.currentSlide]?.classList?.add(GalleryDotActiveClassName);
   }
 
   startDrag(e) {
@@ -297,17 +313,17 @@ function debounce(func, time = 100) {
 export { Gallery };
 
 export const init = function (element: HTMLElement) {
-  if (!Static.galleryRun) {
-    Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextTeam, Ref.prevTeam, {
-      margin: 10,
-    });
-  }
-  Static.callGallery = true;
+  Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextTeam, Ref.prevTeam, {
+    margin: 10,
+  });
   // this.init();
 };
 
-export const Display = function ({ items, tabName }) {
-  if (!items || !items.length) {
+export const Display = function ({ items }) {
+  {
+    Ref.slider ? init(Ref.slider) : null;
+  }
+  if (!items || !items?.length) {
     return <div />;
   }
   return (
@@ -315,22 +331,29 @@ export const Display = function ({ items, tabName }) {
       class={GalleryClassNamePartners}
       style="position: relative;"
     >
-      <div init={init}>
-        {items?.map((item: any) => {
-          return (
-            <a
-              ref="slide"
-              target="_blank"
-              href={item.url}
-              class={["partners_list_item", item.visited.includes(tabName) ? null : null]}
-            >
-              <img
-                src={`/contents/forum/partners/${item.logo}`}
-                alt="img"
-              />
-            </a>
-          );
-        })}
+      <div
+        init={init}
+        ref="slider"
+      >
+        <div class="gallery_line">
+          {items?.map((item: any) => {
+            return (
+              <div class="gallery_slide">
+                <a
+                  ref="slide"
+                  target="_blank"
+                  // href={item?.url}
+                  class="partners_list_item"
+                >
+                  <img
+                    src={`/contents/forum/partners/${item?.logo}`}
+                    alt="img"
+                  />
+                </a>
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div
         class="gallery_dots"

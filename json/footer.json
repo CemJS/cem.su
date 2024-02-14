@@ -1,18 +1,23 @@
 [
   {
     "title": "Комания",
-    "items": ["О нас", "Карьера", "Lite Paper"]
+    "items": ["О нас", "Карьера", "Lite Paper"],
+    "href": ["/about", "/career", "#"]
   },
   {
     "title": "Поддержка",
-    "items": ["Контакты", "Партнерская программа"]
+    "items": ["Контакты", "Партнерская программа"],
+    "href": ["/contacts", "/affiliate"]
   },
   {
     "title": "Правила",
-    "items": ["Пользовательское соглашение", "Политика использования данных", "Политика cookies"]
+    "items": ["Пользовательское соглашение", "Политика использования данных", "Политика cookies"],
+    "href": ["/terms-of-service", "/data-policy", "/cookies-policy"]
   },
   {
     "title": "CEM",
-    "items": ["CEM Blockchain", "CEM Explorer"]
+    "items": ["CEM Blockchain", "CEM Explorer"],
+    "href": ["https://cemblockchain.com/", "https://cemscan.com/"],
+    "target": ["_blank", "_blank"]
   }
 ]

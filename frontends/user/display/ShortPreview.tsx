@@ -13,12 +13,12 @@ export default function () {
                 <input id="username" class="c-usershortinfo__name userinfoinput" readonly="true" value={Static.record?.nickname ? Static.record?.nickname : ""}></input>
                 <a href="#" class="c-usershortinfo__rating">{Static.record?.statistics?.rating.toFixed(2) || 0}</a>
                 <p></p>
-                <div class="c-usershortinfo__status" id="userstatus">{Static.record?.information?.status}</div>
+                <div class="c-usershortinfo__status" id="userstatus">{Static.record?.status}</div>
             </div>
             <div class="c-userpreview__level">
                 <div style={`width: ${(Static.record?.statistics?.exp / Static.record?.statistics?.expNext * 100).toFixed(2)}%;`}
                     class="c-userpreview__current" />
-                <div class="c-userpreview__num">23.960000000000417/153</div>
+                <div class="c-userpreview__num"></div>
             </div>
         </div >
     )

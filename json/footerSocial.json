@@ -1,38 +1,83 @@
 [
   {
     "img": "/contents/icons/social_networks/youtube.svg",
+    "href": [
+      {
+        "href": "https://www.youtube.com/channel/UCb9Fx-fNikzs-OZwnTXepLg/",
+        "lang": "RU"
+      },
+      {
+        "href": "https://www.youtube.com/channel/UCdDWOveIuvqkyusDK1gv4ig/",
+        "lang": "EN"
+      }
+    ],
     "alt": "youtube"
   },
   {
     "img": "/contents/icons/social_networks/twitter.svg",
+    "href": "https://twitter.com/cryptoemergency",
     "alt": "twitter"
   },
   {
     "img": "/contents/icons/social_networks/discord.svg",
+    "href": "https://discord.com/invite/Qdm7W8DjYc",
     "alt": "discord"
   },
   {
     "img": "/contents/icons/social_networks/instagram.svg",
+    "href": [
+      {
+        "href": "https://www.instagram.com/cryptoemergencyrussia/?hl=ru",
+        "lang": "RU"
+      },
+      {
+        "href": "https://www.instagram.com/cryptoemergency/?hl=ru",
+        "lang": "EN"
+      }
+    ],
     "alt": "instagram"
   },
   {
     "img": "/contents/icons/social_networks/tiktok.svg",
+    "href": [
+      {
+        "href": "https://www.tiktok.com/@cryptoemergencyrussia",
+        "lang": "RU"
+      },
+      {
+        "href": "https://www.tiktok.com/@cryptoemergency",
+        "lang": "EN"
+      }
+    ],
     "alt": "tiktok"
   },
   {
     "img": "/contents/icons/social_networks/telegram.svg",
+    "href": [
+      {
+        "href": "https://t.me/cryptoemergencychat",
+        "lang": "RU"
+      },
+      {
+        "href": "https://t.me/emergencycrypto",
+        "lang": "EN"
+      }
+    ],
     "alt": "telegram"
   },
   {
     "img": "/contents/icons/social_networks/vk.svg",
+    "href": "https://vk.com/cryptoemergency",
     "alt": "vk"
   },
   {
     "img": "/contents/icons/social_networks/github.svg",
+    "href": "https://github.com/CryptoEmergency",
     "alt": "github"
   },
   {
     "img": "/contents/icons/social_networks/linkedin.svg",
+    "href": "https://www.linkedin.com/company/86302977",
     "alt": "linkedin"
   }
 ]

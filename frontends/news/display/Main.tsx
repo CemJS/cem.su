@@ -47,7 +47,6 @@ export default function () {
                                                         category: Static.activeItem,
                                                         skip: Static.records.length
                                                     });
-                                                    // return
                                                 }
                                             });
                                         });
@@ -87,11 +86,11 @@ export default function () {
 
                                 <div class="news__item-statistic">
                                     <div class="news__item-statistic-el">
-                                        <i class="i i-comment"></i>{item.statistic.comments}
-                                    </div>
-                                    <div class="news__item-statistic-el">
                                         {/* <i class="i i-calendar"></i> */}
                                         {front.Services.functions.timeStampToDate(item.dateCreate, ".")}
+                                    </div>
+                                    <div class="news__item-statistic-el">
+                                        <i class="i i-comment"></i>{item.statistic.comments}
                                     </div>
                                 </div>
                             </a>

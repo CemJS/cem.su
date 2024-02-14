@@ -32,8 +32,19 @@ export default function () {
                   </div>
                 </h3>
                 <div class="footer__items">
-                  {item.items.map((item) => {
-                    return <li class="footer__item">{item}</li>;
+                  {item.items.map((item, index) => {
+                    return (
+                      <li class="footer__item">
+                        <a
+                          class="footer__item-link"
+                          onclick={Fn.link}
+                          target={footer[i].target ? footer[i].target[index] : ""}
+                          href={footer[i].href[index]}
+                        >
+                          <span>{item}</span>
+                        </a>
+                      </li>
+                    );
                   })}
                 </div>
               </div>
@@ -67,14 +78,48 @@ export default function () {
         <div class="footer__bottom">
           <div class="footer__copyright">©2020-2024 Crypto Emergency</div>
           <div class="social-networks social-networks_footer">
-            {socials.map((item) => {
+            {socials.map((item, i) => {
               return (
-                <div class="social-networks__item">
+                <a
+                  href={!Array.isArray(item.href) ? item.href : ""}
+                  onclick={(e) => {
+                    if (!Array.isArray(item.href)) {
+                      Fn.link(e);
+                    } else {
+                      e.preventDefault();
+                      Ref[`lang${i}`].classList.toggle("socials_link_languages_active");
+                      setTimeout(() => {
+                        Ref[`lang${i}`].classList.toggle("socials_link_languages_active");
+                      }, 1500);
+                    }
+                  }}
+                  target={!Array.isArray(item.href) ? "_blank" : ""}
+                  class="social-networks__item"
+                >
                   <img
                     src={item.img}
                     alt={item.alt}
                   />
-                </div>
+                  {Array.isArray(item.href) ? (
+                    <div
+                      ref={`lang${i}`}
+                      class="socials_link_languages socials_link_languages_footer"
+                    >
+                      {item.href.map((item) => {
+                        return (
+                          <a
+                            href={item.href}
+                            target="_blank"
+                            onclick={Fn.link}
+                            class="socials_link_language"
+                          >
+                            {item.lang}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                </a>
               );
             })}
           </div>
