@@ -307,7 +307,7 @@ export default function () {
                         </div>
                       </div>
                       <div class="questions__item_languages btn_border-wrap">
-                        <button class="btn_border">Русский</button>
+                        <button class="btn_border">{item.languages.origName}</button>
                       </div>
                     </div>
                     <div class={["questions__item_preview", item.title.length < 15 && item.text ? "questions__item_preview_row" : null]}>
