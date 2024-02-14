@@ -119,7 +119,7 @@ front.loader = async () => {
     sort: Static.sort,
     order: Static.order,
     search: Static.search,
-    // isClosed: Static.type == "opened" ? false : Static.type == "closed" ? true : undefined,
+    isClosed: Static.type == "opened" ? false : Static.type == "closed" ? true : undefined,
     isBest: Static.type == "best",
     language: Static.chooseLanguage.code,
   };
