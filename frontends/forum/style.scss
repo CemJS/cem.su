@@ -348,8 +348,8 @@
     background-repeat: no-repeat;
     background-size: cover;
     &-card {
+      padding: 20px 2.5%;
       margin: 0 auto;
-      padding: 0 1.875rem;
       max-width: 75rem;
       max-height: 42.1875rem;
       display: flex;
@@ -366,8 +366,15 @@
       }
     }
     &-title {
-      font-size: 2.8125rem;
-      line-height: 3.8813rem;
+      font-size: clamp(0.9rem, 4vw, 2.8125rem);
+      line-height: clamp(0.9rem, 4vw, 3.8813rem);
+      margin-bottom: 1rem;
+    }
+    &-subtitle {
+      font-size: clamp(1.8rem, 2vw, 2.4375rem);
+      font-weight: 300;
+      white-space: nowrap;
+      line-height: 1.2;
     }
   }
 }

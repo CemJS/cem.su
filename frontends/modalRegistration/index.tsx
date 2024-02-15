@@ -38,6 +38,18 @@ front.func.checkForm = async function () {
             let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "checkCode", email: Static.form.email.value, step: Static.currentStep, code: Static.form.code.value })
             if (answer.error) {
                 Static.form.code.error = "Код указан не верно!"
+
+                Static.code.forEach((item: number, index: number) => {
+                    Static.code[index] = null
+                })
+                Ref.code1.value = null
+                Ref.code2.value = null
+                Ref.code3.value = null
+                Ref.code4.value = null
+                Ref.code5.value = null
+                Ref.code6.value = null
+                Ref.code1.focus()
+
                 return
             }
             Static.waitCode = false

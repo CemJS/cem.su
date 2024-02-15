@@ -34,7 +34,7 @@ const RenderItems = function ({ items }) {
                   }
                   Static.makeFilter.active = item.name;
                   // fn("addEvent");
-                  front.Services.functions.sendApi("/api/events/Icos", {
+                  front.Services.functions.sendApi("/api/Icos", {
                     action: "get",
                     category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
                     type: Static.makeFilter.active,
@@ -153,7 +153,6 @@ const RenderItems = function ({ items }) {
 };
 
 export default function () {
-  Fn.log("=1fc276=", Static.records);
   return (
     <section>
       <div class="wrapper">

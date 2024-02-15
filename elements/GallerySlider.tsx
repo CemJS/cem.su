@@ -50,7 +50,7 @@ class Gallery {
     this.next = next;
     this.prev = prev;
     this.firstManage = false;
-    this.countSlides = 5;
+    this.countSlides = 1;
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
@@ -80,6 +80,10 @@ class Gallery {
     this.destroyEvents();
     this.setEvents();
     this.resizeGallery();
+
+    setTimeout(() => {
+      this.resizeGallery();
+    }, 500);
     // setInterval(this.clickNext, 4000);
   }
 
@@ -113,15 +117,7 @@ class Gallery {
     this.dotNodes = this.dots.querySelectorAll(`.${GalleryDotClassName}`);
   }
 
-  adaptive() {
-    if (window.innerWidth > 1000) {
-      this.countSlides = 3;
-    } else if (window.innerWidth > 768) {
-      this.countSlides = 2;
-    } else if (window.innerWidth > 500) {
-      this.countSlides = 1;
-    }
-  }
+  adaptive() {}
 
   setParameters() {
     this.adaptive();
@@ -323,20 +319,26 @@ function debounce(func, time = 100) {
 export { Gallery };
 
 export const init = function (element: HTMLElement) {
-  Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextTeam, Ref.prevTeam, {
+  Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextGallery, Ref.prevGallery, {
     margin: 10,
   });
   // this.init();
 };
 
 export const Display = function ({ items }) {
+  {
+    Ref.slider ? init(Ref.slider) : null;
+  }
   if (!items || !items.length) {
     return <div />;
   }
   Fn.log("=45caef=", items[0].name);
   return (
     <div style="position: relative;">
-      <div init={init}>
+      <div
+        ref="slider"
+        init={init}
+      >
         <div class="gallery_line">
           {items?.map((item) => {
             return (
