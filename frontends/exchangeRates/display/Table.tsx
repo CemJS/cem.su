@@ -19,7 +19,7 @@ export default function () {
                                 <td class="cell--just-center disable-tableName">{index + 1}</td>
 
                                 <td class="cell--just-start">
-                                    <div class="coins_wrap mr_10 cell--just-center">
+                                    <div class="coins_wrap mr-10 cell--just-center">
                                         <img src={`/contents/coins/${item?.coin}.svg`}></img>
                                     </div>
                                     <span>{item?.coin.toUpperCase()}</span>

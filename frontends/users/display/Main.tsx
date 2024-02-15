@@ -6,7 +6,7 @@ import Filters from "./Filters/Filters"
 import defaultGray from "@svg/lenta/defaultGray.svg"
 
 export default function () {
-  Fn.log("Static.record", Static.records);
+  // Fn.log("Static.record", Static.records);
 
   return (
     <div class="users">
