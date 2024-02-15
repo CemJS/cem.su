@@ -1,5 +1,5 @@
 {
     "url": "/list-trade",
-    "front": ["header", "listTrade"]
+    "front": ["header", "listTrade", "menu"]
   }
   

@@ -1,5 +1,5 @@
 {
     "url": "/exchange-rates",
-    "front": ["header", "exchangeRates"]
+    "front": ["header", "exchangeRates", "menu"]
   }
   

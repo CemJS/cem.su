@@ -3,6 +3,10 @@
   &__container {
     padding-top: 50px;
     padding-bottom: 100px;
+    max-width: 1240px;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 
     h1 {
       text-align: center;
@@ -430,6 +434,12 @@
 }
 
 @media (max-width: 1200px) {
+  .users__container {
+    width: calc(100% - 60px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
   .users__list {
     grid-template-columns: calc(50% - 8px) calc(50% - 8px);
   }
@@ -521,4 +531,18 @@
   .users_btn-padding {
     display: none;
   }
+}
+
+@media (max-width: 400px) {
+  .badge-container img {
+    height: 35px;
+  }
+}
+@media (max-width: 300px) {
+  .badge-container img {
+    height: 25px;
+  }
+}
+.w100User {
+  width: 100% !important;
 }

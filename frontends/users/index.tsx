@@ -36,7 +36,7 @@ front.func.test = () => {
 }
 
 front.loader = async () => {
-  
+
   Static.search = "";
   Static.checkBox = {
     basic: true,
@@ -61,7 +61,7 @@ front.loader = async () => {
 
   Func.updateFilter();
 
-  let url = front.Services.functions.makeUrlEvent("Users");
+  let url = front.Services.functions.makeUrlEvent("Users", { action: "get" })
 
   let listener = [
     {
@@ -92,7 +92,7 @@ front.loader = async () => {
 
 front.display = () => {
   return (
-    <div class="wrapper">
+    <div>
       <Navigation />
     </div>
   )
