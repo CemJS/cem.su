@@ -138,11 +138,13 @@ class Gallery {
     this.setStyleTransition();
     this.lineNode.style.width = `${this.size * (this.widthContainer + this.settings.margin)}px`;
     this.setStylePosition();
-    Array.from(this.lineNode.children).forEach((slideNode: any) => {
+    Array.from(this.lineNode.children).forEach((slideNode: any, i) => {
       let width = (this.widthContainer - 10 * (this.countSlides - 1)) / this.countSlides;
       if (this.currentSlide + 1 == this.size) {
         let rest = this.elementCount - this.countSlides * (this.size - 1);
-        width = (this.widthContainer - 10 * (rest - 1)) / rest;
+        if (i + 1 > (this.size - 1) * this.countSlides) {
+          width = (this.widthContainer - 10 * (rest - 1)) / rest;
+        }
       }
       slideNode.style.minWidth = `${width}px`;
       slideNode.style.maxWidth = `${width}px`;
@@ -264,12 +266,12 @@ class Gallery {
     this.setStylePosition();
 
     //change active slide
-    if (dragShift > 20 && dragShift > 0 && !this.currentSlideWasChanged && this.currentSlide > 0) {
+    if (dragShift > 5 && dragShift > 0 && !this.currentSlideWasChanged && this.currentSlide > 0) {
       this.currentSlideWasChanged = true;
       this.currentSlide = this.currentSlide - 1;
     }
 
-    if (dragShift < -20 && dragShift < 0 && !this.currentSlideWasChanged && this.currentSlide < this.size - 1) {
+    if (dragShift < -5 && dragShift < 0 && !this.currentSlideWasChanged && this.currentSlide < this.size - 1) {
       this.currentSlideWasChanged = true;
       this.currentSlide = this.currentSlide + 1;
     }

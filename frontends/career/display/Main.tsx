@@ -8,7 +8,7 @@ import Vacancies from "./Vacancies";
 export default function () {
   return (
     <div class="page">
-      <div class="wrapper">
+      <div class="wrapper wrapper_padding">
         <div class="jobs">
           <Preview />
           <Advantages />

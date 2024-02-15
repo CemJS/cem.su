@@ -225,7 +225,6 @@ const RenderVideo = function () {
 };
 
 export default function () {
-  Fn.log("=0c0568=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
@@ -348,7 +347,7 @@ export default function () {
                     <div class="questions-show__item">
                       <div class="user-comment__item">
                         <a
-                          class="user-comment__avatar avatar"
+                          class="avatar"
                           href=""
                         >
                           <div class="avatar__icon">
@@ -374,12 +373,14 @@ export default function () {
                               </div>
                             )}
                           </div>
-                          <div class="user-comment__avatar_info">
-                            <div class="user-comment__avatar_name">{answer.authorDetails.nickname}</div>
-                            <div class="user-comment__avatar_time">{front.Services.functions.timeStampToDate(answer.showDate, ".")}</div>
+                          <div class="user-comment__avatar_info-big">
+                            <div class="user-comment__avatar_name-big">{answer.authorDetails.nickname}</div>
+                            <div class="user-comment__avatar_time">{`${front.Services.functions.timeStampToDate(answer.showDate, ".")} ${Func.addNull(
+                              Func.getDate(answer.showDate).getHours()
+                            )}:${Func.addNull(Func.getDate(answer.showDate).getMinutes())}`}</div>
                           </div>
                         </a>
-                        <div class="user-comment__body">
+                        <div class="user-comment__body-big">
                           <span init={(e) => (e.innerHTML = answer.text)}></span>
                           {answer.media.map((item) => {
                             return item.type == "image" ? (
@@ -877,7 +878,7 @@ export default function () {
                 })}
               </div>
             ) : (
-              <div class="questions__notFound notFound notFound_bg notFound_relative mX-auto">
+              <div class="questions__notFound notFound notFound_bg notFound_relative mX-auto w100">
                 <img
                   src={notFound}
                   alt="Нет записей"

@@ -343,7 +343,7 @@ export default function () {
                   );
                 })
               ) : (
-                <div class="questions__notFound notFound notFound_bg notFound_relative mX-auto">
+                <div class="questions__notFound notFound notFound_bg notFound_relative mX-auto w100">
                   <img
                     src={notFound}
                     alt="Нет записей"

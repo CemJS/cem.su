@@ -40,6 +40,9 @@
     &_margin {
       margin-bottom: 20px;
     }
+    &-btn {
+      font-weight: 700;
+    }
     &-title {
       font-weight: 700;
       font-size: 16px;
@@ -462,6 +465,7 @@
   }
 
   &-show {
+    padding-bottom: 80px;
     &__container {
       max-width: 850px;
       margin: 0 auto;
@@ -749,13 +753,26 @@
       left: 60px;
       display: block;
       width: 130px;
+      &-big {
+        position: absolute;
+        top: 20px;
+        left: 73px;
+        display: block;
+        width: 130px;
+      }
     }
 
     &_name {
       font-weight: 600;
       font-size: 10px;
       line-height: 20px;
-      color: #ffffff;
+      color: var(--white);
+      &-big {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+        color: var(--white);
+      }
     }
 
     &_time {
@@ -782,9 +799,26 @@
       font-weight: 500;
       font-size: 12px;
       line-height: 22px;
-      color: #ffffff;
+      color: var(--white);
       word-break: break-word;
       overflow: hidden;
+    }
+    &-big {
+      width: 100%;
+      margin-bottom: 2px;
+      padding-top: 6px;
+      span {
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        padding: 0 8px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        color: var(--white);
+        word-break: break-word;
+        overflow: hidden;
+      }
     }
   }
 
@@ -912,6 +946,7 @@
     }
   }
   &__media {
+    padding: 10px 0;
     display: block;
   }
 }
