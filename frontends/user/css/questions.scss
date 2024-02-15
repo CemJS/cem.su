@@ -152,6 +152,9 @@
 }
 
 @media (max-width: 767px) {
+    .questions-table {
+        border-radius: 0;
+    }
     .questions-table__title {
         padding-right: 20px;
     }

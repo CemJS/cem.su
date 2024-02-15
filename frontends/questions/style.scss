@@ -185,6 +185,7 @@
     grid-gap: 20px;
     // justify-content: center;
     align-items: center;
+    position: relative;
 
     @media (max-width: 1270px) {
       grid-template-columns: repeat(auto-fit, 390px);
@@ -605,6 +606,10 @@
       background: #313643;
       border-radius: 15px;
     }
+  }
+
+  &__notFound {
+    grid-column: 1 / -1;
   }
 }
 

@@ -1,0 +1,137 @@
+.user-awards {
+    width: 100%;
+    max-width: 220px;
+    min-height: 363px;
+    background: #33394A;
+    border: 1px solid #52586A;
+    border-radius: 5px;
+    position: relative;
+    text-align: center;
+    padding: 31px 45px 25px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 20px;
+        color: #FFFFFF;
+    }
+
+    &__text {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        color: #9CA3B8;
+        margin-bottom: 61px !important;
+    }
+
+    &__description {
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__progress-bar-label {
+        background: linear-gradient(89.03deg, #2c66b8 0.54%, #8859ec 97.66%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+        text-transform: uppercase;
+    }
+
+    &__main-block {
+        margin: auto;
+        margin-top: 40px;
+    }
+
+    &__body {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-top: 40px;
+    }
+
+    &__badge {
+        margin-bottom: 35px;
+        height: 130px;
+    }
+
+    &__small-badge {
+        position: absolute;
+        left: 24px;
+        top: 28px;
+        height: 37px;
+        width: 34px;
+    }
+}
+
+@media (max-width: 1540px) {
+    .user-awards__body {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1240px) {
+    .user-awards__body {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1199px) {
+    .user-awards__main-block {
+        width: calc(100% - 60px);
+    }
+}
+
+@media (max-width: 899px) {
+    .user-awards__body {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 620px) {
+    .user-awards__body {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 522px) {
+    .user-awards {
+        padding: 30px 25px;
+        text-align: left;
+        display: flex;
+        min-height: auto;
+        max-width: 100%;
+    }
+
+    .user-awards__text {
+        margin-bottom: 40px;
+    }
+
+    .user-awards__description {
+        padding: 0 20px;
+    }
+
+    .user-awards__body {
+        grid-template-columns: 100%;
+    }
+
+    .user-awards__badge {
+        height: 86px;
+    }
+
+    .user-awards__small-badge {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .user-awards {
+        text-align: center;
+        display: block;
+    }
+}

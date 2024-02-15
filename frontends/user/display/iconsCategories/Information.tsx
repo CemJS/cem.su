@@ -5,9 +5,13 @@ export default function () {
         <div class="c-usercategories__item">
             <i
                 onclick={async () => {
-                    Static.aboutMe = true,
-                    Static.answers = false,
-                        Static.questions = false
+                    Static.aboutMe = true
+                    Static.answers = false
+                    Static.questions = false
+                    Static.subscribers = false
+                    Static.subscriptions = false
+                    Static.awards = false
+                    Static.socials = false
                     // const getQuestions = {
                     //     "action": "getQuestions",
                     //     "id": Static.record?.id,
