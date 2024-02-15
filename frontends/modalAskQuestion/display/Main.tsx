@@ -39,9 +39,11 @@ export default function () {
                     <p class="modalWindow_field__status" style="color:#E84142">{Static.form.question.error}</p>
                 </div>
 
+                <h3 class="mt-15">Комментарий к вопросу</h3>
+
                 <div
                     class={[
-                        "modalWindow_field",
+                        "modalWindow_field", "mt-15", "modalWindow_field-textarea",
                         Static.form.question.value.length ? "modalWindow_field__valid" : null
                     ]}
 
