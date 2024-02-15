@@ -1,0 +1,141 @@
+.feed-main-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding-top: 20px; */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.user-feed {
+    width: calc(100% - 224px);
+    margin: auto;
+    /* margin-top: 40px; */
+    color: white;
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 15px;
+        max-width: 1024px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 5px;
+
+        h2 {
+            align-self: flex-start;
+            font-size: 20px;
+            margin-bottom: 0;
+        }
+    }
+
+    &__toggles {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ffffff;
+        border-radius: 4px;
+        font-size: 0;
+        cursor: pointer;
+
+        &-active {
+            border-color: #40f2d0 !important;
+            cursor: default;
+ 
+
+        &::after {
+            background: #40f2d0 !important;
+        }
+
+        &::before {
+            background: #40f2d0 !important;
+        }
+        
+    }
+
+    &-tile {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 2px;
+            background: #ffffff;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 2px;
+            height: 100%;
+            background: #ffffff;
+        }
+    }
+
+    &-view {
+        display: flex;
+        align-items: stretch;
+        gap: 7px;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+}
+}
+
+@media (max-width: 1024px) {
+    .user-feed {
+        width: 100%;
+    }
+
+    .user-feed__block {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .user-feed__header {
+        padding-left: 0;
+        padding-right: 0;
+
+        h2 {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+
+    .user-feed__toggles-view {
+        padding-right: 10px;
+
+        li {
+            padding: 7px 3px;
+        }
+    }
+}
+
+@media (max-width: 1010px) {
+    .user-feed__block {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .user-feed {
+        width: calc(100% - 60px);
+    }
+}

@@ -5,9 +5,10 @@ export default function () {
         <div class="c-usercategories__item">
             <i
                 onclick={async () => {
+                    Static.feed = false
                     Static.aboutMe = true
-                    Static.answers = false
                     Static.questions = false
+                    Static.answers = false
                     Static.subscribers = false
                     Static.subscriptions = false
                     Static.awards = false

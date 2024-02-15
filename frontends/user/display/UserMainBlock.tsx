@@ -6,10 +6,14 @@ import Subscribers from "./blocks/subscribers/Subscribers"
 import Subscriptions from "./blocks/subscriptions/Subscriptions"
 import Awards from "./blocks/awards/Awards"
 import Socials from "./blocks/socials/Socials"
+import Feed from "./blocks/feed/Feed"
 
 export default function () {
     return (
         <div class="user-main-block">
+            {Static.feed === true ?
+                <Feed />
+                : null}
             {Static.aboutMe === true ?
                 <Information />
                 : null}

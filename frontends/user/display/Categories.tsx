@@ -6,10 +6,12 @@ import Subscribers from "./iconsCategories/Subscribers"
 import Subscriptions from "./iconsCategories/Subscriptions"
 import Awards from "./iconsCategories/Awards"
 import Socials from "./iconsCategories/Socials"
+import Feed from "./iconsCategories/Feed"
 
 export default function () {
     return (
         <div class="c-usercategories  c-container">
+            <Feed />
             <Information />
             <Questions />
             <Answers />

@@ -13,7 +13,7 @@ export default function () {
             </div>
             <div class="subscribers__main-block">
                 {Static.record?.subscribers?.map((item: any, key: number) => {
-                    Fn.log('=9aa675=', item)
+                    // Fn.log('=9aa675=', item)
                     return (
                         <div class='card-user'>
                             <a href={`/user/${item?.id}`} class='comment_avatar' style="padding-left: 0;">

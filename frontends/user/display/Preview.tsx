@@ -4,7 +4,7 @@ import Avatar from "./Avatar";
 let parent = null
 
 export default function () {
-    Fn.log("Static.record", Static.record);
+    // Fn.log("Static.record", Static.record);
     return (
         <div class="c-userpreview__header">
                 <Avatar />
