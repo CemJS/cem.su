@@ -41,26 +41,27 @@ const RenderListCoins = function ({ coins }) {
     return (
         <ul class="list-coins">
             {
-                coins.map(item => {
+                coins?.map(item => {
+                    Fn.log('=125deb=', item)
                     return (
                         <li
                             class={[
                                 "list-coins__item",
-                                Static.filterCoins.includes(item.name) ? "list-coins__item_active" : null
+                                Static.filterCoins?.includes(item?.name) ? "list-coins__item_active" : null
                             ]}
                             onclick={() => {
-                                if (Static.filterCoins.includes(item.name)) {
-                                    Static.filterCoins.splice(Static.filterCoins?.indexOf(item.name), 1);
+                                if (Static.filterCoins?.includes(item?.name)) {
+                                    Static.filterCoins?.splice(Static.filterCoins?.indexOf(item?.name), 1);
                                 } else {
-                                    Static.filterCoins.push(item.name);
+                                    Static.filterCoins?.push(item?.name);
                                 }
                             }}
                         >
                             <img
-                                src={`/contents/coins/${item.icon}.svg`}
-                                alt={item.name}
+                                src={`/contents/coins/${item?.icon}.svg`}
+                                alt={item?.name}
                             />
-                            <span>{item.name}</span>
+                            <span>{item?.name}</span>
                         </li>
                     )
                 })
