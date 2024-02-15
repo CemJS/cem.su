@@ -5,17 +5,17 @@ export default function () {
         <div class="c-usercategories__item">
             <i
                 onclick={async () => {
-                    Static.answers = true
-                    Static.questions = false
+                    Static.feed = false
                     Static.aboutMe = false
+                    Static.questions = false
+                    Static.answers = true
                     Static.subscribers = false
                     Static.subscriptions = false
                     Static.awards = false
                     Static.socials = false
                     const getAnswers = {
                         "action": "getAnswers",
-                        "id": Static.record?.id,
-                        "uuid": `${localStorage?.uuid}`
+                        "id": Static.record?.id
                     }
                     let content = await front.Services.functions.sendApi("/api/Users/profile", getAnswers)
                     //   Fn.log('=4b78f5=',Static.record?.statistics)
