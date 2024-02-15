@@ -2,6 +2,7 @@ import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
 import back from "@svg/icon/prev.svg";
 import next from "@svg/icon/next.svg";
 import up_arrow from "@svg/courseLine/up_arrow.svg";
+import logo from "@svg/logo.svg";
 import networking from "@svg/forum/networking.svg";
 import communication from "@svg/forum/communication.svg";
 import innovation from "@svg/forum/innovation.svg";
@@ -11,6 +12,8 @@ import crypto_emergency from "@svg/forum/crypto_emergency.svg";
 import speakers from "@json/forumSpeakers";
 import partners from "@json/forumPartners";
 import introImg from "@images/forum/Crypto.png";
+import metis from "@images/forum/metis.png";
+import racib from "@images/forum/racib.png";
 import { Display } from "@elements/ForumSlider";
 
 const tabs = [
@@ -75,21 +78,61 @@ Static.partners = partners;
 
 export default function () {
   return (
-    <div class="forum__intro">
-      <div class="forum__intro-card forum__intro-card_margin">
-        <div class="forum__intro-img">
-          <img
-            src={introImg}
-            alt="Crypto ЮГ 2023"
-          />
+    <div class="forum">
+      <div class="forum__intro">
+        <div class="wrapper">
+          <div class="forum__intro-card">
+            <div class="forum__intro-img">
+              <img
+                src={introImg}
+                alt="Crypto ЮГ 2023"
+              />
+            </div>
+            <div class="forum__intro-right">
+              <h2 class="forum__intro-title">Ежегодный криптовалютный форум</h2>
+              <p class="forum__intro-subtitle">
+                3-4 июня
+                <br />
+                г. Новороссийск
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="forum__intro-right">
-          <h2 class="forum__intro-title">Ежегодный криптовалютный форум</h2>
-          <p class="forum__intro-subtitle">
-            3-4 июня
-            <br />
-            г. Новороссийск
-          </p>
+      </div>
+      <div class="forum__info">
+        <div class="wrapper">
+          <div class="forum__info-wrapper">
+            <div class="forum__info-invite">
+              <div class="forum__info-text">
+                Команда <span class="forum__info-text_green">Crypto Emergency</span> рада пригласить тебя на второй ежегодный криптофорум <span class="forum__info-text_green">Crypto Юг 2023</span>,
+                который состоится 3 и 4 июня в г. Новороссийске.
+              </div>
+            </div>
+
+            <div class="forum__info-sponsor">
+              <h3 class="forum__info-title">Организатор</h3>
+              <img
+                src={logo}
+                alt="Crypto Emergency"
+              />
+            </div>
+
+            <div class="forum__info-sponsor">
+              <h3 class="forum__info-title">Спонсор After party</h3>
+              <img
+                src={metis}
+                alt="Metis"
+              />
+            </div>
+
+            <div class="forum__info-sponsor">
+              <h3 class="forum__info-title">При поддержке</h3>
+              <img
+                src={racib}
+                alt="РАКИБ"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

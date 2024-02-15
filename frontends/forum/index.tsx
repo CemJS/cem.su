@@ -20,11 +20,7 @@ front.loader = () => {
 };
 
 front.display = () => {
-  return (
-    <div class="forum">
-      <Navigation />
-    </div>
-  );
+  return <Navigation />;
 };
 
 export { front };
