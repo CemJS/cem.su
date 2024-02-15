@@ -140,6 +140,10 @@ class Gallery {
     this.setStylePosition();
     Array.from(this.lineNode.children).forEach((slideNode: any) => {
       let width = (this.widthContainer - 10 * (this.countSlides - 1)) / this.countSlides;
+      if (this.currentSlide + 1 == this.size) {
+        let rest = this.elementCount - this.countSlides * (this.size - 1);
+        width = (this.widthContainer - 10 * (rest - 1)) / rest;
+      }
       slideNode.style.minWidth = `${width}px`;
       slideNode.style.maxWidth = `${width}px`;
       slideNode.style.marginRight = `${this.settings.margin}px`;
@@ -169,6 +173,9 @@ class Gallery {
   }
 
   resizeGallery() {
+    this.currentSlide = 0;
+    this.x = -this.currentSlide * (this.widthContainer + this.settings.margin);
+    this.changeCurrentSlide();
     this.setParameters();
   }
 
@@ -220,6 +227,7 @@ class Gallery {
     this.setStylePosition();
     this.setStyleTransition();
     this.changeActiveDotClass();
+    this.setParameters();
   }
 
   changeActiveDotClass() {

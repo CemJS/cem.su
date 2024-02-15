@@ -8,6 +8,7 @@ import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import openDrop from "@svg/icons/openDropDown.svg";
 import order from "@svg/icons/order.svg";
+import notFound from "@svg/icon/notFound.svg";
 
 const RenderTypeFilter = () => {
   return (
@@ -118,7 +119,6 @@ const RenderLanguageFilter = () => {
 };
 
 export default function () {
-  Fn.log("=7e98df=", Static.records);
   return (
     <div
       onclick={(e) => {
@@ -237,109 +237,120 @@ export default function () {
             </div>
 
             <div class="questions__list">
-              {Static.records?.map((item: any, index: number) => {
-                return (
-                  <div
-                    class="questions__item"
-                    onclick={async () => {
-                      let url = front.Services.functions.makeUrlEvent("Questions", { action: "show", id: item.id });
+              {Static.records?.length ? (
+                Static.records?.map((item: any, index: number) => {
+                  return (
+                    <div
+                      class="questions__item"
+                      onclick={async () => {
+                        let url = front.Services.functions.makeUrlEvent("Questions", { action: "show", id: item.id });
 
-                      let listener = [
-                        {
-                          type: "get",
-                          fn: ({ data }) => {
-                            let json = front.Services.functions.strToJson(data);
-                            if (!json) {
-                              return;
-                            }
-                            Static.record = json;
+                        let listener = [
+                          {
+                            type: "get",
+                            fn: ({ data }) => {
+                              let json = front.Services.functions.strToJson(data);
+                              if (!json) {
+                                return;
+                              }
+                              Static.record = json;
+                            },
                           },
-                        },
-                      ];
-                      Events.questions = await Fn.event(url, listener);
-                      Fn.linkChange(`/questions/show/${item.id}`);
-                    }}
-                    init={($el: any) => {
-                      if (index == Static.records?.length - 1) {
-                        const observer = new IntersectionObserver((entries) => {
-                          entries.forEach(async (entry) => {
-                            if (entry.isIntersecting) {
-                              observer.unobserve($el);
-                              let res = await front.Services.functions.sendApi("/api/events/Questions", {
-                                action: "skip",
-                                skip: Static.records.length,
-                              });
-                            }
+                        ];
+                        Events.questions = await Fn.event(url, listener);
+                        Fn.linkChange(`/questions/show/${item.id}`);
+                      }}
+                      init={($el: any) => {
+                        if (index == Static.records?.length - 1) {
+                          const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(async (entry) => {
+                              if (entry.isIntersecting) {
+                                observer.unobserve($el);
+                                let skip = { ...Static.makeFilter };
+                                skip.action = "skip";
+                                skip.skip = Static.records.length;
+                                Fn.log("=fb5e4b=", Static.makeFilter);
+                                let res = await front.Services.functions.sendApi("/api/events/Questions", skip);
+                              }
+                            });
                           });
-                        });
-                        observer.observe($el);
-                      }
-                    }}
-                  >
-                    <div class="questions__item_header questions__user">
-                      <div class="avatar">
-                        <div class="avatar__icon">
-                          <img
-                            class="avatar__photo"
-                            src={item.authorDetails?.avatar?.name ? `/assets/upload/avatar/${item.authorDetails.avatar?.name}` : avatarDefault}
-                          />
-                          <img
-                            class="avatar__frame"
-                            src={item.authorDetails?.frame?.name ? `/contents/images/lenta/${item.authorDetails.frame?.name}` : frameDefault}
-                          />
-                          {item.authorDetails?.status?.team ? (
+                          observer.observe($el);
+                        }
+                      }}
+                    >
+                      <div class="questions__item_header questions__user">
+                        <div class="avatar">
+                          <div class="avatar__icon">
                             <img
-                              class="avatar__team"
-                              src={item.authorDetails.status?.team ? teamLogo : null}
+                              class="avatar__photo"
+                              src={item.authorDetails?.avatar?.name ? `/assets/upload/avatar/${item.authorDetails.avatar?.name}` : avatarDefault}
                             />
-                          ) : (
-                            <div class="avatar__level">
-                              <div class="avatar__wrap">
-                                <img src={leveGray} />
-                                <span>{item.authorDetails.statistic?.level}</span>
-                                <div class={["avatar__online", item.authorDetails.online ? "avatar__online_active" : null]}></div>
+                            <img
+                              class="avatar__frame"
+                              src={item.authorDetails?.frame?.name ? `/contents/images/lenta/${item.authorDetails.frame?.name}` : frameDefault}
+                            />
+                            {item.authorDetails?.status?.team ? (
+                              <img
+                                class="avatar__team"
+                                src={item.authorDetails.status?.team ? teamLogo : null}
+                              />
+                            ) : (
+                              <div class="avatar__level">
+                                <div class="avatar__wrap">
+                                  <img src={leveGray} />
+                                  <span>{item.authorDetails.statistic?.level}</span>
+                                  <div class={["avatar__online", item.authorDetails.online ? "avatar__online_active" : null]}></div>
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
+                          </div>
+                          <div class="avatar__name">
+                            <span>{item.authorDetails.nickname}</span>
+                          </div>
                         </div>
-                        <div class="avatar__name">
-                          <span>{item.authorDetails.nickname}</span>
+                        <div class="questions__item_languages btn_border-wrap">
+                          <button class="btn_border">{item.languages.origName}</button>
                         </div>
                       </div>
-                      <div class="questions__item_languages btn_border-wrap">
-                        <button class="btn_border">Русский</button>
+                      <div class={["questions__item_preview", item.title.length < 15 && item.text ? "questions__item_preview_row" : null]}>
+                        <span>{item.title}</span>
+                        {item.title.length < 15 && item.text ? <span init={(e) => (e.innerHTML = item.text)}></span> : null}
+                      </div>
+                      <div class="questions__item_statistic">
+                        <span>
+                          <i class="i i-comment"></i>
+                          {item.statistic.answer}
+                        </span>
+                        <span>
+                          <i class="i i-faq"></i>
+                          {item.statistic.view}
+                        </span>
+                        <span>{front.Services.functions.timeStampToDate(item.showDate, ".")}</span>
+                      </div>
+                      <div class="questions__item_footer btn_border-wrap">
+                        <button
+                          // href={`/questions/show/${item._id}`}
+                          class="btn_border"
+                          // onclick={(e) => {
+                          //   Static.recordsShow = item;
+                          //   Fn.link(e);
+                          // }}
+                        >
+                          Ответить
+                        </button>
                       </div>
                     </div>
-                    <div class={["questions__item_preview", item.title.length < 15 && item.text ? "questions__item_preview_row" : null]}>
-                      <span>{item.title}</span>
-                      {item.title.length < 15 && item.text ? <span init={(e) => (e.innerHTML = item.text)}></span> : null}
-                    </div>
-                    <div class="questions__item_statistic">
-                      <span>
-                        <i class="i i-comment"></i>
-                        {item.statistic.answer}
-                      </span>
-                      <span>
-                        <i class="i i-faq"></i>
-                        {item.statistic.view}
-                      </span>
-                      <span>{front.Services.functions.timeStampToDate(item.showDate, ".")}</span>
-                    </div>
-                    <div class="questions__item_footer btn_border-wrap">
-                      <button
-                        // href={`/questions/show/${item._id}`}
-                        class="btn_border"
-                        // onclick={(e) => {
-                        //   Static.recordsShow = item;
-                        //   Fn.link(e);
-                        // }}
-                      >
-                        Ответить
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              ) : (
+                <div class="questions__notFound notFound notFound_bg notFound_relative mX-auto">
+                  <img
+                    src={notFound}
+                    alt="Нет записей"
+                  />
+                  Нет записей
+                </div>
+              )}
             </div>
           </div>
         </div>

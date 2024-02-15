@@ -9,7 +9,7 @@
   text-align: center;
 
   &_wrap {
-    padding: 4.25rem 0.625rem 12.25rem 0.625rem;
+    padding: 4.25rem 7.625rem 12.25rem 7.625rem;
     margin: 0 auto;
 
     display: flex;
@@ -17,7 +17,8 @@
     align-items: center;
     flex-direction: column;
     gap: 1.5625rem;
-    max-width: 41.875rem;
+    max-width: 44.875rem;
+    min-width: 20rem;
     width: 100%;
   }
 

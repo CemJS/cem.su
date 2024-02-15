@@ -50,6 +50,7 @@ front.func.draggableProgressBar = (e: any) => {
 
 front.func.updateFilter = async () => {
   Static.makeFilter = {
+    action: "get",
     sort: Static.sort,
     order: Static.order,
     search: Static.search,
@@ -57,7 +58,7 @@ front.func.updateFilter = async () => {
     isBest: Static.type == "best",
     language: Static.chooseLanguage.code,
   };
-  Static.makeFilter.action = "get";
+  Fn.log("=13809b=", Static.makeFilter);
   let res = await front.Services.functions.sendApi("/api/events/Questions", Static.makeFilter);
   return;
 };
@@ -111,10 +112,21 @@ front.loader = async () => {
 
   Static.sort = "date";
 
-  Func.updateFilter();
+  // Func.updateFilter();
 
-  let url = front.Services.functions.makeUrlEvent("Questions");
+  Static.makeFilter = {
+    action: "get",
+    sort: Static.sort,
+    order: Static.order,
+    search: Static.search,
+    isClosed: Static.type == "opened" ? false : Static.type == "closed" ? true : undefined,
+    isBest: Static.type == "best",
+    language: Static.chooseLanguage.code,
+  };
 
+  delete Static.makeFilter.isClosed; //== undefined ? Static.makeFilter.
+
+  let url = front.Services.functions.makeUrlEvent("Questions", Static.makeFilter);
   let listener = [
     {
       type: "get",

@@ -5,7 +5,7 @@ import Main from "./display/Main"
 export default function () {
   return (
     <div class="modal__body" ref="modalBody">
-      <div class="modal__content modal__content_lang">
+      <div class="modal__content">
         <Header />
         <Main />
       </div>
