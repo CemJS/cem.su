@@ -80,7 +80,7 @@ class Gallery {
     this.destroyEvents();
     this.setEvents();
     this.resizeGallery();
-    // setInterval(this.clickNext, 4000);
+    setInterval(this.clickNext, 4000);
   }
 
   manageHTML() {

@@ -78,7 +78,7 @@ export default function ({ items }) {
 
               Static.catActive = item.name;
               // Fn.log("=0cf81d=", Static.catActive);
-              front.Services.functions.sendApi("/api/events/Startups", {
+              front.Services.functions.sendApi("/api/Startups", {
                 action: "get",
                 category: Static.catActive == "Все" ? "All" : Static.catActive,
               });
