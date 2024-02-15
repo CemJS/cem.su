@@ -23,6 +23,13 @@ export default function () {
                     : "lentafriends_inactive"}`}
                 data-profilepage="aboutUser">
             </i>
+            <div class="user__category__gradient_frame">
+                <div class="user__category__gray_background">
+                    <span class="user__category__gradient_text">
+                        {Static.record?.statistics?.postsCount}
+                    </span>
+                </div>
+            </div>
         </div>
     )
 }

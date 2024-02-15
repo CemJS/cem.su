@@ -8,7 +8,7 @@ export default function () {
                     class={[
                         "btn",
                         "w100",
-                        Static.filterCoins?.length ? null : "btn_passive"
+                       
                     ]}
                     onclick={() => {
                         Static.callback(Static.filterCoins)
@@ -22,7 +22,7 @@ export default function () {
                         class="btn_border h100"
                         onclick={() => {
                             Static.filterCoins = ""
-                            Static.callback(Static.filterCoins)
+                            // Static.callback(Static.filterCoins)
                         }}
                     >
                         Сбросить

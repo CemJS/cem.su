@@ -6,7 +6,8 @@
 @import "./css/cards.scss";
 @import "./css/awards.scss";
 @import "./css/socials.scss";
-@import "./css/feed.scss";
+@import "./css/feed/feed.scss";
+@import "./css/feed/feedTiles.scss";
 
 .c-userpreview {
   width: calc(100% - 224px);
