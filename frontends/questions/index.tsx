@@ -17,7 +17,7 @@ front.func.playAndPause = (video: any) => {
   return;
 };
 
-front.func.timeUpdate = (e) => {
+front.func.timeUpdate = (e: any) => {
   let { currentTime, duration } = e.target;
   let percent = (currentTime / duration) * 100;
   Static.currentTime = currentTime;
@@ -25,7 +25,7 @@ front.func.timeUpdate = (e) => {
   return;
 };
 
-front.func.formatTime = (time) => {
+front.func.formatTime = (time: any) => {
   let seconds = Math.floor(time % 60),
     minutes = Math.floor(time / 60) % 60,
     hours = Math.floor(time / 3600);
@@ -61,6 +61,15 @@ front.func.updateFilter = async () => {
   Fn.log("=13809b=", Static.makeFilter);
   let res = await front.Services.functions.sendApi("/api/events/Questions", Static.makeFilter);
   return;
+};
+
+front.func.getDate = (timestamp: any) => {
+  return new Date(timestamp);
+};
+
+front.func.addNull = (str: any) => {
+  str = String(str);
+  return str.length < 2 ? `0${str}` : str;
 };
 
 front.loader = async () => {

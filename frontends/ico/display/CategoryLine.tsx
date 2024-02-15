@@ -80,7 +80,7 @@ export default function ({ items, active }) {
                   }
                   Static.makeFilter.cat = item.name;
 
-                  front.Services.functions.sendApi("/api/events/Icos", {
+                  front.Services.functions.sendApi("/api/Icos", {
                     action: "get",
                     category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
                     type: Static.makeFilter.active,

@@ -66,7 +66,7 @@ front.loader = async () => {
   Static.x1 = null;
   Static.y1 = null;
 
-  let url = front.Services.functions.makeUrlEvent("Startups", { category: Static.catActive == "Все" ? "All" : Static.catActive });
+  let url = front.Services.functions.makeUrlEvent("Startups", { action: "get", category: Static.catActive == "Все" ? "All" : Static.catActive });
 
   let listener = [
     {

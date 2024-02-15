@@ -47,7 +47,7 @@ front.loader = async () => {
   Fn.log("=38f35e=", Static.record);
   Static.makeFilter = {
     cat: "All",
-    active: "Last",
+    active: "Active",
   };
   Static.activeIndex = 0;
 
@@ -79,8 +79,7 @@ front.loader = async () => {
       name: "IFO",
     },
   ];
-  // let url = front.Services.functions.makeUrlEvent("Icos", { action: "category", category: Static.makeFilter.cat });
-  let url = front.Services.functions.makeUrlEvent("Icos", { category: Static.makeFilter.cat, type: Static.makeFilter.active });
+  let url = front.Services.functions.makeUrlEvent("Icos", { action: "get", category: Static.makeFilter.cat, type: Static.makeFilter.active });
   let listener = [
     {
       type: "get",
@@ -89,7 +88,6 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        // Fn.log("=68682c=", "get", json);
 
         Static.records = json;
       },
@@ -101,7 +99,6 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        // Fn.log("=68682c=", "add", json);
         Static.records.push(...json);
       },
     },

@@ -1,6 +1,8 @@
 import { Cemjsx, Func, Static } from "cemjs-all"
 
 export default function () {
+    console.log("Static.filterCoins", typeof Static.filterCoins);
+    
     return (
         <footer class="modal-footer">
             <div class="g-colEqual-2 mt-15">
@@ -8,7 +10,7 @@ export default function () {
                     class={[
                         "btn",
                         "w100",
-                        Static.filterCoins?.length ? null : "btn_passive"
+                       
                     ]}
                     onclick={() => {
                         Static.callback(Static.filterCoins)
@@ -21,8 +23,8 @@ export default function () {
                     <button
                         class="btn_border h100"
                         onclick={() => {
-                            Static.filterCoins = ""
-                            Static.callback(Static.filterCoins)
+                            Static.filterCoins = []
+                            // Static.callback(Static.filterCoins)
                         }}
                     >
                         Сбросить

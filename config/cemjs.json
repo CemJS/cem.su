@@ -1,1 +1,25 @@
-{"version":"v1.1.6","port":3000,"live":true,"hook":{"proxyWeb":[{"url":"/api/","host":"127.0.0.1","port":80},{"url":"/assets/upload/","host":"crypto-emergency.com","port":80,"https":true},{"url":"/api/tg/","host":"127.0.0.1","port":80}]}}
+{
+  "version": "v1.1.7",
+  "port": 3000,
+  "live": true,
+  "hook": {
+    "proxyWeb": [
+      {
+        "url": "/api/",
+        "host": "127.0.0.1",
+        "port": 80
+      },
+      {
+        "url": "/assets/upload/",
+        "host": "crypto-emergency.com",
+        "port": 80,
+        "https": true
+      },
+      {
+        "url": "/api/tg/",
+        "host": "127.0.0.1",
+        "port": 80
+      }
+    ]
+  }
+}

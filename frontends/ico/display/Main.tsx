@@ -34,7 +34,7 @@ const RenderItems = function ({ items }) {
                   }
                   Static.makeFilter.active = item.name;
                   // fn("addEvent");
-                  front.Services.functions.sendApi("/api/events/Icos", {
+                  front.Services.functions.sendApi("/api/Icos", {
                     action: "get",
                     category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
                     type: Static.makeFilter.active,
@@ -96,7 +96,7 @@ const RenderItems = function ({ items }) {
                             if (entry.isIntersecting) {
                               // Fn.log("=2a3c8e=", 6666666);
                               observer.unobserve($el);
-                              let res = front.Services.functions.sendApi("/api/events/Icos", {
+                              let res = front.Services.functions.sendApi("/api/Icos", {
                                 action: "skip",
                                 category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
                                 type: Static.makeFilter.active,
@@ -153,6 +153,7 @@ const RenderItems = function ({ items }) {
 };
 
 export default function () {
+  Fn.log("=74e4f1=", Static.records);
   return (
     <section>
       <div class="wrapper">

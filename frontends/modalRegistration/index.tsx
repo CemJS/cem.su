@@ -38,6 +38,18 @@ front.func.checkForm = async function () {
             let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "checkCode", email: Static.form.email.value, step: Static.currentStep, code: Static.form.code.value })
             if (answer.error) {
                 Static.form.code.error = "Код указан не верно!"
+
+                Static.code.forEach((item: number, index: number) => {
+                    Static.code[index] = null
+                })
+                Ref.code1.value = null
+                Ref.code2.value = null
+                Ref.code3.value = null
+                Ref.code4.value = null
+                Ref.code5.value = null
+                Ref.code6.value = null
+                Ref.code1.focus()
+
                 return
             }
             Static.waitCode = false
@@ -78,6 +90,12 @@ front.func.clickNext = function () {
     Ref.indicator.style.width = `${(Static.currentStep - 1) / (Static.steps.length - 1) * 100}%`
 }
 
+front.func.clickPrev = function () {
+    Static.currentStep = --Static.currentStep
+    Ref.indicator.style.width = `${(Static.currentStep - 1) / (Static.steps.length - 1) * 100}%`
+    Ref.slidePage.style.marginLeft = `${Static.widthSlide * Static.currentStep}%`
+}
+
 front.func.changeEmail = function () {
     Static.form.email.disable = false
     Static.waitCode = false
@@ -89,17 +107,13 @@ front.func.sendCode = async function () {
     if (answer.error) {
         Static.form.email.error = "Пользователь с таким email уже существует!"
         Static.form.email.valid = false
-        // Fn.init()
         return
     }
 
     Static.waitCode = true
     Static.form.email.disable = true
     Func.timer(60)
-    // Func.timer(5)
-    // this.init()
     return
-
 }
 
 front.func.timer = function (sec: number) {

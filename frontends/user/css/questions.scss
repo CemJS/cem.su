@@ -1,9 +1,11 @@
 .questions-table {
 
-    border: 1px solid #323746;
-    border-radius: 15px;
+    // border: 1px solid #323746;
+    // border-top-right-radius: var(--border);
+    // border-top-left-radius: var(--border);
+    border-radius: var(--border);
     margin-top: 8px;
-    margin-bottom: 60px;
+    // margin-bottom: 10px;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;

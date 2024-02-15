@@ -355,6 +355,7 @@ $tokenomicaBack: (
 .social-networks {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5625rem;
 
   &_footer {
@@ -556,7 +557,7 @@ $tokenomicaBack: (
     height: 2.5rem;
     display: flex;
     justify-content: center;
-    z-index: 11;
+    z-index: 9;
     align-items: center;
     transition: all 0.3s ease;
     border-radius: var(--ellipse);
@@ -568,11 +569,11 @@ $tokenomicaBack: (
     }
 
     &_prev {
-      left: 0;
+      left: 3px;
     }
 
     &_next {
-      right: 0;
+      right: 3px;
     }
 
     &:hover {
