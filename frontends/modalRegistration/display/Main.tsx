@@ -66,12 +66,14 @@ const Step1 = function () {
                                 Static.code.map((item: number, index: number) => {
                                     return (
                                         <input
+                                            ref={`code${index + 1}`}
                                             type="number"
                                             class={[
                                                 "modalReg-code_input",
-                                                Static.form.code.error ? "modalReg-code_input__error" : null
                                             ]}
                                             oninput={(e) => {
+
+
                                                 if (e.data == null && e.target.value.length > 1) {
                                                     let arr = e.target.value.trim().split("")
                                                     if (arr.length > 6) {
@@ -79,7 +81,7 @@ const Step1 = function () {
                                                     }
                                                     let arrElements = e.target.parentElement.children;
                                                     arr.forEach((item, index) => {
-                                                        this.Static.code[index] = item
+                                                        Static.code[index] = item
                                                         arrElements[index].value = item
                                                         arrElements[index].focus();
                                                     });
