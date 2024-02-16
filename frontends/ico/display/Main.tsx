@@ -153,6 +153,7 @@ const RenderItems = function ({ items }) {
 };
 
 export default function () {
+  Fn.log("=74e4f1=", Static.records);
   return (
     <section>
       <div class="wrapper">

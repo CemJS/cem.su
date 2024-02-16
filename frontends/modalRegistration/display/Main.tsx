@@ -424,6 +424,15 @@ const Step3 = function () {
                                 repass: Static.form.rePass.value,
                             })
                             Fn.log('=a028de=', answer)
+
+                            if (answer.error == "already register") {
+                                Static.form.isValid = false
+                                Func.clickPrev()
+                                front.Services.functions.formNickName(Static.form.nickName)
+                                front.Services.functions.formLang(Static.form.mainLang)
+                                return
+                            }
+
                             if (answer.error) {
                                 Static.form.isValid = false
                                 Static.form.error = "Неверные данные"
@@ -431,6 +440,7 @@ const Step3 = function () {
                             }
 
                             Func.clickNext()
+                            Fn.log('=b02443=', front.Variable.myInfo)
                             return
                         }}>
                         Далее
@@ -445,7 +455,7 @@ const Step4 = function () {
     return (
         <div class="modalReg_page">
             <div class="modalReg_form">
-                <h3 class="modalReg_page-title">Поздравляем, Вы успешно зарегистрированы!</h3>
+                <h3 class="modalReg_page-title text-center">Поздравляем, Вы успешно зарегистрированы!</h3>
                 <div class="modalReg_success">
                     <img src={done} alt="Пользователь успешно зарегистрирован" />
                 </div>
@@ -454,10 +464,9 @@ const Step4 = function () {
                         class="btn btn_timing"
                         onclick={() => {
                             Func.close()
-                            Fn.initOne("modalAuthtorization", {})
                         }}
                     >
-                        Авторизоваться
+                        Перейти в личный кабинет
                     </button>
                 </div>
             </div>
