@@ -36,24 +36,18 @@ export const timeStampToDate = function (d: number, separator: string) {
 };
 
 export const loader = async function (Variable: any, Fn: any) {
-  Variable.Auth = false;
-
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
-  let eventSource = new EventSource(`/api/events/MyInfo?uuid=${localStorage.uuid}`);
-  eventSource.addEventListener("update", ({ data }) => {
-    let json = strToJson(data);
-    if (!json) {
-      return;
-    }
-    localStorage.suuid = json.suuid;
-    Variable.Auth = json.auth;
-    Variable.myInfo = json.info;
-    Variable.Auth = false;
-    Variable.Lang = "Русский";
-    Fn.initAll();
-    // console.log('=5dcbec=', Variable.Auth, Variable.myInfo)
+  let eventSource = new EventSource(`/api/events/MyInfo?uuid=${localStorage.uuid}`)
+  eventSource.addEventListener('update', ({ data }) => {
+    let json = strToJson(data)
+    if (!json) { return }
+    localStorage.suuid = json.suuid
+    Variable.Auth = json.auth
+    Variable.myInfo = json.info
+    Variable.Lang = "Русский"
+    Fn.initAll()
     // if (!answ.data || answ.data == "null") {
     //   return
     // }

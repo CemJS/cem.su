@@ -298,7 +298,7 @@ const Step2 = function () {
                                 nickName: Static.form.nickName.value
                             })
                             if (answer.error) {
-                                alert("Error")
+                                Fn.log('=error=', answer.error)
                                 return
                             }
                             Func.clickNext()
@@ -425,11 +425,22 @@ const Step3 = function () {
                             })
                             Fn.log('=a028de=', answer)
 
-                            if (answer.error == "already register") {
+                            if (answer.error === "already register") {
                                 Static.form.isValid = false
                                 Func.clickPrev()
                                 front.Services.functions.formNickName(Static.form.nickName)
                                 front.Services.functions.formLang(Static.form.mainLang)
+                                front.Services.functions.formCountry(Static.form.country)
+                                Func.checkForm()
+
+                                Fn.log('=Static.form.isValid=', Static.form.isValid)
+
+                                if (!Static.form.isValid) {
+                                    return
+                                }
+
+                                Func.checkLogin()
+
                                 return
                             }
 
@@ -463,6 +474,7 @@ const Step4 = function () {
                     <button
                         class="btn btn_timing"
                         onclick={() => {
+                            Fn.linkChange(`/user/${front.Variable.myInfo.nickname}`)
                             Func.close()
                         }}
                     >
