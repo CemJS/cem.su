@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node node_modules/cemjs-all/esbuild.mjs --runProd",
     "start": "node node_modules/cemjs-all/esbuild.mjs --runServe",
-    "prod": "node node_modules/cemjs-all/esbuild.mjs --runServe --runProd"
+    "prod": "node node_modules/cemjs-all/esbuild.mjs --runServe --runProd",
+    "dev": "start ./node_modules/cemjs-all/servecemjs.exe && node node_modules/cemjs-all/esbuild.mjs --runServe --runDev"
   },
   "dependencies": {
     "cemjs-all": "^1.1.14",
