@@ -11,19 +11,18 @@ export default function () {
                 Static.subscribers = false
                 Static.subscriptions = false
                 Static.awards = false
-                Static.socials = true
-                Static.gallery = false
-                const getSocials = {
-                    "action": "getSocials",
+                Static.socials = false
+                Static.gallery = true
+                const getGallery = {
+                    "action": "getGallery",
                     "id": Static.record?.id
                 }
-                let content = await front.Services.functions.sendApi("/api/Users/profile", getSocials)
+                let content = await front.Services.functions.sendApi("/api/Users/profile", getGallery)
                 //проверка на error
             }}
-                class={`c-usercategories__icon c-usercategories__icon--${Static.socials === true ? "social"
-                    : "social_inactive"}`}
-                data-profilepage="aboutUser">
-            </i>
+                class={`c-usercategories__icon c-usercategories__icon--${Static.gallery === true ? "gallery"
+                    : "gallery_inactive"}`}
+                data-profilepage="aboutUser"></i>
         </div>
     )
 }

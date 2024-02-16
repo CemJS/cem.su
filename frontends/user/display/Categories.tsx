@@ -7,6 +7,7 @@ import Subscriptions from "./iconsCategories/Subscriptions"
 import Awards from "./iconsCategories/Awards"
 import Socials from "./iconsCategories/Socials"
 import Feed from "./iconsCategories/Feed"
+import Gallery from "./iconsCategories/Gallery"
 
 export default function () {
     return (
@@ -19,6 +20,7 @@ export default function () {
             <Subscriptions />
             <Awards />
             <Socials />
+            <Gallery />
         </div >
     )
 }

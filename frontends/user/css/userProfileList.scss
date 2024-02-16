@@ -128,11 +128,11 @@
             }
         }
 
-        &--galary {
-            background: no-repeat url("@svg/sections/galary.svg") center/100%;
+        &--gallery {
+            background: no-repeat url("@svg/sections/gallery.svg") center/100%;
 
             &_inactive {
-                background: no-repeat url("@svg/sections/galary_inactive.svg") center/100%;
+                background: no-repeat url("@svg/sections/gallery_inactive.svg") center/100%;
             }
         }
 
@@ -670,7 +670,7 @@
         }
 
         &--image {
-            background: no-repeat url("@svg/sections/galary_inactive.svg") center/100%;
+            background: no-repeat url("@svg/sections/gallery_inactive.svg") center/100%;
         }
 
         &--video {
