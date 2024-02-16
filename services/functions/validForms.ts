@@ -9,6 +9,16 @@ interface Form {
   disable: boolean;
 }
 
+export const formEmailOrNickName = function (form: Form) {
+  if (!form.value.length) {
+    form.error = false;
+    form.valid = false;
+    return false;
+  }
+
+  let check = validLogin(form.value) || validEmail(form.value);
+}
+
 export const formLogin = function (form: Form) {
   if (!form.value.length) {
     form.error = false;

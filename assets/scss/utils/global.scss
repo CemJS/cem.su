@@ -12,6 +12,13 @@
   min-height: 100vh;
 }
 
+.link {
+  background: var(--mainGradient);
+  background-clip: text;
+  cursor: pointer;
+  -webkit-text-fill-color: transparent;
+}
+
 .wrapper {
   max-width: 1240px;
   margin: 0 auto;
@@ -478,8 +485,14 @@
     position: absolute;
   }
 
-  .p-fixed {
+  &-fixed {
     position: fixed;
+  }
+}
+
+.overflow {
+  &-hidden {
+    overflow: hidden;
   }
 }
 
