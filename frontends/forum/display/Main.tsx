@@ -201,6 +201,7 @@ export default function () {
         <div class="forum__confidence forum__confidence_margin forum__text">
           Мы уверены, что наш криптофорум предоставит тебе всю ценную информацию, деловые возможности и возможности, которых больше нигде не встретишь.
         </div>
+        <div className="forum__images"></div>
       </div>
     </div>
 
