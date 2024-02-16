@@ -269,7 +269,6 @@ export default function () {
                                 let skip = { ...Static.makeFilter };
                                 skip.action = "skip";
                                 skip.skip = Static.records.length;
-                                Fn.log("=fb5e4b=", Static.makeFilter);
                                 let res = await front.Services.functions.sendApi("/api/events/Questions", skip);
                               }
                             });
@@ -325,7 +324,7 @@ export default function () {
                           <i class="i i-faq"></i>
                           {item.statistic.view}
                         </span>
-                        <span>{front.Services.functions.timeStampToDate(item.showDate, ".")}</span>
+                        <span>{front.Services.functions.timeStampToDate(item.showDate, undefined, true)}</span>
                       </div>
                       <div class="questions__item_footer btn_border-wrap">
                         <button

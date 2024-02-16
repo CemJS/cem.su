@@ -393,6 +393,14 @@
       line-height: 1.2;
     }
   }
+  &__text {
+    font-size: clamp(0.9rem, 3vw, 2.8125rem);
+    line-height: 1.3;
+    &_green {
+      color: var(--green);
+      font-weight: bold;
+    }
+  }
   &__info {
     &-wrapper {
       display: flex;
@@ -405,13 +413,9 @@
       max-width: 53.125rem;
       width: 70%;
     }
-    &-text {
-      font-size: clamp(1.5rem, 2vw, 2.8125rem);
-      line-height: 1.3;
-      &_green {
-        color: var(--green);
-        font-weight: bold;
-      }
+    &-title {
+      font-weight: 700;
+      font-size: clamp(1.3rem, 3vw, 2.8125rem);
     }
     &-sponsor {
       display: flex;
@@ -425,6 +429,43 @@
         width: 100%;
       }
     }
+    &-schedules {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    &-schedule {
+      max-width: 15.625rem;
+      width: 100%;
+    }
+    &-cover {
+      display: flex;
+      display: flex;
+      gap: 1.25rem;
+      width: 100%;
+    }
+    &_margin {
+      margin-bottom: 4.375rem;
+    }
+  }
+  &__opportunities {
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem;
+  }
+  &__opportunity {
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--borderR);
+    border-radius: 10px;
+    background: var(--opacity_gray);
+    border: 0.0625rem solid var(--green_light);
+  }
+  &__confidence {
+    font-size: clamp(0.9rem, 3vw, 2.6rem);
+    &_margin {
+      margin-top: 1.875rem;
+      margin-bottom: 4.375rem;
+    }
   }
 }
 
@@ -435,6 +476,9 @@
         & img {
           max-width: 9.375rem;
         }
+      }
+      &-schedule {
+        max-width: 9.375rem;
       }
     }
   }
