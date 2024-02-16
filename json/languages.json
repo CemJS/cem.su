@@ -1,5 +1,13 @@
 [
   {
+    "orig_name": "Русский",
+    "code": "ru"
+  },
+  {
+    "orig_name": "English",
+    "code": "gb"
+  },
+  {
     "orig_name": "俄语",
     "code": "cn"
   },
@@ -10,10 +18,6 @@
   {
     "orig_name": "Ελληνικά",
     "code": "gr"
-  },
-  {
-    "orig_name": "English",
-    "code": "gb"
   },
   {
     "orig_name": "Español",
@@ -46,10 +50,6 @@
   {
     "orig_name": "Português",
     "code": "pt"
-  },
-  {
-    "orig_name": "Русский",
-    "code": "ru"
   },
   {
     "orig_name": "Türkçe",

@@ -136,11 +136,6 @@ front.loader = async () => {
           link: "/contacts",
           target: false
         },
-        {
-          name: "Партнёрская программа",
-          link: "/affiliate",
-          target: false
-        },
       ],
     },
     {

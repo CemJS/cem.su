@@ -13,7 +13,6 @@ export default function () {
                 Static.form.email.valid ? "modalWindow_field__success" : null,
             ]}>
                 <input
-                    ref="email"
                     type="email"
                     required
                     autocomplete="off"
@@ -38,7 +37,6 @@ export default function () {
                     Static.form.pass.valid ? "modalWindow_field__success" : null
                 ]}>
                 <input
-                    ref="pass"
                     type="password"
                     required
                     oninput={(e: any) => {

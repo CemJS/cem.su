@@ -84,6 +84,19 @@ front.func.checkForm = async function () {
     }
 }
 
+front.func.checkLogin = async function () {
+    let answer = await front.Services.functions.sendApi(`/api/Register`, {
+        action: "checkNick",
+        step: Static.currentStep,
+        nickname: Static.form.nickName.value
+    })
+
+    if (answer.error) {
+        Static.form.nickName.error = "Логин занят!"
+        Static.form.nickName.valid = false
+    }
+}
+
 front.func.clickNext = function () {
     Ref.slidePage.style.marginLeft = `-${Static.widthSlide * Static.currentStep}%`
     Static.currentStep++;
@@ -93,7 +106,7 @@ front.func.clickNext = function () {
 front.func.clickPrev = function () {
     Static.currentStep = --Static.currentStep
     Ref.indicator.style.width = `${(Static.currentStep - 1) / (Static.steps.length - 1) * 100}%`
-    Ref.slidePage.style.marginLeft = `${Static.widthSlide * Static.currentStep}%`
+    Ref.slidePage.style.marginLeft = `-25%`
 }
 
 front.func.changeEmail = function () {

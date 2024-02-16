@@ -20,29 +20,30 @@ export default function () {
             })
 
             if (answer.error) {
-              Ref.email.value = ""
-              Ref.pass.value = ""
+              // Ref.email.value = ""
+              // Ref.pass.value = ""
 
-              Static.form = {
-                email: {
-                  value: "",
-                  valid: false,
-                  error: false,
-                  placeholder: "Email",
-                  view: false,
-                  disable: false
-                },
-                pass: {
-                  value: "",
-                  valid: false,
-                  error: false,
-                  placeholder: "Введите пароль:",
-                  view: false,
-                  disable: false
-                },
-                isValid: false,
-                error: false
-              }
+              // Static.form = {
+              //   email: {
+              //     value: "",
+              //     valid: false,
+              //     error: false,
+              //     placeholder: "Email",
+              //     view: false,
+              //     disable: false
+              //   },
+              //   pass: {
+              //     value: "",
+              //     valid: false,
+              //     error: false,
+              //     placeholder: "Введите пароль:",
+              //     view: false,
+              //     disable: false
+              //   },
+              //   isValid: false,
+              //   error: false
+              // }
+              Static.form.isValid = false
               Static.form.error = "Неверно введены данные!"
 
               return
