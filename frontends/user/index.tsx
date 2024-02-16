@@ -10,6 +10,8 @@ front.listener.clickAny = function (e) {
 }
 
 front.loader = async () => {
+  Static.feedState = true
+
 
   Static.aboutMe = true
   Static.questions = false

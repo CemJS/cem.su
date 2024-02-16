@@ -39,8 +39,7 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        // Fn.log("=68682c=", "add", json);
-        Static.records.push(...json);
+        Static.records = [...Static.records, ...json];
       },
     },
   ];

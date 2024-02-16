@@ -81,7 +81,7 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        Static.records.push(...json);
+        Static.records = [...Static.records, ...json];
       },
     },
   ];

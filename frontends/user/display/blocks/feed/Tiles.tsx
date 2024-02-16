@@ -7,7 +7,7 @@ export default function () {
             <a class="feed-tiles__item">
                 <figure class="feed-tiles__card">
                     <div class='video__container'>
-
+                        <img class="img-tiles" />
                     </div>
                 </figure>
             </a>
