@@ -217,6 +217,14 @@
       }
     }
 
+    &_no-hover {
+      &:hover {
+        &::before {
+          opacity: 0;
+        }
+      }
+    }
+
     &::before {
       content: "";
       position: absolute;
@@ -381,7 +389,6 @@
     .table_row {
       height: 55px;
       background: var(--back_opacity);
-
     }
   }
 
@@ -435,7 +442,6 @@
     .table_row:not(:last-child) {
       border-bottom: 1px solid var(--border);
     }
-
   }
 
   &_trades {

@@ -16,6 +16,7 @@ const states = [
 ];
 
 const RenderItems = function ({ items }) {
+  Fn.log("=f60085=", items);
   return (
     <div class="ico">
       <div class="ico_inner">

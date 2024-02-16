@@ -309,7 +309,7 @@ export default function () {
                           </div>
                         </div>
                         <div class="questions__item_languages btn_border-wrap">
-                          <button class="btn_border">{item.languages.origName}</button>
+                          <button class="btn_border_no-hover btn_border">{item.languages.origName}</button>
                         </div>
                       </div>
                       <div class={["questions__item_preview", item.title.length < 15 && item.text ? "questions__item_preview_row" : null]}>
@@ -330,7 +330,7 @@ export default function () {
                       <div class="questions__item_footer btn_border-wrap">
                         <button
                           // href={`/questions/show/${item._id}`}
-                          class="btn_border"
+                          class=" btn_border"
                           // onclick={(e) => {
                           //   Static.recordsShow = item;
                           //   Fn.link(e);
