@@ -20,6 +20,43 @@ export default function () {
         </button>
       </div>
 
+
+      {/* модалка редактирования  -> передаем object "information" о пользователе */}
+      <button
+        class="btn"
+        onclick={() => Fn.initOne("modalUserAbout", {
+          fullName: "Anna Shalbuzova",
+          country: {
+            code: "ru",
+            eng_name: "Russia",
+            orig_name: "Россия"
+          },
+          information: {
+            status: "Crypto Emergency",
+            dateCreate: 1707399218922,
+            birthday: 1707399218922,
+            city: "Novorossiysk",
+            speciality: "Работаю в удовольствие в веб индустрии!",
+            about: "Annyshka topchik"
+          }
+        })}
+      >
+        Модалка редактирования "Обо мне"
+      </button>
+
+      {/* модалка редактирования  -> передаем object "interest" о пользователе */}
+      <button
+        class="btn"
+        onclick={() => Fn.initOne("modalUserInterests", {
+          interest: {
+            title: "Спорт",
+            description: "Люблю бегать по вечерам, утром для меня это непосильно ^_^"
+          }
+        })}
+      >
+        Модалка редактирования "Мои интересы"
+      </button>
+
       <button
         class="btn_border mt-10"
         onclick={() => {

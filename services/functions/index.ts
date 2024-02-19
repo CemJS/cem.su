@@ -54,6 +54,7 @@ export const loader = async function (Variable: any, Fn: any) {
   eventSource.addEventListener('update', ({ data }) => {
     let json = strToJson(data)
     if (!json) { return }
+    console.log('=MyInfo=', json)
     localStorage.suuid = json.suuid
     Variable.Auth = json.auth
     Variable.myInfo = json.info
