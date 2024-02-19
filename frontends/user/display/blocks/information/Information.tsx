@@ -3,7 +3,6 @@ import AboutMe from "./AboutMe"
 import Interests from "./Interests"
 
 export default function () {
-    Fn.log('=f35d19=', Static.record)
     return (
         <div class="block-one">
             <h2>Личная информация</h2>

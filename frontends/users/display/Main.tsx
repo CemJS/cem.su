@@ -76,8 +76,8 @@ Fn.log('=da967c=')
                       </div>
                     </a>
                   </div>
-                  <div class="users__item_name">
-                    <span>{item.nickname}</span>
+                  <div class="users__item__name">
+                    <span>{item.nickname?.length > 15 ? item.nickname?.slice(0, 15) + "..." : item.nickname}</span>
                     <div class="users__item_status">
                       {item.information.speciality == "" ? "(не указана)" : item.information.speciality}
                     </div>
