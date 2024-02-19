@@ -56,11 +56,31 @@ export default function () {
                     if (answer.error) {
                         Static.form.change_pass.isValid = false
                         Static.form.change_pass.error = "Неверно введены данные!"
+                        alert(answer.error)
                         return
                     }
                 }}>
                 Сменить пароль
             </button>
+
+
+            <div>Вы можете удалить свой профиль</div>
+
+            <button
+                class={["btn", "w100"]}
+                onclick={async () => {
+                    let answer = await front.Services.functions.sendApi(`/api/Users`, {
+                        action: "delete"
+                    })
+
+                    if (answer.error) {
+                        alert(answer.error)
+                        return
+                    }
+                }}>
+                Удалить профиль
+            </button>
+
 
         </div>
     )
