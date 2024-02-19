@@ -53,10 +53,23 @@ export default function () {
                 <p class="modalWindow_field__status" style="color:#E84142">{Static.form.pass.error}</p>
             </div>
 
-            <p class="mt-15">При использовании платформы вы соглашаетесь с <a href="/terms-of-service/" class="link" onclick={() => { Fn.link }}>поликикой сайта.</a>
+            <p class="mt-15">При использовании платформы вы соглашаетесь с <span class="link"
+                onclick={() => {
+                    Func.close()
+                    Fn.linkChange("/terms-of-service")
+                }}>
+                поликикой сайта.</span>
             </p>
 
-            {/* <span class="link" onclick={() => Fn.initOne("modalForgotPassword", {})}>Забыли пароль?</span> */}
+            <span
+                class="link"
+                onclick={() => {
+                    Func.close()
+                    Fn.initOne("modalForgotPassword", {})
+                }}
+            >
+                Забыли пароль?
+            </span>
         </main>
     )
 }

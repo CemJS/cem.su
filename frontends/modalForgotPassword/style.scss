@@ -1,0 +1,13 @@
+.modal {
+  &-recover {
+    &__line {
+      display: flex;
+      width: 300%;
+    }
+
+    &__page {
+      width: 50%;
+      transition: margin-left 0.35s ease-in-out;
+    }
+  }
+}

@@ -283,7 +283,9 @@ export default function () {
                 <i class="i i-faq"></i>
                 {Static.record.statistic.view}
               </span>
-              <span>{front.Services.functions.timeStampToDate(Static.record.showDate, ".")}</span>
+              <span>{`${front.Services.functions.timeStampToDate(Static.record.showDate, ".")} ${Func.addNull(Func.getDate(Static.record.showDate).getHours())}:${Func.addNull(
+                Func.getDate(Static.record.showDate).getMinutes()
+              )}`}</span>
               <div class="questions__item-open btn_border-wrap">
                 <button
                   onclick={(e: any) => {
@@ -586,7 +588,9 @@ export default function () {
                                 </div>
                                 <div class="user-comment__avatar_info">
                                   <div class="user-comment__avatar_name">{comment.authorDetails.nickname}</div>
-                                  <div class="user-comment__avatar_time">{front.Services.functions.timeStampToDate(comment.showDate, ".")}</div>
+                                  <div class="user-comment__avatar_time">{`${front.Services.functions.timeStampToDate(comment.showDate, ".")} ${Func.addNull(
+                                    Func.getDate(comment.showDate).getHours()
+                                  )}:${Func.addNull(Func.getDate(comment.showDate).getMinutes())}`}</div>
                                 </div>
                               </a>
                               <div class="user-comment__body">

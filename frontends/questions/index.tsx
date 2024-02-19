@@ -76,7 +76,7 @@ front.loader = async () => {
   Static.open = "Ответить";
 
   Static.search = "";
-  Static.order = 1;
+  Static.order = -1;
   Static.types = [
     {
       name: "All",
@@ -155,7 +155,7 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        Static.records.push(...json);
+        Static.records = [...Static.records, ...json];
       },
     },
   ];
