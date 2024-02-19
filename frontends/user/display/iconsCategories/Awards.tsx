@@ -12,6 +12,7 @@ export default function () {
                 Static.subscriptions = false
                 Static.awards = true
                 Static.socials = false
+                Static.gallery = false
                 const getAwards = {
                     "action": "getAwards",
                     "id": Static.record?.id

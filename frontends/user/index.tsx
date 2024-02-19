@@ -10,7 +10,7 @@ front.listener.clickAny = function (e) {
 }
 
 front.loader = async () => {
-  Static.feedState = true
+  Static.feedState = false
 
 
   Static.aboutMe = true
@@ -21,6 +21,7 @@ front.loader = async () => {
   Static.awards = false
   Static.socials = false
   Static.feed = false
+  Static.galary = false
 
   // Fn.log('=be3efb=', 5555)
   if (front.Variable.DataUrl[0] && front.Variable.DataUrl[0] == "user") {
