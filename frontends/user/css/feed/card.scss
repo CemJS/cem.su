@@ -10,12 +10,16 @@
         margin-bottom: 15px;
         padding-bottom: 0;
         padding-top: 2px !important;
-    }
 
-    &__header {
+        &__header {
+            display: flex;
+        }
+    }
+    &__avatar {
         display: flex;
-
     }
+
+
 }
 
 .card-position {
