@@ -1,10 +1,37 @@
-import { Cemjsx } from "cemjs-all"
+import { Cemjsx, front } from "cemjs-all"
 
 
 let tmp = [
-    { name: "fdf" },
-    { name: "fdf2" },
-    { name: "fdf3" },
+    {
+        "_id": "1111",
+        "info": {
+            "browser": "Chrome",
+            "version": "97.0.4692.99",
+            "platform": "Microsoft Windows",
+            "os": "Windows 10.0",
+            "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36"
+        }
+    },
+    {
+        "_id": "1111",
+        "info": {
+            "browser": "Chrome",
+            "version": "97.0.4692.99",
+            "platform": "Microsoft Windows",
+            "os": "Windows 10.0",
+            "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36"
+        }
+    },
+    {
+        "_id": "1111",
+        "info": {
+            "browser": "Chrome",
+            "version": "97.0.4692.99",
+            "platform": "Microsoft Windows",
+            "os": "Windows 10.0",
+            "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36"
+        }
+    },
 ]
 
 const Render_Sessions = function ({ items }) {
@@ -12,8 +39,8 @@ const Render_Sessions = function ({ items }) {
         <table class="listExchange__table table">
             <thead class="listExchange__table-head">
                 <tr class="listExchange__table-row">
-                    <th class="listExchange__table-name disable-tableName" style="justify-content: start;">Название</th>
-                    <th class="listExchange__table-coins disable-tableName">Коины</th>
+                    <th class="listExchange__table-name disable-tableName" style="justify-content: start;">Браузер</th>
+                    <th class="listExchange__table-coins disable-tableName">Платформа</th>
                     <th class="listExchange__table-coins disable-tableName">Действия</th>
                 </tr>
             </thead>
@@ -23,12 +50,22 @@ const Render_Sessions = function ({ items }) {
                         return (
                             <div>
                                 <tr class="table_row listExchange__table-row">
-                                    <td class="listExchange__table-name" style="justify-content: start;">{item?.name}</td>
-                                    <td class="listExchange__table-coins">
-                                    </td>
+                                    <td class="listExchange__table-name" style="justify-content: start;">{item?.info?.browser}</td>
+                                    <td class="listExchange__table-coins">{item?.info?.platform}</td>
                                     <td class="listExchange__table-btn">
                                         <div class="btn_border-wrap mY-auto h100">
-                                            <button class="btn_border bgMW">
+                                            <button class="btn_border bgMW"
+                                                onclick={async () => {
+                                                    let answer = await front.Services.functions.sendApi(`/api/MyInfo`, {
+                                                        action: "delete",
+                                                        _id: item?._id
+                                                    })
+
+                                                    if (answer.error) {
+                                                        alert(answer.error)
+                                                        return
+                                                    }
+                                                }}>
                                                 Удалить
                                             </button>
                                         </div>
@@ -37,14 +74,23 @@ const Render_Sessions = function ({ items }) {
                                 <div class="body-card">
                                     <div class="bodyCard__container">
                                         <div class="bodyCard__container__main-block" style="flex-direction: column">
-                                            <div class="bodyCard__container_font-size pt-10">{item?.name}</div>
-                                            <div class="bodyCard__container_font-size pt-20 coins_wrap">
-
-                                            </div>
+                                            <div class="bodyCard__container_font-size pt-10">{item?.info?.browser}</div>
+                                            <div class="bodyCard__container_font-size pt-20 coins_wrap">{item?.info?.platform}</div>
                                         </div>
                                         <div class="bodyCard__container__btn-block w100 pt-10 pb-10">
                                             <div class="btn_border-wrap bodyCard__container_btn_size mY-auto h100">
-                                                <button class="btn_border bgMW">
+                                                <button class="btn_border bgMW"
+                                                    onclick={async () => {
+                                                        let answer = await front.Services.functions.sendApi(`/api/MyInfo`, {
+                                                            action: "delete",
+                                                            _id: item?._id
+                                                        })
+
+                                                        if (answer.error) {
+                                                            alert(answer.error)
+                                                            return
+                                                        }
+                                                    }}>
                                                     Удалить
                                                 </button>
                                             </div>

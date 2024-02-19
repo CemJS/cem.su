@@ -50,8 +50,8 @@ export default function () {
 
                     let answer = await front.Services.functions.sendApi(`/api/MyInfo`, {
                         action: "changePassword",
-                        pass: Static.form.change_pass.pass.value,
-                        new_pass: Static.form.change_pass.new_pass.value
+                        password: Static.form.change_pass.pass.value,
+                        newPassword: Static.form.change_pass.new_pass.value
                     })
 
                     if (answer.error) {
