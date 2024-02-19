@@ -1,6 +1,7 @@
 import { Cemjsx, front, Fn, Static, Func } from "cemjs-all"
 
 export default function () {
+
     return (
         <div>
             <div>Безопасность</div>
@@ -67,20 +68,67 @@ export default function () {
 
             <div>Вы можете удалить свой профиль</div>
 
-            <button
+
+            <div>
+                {
+                    front.Variable.myInfo?.deleteDate
+                        ?
+                        <div>Профиль будет удален: {front.Services.functions.timeStampToDate(front.Variable.myInfo?.deleteDate, ".")}
+
+                            <button
+                                class={["btn", "w100"]}
+                                onclick={async () => {
+
+                                    let answer = await front.Services.functions.sendApi(`/api/MyInfo`, { action: "recoverAccount" })
+
+                                    if (answer.error) {
+                                        alert(answer.error)
+                                        return
+                                    }
+                                }}>Востановить профиль        </button>
+                        </div>
+                        :
+
+                        <div>
+
+                            <button
+                                class={["btn", "w100"]}
+                                onclick={async () => {
+                                    let answer = await front.Services.functions.sendApi(`/api/MyInfo`, { action: "deleteAccount" })
+
+                                    if (answer.error) {
+                                        alert(answer.error)
+                                        return
+                                    }
+                                }}>Удалить профиль</button>
+                        </div>
+
+                }
+
+            </div>
+            {/* <button
                 class={["btn", "w100"]}
                 onclick={async () => {
-                    let answer = await front.Services.functions.sendApi(`/api/Users`, {
-                        action: "delete"
-                    })
+                    let data = { action: "deleteAccount" }
+                    if (front.Variable.myInfo?.deleteDate) {
+                        data.action = "deleteAccount222222222"
+                    }
+                    let answer = await front.Services.functions.sendApi(`/api/myInfo`, data)
 
                     if (answer.error) {
                         alert(answer.error)
                         return
                     }
                 }}>
-                Удалить профиль
-            </button>
+                {
+                    front.Variable.myInfo?.deleteDate
+                        ?
+                        "Востановить профиль"
+                        :
+                        "Удалить профиль"
+
+                }
+            </button> */}
 
 
         </div>
