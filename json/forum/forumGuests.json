@@ -1,0 +1,62 @@
+[
+  {
+    "image": "/contents/forum/guests/guest1.jpg",
+    "name": "Александр Бражников",
+    "desc": "РАКИБ",
+    "href": "https://youtu.be/Ga7Ykwoi9WU"
+  },
+  {
+    "image": "/contents/forum/guests/guest2.jpg",
+    "name": "Владислав Мартынов",
+    "desc": "Автор курса КриптоИнвестор",
+    "href": "https://www.youtube.com/watch?v=VgiBuv63vE8"
+  },
+  {
+    "image": "/contents/forum/guests/guest3.jpg",
+    "name": "Владимир Туров",
+    "desc": "Turov Invest",
+    "href": "https://youtu.be/qahwkOAB0pg"
+  },
+  {
+    "image": "/contents/forum/guests/guest4.jpg",
+    "name": "Наталия Амелин",
+    "desc": "Директор фонда Genesi в Metis",
+    "href": "https://youtu.be/Wzo9Cv5xDFw"
+  },
+  {
+    "image": "/contents/forum/guests/guest5.jpg",
+    "name": "Ян Кривоносов",
+    "desc": "CEO Crypto Emergency",
+    "href": "https://youtu.be/Lz1_UPfV070"
+  },
+  {
+    "image": "/contents/forum/guests/guest6.jpg",
+    "name": "Алексей Зюзин",
+    "desc": "Организатор Crypto Summit",
+    "href": "https://youtu.be/iqTQ7zYR5DM"
+  },
+  {
+    "image": "/contents/forum/guests/guest7.jpg",
+    "name": "Денис Магданов",
+    "desc": "DUMA NETWORK",
+    "href": "https://youtu.be/EQ-nViuTyTw"
+  },
+  {
+    "image": "/contents/forum/guests/guest8.jpg",
+    "name": "Андрей Тугарин",
+    "desc": "Управляющий партнер GMT Legal",
+    "href": "https://youtu.be/F57YEI2IfSs"
+  },
+  {
+    "image": "/contents/forum/guests/guest9.jpg",
+    "name": "Сергей Павлович",
+    "desc": "Канал ЛЮДИ PRO",
+    "href": "https://youtu.be/aeZfsdraVGo"
+  },
+  {
+    "image": "/contents/forum/guests/guest10.png",
+    "name": "Владимир Смеркис",
+    "desc": "Директор Binance в России",
+    "href": "https://www.youtube.com/watch?v=2DwcE2PalSQ"
+  }
+]

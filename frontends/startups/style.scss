@@ -496,6 +496,9 @@ $tokenomicaBack: (
   &_dots {
     display: flex;
     justify-content: center;
+    &_disabled {
+      max-height: 0;
+    }
   }
 
   &_dot {
