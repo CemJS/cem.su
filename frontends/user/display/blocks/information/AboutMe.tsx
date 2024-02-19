@@ -50,7 +50,7 @@ export default function () {
                             <div class="user__info-short">
                                 <span>Зарегистрирован</span>
                                 <div>
-                                    <div>{Static.record?.information?.dateCreate}</div>
+                                    <div>{formatDate(Static.record?.information?.dateCreate)}</div>
                                     {/* <input readonly="true" value={Static.record?.information?.dateCreate ? formatDate(Static.record?.information?.dateCreate) : ""} /> */}
                                 </div>
                             </div>
