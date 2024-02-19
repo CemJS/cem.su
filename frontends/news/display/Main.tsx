@@ -28,13 +28,13 @@ const HeaderBack = function ({ title }) {
 
 export default function () {
     return (
-        <section>
+        <div>
             <HeaderBack title="Новости" />
             <div class="news">
                 {
                     Static.records.map((item, index) => {
                         return (
-                            <a class="news__item"
+                            <div class="news__item"
                                 init={($el: any) => {
                                     if (index == Static.records?.length - 1) {
                                         const observer = new IntersectionObserver((entries) => {
@@ -69,8 +69,8 @@ export default function () {
                                         action: "show",
                                         id: item._id
                                     }), listener)
-                                    Static.headerBackTitle = item.title
-                                    Static.headerBackUrl = "/news"
+                                    // Static.headerBackTitle = item.title
+                                    // Static.headerBackUrl = "/news"
                                     Fn.linkChange(`/news/show/${item._id}`)
                                 }}
 
@@ -93,11 +93,11 @@ export default function () {
                                         <i class="i i-comment"></i>{item.statistic.comments}
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         )
                     })
                 }
             </div>
-        </section>
+        </div>
     )
 }

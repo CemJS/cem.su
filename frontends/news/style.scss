@@ -205,3 +205,25 @@
   }
 
 }
+
+.cat {
+  position: relative;
+
+  &-tabs {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    &__item {
+      white-space: nowrap;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 1.3rem;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      background: #363B4B;
+      font-weight: 500;
+      transition: var(--tran-03);
+    }
+  }
+}

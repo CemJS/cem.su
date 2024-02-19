@@ -57,6 +57,20 @@ export default function () {
         Модалка редактирования "Мои интересы"
       </button>
 
+      {/* модалка редактирования  -> передаем object "workItem" о пользователе */}
+      <button
+        class="btn"
+        onclick={() => Fn.initOne("modalUserWorkPlace", {
+          work: {
+            title: "Спорт",
+            description: "Люблю бегать по вечерам, утром для меня это непосильно ^_^",
+            period: "2021-2022"
+          }
+        })}
+      >
+        Модалка редактирования "Мои места работа"
+      </button>
+
       <button
         class="btn_border mt-10"
         onclick={() => {
