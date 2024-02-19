@@ -7,7 +7,7 @@ import dots from "@svg/questions/dots.svg"
 export default function () {
 
     return (
-        <div class="block-one c-container">
+        <div class="block-one">
             <div class="subscribers__header">
                 <h2 style="font-size: 30px; font-weight: 500;">
                     Социальные сети</h2>

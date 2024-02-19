@@ -5,7 +5,7 @@ import Interests from "./Interests"
 export default function () {
     Fn.log('=f35d19=', Static.record)
     return (
-        <div class="block-one c-container">
+        <div class="block-one">
             <h2>Личная информация</h2>
             <div class="user__info">
                 <AboutMe />

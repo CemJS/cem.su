@@ -5,7 +5,7 @@ import Card from "./Card"
 
 export default function () {
     return (
-        <div class="block-one c-container">
+        <div class="block-one">
             <div class="feed-main-block">
                 <div class="user-feed">
                     <div class="user-feed__block">

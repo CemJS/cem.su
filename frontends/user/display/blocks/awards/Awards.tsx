@@ -3,7 +3,7 @@ import AwardCreateDate from "./AwardCreateDate"
 
 export default function () {
     return (
-        <div class="block-one c-container">
+        <div class="block-one">
             <h2>Полученные награды</h2>
             <div class="user-awards__main-block">
                 <div class="user-awards__body">
