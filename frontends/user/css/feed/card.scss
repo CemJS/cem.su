@@ -1,0 +1,18 @@
+.feed-card {
+    &__item {
+        width: 100%;
+        max-width: 1024px;
+        border-radius: 15px;
+        background: #2B3040;
+        border: 1px solid #353C50;
+        padding: 25px 0px;
+        position: relative;
+        margin-bottom: 15px;
+        padding-bottom: 0;
+        padding-top: 2px !important;
+    }
+}
+
+.card-position {
+    position: relative;
+}

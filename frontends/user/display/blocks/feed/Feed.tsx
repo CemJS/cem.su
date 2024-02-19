@@ -1,5 +1,6 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all"
 import Tiles from "./Tiles"
+import Card from "./Card"
 
 
 export default function () {
@@ -29,7 +30,7 @@ export default function () {
                                 </li>
                             </ul>
                         </div>
-                        {Static.feedState ? <Tiles /> : null}
+                        {Static.feedState ? <Tiles /> : <Card />}
                     </div>
                 </div>
             </div>
