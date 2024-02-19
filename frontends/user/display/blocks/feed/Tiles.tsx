@@ -6,32 +6,26 @@ export default function () {
 
     return (
         <div class='feed-tiles'>
-        {Static.record?.feed?.map((item: any, key: number) => {
-            // Fn.log('=b56954=', item)
-            return (
-                <a key={key} class="feed-tiles__item">
-                    <figure class="feed-tiles__card">
-                        {item?.media ?
+            {Static.record?.feed?.map((item: any, key: number) => {
+                // Fn.log('=b56954=', item)
+                return (
+                    <a key={key} class="feed-tiles__item">
+                        <figure class="feed-tiles__card">
                             <div class='video__container'>
-                                {item?.media?.map((el: any, index: number) => {
-                                    return (
-                                        <div>
-                                            <img src={play_btn} class="img-tiles" />
-                                            {el.type === 'video' ? 
-                                                <video playsinline="true" poster="/contents/image/posterGB.png"
-                                                preload="none" src={"/assets/upload/posts/" + el.name} /> 
-                                                :
-                                                <img src={"/assets/upload/posts/" + el.name} />
-                                            }
-                                        </div>
-                                    )
-                                })}
+                                <div>
+                                    <img src={play_btn} class="img-tiles" />
+                                    {item?.media[0]?.type === 'video' ?
+                                        <video playsinline="true" poster="https://crypto-emergency.com/assets/image/bfb4bd06106cea11acbc.jpg"
+                                            preload="none" src={"/assets/upload/posts/" + item?.media[0]?.name} />
+                                        :
+                                        <img src={"/assets/upload/posts/" + item?.media[0]?.name} />
+                                    }
+                                </div>
                             </div>
-                            : null}
-                    </figure>
-                </a>
-            )
-        })}
-    </div>
+                        </figure>
+                    </a>
+                )
+            })}
+        </div>
     )
 }
