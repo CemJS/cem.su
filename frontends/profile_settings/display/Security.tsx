@@ -48,7 +48,8 @@ export default function () {
                 onclick={async () => {
                     if (!Static.form.change_pass.isValid) return
 
-                    let answer = await front.Services.functions.sendApi(`/api/Users`, {
+                    let answer = await front.Services.functions.sendApi(`/api/MyInfo`, {
+                        action: "changePassword",
                         pass: Static.form.change_pass.pass.value,
                         new_pass: Static.form.change_pass.new_pass.value
                     })
