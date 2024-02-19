@@ -11,6 +11,11 @@
         padding-bottom: 0;
         padding-top: 2px !important;
     }
+
+    &__header {
+        display: flex;
+
+    }
 }
 
 .card-position {

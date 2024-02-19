@@ -9,8 +9,8 @@ export default function () {
   return (
 
     <div class="c-main__body">
-      <div>
-        <div class="c-userpreview c-container">
+      <div class="wrapper">
+        <div class="c-userpreview">
           <Preview />
           <ShortPreview />
         </div>
