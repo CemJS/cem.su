@@ -11,7 +11,7 @@ import Gallery from "./iconsCategories/Gallery"
 
 export default function () {
     return (
-        <div class="c-usercategories  c-container">
+        <div class="c-usercategories">
             <Feed />
             <Information />
             <Questions />
