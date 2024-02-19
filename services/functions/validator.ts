@@ -26,6 +26,14 @@ export const validNickName = function (nickname: string) {
   return true;
 };
 
+export const validEmailOrNickName = function (emailOrNick: string) {
+  if (emailOrNick.length < 5 || emailOrNick.length > 30) {
+    return false;
+  }
+
+  return true;
+}
+
 export const validName = function (name: string) {
   if (name.length < 1) {
     return false;

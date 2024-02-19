@@ -47,6 +47,12 @@ front.func.sendCode = async function () {
     return
 }
 
+front.func.checkForm = function () {
+    if (Static.currentStep == 1) {
+
+    }
+}
+
 front.loader = () => {
     Static.steps = [1, 2, 3]
     Static.currentStep = 1

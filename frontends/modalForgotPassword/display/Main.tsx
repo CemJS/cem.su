@@ -30,13 +30,27 @@ const Step1 = function () {
                         oninput={(e: any) => {
                             Static.form.emailOrNickName.value = e.target.value;
                             front.Services.functions.formEmailOrNickName(this.Static.form.emailOrNickName)
-                            Func.checkForm()
+                            // Func.checkForm()
                         }} />
                     <div class="modalWindow_field_labelLine">
                         <i class="i i-user"></i>
                         <span>{Static.form.emailOrNickName.placeholder}</span>
                     </div>
                     <p class="modalWindow_field__status" style="color:#E84142">{Static.form.emailOrNickName.error}</p>
+
+                    {
+                        Static.form.emailOrNickName.disable ?
+                            <span
+                                class="modalWindow_field__edit"
+                                onclick={() => {
+                                    Func.changeEmail()
+                                }}
+                            >
+                                <i class="i i-edit"></i>
+                            </span>
+
+                            : null
+                    }
                 </div>
             </div>
 
