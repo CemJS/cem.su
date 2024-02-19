@@ -1,0 +1,8 @@
+{
+  "regex": "/profile/settings",
+  "front": [
+    "header",
+    "profile_settings",
+    "menu"
+  ]
+}
