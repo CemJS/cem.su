@@ -15,35 +15,40 @@ export default function () {
                         <div class="card-position">
                             <div class="feed-card__item__header">
                                 <a href={`/user/${item?.id}`} class='feed-card__avatar' style="padding-left: 0;">
-                                    <div class="c-avataricon icon-user-answer">
+                                    <div class="feed-card__avatar__icon">
                                         <img class="c-avataricon__photo"
-                                            src={item?.avatar?.name ?
-                                                `/assets/upload/avatar/${item?.avatar?.name}`
+                                            src={Static.record?.avatar?.name ?
+                                                `/assets/upload/avatar/${Static.record?.avatar?.name}`
                                                 :
                                                 avatarDefault
                                             } />
                                         <img class="c-avataricon__frame"
-                                            src={item?.frame?.name ?
-                                                `/contents/images/lenta/${item?.frame?.name}`
+                                            src={Static.record?.frame?.name ?
+                                                `/contents/images/lenta/${Static.record?.frame?.name}`
                                                 :
                                                 defaultGray} />
                                         <div>
                                             <div class="c-avataricon__level user_avatar_level">
                                                 <img src={leveGray} />
-                                                <span>{item?.statistics?.level}</span>
+                                                <span>{Static.record?.statistics?.level}</span>
                                             </div>
                                             <div style="display: none;" class="c-avataricon__status c-avataricon__status--online avatar_user_online"></div>
                                             <div class="c-avataricon__status c-avataricon__status--offline avatar_user_offline"></div>
                                         </div>
                                     </div>
-                                    <div class="card-user__info">
-                                        <p>{Static.record?.nickname}</p>
+                                    <div class="feed-card__avatar__name-user">
+                                        <span>{Static.record?.nickname}</span>
                                     </div>
                                 </a>
                                 <div class="questions-table__optional">
                                     <div class="questions-table__optional__icon">
                                         <img src={dots} />
                                     </div>
+                                </div>
+                            </div>
+                            <div class='feed-card__item__body'>
+                                <div class="feed-card__item__body__image-container">
+                                    <img src="https://crypto-emergency.com/assets/upload/posts/7fdb6ae00dfc221ff4366386eef4d132.png" />
                                 </div>
                             </div>
                         </div>
