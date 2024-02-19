@@ -1,4 +1,16 @@
-import { validLogin, validEmail, validNickName, validLang, validCountry, validPassword, validConfirmPassword, validName, validComment, validTelegram } from "./validator";
+import {
+  validLogin,
+  validEmail,
+  validNickName,
+  validLang,
+  validCountry,
+  validPassword,
+  validConfirmPassword,
+  validName,
+  validComment,
+  validTelegram,
+  validEmailOrNickName
+} from "./validator";
 
 interface Form {
   value: string;
@@ -15,8 +27,16 @@ export const formEmailOrNickName = function (form: Form) {
     form.valid = false;
     return false;
   }
-
-  let check = validLogin(form.value) || validEmail(form.value);
+  let check = validEmailOrNickName(form.value);
+  if (check) {
+    form.error = false;
+    form.valid = true;
+    return true;
+  } else {
+    form.error = "Некорректно введённые данные!";
+    form.valid = false;
+    return false;
+  }
 }
 
 export const formLogin = function (form: Form) {
