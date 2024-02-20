@@ -18,7 +18,16 @@ const HeaderBack = function ({ title }) {
 
                     <span
                         class="back-ellipsis"
-                        onclick={() => Fn.initOne("modalTools", {})}
+                        onclick={() => Fn.initOne("modalTools", {
+                            records: [
+                                {
+                                    name: "Скопировать URL"
+                                },
+                                {
+                                    name: "Поделиться"
+                                }
+                            ]
+                        })}
                     ></span>
                 </div>
             </div>

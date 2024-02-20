@@ -1,5 +1,7 @@
 import { Cemjsx } from "cemjs-all";
 
 export default function () {
-  return <div className="wallet"></div>;
+  return (
+    <div class="wallet"></div>
+  );
 }

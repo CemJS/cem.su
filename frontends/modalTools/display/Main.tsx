@@ -15,16 +15,20 @@ export default function () {
                     </div>
                 </div>
                 <div class="bottomSheet-content__body">
-                    <h2 class="bottomSheet-title">Tools</h2>
-                    <ul class="bottomSheet-list" role="list"
-                        onclick={() => {
-                            console.log('=fbc11f=', Ref.bottomSheetContent.offsetHeight)
-                        }}
-                    >
-                        <li class="bottomSheet-list__item">Скопировать URL</li>
-                        <li class="bottomSheet-list__item">Поделиться</li>
+                    {/* <h2 class="bottomSheet-title">Tools</h2> */}
+                    <ul class="bottomSheet-list" role="list">
+                        {
+                            Static.records.map((item, index) => {
+                                return (
+                                    <li class="bottomSheet-list__item">{item.name}</li>
+                                )
+                            })
+                        }
 
-                        <li class="bottomSheet-list__item mt-15">
+                        <li
+                            class="bottomSheet-list__item mt-15"
+                            onclick={() => { Func.close() }}
+                        >
                             Отмена
                         </li>
                     </ul>

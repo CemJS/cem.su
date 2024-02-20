@@ -36,7 +36,17 @@ export default function () {
                                 e.preventDefault()
                                 Fn.initOne("modalAuthtorization", {})
                             }
-                            Fn.linkChange("/post")
+
+                            Fn.initOne("modalTools", {
+                                records: [
+                                    {
+                                        name: "Опубликовать пост"
+                                    },
+                                    {
+                                        name: "Задать вопрос"
+                                    }
+                                ]
+                            })
                         }}
                     >
                         <i class={["i", `i-add`]}></i>
