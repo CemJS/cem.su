@@ -8,7 +8,7 @@ front.listener.finish = () => {
 front.func.show = function ($el: HTMLElement) {
   setTimeout(() => {
     $el.classList.add("sidebar_active");
-    front.Variable.$el.body.style.overflow = 'hidden';
+    front.Variable.$el.body.style.overflow = "hidden";
   }, 100);
 };
 
@@ -16,7 +16,7 @@ front.func.close = function () {
   Ref.sidebar.classList.remove("sidebar_active");
   setTimeout(() => {
     Fn.clearData();
-    front.Variable.$el.body.style.overflow = 'auto';
+    front.Variable.$el.body.style.overflow = "auto";
   }, 500);
 };
 
@@ -86,7 +86,7 @@ front.loader = async () => {
     {
       icon: "faq",
       name: "Мои активы",
-      link: "#",
+      link: "/user/wallet",
     },
     {
       icon: "faq",
@@ -113,17 +113,17 @@ front.loader = async () => {
         {
           name: "О нас",
           link: "/about",
-          target: false
+          target: false,
         },
         {
           name: "Карьера",
           link: "/career",
-          target: false
+          target: false,
         },
         {
           name: "Lite Paper",
           link: "/contents/docs/LitePaperRu.pdf",
-          target: true
+          target: true,
         },
       ],
     },
@@ -134,7 +134,7 @@ front.loader = async () => {
         {
           name: "Контакты",
           link: "/contacts",
-          target: false
+          target: false,
         },
       ],
     },
@@ -145,17 +145,17 @@ front.loader = async () => {
         {
           name: "Пользовательское соглашение",
           link: "/terms-of-service",
-          target: false
+          target: false,
         },
         {
           name: "Политика использования данных",
           link: "/data-policy",
-          target: false
+          target: false,
         },
         {
           name: "Политика cookies",
           link: "/cookies-policy",
-          target: false
+          target: false,
         },
       ],
     },

@@ -1,25 +1,991 @@
-import { Cemjsx, front, Func, Static, Fn } from "cemjs-all"
-import Navigation from "./navigation"
-
+import { Cemjsx, front, Func, Static, Fn, Ref } from "cemjs-all";
+import Navigation from "./navigation";
 
 front.listener.finish = () => {
-    return
-}
+  return;
+};
 
 front.func.test = () => {
-    return
-}
+  return;
+};
+
+front.func.setCurrentPage = (pageNum) => {
+  Static.currentPage = pageNum;
+  let prevRange = (pageNum - 1) * Static.paginationLimit;
+  let currRange = pageNum * Static.paginationLimit;
+  Static.limitArray = [];
+  Static.data.forEach((item, index) => {
+    if (index >= prevRange && index < currRange) {
+      Static.limitArray.push(item);
+    }
+  });
+  return;
+};
+
+front.func.pagination = (pageNum) => {
+  if (Static.currentPage == Static.End && Static.currentPage <= Static.lastPage - 2) {
+    //Показывает блок с первыми 2 страницами при клике на последнюю страницу среза
+    Ref.first_two.classList.remove("hidden");
+    Static.Begin += 2; //При клике на последний элемент среза происходит сдвиг пагинатора на 2
+    Static.End += 2;
+  } else if (Static.currentPage == Static.End - 1 && Static.currentPage >= 5 && Static.currentPage <= Static.lastPage - 2) {
+    Static.Begin += 1;
+    Static.End += 1;
+  } else if (Static.Begin == 2 && Static.currentPage <= 4) {
+    Ref.first_two.classList.add("hidden");
+    Static.Begin -= 2;
+    Static.End -= 2;
+  } else if (Static.Begin == 3 && Static.currentPage <= 5) {
+    Static.Begin -= 1;
+    Static.End -= 1;
+  } else if (Static.Begin >= 4 && Static.currentPage == Static.Begin + 2) {
+    Static.Begin -= 1;
+    Static.End -= 1;
+  } else if (Static.Begin >= 4 && Static.currentPage == Static.Begin + 1) {
+    Static.Begin -= 2;
+    Static.End -= 2;
+  }
+
+  if (Static.currentPage >= Static.lastPage - 3) {
+    Ref.two_last.classList.add("hidden");
+  } else if (Static.currentPage <= Static.lastPage - 2) {
+    Ref.two_last.classList.remove("hidden");
+  }
+  return;
+};
 
 front.loader = () => {
-    return
-}
+  Static.data = [
+    {
+      img: "transaction_newmember_bonus",
+      type: "Awards1",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards2",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards4",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards5",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards6",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards13",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards14",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards15",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards16",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards17",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards18",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards22",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards13",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards14",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards2",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3333",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards5",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards6",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards13",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards14",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards2",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards4",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards5",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards6",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards13",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards14",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards2",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards4",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards5",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards6",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards13",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards14",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards2",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards4",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards5",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards6",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards13",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards14",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards2",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards4",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards5",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards6",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards13",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards14",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards2",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards4",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards5",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards6",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards13",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards14",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards2",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards4",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards5",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards6",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards13",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards14",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards2",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards3",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards4",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards5",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards6",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards7",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards8",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards9",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards10",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards11",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+    {
+      type: "Awards12",
+      date: "2023-07-20",
+      transaction: "Bonus",
+      sum: "0,5",
+      status: "done",
+    },
+  ];
+  Static.paginationLimit = 10;
+  Static.pageCount = Math.ceil(Static.data.length / Static.paginationLimit);
+
+  Static.outertDigitsNumber = 2;
+  Static.Begin = 0;
+  Static.End = 5;
+  Static.currentPage = 1;
+  Static.Pages = [];
+  for (let i = 1; i <= Static.pageCount; i++) {
+    Static.Pages.push({ number: i, class: "pagination-number " });
+  }
+  Static.test = 1;
+
+  Func.setCurrentPage(1);
+  Static.Pages[0].class += "active";
+  Static.lastPage = Static.Pages.at(-1).number;
+  return;
+};
 
 front.display = () => {
-    return (
-        <div>
-            <Navigation />
-        </div>
-    )
-}
+  return (
+    <div>
+      <Navigation />
+    </div>
+  );
+};
 
-export { front }
+export { front };
