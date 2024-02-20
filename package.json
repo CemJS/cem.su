@@ -10,7 +10,6 @@
     "dev": "start ./node_modules/cemjs-all/servecemjs.exe && node node_modules/cemjs-all/esbuild.mjs --runServe --runDev"
   },
   "dependencies": {
-    "@2gis/mapgl": "^1.45.1",
     "cemjs-all": "^1.1.14",
     "moment": "^2.30.1",
     "uuid": "^9.0.1",

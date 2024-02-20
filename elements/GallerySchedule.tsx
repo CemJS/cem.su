@@ -1,9 +1,12 @@
 import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
 import back from "@svg/icon/prev.svg";
 import next from "@svg/icon/next.svg";
+import schedule3 from "@images/forum/schedule3.png";
+import schedule4 from "@images/forum/schedule4.png";
 
+const key = Math.floor(Math.random() * 1000);
 const GalleryClassName = "gallery";
-const GalleryClassNamePartners = "gallery_images";
+const GalleryClassNamePartners = "gallery_partners";
 const GalleryLineClassName = "gallery_line";
 const GallerySlideClassName = "gallery_slide";
 const GalleryGraggableClassName = "gallery_draggable";
@@ -49,7 +52,7 @@ class Gallery {
     this.next = next;
     this.prev = prev;
     this.firstManage = false;
-    this.countSlides = 5;
+    this.countSlides = 1;
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
@@ -79,6 +82,10 @@ class Gallery {
     this.destroyEvents();
     this.setEvents();
     this.resizeGallery();
+
+    setTimeout(() => {
+      this.resizeGallery();
+    }, 500);
     // setInterval(this.clickNext, 4000);
   }
 
@@ -112,15 +119,7 @@ class Gallery {
     this.dotNodes = this.dots.querySelectorAll(`.${GalleryDotClassName}`);
   }
 
-  adaptive() {
-    if (window.innerWidth < 768) {
-      this.countSlides = 2;
-    } else if (window.innerWidth < 400) {
-      this.countSlides = 1;
-    } else {
-      this.countSlides = 3;
-    }
-  }
+  adaptive() {}
 
   setParameters() {
     this.adaptive();
@@ -133,24 +132,21 @@ class Gallery {
     this.setStyleTransition();
     this.lineNode.style.width = `${this.size * (this.widthContainer + this.settings.margin)}px`;
     this.setStylePosition();
-    Array.from(this.lineNode.children).forEach(async (slideNode: any, i) => {
-      let width = (this.widthContainer - this.settings.margin * (this.countSlides - 1)) / this.countSlides;
+    Array.from(this.lineNode.children).forEach((slideNode: any, i) => {
+      let width = (this.widthContainer - 10 * (this.countSlides - 1)) / this.countSlides;
       if (this.currentSlide + 1 == this.size) {
         let rest = this.elementCount - this.countSlides * (this.size - 1);
         if (i + 1 > (this.size - 1) * this.countSlides) {
-          width = (this.widthContainer - this.settings.margin * (rest - 1)) / rest;
+          width = (this.widthContainer - 10 * (rest - 1)) / rest;
         }
       }
+      // if (this.currentSlide + 1 == this.size) {
+      //   Fn.log("=26a618=", i > (this.size - 1) * this.countSlides);
+      //   Fn.log("=1977bc=", i);
+      // }
       slideNode.style.minWidth = `${width}px`;
       slideNode.style.maxWidth = `${width}px`;
       slideNode.style.marginRight = `${this.settings.margin}px`;
-      slideNode.style.minHeight = `${Static.height}px`;
-      slideNode.style.maxHeight = `${Static.height}px`;
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          i == 0 ? (Static.height = slideNode.offsetHeight) : null;
-        }, 200)
-      );
     });
     this.manageHTML();
   }
@@ -268,14 +264,14 @@ class Gallery {
     this.setStylePosition();
 
     //change active slide
-    if (dragShift > 5 && dragShift > 0 && !this.currentSlideWasChanged) {
+    if (dragShift > 5 && dragShift > 0 && !this.currentSlideWasChanged && this.currentSlide > 0) {
       this.currentSlideWasChanged = true;
-      this.clickPrev();
+      this.currentSlide = this.currentSlide - 1;
     }
 
-    if (dragShift < -5 && dragShift < 0 && !this.currentSlideWasChanged) {
+    if (dragShift < -5 && dragShift < 0 && !this.currentSlideWasChanged && this.currentSlide < this.size - 1) {
       this.currentSlideWasChanged = true;
-      this.clickNext();
+      this.currentSlide = this.currentSlide + 1;
     }
   }
 
@@ -325,43 +321,52 @@ function debounce(func, time = 100) {
 export { Gallery };
 
 export const init = function (element: HTMLElement) {
-  Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextTeam, Ref.prevTeam, {
-    margin: 30,
+  Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextGallery, Ref.prevGallery, {
+    margin: 10,
   });
   // this.init();
 };
 
-export const DisplayImages = function ({ items, buttons = true, dots = true }) {
+export const DisplaySchedule = function ({ items }) {
   {
     Ref.slider ? init(Ref.slider) : null;
   }
-  if (!items || !items?.length) {
-    return <div />;
-  }
   return (
-    <div
-      class={GalleryClassNamePartners}
-      style="position: relative;"
-    >
+    <div style="position: relative;">
       <div
-        init={init}
         ref="slider"
+        init={init}
       >
-        <div class="gallery_line">{items}</div>
+        <div class="gallery_line">
+          <div class="gallery_slide">
+            <img
+              src={schedule3}
+              alt="Расписание 3 июня"
+              class="forum__info-schedule"
+            />
+          </div>
+          <div class="gallery_slide">
+            <img
+              src={schedule4}
+              alt="Расписание 4 июня"
+              class="forum__info-schedule"
+            />
+          </div>
+        </div>
       </div>
       <div
-        class={["gallery_dots", dots ? null : "opacity gallery_dots_disabled"]}
+        class="gallery_dots"
         ref="galleryDots"
       ></div>
       <button
-        ref="prevTeam"
-        class={["slide__btn slide__btn_prev", buttons ? null : "opacity"]}
+        ref="prevGallery"
+        class="slide__btn slide__btn_prev"
       >
         <img src={back} />
       </button>
       <button
-        ref="nextTeam"
-        class={["slide__btn slide__btn_next", buttons ? null : "opacity"]}
+        ref="nextGallery"
+        class="slide__btn slide__btn_next"
       >
         <img src={next} />
       </button>

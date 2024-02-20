@@ -478,7 +478,7 @@ $tokenomicaBack: (
     display: flex;
     justify-content: center;
     & img {
-      pointer-events: none;
+      user-select: none;
       object-fit: cover;
       width: 100%;
       min-height: 434px;

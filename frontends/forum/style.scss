@@ -326,7 +326,40 @@
 // }
 
 .forum {
-  background-color: var(--neutral-900);
+  background: url("./images/forum/dotsBg.png") no-repeat top 926px left calc(50% + 570px) / 1200px;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: url("./images/forum/bgImage1.png") no-repeat top 5319px left calc(0) / 300px auto, url("./images/forum/bgImage2.png") no-repeat top 4819px right calc(0) / 860px auto,
+      url("./images/forum/bgImage3.png") no-repeat top 9392px right calc(0) / 300px auto, url("./images/forum/bgImage4.png") no-repeat bottom 0 center/101% auto;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: -1%;
+    left: 50%;
+    transform: translateX(-50%);
+    right: 0;
+    width: 100%;
+    max-width: 120rem;
+    height: 1040px;
+    background-image: url("./svg/forum/greenLine.svg");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    z-index: 0;
+  }
+  &_color {
+    background-color: var(--neutral-900);
+  }
   &__title {
     font-size: clamp(3rem, 6vw, 5.625rem);
     text-align: center;
@@ -336,17 +369,7 @@
   }
   &__intro {
     position: relative;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("./svg/forum/greenLine.svg");
-      background-repeat: no-repeat;
-      background-position: top;
-      background-size: cover;
-    }
+
     padding-top: 8.3125rem;
     padding-bottom: 6.25rem;
     &-card {
@@ -360,19 +383,21 @@
       border-radius: 2.8125rem;
       gap: 5%;
       background: var(--greenGradient);
+      position: relative;
+      z-index: unset;
     }
     &-img {
       max-width: 44.125rem;
       flex-basis: 50%;
       flex-grow: 0;
       min-width: 50%;
-      z-index: 2;
+      z-index: 3;
       & img {
         width: 100%;
       }
     }
     &-right {
-      z-index: 2;
+      z-index: 3;
     }
     &-title {
       font-size: clamp(0.9rem, 4vw, 2.8125rem);
@@ -396,6 +421,8 @@
     }
   }
   &__info {
+    position: relative;
+    z-index: 2;
     &-wrapper {
       display: flex;
       align-items: center;
@@ -429,7 +456,7 @@
       gap: 1.25rem;
     }
     &-schedule {
-      max-width: 15.625rem;
+      max-width: 18.625rem;
       width: 100%;
     }
     &-cover {
@@ -579,6 +606,10 @@
       }
     }
   }
+  &_z-index {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .speakers {
@@ -683,6 +714,15 @@
   }
 }
 
+@media (max-width: 2000px) {
+  .forum {
+    &::after {
+      top: 0;
+      height: 8%;
+    }
+  }
+}
+
 @media (max-width: 1280px) {
   .forum {
     &__guests {
@@ -744,6 +784,10 @@
 
 @media (max-width: 768px) {
   .forum {
+    &::after {
+      top: 0;
+      height: 6%;
+    }
     &__intro {
       padding-top: 0.625rem;
       padding-bottom: 2.5rem;
@@ -754,6 +798,11 @@
   }
 }
 @media (max-width: 550px) {
+  .forum {
+    &::after {
+      top: -1%;
+    }
+  }
   .speaker {
     margin: 0 auto;
     max-width: 14.5rem;
@@ -770,6 +819,14 @@
   .forum {
     &__theme {
       background: url("./images/forum/text-light.png") no-repeat top -190px center/700px auto;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .forum {
+    &::after {
+      top: -1.3%;
     }
   }
 }

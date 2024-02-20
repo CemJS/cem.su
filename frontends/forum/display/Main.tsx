@@ -137,6 +137,9 @@ export default function () {
               <h3 class="forum__info-title">Расписание форума</h3>
               <div class="forum__info-cover">
                 <img
+                  onclick={() => {
+                    Fn.initOne("modalGallery", { schedule: 1 });
+                  }}
                   src={schedule3}
                   alt="Расписание 3 июня"
                   class="forum__info-schedule"
@@ -208,6 +211,11 @@ export default function () {
               return (
                 <div class="gallery_slide">
                   <img
+                    onclick={() => {
+                      Fn.initOne("modalGallery", {
+                        images: images,
+                      });
+                    }}
                     ref="slide"
                     class="forum__image"
                     src={`/contents/forum/images/${item?.image}`}
@@ -302,10 +310,10 @@ export default function () {
             </span>
           </div>
         </section>
-        <section class="forum__stend">
+        <section class="forum__stend forum_z-index">
           <h2 class="forum__title forum__title_margin">Стенды</h2>
         </section>
-        <section class="forum__guests">
+        <section class="forum__guests forum_z-index">
           <h2 class="forum__title forum__title_margin">Гости Crypto Emergency</h2>
           <div class="forum__guests-list">
             {guests.map((item) => {
@@ -357,7 +365,7 @@ export default function () {
         </div>
       </section>
 
-      <section class="forum__partners">
+      <section class="forum__partners forum_z-index">
         <div class="wrapper wrapper_padding">
           <h2 class="forum__title mY-25">Партнеры</h2>
           <div class="forum__partners-list">
@@ -379,26 +387,20 @@ export default function () {
         </div>
       </section>
 
-      <section class="forum__destination">
-        <h2 class="forum__title">Как добраться?</h2>
-        <div class="forum__map">
-          <a
-            class="dg-widget-link"
-            href="http://2gis.ru/novorossiysk/firm/70000001062874729/center/37.78497576713563,44.712494546339606/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap"
-          >
-            Посмотреть на карте Новороссийска
-          </a>
-          <div class="dg-widget-link">
-            <a href="http://2gis.ru/novorossiysk/firm/70000001062874729/photos/70000001062874729/center/37.78497576713563,44.712494546339606/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=photos">
-              Фотографии компании
-            </a>
+      <section class="forum__destination pb-30 forum_z-index">
+        <div class="wrapper wrapper_padding">
+          <h2 class="forum__title mY-25">Как добраться?</h2>
+          <div class="forum__map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2835.3190646991166!2d37.780930385449935!3d44.713099391189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f1f910735ee6eb%3A0x7a3a071353327c49!2z0YPQuy4g0L3QsNCx0LXRgNC10LbQvdCw0Y8g0JDQtNC80LjRgNCw0LvQsCDQodC10YDQtdCx0YDRj9C60L7QstCwLCAyN9CwLCDQndC-0LLQvtGA0L7RgdGB0LjQudGB0LosINCa0YDQsNGB0L3QvtC00LDRgNGB0LrQuNC5INC60YDQsNC5LCAzNTM5MDA!5e0!3m2!1sru!2sru!4v1708413564534!5m2!1sru!2sru"
+              width="100%"
+              height="700"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
-          <div class="dg-widget-link">
-            <a href="http://2gis.ru/novorossiysk/center/37.784264,44.712441/zoom/17/routeTab/rsType/bus/to/37.784264,44.712441╎Crypto emergency, IT компания?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">
-              Найти проезд до Crypto emergency, IT компания
-            </a>
-          </div>
-          <noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
         </div>
       </section>
     </div>
