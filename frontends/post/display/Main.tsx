@@ -16,7 +16,7 @@ export default function () {
                 Fn.initOne("modalLanguage", {
                   full: true,
                   callback: (lang) => {
-                    Static.data.lang = lang.code;
+                    Static.data.languageCode = lang.code;
                     Static.origName = lang.origName;
                   },
                 });
@@ -57,7 +57,7 @@ export default function () {
                 id="photo"
                 ref="photo"
                 type="file"
-                accept=".jpg, .jpeg, .png, .gif"
+                accept=".jpg, .jpeg, .png, .gif, image/*"
                 multiple="true"
                 onclick={(e) => Fn.log("=193ffa=", e)}
               />
@@ -74,7 +74,7 @@ export default function () {
                 id="video"
                 ref="video"
                 type="file"
-                accept=".mp4, .avi, .mov, .mkv, .avi, .flv"
+                accept=".mp4, .avi, .mov, .mkv, .avi, .flv, video/*"
                 multiple="true"
               />
             </label>

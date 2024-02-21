@@ -5,7 +5,7 @@ front.listener.finish = () => {
   return;
 };
 
-front.func.test = () => {
+front.func.uploadMedia = (file) => {
   return;
 };
 

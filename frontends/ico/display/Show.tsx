@@ -41,21 +41,21 @@ export default function () {
               <div class="icoItem__info-desc">
                 <div class="icoItem__info-desc-item">
                   <div class="icoItem__category">
-                    <span class=" text_important">{Static.record.category}</span>
+                    <span class="text_important">{Static.record.category}</span>
                   </div>
                   <a
-                    class="btn btn_gradient"
+                    class="btn_blue btn_gradient"
                     href={Static.record.siteLink}
                     onclick={Fn.link}
                   >
-                    <span>Website</span>
+                    Website
                   </a>
                   <a
-                    class="btn btn_gradient"
+                    class="btn_blue btn_gradient"
                     href={Static.record.whitePaperLink}
                     onclick={Fn.link}
                   >
-                    <span>WhitePaper</span>
+                    WhitePaper
                   </a>
                 </div>
                 <div class="icoItem__info-desc-item">
