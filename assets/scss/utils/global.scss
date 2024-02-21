@@ -185,6 +185,20 @@
     transform: scale(0.97);
   }
 
+  &_blue {
+    border-radius: var(--btnR);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    white-space: nowrap;
+    @include button(var(--darkBlueGradient), fit-content, 3.2rem, 125%, 1rem, var(--white));
+  }
+
   &_dark {
     padding: 0.5rem 0.6rem;
     border: 1px solid transparent;

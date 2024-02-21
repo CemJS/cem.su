@@ -99,8 +99,8 @@ front.loader = async () => {
   Static.type = "All";
 
   Static.chooseLanguage = {
-    eng_name: "Russian",
-    orig_name: "Русский",
+    engName: "Russian",
+    origName: "Русский",
     code: "ru",
   };
 

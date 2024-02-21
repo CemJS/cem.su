@@ -1,6 +1,7 @@
 import { Cemjsx, Static, Fn, Func } from "cemjs-all"
 
 const RenderListCountries = function ({ countries }) {
+    Fn.log('=95c41e=', countries)
     return (
         <ul class="list modal_scroll" role="list">
             {
@@ -12,7 +13,8 @@ const RenderListCountries = function ({ countries }) {
                                 Func.close()
                             }}
                         >
-                            <span>{item.orig_name}</span>
+                            {/* <span>{item.orig_name}</span> */}
+                            <span>{item.engName}</span>
                         </li>
                     )
                 })

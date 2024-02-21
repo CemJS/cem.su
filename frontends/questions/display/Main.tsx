@@ -107,7 +107,7 @@ const RenderLanguageFilter = () => {
       class="filter"
     >
       <div class="filter__left">
-        <p class="filter__current">{`${Static.chooseLanguage?.eng_name} (${Static.chooseLanguage?.orig_name})`}</p>
+        <p class="filter__current">{`${Static.chooseLanguage?.engName} (${Static.chooseLanguage?.origName})`}</p>
       </div>
       <img
         src={openDrop}
