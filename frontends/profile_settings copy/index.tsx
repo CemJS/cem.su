@@ -26,9 +26,7 @@ front.func.checkForm = async function (key: string) {
 }
 
 front.loader = () => {
-    Static.category = "security"
-    Static.burger = true
-  
+
     Static.form = {}
     Static.form.change_pass = {
         pass: {

@@ -1,0 +1,91 @@
+.security-block {
+    &__input {
+        padding-bottom: 25px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+
+        input {
+            color: white;
+            height: 50px;
+            border-radius: 8px;
+            background-color: #313543;
+            border: 1px solid #44495c;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: 400;
+            color: #9ca2b5;
+            margin-bottom: 12px;
+        }
+
+        &__div {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 60px;
+            border-radius: 10px;
+            border: 1px solid #44495C;
+            background-color: #313543;
+            color: #ffffff;
+            outline: none;
+            white-space: nowrap;
+            overflow: hidden;
+
+            input {
+                color: #fff;
+                padding-left: 50px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+    }
+
+    &__button {
+        position: relative;
+        display: flex;
+        height: 50px;
+        width: 100%;
+        padding: 0;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 14px;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+        border-radius: 10px;
+        border: none;
+        transition: 1s;
+        overflow: hidden;
+        z-index: 0;
+        background: #3bade3;
+        background: linear-gradient(45deg, #3bade3 0%, #576fe6 25%, #9844b7 51%, #ff357f 100%);
+
+        &_inactive {
+            filter: grayscale(1);
+            color: #BEBEBE;
+        }
+    }
+   
+}
+
+.eye-input {
+    position: absolute;
+    filter: invert(64%) sepia(8%) saturate(739%) hue-rotate(189deg) brightness(94%) contrast(91%);
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.icon-input {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    width: 20px;
+    filter: invert(64%) sepia(8%) saturate(739%) hue-rotate(189deg) brightness(94%) contrast(91%);
+}

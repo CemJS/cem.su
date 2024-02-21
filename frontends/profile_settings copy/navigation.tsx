@@ -15,8 +15,8 @@ const IfPage = function () {
 
 export default function () {
   return (
-      <div class="settings">
-        <div class="settings__container">
+      <div class="wrapper profile-main__container">
+        <div class="profile-main__settings">
           <Main />
           <IfPage />
         </div>

@@ -1,30 +1,49 @@
-import { Cemjsx, Static } from "cemjs-all"
+import { Cemjsx, Static, Fn } from "cemjs-all"
 
-Static.listBlockState = true
 let listBtnState: boolean = true
 
 export default function () {
 
     return (
-        <div class="profile-main__settings__list-block">
-            <div class="profile-main__settings__list">
-                <div
-                    onclick={() => { Static.listBlockState = !Static.listBlockState }}
-                    class={Static.listBlockState ? `profile-main__settings__list__item
-                           profile-main__settings__list__item_active` : "profile-main__settings__list__item"} >
-                    <p class="profile-main__settings__list__title">
-                        Социальная сеть
-                    </p>
-                    <div class="profile-main__settings__list__subcategory
-                                profile-main__settings__list__subcategory--active">
-                        <p>Безопасность</p>
+        <div>
+            <div class="settings__list">
+                <div class={["settings__list_container",
+                    Static.burger
+                        ?
+                        "settings__list_active"
+                        :
+                        null]}>
+                    <p class="settings__list_title"
+                        onclick={() => {
+                            Static.burger = !Static.burger
+                        }}>Социальная сеть</p>
+                    <div class={["settings__list_subcategory",
+                        Static.category == "security"
+                            ?
+                            "settings__list_subcategory_active"
+                            :
+                            null
+                    ]}
+                        onclick={() => {
+                            Static.category = "security"
+                        }}>
+                        <a href="/profile/settings/security" onclick={Fn.link}>Безопасность</a>
                     </div>
-                    <div class="profile-main__settings__list__subcategory">
-                        <p>Черный список</p>
+                    <div class={["settings__list_subcategory",
+                        Static.category == "blackList"
+                            ?
+                            "settings__list_subcategory_active"
+                            :
+                            null
+                    ]}
+                        onclick={() => {
+                            Static.category = "blackList"
+                        }}>
+                        <a href="/profile/settings/sessions" onclick={Fn.link}>Сессии</a>
                     </div>
-                    <div class="profile-main__settings__gradient-line"></div>
+                    <div class="settings__list_line" />
                 </div>
             </div>
-        </div >
+        </div>
     )
 }

@@ -1,0 +1,29 @@
+.security-block {
+    margin-left: 40px;
+    width: 100%;
+
+    &__item {
+        width: 100%;
+        margin-bottom: 20px;
+
+        &__chapter {
+            width: 100%;
+            padding: 30px 0;
+            border-bottom: 1px solid #31374A;
+
+            p:first-child {
+                font-weight: 600;
+                font-size: 18px;
+            }
+
+            &:first-child {
+                padding-top: 0;
+            }
+        }
+    }
+
+    &__form {
+        display: flex;
+        align-items: center;
+    }
+}
