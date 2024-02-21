@@ -125,6 +125,19 @@ export default function () {
               id="prev-button"
               aria-label="Previous page"
               title="Previous page"
+              onclick={() => {
+                if (Static.currentPage > 1) {
+                  Static.Pages.forEach((element) => {
+                    element.class = "pagination-number ";
+                  });
+
+                  Static.currentPage -= 1;
+                  console.log("=01d334=", Static.currentPage);
+
+                  Func.setCurrentPage(Static.currentPage);
+                  Func.pagination(Static.currentPage);
+                }
+              }}
             >
               &lt;
             </button>
@@ -225,12 +238,13 @@ export default function () {
               aria-label="Next page"
               title="Next page"
               onclick={() => {
+                Fn.log("=pered=", Static.currentPage);
                 if (Static.currentPage < Static.lastPage) {
                   Static.Pages.forEach((element) => {
                     element.class = "pagination-number ";
                   });
-                  console.log("=01d334=", Static.currentPage);
                   Static.currentPage += 1;
+                  console.log("=01d334=", Static.currentPage);
 
                   Func.setCurrentPage(Static.currentPage);
                   Func.pagination(Static.currentPage);

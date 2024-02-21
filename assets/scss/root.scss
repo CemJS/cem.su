@@ -19,6 +19,7 @@
 
   &::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
   }
 
   &::-webkit-scrollbar-button {
@@ -72,7 +73,6 @@ p {
 }
 
 @media (max-width: 464px) {
-
   html,
   body {
     font-size: 14px;

@@ -1,0 +1,4 @@
+{
+  "url": "/user/posts",
+  "front": ["header", "post", "menu", "footer"]
+}
