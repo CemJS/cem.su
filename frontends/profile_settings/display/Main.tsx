@@ -23,11 +23,14 @@ export default function () {
                             "profile-settings__list_subcategory_active"
                             :
                             null
-                    ]}
-                        onclick={() => {
-                            Static.category = "security"
-                        }}>
-                        <a href="/profile/settings/security" onclick={Fn.link}>Безопасность</a>
+                    ]}>
+                        <a href="/profile/settings/security" onclick={Fn.link}>
+                            <span onclick={() => {
+                                Static.category = "security"
+                            }}>
+                                Безопасность
+                            </span>
+                        </a>
                     </div>
                     <div class={["profile-settings__list_subcategory",
                         Static.category == "sessions"
@@ -35,11 +38,13 @@ export default function () {
                             "profile-settings__list_subcategory_active"
                             :
                             null
-                    ]}
-                        onclick={() => {
+                    ]}>
+                        <a href="/profile/settings/sessions" onclick={Fn.link}><span onclick={() => {
                             Static.category = "sessions"
                         }}>
-                        <a href="/profile/settings/sessions" onclick={Fn.link}>Сессии</a>
+                            Сессии
+                        </span>
+                        </a>
                     </div>
                     <div class="profile-settings__list_line" />
                 </div>
