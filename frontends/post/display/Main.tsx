@@ -35,7 +35,17 @@ export default function () {
             />
             <label for="friends">Только для друзей</label>
           </div>
-          <div class="post-create__media"></div>
+          {Static.data?.media.length ? (
+            <div class="post-create__files">
+              {Static.data.media.map((item) => {
+                return (
+                  <div class="post-create__video-preview">
+                    <video src={`/assets/upload/posts/${item.name}`}></video>
+                  </div>
+                );
+              })}
+            </div>
+          ) : null}
           <div
             class="post-create__text"
             contenteditable="plaintext-only"
@@ -73,20 +83,21 @@ export default function () {
               />
               <input
                 onchange={async (e) => {
-                  const file = e.target.files[0];
-                  if (file.type.split("/")[0] == "video") {
-                    let data = new FormData();
-                    data.append("media", file);
-
-                    let answer = await fetch("/assets/upload/posts", {
-                      method: "POST",
-                      body: data,
+                  const files = [...e.target.files];
+                  let err = 0;
+                  files.forEach((file) => {
+                    if (!(file.type.split("/")[0] == "video")) {
+                      err++;
+                    }
+                  });
+                  if (!err) {
+                    files.forEach((file) => {
+                      Func.uploadMedia(file, "video");
                     });
-                    let res = await answer.json();
-                    Fn.log("=abbebd=", res);
                   } else {
                     Fn.initOne("alert", { type: "danger", text: "Неверный формат видео" });
                   }
+
                   e.preventDefault();
                 }}
                 id="video"
@@ -105,10 +116,28 @@ export default function () {
                 alt=""
               />
               <input
+                onchange={async (e) => {
+                  const files = [...e.target.files];
+                  let err = 0;
+                  files.forEach((file) => {
+                    if (!(file.type.split("/")[0] == "audio")) {
+                      err++;
+                    }
+                  });
+                  if (!err) {
+                    files.forEach((file) => {
+                      Func.uploadMedia(file, "audio");
+                    });
+                  } else {
+                    Fn.initOne("alert", { type: "danger", text: "Неверный формат аудио" });
+                  }
+
+                  e.preventDefault();
+                }}
                 id="audio"
                 ref="audio"
                 type="file"
-                accept=".mp3, .wav, .aiff, .aac, .ogg, .wma"
+                accept=".mp3, .wav, .aiff, .aac, .ogg, .wma, audio/*"
                 multiple="true"
               />
             </label>
