@@ -57,7 +57,7 @@ front.display = () => {
         return (<div></div>)
     }
     return (
-        <div>
+        <div class="profile-main">
             <Navigation />
         </div>
     )

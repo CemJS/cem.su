@@ -3,13 +3,23 @@ import Main from "./display/Main"
 import Security from "./display/Security"
 import Sessions from "./display/Sessions"
 
-export default function () {
+
+const IfPage = function () {
   switch (front.Variable.DataUrl[2]) {
     case "security":
       return <Security />
     case "sessions":
       return <Sessions />
-    default:
-      return <Main />
   }
+}
+
+export default function () {
+  return (
+      <div class="wrapper profile-main__container">
+        <div class="profile-main__settings">
+          <Main />
+          <IfPage />
+        </div>
+      </div>
+  )
 }

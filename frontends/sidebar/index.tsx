@@ -96,7 +96,7 @@ front.loader = async () => {
     {
       icon: "user",
       name: "Настройки",
-      link: "#",
+      link: "/profile/settings",
     },
     {
       icon: "phone",

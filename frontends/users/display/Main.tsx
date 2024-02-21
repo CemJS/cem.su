@@ -6,8 +6,8 @@ import Filters from "./Filters/Filters"
 import defaultGray from "@svg/lenta/defaultGray.svg"
 
 export default function () {
-  Fn.log("Static.record", Static.records?.length);
-Fn.log('=da967c=')
+//   Fn.log("Static.record", Static.records?.length);
+// Fn.log('=da967c=')
   return (
     <div class="users users__container">
       <h1>Пользователи</h1>

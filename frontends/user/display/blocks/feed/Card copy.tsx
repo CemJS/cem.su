@@ -8,6 +8,7 @@ import likeBtn from "@svg/profile/likeBtn.svg"
 import msg from "@svg/profile/msg.svg"
 import eye from "@svg/profile/eye.svg"
 import Cube3d from "./Cube3d"
+import VideoPlayer from "./VideoPlayer"
 
 let showPost: boolean = false
 
@@ -28,7 +29,7 @@ export default function () {
     return (
         <div style="width: 100%;">
             {Static.record?.feed?.map((item: any, key: number) => {
-                Fn.log('=b56954=', item)
+                // Fn.log('=b56954=', item)
                 return (
                     <div key={key} class="feed-card__item">
                         <div class="card-position">
@@ -66,10 +67,11 @@ export default function () {
                                 </div>
                             </div>
                             <div class="feed-card__item__body">
-                                {item?.media?.length > 1 ? <Cube3d />
+                                {item?.media?.length > 1 ? <Cube3d item={item}/>
                                     :
                                     <div class="feed-card__item__body__image-container">
-                                        <img src={`/assets/upload/posts/${item?.media[0]?.name}`}/>
+                                        {item?.media[0]?.type === "image" ? <VideoPlayer /> :
+                                            <img src={`/assets/upload/posts/${item?.media[0]?.name}`} />}
                                     </div>}
 
                                 <div style="padding-left: 20px;

@@ -15,7 +15,7 @@ export default function () {
                                 <div>
                                     <img src={play_btn} class="img-tiles" />
                                     {item?.media[0]?.type === 'video' ?
-                                        <video playsinline="true" poster="https://crypto-emergency.com/assets/image/bfb4bd06106cea11acbc.jpg"
+                                        <video playsinline="true" poster=""
                                             preload="none" src={"/assets/upload/posts/" + item?.media[0]?.name} />
                                         :
                                         <img src={"/assets/upload/posts/" + item?.media[0]?.name} />
