@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Static, front } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import photo from "@svg/personalPosts/photo.svg";
 import video from "@svg/personalPosts/video.svg";
 import audio from "@svg/personalPosts/audio.svg";
@@ -35,6 +35,7 @@ export default function () {
             />
             <label for="friends">Только для друзей</label>
           </div>
+          <div class="post-create__media"></div>
           <div
             class="post-create__text"
             contenteditable="plaintext-only"
@@ -71,6 +72,23 @@ export default function () {
                 alt=""
               />
               <input
+                onchange={async (e) => {
+                  const file = e.target.files[0];
+                  if (file.type.split("/")[0] == "video") {
+                    let data = new FormData();
+                    data.append("media", file);
+
+                    let answer = await fetch("/assets/upload/posts", {
+                      method: "POST",
+                      body: data,
+                    });
+                    let res = await answer.json();
+                    Fn.log("=abbebd=", res);
+                  } else {
+                    Fn.initOne("alert", { type: "danger", text: "Неверный формат видео" });
+                  }
+                  e.preventDefault();
+                }}
                 id="video"
                 ref="video"
                 type="file"

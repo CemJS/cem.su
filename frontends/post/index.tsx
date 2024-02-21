@@ -45,7 +45,6 @@ front.loader = async () => {
     },
   ];
   Events.posts = await Fn.event(url, listener);
-  Fn.log("=049e78=", Static.records);
   return;
 };
 
