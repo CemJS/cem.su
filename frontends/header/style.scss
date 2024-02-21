@@ -3,6 +3,7 @@
   border-bottom: 1px solid var(--border-colorH);
   padding: 0.6rem 0;
   font-weight: 500;
+  z-index: 2;
 
   &-inner {
     display: flex;
@@ -65,7 +66,7 @@
     position: relative;
 
     &::before {
-      content: '';
+      content: "";
       // background: url('../images/choosen.png');
       height: 18.1px;
       width: 25px;
@@ -145,11 +146,11 @@
     border: 3px solid #fff;
 
     &--online {
-      background: linear-gradient(225deg, #72FFB6 0, #10D194 100%);
+      background: linear-gradient(225deg, #72ffb6 0, #10d194 100%);
     }
 
     &--offline {
-      background: linear-gradient(225deg, #FF7272 0%, #D93030 100%);
+      background: linear-gradient(225deg, #ff7272 0%, #d93030 100%);
     }
   }
 
@@ -174,7 +175,7 @@
         font-weight: 500;
         font-size: 13px;
         line-height: 22px;
-        color: #B0B7CD;
+        color: #b0b7cd;
         display: inline-block;
         width: 300px;
         display: inline;
@@ -187,7 +188,7 @@
       font-weight: 500;
       font-size: 13px;
       line-height: 22px;
-      color: #B0B7CD;
+      color: #b0b7cd;
       display: inline-block;
       width: 300px;
       display: inline;
@@ -200,14 +201,13 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 22px;
-    color: #B0B7CD;
+    color: #b0b7cd;
     display: inline-block;
     width: 300px;
     display: inline;
     position: relative;
     top: -7px;
   }
-
 
   &__settings {
     position: absolute;
@@ -219,7 +219,7 @@
     bottom: 5px;
     right: 5px;
 
-    @media(max-width: 767px) {
+    @media (max-width: 767px) {
       width: 40px;
       height: 40px;
       right: 0px;
@@ -235,12 +235,11 @@
   &--micro {
     width: 67px;
     height: 72px;
-    margin-left: 10px;  
+    margin-left: 10px;
   }
 }
 
 .c-avataricon {
-
   &__photo {
     object-fit: fill;
     object-fit: cover;
@@ -261,9 +260,8 @@
     height: 20px;
   }
 }
-@media(max-width: 992px) {
+@media (max-width: 992px) {
   .header {
-
     &-list,
     &__lang {
       display: none;

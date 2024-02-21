@@ -19,10 +19,10 @@ const RenderFieldTextarea = function ({ about }) {
     )
 }
 
-const RenderField = function ({ field, placeholder, className }) {
+const RenderField = function ({ field, placeholder }) {
     return (
         <div class={[
-            "modalWindow_field", `${className}`,
+            "modalWindow_field",
             field.length ? "modalWindow_field__valid" : null
         ]}>
             <input
@@ -30,7 +30,7 @@ const RenderField = function ({ field, placeholder, className }) {
                 value={field}
                 autocomplete="off"
                 oninput={(e: any) => {
-                    field.email.value = e.target.value;
+                    field = e.target.value;
                 }} />
             <div class="modalWindow_field_labelLine">
                 <i class="i i-user"></i>
@@ -40,51 +40,14 @@ const RenderField = function ({ field, placeholder, className }) {
     )
 }
 
-const RenderFieldCountry = function ({ country, placeholder, className }) {
-    return (
-        <div
-            class={[
-                "modalWindow_field", `${className}`,
-                "modalWindow_field__valid", "modalWindow_field__disabled"
-            ]}
-        >
-            <span class="modalWindow_field_span">{`${country.eng_name} (${country.orig_name})`}</span>
-            <div class="modalWindow_field_labelLine">
-                <i class="i i-user"></i>
-                <span>{placeholder}</span>
-            </div>
-            <span
-                class="modalWindow_field__edit"
-                onclick={() => {
-                    Fn.initOne("modalCountry", {
-                        callback: (chooseCountry) => {
-                            if (!chooseCountry) return
-
-                            country.orig_name = chooseCountry.orig_name
-                            country.eng_name = chooseCountry.eng_name
-                        }
-                    })
-                }}
-            >
-                <i class="i i-edit"></i>
-            </span>
-        </div>
-    )
-}
 
 export default function () {
     return (
         <main class="modal_main">
-            <div class="pY-15 modal_scroll">
-                <h3>Обо мне</h3>
-                <RenderFieldTextarea about={Static.information.about} />
-                <RenderField field={Static.fullName} placeholder="Полное имя" className="mt-30" />
-                <RenderField field={Static.information.speciality} placeholder="Специализация" className="mt-30" />
-                <RenderField
-                    field={front.Services.functions.timeStampToDate(Static.information.birthday, ".")}
-                    placeholder="Дата рождения" className="mt-30 modalWindow_field__disabled" />
-                <RenderField field={Static.information.city} placeholder="Город" className="mt-30" />
-                <RenderFieldCountry country={Static.country} placeholder="Страна" className="mt-25" />
+            <div class="pY-15">
+                <RenderField field={Static.interest.title} placeholder="Введите название" />
+                <h3 class="mt-25">Укажите подробности</h3>
+                <RenderFieldTextarea about={Static.interest.description} />
             </div>
         </main>
     )

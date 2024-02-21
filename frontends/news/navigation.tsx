@@ -12,8 +12,8 @@ export default function () {
     );
   }
   return (
-    <section>
-      <Category />
+    <section class="mt-55">
+      {/* <Category /> */}
       <Main />
     </section>
   )
