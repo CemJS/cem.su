@@ -24,28 +24,29 @@ front.func.close = function () {
 
 front.loader = async () => {
 
-    Static.records = []
-    let url = front.Services.functions.makeUrlEvent("Countries", {})
-    let listener = [
-        {
-            type: "get",
-            fn: ({ data }) => {
-                let json = front.Services.functions.strToJson(data)
-                if (!json) { return }
-                // Fn.log('=0b636f=', "Static.records", "get", json)
-                Static.records = json
-            },
-        },
-        {
-            type: "add",
-            fn: ({ data }) => {
-                let json = front.Services.functions.strToJson(data)
-                if (!json) { return }
-                Static.records.push(...json)
-            },
-        }
-    ]
-    Events.countries = await Fn.event(url, listener)
+    Static.records = JSON.parse(localStorage.countries)
+    Fn.log('=8477ca=', Static.records)
+    // let url = front.Services.functions.makeUrlEvent("Countries", {})
+    // let listener = [
+    //     {
+    //         type: "get",
+    //         fn: ({ data }) => {
+    //             let json = front.Services.functions.strToJson(data)
+    //             if (!json) { return }
+    //             // Fn.log('=0b636f=', "Static.records", "get", json)
+    //             Static.records = json
+    //         },
+    //     },
+    //     {
+    //         type: "add",
+    //         fn: ({ data }) => {
+    //             let json = front.Services.functions.strToJson(data)
+    //             if (!json) { return }
+    //             Static.records.push(...json)
+    //         },
+    //     }
+    // ]
+    // Events.countries = await Fn.event(url, listener)
 
 
     return

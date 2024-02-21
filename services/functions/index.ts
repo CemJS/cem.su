@@ -2,10 +2,11 @@ import { Cemjsx, Fn, front } from "cemjs-all";
 import { v4 as uuidv4 } from "uuid";
 import { editText, searchLink } from "./editText";
 import moment from "moment";
+import { sendApi } from "./sendApi";
 import "moment/min/locales";
 
 export * from "./validForms";
-export * from "./sendApi";
+export { sendApi };
 
 export const strToJson = function (data: string) {
   try {
@@ -51,14 +52,29 @@ export const loader = async function (Variable: any, Fn: any) {
     localStorage.uuid = uuidv4();
   }
   let eventSource = new EventSource(`/api/events/MyInfo?uuid=${localStorage.uuid}`)
-  eventSource.addEventListener('update', ({ data }) => {
+  eventSource.addEventListener('update', async ({ data }) => {
     let json = strToJson(data)
     if (!json) { return }
     console.log('=MyInfo=', json)
     localStorage.suuid = json.suuid
     Variable.Auth = json.auth
     Variable.myInfo = json.info
+
     Variable.Lang = "Русский"
+
+    if (!localStorage.countries_update || localStorage.countries_update < json.countries_update) {
+      console.log("No countries_update or less")
+      let res = await sendApi("/api/Countries", {
+        action: "get"
+      });
+      console.log("res", res)
+
+      if (!res.error) {
+        localStorage.countries_update = json.countries_update
+        localStorage.countries = JSON.stringify(res.result)
+      }
+    }
+
     Fn.initAll()
     // if (!answ.data || answ.data == "null") {
     //   return
