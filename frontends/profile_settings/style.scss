@@ -1,6 +1,6 @@
 @import "./css/security.scss";
 
-.settings {
+.profile-settings {
     max-width: 1820px;
     margin-left: auto;
     margin-right: auto;
@@ -43,7 +43,7 @@
                 padding-bottom: 8px;
                 border-radius: 12px 12px;
 
-                & .settings__list_line {
+                & .profile-settings__list_line {
                     border-radius: 0 0 0 12px;
                 }
             }
@@ -53,7 +53,7 @@
             background: linear-gradient(107.19deg, #444A5F 1.5%, #2B3040 109.67%);
             overflow: hidden;
 
-            & .settings__list_title {
+            & .profile-settings__list_title {
                 margin-bottom: 5px;
                 color: var(--white);
 
@@ -62,17 +62,17 @@
                 }
             }
 
-            & .settings__list_subcategory {
+            & .profile-settings__list_subcategory {
                 display: block;
             }
 
-            & .settings__list_subcategory_active {
+            & .profile-settings__list_subcategory_active {
                 background: linear-gradient(56.57deg, #2973FF 0%, #8846D3 51.56%, #FF22AC 105.28%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
 
-            & .settings__list_line {
+            & .profile-settings__list_line {
                 display: block;
             }
         }

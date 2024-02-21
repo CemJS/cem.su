@@ -26,9 +26,12 @@ front.func.checkForm = async function (key: string) {
 }
 
 front.loader = () => {
-    Static.category = "security"
     Static.burger = true
-  
+    if (front.Variable.DataUrl[2] === "security") {
+        Static.category = "security"
+    } else if (front.Variable.DataUrl[2] === "sessions") {
+        Static.category = "sessions"
+    }
     Static.form = {}
     Static.form.change_pass = {
         pass: {

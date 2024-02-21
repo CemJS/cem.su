@@ -6,21 +6,21 @@ export default function () {
 
     return (
         <div>
-            <div class="settings__list">
-                <div class={["settings__list_container",
+            <div class="profile-settings__list">
+                <div class={["profile-settings__list_container",
                     Static.burger
                         ?
-                        "settings__list_active"
+                        "profile-settings__list_active"
                         :
                         null]}>
-                    <p class="settings__list_title"
+                    <p class="profile-settings__list_title"
                         onclick={() => {
                             Static.burger = !Static.burger
                         }}>Социальная сеть</p>
-                    <div class={["settings__list_subcategory",
+                    <div class={["profile-settings__list_subcategory",
                         Static.category == "security"
                             ?
-                            "settings__list_subcategory_active"
+                            "profile-settings__list_subcategory_active"
                             :
                             null
                     ]}
@@ -29,19 +29,19 @@ export default function () {
                         }}>
                         <a href="/profile/settings/security" onclick={Fn.link}>Безопасность</a>
                     </div>
-                    <div class={["settings__list_subcategory",
-                        Static.category == "blackList"
+                    <div class={["profile-settings__list_subcategory",
+                        Static.category == "sessions"
                             ?
-                            "settings__list_subcategory_active"
+                            "profile-settings__list_subcategory_active"
                             :
                             null
                     ]}
                         onclick={() => {
-                            Static.category = "blackList"
+                            Static.category = "sessions"
                         }}>
                         <a href="/profile/settings/sessions" onclick={Fn.link}>Сессии</a>
                     </div>
-                    <div class="settings__list_line" />
+                    <div class="profile-settings__list_line" />
                 </div>
             </div>
         </div>

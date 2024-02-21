@@ -8,11 +8,11 @@ import leveGray from "@svg/lenta/level_gray.svg"
 
 export default function () {
     //     Fn.log('=0b439c=', Static.form.change_pass)
-    Fn.log('isValid', Static.form.change_pass?.isValid)
+    // Fn.log('isValid', Static.form.change_pass.pass.valid)
     return (
-        <div class="settings__body">
-            <div class="settings__body_item">
-                <div class="settings__body_wrapper">
+        <div class="profile-settings__body">
+            <div class="profile-settings__body_item">
+                <div class="profile-settings__body_wrapper">
                     <h2>Пароль</h2>
                     <h3>Изменить пароль</h3>
                     <div class="security-block__input">
@@ -26,13 +26,19 @@ export default function () {
                             <img class="icon-input" src={lock} />
                             <input
                                 maxlength="16"
+                                minlength="8"
                                 type={Static.form.change_pass?.pass?.view ? "text" : "password"}
                                 style={Static.form.change_pass?.pass?.error === true && Static.form.change_pass?.pass?.value.length > 0 ? "border-color: green" : ""}
                                 placeholder={Static.form.change_pass?.pass?.placeholder}
                                 oninput={(e: any) => {
                                     Static.form.change_pass.pass.value = e.target.value;
-                                    // Static.form.change_pass.error = false
-                                    front.Services.functions.formPassword(Static.form.change_pass.pass)
+                                    if (Static.form.change_pass?.pass?.value?.length >= 8) {
+                                        Static.form.change_pass.pass.valid = true
+                                    } else {
+                                        Static.form.change_pass.pass.valid = false
+                                    }
+
+                                    // front.Services.functions.formPassword(Static.form.change_pass.pass)
                                     Func.checkForm("change_pass")
                                 }}
                             />
@@ -54,6 +60,7 @@ export default function () {
                             <img class="icon-input" src={lock} />
                             <input
                                 maxlength="16"
+                                minlength="8"
                                 type={Static.form.change_pass?.new_pass?.view ? "text" : "password"}
                                 style={Static.form.change_pass?.new_pass?.error == 'Слишком легкий пароль' ? "border-color: red" : Static.form.change_pass?.new_pass?.value?.length > 0 ? "border-color: green" : null}
                                 placeholder={Static.form.change_pass?.new_pass?.placeholder}
@@ -93,9 +100,9 @@ export default function () {
                         <span>применить</span>
                     </button>
                 </div>
-                <div class="settings__body_wrapper">
+                <div class="profile-settings__body_wrapper">
                     <p>Вы можете удалить свой профиль</p>
-                    <div class="settings__delete_user">
+                    <div class="profile-settings__delete_user">
                         <button class="security-block__button"
                             onclick={async () => {
                                 let answer = await front.Services.functions.sendApi(`/api/MyInfo`, { action: "deleteAccount" })
