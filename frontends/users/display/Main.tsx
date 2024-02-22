@@ -6,7 +6,6 @@ import Filters from "./Filters/Filters"
 import defaultGray from "@svg/lenta/defaultGray.svg"
 
 export default function () {
-
   return (
     <div class="users users__container">
       <h1>Пользователи</h1>
@@ -17,12 +16,13 @@ export default function () {
             return (
               <div class="users__item"
                 init={($el: any) => {
-                  if (index == Static.records?.length - 1) {
+                  if (index === Static.records?.length - 1) {
                     const observer = new IntersectionObserver((entries) => {
                       entries.forEach(async entry => {
                         if (entry.isIntersecting) {
                           observer.unobserve($el)
-                          let res = front.Services.functions.sendApi("/api/Users", {
+                          // console.log("wtf?", Static.records?.length);
+                          let res = await front.Services.functions.sendApi("/api/Users", {
                             ...Static.makeFilter,
                             "action": "skip",
                             "skip": Static.records?.length,
@@ -100,7 +100,7 @@ export default function () {
 
                 <div class="users__item_statistic">
                   <div class="users__item_info">
-                    <span>{item.statistic.answer}</span>
+                    <span>{item?.statistic?.answer}</span>
                     <span>ответов</span>
                   </div>
                   <div class="users__item_info">
