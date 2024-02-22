@@ -3,7 +3,6 @@ import Tiles from "./Tiles";
 import Card from "./Card";
 
 export default function () {
-  Fn.log("=dfbb06=", Static.record);
   return (
     <div class="block-one">
       <div class="feed-main-block">

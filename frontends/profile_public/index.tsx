@@ -42,31 +42,34 @@ front.loader = async () => {
   Static.show = "grid";
   Static.isValid = false;
 
-  let url = front.Services.functions.makeUrlEvent("Posts", { action: "showMy" });
-  let listener = [
-    {
-      type: "get",
-      fn: ({ data }) => {
-        let json = front.Services.functions.strToJson(data);
-        if (!json) {
-          return;
-        }
+  if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "posts") {
+    let url = front.Services.functions.makeUrlEvent("Posts", { action: "showMy" });
+    let listener = [
+      {
+        type: "get",
+        fn: ({ data }) => {
+          let json = front.Services.functions.strToJson(data);
+          if (!json) {
+            return;
+          }
 
-        Static.records = json;
+          Static.records = json;
+        },
       },
-    },
-    {
-      type: "add",
-      fn: ({ data }) => {
-        let json = front.Services.functions.strToJson(data);
-        if (!json) {
-          return;
-        }
-        Static.records = [...Static.records, ...json];
+      {
+        type: "add",
+        fn: ({ data }) => {
+          let json = front.Services.functions.strToJson(data);
+          if (!json) {
+            return;
+          }
+          Static.records = [...Static.records, ...json];
+        },
       },
-    },
-  ];
-  Events.posts = await Fn.event(url, listener);
+    ];
+    Events.posts = await Fn.event(url, listener);
+  }
+
   return;
 };
 
