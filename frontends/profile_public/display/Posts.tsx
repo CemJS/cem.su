@@ -185,6 +185,7 @@ export default function () {
             </button>
           </div>
         </div>
+        <div class="post-lenta__grid"></div>
       </div>
     </div>
   );

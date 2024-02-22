@@ -1,4 +1,4 @@
 {
-  "url": "/user/posts",
-  "front": ["header", "post", "menu", "footer"]
+  "regex": "/profile/public/",
+  "front": ["header", "profile_public", "menu", "footer"]
 }

@@ -137,7 +137,7 @@
     display: grid;
     grid-template-columns: calc(12.5% - 8.75px) calc(12.5% - 8.75px) calc(12.5% - 8.75px) calc(12.5% - 8.75px) calc(12.5% - 8.75px) calc(12.5% - 8.75px) calc(12.5% - 8.75px) calc(12.5% - 8.75px);
     &:first-child {
-      border-radius: 0.625rem 0.625rem 0 0;
+      border-radius: 30px;
     }
     @media (max-width: 1550px) {
       grid-template-columns: calc(20% - 8px) calc(20% - 8px) calc(20% - 8px) calc(20% - 8px) calc(20% - 8px);
