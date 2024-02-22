@@ -44,6 +44,28 @@ front.loader = async () => {
     creator: true
   }
   // Static.lang.code ="ru"
+
+  front.func.showMore = async (className: string, $el: any) => {
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(async entry => {
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target)
+          let res = await front.Services.functions.sendApi("/api/Users", {
+            ...Static.makeFilter,
+            "action": "skip",
+            "skip": Static.records?.length,
+          })
+        }
+      })
+    })
+
+    const arr = document.querySelectorAll(className);
+    if (arr?.length) {
+      observer.observe(arr[arr.length - 1])
+    }
+  }
+
   front.func.updateFilter = async () => {
     Static.makeFilter = {
       role: Static.checkBox,
@@ -54,6 +76,7 @@ front.loader = async () => {
     Static.makeFilter.action = "get";
     // Fn.log("=827b36=", Static.makeFilter);
     let res = await front.Services.functions.sendApi("/api/events/Users", Static.makeFilter);
+    front.func.showMore(".users__item")
     // console.log("=f9b841=", res);
     return;
   };
@@ -71,6 +94,7 @@ front.loader = async () => {
         if (!json) {
           return;
         }
+
         Static.records = json;
       },
     },

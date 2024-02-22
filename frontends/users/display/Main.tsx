@@ -5,6 +5,8 @@ import leveGray from "@svg/lenta/level_gray.svg"
 import Filters from "./Filters/Filters"
 import defaultGray from "@svg/lenta/defaultGray.svg"
 
+
+
 export default function () {
   return (
     <div class="users users__container">
@@ -17,22 +19,27 @@ export default function () {
               <div class="users__item"
                 init={($el: any) => {
                   if (index === Static.records?.length - 1) {
-                    const observer = new IntersectionObserver((entries) => {
-                      entries.forEach(async entry => {
-                        if (entry.isIntersecting) {
-                          observer.unobserve($el)
-                          // console.log("wtf?", Static.records?.length);
-                          let res = await front.Services.functions.sendApi("/api/Users", {
-                            ...Static.makeFilter,
-                            "action": "skip",
-                            "skip": Static.records?.length,
-                          })
-                        }
-                      })
-                    })
-                    observer.observe($el)
+                    front.func.showMore(".users__item", $el)
                   }
-                }}>
+                }}
+              // init={($el: any) => {
+              //   if (index === Static.records?.length - 1) {
+              //     const observer = new IntersectionObserver((entries) => {
+              //       entries.forEach(async entry => {
+              //         if (entry.isIntersecting) {
+              //           observer.unobserve($el)
+              //           let res = await front.Services.functions.sendApi("/api/Users", {
+              //             ...Static.makeFilter,
+              //             "action": "skip",
+              //             "skip": Static.records?.length,
+              //           })
+              //         }
+              //       })
+              //     })
+              //     observer.observe($el)
+              //   }
+              // }}
+              >
                 <div class="users__card-top">
                   <div class="users__item_header">
                     <a class="avatar avatar__users"
