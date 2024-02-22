@@ -6,8 +6,7 @@ import Filters from "./Filters/Filters"
 import defaultGray from "@svg/lenta/defaultGray.svg"
 
 export default function () {
-//   Fn.log("Static.record", Static.records?.length);
-// Fn.log('=da967c=')
+
   return (
     <div class="users users__container">
       <h1>Пользователи</h1>
@@ -39,11 +38,11 @@ export default function () {
                     <a class="avatar avatar__users"
                       onclick={async () => {
                         const getUser = {
-                          "action": "Get",
+                          "action": "getInfo",
                           "nickname": item?.nickname,
                           "uuid": `${localStorage?.uuid}`
                         }
-                        let userContent = await front.Services.functions.sendApi("/api/events/Users/profile", getUser)
+                        let userContent = await front.Services.functions.sendApi("/api/Users/profile", getUser)
                         //проверка на error
                         Static.contentUser = userContent?.result
                         Fn.linkChange(`/user/${item?.nickname}`)
