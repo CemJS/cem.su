@@ -5,7 +5,28 @@ front.listener.finish = () => {
   return;
 };
 
-front.func.uploadMedia = (file) => {
+front.func.uploadMedia = async (file, type: string) => {
+  let data = new FormData();
+  data.append("media", file);
+
+  let errors = {
+    video: "видео",
+    image: "картинку",
+    audio: "аудиозапись",
+  };
+
+  try {
+    let answer = await fetch("/upload/posts", {
+      method: "POST",
+      body: data,
+    });
+    let res = await answer.json();
+
+    Static.data.media.push({ type, name: res.name });
+    Static.data.media.length > 0 ? (Static.isValid = true) : null;
+  } catch {
+    Fn.initOne("alert", { text: `Не удалось загрузить ${errors[type]}`, type: "danger" });
+  }
   return;
 };
 
@@ -14,13 +35,14 @@ front.loader = async () => {
     languageCode: "ru",
     forFriends: false,
     text: "",
+    media: [],
   };
   Static.origName = "Русский";
   Static.data.action = "create";
   Static.show = "grid";
   Static.isValid = false;
 
-  let url = front.Services.functions.makeUrlEvent("Posts");
+  let url = front.Services.functions.makeUrlEvent("Posts", { action: "showMy" });
   let listener = [
     {
       type: "get",
