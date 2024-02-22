@@ -269,7 +269,7 @@ export default function () {
                                 let skip = { ...Static.makeFilter };
                                 skip.action = "skip";
                                 skip.skip = Static.records.length;
-                                let res = await front.Services.functions.sendApi("/api/events/Questions", skip);
+                                let res = await front.Services.functions.sendApi("/api/Questions", skip);
                               }
                             });
                           });
@@ -282,33 +282,33 @@ export default function () {
                           <div class="avatar__icon">
                             <img
                               class="avatar__photo"
-                              src={item.authorDetails?.avatar?.name ? `/assets/upload/avatar/${item.authorDetails.avatar?.name}` : avatarDefault}
+                              src={item.author?.avatar?.name ? `/assets/upload/avatar/${item.author.avatar?.name}` : avatarDefault}
                             />
                             <img
                               class="avatar__frame"
-                              src={item.authorDetails?.frame?.name ? `/contents/images/lenta/${item.authorDetails.frame?.name}` : frameDefault}
+                              src={item.author?.frame?.name ? `/contents/images/lenta/${item.author.frame?.name}` : frameDefault}
                             />
-                            {item.authorDetails?.status?.team ? (
+                            {item.author?.status?.team ? (
                               <img
                                 class="avatar__team"
-                                src={item.authorDetails.status?.team ? teamLogo : null}
+                                src={item.author?.status?.team ? teamLogo : null}
                               />
                             ) : (
                               <div class="avatar__level">
                                 <div class="avatar__wrap">
                                   <img src={leveGray} />
-                                  <span>{item.authorDetails.statistic?.level}</span>
-                                  <div class={["avatar__online", item.authorDetails.online ? "avatar__online_active" : null]}></div>
+                                  <span>{item.author?.statistics?.level}</span>
+                                  <div class={["avatar__online", item.online ? "avatar__online_active" : null]}></div>
                                 </div>
                               </div>
                             )}
                           </div>
                           <div class="avatar__name">
-                            <span>{item.authorDetails.nickname}</span>
+                            <span>{item?.author?.nickname}</span>
                           </div>
                         </div>
                         <div class="questions__item_languages btn_border-wrap">
-                          <button class="btn_border_no-hover btn_border">{item.languages.origName}</button>
+                          <button class="btn_border_no-hover btn_border">{item.language.origName}</button>
                         </div>
                       </div>
                       <div class={["questions__item_preview", item.title.length < 15 && item.text ? "questions__item_preview_row" : null]}>
@@ -318,11 +318,11 @@ export default function () {
                       <div class="questions__item_statistic">
                         <span>
                           <i class="i i-comment"></i>
-                          {item.statistic.answer}
+                          {item.statistics.answers}
                         </span>
                         <span>
                           <i class="i i-faq"></i>
-                          {item.statistic.view}
+                          {item.statistics.views}
                         </span>
                         <span>{front.Services.functions.timeStampToDate(item.showDate, undefined, true)}</span>
                       </div>

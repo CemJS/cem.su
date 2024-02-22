@@ -12,9 +12,6 @@
   margin: auto;
   /* margin-top: 40px; */
   color: white;
-  &_posts {
-    width: 100%;
-  }
 
   &__block {
     display: flex;
@@ -102,6 +99,17 @@
   }
 }
 
+@media (max-width: 1199px) {
+  .user-feed {
+    width: calc(100% - 60px);
+  }
+
+  .feed-card__item {
+    padding: 25px 0px;
+    padding-bottom: 0;
+  }
+}
+
 @media (max-width: 1024px) {
   .user-feed {
     width: 100%;
@@ -145,16 +153,5 @@
   .user-feed__block {
     padding-left: 10px;
     padding-right: 10px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .user-feed {
-    width: calc(100% - 60px);
-  }
-
-  .feed-card__item {
-    padding: 25px 0px;
-    padding-bottom: 0;
   }
 }

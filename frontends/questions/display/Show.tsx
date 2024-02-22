@@ -225,6 +225,7 @@ const RenderVideo = function () {
 };
 
 export default function () {
+  Fn.log("=9af89e=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
@@ -243,28 +244,28 @@ export default function () {
                 <div class="avatar__icon">
                   <img
                     class="avatar__photo"
-                    src={Static.record.authorDetails.avatar?.name ? `/assets/upload/avatar/${Static.record.authorDetails.avatar?.name}` : image}
+                    src={Static.record.author.avatar?.name ? `/assets/upload/avatar/${Static.record.author.avatar?.name}` : image}
                   />
                   <img
                     class="avatar__frame"
-                    src={Static.record.authorDetails.frame?.name ? `/contents/images/lenta/${Static.record.authorDetails.frame?.name}` : frameDefault}
+                    src={Static.record.author.frame?.name ? `/contents/images/lenta/${Static.record.author.frame?.name}` : frameDefault}
                   />
-                  {Static.record.authorDetails.status?.team ? (
+                  {Static.record.author.status?.team ? (
                     <img
                       class="avatar__team"
-                      src={Static.record.authorDetails.status?.team ? teamLogo : null}
+                      src={Static.record.author.status?.team ? teamLogo : null}
                     />
                   ) : (
                     <div>
                       <div class="avatar__level">
                         <img src={leveGray} />
-                        <span>{Static.record.authorDetails.statistic.level}</span>
+                        <span>{Static.record.author.statistics.level}</span>
                       </div>
                     </div>
                   )}
                 </div>
                 <div class="avatar__name">
-                  <span>{Static.record.authorDetails.nickname}</span>
+                  <span>{Static.record.author.nickname}</span>
                 </div>
               </a>
             </div>
@@ -277,11 +278,11 @@ export default function () {
             <div class="questions__item_statistic questions-show__statistic">
               <span>
                 <i class="i i-comment"></i>
-                {Static.record.statistic.answer}
+                {Static.record.statistics.answers}
               </span>
               <span class="questions-show__statistic_view">
                 <i class="i i-faq"></i>
-                {Static.record.statistic.view}
+                {Static.record.statistics.views}
               </span>
               <span>{`${front.Services.functions.timeStampToDate(Static.record.showDate, ".")} ${Func.addNull(Func.getDate(Static.record.showDate).getHours())}:${Func.addNull(
                 Func.getDate(Static.record.showDate).getMinutes()
@@ -355,28 +356,28 @@ export default function () {
                           <div class="avatar__icon">
                             <img
                               class="avatar__photo"
-                              src={answer.authorDetails.avatar?.name ? `/assets/upload/avatar/${answer.authorDetails.avatar?.name}` : image}
+                              src={answer.author.avatar?.name ? `/assets/upload/avatar/${answer.author.avatar?.name}` : image}
                             />
                             <img
                               class="avatar__frame"
-                              src={answer.authorDetails.frame?.name && answer.authorDetails.frame?.name != "default.svg" ? `/contents/images/lenta/${answer.authorDetails.frame?.name}` : frameDefault}
+                              src={answer.author.frame?.name && answer.author.frame?.name != "default.svg" ? `/contents/images/lenta/${answer.author.frame?.name}` : frameDefault}
                             />
-                            {answer.authorDetails.status?.team ? (
+                            {answer.author.status?.team ? (
                               <img
                                 class="avatar__team"
-                                src={answer.authorDetails.status?.team ? teamLogo : null}
+                                src={answer.author.status?.team ? teamLogo : null}
                               />
                             ) : (
                               <div>
                                 <div class="avatar__level">
                                   <img src={leveGray} />
-                                  <span>{answer.authorDetails.statistic.level}</span>
+                                  <span>{answer.author.statistics.level}</span>
                                 </div>
                               </div>
                             )}
                           </div>
                           <div class="user-comment__avatar_info-big">
-                            <div class="user-comment__avatar_name-big">{answer.authorDetails.nickname}</div>
+                            <div class="user-comment__avatar_name-big">{answer.author.nickname}</div>
                             <div class="user-comment__avatar_time">{`${front.Services.functions.timeStampToDate(answer.showDate, ".")} ${Func.addNull(
                               Func.getDate(answer.showDate).getHours()
                             )}:${Func.addNull(Func.getDate(answer.showDate).getMinutes())}`}</div>
@@ -387,7 +388,7 @@ export default function () {
                           {answer.media.map((item) => {
                             return item.type == "image" ? (
                               <img
-                                src={`/assets/upload/answers/${item.name}`}
+                                src={`/assets/upload/answers/${item.mediaName}`}
                                 alt={item.type}
                                 class="user-comment__media"
                               />
@@ -449,7 +450,7 @@ export default function () {
                             <img src={sendMessage} />
                           </button>
                         </div>
-                        {answer.statistic.comments > 0 ? (
+                        {answer.statistics.comments > 0 ? (
                           <div class="answer__comments">
                             <button
                               onclick={(e) => {
@@ -464,7 +465,7 @@ export default function () {
                                   elemComments.style = "display: none";
                                 }
                               }}
-                            >{`${Static.showComments} (${answer.statistic.comments})`}</button>
+                            >{`${Static.showComments} (${answer.statistics.comments})`}</button>
                           </div>
                         ) : null}
                         <div class="user-comment__statistic comment-statistic">
@@ -486,7 +487,7 @@ export default function () {
                                 });
                               }}
                             />
-                            <span>{answer.statistic.rating}</span>
+                            <span>{answer.statistics.rating}</span>
                             <img
                               src={like}
                               onclick={() => {
@@ -549,7 +550,8 @@ export default function () {
                         class="questions-show__comments"
                         style="display: none"
                       >
-                        {answer.commentsDetails?.map((comment) => {
+                        {answer.comments?.map((comment) => {
+                          Fn.log("=25d521=", comment);
                           return (
                             <div
                               class="user-comment__item"
@@ -562,32 +564,28 @@ export default function () {
                                 <div class="avatar__icon">
                                   <img
                                     class="avatar__photo"
-                                    src={comment.authorDetails.avatar?.name ? `/assets/upload/avatar/${comment.authorDetails.avatar?.name}` : image}
+                                    src={comment.author.avatar?.name ? `/assets/upload/avatar/${comment.author.avatar?.name}` : image}
                                   />
                                   <img
                                     class="avatar__frame"
-                                    src={
-                                      comment.authorDetails.frame?.name && comment.authorDetails.frame?.name != "default.svg"
-                                        ? `/contents/images/lenta/${comment.authorDetails.frame?.name}`
-                                        : frameDefault
-                                    }
+                                    src={comment.author.frame?.name && comment.author.frame?.name != "default.svg" ? `/contents/images/lenta/${comment.author.frame?.name}` : frameDefault}
                                   />
-                                  {comment.authorDetails.status?.team ? (
+                                  {comment.author.status?.team ? (
                                     <img
                                       class="avatar__team"
-                                      src={comment.authorDetails.status?.team ? teamLogo : null}
+                                      src={comment.author.status?.team ? teamLogo : null}
                                     />
                                   ) : (
                                     <div>
                                       <div class="avatar__level">
                                         <img src={leveGray} />
-                                        <span>{comment.authorDetails.statistic.level}</span>
+                                        <span>{comment.author.statistics.level}</span>
                                       </div>
                                     </div>
                                   )}
                                 </div>
                                 <div class="user-comment__avatar_info">
-                                  <div class="user-comment__avatar_name">{comment.authorDetails.nickname}</div>
+                                  <div class="user-comment__avatar_name">{comment.author.nickname}</div>
                                   <div class="user-comment__avatar_time">{`${front.Services.functions.timeStampToDate(comment.showDate, ".")} ${Func.addNull(
                                     Func.getDate(comment.showDate).getHours()
                                   )}:${Func.addNull(Func.getDate(comment.showDate).getMinutes())}`}</div>
@@ -713,10 +711,9 @@ export default function () {
                                   <img src={sendMessage} />
                                 </button>
                               </div>
-                              {Static.recordsCommentsInner?.map((comm, index) => {
-                                if (comm.commentId != comment.id) {
-                                  return;
-                                }
+                              {comment.comments?.map((comm, index) => {
+                                Fn.log("=b7ff96=", 1);
+
                                 return (
                                   <div
                                     class="user-comment__item"
@@ -729,28 +726,28 @@ export default function () {
                                       <div class="avatar__icon">
                                         <img
                                           class="avatar__photo"
-                                          src={comm.authorDetails.avatar?.name ? `/assets/upload/avatar/${comm.authorDetails.avatar?.name}` : image}
+                                          src={comm.author.avatar?.name ? `/assets/upload/avatar/${comm.author.avatar?.name}` : image}
                                         />
                                         <img
                                           class="avatar__frame"
-                                          src={comm.authorDetails.frame?.name ? `/contents/images/lenta/${comm.authorDetails.frame?.name}` : frameDefault}
+                                          src={comm.author.frame?.name ? `/contents/images/lenta/${comm.author.frame?.name}` : frameDefault}
                                         />
-                                        {comm.authorDetails.status?.team ? (
+                                        {comm.author.status?.team ? (
                                           <img
                                             class="avatar__team"
-                                            src={comm.authorDetails.status?.team ? teamLogo : null}
+                                            src={comm.author.status?.team ? teamLogo : null}
                                           />
                                         ) : (
                                           <div>
                                             <div class="avatar__level">
                                               <img src={leveGray} />
-                                              <span>{comm.authorDetails.statistic.level}</span>
+                                              <span>{comm.author?.statistics?.level}</span>
                                             </div>
                                           </div>
                                         )}
                                       </div>
                                       <div class="user-comment__avatar_info">
-                                        <div class="user-comment__avatar_name">{comm.authorDetails.nickname}</div>
+                                        <div class="user-comment__avatar_name">{comm.author.nickname}</div>
                                         <div class="user-comment__avatar_time">{front.Services.functions.timeStampToDate(comm.showDate, ".")}</div>
                                       </div>
                                     </a>
@@ -776,7 +773,7 @@ export default function () {
                                             });
                                           }}
                                         />
-                                        <span>{comm.statistic.rating}</span>
+                                        <span>{comm.statistics?.rating}</span>
                                         <img
                                           src={like}
                                           onclick={() => {
