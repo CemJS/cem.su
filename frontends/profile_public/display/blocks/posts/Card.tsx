@@ -9,8 +9,7 @@ import msg from "@svg/profile/msg.svg";
 import eye from "@svg/profile/eye.svg";
 import Cube3d from "./Cube3d";
 
-Static.showPost = [];
-// let showPost: object = {};
+let showPost: boolean = false;
 
 function formatDate(dateString: any) {
   const date = new Date(dateString);
@@ -25,14 +24,11 @@ const makeLinksClickable = (text: string, attribute: string) => {
   return text.replace(urlRegex, (url) => `<a href="${url}" rel="noreferrer" target="_blank" rel="nofollow noopener" ${attribute}>${url}</a>`);
 };
 export default function () {
-  // Fn.log('=dfbb06=', Static.record)
+  Fn.log("=dfbb06=", Static.record);
   return (
     <div style="width: 100%;">
       {Static.record?.feed?.map((item: any, key: number) => {
-        // Fn.log('=b56954=', item)
-        // showPost[key] = false;
-        // let show + key = false;
-
+        Fn.log("=b56954=", item);
         return (
           <div
             key={key}
@@ -92,16 +88,7 @@ export default function () {
                                              margin-right: 0;"
                 >
                   <span class="feed-card__item__body__text">
-                    {Static.showPost[key] === true ? (
-                      <div>
-                        <span>
-                          <p
-                            class="feed-card__item__body__text feed-card__item__body__text_white-space"
-                            html={makeLinksClickable(item?.text, 'class="my-link"')}
-                          ></p>
-                        </span>
-                      </div>
-                    ) : (
+                    {!showPost ? (
                       <div>
                         <span>
                           <div>{item?.text?.length > 51 ? item?.text?.slice(0, 51) + "..." : item?.text}</div>
@@ -110,12 +97,21 @@ export default function () {
                           <span
                             class="show-full-post"
                             onclick={() => {
-                              Static.showPost[key] = true;
+                              (showPost = true), Fn.init();
                             }}
                           >
                             Показать все
                           </span>
                         </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <span>
+                          <p
+                            class="feed-card__item__body__text feed-card__item__body__text_white-space"
+                            html={makeLinksClickable(item?.text, 'class="my-link"')}
+                          ></p>
+                        </span>
                       </div>
                     )}
                   </span>
