@@ -551,6 +551,7 @@ export default function () {
                         style="display: none"
                       >
                         {answer.comments?.map((comment) => {
+                          Fn.log("=25d521=", comment);
                           return (
                             <div
                               class="user-comment__item"
@@ -710,10 +711,9 @@ export default function () {
                                   <img src={sendMessage} />
                                 </button>
                               </div>
-                              {Static.recordsCommentsInner?.map((comm, index) => {
-                                if (comm.commentId != comment.id) {
-                                  return;
-                                }
+                              {comment.comments?.map((comm, index) => {
+                                Fn.log("=b7ff96=", 1);
+
                                 return (
                                   <div
                                     class="user-comment__item"
@@ -741,7 +741,7 @@ export default function () {
                                           <div>
                                             <div class="avatar__level">
                                               <img src={leveGray} />
-                                              <span>{comm.author.statistics.level}</span>
+                                              <span>{comm.author?.statistics?.level}</span>
                                             </div>
                                           </div>
                                         )}
@@ -773,7 +773,7 @@ export default function () {
                                             });
                                           }}
                                         />
-                                        <span>{comm.statistics.rating}</span>
+                                        <span>{comm.statistics?.rating}</span>
                                         <img
                                           src={like}
                                           onclick={() => {

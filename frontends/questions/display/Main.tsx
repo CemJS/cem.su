@@ -119,7 +119,6 @@ const RenderLanguageFilter = () => {
 };
 
 export default function () {
-  Fn.log("=51d2d8=", Static.records);
   return (
     <div
       onclick={(e) => {
