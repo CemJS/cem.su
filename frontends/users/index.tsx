@@ -63,6 +63,8 @@ front.loader = async () => {
     const arr = document.querySelectorAll(className);
     if (arr?.length) {
       observer.observe(arr[arr.length - 1])
+    } else {
+      observer.disconnect()
     }
   }
 

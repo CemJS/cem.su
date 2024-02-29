@@ -20,17 +20,16 @@ front.func.checkForm = async function (key: string) {
             }
             break;
     }
-
-
     return
 }
 
-front.loader = () => {
+front.loader = async () => {    
     Static.burger = true
     if (front.Variable.DataUrl[2] === "security") {
         Static.category = "security"
     } else if (front.Variable.DataUrl[2] === "sessions") {
         Static.category = "sessions"
+        let sessions = await front.Services.functions.sendApi("/api/events/Users", Static.makeFilter);
     }
     Static.form = {}
     Static.form.change_pass = {
