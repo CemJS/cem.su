@@ -19,10 +19,10 @@ export default function ({ item, index }) {
                 observer.observe($el)
             }
         }} class="body-card">
-            <div class="bodyCard__container">
-                <div class="bodyCard__container__main-block" style="flex-direction: column">
-                    <div class="bodyCard__container_font-size pt-10">{item?.name}</div>
-                    <div class="bodyCard__container_font-size pt-20 coins_wrap">
+            <div class="body-card__container">
+                <div class="body-card__container__main-block" style="flex-direction: column">
+                    <div class="body-card__container_font-size pt-10">{item?.name}</div>
+                    <div class="body-card__container_font-size pt-20 coins_wrap">
                         {
                             item.listCoins?.map((el: any, index: number) => {
                                 // console.log("el", el);
@@ -34,10 +34,10 @@ export default function ({ item, index }) {
                         }
                     </div>
                 </div>
-                <div class="bodyCard__container__btn-block w100 pt-10 pb-10">
-                    <div class="btn_border-wrap bodyCard__container_btn_size mY-auto h100">
+                <div class="body-card__container__btn-block w100 pt-10 pb-10">
+                    <div class="btn_border-wrap body-card__container_btn_size mY-auto h100">
                         <a href={item?.url} onclick={Fn.link}>
-                            <button class="btn_border bgMW">
+                            <button class="btn_border bg-mw">
                                 Обменять
                             </button>
                         </a>

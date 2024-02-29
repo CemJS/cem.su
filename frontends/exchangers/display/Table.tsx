@@ -7,8 +7,8 @@ export default function () {
         <table class="listExchange__table table">
             <thead class="listExchange__table-head">
                 <tr class="listExchange__table-row">
-                    <th class="listExchange__table-name disable-tableName" style="justify-content: start;">Название</th>
-                    <th class="listExchange__table-coins disable-tableName">Коины</th>
+                    <th class="listExchange__table-name disable-table-name" style="justify-content: start;">Название</th>
+                    <th class="listExchange__table-coins disable-table-name">Коины</th>
                     <th class="listExchange__table-filter">
                         <img src={filter} 
                          onclick={() => Fn.initOne("modalFilterExchange", {
@@ -94,7 +94,7 @@ export default function () {
                                     <td class="listExchange__table-btn">
                                         <div class="btn_border-wrap mY-auto h100">
                                             <a href={item?.url} onclick={Fn.link}>
-                                                <button class="btn_border bgMW">
+                                                <button class="btn_border bg-mw">
                                                     Обменять
                                                 </button>
                                             </a>

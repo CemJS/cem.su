@@ -3,9 +3,9 @@ import Table from "./Table"
 
 export default function () {
   return (
-    <section class="listTrade">
+    <section class="list-trade">
       <h1 class="general__title">Список бирж</h1>
-      <div class="listTrade___table-wrapper">
+      <div class="list-trade___table">
         <Table />
       </div>
     </section >

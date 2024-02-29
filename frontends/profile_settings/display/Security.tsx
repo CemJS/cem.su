@@ -77,8 +77,10 @@ export default function () {
                         </div>
                     </div>
 
-                    <button class={Static.form.change_pass?.isValid === true ? "security-block__button" :
-                        "security-block__button security-block__button_inactive"}
+                    <button style="width: 100%"
+                        class={Static.form.change_pass?.isValid === true ? "btn btn_gradient"
+                            :
+                            "btn btn_gradient inactive"}
                         onclick={async () => {
                             // console.log("1`23");
 
@@ -97,13 +99,16 @@ export default function () {
                                 return
                             }
                         }}>
-                        <span>применить</span>
+                        <span style="text-decoration: none; text-transform: uppercase;">
+                            применить
+                        </span>
                     </button>
                 </div>
                 <div class="profile-settings__body_wrapper">
                     <p>Вы можете удалить свой профиль</p>
                     <div class="profile-settings__delete_user">
-                        <button class="security-block__button"
+                        <button class="btn btn_gradient"
+                            style="width: 100%"
                             onclick={async () => {
                                 let answer = await front.Services.functions.sendApi(`/api/MyInfo`, { action: "deleteAccount" })
 
@@ -112,7 +117,9 @@ export default function () {
                                     return
                                 }
                             }}>
-                            <span>удалить профиль</span>
+                            <span style="text-decoration: none;text-transform: uppercase;">
+                                удалить профиль
+                            </span>
                         </button>
                     </div>
                 </div>

@@ -1,29 +1,22 @@
-.listTrade {
+.list-trade {
   // padding-bottom: 100px;
   padding: 60px 0 80px 0;
   position: relative;
 
-  &-btnListTrade {
+  &__btn {
     cursor: pointer;
     margin-left: 10px;
   }
 
-  &__table-wrapper {
-    // height: 630px;
+  &__btn-block {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   &__table {
 
     &__head {
       font-size: 18px;
-
-      &-btnBlock {
-        display: flex;
-        justify-content: center;
-      }
     }
 
     &__row {
@@ -64,34 +57,35 @@
       justify-content: flex-end;
     }
 
-    &__btn {
-      max-width: 300px;
-      width: 100%;
-      text-align: center;
-    }
+    // &__btn {
+    //   max-width: 300px;
+    //   width: 100%;
+    //   text-align: center;
+    // }
 
     @media(max-width: 750px) {
-      .listTrade__table_position-end {
+      .list-trade__table_position-end {
         justify-content: start;
       }
     }
 
     @media (max-width: 700px) {
 
-      .listTrade {
+      .list-trade {
         padding-top: 10px !important;
       }
 
-      .listTrade .crypto_coin_icon {
+      .list-trade .crypto_coin_icon {
         // top: -2px;
         margin-right: 0;
         max-height: 50px;
       }
 
-      .listTrade__table__head-btnBlock {
+      .list-trade__btn-block {
         padding-bottom: 30px;
       }
-      .disable-tableName {
+
+      .disable-table-name {
         display: none !important;
       }
 
@@ -105,23 +99,23 @@
         border-radius: var(--borderR);
       }
 
-      .justStart {
+      .just-start {
         display: flex;
         justify-content: center;
       }
 
-      .listTrade__table__row {
+      .list-trade__table__row {
         display: none;
       }
 
-      .listTrade__table__index,
-      .listTrade__table__btn {
+      .list-trade__table__index,
+      .list-trade__table__btn {
         display: flex;
         align-items: center;
         justify-content: center;
       }
 
-      .listTrade__table__name {
+      .list-trade__table__name {
         display: flex;
         justify-content: center;
         // align-items: center;
@@ -136,7 +130,7 @@
 
   }
 
-  .disable-tableName {
+  .disable-table-name {
     display: block;
   }
 
@@ -147,13 +141,13 @@
     max-height: 40px;
   }
 
-  .justStart {
+  .just-start {
     display: flex;
     justify-content: start;
     align-items: center;
   }
 
-  .bgMW {
+  .bg-mw {
     background: #1d2029;
     min-width: 150px
   }
@@ -161,12 +155,12 @@
 
   @media (max-width: 410px) {
 
-    .listTrade__table__row {
+    .list-trade__table__row {
       grid-template-columns: 1fr;
       grid-auto-flow: row;
     }
 
-    .listTrade__table__btn {
+    .list-trade__table__btn {
       max-width: 100%;
     }
 
@@ -245,7 +239,7 @@
   display: none;
 }
 
-.bodyCard__container {
+.body-card__container {
   background: #3b3d49;
   border-radius: var(--borderR);
   margin-bottom: 15px;
@@ -262,7 +256,7 @@
 
   &__main-block {
     display: flex;
-    justify-content: space-between !important;
+    justify-content: space-between;
     align-items: center;
     padding: 0 10px 15px 10px;
   }
@@ -280,28 +274,43 @@
     justify-content: center;
     align-items: center;
   }
-  .bgMW {
+
+  .bg-mw {
     background: #3b3d49 !important;
     min-width: 150px
   }
 }
 
 @media (max-width: 650px) {
-  .listTrade {
+  .list-trade {
     padding-top: 5px;
   }
 }
 
+// }
+.dNoneDiv {
+  display: block;
+}
+
 @media (max-width: 410px) {
-  .bodyCard__container__main-block {
-    flex-direction: column;
+
+  .body-card__container__main-block {
+    justify-content: center;
+
+    .crypto_coin_icon {
+      margin-right: 30px !important;
+    }
   }
 
-  .bodyCard__container_btn_size {
+  .dNoneDiv {
+    display: none;
+  }
+
+  .body-card__container_btn_size {
     width: 100% !important;
   }
 
-  .listTrade .crypto_coin_icon {
+  .list-trade .crypto_coin_icon {
     position: relative;
     top: -2px;
     margin: 5px 0;

@@ -42,34 +42,11 @@
         }
 
     }
+}
 
-    &__button {
-        position: relative;
-        display: flex;
-        height: 50px;
-        width: 100%;
-        padding: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        color: #fff;
-        font-size: 14px;
-        justify-content: center;
-        cursor: pointer;
-        align-items: center;
-        border-radius: 10px;
-        border: none;
-        transition: 1s;
-        overflow: hidden;
-        z-index: 0;
-        background: #3bade3;
-        background: linear-gradient(45deg, #3bade3 0%, #576fe6 25%, #9844b7 51%, #ff357f 100%);
-
-        &_inactive {
-            filter: grayscale(1);
-            color: #BEBEBE;
-        }
-    }
-   
+.inactive {
+    filter: grayscale(1);
+    color: #BEBEBE;
 }
 
 .eye-input {

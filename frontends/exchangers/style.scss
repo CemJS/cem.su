@@ -53,7 +53,7 @@
         padding: 10px 15px;
       }
 
-      .bgMW {
+      .bg-mw {
         background: #1d2029;
         min-width: 150px
       }
@@ -140,7 +140,7 @@
     }
   }
 
-  // .disable-tableName {
+  // .disable-table-name {
   //   display: block;
   // }
 
@@ -153,7 +153,7 @@
       cursor: pointer;
     }
 
-    .bgMW {
+    .bg-mw {
       background: #3b3d49;
       min-width: 150px
     }
@@ -162,7 +162,7 @@
       display: none;
     }
 
-    .disable-tableName {
+    .disable-table-name {
       display: none !important;
     }
 
@@ -185,7 +185,7 @@
 }
 
 @media (max-width: 650px) {
-  .disable-tableName {
+  .disable-table-name {
     display: none !important;
   }
 
