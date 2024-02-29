@@ -238,7 +238,6 @@ export default function () {
               aria-label="Next page"
               title="Next page"
               onclick={() => {
-                Fn.log("=pered=", Static.currentPage);
                 if (Static.currentPage < Static.lastPage) {
                   Static.Pages.forEach((element) => {
                     element.class = "pagination-number ";

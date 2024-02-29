@@ -551,7 +551,6 @@ export default function () {
                         style="display: none"
                       >
                         {answer.comments?.map((comment) => {
-                          Fn.log("=25d521=", comment);
                           return (
                             <div
                               class="user-comment__item"
@@ -613,7 +612,7 @@ export default function () {
                                       });
                                     }}
                                   />
-                                  <span>{comment.rating}</span>
+                                  <span>{comment.statistics.rating}</span>
                                   <img
                                     src={like}
                                     onclick={() => {
@@ -712,8 +711,6 @@ export default function () {
                                 </button>
                               </div>
                               {comment.comments?.map((comm, index) => {
-                                Fn.log("=b7ff96=", 1);
-
                                 return (
                                   <div
                                     class="user-comment__item"
