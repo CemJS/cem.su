@@ -72,6 +72,37 @@ front.func.addNull = (str: any) => {
   return str.length < 2 ? `0${str}` : str;
 };
 
+front.func.deleteQuestion = async (id: string) => {
+  let data: object = {
+    action: "delete",
+    id: Static.record.id,
+  };
+  let res = await front.Services.functions.sendApi("/api/Questions", data);
+  front.Variable.$el.header.classList.remove("hide");
+  front.Variable.$el.footer.classList.remove("hide");
+  Static.record = null;
+  Events.questions.close();
+};
+
+front.func.closeQuestion = async (id: string) => {
+  let data: object = {
+    action: "close",
+    id: Static.record.id,
+  };
+  let res = await front.Services.functions.sendApi("/api/Questions", data);
+  front.Variable.$el.header.classList.remove("hide");
+  front.Variable.$el.footer.classList.remove("hide");
+  Static.record = null;
+  Events.questions.close();
+};
+
+front.func.share = () => {
+  navigator.share({
+    title: document.title,
+    url: window.location.href,
+  });
+};
+
 front.loader = async () => {
   Static.open = "Ответить";
 

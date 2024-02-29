@@ -225,6 +225,7 @@ const RenderVideo = function () {
 };
 
 export default function () {
+  console.log("=68cca5=", front.Variable.myInfo.id);
   Fn.log("=9af89e=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
@@ -287,17 +288,19 @@ export default function () {
               <span>{`${front.Services.functions.timeStampToDate(Static.record.showDate, ".")} ${Func.addNull(Func.getDate(Static.record.showDate).getHours())}:${Func.addNull(
                 Func.getDate(Static.record.showDate).getMinutes()
               )}`}</span>
-              <div class="questions__item-open btn_border-wrap">
-                <button
-                  onclick={(e: any) => {
-                    Static.open == "Ответить" ? (Static.open = "Отменить") : (Static.open = "Ответить");
-                    Ref[`ans${Static.record.id}`].classList.toggle("answer_active");
-                  }}
-                  class="btn_border"
-                >
-                  {Static.open}
-                </button>
-              </div>
+              {!Static.record.closed ? (
+                <div class="questions__item-open btn_border-wrap">
+                  <button
+                    onclick={(e: any) => {
+                      Static.open == "Ответить" ? (Static.open = "Отменить") : (Static.open = "Ответить");
+                      Ref[`ans${Static.record.id}`].classList.toggle("answer_active");
+                    }}
+                    class="btn_border"
+                  >
+                    {Static.open}
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
 
