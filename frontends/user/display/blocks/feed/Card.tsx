@@ -87,10 +87,9 @@ export default function () {
 
                 <div
                   style="padding-left: 20px;
-                                            padding-right: 20px;
-                                            margin-left: 0;
-                                             margin-right: 0;"
-                >
+                         padding-right: 20px;
+                         margin-left: 0;
+                         margin-right: 0;">
                   <span class="feed-card__item__body__text">
                     {Static.showPost[key] === true ? (
                       <div>
