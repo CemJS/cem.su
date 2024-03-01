@@ -6,7 +6,7 @@ export default function () {
 		<div class="error_wrap">
 			{/* <p class="error_text">Страница не найдена</p> */}
 			{/* <p class="">Страница не найдена</p> */}
-			<p class="text-[40px] text-center ">Страница не найдена</p>
+			<p class="text-[60px] text-center ">Страница не найдена</p>
 			<img src={error} alt="Ошибка" class="error_title" />
 			<p class="error_subtitle">Вернитесь на главную страницу</p>
 			<div class="btn_border-wrap">
