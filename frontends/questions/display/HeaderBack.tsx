@@ -29,7 +29,7 @@ export default function () {
               records.push({ name: "Поделиться", func: Func.share });
               if (front.Variable.myInfo.id == Static.record.author.id) {
                 records.push({ name: "Удалить", func: Func.deleteQuestion });
-                records.push({ name: "Закрыть вопрос", func: Func.closeQuestion });
+                !Static.record.closed ? records.push({ name: "Закрыть вопрос", func: Func.closeQuestion }) : null;
               }
               Fn.initOne("modalTools", { records });
             }}
