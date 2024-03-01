@@ -1,8 +1,6 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all"
 
 export default function () {
-    console.log("Static.record?.status", Static.record?.status);
-
     return (
         <div class="c-userpreview__shortinfo c-usershortinfo">
             <div class="c-usershortinfo__main">
@@ -17,8 +15,9 @@ export default function () {
                 <p></p>
                 {front.Variable.myInfo?.nickname === front.Variable.DataUrl[1] ?
                     <input style="text-align: center;"
+                        maxLength="32"
                         value={Static.record?.status === undefined ? "" :
-                        Static.record?.status}
+                            Static.record?.status}
                         oninput={(event: any) => {
                             Static.record.status = event.target.value;
                             Fn.log("Static.record.status", Static.record.status)
