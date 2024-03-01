@@ -42,8 +42,7 @@ export default function () {
               about: "Annyshka topchik",
             },
           })
-        }
-      >
+        }>
         Модалка редактирования "Обо мне"
       </button>
 
@@ -57,8 +56,7 @@ export default function () {
               description: "Люблю бегать по вечерам, утром для меня это непосильно ^_^",
             },
           })
-        }
-      >
+        }>
         Модалка редактирования "Мои интересы"
       </button>
 
@@ -73,72 +71,8 @@ export default function () {
               period: "2021-2022",
             },
           })
-        }
-      >
+        }>
         Модалка редактирования "Мои места работа"
-      </button>
-
-      <button
-        class="btn_border mt-10"
-        onclick={() => {
-          let res = front.Services.functions.sendApi("/api/events/Questions", {
-            action: "setQuestions",
-            data: {
-              value: {
-                languages: "ru",
-                media: [
-                  {
-                    aspect: 1.7777777777777777,
-                    type: "image",
-                    name: "efe8258b61ac29dda43ed8656b0dcec3.png",
-                  },
-                  {
-                    type: "video",
-                    name: "61d00857285f2cda73d5ad860ea99b4f.mp4",
-                  },
-                ],
-                text: "Test",
-                title: "Hello!",
-              },
-            },
-          });
-        }}
-      >
-        Новый вопрос
-      </button>
-
-      <button
-        class="btn_border mt-10"
-        onclick={() => {
-          let res = front.Services.functions.sendApi("/api/events/Questions", {
-            action: "setQuestions",
-            data: {
-              _id: "65d31dcee3e55484e9b7da1d",
-              value: {
-                active: false,
-              },
-            },
-          });
-        }}
-      >
-        Удалить вопрос
-      </button>
-
-      <button
-        class="btn_border mt-10"
-        onclick={() => {
-          let res = front.Services.functions.sendApi("/api/events/Questions", {
-            action: "setQuestions",
-            data: {
-              _id: "648583e7ebf324b8220b07d9",
-              value: {
-                close: true,
-              },
-            },
-          });
-        }}
-      >
-        Закрыть вопрос
       </button>
 
       <button
@@ -154,8 +88,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Выбрать ответ на вопрос лучшим
       </button>
 
@@ -171,8 +104,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Пожаловаться на вопрос
       </button>
 
@@ -188,8 +120,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Пожаловаться на вопрос
       </button>
 
@@ -218,8 +149,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Редактировать вопрос
       </button>
 
@@ -242,8 +172,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Предложить ответ на вопрос
       </button>
 
@@ -259,8 +188,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Лайк ответ на вопрос
       </button>
 
@@ -276,8 +204,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Дизлайк ответ на вопрос
       </button>
 
@@ -293,8 +220,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Пожаловаться на ответ
       </button>
 
@@ -310,8 +236,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Удалить ответ на вопрос
       </button>
 
@@ -329,8 +254,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Комментарий на ответ
       </button>
 
@@ -351,8 +275,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Комментарий на Комментарий
       </button>
 
@@ -385,8 +308,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Создать пост
       </button>
 
@@ -402,8 +324,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Лайк на пост
       </button>
 
@@ -419,8 +340,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Пожаловаться на пост
       </button>
 
@@ -438,8 +358,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Комментарий на пост
       </button>
 
@@ -481,8 +400,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Редактировать пост
       </button>
 
@@ -498,8 +416,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         Удалить пост
       </button>
 
@@ -514,8 +431,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         ЛК изменить рамку
       </button>
 
@@ -530,8 +446,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         ЛК изменить аватар
       </button>
 
@@ -546,25 +461,8 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         ЛК изменить фон
-      </button>
-
-      <button
-        class="btn_border mt-10"
-        onclick={() => {
-          let res = front.Services.functions.sendApi("/api/events/User", {
-            action: "setUsers",
-            data: {
-              value: {
-                "information.status": "Не спать.... работать..\n.. 😁",
-              },
-            },
-          });
-        }}
-      >
-        ЛК изменить статус
       </button>
 
       <button
@@ -581,8 +479,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         ЛК изменить инфо о бо мне
       </button>
 
@@ -602,8 +499,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         ЛК мои интересы добавить
       </button>
 
@@ -624,8 +520,7 @@ export default function () {
               _id: "65d32ffde3e55484e9c98302",
             },
           });
-        }}
-      >
+        }}>
         ЛК мои интересы редактировать
       </button>
 
@@ -647,8 +542,7 @@ export default function () {
               _id: "62baa930f558ee4424f1f7e3",
             },
           });
-        }}
-      >
+        }}>
         ЛК мои места работы редактировать / добавить по аналогии
       </button>
 
@@ -668,8 +562,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         ЛК Галерея добавить
       </button>
 
@@ -687,8 +580,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         ЛК Галерея удалить
       </button>
 
@@ -710,8 +602,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         ЛК Соцсети добавить
       </button>
 
@@ -729,8 +620,7 @@ export default function () {
               },
             },
           });
-        }}
-      >
+        }}>
         ЛК Соцсети удалить
       </button>
     </div>
