@@ -32,7 +32,15 @@ export const validEmailOrNickName = function (emailOrNick: string) {
   }
 
   return true;
-}
+};
+
+export const validQuestion = function (name: string) {
+  if (name.length < 5) {
+    return false;
+  }
+
+  return true;
+};
 
 export const validName = function (name: string) {
   if (name.length < 1) {

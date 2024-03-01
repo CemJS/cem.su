@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, front, Static, Events } from "cemjs-all";
+import { Cemjsx, Fn, front, Static, Events, Func } from "cemjs-all";
 
 export default function () {
   return (
@@ -24,7 +24,15 @@ export default function () {
 
           <span
             class="back-ellipsis"
-            onclick={() => Fn.initOne("modalTools", {})}
+            onclick={() => {
+              let records = [];
+              records.push({ name: "Поделиться", func: Func.share });
+              if (front.Variable.myInfo.id == Static.record.author.id) {
+                records.push({ name: "Удалить", func: Func.deleteQuestion });
+                records.push({ name: "Закрыть вопрос", func: Func.closeQuestion });
+              }
+              Fn.initOne("modalTools", { records });
+            }}
           ></span>
         </div>
       </div>
