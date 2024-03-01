@@ -4,10 +4,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "node node_modules/cemjs-all/esbuild.mjs --runProd",
-    "start": "node node_modules/cemjs-all/esbuild.mjs --runServe",
-    "prod": "node node_modules/cemjs-all/esbuild.mjs --runServe --runProd",
-    "dev": "start ./node_modules/cemjs-all/servecemjs.exe && node node_modules/cemjs-all/esbuild.mjs --runServe --runDev"
+    "build": "npx tailwindcss -i ./assets/tailwind/style.css -o ./public/assets/css/tailwind.css --minify && node node_modules/cemjs-all/esbuild.mjs --runProd",
+    "start": "npx tailwindcss -i ./assets/tailwind/style.css -o ./public/assets/css/tailwind.css --minify && node node_modules/cemjs-all/esbuild.mjs --runServe",
+    "prod": "npx tailwindcss -i ./assets/tailwind/style.css -o ./public/assets/css/tailwind.css --minify && node node_modules/cemjs-all/esbuild.mjs --runServe --runProd",
+    "dev": "start ./node_modules/cemjs-all/servecemjs.exe && npx tailwindcss -i ./assets/tailwind/style.css -o ./public/assets/css/tailwind.css --minify && node node_modules/cemjs-all/esbuild.mjs --runServe --runDev"
   },
   "dependencies": {
     "cemjs-all": "^1.1.14",
@@ -18,5 +18,8 @@
   "main": "index.js",
   "author": "crypto-emergency.com",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
 }

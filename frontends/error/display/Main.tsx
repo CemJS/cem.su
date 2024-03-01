@@ -4,7 +4,9 @@ import error from "@svg/icons/error.svg";
 export default function () {
   return (
     <div class="error_wrap">
-      <p class="error_text">Страница не найдена</p>
+      {/* <p class="error_text">Страница не найдена</p> */}
+      {/* <p class="">Страница не найдена</p> */}
+      <p class="text-3xl text-center">Страница не найдена</p>
       <img
         src={error}
         alt="Ошибка"
