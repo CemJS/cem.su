@@ -1,0 +1,22 @@
+<div class="list-trade__btn-block">
+                    <div ref="cex" class="list-trade__btn tag__button tag__button_active"
+                        onclick={(e: any) => {
+                            e.target.classList.toggle("tag__button_active");
+                            Ref.dex.classList.remove("tag__button_active")
+                            let res = front.Services.functions.sendApi("/api/events/Trades", {
+                                "action": "get",
+                                "category": "CEX",
+                                "uuid": `${localStorage?.uuid}`,
+                            })
+                        }}>CEX</div>
+                    <div ref="dex" class="list-trade__btn tag__button"
+                        onclick={(e: any) => {
+                            e.target.classList.toggle("tag__button_active");
+                            Ref.cex.classList.remove("tag__button_active")
+                            let res = front.Services.functions.sendApi("/api/events/Trades", {
+                                "action": "get",
+                                "category": "DEX",
+                                "uuid": `${localStorage?.uuid}`,
+                            })
+                        }}>DEX</div>
+                </div>

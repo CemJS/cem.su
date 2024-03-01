@@ -28,7 +28,7 @@ export default function ({ item, index }) {
                                 // console.log("el", el);
 
                                 return (
-                                    <img src={`/contents/coins/${el?.icon}.svg`} class="coins_wrap_item"></img>
+                                    <img src={`/contents/coins/${el?.mediaName}.svg`} class="coins_wrap_item"></img>
                                 )
                             })
                         }

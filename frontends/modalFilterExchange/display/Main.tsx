@@ -42,7 +42,7 @@ const RenderListCoins = function ({ coins }) {
         <ul class="list-coins">
             {
                 coins?.map(item => {
-                    Fn.log('=125deb=', item)
+                    // Fn.log('=125deb=', item)
                     return (
                         <li
                             class={[
@@ -58,7 +58,7 @@ const RenderListCoins = function ({ coins }) {
                             }}
                         >
                             <img
-                                src={`/contents/coins/${item?.icon}.svg`}
+                                src={`/contents/coins/${item?.mediaName}.svg`}
                                 alt={item?.name}
                             />
                             <span>{item?.name}</span>

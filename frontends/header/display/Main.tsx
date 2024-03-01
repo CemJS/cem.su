@@ -55,17 +55,17 @@ export default function () {
 
           {front.Variable.Auth ? (
             <div
+              style="cursor: pointer"
               onclick={() => {
-                Fn.linkChange(`/user/${front.Variable.myInfo.nickname}`)
-              }}
-            >Profile</div>
+                Fn.linkChange(`/user/${front.Variable.myInfo?.nickname}`)
+              }}>
+              Profile</div>
           ) : (
             <div class="header-auth">
               <span onclick={() => Fn.initOne("modalAuthtorization", {})}>Вход</span>
               <button
                 class="btn"
-                onclick={() => Fn.initOne("modalRegistration", {})}
-              >
+                onclick={() => Fn.initOne("modalRegistration", {})}>
                 Регистрация
               </button>
             </div>

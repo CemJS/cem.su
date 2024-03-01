@@ -1,30 +1,35 @@
 import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all"
 import Card from "./Card";
 
+let stateCex: boolean = true
+let stateDex: boolean = false
+
 export default function () {
     return (
         <table class="list-trade__table table">
             <thead class="list-trade__table__head ">
                 <div class="list-trade__btn-block">
-                    <div ref="cex" class="list-trade__btn tag__button tag__button_active"
+                    <div ref="cex" class={stateCex ? "list-trade__btn tag__button tag__button_active" : "list-trade__btn tag__button"}
                         onclick={(e: any) => {
-                            e.target.classList.toggle("tag__button_active");
-                            Ref.dex.classList.remove("tag__button_active")
+                            stateDex = false
+                            stateCex = true
                             let res = front.Services.functions.sendApi("/api/events/Trades", {
                                 "action": "get",
                                 "category": "CEX",
                                 "uuid": `${localStorage?.uuid}`,
                             })
+                            Fn.init
                         }}>CEX</div>
-                    <div ref="dex" class="list-trade__btn tag__button"
+                    <div ref="dex" class={stateDex ? "list-trade__btn tag__button tag__button_active" : "list-trade__btn tag__button"}
                         onclick={(e: any) => {
-                            e.target.classList.toggle("tag__button_active");
-                            Ref.cex.classList.remove("tag__button_active")
+                            stateCex = false
+                            stateDex = true
                             let res = front.Services.functions.sendApi("/api/events/Trades", {
                                 "action": "get",
                                 "category": "DEX",
                                 "uuid": `${localStorage?.uuid}`,
                             })
+                            Fn.init
                         }}>DEX</div>
                 </div>
                 <tr class="list-trade__table__row">

@@ -3,6 +3,7 @@ import Card from "./Card";
 import filter from '@svg/icon/filter.svg'
 
 export default function () {
+    
     return (
         <table class="listExchange__table table">
             <thead class="listExchange__table-head">
@@ -50,6 +51,7 @@ export default function () {
                 </div>
                 {
                     Static.records?.map((item: any, index: any) => {
+                        // console.log("item", item);
                         return (
                             <div>
                                 <tr
@@ -84,8 +86,9 @@ export default function () {
                                         <div class="coins_wrap">
                                             {
                                                 item?.listCoins?.map((el: any, index: number) => {
+                    
                                                     return (
-                                                        <img src={`/contents/coins/${el?.icon}.svg`} class="coins_wrap_item"></img>
+                                                        <img src={`/contents/coins/${el?.mediaName}.svg`} class="coins_wrap_item"></img>
                                                     )
                                                 })
                                             }
