@@ -86,7 +86,7 @@
   }
 }
 
-@layer {
+@layer base {
   .page {
     @apply relative overflow-x-hidden py-64;
   }
