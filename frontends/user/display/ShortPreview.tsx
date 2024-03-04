@@ -7,7 +7,7 @@ export default function () {
                 <a class="c-usershortinfo__"></a>
                 <a class="c-usershortinfo__flag">
                     {Static.record?.country?.code &&
-                        <img src={`/contents/svg/flags/${Static.record?.country?.code}.svg`} />
+                        <img src={[`/contents/svg/flags/${Static.record?.country?.code}.svg`]} />
                     }
                 </a>
                 <input id="username" class="c-usershortinfo__name userinfoinput" readonly="true" value={Static.record?.nickname ? Static.record?.nickname : ""}></input>
