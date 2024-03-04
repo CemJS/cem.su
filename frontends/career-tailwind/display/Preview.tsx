@@ -3,7 +3,7 @@ import previewImg from "@images/careerBg.png";
 
 export default function () {
   return (
-    <div class="jobs__preview">
+    <div class="relative left-[-27.1rem] pt-1 before:absolute before:z-[1]  before:content-['']">
       <div class="jobs__preview-wrapper">
         <div class="jobs__preview-info">
           <h1 class="jobs__preview-title">Карьера в Crypto Emergency</h1>

@@ -7,6 +7,6 @@
 		@apply relative py-64 overflow-x-hidden;
 	}
 	.wrapper {
-		@apply max-w-7xl mx-auto;
+		@apply max-w-7xl mx-auto px-[1rem] xl:px-0;
 	}
 }
