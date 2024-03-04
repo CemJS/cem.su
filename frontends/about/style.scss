@@ -125,9 +125,10 @@
   padding-top: 150px; //235px;
   padding-bottom: 180px; //345px;
   text-align: center;
-  // background-image: url(../contents/images/background/about_us_preview.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+    // background-image: url(../contents/images/background/about_us_preview.jpg);
+
 
   @media(max-width: 599px) {
     padding-top: 50px;

@@ -57,7 +57,7 @@ const titleOptions = {
 
 export default function () {
   return (
-    <div class="about">
+    <div class="relative overflow-hidden bg-[#232733]">
       <PreviewStandart />
       {/* <Preview
         items={aboutSlides}
