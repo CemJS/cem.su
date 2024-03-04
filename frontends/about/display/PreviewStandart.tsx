@@ -18,7 +18,7 @@ export default function () {
       max-sm-[599px]:pt-[3.125rem]"
       style={`background-image: url(${"/contents/background/71fb4fe9899634886318.jpg"})`}
     >
-      <div class="max-w-7xl pt-[9rem]">
+      <div class="max-w-7xl px-[1.875rem] pt-[7rem]">
         <img class="absolute left-0 z-[1]" src={lines} />
         <h2
           class="relative 
@@ -33,14 +33,14 @@ export default function () {
           Crypto Emergency
         </h2>
         <p
-          class="relative 
+          class="@374:leading-8 
+           relative
            z-[1]
-           mx-auto
+           mx-auto 
            max-w-[54.0625rem] 
-           text-[clamp(0.75rem,3vw,1.25rem)] 
+           text-[clamp(0.95rem,3vw,1.25rem)] 
            font-normal 
-           text-[#FFFFFF] 
-           md:leading-8"
+           text-[#FFFFFF]"
         >
           Объединяем криптоэнтузиастов всего мира на единой многофункциональной
           платформе Crypto Emergency, которая даст им все необходимые
@@ -48,7 +48,10 @@ export default function () {
           контента.
         </p>
       </div>
-      <div class="c-whowe__bg"></div>
+      <div
+        style="background: linear-gradient(0deg, #232733 2.22%, rgba(35, 39, 51, 0) 177.88%);}"
+        class="absolute top-[0.0625rem] h-full w-full"
+      ></div>
     </div>
   );
 }
