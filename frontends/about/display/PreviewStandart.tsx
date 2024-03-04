@@ -11,14 +11,14 @@ export default function () {
       justify-center
       bg-cover 
       bg-no-repeat 
-      pb-[11.25rem] 
+      pb-[10.25rem] 
       pt-[6.375rem]
       text-center
       max-sm-[599px]:pb-[3.75rem]
       max-sm-[599px]:pt-[3.125rem]"
       style={`background-image: url(${"/contents/background/71fb4fe9899634886318.jpg"})`}
     >
-      <div class="max-w-7xl px-[1.875rem] pt-[7rem]">
+      <div class="max-w-7xl px-[1.875rem] @374:pt-auto pt-[4rem]">
         <img class="absolute left-0 z-[1]" src={lines} />
         <h2
           class="relative 
@@ -38,7 +38,7 @@ export default function () {
            z-[1]
            mx-auto 
            max-w-[54.0625rem] 
-           text-[clamp(0.95rem,3vw,1.25rem)] 
+           text-[clamp(.95rem,3vw,1.25rem)] 
            font-normal 
            text-[#FFFFFF]"
         >
@@ -50,7 +50,7 @@ export default function () {
       </div>
       <div
         style="background: linear-gradient(0deg, #232733 2.22%, rgba(35, 39, 51, 0) 177.88%);}"
-        class="absolute top-[0.0625rem] h-full w-full"
+        class="absolute top-[.0625rem] h-full w-full"
       ></div>
     </div>
   );

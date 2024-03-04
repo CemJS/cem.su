@@ -4,6 +4,8 @@ export default {
     extend: {
       screens: {
         "@374": "374px",
+        "@464": "464px",
+        "@992": "992px"
       },
     },
   },
