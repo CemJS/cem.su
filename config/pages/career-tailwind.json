@@ -1,4 +1,4 @@
 {
-	"url": "/career-tailwind",
-	"front": ["career", "menu"]
+  "url": "/career-tailwind",
+  "front": ["career-tailwind", "menu"]
 }

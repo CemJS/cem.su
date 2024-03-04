@@ -40,7 +40,9 @@ front.func.checkMessage = () => {
 };
 
 front.func.checkForm = () => {
-  Static.form.name.valid && Static.form.email.valid && Static.form.message.valid ? (Static.form.isValid = true) : (Static.form.isValid = false);
+  Static.form.name.valid && Static.form.email.valid && Static.form.message.valid
+    ? (Static.form.isValid = true)
+    : (Static.form.isValid = false);
   return;
 };
 
@@ -67,11 +69,7 @@ front.loader = () => {
 };
 
 front.display = () => {
-  return (
-    <div>
-      <Navigation />
-    </div>
-  );
+  return <Navigation />;
 };
 
 export { front };

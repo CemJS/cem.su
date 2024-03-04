@@ -29,17 +29,17 @@
 // }
 
 .text {
-  &-left {
-    text-align: left;
-  }
+  // &-left {
+  //   text-align: left;
+  // }
 
-  &-center {
-    text-align: center;
-  }
+  // &-center {
+  //   text-align: center;
+  // }
 
-  &-right {
-    text-align: right;
-  }
+  // &-right {
+  //   text-align: right;
+  // }
 
   &_important {
     font-size: clamp(1rem, 2vw, 1.125rem);
@@ -79,10 +79,15 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 1px 6px 0px -4px rgba(0, 0, 0, 0.15), 3px 4px 4px -1px rgba(0, 0, 0, 0.15);
+    box-shadow:
+      1px 6px 0px -4px rgba(0, 0, 0, 0.15),
+      3px 4px 4px -1px rgba(0, 0, 0, 0.15);
     background-color: rgba(255, 255, 255, 0.07);
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition:
+      background-color 0.3s ease-in-out,
+      border 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
 
     &:hover {
       background-color: transparent;
@@ -125,7 +130,9 @@
     color: #999;
     font-weight: 700;
     font-size: clamp(1rem, 5vw, 1.25rem);
-    transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition:
+      border 0.3s ease-in-out,
+      color 0.3s ease-in-out;
 
     &__active {
       border-color: var(--fiolet);
@@ -170,7 +177,14 @@
   cursor: pointer;
   transition: all 0.2s ease-out;
   white-space: nowrap;
-  @include button(var(--mainGradient), fit-content, 3.2rem, 125%, 1rem, var(--white));
+  @include button(
+    var(--mainGradient),
+    fit-content,
+    3.2rem,
+    125%,
+    1rem,
+    var(--white)
+  );
 
   span {
     height: 100%;
@@ -196,7 +210,14 @@
     cursor: pointer;
     transition: all 0.2s ease-out;
     white-space: nowrap;
-    @include button(var(--darkBlueGradient), fit-content, 3.2rem, 125%, 1rem, var(--white));
+    @include button(
+      var(--darkBlueGradient),
+      fit-content,
+      3.2rem,
+      125%,
+      1rem,
+      var(--white)
+    );
   }
 
   &_dark {
@@ -207,7 +228,14 @@
     justify-content: space-between;
     gap: 0.3rem;
     transition: var(--tran-03);
-    @include button(var(--back700), fit-content, fit-content, 125%, 1rem, var(--slate-300));
+    @include button(
+      var(--back700),
+      fit-content,
+      fit-content,
+      125%,
+      1rem,
+      var(--slate-300)
+    );
 
     .i {
       display: block;
@@ -221,7 +249,14 @@
   }
 
   &_border {
-    @include button(var(--black-gray), 100%, 2.625rem, 100%, 1rem, var(--white));
+    @include button(
+      var(--black-gray),
+      100%,
+      2.625rem,
+      100%,
+      1rem,
+      var(--white)
+    );
     border-radius: var(--btnR);
     overflow: hidden;
     text-align: center;
@@ -305,7 +340,9 @@
     width: 250px;
 
     border: 1px solid #474c5a;
-    box-shadow: 1px 6px 0px -4px rgba(0, 0, 0, 0.15), 3px 4px 4px -1px rgba(0, 0, 0, 0.15);
+    box-shadow:
+      1px 6px 0px -4px rgba(0, 0, 0, 0.15),
+      3px 4px 4px -1px rgba(0, 0, 0, 0.15);
 
     position: absolute;
     top: 10px;
@@ -316,7 +353,9 @@
     background: var(--backModal);
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition:
+      visibility 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
 
     &_text {
       font-size: 14px;

@@ -23,7 +23,8 @@ export default function () {
 
           <span
             // class="back-ellipsis after:content-['...'] w relative w-[1.925rem] cursor-pointer hover:bg-[#363b4b]"
-            class="back-ellipsis relative w-[1.925rem] cursor-pointer after:absolute after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-70%] after:text-[3rem] after:content-['...'] hover:after:text-[#363b4b]"
+            class="back-ellipsis relative w-[1.925rem] cursor-pointer after:absolute after:left-0 after:top-0 after:translate-x-[-10%]
+             after:translate-y-[-70%] after:text-[3rem] after:content-['...'] hover:after:text-[#363b4b]"
             onclick={() => Fn.initOne("modalTools", {})}
           ></span>
         </div>
