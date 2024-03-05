@@ -5,7 +5,10 @@ export default {
       screens: {
         "@374": "374px",
         "@464": "464px",
-        "@992": "992px"
+        "@992": "992px",
+      },
+      backgroundSize: {
+        "100%": "100%",
       },
     },
   },

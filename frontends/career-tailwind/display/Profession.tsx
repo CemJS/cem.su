@@ -13,7 +13,9 @@ export default function () {
             <div class="cursor-pointer rounded-[0.9375rem] bg-[linear-gradient(106.76deg,rgba(112,128,176,0.4)0%,rgba(40,28,71,0)109.61%)] p-[0.0625rem] text-inherit hover:bg-[linear-gradient(89.03deg,#2c66b8_0.54%,#8859ec_97.66%)]">
               <div class="flex h-full items-center gap-6 rounded-[--borderR] bg-[#242834] px-[1.875rem] py-[1.0625rem] duration-1000 hover:bg-transparent">
                 <img src={item.img} alt="Профессия" />
-                <div class="jobs__professions-text">{item.text}</div>
+                <div class="text-[clamp(0.9rem,1.4vw,1.125rem)] font-medium">
+                  {item.text}
+                </div>
               </div>
             </div>
           );

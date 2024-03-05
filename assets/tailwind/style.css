@@ -2,6 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* prettier-ignore */
 @layer base {
   :root {
     --backSecond: #303545;
@@ -66,7 +67,7 @@
       #282d3c 0.97%,
       rgba(40, 45, 60, 0) 86.74%
     );
-    --blueGradient: linear-gradient(89.03deg, #679fef 0.54%, #a87fff 97.66%);
+    --blueGradient: linear-gradient(89.03deg,#679fef 0.54%, #a87fff 97.66%);
     --lightBlueGradient: radial-gradient(
       41.76% 41.76% at 50% 50%,
       #915dff 0%,
@@ -92,5 +93,12 @@
   }
   .wrapper {
     @apply mx-auto max-w-7xl px-[1rem] xl:px-0;
+  }
+  /* градиентная кнопка при наведении */
+  .btn_border-wrap {
+    @apply mx-auto w-[12.625rem] rounded-[--btnR] bg-[--mainGradient] p-[0.0725rem];
+  }
+  .btn_border {
+    @apply bg-100% relative z-[1] h-[2.625rem] w-full cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--black-gray] text-center text-[1rem] font-semibold text-white outline-none;
   }
 }
