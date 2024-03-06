@@ -61,29 +61,12 @@
     --tran-05: all 0.5s ease-in-out;
 
     /* // gradient */
-    --mainGradient: linear-gradient(to left, #2973ff, #8846d3, #ff22ac);
-    --grayGradient: linear-gradient(
-      149.17deg,
-      #282d3c 0.97%,
-      rgba(40, 45, 60, 0) 86.74%
-    );
-    --blueGradient: linear-gradient(89.03deg,#679fef 0.54%, #a87fff 97.66%);
-    --lightBlueGradient: radial-gradient(
-      41.76% 41.76% at 50% 50%,
-      #915dff 0%,
-      rgba(191, 9, 255, 0) 100%
-    );
-    --darkBlueGradient: linear-gradient(90deg, #2f66b9 2.08%, #8a5be5 97.67%);
-    --greenGradient: linear-gradient(
-      90deg,
-      #01c8ab 0%,
-      #02c3a7 13%,
-      #04b49a 28%,
-      #079b85 45%,
-      #0b7969 62%,
-      #104c43 81%,
-      #171717 100%
-    );
+    --mainGradient: linear-gradient(to_left,#2973ff,#8846d3,#ff22ac);
+    --grayGradient: linear-gradient(149.17deg,#282d3c_0.97%,rgba(40,45,60,0)_86.74%);
+    --blueGradient: linear-gradient(89.03deg,#679fef_0.54%,#a87fff_97.66%);
+    --lightBlueGradient: radial-gradient(41.76%_41.76%_at_50%_50%,#915dff_0%,rgba(191,9,255,0)_100%);
+    --darkBlueGradient: linear-gradient(90deg,#2f66b9_2.08%,#8a5be5_97.67%);
+    --greenGradient: linear-gradient(90deg,#01c8ab_0%,#02c3a7_13%,#04b49a_28%,#079b85_45%,#0b7969_62%,#104c43_81%,#171717_100%);
   }
 }
 
@@ -94,11 +77,18 @@
   .wrapper {
     @apply mx-auto max-w-7xl px-[1rem] xl:px-0;
   }
+
+  .link {
+    @apply bg-clip-text text-transparent [background:--mainGradient];
+  }
+  .btn {
+    @apply bg-125% h-[3.2rem] w-fit cursor-pointer whitespace-nowrap rounded-[--btnR] border-none px-4 py-[0.8rem] text-[1rem] text-[--white] outline-none [background:--mainGradient] [transition:all_0.2s_ease-out] hover:bg-right;
+  }
   /* градиентная кнопка при наведении */
   .btn_border-wrap {
     @apply mx-auto w-[12.625rem] rounded-[--btnR] bg-[--mainGradient] p-[0.0725rem];
   }
   .btn_border {
-    @apply bg-100% relative z-[1] h-[2.625rem] w-full cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--black-gray] text-center text-[1rem] font-semibold text-white outline-none;
+    @apply relative z-[1] h-[2.625rem] w-full cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--black-gray] bg-100% text-center text-[1rem] font-semibold text-white outline-none;
   }
 }

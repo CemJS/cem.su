@@ -4,7 +4,7 @@ import HeaderBack from "./display/HeaderBack";
 
 export default function () {
   return (
-    <div>
+    <div class="h-screen">
       <Main />
       <HeaderBack />
     </div>

@@ -3,7 +3,7 @@ import error from "@svg/icons/error.svg";
 
 export default function () {
   return (
-    <div class="sm:p-[4.25rem_0_7.625rem]">
+    <div class="error_wrap">
       {/* <p class="error_text">Страница не найдена</p> */}
       {/* <p class="">Страница не найдена</p> */}
       <p class="text-center text-[60px] ">Страница не найдена</p>

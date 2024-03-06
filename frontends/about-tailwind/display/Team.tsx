@@ -46,9 +46,9 @@ export default function () {
             <div>
               <div class="relative px-20 py-40 [transform-style:preserve-3d] [transition:transform_1.5s] hover:[transform:rotateY(180deg)]">
                 <div
-                  class={`[backface-visibility: hidden] [transform-style: preserve-3d] [background-blend-mode: overlay] [background-image: url(${item.image})] absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-end bg-[rgba(23,27,39,0.2588235294)] bg-contain bg-no-repeat p-4 [background-position:center_20px] xl:bg-cover`}
+                  class={`[backface-visibility: hidden] [transform-style: preserve-3d] [background-blend-mode: overlay] [background-image: url(${item.image})] absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-end border-solid border-[--akebi_purple] bg-[rgba(23,27,39,0.2588235294)] bg-contain bg-no-repeat p-4 [background-position:center_20px] [transform:translateZ(2rem)] before:absolute before:inset-4 before:border-[3px] before:content-[''] xl:bg-cover`}
                 >
-                  <div class="team_item_title">
+                  <div class="w-[98%] bg-[rgba(49,53,65,0.5)] p-2 [tranform:translateZ(2rem)]">
                     <h2>{item.name}</h2>
                   </div>
                   <div class="team_item_post">
