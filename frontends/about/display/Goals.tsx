@@ -55,7 +55,7 @@ export default function () {
        grid !grid-cols-1 !gap-5 @464:!grid-cols-2 @992:!grid-cols-4 @992:!gap-4"
       >
         {goals.map((item: any) => {
-        console.log("item", item);
+        // console.log("item", item);
         
           return (
             <div
