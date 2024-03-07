@@ -20,26 +20,26 @@
   }
 
   &_item {
-    position: relative;
-    height: 450px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    overflow: hidden;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    // position: relative;
+    // height: 450px;
+    // background: rgba(255, 255, 255, 0.02);
+    // border: 1px solid rgba(255, 255, 255, 0.05);
+    // border-radius: 20px;
+    // overflow: hidden;
+    // -webkit-backdrop-filter: blur(10px);
+    // backdrop-filter: blur(10px);
 
-    @media (max-width: 992px) {
-      height: 235px;
-    }
+    // @media (max-width: 992px) {
+    //   height: 235px;
+    // }
 
-    @media (max-width: 767px) {
-      height: 320px;
-    }
+    // @media (max-width: 767px) {
+    //   height: 320px;
+    // }
 
-    @media (max-width: 464px) {
-      height: 265px;
-    }
+    // @media (max-width: 464px) {
+    //   height: 265px;
+    // }
 
     &:hover::before {
       clip-path: circle(300px at 80% -40%);
@@ -77,17 +77,17 @@
     }
 
     &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #A87FFF;
+      // content: '';
+      // position: absolute;
+      // top: 0;
+      // left: 0;
+      // width: 100%;
+      // height: 100%;
+      // background: #A87FFF;
       -webkit-clip-path: circle(300px at 80% -20%);
       clip-path: circle(300px at 80% -20%);
       transition: 0.5s ease-in-out;
-      opacity: .5;
+      // opacity: .5;
 
       @media (max-width: 992px) {
         -webkit-clip-path: circle(170px at 94% -35%);
@@ -105,15 +105,15 @@
       }
     }
 
-    &::after {
-      position: absolute;
-      bottom: 10%;
-      left: -15%;
-      font-size: 7em;
-      font-weight: 800;
-      font-style: italic;
-      color: rgba(255, 34, 172, 0.05);
-    }
+    // &::after {
+    //   position: absolute;
+    //   bottom: 10%;
+    //   left: -15%;
+    //   font-size: 7em;
+    //   font-weight: 800;
+    //   font-style: italic;
+    //   color: rgba(255, 34, 172, 0.05);
+    // }
 
     &.crypto::after {
       content: 'Crypto';

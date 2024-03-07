@@ -49,27 +49,19 @@ export default function () {
       </h2>
       <div
         class="grid-rows-auto
-       relative 
-       z-10 
-       mb-6 
-       grid !grid-cols-1 !gap-5 @464:!grid-cols-2 @992:!grid-cols-4 @992:!gap-4"
+       @464:!grid-cols-2 
+       @992:!grid-cols-4 
+       @992:!gap-4 
+       relative z-10 mb-6 grid !grid-cols-1 !gap-5"
       >
-        {goals.map((item: any) => {
-        console.log("item", item);
-        
+        {goals.map((item) => {
           return (
             <div
               style="backdrop-filter: blur(10px);"
               class={[
-                "goal_item relative h-[265px] overflow-hidden rounded-[1.25rem] border-[0.0625rem] border-solid border-[#ffffff0d] bg-[#ffffff05] duration-[0.5s] ease-in-out before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-[#A87FFF] before:opacity-50 before:transition-all before:content-[''] after:absolute after:bottom-[10%] after:left-[-15%] after:text-[7rem] after:font-extrabold after:italic after:text-[#ff22ac0d] @464:h-[20rem] @992:h-[28.125rem]",
-                { ""
-                  // item.classItem === "crypto" ? "after:content-['Crypto']" 
-                  // : item.classItem === "unite" ? "after:content-['Unite'] after:left-0-[-6%]"
-                  // : item.classItem === "access" ? "after:content-['Access'] after:left-0-[-15%]"
-                  // : item.classItem === "meta" ? "after:content-['Meta'] after:left-0-[-3%]"
-                  : null
-               }        
-                    ]}
+                "goal_item relative h-[265px] overflow-hidden rounded-[1.25rem] border-[0.0625rem] border-solid border-[#ffffff0d] bg-[#ffffff05]",
+                item.classItem,
+              ]}
             >
               <div class="goal_img">
                 <img src={item.img}></img>

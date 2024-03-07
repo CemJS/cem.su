@@ -31,7 +31,7 @@ const faq = [
 
 export default function () {
     return (
-        <div class="">
+        <div class="relative z-50">
             <h2 class="about_subtitle">FAQ</h2>
             <ul class="accordeon">
                 {
