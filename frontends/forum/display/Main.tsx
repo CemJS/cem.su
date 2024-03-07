@@ -87,10 +87,7 @@ export default function () {
         <div class="wrapper">
           <div class="forum__intro-card">
             <div class="forum__intro-img">
-              <img
-                src={introImg}
-                alt="Crypto ЮГ 2023"
-              />
+              <img src={introImg} alt="Crypto ЮГ 2023" />
             </div>
             <div class="forum__intro-right">
               <h2 class="forum__intro-title">Ежегодный криптовалютный форум</h2>
@@ -108,30 +105,23 @@ export default function () {
           <div class="forum__info-wrapper">
             <div class="forum__info-invite">
               <div class="forum__text">
-                Команда <span class="forum__text_green">Crypto Emergency</span> рада пригласить тебя на второй ежегодный криптофорум <span class="forum__text_green">Crypto Юг 2023</span>, который
+                Команда <span class="forum__text_green">Crypto Emergency</span>{" "}
+                рада пригласить тебя на второй ежегодный криптофорум{" "}
+                <span class="forum__text_green">Crypto Юг 2023</span>, который
                 состоится 3 и 4 июня в г. Новороссийске.
               </div>
             </div>
             <div class="forum__info-sponsor">
               <h3 class="forum__info-title">Организатор</h3>
-              <img
-                src={logo}
-                alt="Crypto Emergency"
-              />
+              <img src={logo} alt="Crypto Emergency" />
             </div>
             <div class="forum__info-sponsor">
               <h3 class="forum__info-title">Спонсор After party</h3>
-              <img
-                src={metis}
-                alt="Metis"
-              />
+              <img src={metis} alt="Metis" />
             </div>
             <div class="forum__info-sponsor">
               <h3 class="forum__info-title">При поддержке</h3>
-              <img
-                src={racib}
-                alt="РАКИБ"
-              />
+              <img src={racib} alt="РАКИБ" />
             </div>
             <div class="forum__info-schedules">
               <h3 class="forum__info-title">Расписание форума</h3>
@@ -158,52 +148,70 @@ export default function () {
         <section class="forum__opportunities">
           <div class="forum__opportunity">
             <div class="forum__text">
-              <span class="forum__text_green">Crypto Юг 2023</span> - прекрасная возможность провести время приятно и с пользой, открыть для себя новые возможности, повысить экспертность и увеличить
-              доход.
+              <span class="forum__text_green">Crypto Юг 2023</span> - прекрасная
+              возможность провести время приятно и с пользой, открыть для себя
+              новые возможности, повысить экспертность и увеличить доход.
             </div>
           </div>
           <div class="forum__opportunity">
             <div class="forum__text">
-              <span class="forum__text_green">Образование</span> - форум предоставляет доступ к содержательным беседам, семинарам и панельным дискуссиям о последних тенденциях и разработках в
+              <span class="forum__text_green">Образование</span> - форум
+              предоставляет доступ к содержательным беседам, семинарам и
+              панельным дискуссиям о последних тенденциях и разработках в
               индустрии криптовалют.
             </div>
           </div>
           <div class="forum__opportunity">
             <div class="forum__text">
-              <span class="forum__text_green">Живое общение</span> - возможность в живую пообщаться с любимым экспертом или с другими участниками и профессионалами крипторынка.
+              <span class="forum__text_green">Живое общение</span> - возможность
+              в живую пообщаться с любимым экспертом или с другими участниками и
+              профессионалами крипторынка.
             </div>
           </div>
           <div class="forum__opportunity">
             <div class="forum__text">
-              <span class="forum__text_green">Нетворкинг</span> - если вы ищите перспективные проекты для поддержки или участия, наш форум предоставляет отличную возможность встретиться и пообщаться с
+              <span class="forum__text_green">Нетворкинг</span> - если вы ищите
+              перспективные проекты для поддержки или участия, наш форум
+              предоставляет отличную возможность встретиться и пообщаться с
               нужными людьми.
             </div>
           </div>
           <div class="forum__opportunity">
             <div class="forum__text">
-              <span class="forum__text_green">Инновации</span> - ты можешь ознакомиться с передовыми технологиями и инновационными решениями, которые формируют будущее индустрии криптовалют.
+              <span class="forum__text_green">Инновации</span> - ты можешь
+              ознакомиться с передовыми технологиями и инновационными решениями,
+              которые формируют будущее индустрии криптовалют.
             </div>
           </div>
           <div class="forum__opportunity">
             <div class="forum__text">
-              <span class="forum__text_green">Вдохновение</span> - на форуме выступают дальновидные спикеры, которые могут вдохновить тебя вывести собственные идеи и проекты на новый уровень.
+              <span class="forum__text_green">Вдохновение</span> - на форуме
+              выступают дальновидные спикеры, которые могут вдохновить тебя
+              вывести собственные идеи и проекты на новый уровень.
             </div>
           </div>
           <div class="forum__opportunity">
             <div class="forum__text">
-              <span class="forum__text_green">Заявить о себе</span> - форум предоставляет сцену для демонстрации твоих экспертных знаний в области криптовалют, повышая твою репутацию лидера мысли и
+              <span class="forum__text_green">Заявить о себе</span> - форум
+              предоставляет сцену для демонстрации твоих экспертных знаний в
+              области криптовалют, повышая твою репутацию лидера мысли и
               эксперта.
             </div>
           </div>
           <div class="forum__opportunity">
             <div class="forum__text">
-              <span class="forum__text_green">Сотрудничество</span> - такие мероприятия являются центром сотрудничества и формирования сообщества, предоставляя возможности для совместной работы над
-              проектами и инициативами, которые могут оказать значительное влияние на индустр ию.
+              <span class="forum__text_green">Сотрудничество</span> - такие
+              мероприятия являются центром сотрудничества и формирования
+              сообщества, предоставляя возможности для совместной работы над
+              проектами и инициативами, которые могут оказать значительное
+              влияние на индустр ию.
             </div>
           </div>
         </section>
         <div class="forum__confidence forum__confidence_margin forum__text">
-          Мы уверены, что наш криптофорум предоставит тебе всю ценную информацию, деловые возможности и возможности, которых больше нигде не встретишь.
+          Мы уверены, что наш криптофорум предоставит тебе всю ценную
+          информацию, деловые возможности и возможности, которых больше нигде не
+          встретишь.
         </div>
         <div class="forum__images">
           <DisplayImages
@@ -252,18 +260,12 @@ export default function () {
                   </span>
                 );
               })}
-              <div
-                class="activeTab"
-                ref="activeTab"
-              ></div>
+              <div class="activeTab" ref="activeTab"></div>
             </div>
 
             {/* speakers */}
 
-            <div
-              class="speakers"
-              ref="speakersContent"
-            >
+            <div class="speakers" ref="speakersContent">
               {speakers
                 .filter((item) => item.visited.includes(Static.speakersTabName))
                 .slice(0, Static.howMutchSpeakers)
@@ -302,10 +304,7 @@ export default function () {
               Fn.log("=9b27aa=", speakers);
             }}
           >
-            <span
-              ref="buttonSpan"
-              class="show-all__button"
-            >
+            <span ref="buttonSpan" class="show-all__button">
               Показать всех
             </span>
           </div>
@@ -314,14 +313,16 @@ export default function () {
           <h2 class="forum__title forum__title_margin">Стенды</h2>
         </section>
         <section class="forum__guests forum_z-index">
-          <h2 class="forum__title forum__title_margin">Гости Crypto Emergency</h2>
+          <h2 class="forum__title forum__title_margin">
+            Гости Crypto Emergency
+          </h2>
           <div class="forum__guests-list">
             {guests.map((item) => {
               return (
                 <a
                   href={item.href}
                   target="_blank"
-                  class="forum__guest mX-auto"
+                  class="forum__guest mx-auto"
                 >
                   <div class="forum__guest-wrap">
                     <img
@@ -342,16 +343,33 @@ export default function () {
 
       <section class="forum__theme">
         <div class="wrapper wrapper_padding">
-          <p class="forum__theme-text forum__theme-text_light">Второй ежегодный криптовалютный форум пройдет в центре города Новороссийска на берегу Черного моря.</p>
+          <p class="forum__theme-text forum__theme-text_light">
+            Второй ежегодный криптовалютный форум пройдет в центре города
+            Новороссийска на берегу Черного моря.
+          </p>
           <h2 class="forum__title mY-25">Темы форума:</h2>
           <ul class="forum__theme-list forum__theme-list_margin">
-            <li class="forum__theme-item forum__theme-text">Децентрализованные социальные сети</li>
-            <li class="forum__theme-item forum__theme-text">Как начать свой путь в крипто индустрии</li>
-            <li class="forum__theme-item forum__theme-text">Регуляция и её влияние на рынок</li>
-            <li class="forum__theme-item forum__theme-text">Трейдинг и как на нем заработать</li>
-            <li class="forum__theme-item forum__theme-text">NFT, как прикоснуться к искусству</li>
-            <li class="forum__theme-item forum__theme-text">Майнинг в 2023 году</li>
-            <li class="forum__theme-item forum__theme-text">GameFi получай удовольствие и зарабатывай</li>
+            <li class="forum__theme-item forum__theme-text">
+              Децентрализованные социальные сети
+            </li>
+            <li class="forum__theme-item forum__theme-text">
+              Как начать свой путь в крипто индустрии
+            </li>
+            <li class="forum__theme-item forum__theme-text">
+              Регуляция и её влияние на рынок
+            </li>
+            <li class="forum__theme-item forum__theme-text">
+              Трейдинг и как на нем заработать
+            </li>
+            <li class="forum__theme-item forum__theme-text">
+              NFT, как прикоснуться к искусству
+            </li>
+            <li class="forum__theme-item forum__theme-text">
+              Майнинг в 2023 году
+            </li>
+            <li class="forum__theme-item forum__theme-text">
+              GameFi получай удовольствие и зарабатывай
+            </li>
           </ul>
           <h4 class="forum__theme-title">На форуме Вас будут ждать:</h4>
           <ul class="forum__theme-list">
@@ -360,7 +378,9 @@ export default function () {
             <li class="forum__theme-item forum__theme-text">30+ спикеров</li>
             <li class="forum__theme-item forum__theme-text">Крупные СМИ</li>
             <li class="forum__theme-item forum__theme-text">Фуршет</li>
-            <li class="forum__theme-item forum__theme-text">Большое количество конкурсов с ценными призами</li>
+            <li class="forum__theme-item forum__theme-text">
+              Большое количество конкурсов с ценными призами
+            </li>
           </ul>
         </div>
       </section>
@@ -371,11 +391,7 @@ export default function () {
           <div class="forum__partners-list">
             {partners?.map((item) => {
               return (
-                <a
-                  href={item.url}
-                  target="_blank"
-                  class="forum__partners-item"
-                >
+                <a href={item.url} target="_blank" class="forum__partners-item">
                   <img
                     src={`/contents/forum/partners/${item?.logo}`}
                     alt="Партнёр"

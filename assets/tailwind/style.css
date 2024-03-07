@@ -72,17 +72,29 @@
 
 @layer base {
   .page {
-    @apply relative overflow-x-hidden py-64;
+    @apply relative overflow-x-hidden py-24;
+  }
+  .page__date {
+    @apply mb-[0.9375rem] flex items-center justify-start whitespace-nowrap text-[clamp(0.6rem,2vw,0.75rem)] font-medium italic leading-[3.25rem] text-[--textSecond];
   }
   .wrapper {
     @apply mx-auto max-w-7xl px-[1rem] xl:px-0;
   }
 
+  /* для страниц соглашений(3шт) */
+  .title {
+    @apply mb-3 text-center text-[clamp(1.3rem,1.5vw,1.6rem)] font-bold leading-8 text-[--white];
+  }
+  .content {
+    @apply mb-5 text-justify [&_p]:m-[0_0_0.8rem] [&_p]:text-justify [&_p]:indent-8 [&_p]:leading-[1.4] [&_p]:lg:leading-[1.5];
+  }
+  /*  */
+
   .link {
     @apply bg-clip-text text-transparent [background:--mainGradient];
   }
   .btn {
-    @apply bg-125% h-[3.2rem] w-fit cursor-pointer whitespace-nowrap rounded-[--btnR] border-none px-4 py-[0.8rem] text-[1rem] text-[--white] outline-none [background:--mainGradient] [transition:all_0.2s_ease-out] hover:bg-right;
+    @apply h-[3.2rem] w-fit cursor-pointer whitespace-nowrap rounded-[--btnR] border-none bg-125% px-4 py-[0.8rem] text-[1rem] text-[--white] outline-none [background:--mainGradient] [transition:all_0.2s_ease-out] hover:bg-right;
   }
   /* градиентная кнопка при наведении */
   .btn_border-wrap {
