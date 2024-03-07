@@ -18,7 +18,7 @@ export default function () {
               -webkit-box-orient: vertical;"
             class="flex items-center overflow-hidden text-xl"
           >
-            Контакты
+            О нас
           </h5>
 
           <span
