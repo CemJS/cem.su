@@ -62,13 +62,13 @@ export default function () {
       {/* <Preview
         items={aboutSlides}
         options={titleOptions}/> */}
-      <div class="wrapper">
-        <Goals />
-        <Faq />
+      <div class="wrapper z-[100]">
+      {/* <Goals /> */}
+         {/*  <Faq />
         <Team />
         <RoadMap />
-        <Partners />
-        <Developments />
+        <Partners />*/}
+        <Developments /> 
         <Socials />
       </div>
     </div>
