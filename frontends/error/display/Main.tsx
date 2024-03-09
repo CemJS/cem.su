@@ -1,19 +1,9 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import error from "@svg/icons/error.svg";
 
-export default function () {
+const RenderTestButtons = () => {
   return (
-    <div class="mx-auto flex w-full min-w-[20rem] max-w-[44.875rem] flex-col items-center justify-center gap-[1.5625rem] p-[4.25rem_0_7.625rem] sm:p-[4.25rem_7.625rem_12.25rem_7.625rem]">
-      {/* <p class="error_text">Страница не найдена</p> */}
-      {/* <p class="">Страница не найдена</p> */}
-      <p class="text-center text-[60px] ">Страница не найдена</p>
-      <img src={error} alt="Ошибка" class="error_title" />
-      <p class="error_subtitle">Вернитесь на главную страницу</p>
-      <div class="btn_border-wrap">
-        <button class="btn_border" onclick={() => Fn.linkChange("/")}>
-          На главную
-        </button>
-      </div>
+    <div>
       {/* модалка редактирования  -> передаем object "information" о пользователе */}
       <button
         class="btn"
@@ -618,6 +608,32 @@ export default function () {
       >
         ЛК Соцсети удалить
       </button>
+    </div>
+  );
+};
+
+export default function () {
+  return (
+    <div class="mx-auto flex w-full max-w-[44.875rem] flex-col items-center justify-center gap-[1.5625rem] p-[4.25rem_0.5rem_13.625rem] sm:p-[4.25rem_7.625rem_12.25rem_7.625rem]">
+      {/* <p class="error_text">Страница не найдена</p> */}
+      {/* <p class="">Страница не найдена</p> */}
+      <p class="mb-12 text-center text-[clamp(2.5rem,2vw,3.75rem)] font-semibold leading-[3rem] [text-shadow:0.125rem_0.625rem_0.625rem_#000]">
+        Страница не найдена
+      </p>
+      <img
+        src={error}
+        alt="Ошибка"
+        class="w-4/5 max-w-[400px] [text-shadow:0.125rem_0.625rem_0.625rem_#000;] md:w-full"
+      />
+      <p class="text-center text-[clamp(1rem,_2vw,_1.375rem)] font-semibold leading-7 [text-shadow:0.125rem_0.625rem_0.625rem_#000;]">
+        Вернитесь на главную страницу
+      </p>
+      <div class="btn_border-wrap">
+        <button class="btn_border" onclick={() => Fn.linkChange("/")}>
+          На главную
+        </button>
+      </div>
+      {/* <RenderTestButtons /> */}
     </div>
   );
 }

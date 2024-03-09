@@ -51,7 +51,7 @@ front.loader = async () => {
 
 front.display = () => {
   return (
-    <div class="mx-auto flex items-center gap-[1.5625rem] bg-no-repeat [background-image:url(/assets/background_image-WTFH7ZBE.jpg)] [background-position:calc(50%_-_4.375rem)_-1%;]  sm:[background-size:unset]">
+    <div class="mx-auto flex w-full items-center gap-[1.5625rem] bg-no-repeat [background-image:url(/assets/background_image-WTFH7ZBE.jpg)] [background-position:calc(50%_-_4.375rem)_-1%;]  sm:[background-size:unset]">
       <Navigation />
     </div>
   );

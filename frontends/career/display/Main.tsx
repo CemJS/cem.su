@@ -6,17 +6,17 @@ import Profession from "./Profession";
 import Vacancies from "./Vacancies";
 
 export default function () {
-  return (
-    <div class="page">
-      <div class="wrapper wrapper_padding">
-        <div class="jobs">
-          <Preview />
-          <Advantages />
-          <How />
-          <Profession />
-          <Vacancies />
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<div class="page">
+			<div class="wrapper wrapper_padding">
+				<div>
+					<Preview />
+					<Advantages />
+					<How />
+					<Profession />
+					<Vacancies />
+				</div>
+			</div>
+		</div>
+	);
 }
