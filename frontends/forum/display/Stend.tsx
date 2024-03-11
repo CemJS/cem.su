@@ -2,8 +2,8 @@ import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
 
 export default function () {
   return (
-    <section class="forum__stend forum_z-index">
-      <h2 class="forum__title forum__title_margin">Стенды</h2>
+    <section class="relative z-[2]">
+      <h2 class="mb-20 text-center text-[clamp(3rem,6vw,5.625rem)]">Стенды</h2>
     </section>
   );
 }

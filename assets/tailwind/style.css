@@ -46,7 +46,9 @@
     --lilac_lotion: #ff357f;
     --green: #02c6a9;
     --green_light: #01c8ab;
+    --green-light: #01c8ab;
     --opacity_gray: rgba(255, 255, 255, 0.1);
+    --opacity-gray: rgba(255, 255, 255, 0.1);
 
     /* // numerical */
     --btnR: 0.5rem;

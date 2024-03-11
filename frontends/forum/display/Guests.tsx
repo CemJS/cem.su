@@ -3,22 +3,28 @@ import guests from "@json/forum/forumGuests";
 
 export default function () {
   return (
-    <section class="forum__guests forum_z-index">
-      <h2 class="forum__title forum__title_margin">Гости Crypto Emergency</h2>
-      <div class="forum__guests-list">
+    <section class="relative z-[2]">
+      <h2 class="mb-20 text-center text-[clamp(3rem,6vw,5.625rem)]">
+        Гости Crypto Emergency
+      </h2>
+      <div class="@1000:[grid-template-columns:repeat(3,minmax(7.375rem,1fr))] grid w-full gap-[1.875rem] [grid-template-columns:repeat(2,minmax(7.375rem,1fr))] xl:[grid-template-columns:repeat(4,minmax(7.375rem,1fr))]">
         {guests.map((item) => {
           return (
-            <a href={item.href} target="_blank" class="forum__guest mx-auto">
-              <div class="forum__guest-wrap">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  class="forum__guest-img"
-                />
+            <a
+              href={item.href}
+              target="_blank"
+              class="mx-auto w-full max-w-[18.75rem] text-center"
+            >
+              <div class="mb-4 aspect-[1.77] w-full overflow-hidden rounded-[0.625rem]">
+                <img src={item.image} alt={item.name} class="w-full" />
               </div>
 
-              <h4 class="forum__guest-name">{item.name}</h4>
-              <p class="forum__guest-desc">{item.desc}</p>
+              <h4 class="mb-2 text-center text-[clamp(0.8rem,2vw,1.5rem)] font-medium leading-[1.2] text-[--white]">
+                {item.name}
+              </h4>
+              <p class="text-[clamp(0.75rem,2vw,1rem)] leading-[1.2]">
+                {item.desc}
+              </p>
             </a>
           );
         })}

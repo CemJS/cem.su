@@ -4,7 +4,7 @@ import images from "@json/forum/forumImages";
 
 export default function () {
   return (
-    <div class="forum__images">
+    <div class="mb-[4.75rem]">
       <DisplayImages
         items={images?.map((item: any) => {
           return (
