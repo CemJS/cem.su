@@ -76,7 +76,7 @@ const RenderRoadMap = function ({ items }) {
               init={($el: any) => observerRoadmap.observe($el)}
             >
               <section
-                class="relative rounded-[1rem] [transition:all_0.5s_ease-in-out] top-[1.875rem] w-[calc(50%_-_2.5rem)] bg-[white] p-[20px]
+                class="relative top-[1.875rem] w-[calc(50%_-_2.5rem)] rounded-[1rem] bg-[white] p-[20px] [transition:all_0.5s_ease-in-out]
               before:absolute before:top-[1.875rem] before:z-0 before:h-[.9375rem] before:w-[.9375rem] before:bg-[white] before:content-[''] before:[transform:rotate(45deg)]"
               >
                 <div class="roadmapNew_icon absolute flex h-[40px] w-[40px] items-center justify-center rounded-[50%] bg-[#f2f2f2] shadow-[0_0_0_4px_white,_inset_0_2px_0_#00000014,_0_3px_0_4px_#0000000d] max-[772px]:left-[-60px]">
