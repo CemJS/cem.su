@@ -69,7 +69,7 @@ const RenderRoadMap = function ({ items }) {
           return (
             <div
               class={[
-                "justify-start[transition:all_1s_ease-in-out] invisible relative z-[3] flex opacity-0 max-[772px]:m-[1.875rem_0_.1875rem_3.75rem]",
+                "justify-start[transition:all_1s_ease-in-out] invisible relative  z-[3] flex opacity-0 max-[772px]:m-[1.875rem_0_.1875rem_3.75rem] [&.in-view]:visible [&.in-view]:opacity-100 [&.in-view_section]:transform-none",
                 index === 0
                   ? "top-0"
                   : index === 1
@@ -152,7 +152,7 @@ const RenderRoadMap = function ({ items }) {
 
 const observerRoadmap = new IntersectionObserver((entries) => {
   entries.forEach((item) => {
-    item.target.classList.toggle("in_view", item?.isIntersecting);
+    item.target.classList.toggle("in-view", item?.isIntersecting);
   });
 });
 
