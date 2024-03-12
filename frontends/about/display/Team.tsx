@@ -37,7 +37,7 @@ const team = [
 export default function () {
     return (
         <div>
-            <h2 class="about_subtitle">Команда</h2>
+            <h2 class="z-[1] mx-0 my-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">Команда</h2>
             <div class="team">
                 {
                     team.map(item => {

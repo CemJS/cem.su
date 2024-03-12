@@ -36,7 +36,7 @@ const faq = [
 export default function () {
   return (
     <div class="relative z-50">
-      <h2 class="my-6 text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-[1.5] text-white">
+      <h2 class="z-[1] mx-0 my-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
         FAQ
       </h2>
       <ul class="mx-auto flex max-w-[1000px] flex-col gap-[0.625rem]">

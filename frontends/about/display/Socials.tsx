@@ -63,49 +63,66 @@ const socials = [
   },
 ];
 
+Static.activeState = false;
+Static.indx = -1;
 const sand = (e: any) => {
-  e.target.classList.toggle("active");
+  // e.target.classList.toggle("active");
 };
 export default function () {
   return (
     <div class="mb-[3.75rem] flex flex-col items-center justify-center px-[.625rem] py-0">
-      <h2 class="z-[1] mx-0 my-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
+      <h2 class="z-[1] mx-0 mb-[.9375rem] mt-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
         Социальные сети
       </h2>
       <ul class="grid list-none grid-cols-5 gap-[.3125rem] p-0 @550:flex @550:gap-[.9375rem]">
-        {socials.map((item) => {
+        {socials.map((item, index) => {
           return (
-            <li class="z-[1] mb-[1.5625rem]">
+            <li class="group z-[1] mb-[.7813rem] mt-[.7813rem]">
               {item.urlENG ? (
                 <div
                   class={[
-                    "socials_link",
-                    `socials_link_${item.name.toLocaleLowerCase()}`,
+                    "relative my-[10px] inline-block h-[3rem] w-[3rem] cursor-pointer rounded-[50%] bg-[#3b2d4a] bg-[center] bg-no-repeat p-[0.125rem] text-[#000] decoration-[none] shadow-[0_0.25rem_0.25rem_#0000004d] outline-[0_solid] [transition:all_0.3s_ease-out] before:absolute before:bottom-[-100%] before:left-[50%] before:whitespace-nowrap before:rounded-[2rem] before:bg-[#3b2d4a] before:text-[0.8rem] before:text-[white] before:opacity-0 before:shadow-[0_0.5em_0.5em_#00000066] before:!content-[attr(aria-label)] before:[padding:0.5em_0.7em_0.4em] before:[transform:translate(-50%,_-180%)_scale(0.7)] before:[transition:0.3s] group-hover:bg-[currentColor] group-hover:shadow-[0_0.5em_0.5em_#00000066] group-hover:outline-[0_solid] group-hover:[transform:scale(1.12)] group-hover:before:opacity-[1] group-hover:before:[transform:translate(-50%,_-70%)_scale(1)]",
+                    item.name === "Instagram"
+                      ? "text-[#ff007a]"
+                      : item.name === "Youtube"
+                        ? "text-[#c00]"
+                        : item.name === "Telegram"
+                          ? "text-[#27a0d9]"
+                          : "",
                   ]}
                   style={`background-image: url(${item.logo});`}
                   aria-label={item.name}
                   onclick={(e: any) => {
-                    e.target.classList.toggle("active");
+                    Static.activeState = true;
+                    Static.indx = index;
                     setTimeout(() => {
-                      e.target.classList.toggle("active");
+                      Static.activeState = false;
+                      Static.indx = -1;
                     }, 1500);
                   }}
                 >
-                  <span>{item.name}</span>
-                  <div class="socials_link_languages">
+                  <span class="hidden">{item.name}</span>
+                  <div
+                    class={[
+                      "group absolute left-0 top-[-.3125rem] flex items-center justify-between gap-[.625rem] rounded-[1rem] bg-[#3b2d4a] px-[.625rem] py-[.3125rem] [transform:translate(-20%,_-100%)] [transition:all_0.2s_ease-in-out]",
+                      Static.activeState && Static.indx === index
+                        ? "opacity-1 pointer-events-auto"
+                        : "pointer-events-none opacity-0",
+                    ]}
+                  >
                     <a
                       href={item.url}
                       target="_blank"
-                      onclick={sand}
-                      class="socials_link_language"
+                      // onclick={sand}
+                      class="text-[#ffffff]"
                     >
                       RU
                     </a>
                     <a
                       href={item.urlENG}
                       target="_blank"
-                      onclick={sand}
-                      class="socials_link_language"
+                      // onclick={sand}
+                      class="text-[#ffffff]"
                     >
                       EN
                     </a>
@@ -115,14 +132,24 @@ export default function () {
                 <a
                   href={item.url}
                   class={[
-                    "socials_link",
-                    `socials_link_${item.name.toLocaleLowerCase()}`,
+                    "relative my-[10px] inline-block h-[3rem] w-[3rem] cursor-pointer rounded-[50%] bg-[#3b2d4a] bg-[center] bg-no-repeat p-[0.125rem] text-[#000] decoration-[none] shadow-[0_0.25rem_0.25rem_#0000004d] outline-[0_solid] [transition:all_0.3s_ease-out] before:absolute before:bottom-[-100%] before:left-[50%] before:whitespace-nowrap before:rounded-[2rem] before:bg-[#3b2d4a] before:text-[0.8rem] before:text-[white] before:opacity-0 before:shadow-[0_0.5em_0.5em_#00000066] before:!content-[attr(aria-label)] before:[padding:0.5em_0.7em_0.4em] before:[transform:translate(-50%,_-180%)_scale(0.7)] before:[transition:0.3s] group-hover:bg-[currentColor] group-hover:shadow-[0_0.5em_0.5em_#00000066] group-hover:outline-[0_solid] group-hover:[transform:scale(1.12)] group-hover:before:opacity-[1] group-hover:before:[transform:translate(-50%,_-70%)_scale(1)]",
+                    item.name === "Vkontakte"
+                      ? "text-[#4c75a3]"
+                      : item.name === "Linkedin"
+                        ? "text-[#00388d]"
+                        : item.name === "Twitter"
+                          ? "text-[#37a7df]"
+                          : item.name === "Discord"
+                            ? "text-[#5865f2]"
+                            : item.name === "Github"
+                              ? "text-[#4a2779]"
+                              : "",
                   ]}
                   style={`background-image: url(${item.logo});`}
                   aria-label={item.name}
                   onclick={Fn.link}
                 >
-                  <span>{item.name}</span>
+                  <span hidden>{item.name}</span>
                 </a>
               )}
             </li>
@@ -130,7 +157,7 @@ export default function () {
         })}
       </ul>
       <div class="max-w-[56.25rem]">
-        <p class="z-[1] text-[clamp(.875rem,2vw,1rem)] italic font-medium pb-[1.5625rem] leading-[1.5] text-justify m-0">
+        <p class="z-[1] m-0 pb-[1.5625rem] text-justify text-[clamp(.875rem,2vw,1rem)] font-medium italic leading-[1.5]">
           Присоединяйтесь к нашей уникальной социальной сети CryptoEmergency и
           получите доступ к самой актуальной информации о криптовалютах и
           блокчейне. Скачайте наше приложение и станьте частью нашей экосистемы.

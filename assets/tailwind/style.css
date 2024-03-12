@@ -47,6 +47,8 @@
     --green: #02c6a9;
     --green_light: #01c8ab;
     --opacity_gray: rgba(255, 255, 255, 0.1);
+    --marquee_elements_displayed: 4;
+     /* информационые парнтеры карусель */
 
     /* // numerical */
     --btnR: 0.5rem;
@@ -104,3 +106,14 @@
     @apply relative z-[1] h-[2.625rem] w-full cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--black-gray] bg-100% text-center text-[1rem] font-semibold text-white outline-none;
   }
 }
+
+@keyframes scrolling {
+  0% {
+      transform: translateX(0);
+  }
+
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
