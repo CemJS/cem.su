@@ -560,133 +560,14 @@
 }
 
 /*                     kvk                */
-.roadmapNew {
-  &_row {
-    &:nth-of-type(odd) section {
-      transform: translate3d(-100px, -10px, 0) rotate(10deg);
-    }
-    &:nth-of-type(even) section {
-      transform: translate3d(-100px, -10px, 0) rotate(10deg);
-    }
-    &.in_view {
+
+    .in_view {
       visibility: visible !important;
       opacity: 1 !important;
 
       section {
-        transform: none;
+        transform: none !important;
       }
     }
-    &_1 {
-      top: 0;
 
-      .roadmapNew_icon {
-        right: -60px;
-      }
-      section {
-        &::before {
-          right: -7px;
-        }
-      }
-    }
-    &_2 {
-      top: 15px;
-      justify-content: end;
-      transition: all 0.8s ease-in-out;
-      .roadmapNew_icon {
-        left: -60px;
-      }
-      section {
-        &::before {
-          left: -7px;
-        }
-      }
-    }
-    &_3 {
-      top: 15px;
-      justify-content: start;
-      transition: all 1.2s ease-in-out;
-      .roadmapNew_icon {
-        right: -60px;
-      }
-      section {
-        &::before {
-          right: -7px;
-        }
-      }
-    }
-    &_4 {
-      top: 15px;
-      justify-content: end;
-      transition: all 1.5s ease-in-out;
-      .roadmapNew_icon {
-        left: -60px;
-      }
-      section {
-        &::before {
-          left: -7px;
-        }
-      }
-    }
-    &_5 {
-      top: 15px;
-      justify-content: start;
-      transition: all 1.8s ease-in-out;
-      .roadmapNew_icon {
-        right: -60px;
-      }
-      section {
-        &::before {
-          right: -7px;
-        }
-      }
-    }
-    &_6 {
-      top: 15px;
-      justify-content: end;
-      transition: all 2s ease-in-out;
-      .roadmapNew_icon {
-        left: -60px;
-      }
-      section {
-        &::before {
-          left: -7px;
-        }
-      }
-    }
-    &_7 {
-      top: 15px;
-      justify-content: start;
-      transition: all 2.2s ease-in-out;
-      .roadmapNew_icon {
-        right: -60px;
-      }
-      section {
-        &::before {
-          right: -7px;
-        }
-      }
-    }
-  }
-  @media (max-width: 772px) {
-    .roadmapNew {
-      &_row {
-        section {
-          width: 100%;
-        }
-        &_1,
-        &_3,
-        &_5,
-        &_7 {
-          section {
-            &::before {
-              left: -7px;
-              right: auto;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-/* ********************************************************************* */
+/* *********************************** */
