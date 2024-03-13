@@ -56,16 +56,10 @@ export const loader = async function (Variable: any, Fn: any) {
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
-<<<<<<< HEAD
   let eventSource = new EventSource(
     `/api/events/MyInfo?uuid=${localStorage.uuid}`,
   );
   eventSource.addEventListener("update", async ({ data }) => {
-=======
-  let eventSource = new EventSource(`/api/events/web-clients/me?uuid=${localStorage.uuid}`);
-
-  eventSource.addEventListener("get", async ({ data }) => {
->>>>>>> fc166bd3ca3e99a65340dc1e98675a1f30022dbe
     let json = strToJson(data);
     if (!json) {
       return;
