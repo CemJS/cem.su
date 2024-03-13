@@ -56,16 +56,26 @@ export const loader = async function (Variable: any, Fn: any) {
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
+<<<<<<< HEAD
   let eventSource = new EventSource(
     `/api/events/MyInfo?uuid=${localStorage.uuid}`,
   );
   eventSource.addEventListener("update", async ({ data }) => {
+=======
+  let eventSource = new EventSource(`/api/events/web-clients/me?uuid=${localStorage.uuid}`);
+
+  eventSource.addEventListener("get", async ({ data }) => {
+>>>>>>> fc166bd3ca3e99a65340dc1e98675a1f30022dbe
     let json = strToJson(data);
     if (!json) {
       return;
     }
     console.log("=MyInfo=", json);
     localStorage.suuid = json.suuid;
+    localStorage.suuid = json.suuid;
+    localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate
+    localStorage.languagesLastUpdateDate = json.languagesLastUpdateDate
+    localStorage.translationsLastUpdateDate = json.translationsLastUpdateDate
     Variable.Auth = json.auth;
     Variable.myInfo = json.info;
 
@@ -82,7 +92,7 @@ export const loader = async function (Variable: any, Fn: any) {
       console.log("res", res);
 
       if (!res.error) {
-        localStorage.countries_update = json.countries_update;
+        localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate;
         localStorage.countries = JSON.stringify(res.result);
       }
     }
