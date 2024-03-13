@@ -52,14 +52,13 @@ export const timeStampToDate = function (
 };
 
 export const loader = async function (Variable: any, Fn: any) {
- 
+
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
-  let eventSource = new EventSource(
-    `/api/events/MyInfo?uuid=${localStorage.uuid}`,
-  );
-  eventSource.addEventListener("update", async ({ data }) => {
+  let eventSource = new EventSource(`/api/events/web-clients/me?uuid=${localStorage.uuid}`);
+
+  eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
     if (!json) {
       return;
