@@ -53,7 +53,7 @@ export const loader = async function (Variable: any, Fn: any) {
   }
   let eventSource = new EventSource(`/api/events/web-clients/me?uuid=${localStorage.uuid}`);
 
-  eventSource.addEventListener("update", async ({ data }) => {
+  eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
     if (!json) {
       return;
