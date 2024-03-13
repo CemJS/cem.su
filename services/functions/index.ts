@@ -25,7 +25,11 @@ export const makeUrlEvent = function (url: string, params: any = {}) {
   return url;
 };
 
-export const timeStampToDate = function (d: number, separator: string, momentLib: boolean) {
+export const timeStampToDate = function (
+  d: number,
+  separator: string,
+  momentLib: boolean,
+) {
   let dateObj = new Date(d);
   let month = dateObj.getMonth() + 1;
   let year = dateObj.getFullYear();
@@ -48,10 +52,13 @@ export const timeStampToDate = function (d: number, separator: string, momentLib
 };
 
 export const loader = async function (Variable: any, Fn: any) {
+ 
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
-  let eventSource = new EventSource(`/api/events/MyInfo?uuid=${localStorage.uuid}`);
+  let eventSource = new EventSource(
+    `/api/events/MyInfo?uuid=${localStorage.uuid}`,
+  );
   eventSource.addEventListener("update", async ({ data }) => {
     let json = strToJson(data);
     if (!json) {
@@ -64,7 +71,10 @@ export const loader = async function (Variable: any, Fn: any) {
 
     Variable.Lang = "Русский";
 
-    if (!localStorage.countries_update || localStorage.countries_update < json.countries_update) {
+    if (
+      !localStorage.countries_update ||
+      localStorage.countries_update < json.countries_update
+    ) {
       console.log("No countries_update or less");
       let res = await sendApi("/api/Countries", {
         action: "get",

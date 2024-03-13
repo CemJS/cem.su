@@ -1,7 +1,9 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import error from "@svg/icons/error.svg";
+console.log("myInfo", front.Variable?.myInfo);
 
 const RenderTestButtons = () => {
+  
   return (
     <div>
       {/* модалка редактирования  -> передаем object "information" о пользователе */}
@@ -633,6 +635,51 @@ export default function () {
           На главную
         </button>
       </div>
+
+      <button
+        onclick={() => {
+          const openDB = indexedDB.open("CryptoEmergency", 1);
+          openDB.onupgradeneeded = function () {
+            const db = openDB.result;
+            if (!db.objectStoreNames.contains("dataUpdate")) {
+              db.createObjectStore("dataUpdate", { keyPath: "key" });
+            }
+          };
+          openDB.onsuccess = function () {
+            const db = openDB.result;
+            const transaction = db.transaction("dataUpdate", "readwrite");
+            const store = transaction.objectStore("dataUpdate");
+            const getRequest = store.get("country");
+
+            getRequest.onsuccess = function () {
+              if (!getRequest.result) {
+                store.add({
+                  key: "country",
+                  value: front.Variable?.myInfo?.country?.Code,
+                });
+              } else {
+                store.put({
+                  key: "country",
+                  value: front.Variable?.myInfo?.country?.Code,
+                });
+              }
+            };
+            transaction.oncomplete = function () {
+              console.log(
+                "Transaction completed: database modification finished.",
+              );
+            };
+            transaction.onerror = function () {
+              console.error(
+                "Transaction not opened due to error. Duplicate items not allowed.",
+              );
+            };
+          };
+        }}
+      >
+        Бобавить в dateUpdate страну
+      </button>
+
       {/* <RenderTestButtons /> */}
     </div>
   );
