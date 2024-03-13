@@ -70,8 +70,7 @@ export const loader = async function (Variable: any, Fn: any) {
     localStorage.languagesLastUpdateDate = json.languagesLastUpdateDate
     localStorage.translationsLastUpdateDate = json.translationsLastUpdateDate
     Variable.Auth = json.auth;
-    Variable.myInfo = json.info;
-
+    Variable.myInfo = json;
     Variable.Lang = "Русский";
 
     if (

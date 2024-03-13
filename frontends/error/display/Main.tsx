@@ -638,6 +638,8 @@ export default function () {
 
       <button
         onclick={() => {
+          console.log("myInfo", front.Variable.myInfo);
+          
           const openDB = indexedDB.open("CryptoEmergency", 1);
           openDB.onupgradeneeded = function () {
             const db = openDB.result;
@@ -655,12 +657,12 @@ export default function () {
               if (!getRequest.result) {
                 store.add({
                   key: "country",
-                  value: front.Variable?.myInfo?.country?.Code,
+                  value: front.Variable?.myInfo?.countriesLastUpdateDate,
                 });
               } else {
                 store.put({
                   key: "country",
-                  value: front.Variable?.myInfo?.country?.Code,
+                  value: front.Variable?.myInfo?.countriesLastUpdateDate,
                 });
               }
             };
