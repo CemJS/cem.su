@@ -16,7 +16,7 @@ export default function () {
           <h5
             style="-webkit-line-clamp: 1;
               -webkit-box-orient: vertical;"
-            class="flex items-center overflow-hidden text-xl"
+            class="flex items-center overflow-hidden text-xl font-semibold"
           >
             О нас
           </h5>

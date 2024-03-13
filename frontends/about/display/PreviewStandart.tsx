@@ -33,7 +33,7 @@ export default function () {
           Crypto Emergency
         </h2>
         <p
-          class="@374:leading-8 
+          class="@374:leading-[2.4rem] 
            relative
            z-[1]
            mx-auto 

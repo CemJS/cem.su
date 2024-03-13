@@ -52,7 +52,7 @@ export default function () {
        relative 
        z-10 
        mb-6 
-       grid !grid-cols-1 !gap-5 @464:!grid-cols-2 @992:!grid-cols-4 @992:!gap-4"
+       grid !grid-cols-1 !gap-5 @464:!grid-cols-2 @992:!grid-cols-4 @992:gap-4"
       >
         {goals.map((item: any) => {
           return (
