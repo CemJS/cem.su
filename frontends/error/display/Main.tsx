@@ -1,6 +1,6 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import error from "@svg/icons/error.svg";
-console.log("myInfo", front.Variable?.myInfo);
+
 
 const RenderTestButtons = () => {
   
