@@ -60,6 +60,10 @@ export const loader = async function (Variable: any, Fn: any) {
     }
     console.log("=MyInfo=", json);
     localStorage.suuid = json.suuid;
+    localStorage.suuid = json.suuid;
+    localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate
+    localStorage.languagesLastUpdateDate = json.languagesLastUpdateDate
+    localStorage.translationsLastUpdateDate = json.translationsLastUpdateDate
     Variable.Auth = json.auth;
     Variable.myInfo = json.info;
 
@@ -73,7 +77,7 @@ export const loader = async function (Variable: any, Fn: any) {
       console.log("res", res);
 
       if (!res.error) {
-        localStorage.countries_update = json.countries_update;
+        localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate;
         localStorage.countries = JSON.stringify(res.result);
       }
     }
