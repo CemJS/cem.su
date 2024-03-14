@@ -23,12 +23,19 @@ front.func.setCurrentPage = (pageNum) => {
 };
 
 front.func.pagination = (pageNum) => {
-  if (Static.currentPage == Static.End && Static.currentPage <= Static.lastPage - 2) {
+  if (
+    Static.currentPage == Static.End &&
+    Static.currentPage <= Static.lastPage - 2
+  ) {
     //Показывает блок с первыми 2 страницами при клике на последнюю страницу среза
     Ref.first_two.classList.remove("hidden");
     Static.Begin += 2; //При клике на последний элемент среза происходит сдвиг пагинатора на 2
     Static.End += 2;
-  } else if (Static.currentPage == Static.End - 1 && Static.currentPage >= 5 && Static.currentPage <= Static.lastPage - 2) {
+  } else if (
+    Static.currentPage == Static.End - 1 &&
+    Static.currentPage >= 5 &&
+    Static.currentPage <= Static.lastPage - 2
+  ) {
     Static.Begin += 1;
     Static.End += 1;
   } else if (Static.Begin == 2 && Static.currentPage <= 4) {
@@ -981,11 +988,7 @@ front.loader = () => {
 };
 
 front.display = () => {
-  return (
-    <div>
-      <Navigation />
-    </div>
-  );
+  return <Navigation />;
 };
 
 export { front };
