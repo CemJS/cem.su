@@ -20,7 +20,7 @@ export default function () {
                                 let res = front.Services.functions.sendApi("/api/events/Exchanges", {
                                     "action": "get",
                                     "coins": Static.filterCoins,
-                                    "uuid": `${localStorage?.uuid}`,
+                                    // "uuid": `${localStorage?.uuid}`,
                                 })
                                 if (!filterCoinsFromModal.length) {
                                     return;

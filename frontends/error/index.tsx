@@ -15,6 +15,7 @@ front.loader = async () => {
   Static.t = 0;
 
   Static.records = [];
+  
   let url = front.Services.functions.makeUrlEvent("CoinsCourses", {
     live: true,
   });

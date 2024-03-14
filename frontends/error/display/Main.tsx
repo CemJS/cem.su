@@ -1,9 +1,9 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import error from "@svg/icons/error.svg";
 
-
 const RenderTestButtons = () => {
-  
+  console.log("front.Variable.getCountry", front.Variable.getCountry);
+
   return (
     <div>
       {/* модалка редактирования  -> передаем object "information" о пользователе */}
@@ -625,7 +625,7 @@ export default function () {
       <img
         src={error}
         alt="Ошибка"
-        class="w-4/5 max-w-[400px] [text-shadow:0.125rem_0.625rem_0.625rem_#000;] md:w-full"
+        class="w-4/5 max-w-[400px] [text-shadow:0.125rem_0.625rem_0.625rem_#000] md:w-full"
       />
       <p class="text-center text-[clamp(1rem,_2vw,_1.375rem)] font-semibold leading-7 [text-shadow:0.125rem_0.625rem_0.625rem_#000;]">
         Вернитесь на главную страницу
@@ -637,9 +637,8 @@ export default function () {
       </div>
 
       <button
+        class="btn"
         onclick={() => {
-          console.log("myInfo", front.Variable.myInfo);
-          
           const openDB = indexedDB.open("CryptoEmergency", 1);
           openDB.onupgradeneeded = function () {
             const db = openDB.result;
@@ -651,36 +650,234 @@ export default function () {
             const db = openDB.result;
             const transaction = db.transaction("dataUpdate", "readwrite");
             const store = transaction.objectStore("dataUpdate");
-            const getRequest = store.get("country");
+            const getCountry = store.get("country");
+            const getLang = store.get("lang");
+            const getTranslations = store.get("translations");
 
-            getRequest.onsuccess = function () {
-              if (!getRequest.result) {
+            getCountry.onsuccess = async function () {
+              if (!getCountry.result) {
                 store.add({
                   key: "country",
                   value: front.Variable?.myInfo?.countriesLastUpdateDate,
                 });
-              } else {
+                let res = await front.Services.functions.sendApi(
+                  "/api/countries",
+                  {},
+                );
+              } else if (
+                getCountry.result?.value ===
+                front.Variable?.myInfo?.countriesLastUpdateDate
+              ) {
                 store.put({
                   key: "country",
                   value: front.Variable?.myInfo?.countriesLastUpdateDate,
                 });
+                let res = await front.Services.functions.sendApi(
+                  "/api/countries",
+                  {},
+                );
+              } else {
+                return;
               }
             };
-            transaction.oncomplete = function () {
-              console.log(
-                "Transaction completed: database modification finished.",
-              );
+            getLang.onsuccess = async function () {
+              if (!getLang.result) {
+                store.add({
+                  key: "lang",
+                  value: front.Variable?.myInfo?.languagesLastUpdateDate,
+                });
+                let res = await front.Services.functions.sendApi(
+                  "/api/languages",
+                  {},
+                );
+              } else if (
+                getLang.result?.value <
+                front.Variable?.myInfo?.languagesLastUpdateDate
+              ) {
+                store.put({
+                  key: "lang",
+                  value: front.Variable?.myInfo?.languagesLastUpdateDate,
+                });
+                let res = await front.Services.functions.sendApi(
+                  "/api/languages",
+                  {},
+                );
+              }
             };
-            transaction.onerror = function () {
-              console.error(
-                "Transaction not opened due to error. Duplicate items not allowed.",
-              );
+            getTranslations.onsuccess = async function () {
+              if (!getTranslations.result) {
+                store.add({
+                  key: "translations",
+                  value: front.Variable?.myInfo?.translationsLastUpdateDate,
+                });
+                let res = await front.Services.functions.sendApi(
+                  "/api/translations",
+                  {},
+                );
+              } else if (
+                getTranslations.result?.value <
+                front.Variable?.myInfo?.translationsLastUpdateDate
+              ) {
+                store.put({
+                  key: "translations",
+                  value: front.Variable?.myInfo?.translationsLastUpdateDate,
+                });
+                let res = await front.Services.functions.sendApi(
+                  "/api/translations",
+                  {},
+                );
+              }
             };
           };
         }}
       >
-        Бобавить в dateUpdate страну
+        Добавить/обновить в dateUpdate
       </button>
+      <button
+        class="btn"
+        onclick={async () => {
+          front.Variable.item = await this.Services.functions.indexDBGetCountry();
+          console.log("item2323:", front.Variable.item);
+
+
+        }}
+      >
+        getCountry
+      </button>
+
+      <button
+        class="btn"
+        onclick={async () => { 
+          front.Variable.item = await front.Services.functions.indexDBGetLang();
+          console.log('=e93c1f=',front.Variable.item)
+        }}
+      >
+        getCountry2222222
+      </button>
+
+      {/* <button
+        class="btn"
+        onclick={() => {
+          const openDB = indexedDB.open("CryptoEmergency", 1);
+          openDB.onupgradeneeded = function () {
+            const db = openDB.result;
+            if (!db.objectStoreNames.contains("dataUpdate")) {
+              db.createObjectStore("dataUpdate", { keyPath: "key" });
+            }
+          };
+          openDB.onsuccess = function () {
+            const db = openDB.result;
+            const transaction = db.transaction("dataUpdate", "readwrite");
+            const store = transaction.objectStore("dataUpdate");
+            const getRequest = store.get("lang");
+
+            getRequest.onsuccess = function () {
+              if (!getRequest.result) {
+                store.add({
+                  key: "lang",
+                  value: front.Variable?.myInfo?.languagesLastUpdateDate,
+                });
+              } else {
+                store.put({
+                  key: "lang",
+                  value: front.Variable?.myInfo?.languagesLastUpdateDate,
+                });
+              }
+            };
+                        // transaction.oncomplete = function () {
+            //   console.log(
+            //     "Transaction completed: database modification finished.",
+            //   );
+            // };
+            // transaction.onerror = function () {
+            //   console.error(
+            //     "Transaction not opened due to error. Duplicate items not allowed.",
+            //   );
+            // };
+
+          };
+        }}
+      >
+        Добавить в dateUpdate язык
+      </button>
+      <button
+        class="btn"
+        onclick={() => {
+          const openDB = indexedDB.open("CryptoEmergency", 1);
+          openDB.onupgradeneeded = function () {
+            const db = openDB.result;
+            if (!db.objectStoreNames.contains("dataUpdate")) {
+              db.createObjectStore("dataUpdate", { keyPath: "key" });
+            }
+          };
+          openDB.onsuccess = function () {
+            const db = openDB.result;
+            const transaction = db.transaction("dataUpdate", "readwrite");
+            const store = transaction.objectStore("dataUpdate");
+            const getRequest = store.get("translations");
+
+            getRequest.onsuccess = function () {
+              if (!getRequest.result) {
+                store.add({
+                  key: "translations",
+                  value: front.Variable?.myInfo?.translationsLastUpdateDate,
+                });
+              } else {
+                store.put({
+                  key: "translations",
+                  value: front.Variable?.myInfo?.translationsLastUpdateDate,
+                });
+              }
+            };
+          };
+        }}
+      >
+        Добавить в dateUpdate перевод
+      </button>
+      <button
+        class="btn"
+        onClick={async () => {
+          const request = window.indexedDB.open("CryptoEmergency", 1);
+          request.onerror = function (event) {
+            console.log("Error opening DB", event);
+          };
+          request.onsuccess = function (event: any) {
+            let db = request.result;
+            let tx = db.transaction("dataUpdate", "readonly");
+            let store = tx.objectStore("dataUpdate");
+
+            let req = store.get("country");
+
+            req.onsuccess = function (event) {
+              let country = req.result.value;
+              console.log(country);
+              if(country === front.Variable?.myInfo?.countriesLastUpdateDate){
+                req.onsuccess = function () {
+                  if (!req.result) {
+                    store.add({
+                      key: "country",
+                      value: front.Variable?.myInfo?.countriesLastUpdateDate,
+                    });
+                  } else {
+                    store.put({
+                      key: "country",
+                      value: front.Variable?.myInfo?.countriesLastUpdateDate,
+                    });
+                  }
+                };
+              } else {
+                return
+              }
+            };
+
+            req.onerror = function (event) {
+              console.log("Error getting country", event);
+            };
+          };
+        }}
+      >
+        Получить страну
+      </button> */}
 
       {/* <RenderTestButtons /> */}
     </div>
