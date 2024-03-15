@@ -36,6 +36,7 @@ const HeaderBack = function ({ title }) {
 }
 
 export default function () {
+    Fn.log('=1edc7b=', Static.records)
     return (
         <div>
             <HeaderBack title="Новости" />
