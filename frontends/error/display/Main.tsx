@@ -2,8 +2,6 @@ import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import error from "@svg/icons/error.svg";
 
 const RenderTestButtons = () => {
-  console.log("front.Variable.getCountry", front.Variable.getCountry);
-
   return (
     <div>
       {/* модалка редактирования  -> передаем object "information" о пользователе */}
@@ -736,10 +734,9 @@ export default function () {
       <button
         class="btn"
         onclick={async () => {
-          front.Variable.item = await this.Services.functions.indexDBGetCountry();
+          front.Variable.item =
+            await this.Services.functions.indexDBGetCountry();
           console.log("item2323:", front.Variable.item);
-
-
         }}
       >
         getCountry
@@ -747,12 +744,12 @@ export default function () {
 
       <button
         class="btn"
-        onclick={async () => { 
-          front.Variable.item = await front.Services.functions.indexDBGetLang();
-          console.log('=e93c1f=',front.Variable.item)
+        onclick={async () => {
+          const get = await front.Services.functions.getIndexDB("dataUpdate", "country");
+          console.log("get", get);
         }}
       >
-        getCountry2222222
+        main test
       </button>
 
       {/* <button

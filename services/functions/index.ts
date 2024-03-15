@@ -3,16 +3,16 @@ import { v4 as uuidv4 } from "uuid";
 import { editText, searchLink } from "./editText";
 import moment from "moment";
 import { sendApi } from "./sendApi";
-import { indexDB, indexDBGetCountry, indexDBGetLang } from "./indexDB";
+import { indexDB, getIndexDB } from "./indexDB";
 import "moment/min/locales";
 
 export * from "./validForms";
+export * from "./indexDB";
 export { sendApi };
 
 export const strToJson = function (data: string) {
   try {
     return JSON.parse(data);
-    
   } catch (error) {
     console.error("strToJson Error", error);
     return null;
@@ -54,30 +54,29 @@ export const timeStampToDate = function (
 };
 
 export const loader = async function (Variable: any, Fn: any) {
-
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
-  let eventSource = new EventSource(`/api/events/web-clients/me?uuid=${localStorage.uuid}`);
+  let eventSource = new EventSource(
+    `/api/events/web-clients/me?uuid=${localStorage.uuid}`,
+  );
 
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
     if (json) {
-    let inx = await indexDB({json})
-    
-    // Variable.item = await indexDBGetCountry()
-    //  console.log("Variable.item", Variable.item);
-
+      let inx = await indexDB();
+      // Variable.item = await indexDBGetCountry()
+      //  console.log("Variable.item", Variable.item);
     } else {
       return;
     }
     console.log("=MyInfo=", json);
-    
+
     localStorage.suuid = json.suuid;
     localStorage.suuid = json.suuid;
-    localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate
-    localStorage.languagesLastUpdateDate = json.languagesLastUpdateDate
-    localStorage.translationsLastUpdateDate = json.translationsLastUpdateDate
+    localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate;
+    localStorage.languagesLastUpdateDate = json.languagesLastUpdateDate;
+    localStorage.translationsLastUpdateDate = json.translationsLastUpdateDate;
     Variable.Auth = json.auth;
     Variable.myInfo = json;
     Variable.Lang = "Русский";
@@ -109,4 +108,4 @@ export const loader = async function (Variable: any, Fn: any) {
   return;
 };
 
-export { uuidv4, editText, searchLink, indexDB, indexDBGetCountry, indexDBGetLang };
+export { uuidv4, editText, searchLink, indexDB, getIndexDB };
