@@ -977,7 +977,11 @@ front.loader = () => {
   Static.currentPage = 1;
   Static.Pages = [];
   for (let i = 1; i <= Static.pageCount; i++) {
-    Static.Pages.push({ number: i, class: "pagination-number " });
+    Static.Pages.push({
+      number: i,
+      class:
+        "m-[0.25rem_0.25rem] h-[35px] w-[35px] cursor-pointer rounded-[0.2rem] border-none bg-transparent text-[16px] font-normal text-[--white] outline-none ease-in-out [transition:all_0.35s] [&.active]:text-[--white] [&.active]:bg-[--noble-black] ",
+    });
   }
   Static.test = 1;
 

@@ -15,23 +15,19 @@ const RenderTypeFilter = () => {
     <div
       ref="filterType"
       onclick={(e) => {
-        Ref.filterTypeDrops.classList.toggle("!opacity-100");
-        Ref.filterTypeDrops.classList.toggle("!pointer-events-auto");
-        Ref.filterType.classList.toggle("!rounded-ee-sm");
-        Ref.filterType.classList.toggle("!rounded-es-sm");
-        Ref.filterType.classList.toggle("!z-[2]");
+        Ref.filterTypeDrops.classList.toggle("filter__drops_active");
+        Ref.filterType.classList.toggle("filter_active");
       }}
-      class="relative z-0 flex min-h-[5rem] w-full max-w-full cursor-pointer items-center justify-between rounded-[--borderR] bg-[--light-gray] p-[0.625rem_1.25rem] @767:max-w-[18.75rem]"
+      class="filter"
     >
-      <div>
-        <p class="text-[--textGray]">Сортировать</p>
-        <p>{Static.types.filter((item) => item.name == Static.type)[0].text}</p>
+      <div class="filter__left">
+        <p class="filter__title">Сортировать</p>
+        <p class="filter__current">
+          {Static.types.filter((item) => item.name == Static.type)[0].text}
+        </p>
       </div>
-      <img src={openDrop} alt="" class="block" />
-      <div
-        ref="filterTypeDrops"
-        class="pointer-events-none absolute bottom-0 left-0 right-0 z-[12] overflow-hidden rounded-ee-[--borderR] rounded-es-[--borderR] opacity-0 [background:var(--light-gray)] [transform:translateY(100%)] [transition:all_0.2s_ease-in-out]"
-      >
+      <img src={openDrop} alt="" class="filter__img" />
+      <div ref="filterTypeDrops" class="filter__drops">
         {Static.types.map((item) => {
           return (
             <div
@@ -39,7 +35,7 @@ const RenderTypeFilter = () => {
                 Static.type = item.name;
                 Func.updateFilter();
               }}
-              class="flex min-h-[2.5rem] w-full items-center justify-start p-[0_1.25rem]"
+              class="filter__drop"
             >
               {item.text}
             </div>
@@ -55,22 +51,19 @@ const RenderSortFilter = () => {
     <div
       ref="filterSort"
       onclick={(e) => {
-        Ref.filterSortDrops.classList.toggle(
-          "!opacity-100 !pointer-events-auto",
-        );
-        Ref.filterSort.classList.toggle("!rounded-ee-sm !rounded-es-sm !z-[2]");
+        Ref.filterSortDrops.classList.toggle("filter__drops_active");
+        Ref.filterSort.classList.toggle("filter_active");
       }}
-      class="relative z-0 flex min-h-[5rem] w-full max-w-full cursor-pointer items-center justify-between rounded-[--borderR] bg-[--light-gray] p-[0.625rem_1.25rem] @767:max-w-[18.75rem]"
+      class="filter"
     >
-      <div>
-        <p class="text-[--textGray]">Сортировать</p>
-        <p>{Static.sorts.filter((item) => item.name == Static.sort)[0].text}</p>
+      <div class="filter__left">
+        <p class="filter__title">Сортировать</p>
+        <p class="filter__current">
+          {Static.sorts.filter((item) => item.name == Static.sort)[0].text}
+        </p>
       </div>
-      <img src={openDrop} alt="" />
-      <div
-        ref="filterSortDrops"
-        class="pointer-events-none absolute bottom-0 left-0 right-0 z-[12] overflow-hidden rounded-ee-[--borderR] rounded-es-[--borderR] opacity-0 [background:var(--light-gray)] [transform:translateY(100%)] [transition:all_0.2s_ease-in-out]"
-      >
+      <img src={openDrop} alt="" class="filter__img" />
+      <div ref="filterSortDrops" class="filter__drops">
         {Static.sorts.map((item) => {
           return (
             <div
@@ -78,7 +71,7 @@ const RenderSortFilter = () => {
                 Static.sort = item.name;
                 Func.updateFilter();
               }}
-              class="flex min-h-[2.5rem] w-full items-center justify-start p-[0_1.25rem]"
+              class="filter__drop"
             >
               {item.text}
             </div>
@@ -101,12 +94,12 @@ const RenderLanguageFilter = () => {
           },
         });
       }}
-      class="relative z-0 flex min-h-[5rem] w-full max-w-full cursor-pointer items-center justify-between rounded-[--borderR] bg-[--light-gray] p-[0.625rem_1.25rem] @767:max-w-[18.75rem]"
+      class="filter"
     >
-      <div>
-        <p>{`${Static.chooseLanguage?.engName} (${Static.chooseLanguage?.origName})`}</p>
+      <div class="filter__left">
+        <p class="filter__current">{`${Static.chooseLanguage?.engName} (${Static.chooseLanguage?.origName})`}</p>
       </div>
-      <img src={openDrop} alt="" />
+      <img src={openDrop} alt="" class="filter__img" />
     </div>
   );
 };
@@ -116,54 +109,31 @@ export default function () {
     <div
       onclick={(e) => {
         if (!e.target.closest(".filter")) {
-          Ref.filterTypeDrops.classList.remove("!opacity-100");
-          Ref.filterTypeDrops.classList.remove("!pointer-events-auto");
-          Ref.filterType.classList.remove("!rounded-ee-sm");
-          Ref.filterType.classList.remove("!rounded-es-sm");
-          Ref.filterType.classList.remove("!z-[2]");
-          Ref.filterSortDrops.classList.remove("!pointer-events-auto");
-          Ref.filterSortDrops.classList.remove("!opacity-100");
-          Ref.filterSort.classList.remove("!rounded-ee-sm");
-          Ref.filterSort.classList.remove("!rounded-es-sm");
-          Ref.filterSort.classList.remove("!z-[2]");
+          Ref.filterTypeDrops.classList.remove("filter__drops_active");
+          Ref.filterType.classList.remove("filter_active");
+          Ref.filterSortDrops.classList.remove("filter__drops_active");
+          Ref.filterSort.classList.remove("filter_active");
         }
       }}
     >
-      <div
-        id="questions"
-        class="before:fixed before:right-0 before:top-1/2 before:h-[25rem] before:w-[25rem] before:bg-[#8989bb] before:blur-[18.75rem] before:[background-image:linear-gradient(315deg,#8989bb_0%,#a5a4cb_74%)] before:[content:''] before:[transform:translate(-50%,-50%)] after:fixed after:left-[-16.875rem] after:top-[-4.375rem] after:z-[-1] after:h-full after:w-full after:bg-no-repeat after:opacity-[0.7] after:![background-size:100%_100%] after:[background:url(/contents/svg/questions/line.svg)] after:[content:'']"
-      >
+      <div class="questions">
         <div class="wrapper wrapper_padding">
-          <div class="pt-5">
+          <div class="questions__container">
             <h4>Последние вопросы</h4>
-            <p class="mb-5 max-w-[26.9375rem] text-[1rem] leading-[1.75rem] text-[#9198b3]">
+            <p class="questions__description">
               Задавайте свои вопросы, получайте грамотные и понятные ответы на
               родном языке, совершенно бесплатно.
             </p>
-            {/* card */}
-            <div class="relative z-0 mb-5 flex max-w-[19.375rem] items-center justify-between gap-[0.625rem] rounded-[--borderR] bg-[--prestige-blue] p-[0.9375rem]">
-              {/* avatar */}
-              <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
-                <img
-                  class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
-                  src={avatarGpt}
-                />
-                <img
-                  class="absolute left-1/2 top-0 z-[2] h-full !w-auto [transform:translateX(-50%)]"
-                  src={frameDefault}
-                />
-                <img
-                  class="absolute bottom-[0.4375rem] right-[0.4375rem] z-[2] flex h-5 w-5 items-center justify-center rounded-[50%] bg-white p-[0.1875rem]"
-                  src={teamLogo}
-                />
+            <div class="questions__gpt questions__gpt_margin">
+              <div class="avatar__icon">
+                <img class="avatar__photo" src={avatarGpt} />
+                <img class="avatar__frame" src={frameDefault} />
+                <img class="avatar__team" src={teamLogo} />
               </div>
-              {/* right */}
-              <div>
-                <div class="mb-5 flex items-center justify-between">
-                  <p class="text-[1rem] font-bold leading-[1.125rem]">
-                    ChatGPT
-                  </p>
-                  <div class="flex gap-[0.9375rem]">
+              <div class="questions__right">
+                <div class="questions__gpt-desc">
+                  <p class="questions__gpt-title">ChatGPT</p>
+                  <div class="questions__gpt-aps">
                     <a
                       target="_blank"
                       href="https://play.google.com/store/apps/details?id=com.cemassistant"
@@ -188,12 +158,13 @@ export default function () {
                     </a>
                   </div>
                 </div>
-                <button class="btn font-bold">Спросить Chat GPT</button>
+                <button class="questions__gpt-btn btn">
+                  Спросить Chat GPT
+                </button>
               </div>
             </div>
-            {/* ask question & search */}
-            <div class="relative flex flex-col gap-5 @767:flex-row">
-              <div class="relative order-[1] w-full before:absolute before:left-5 before:top-4 before:h-[1.5625rem] before:w-[1.5625rem] before:[content:''] before:![background-size:100%_100%] before:[background:url(/contents/svg/questions/search_icon.svg)] @767:order-none">
+            <div class="questions__ask">
+              <div class="questions__search">
                 <input
                   oninput={(e) => {
                     Static.search = e.target.value;
@@ -204,13 +175,12 @@ export default function () {
                       Static.timer = undefined;
                     }, 600);
                   }}
-                  class="text[--white] m-[0_auto] h-[3.4375rem] w-full rounded-[1.875rem] border-none bg-[#2b3040] pl-[3.75rem] text-[1rem] [background-position:left_1.25rem_bottom_1.25rem] [transition:0.5s] placeholder:text-[#9198b3] focus:scale-100 focus:outline-none focus:[border:0.0625rem_solid_var(--border)] focus:placeholder:text-transparent"
                   type="text"
                   placeholder="Поиск по вопросам"
                 />
               </div>
               <button
-                class="btn !relative !z-[1] !flex !h-[3.4375rem] !w-full !items-center !justify-center !overflow-hidden !text-center !text-[1rem] !font-extrabold !uppercase !leading-[3.4375rem] !text-[--white]"
+                class="btn"
                 onclick={() => {
                   if (!front.Variable.Auth) {
                     Fn.initOne("modalAuthtorization", {});
@@ -222,27 +192,30 @@ export default function () {
                 задать вопрос
               </button>
             </div>
-            {/* filters */}
-            <div class="mt-5 flex flex-col gap-[0.9375rem] @767:flex-row">
-              <div class="relative flex w-full max-w-full cursor-pointer items-center gap-[0.9375rem] @767:max-w-[18.75rem]">
+            <div class="questions__filters">
+              <div class="questions__filter">
                 <RenderTypeFilter />
               </div>
-              <div class="relative flex w-full max-w-full cursor-pointer items-center gap-[0.9375rem] @767:max-w-[18.75rem]">
+              <div class="questions__filter">
                 <RenderSortFilter />
                 <div
                   onclick={(e) => {
-                    e.target.classList.toggle("rotate-180");
+                    e.target.classList.toggle("questions__filter-order_active");
                     Static.order == 1
                       ? (Static.order = -1)
                       : (Static.order = 1);
                     Func.updateFilter();
                   }}
-                  class="h-full cursor-pointer"
+                  class="questions__filter-order"
                 >
-                  <img src={order} alt="Сортировать" class="block" />
+                  <img
+                    src={order}
+                    alt="Сортировать"
+                    class="questions__filter-triangles"
+                  />
                 </div>
               </div>
-              <div class="relative flex w-full max-w-full cursor-pointer items-center gap-[0.9375rem] @767:max-w-[18.75rem]">
+              <div class="questions__filter">
                 <RenderLanguageFilter />
               </div>
             </div>

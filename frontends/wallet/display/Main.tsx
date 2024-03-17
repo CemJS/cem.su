@@ -86,16 +86,12 @@ const RenderTable = () => {
     return (
       <nav class="absolute bottom-[-32px] flex w-[calc(100%_-_2rem)] items-center justify-center rounded-[--borderR] p-[0.5rem_0] [background:--mainGradient]">
         <button
-          class="pagination-button"
+          class="m-[0.25rem_0.25rem] h-[35px] w-[35px] cursor-pointer rounded-[0.2rem] border-none bg-transparent text-[16px] font-normal text-[--white] outline-none ease-in-out [transition:all_0.35s]"
           id="prev-button"
           aria-label="Previous page"
           title="Previous page"
           onclick={() => {
             if (Static.currentPage > 1) {
-              Static.Pages.forEach((element) => {
-                element.class = "pagination-number ";
-              });
-
               Static.currentPage -= 1;
               console.log("=01d334=", Static.currentPage);
 
@@ -115,13 +111,10 @@ const RenderTable = () => {
                   <button
                     class={item.class}
                     onclick={(e) => {
-                      Static.Pages.forEach((element) => {
-                        element.class = "pagination-number ";
-                      });
                       Static.currentPage = item.number;
                       Func.setCurrentPage(Static.currentPage);
                       Func.pagination(Static.currentPage);
-                      item.class += "active";
+                      item.class += "active ";
                       if (Static.currentPage < 3) {
                         Ref.first_two.classList.add("hidden");
                         Static.Begin = 0;
@@ -135,9 +128,7 @@ const RenderTable = () => {
               },
             )}
 
-            <span class="dots" ref="first_two_dots">
-              ...
-            </span>
+            <span class="dots">...</span>
           </span>
           {Static.Pages?.slice(Static.Begin, Static.End)?.map((item, index) => {
             return (
@@ -145,13 +136,10 @@ const RenderTable = () => {
                 class={item.class}
                 ref="pagination_number"
                 onclick={(e) => {
-                  Static.Pages.forEach((element) => {
-                    element.class = "pagination-number ";
-                  });
                   Static.currentPage = item.number;
                   Func.setCurrentPage(Static.currentPage);
                   Func.pagination(Static.currentPage);
-                  item.class += "active";
+                  item.class += "active ";
                 }}
               >
                 {item.number}
@@ -166,14 +154,11 @@ const RenderTable = () => {
                   <button
                     class={item.class}
                     onclick={(e) => {
-                      Static.Pages.forEach((element) => {
-                        element.class = "pagination-number ";
-                      });
                       Static.currentPage = item.number;
                       Static.currentPageClass = item.class;
                       Func.setCurrentPage(Static.currentPage);
                       Func.pagination(Static.currentPage);
-                      item.class += "active";
+                      item.class += "active ";
                       if (Static.currentPage >= Static.lastPage - 3) {
                         Ref.two_last.classList.add("hidden");
                         Ref.first_two.classList.remove("hidden");
@@ -190,15 +175,14 @@ const RenderTable = () => {
           </span>
         </div>
         <button
-          class={["pagination-button", Static.test == 2 ? "test" : "ffhff"]}
+          class={[
+            "m-[0.25rem_0.25rem] h-[35px] w-[35px] cursor-pointer rounded-[0.2rem] border-none bg-transparent text-[16px] font-normal text-[--white] outline-none ease-in-out [transition:all_0.35s] [&.active]:bg-[--noble-black] [&.active]:text-[--white]",
+          ]}
           id="next-button"
           aria-label="Next page"
           title="Next page"
           onclick={() => {
             if (Static.currentPage < Static.lastPage) {
-              Static.Pages.forEach((element) => {
-                element.class = "pagination-number ";
-              });
               Static.currentPage += 1;
               console.log("=01d334=", Static.currentPage);
 
@@ -242,7 +226,7 @@ const RenderTable = () => {
                   <td class="text-nowrap [padding-inline:5px]">{item.date}</td>
                   <td>{item.transaction}</td>
                   <td>{item.sum}</td>
-                  <td>
+                  <td class="flex items-center justify-center">
                     <img src={done} alt="" />
                   </td>
                 </tr>
