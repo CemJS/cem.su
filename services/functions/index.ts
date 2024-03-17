@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { editText, searchLink } from "./editText";
 import moment from "moment";
 import { sendApi } from "./sendApi";
-import { indexDB, getIndexDB } from "./indexDB";
+import { indexDB, IndexDBgetByOne } from "./indexDB";
 import "moment/min/locales";
 
 export * from "./validForms";
@@ -64,7 +64,7 @@ export const loader = async function (Variable: any, Fn: any) {
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
     if (json) {
-      let inx = await indexDB();
+      let inx = await indexDB({ json });
       // Variable.item = await indexDBGetCountry()
       //  console.log("Variable.item", Variable.item);
     } else {
@@ -108,4 +108,4 @@ export const loader = async function (Variable: any, Fn: any) {
   return;
 };
 
-export { uuidv4, editText, searchLink, indexDB, getIndexDB };
+export { uuidv4, editText, searchLink, indexDB, IndexDBgetByOne };

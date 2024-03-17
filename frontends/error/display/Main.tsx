@@ -745,7 +745,10 @@ export default function () {
       <button
         class="btn"
         onclick={async () => {
-          const get = await front.Services.functions.getIndexDB("dataUpdate", "country");
+          const get = await front.Services.functions.IndexDBgetByOne({
+            base: "dataUpdate",
+            key: "country",
+          });
           console.log("get", get);
         }}
       >
