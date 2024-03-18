@@ -1,6 +1,5 @@
 import { Cemjsx, Fn, front } from "cemjs-all";
 import cem from "@svg/cem.svg";
-import menuBottom from "@json/menuBottom";
 
 export default function () {
 	return (
