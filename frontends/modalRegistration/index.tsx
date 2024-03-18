@@ -221,7 +221,7 @@ front.loader = () => {
 
 front.display = () => {
     return (
-        <div class="modal" ref="modal" init={Func.show}>
+        <div class="modal fixed w-full h-full top-0 left-0" ref="modal" init={Func.show}>
             <Navigation />
         </div>
     )
