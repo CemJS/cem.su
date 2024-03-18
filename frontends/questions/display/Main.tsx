@@ -398,7 +398,7 @@ export default function () {
                   );
                 })
               ) : (
-                <div class="not_found">
+                <div class="not_found col-span-full">
                   <img src={notFound} alt="Нет записей" />
                   Нет записей
                 </div>

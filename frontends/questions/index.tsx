@@ -182,7 +182,6 @@ front.loader = async () => {
   // Func.updateFilter();
 
   Static.makeFilter = {
-    action: "get",
     sort: Static.sort,
     order: Static.order,
     search: Static.search,
