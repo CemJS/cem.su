@@ -4,11 +4,11 @@ import menu from "@json/menu";
 
 const RenderMenu = function ({ menu }) {
   return (
-    <ul class="header-list">
+    <ul class="flex gap-x-4 items-center">
       {menu.map((item: any) => {
         return (
           <li
-            class="header-list__item"
+            class="cursor-pointer"
             onclick={async () => {
               Fn.linkChange(`${item.url}`, { item: 5, test: 7, t: "hhh" });
             }}
@@ -29,8 +29,8 @@ export default function () {
         front.Variable.$el.header = $el;
       }}
     >
-      <div class="header-inner">
-        <nav class="header-nav">
+      <div class="flex items-center justify-between">
+        <nav class="flex gap-x-4">
           <a
             href="/"
             onclick={Fn.link}
