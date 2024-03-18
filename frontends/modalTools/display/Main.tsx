@@ -2,14 +2,8 @@ import { Cemjsx, Static, Func, Ref } from "cemjs-all";
 
 export default function () {
   return (
-    <div
-      class="bottomSheet-overlay"
-      ref="bottomSheetOverlay"
-    >
-      <div
-        class="bottomSheet-content"
-        ref="bottomSheetContent"
-      >
+    <div class="bottomSheet-overlay" ref="bottomSheetOverlay">
+      <div class="bottomSheet-content" ref="bottomSheetContent">
         <div class="bottomSheet-content__header">
           <div
             class="bottomSheet-content__header_drag-icon"
@@ -28,10 +22,7 @@ export default function () {
         </div>
         <div class="bottomSheet-content__body">
           {/* <h2 class="bottomSheet-title">Tools</h2> */}
-          <ul
-            class="bottomSheet-list"
-            role="list"
-          >
+          <ul class="bottomSheet-list" role="list">
             {Static.records.map((item, index) => {
               return (
                 <li
@@ -47,7 +38,7 @@ export default function () {
             })}
 
             <li
-              class="bottomSheet-list__item mt-15"
+              class="bottomSheet-list__item mt-[15px]"
               onclick={() => {
                 Func.close();
               }}
