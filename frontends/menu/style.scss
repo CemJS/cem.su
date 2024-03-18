@@ -1,9 +1,4 @@
 .menu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
   background-color: var(--backSecond);
 
   &-wrapper {
@@ -12,27 +7,10 @@
   }
 
   &-inner {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    // background-color: var(--backSecond);
-    position: relative;
     padding: 0.8rem 4rem;
-    // border-radius: 2.5rem 2.5rem 0 0;
   }
 
   &__item {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    color: var(--white);
-    transition: all 0.15s ease-in-out;
 
     img {
       width: 1.8rem;
@@ -43,11 +21,8 @@
     }
 
     &-name {
-      position: absolute;
-      white-space: nowrap;
       transform: translate(0, -35px);
       background-color: var(--fioletDark);
-      font-weight: 500;
       font-size: 0.8rem;
       padding: 0.5rem 0.8rem;
       border-radius: 0.5rem;
@@ -81,7 +56,6 @@
     }
 
     &-inner {
-      border-radius: 0;
       padding: 0.8rem 1.5rem;
     }
   }

@@ -29,17 +29,6 @@
 // }
 
 .text {
-  // &-left {
-  //   text-align: left;
-  // }
-
-  // &-center {
-  //   text-align: center;
-  // }
-
-  // &-right {
-  //   text-align: right;
-  // }
 
   &_important {
     font-size: clamp(1rem, 2vw, 1.125rem);
@@ -177,14 +166,12 @@
   cursor: pointer;
   transition: all 0.2s ease-out;
   white-space: nowrap;
-  @include button(
-    var(--mainGradient),
+  @include button(var(--mainGradient),
     fit-content,
     3.2rem,
     125%,
     1rem,
-    var(--white)
-  );
+    var(--white));
 
   span {
     height: 100%;
@@ -210,14 +197,12 @@
     cursor: pointer;
     transition: all 0.2s ease-out;
     white-space: nowrap;
-    @include button(
-      var(--darkBlueGradient),
+    @include button(var(--darkBlueGradient),
       fit-content,
       3.2rem,
       125%,
       1rem,
-      var(--white)
-    );
+      var(--white));
   }
 
   &_dark {
@@ -228,14 +213,12 @@
     justify-content: space-between;
     gap: 0.3rem;
     transition: var(--tran-03);
-    @include button(
-      var(--back700),
+    @include button(var(--back700),
       fit-content,
       fit-content,
       125%,
       1rem,
-      var(--slate-300)
-    );
+      var(--slate-300));
 
     .i {
       display: block;
@@ -249,14 +232,12 @@
   }
 
   &_border {
-    @include button(
-      var(--black-gray),
+    @include button(var(--black-gray),
       100%,
       2.625rem,
       100%,
       1rem,
-      var(--white)
-    );
+      var(--white));
     border-radius: var(--btnR);
     overflow: hidden;
     text-align: center;

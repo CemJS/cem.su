@@ -228,7 +228,7 @@ export default function () {
                       class="questions__item"
                       onclick={async () => {
                         let url = front.Services.functions.makeUrlEvent(
-                          "Questions",
+                          "questions",
                           { action: "show", id: item.id },
                         );
 
@@ -260,7 +260,7 @@ export default function () {
                                   skip.skip = Static.records.length;
                                   let res =
                                     await front.Services.functions.sendApi(
-                                      "/api/Questions",
+                                      "/api/questions",
                                       skip,
                                     );
                                 }

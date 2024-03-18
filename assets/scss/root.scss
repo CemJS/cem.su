@@ -5,7 +5,6 @@
 @import "utils/fonts.scss";
 @import "utils/global.scss";
 @import "utils/globalModal.scss";
-@import "utils/indents.scss";
 @import "utils/flexGrid.scss";
 
 *,
@@ -73,6 +72,7 @@ p {
 }
 
 @media (max-width: 464px) {
+
   html,
   body {
     font-size: 16px;

@@ -12,15 +12,10 @@ export const sendApi = async function (
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     });
-    console.log("=ba7fbe=", answer);
 
     let json = await answer.json();
     return json;
   } catch (error) {
-    console.log("data", data);
-
     return { error };
-    
   }
-  
 };

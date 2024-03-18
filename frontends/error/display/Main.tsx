@@ -62,7 +62,7 @@ const RenderTestButtons = () => {
       <button
         class="btn_border mt-10"
         onclick={() => {
-          let res = front.Services.functions.sendApi("/api/events/Questions", {
+          let res = front.Services.functions.sendApi("/api/events/questions", {
             action: "setQuestion",
             data: {
               _id: "64858303ebf324b822f56bff",
@@ -78,7 +78,7 @@ const RenderTestButtons = () => {
       <button
         class="btn_border mt-10"
         onclick={() => {
-          let res = front.Services.functions.sendApi("/api/events/Questions", {
+          let res = front.Services.functions.sendApi("/api/events/questions", {
             action: "setQuestion",
             data: {
               _id: "65d21222e3e55484e96ec79a",
@@ -94,7 +94,7 @@ const RenderTestButtons = () => {
       <button
         class="btn_border mt-10"
         onclick={() => {
-          let res = front.Services.functions.sendApi("/api/events/Questions", {
+          let res = front.Services.functions.sendApi("/api/events/questions", {
             action: "setQuestion",
             data: {
               _id: "65d21222e3e55484e96ec79a",
@@ -110,7 +110,7 @@ const RenderTestButtons = () => {
       <button
         class="btn_border mt-10"
         onclick={() => {
-          let res = front.Services.functions.sendApi("/api/events/Questions", {
+          let res = front.Services.functions.sendApi("/api/events/questions", {
             action: "setPost",
             data: {
               _id: "65d21222e3e55484e96ec79a",

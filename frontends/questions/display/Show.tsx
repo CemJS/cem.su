@@ -347,7 +347,7 @@ export default function () {
                       text: Static.text,
                       questionId: Static.record.id,
                     };
-                    front.Services.functions.sendApi("/api/Questions", data);
+                    front.Services.functions.sendApi("/api/questions", data);
                   }}
                 >
                   Отправить

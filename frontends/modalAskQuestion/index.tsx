@@ -22,7 +22,9 @@ front.func.close = function () {
 };
 
 front.func.checkForm = function () {
-  Static.form.question.valid ? (Static.form.isValid = true) : (Static.form.isValid = false);
+  Static.form.question.valid
+    ? (Static.form.isValid = true)
+    : (Static.form.isValid = false);
 };
 
 front.func.sendQuestion = async function () {
@@ -33,7 +35,7 @@ front.func.sendQuestion = async function () {
     languageCode: Static.languageCode,
   };
   Fn.log("=87d71d=", data);
-  let res = await front.Services.functions.sendApi("api/Questions", data);
+  let res = await front.Services.functions.sendApi("api/questions", data);
   console.log("=219b0d=", res);
   Func.close();
 };

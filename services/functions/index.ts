@@ -20,7 +20,7 @@ export const strToJson = function (data: string) {
 };
 
 export const makeUrlEvent = function (url: string, params: any = {}) {
-  url = `/api/events/${url}?uuid=${localStorage.uuid}&suuid=${localStorage.suuid}`;
+  url = `/api/events/${url}?uuid=${localStorage.uuid}`;
   for (let key in params) {
     url += `&${key}=${params[key]}`;
   }

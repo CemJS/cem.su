@@ -2,277 +2,294 @@ import { Cemjsx, front, Func, Static, Fn, Events, Ref } from "cemjs-all";
 import Navigation from "./navigation";
 
 front.listener.finish = () => {
-	return;
+  return;
 };
 
 // ======== videoplayer start ========
 front.func.playAndPause = (video: any) => {
-	// video.paused ? video.play() : video.pause()
-	if (video.paused) {
-		video.play();
-	} else {
-		video.pause();
-	}
+  // video.paused ? video.play() : video.pause()
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
 
-	return;
+  return;
 };
 
 front.func.timeUpdate = (e: any) => {
-	let { currentTime, duration } = e.target;
-	let percent = (currentTime / duration) * 100;
-	Static.currentTime = currentTime;
-	Ref.progressBar.style.width = `${percent}%`;
-	return;
+  let { currentTime, duration } = e.target;
+  let percent = (currentTime / duration) * 100;
+  Static.currentTime = currentTime;
+  Ref.progressBar.style.width = `${percent}%`;
+  return;
 };
 
 front.func.formatTime = (time: any) => {
-	let seconds = Math.floor(time % 60),
-		minutes = Math.floor(time / 60) % 60,
-		hours = Math.floor(time / 3600);
+  let seconds = Math.floor(time % 60),
+    minutes = Math.floor(time / 60) % 60,
+    hours = Math.floor(time / 3600);
 
-	seconds = seconds < 10 ? Number(`0${seconds}`) : seconds;
-	minutes = minutes < 10 ? Number(`0${minutes}`) : minutes;
-	hours = hours < 10 ? Number(`0${hours}`) : hours;
+  seconds = seconds < 10 ? Number(`0${seconds}`) : seconds;
+  minutes = minutes < 10 ? Number(`0${minutes}`) : minutes;
+  hours = hours < 10 ? Number(`0${hours}`) : hours;
 
-	if (hours == 0) {
-		return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-	}
-	return `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  if (hours == 0) {
+    return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  }
+  return `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 };
 
 front.func.draggableProgressBar = (e: any) => {
-	let timeLineWidth = Ref.videoTimeLine.clientWidth;
-	Ref.progressBar.style.width = `${e.offsetX}px`;
-	Ref.video.currentTime = (e.offsetX / timeLineWidth) * Ref.video.duration;
-	return;
+  let timeLineWidth = Ref.videoTimeLine.clientWidth;
+  Ref.progressBar.style.width = `${e.offsetX}px`;
+  Ref.video.currentTime = (e.offsetX / timeLineWidth) * Ref.video.duration;
+  return;
 };
 // ======== videoplayer end ========
 
 front.func.updateFilter = async () => {
-	Static.makeFilter = {
-		action: "get",
-		sort: Static.sort,
-		order: Static.order,
-		search: Static.search,
-		isClosed: Static.type == "opened" ? false : Static.type == "closed" ? true : undefined,
-		isBest: Static.type == "best",
-		language: Static.chooseLanguage.code,
-	};
-	Fn.log("=13809b=", Static.makeFilter);
-	let res = await front.Services.functions.sendApi("/api/events/Questions", Static.makeFilter);
-	return;
+  Static.makeFilter = {
+    action: "get",
+    sort: Static.sort,
+    order: Static.order,
+    search: Static.search,
+    isClosed:
+      Static.type == "opened"
+        ? false
+        : Static.type == "closed"
+          ? true
+          : undefined,
+    isBest: Static.type == "best",
+    language: Static.chooseLanguage.code,
+  };
+  let res = await front.Services.functions.sendApi(
+    "/api/questions",
+    Static.makeFilter,
+  );
+  return;
 };
 
 front.func.getDate = (timestamp: any) => {
-	return new Date(timestamp);
+  return new Date(timestamp);
 };
 
 front.func.addNull = (str: any) => {
-	str = String(str);
-	return str.length < 2 ? `0${str}` : str;
+  str = String(str);
+  return str.length < 2 ? `0${str}` : str;
 };
 
 front.func.deleteQuestion = async () => {
-	let data: object = {
-		action: "delete",
-		id: Static.record.id,
-	};
-	let res = await front.Services.functions.sendApi("/api/Questions", data);
-	front.Variable.$el.header.classList.remove("hide");
-	front.Variable.$el.footer.classList.remove("hide");
-	Static.record = null;
-	Events.questions.close();
-	Fn.linkChange("/questions");
+  let data: object = {
+    action: "delete",
+    id: Static.record.id,
+  };
+  let res = await front.Services.functions.sendApi("/api/questions", data);
+  front.Variable.$el.header.classList.remove("hide");
+  front.Variable.$el.footer.classList.remove("hide");
+  Static.record = null;
+  Events.questions.close();
+  Fn.linkChange("/questions");
 };
 
 front.func.closeQuestion = async () => {
-	let data: object = {
-		action: "close",
-		id: Static.record.id,
-	};
-	Static.record.closed = true;
-	let res = await front.Services.functions.sendApi("/api/Questions", data);
+  let data: object = {
+    action: "close",
+    id: Static.record.id,
+  };
+  Static.record.closed = true;
+  let res = await front.Services.functions.sendApi("/api/questions", data);
 };
 
 front.func.share = () => {
-	navigator.share({
-		title: document.title,
-		url: window.location.href,
-	});
+  navigator.share({
+    title: document.title,
+    url: window.location.href,
+  });
 };
 
 front.func.deleteAnswer = async (id: string) => {
-	let data: object = {
-		action: "delete",
-		id: Static.record.id,
-	};
-	let res = await front.Services.functions.sendApi("/api/Questions", data);
-	front.Variable.$el.header.classList.remove("hide");
-	front.Variable.$el.footer.classList.remove("hide");
-	Static.record = null;
-	Events.questions.close();
-	Fn.linkChange("/questions");
+  let data: object = {
+    action: "delete",
+    id: Static.record.id,
+  };
+  let res = await front.Services.functions.sendApi("/api/questions", data);
+  front.Variable.$el.header.classList.remove("hide");
+  front.Variable.$el.footer.classList.remove("hide");
+  Static.record = null;
+  Events.questions.close();
+  Fn.linkChange("/questions");
 };
 
 front.func.bestAnswer = async (id: string) => {
-	let data: object = {
-		action: "bestAnswer",
-		questionId: Static.record.id,
-		answerId: id,
-	};
-	let res = await front.Services.functions.sendApi("/api/Questions", data);
+  let data: object = {
+    action: "bestAnswer",
+    questionId: Static.record.id,
+    answerId: id,
+  };
+  let res = await front.Services.functions.sendApi("/api/questions", data);
 };
 
 front.loader = async () => {
-	Static.open = "Ответить";
+  Static.open = "Ответить";
 
-	Static.search = "";
-	Static.order = -1;
-	Static.types = [
-		{
-			name: "All",
-			text: "Все вопросы",
-		},
-		{
-			name: "opened",
-			text: "Ожидающие ответа",
-		},
-		{
-			name: "closed",
-			text: "Закрытые вопросы",
-		},
-		{
-			name: "best",
-			text: "Закрытые с лучшим ответом",
-		},
-	];
+  Static.search = "";
+  Static.order = -1;
+  Static.types = [
+    {
+      name: "All",
+      text: "Все вопросы",
+    },
+    {
+      name: "opened",
+      text: "Ожидающие ответа",
+    },
+    {
+      name: "closed",
+      text: "Закрытые вопросы",
+    },
+    {
+      name: "best",
+      text: "Закрытые с лучшим ответом",
+    },
+  ];
 
-	Static.type = "All";
+  Static.type = "All";
 
-	Static.chooseLanguage = {
-		engName: "Russian",
-		origName: "Русский",
-		code: "ru",
-	};
+  Static.chooseLanguage = {
+    engName: "Russian",
+    origName: "Русский",
+    code: "ru",
+  };
 
-	Static.sorts = [
-		{
-			name: "date",
-			text: "По дате",
-		},
-		{
-			name: "views",
-			text: "По просмотрам",
-		},
-		{
-			name: "answers",
-			text: "По ответам",
-		},
-	];
+  Static.sorts = [
+    {
+      name: "date",
+      text: "По дате",
+    },
+    {
+      name: "views",
+      text: "По просмотрам",
+    },
+    {
+      name: "answers",
+      text: "По ответам",
+    },
+  ];
 
-	Static.sort = "date";
+  Static.sort = "date";
 
-	// Func.updateFilter();
+  // Func.updateFilter();
 
-	Static.makeFilter = {
-		action: "get",
-		sort: Static.sort,
-		order: Static.order,
-		search: Static.search,
-		isClosed: Static.type == "opened" ? false : Static.type == "closed" ? true : undefined,
-		isBest: Static.type == "best",
-		language: Static.chooseLanguage.code,
-	};
+  Static.makeFilter = {
+    sort: Static.sort,
+    order: Static.order,
+    search: Static.search,
+    isClosed:
+      Static.type == "opened"
+        ? false
+        : Static.type == "closed"
+          ? true
+          : undefined,
+    isBest: Static.type == "best",
+    language: Static.chooseLanguage.code,
+  };
 
-	delete Static.makeFilter.isClosed; //== undefined ? Static.makeFilter.
+  delete Static.makeFilter.isClosed; //== undefined ? Static.makeFilter.
 
-	let url = front.Services.functions.makeUrlEvent("Questions", Static.makeFilter);
-	let listener = [
-		{
-			type: "get",
-			fn: ({ data }) => {
-				let json = front.Services.functions.strToJson(data);
-				if (!json) {
-					return;
-				}
+  let url = front.Services.functions.makeUrlEvent(
+    "questions",
+    Static.makeFilter,
+  );
+  let listener = [
+    {
+      type: "get",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
 
-				Static.records = json;
-			},
-		},
-		{
-			type: "add",
-			fn: ({ data }) => {
-				let json = front.Services.functions.strToJson(data);
-				if (!json) {
-					return;
-				}
-				Static.records = [...Static.records, ...json];
-			},
-		},
-	];
-	Events.questions = await Fn.event(url, listener);
+        Static.records = json;
+      },
+    },
+    {
+      type: "add",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.records = [...Static.records, ...json];
+      },
+    },
+  ];
+  Events.questions = await Fn.event(url, listener);
 
-	if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-		let url = front.Services.functions.makeUrlEvent("Questions", { action: "show", id: front.Variable.DataUrl[2] });
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
+    let url = front.Services.functions.makeUrlEvent("questions", {
+      action: "show",
+      id: front.Variable.DataUrl[2],
+    });
 
-		let listener = [
-			{
-				type: "get",
-				fn: ({ data }) => {
-					let json = front.Services.functions.strToJson(data);
-					if (!json) {
-						return;
-					}
-					Static.record = json;
-				},
-			},
-		];
-		Events.questions = await Fn.event(url, listener);
+    let listener = [
+      {
+        type: "get",
+        fn: ({ data }) => {
+          let json = front.Services.functions.strToJson(data);
+          if (!json) {
+            return;
+          }
+          Static.record = json;
+        },
+      },
+    ];
+    Events.questions = await Fn.event(url, listener);
 
-		Static.videoDragStart = false;
+    Static.videoDragStart = false;
 
-		Static.activeSpeed = 1;
-		Static.speedOptions = [
-			{
-				value: 2,
-			},
-			{
-				value: 1.5,
-			},
-			{
-				value: 0.75,
-			},
-			{
-				value: 0.5,
-			},
-		];
+    Static.activeSpeed = 1;
+    Static.speedOptions = [
+      {
+        value: 2,
+      },
+      {
+        value: 1.5,
+      },
+      {
+        value: 0.75,
+      },
+      {
+        value: 0.5,
+      },
+    ];
 
-		// let urlAns = front.Services.functions.makeUrlEvent("Answers", { id: front.Variable.DataUrl[2] });
+    // let urlAns = front.Services.functions.makeUrlEvent("Answers", { id: front.Variable.DataUrl[2] });
 
-		// let listenerAns = [
-		//   {
-		//     type: "get",
-		//     fn: ({ data }) => {
-		//       let json = front.Services.functions.strToJson(data);
-		//       if (!json) {
-		//         return;
-		//       }
-		//       Static.answers = json;
-		//     },
-		//   },
-		// ];
-		// Events.answers = await Fn.event(urlAns, listenerAns);
-	}
+    // let listenerAns = [
+    //   {
+    //     type: "get",
+    //     fn: ({ data }) => {
+    //       let json = front.Services.functions.strToJson(data);
+    //       if (!json) {
+    //         return;
+    //       }
+    //       Static.answers = json;
+    //     },
+    //   },
+    // ];
+    // Events.answers = await Fn.event(urlAns, listenerAns);
+  }
 
-	return;
+  return;
 };
 
 front.display = () => {
-	return (
-		<div>
-			<Navigation />
-		</div>
-	);
+  return (
+    <div>
+      <Navigation />
+    </div>
+  );
 };
 
 export { front };

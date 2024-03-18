@@ -21,7 +21,7 @@ const RenderTypeFilter = () => {
         Ref.filterType.classList.toggle("!rounded-es-sm");
         Ref.filterType.classList.toggle("!z-[2]");
       }}
-      class="relative z-0 flex min-h-[5rem] w-full max-w-full cursor-pointer items-center justify-between rounded-[--borderR] bg-[--light-gray] p-[0.625rem_1.25rem] @767:max-w-[18.75rem]"
+      class="filterOne relative z-0 flex min-h-[5rem] w-full max-w-full cursor-pointer items-center justify-between rounded-[--borderR] bg-[--light-gray] p-[0.625rem_1.25rem] @767:max-w-[18.75rem]"
     >
       <div>
         <p class="text-[--textGray]">Сортировать</p>
@@ -55,12 +55,13 @@ const RenderSortFilter = () => {
     <div
       ref="filterSort"
       onclick={(e) => {
-        Ref.filterSortDrops.classList.toggle(
-          "!opacity-100 !pointer-events-auto",
-        );
-        Ref.filterSort.classList.toggle("!rounded-ee-sm !rounded-es-sm !z-[2]");
+        Ref.filterSortDrops.classList.toggle("!pointer-events-auto");
+        Ref.filterSortDrops.classList.toggle("!opacity-100");
+        Ref.filterSort.classList.toggle("!rounded-ee-sm");
+        Ref.filterSort.classList.toggle("!rounded-es-sm");
+        Ref.filterSort.classList.toggle("!z-[2]");
       }}
-      class="relative z-0 flex min-h-[5rem] w-full max-w-full cursor-pointer items-center justify-between rounded-[--borderR] bg-[--light-gray] p-[0.625rem_1.25rem] @767:max-w-[18.75rem]"
+      class="filterOne relative z-0 flex min-h-[5rem] w-full max-w-full cursor-pointer items-center justify-between rounded-[--borderR] bg-[--light-gray] p-[0.625rem_1.25rem] @767:max-w-[18.75rem]"
     >
       <div>
         <p class="text-[--textGray]">Сортировать</p>
@@ -115,7 +116,7 @@ export default function () {
   return (
     <div
       onclick={(e) => {
-        if (!e.target.closest(".filter")) {
+        if (!e.target.closest(".filterOne")) {
           Ref.filterTypeDrops.classList.remove("!opacity-100");
           Ref.filterTypeDrops.classList.remove("!pointer-events-auto");
           Ref.filterType.classList.remove("!rounded-ee-sm");
@@ -210,7 +211,7 @@ export default function () {
                 />
               </div>
               <button
-                class="btn !relative !z-[1] !flex !h-[3.4375rem] !w-full !items-center !justify-center !overflow-hidden !text-center !text-[1rem] !font-extrabold !uppercase !leading-[3.4375rem] !text-[--white]"
+                class="btn !relative !z-[1] !flex !h-[3.4375rem] !w-[18.75rem] !items-center !justify-center !overflow-hidden !text-center !text-[1rem] !font-extrabold !uppercase !leading-[3.4375rem] !text-[--white]"
                 onclick={() => {
                   if (!front.Variable.Auth) {
                     Fn.initOne("modalAuthtorization", {});
@@ -247,7 +248,7 @@ export default function () {
               </div>
             </div>
 
-            <div class="questions__list">
+            <div class="relative mx-auto mt-[0.9375rem] flex max-w-full flex-wrap items-center justify-between pb-[6.25rem] @1240:mt-5 @1240:grid @1240:grid-cols-[repeat(autofit,24.375rem)] @1240:gap-[1.25rem]">
               {Static.records?.length ? (
                 Static.records?.map((item: any, index: number) => {
                   return (
@@ -255,7 +256,7 @@ export default function () {
                       class="questions__item"
                       onclick={async () => {
                         let url = front.Services.functions.makeUrlEvent(
-                          "Questions",
+                          "questions",
                           { action: "show", id: item.id },
                         );
 
@@ -287,7 +288,7 @@ export default function () {
                                   skip.skip = Static.records.length;
                                   let res =
                                     await front.Services.functions.sendApi(
-                                      "/api/Questions",
+                                      "/api/questions",
                                       skip,
                                     );
                                 }
@@ -397,7 +398,7 @@ export default function () {
                   );
                 })
               ) : (
-                <div class="questions__notFound notFound notFound_bg notFound_relative w100 mx-auto">
+                <div class="not_found col-span-full">
                   <img src={notFound} alt="Нет записей" />
                   Нет записей
                 </div>
