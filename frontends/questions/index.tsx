@@ -64,7 +64,7 @@ front.func.updateFilter = async () => {
     language: Static.chooseLanguage.code,
   };
   let res = await front.Services.functions.sendApi(
-    "/api/events/questions",
+    "/api/questions",
     Static.makeFilter,
   );
   return;
