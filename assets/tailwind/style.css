@@ -109,6 +109,12 @@
   .btn_border {
     @apply relative z-[1] h-[2.625rem] w-full cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--black-gray] bg-100% text-center text-[1rem] font-semibold text-white outline-none;
   }
+  /*  */
+
+  /* notFound */
+  .not_found {
+    @apply z-0 flex h-[300px] w-full flex-col items-center justify-center gap-2 overflow-hidden rounded-[--borderR] bg-[--light-gray];
+  }
 }
 
 @keyframes scrolling {
