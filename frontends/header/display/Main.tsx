@@ -44,9 +44,9 @@ export default function () {
           <RenderMenu menu={menu} />
         </nav>
 
-        <div class="header-tools">
+        <div class="flex items-center gap-x-4">
           <div
-            class="header__lang"
+            class="cursor-pointer flex items-center gap-2"
             onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
           >
             <span>Русский</span>
@@ -55,13 +55,13 @@ export default function () {
 
           {front.Variable.Auth ? (
             <div
-              style="cursor: pointer"
+              class="cursor-pointer"
               onclick={() => {
                 Fn.linkChange(`/user/${front.Variable.myInfo?.nickname}`)
               }}>
               Profile</div>
           ) : (
-            <div class="header-auth">
+            <div class="flex items-center gap-2 cursor-pointer">
               <span onclick={() => Fn.initOne("modalAuthtorization", {})}>Вход</span>
               <button
                 class="btn"
