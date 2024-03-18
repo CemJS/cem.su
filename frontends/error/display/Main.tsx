@@ -745,11 +745,15 @@ export default function () {
       <button
         class="btn"
         onclick={async () => {
-          const get = await front.Services.functions.IndexDBgetByOne({
-            base: "dataUpdate",
-            key: "country",
-          });
-          console.log("get", get);
+          if (front.Variable.myInfo) {
+            const get = await front.Services.functions.IndexDBgetByOne({
+              base: "dataUpdate",
+              key: "country",
+            });
+            console.log("get", get);
+          } else {
+            alert("База данных закрыта! Перезагрузите страницу.");
+          }
         }}
       >
         main test

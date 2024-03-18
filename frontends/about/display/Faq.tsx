@@ -35,7 +35,7 @@ const faq = [
 
 export default function () {
   return (
-    <div class="relative z-50">
+    <div class="relative z-[1]">
       <h2 class="z-[1] mx-0 my-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
         FAQ
       </h2>

@@ -1,4 +1,4 @@
-import { front } from "cemjs-all";
+import { front, Static } from "cemjs-all";
 import { sendApi } from "./sendApi";
 export { sendApi };
 

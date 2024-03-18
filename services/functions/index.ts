@@ -63,7 +63,19 @@ export const loader = async function (Variable: any, Fn: any) {
 
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
+
     if (json) {
+      if (
+        !localStorage.getItem("country") ||
+        !localStorage.getItem("lang") ||
+        !localStorage.getItem("translations")
+      ) {
+        localStorage.setItem("country", json?.countriesLastUpdateDate);
+        localStorage.setItem("lang", json?.languagesLastUpdateDate);
+        localStorage.setItem("translations", json?.translationsLastUpdateDate);
+      }
+      console.log("local", localStorage.getItem("country"));
+
       let inx = await indexDB({ json });
       // Variable.item = await indexDBGetCountry()
       //  console.log("Variable.item", Variable.item);
