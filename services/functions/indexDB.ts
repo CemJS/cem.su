@@ -18,64 +18,23 @@ const indexDB = async function ({ json }) {
     }
   };
   console.log("БАЗА ОТКРЫТА");
-
-  openDB.onsuccess = function () {
-    db = openDB.result;
-    const transaction = db.transaction("dataUpdate", "readwrite");
-    const store = transaction.objectStore("dataUpdate");
-    const getCountry = store.get("country");
-    const getLang = store.get("lang");
-    const getTranslations = store.get("translations");
-    getCountry.onsuccess = async function () {
-      if (!getCountry.result) {
-        store.add({
-          key: "country",
-          value: json?.countriesLastUpdateDate,
-        });
-        let res = await sendApi("/api/countries", {});
-      } else if (getCountry.result?.value < json?.countriesLastUpdateDate) {
-        store.put({
-          key: "country",
-          value: json?.countriesLastUpdateDate,
-        });
-        let res = await sendApi("/api/countries", {});
-      } else {
-        return;
-      }
+  if (!localStorage.getItem("country")) {
+    openDB.onsuccess = function () {
+      db = openDB.result;
+      const transaction = db.transaction("dataUpdate", "readwrite");
+      const store = transaction.objectStore("dataUpdate");
+      const getCountry = store.get("country");
+      getCountry.onsuccess = async function () {
+        if (!getCountry.result) {
+          store.add({
+            key: "country",
+            value: json?.countriesLastUpdateDate,
+            countries: front.Variable.baseUpdate,
+          });
+        }
+      };
     };
-    getLang.onsuccess = async function () {
-      if (!getLang.result) {
-        store.add({
-          key: "lang",
-          value: json?.languagesLastUpdateDate,
-        });
-        let res = await sendApi("/api/languages", {});
-      } else if (getLang.result?.value < json?.languagesLastUpdateDate) {
-        store.put({
-          key: "lang",
-          value: json?.languagesLastUpdateDate,
-        });
-        let res = await sendApi("/api/languages", {});
-      }
-    };
-    getTranslations.onsuccess = async function () {
-      if (!getTranslations.result) {
-        store.add({
-          key: "translations",
-          value: json?.translationsLastUpdateDate,
-        });
-        let res = sendApi("/api/translations", {});
-      } else if (
-        getTranslations.result?.value < json?.translationsLastUpdateDate
-      ) {
-        store.put({
-          key: "translations",
-          value: json?.translationsLastUpdateDate,
-        });
-        let res = await sendApi("/api/translations", {});
-      }
-    };
-  };
+  }
 };
 
 const IndexDBgetByOne = function (item: any) {

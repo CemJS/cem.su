@@ -63,16 +63,11 @@ export const loader = async function (Variable: any, Fn: any) {
 
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
-
     if (json) {
-      if (
-        !localStorage.getItem("country") ||
-        !localStorage.getItem("lang") ||
-        !localStorage.getItem("translations")
-      ) {
+      if (!localStorage.getItem("country")) {
+        const response = await sendApi("/api/countries", {});
+        Variable.baseUpdate = await response?.result;
         localStorage.setItem("country", json?.countriesLastUpdateDate);
-        localStorage.setItem("lang", json?.languagesLastUpdateDate);
-        localStorage.setItem("translations", json?.translationsLastUpdateDate);
       }
       console.log("local", localStorage.getItem("country"));
 
