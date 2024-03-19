@@ -210,7 +210,6 @@ front.loader = async () => {
           return;
         }
 
-        console.log("=afcef3=", json);
         Static.records = json;
       },
     },
@@ -241,20 +240,32 @@ front.loader = async () => {
   Events.questions = await Fn.event(url, listener);
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-    let url = front.Services.functions.makeUrlEvent("questions", {
-      action: "show",
-      id: front.Variable.DataUrl[2],
-    });
+    let url = front.Services.functions.makeUrlEvent(
+      `questions/${front.Variable.DataUrl[2]}`,
+    );
 
     let listener = [
       {
-        type: "get",
+        type: "getById",
         fn: ({ data }) => {
           let json = front.Services.functions.strToJson(data);
           if (!json) {
             return;
           }
           Static.record = json;
+        },
+      },
+      {
+        type: "answer",
+        fn: ({ data }) => {
+          let json = front.Services.functions.strToJson(data);
+          if (!json) {
+            return;
+          }
+          Fn.log("=01c668=", json);
+          Fn.log("=3c43bf=", Static.record);
+          Static.record.answers.unshift(json);
+          Static.record.statistics.answers++;
         },
       },
     ];

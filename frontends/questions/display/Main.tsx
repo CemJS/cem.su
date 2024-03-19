@@ -170,7 +170,7 @@ const RenderAskInput = () => {
         />
       </div>
       <button
-        class="btn !relative !z-[1] !flex !h-[3.4375rem] !w-[18.75rem] !items-center !justify-center !overflow-hidden !text-center !text-[1rem] !font-extrabold !uppercase !leading-[3.4375rem] !text-[--white]"
+        class="btn !relative !z-[1] !flex !h-[3.4375rem] !w-full !items-center !justify-center !overflow-hidden !text-center !text-[1rem] !font-extrabold !uppercase !leading-[3.4375rem] !text-[--white] @767:!max-w-[18.75rem]"
         onclick={() => {
           if (!front.Variable.Auth) {
             Fn.initOne("modalAuthtorization", {});
@@ -262,6 +262,17 @@ const RenderQuestion = ({ item, index }) => {
               Static.record = json;
             },
           },
+          {
+            type: "answer",
+            fn: ({ data }) => {
+              let json = front.Services.functions.strToJson(data);
+              if (!json) {
+                return;
+              }
+              Static.record.answers.unshift(json);
+              Static.record.statistics.answers++;
+            },
+          },
         ];
         Events.question = await Fn.event(url, listener);
         Fn.linkChange(`/questions/show/${item.id}`);
@@ -320,7 +331,9 @@ const RenderQuestion = ({ item, index }) => {
                   <div
                     class={[
                       "absolute right-[-0.1563rem] top-[-0.1563rem] h-[0.875rem] w-[0.875rem] rounded-[50%] [background:linear-gradient(225deg,#ff7272_0%,#d93030_100%)] [border:0.1875rem_solid_#ffffff]",
-                      item.online ? "avatar__online_active" : null,
+                      item.online
+                        ? "[background:linear-gradient(225deg,#72ffb6_0,#10d194_100%)]"
+                        : null,
                     ]}
                   ></div>
                 </div>
@@ -341,14 +354,20 @@ const RenderQuestion = ({ item, index }) => {
       </div>
       <div
         class={[
-          "mt-[0.625rem] flex h-[4.6875rem] min-w-full max-w-[20.625rem] cursor-pointer items-center overflow-hidden text-ellipsis text-[1.125rem] font-medium @1240:min-w-[auto]",
+          "mt-[0.625rem] flex h-[4.6875rem] min-w-full max-w-[20.625rem] cursor-pointer items-center overflow-hidden text-ellipsis text-[1.125rem] font-medium @1240:min-w-[auto] [&:hover_span]:!bg-clip-text [&:hover_span]:[-webkit-text-fill-color:transparent] [&:hover_span]:[background:linear-gradient(56.57deg,#2973ff_0%,#8846d3_51.56%,#ff22ac_105.28%)]",
           item.title?.length < 15 && item.text
             ? "!flex-col !items-start"
             : null,
         ]}
       >
-        <span>{item.title}</span>
-        {item.title.length < 15 && item.text ? <span>{item.text}</span> : null}
+        <span class="overflow-hidden [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box]">
+          {item.title}
+        </span>
+        {item.title.length < 15 && item.text ? (
+          <span class="overflow-hidden [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box]">
+            {item.text}
+          </span>
+        ) : null}
       </div>
       <div class="questions__item_statistic">
         <span>
@@ -372,14 +391,14 @@ const RenderQuestion = ({ item, index }) => {
           // href={`/questions/show/${item._id}`}
           class=" btn_border"
           onclick={(e) => {
-            e.stopPropagation();
-            let data = {
-              action: "answer",
-              authorId: "63c7f6063be93e984c962b75",
-              text: item.text,
-              questionId: item.id,
-            };
-            front.Services.functions.sendApi("/api/answers/create", data);
+            // e.stopPropagation();
+            // let data = {
+            //   action: "answer",
+            //   authorId: "63c7f6063be93e984c962b75",
+            //   text: item.text,
+            //   questionId: item.id,
+            // };
+            // front.Services.functions.sendApi("/api/answers/create", data);
           }}
         >
           Ответить

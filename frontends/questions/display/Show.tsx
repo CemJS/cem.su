@@ -241,7 +241,7 @@ const RenderVideo = function () {
 };
 
 export default function () {
-  Fn.log("=1a4833=", Static.record);
+  Fn.log("=9da257=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
@@ -332,6 +332,7 @@ export default function () {
                 class="answer__field"
                 cols="20"
                 rows="10"
+                value={Static.text}
                 oninput={(e) => {
                   Static.text = e.target.value;
                 }}
@@ -342,12 +343,14 @@ export default function () {
                   type="button"
                   onclick={() => {
                     let data = {
-                      action: "answer",
-                      authorId: "63c7f6063be93e984c962b75",
                       text: Static.text,
                       questionId: Static.record.id,
                     };
-                    front.Services.functions.sendApi("/api/questions", data);
+                    Static.text = "";
+                    front.Services.functions.sendApi(
+                      "/api/answers/create",
+                      data,
+                    );
                   }}
                 >
                   Отправить
@@ -361,7 +364,6 @@ export default function () {
                 ref="answerList"
               >
                 {Static.record.answers?.map((answer) => {
-                  Fn.log("=3c6b68=", answer);
                   return (
                     <div
                       class={[
@@ -413,9 +415,7 @@ export default function () {
                           </div>
                         </a>
                         <div class="user-comment__body-big">
-                          <span
-                            init={(e) => (e.innerHTML = answer.text)}
-                          ></span>
+                          <span>{answer.text}</span>
                           {answer.media.map((item) => {
                             return item.type == "image" ? (
                               <img
@@ -474,24 +474,13 @@ export default function () {
                             class="user-comment__comment_button"
                             onclick={() => {
                               let data = {
-                                action: "insert",
-                                // author: front.Variable.myInfo.id,
-                                author: "63c7f6063be93e984c962b75",
                                 text: Static.textCom,
-                                table: "Answers",
-                                tableID: answer.id,
-                                rating: 1,
+                                answerId: answer.id,
                               };
-                              front.Services.functions.sendApi("/api/answers/");
-                              fetch(
-                                `/api/answers/Comments?uuid=${front.Variable.myInfo.uuid}`,
-                                {
-                                  method: "POST",
-                                  headers: {
-                                    "content-type": "application/json",
-                                  },
-                                  body: JSON.stringify(data),
-                                },
+                              console.log("=529d8a=", 1);
+                              front.Services.functions.sendApi(
+                                `/api/answers/${answer.id}/comment`,
+                                data,
                               );
                             }}
                           >
@@ -781,6 +770,9 @@ export default function () {
                                       commentId: comment.id,
                                       rating: 1,
                                     };
+                                    front.Services.functions.sendApi(
+                                      `/api/answers/`,
+                                    );
                                     fetch(
                                       `/api/events/Comments?uuid=${front.Variable.myInfo.uuid}`,
                                       {
