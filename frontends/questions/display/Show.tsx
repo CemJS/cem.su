@@ -247,9 +247,9 @@ const RenderUser = () => {
   return (
     <div id="user">
       <a class="relative flex h-auto w-auto" href="#">
-        <div class="avatar__icon">
+        <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
           <img
-            class="avatar__photo"
+            class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
             src={
               Static.record.author.avatar?.name
                 ? `/assets/upload/avatar/${Static.record.author.avatar?.name}`
@@ -257,7 +257,7 @@ const RenderUser = () => {
             }
           />
           <img
-            class="avatar__frame"
+            class="absolute left-1/2 top-0 z-[2] h-full !w-auto [transform:translateX(-50%)]"
             src={
               Static.record.author.frame?.name
                 ? `/contents/images/lenta/${Static.record.author.frame?.name}`
@@ -266,20 +266,24 @@ const RenderUser = () => {
           />
           {Static.record.author.status?.team ? (
             <img
-              class="avatar__team"
+              class="absolute bottom-[0.4375rem] right-[0.4375rem] z-[2] flex h-5 w-5 items-center justify-center rounded-[50%] bg-[--white] p-[0.1875rem]"
               src={Static.record.author.status?.team ? teamLogo : null}
             />
           ) : (
             <div>
-              <div class="avatar__level">
-                <img src={leveGray} />
-                <span>{Static.record.author.statistics.level}</span>
+              <div class="absolute !top-auto bottom-0 right-[0.3125rem] z-[2] h-7">
+                <img class="h-full" src={leveGray} />
+                <span class="text-[0.75rem absolute left-1/2 top-1/2 font-bold tracking-[0.0375rem] text-[--white] [transform:translateX(-50%)_translateY(-50%)]">
+                  {Static.record.author.statistics.level}
+                </span>
               </div>
             </div>
           )}
         </div>
-        <div class="avatar__name">
-          <span>{Static.record.author.nickname}</span>
+        <div class="absolute left-20 top-5 mb-2 block leading-[24px]">
+          <span class="inline text-[0.875rem] font-semibold leading-[1.375rem] text-[--white]">
+            {Static.record.author.nickname}
+          </span>
         </div>
       </a>
     </div>
@@ -288,7 +292,7 @@ const RenderUser = () => {
 
 const RenderNotFound = () => {
   return (
-    <div class="not_found col-span-full">
+    <div class="not_found col-span-full w-full">
       <img src={notFound} alt="Нет записей" />
       Нет записей
     </div>
@@ -615,7 +619,7 @@ const RenderAnswer = ({ answer }) => {
                 </div>
               </a>
               <div class="user-comment__body">
-                <span init={(e) => (e.innerHTML = comment.text)}></span>
+                <span>{comment.text}</span>
               </div>
               <div class="user-comment__statistic comment-statistic">
                 <div class="comment-statistic__rating">
@@ -799,7 +803,7 @@ const RenderAnswer = ({ answer }) => {
                       </div>
                     </a>
                     <div class="user-comment__body">
-                      <span init={(e) => (e.innerHTML = comm.text)}></span>
+                      <span>{comm.text}</span>
                     </div>
                     <div class="user-comment__statistic comment-statistic">
                       <div class="comment-statistic__rating">
@@ -956,10 +960,12 @@ export default function () {
         <div class="wrapper">
           <div class="mx-auto max-w-[53.125rem] pt-[3.125rem]">
             <RenderUser />
-            <p class="questions-show__title">{Static.record.title}</p>
+            <p class="pt-5 text-[1.125rem] font-semibold">
+              {Static.record.title}
+            </p>
             <p
               ref="itemText"
-              class="questions-show__description"
+              class="pt-[0.9375rem] text-[1.125rem]"
               init={() => (Ref.itemText.innerHTML = Static.record.text)}
             ></p>
             <RenderStatistic />

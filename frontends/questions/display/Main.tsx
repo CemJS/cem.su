@@ -236,7 +236,7 @@ const RenderChatGpt = () => {
 
 const RenderNotFound = () => {
   return (
-    <div class="not_found col-span-full">
+    <div class="not_found col-span-full w-full">
       <img src={notFound} alt="Нет записей" />
       Нет записей
     </div>
