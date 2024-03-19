@@ -243,21 +243,169 @@ const RenderNotFound = () => {
   );
 };
 
+const RenderQuestion = ({ item, index }) => {
+  return (
+    <div
+      key={item.id}
+      class="questions__item"
+      onclick={async () => {
+        let url = front.Services.functions.makeUrlEvent("questions", {
+          id: item.id,
+        });
+
+        let listener = [
+          {
+            type: "getById",
+            fn: ({ data }) => {
+              let json = front.Services.functions.strToJson(data);
+              if (!json) {
+                return;
+              }
+              Static.record = json;
+            },
+          },
+        ];
+        Events.question = await Fn.event(url, listener);
+        Fn.linkChange(`/questions/show/${item.id}`);
+      }}
+      init={($el: any) => {
+        if (index == Static.records?.length - 1) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(async (entry) => {
+              if (entry.isIntersecting) {
+                observer.unobserve($el);
+                let skip = { ...Static.makeFilter };
+                skip.action = "skip";
+                skip.skip = Static.records.length;
+                let res = await front.Services.functions.sendApi(
+                  "/api/questions",
+                  skip,
+                );
+              }
+            });
+          });
+          observer.observe($el);
+        }
+      }}
+    >
+      <div class="questions__item_header questions__user">
+        <div class="avatar">
+          <div class="avatar__icon">
+            <img
+              class="avatar__photo"
+              src={
+                item.author?.avatar?.name
+                  ? `/assets/upload/avatar/${item.author.avatar?.name}`
+                  : avatarDefault
+              }
+            />
+            <img
+              class="avatar__frame"
+              src={
+                item.author?.frame?.name
+                  ? `/contents/images/lenta/${item.author.frame?.name}`
+                  : frameDefault
+              }
+            />
+            {item.author?.status?.team ? (
+              <img
+                class="avatar__team"
+                src={item.author?.status?.team ? teamLogo : null}
+              />
+            ) : (
+              <div class="avatar__level">
+                <div class="avatar__wrap">
+                  <img src={leveGray} />
+                  <span>{item.author?.statistics?.level}</span>
+                  <div
+                    class={[
+                      "avatar__online",
+                      item.online ? "avatar__online_active" : null,
+                    ]}
+                  ></div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div class="avatar__name">
+            <span>{item?.author?.nickname}</span>
+          </div>
+        </div>
+        <div class="questions__item_languages btn_border-wrap">
+          <button class="btn_border_no-hover btn_border">
+            {item.language?.origName}
+          </button>
+        </div>
+      </div>
+      <div
+        class={[
+          "questions__item_preview",
+          item.title?.length < 15 && item.text
+            ? "questions__item_preview_row"
+            : null,
+        ]}
+      >
+        <span>{item.title}</span>
+        {item.title.length < 15 && item.text ? <span>{item.text}</span> : null}
+      </div>
+      <div class="questions__item_statistic">
+        <span>
+          <i class="i i-comment"></i>
+          {item.statistics.answers}
+        </span>
+        <span>
+          <i class="i i-faq"></i>
+          {item.statistics.views}
+        </span>
+        <span>
+          {front.Services.functions.timeStampToDate(
+            item.showDate,
+            undefined,
+            true,
+          )}
+        </span>
+      </div>
+      <div class="questions__item_footer btn_border-wrap">
+        <button
+          // href={`/questions/show/${item._id}`}
+          class=" btn_border"
+          onclick={(e) => {
+            e.stopPropagation();
+            let data = {
+              action: "answer",
+              authorId: "63c7f6063be93e984c962b75",
+              text: item.text,
+              questionId: item.id,
+            };
+            front.Services.functions.sendApi("/api/answers/create", data);
+          }}
+        >
+          Ответить
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const TurnOffFilters = () => {
+  Ref.filterTypeDrops.classList.remove("!opacity-100");
+  Ref.filterTypeDrops.classList.remove("!pointer-events-auto");
+  Ref.filterType.classList.remove("!rounded-ee-sm");
+  Ref.filterType.classList.remove("!rounded-es-sm");
+  Ref.filterType.classList.remove("!z-[2]");
+  Ref.filterSortDrops.classList.remove("!pointer-events-auto");
+  Ref.filterSortDrops.classList.remove("!opacity-100");
+  Ref.filterSort.classList.remove("!rounded-ee-sm");
+  Ref.filterSort.classList.remove("!rounded-es-sm");
+  Ref.filterSort.classList.remove("!z-[2]");
+};
+
 export default function () {
   return (
     <div
       onclick={(e) => {
         if (!e.target.closest(".filterOne")) {
-          Ref.filterTypeDrops.classList.remove("!opacity-100");
-          Ref.filterTypeDrops.classList.remove("!pointer-events-auto");
-          Ref.filterType.classList.remove("!rounded-ee-sm");
-          Ref.filterType.classList.remove("!rounded-es-sm");
-          Ref.filterType.classList.remove("!z-[2]");
-          Ref.filterSortDrops.classList.remove("!pointer-events-auto");
-          Ref.filterSortDrops.classList.remove("!opacity-100");
-          Ref.filterSort.classList.remove("!rounded-ee-sm");
-          Ref.filterSort.classList.remove("!rounded-es-sm");
-          Ref.filterSort.classList.remove("!z-[2]");
+          TurnOffFilters();
         }
       }}
     >
@@ -278,152 +426,7 @@ export default function () {
             <div class="relative mx-auto mt-[0.9375rem] flex max-w-full flex-wrap items-center justify-between gap-[0.75rem] pb-[6.25rem] @1240:mt-5 @1240:grid @1240:gap-[1.25rem] @1240:[grid-template-columns:repeat(auto-fit,25rem)]">
               {Static.records?.length ? (
                 Static.records?.map((item: any, index: number) => {
-                  return (
-                    <div
-                      key={item.id}
-                      class="questions__item"
-                      onclick={async () => {
-                        let url = front.Services.functions.makeUrlEvent(
-                          "questions",
-                          { action: "show", id: item.id },
-                        );
-
-                        let listener = [
-                          {
-                            type: "get",
-                            fn: ({ data }) => {
-                              let json =
-                                front.Services.functions.strToJson(data);
-                              if (!json) {
-                                return;
-                              }
-                              Static.record = json;
-                            },
-                          },
-                        ];
-                        Events.questions = await Fn.event(url, listener);
-                        Fn.linkChange(`/questions/show/${item.id}`);
-                      }}
-                      init={($el: any) => {
-                        if (index == Static.records?.length - 1) {
-                          const observer = new IntersectionObserver(
-                            (entries) => {
-                              entries.forEach(async (entry) => {
-                                if (entry.isIntersecting) {
-                                  observer.unobserve($el);
-                                  let skip = { ...Static.makeFilter };
-                                  skip.action = "skip";
-                                  skip.skip = Static.records.length;
-                                  let res =
-                                    await front.Services.functions.sendApi(
-                                      "/api/questions",
-                                      skip,
-                                    );
-                                }
-                              });
-                            },
-                          );
-                          observer.observe($el);
-                        }
-                      }}
-                    >
-                      <div class="questions__item_header questions__user">
-                        <div class="avatar">
-                          <div class="avatar__icon">
-                            <img
-                              class="avatar__photo"
-                              src={
-                                item.author?.avatar?.name
-                                  ? `/assets/upload/avatar/${item.author.avatar?.name}`
-                                  : avatarDefault
-                              }
-                            />
-                            <img
-                              class="avatar__frame"
-                              src={
-                                item.author?.frame?.name
-                                  ? `/contents/images/lenta/${item.author.frame?.name}`
-                                  : frameDefault
-                              }
-                            />
-                            {item.author?.status?.team ? (
-                              <img
-                                class="avatar__team"
-                                src={
-                                  item.author?.status?.team ? teamLogo : null
-                                }
-                              />
-                            ) : (
-                              <div class="avatar__level">
-                                <div class="avatar__wrap">
-                                  <img src={leveGray} />
-                                  <span>{item.author?.statistics?.level}</span>
-                                  <div
-                                    class={[
-                                      "avatar__online",
-                                      item.online
-                                        ? "avatar__online_active"
-                                        : null,
-                                    ]}
-                                  ></div>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                          <div class="avatar__name">
-                            <span>{item?.author?.nickname}</span>
-                          </div>
-                        </div>
-                        <div class="questions__item_languages btn_border-wrap">
-                          <button class="btn_border_no-hover btn_border">
-                            {item.language?.origName}
-                          </button>
-                        </div>
-                      </div>
-                      <div
-                        class={[
-                          "questions__item_preview",
-                          item.title?.length < 15 && item.text
-                            ? "questions__item_preview_row"
-                            : null,
-                        ]}
-                      >
-                        <span>{item.title}</span>
-                        {item.title.length < 15 && item.text ? (
-                          <span>{item.text}</span>
-                        ) : null}
-                      </div>
-                      <div class="questions__item_statistic">
-                        <span>
-                          <i class="i i-comment"></i>
-                          {item.statistics.answers}
-                        </span>
-                        <span>
-                          <i class="i i-faq"></i>
-                          {item.statistics.views}
-                        </span>
-                        <span>
-                          {front.Services.functions.timeStampToDate(
-                            item.showDate,
-                            undefined,
-                            true,
-                          )}
-                        </span>
-                      </div>
-                      <div class="questions__item_footer btn_border-wrap">
-                        <button
-                          // href={`/questions/show/${item._id}`}
-                          class=" btn_border"
-                          // onclick={(e) => {
-                          //   Static.recordsShow = item;
-                          //   Fn.link(e);
-                          // }}
-                        >
-                          Ответить
-                        </button>
-                      </div>
-                    </div>
-                  );
+                  return <RenderQuestion item={item} index={index} />;
                 })
               ) : (
                 <RenderNotFound />
