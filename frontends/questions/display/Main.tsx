@@ -247,7 +247,7 @@ const RenderQuestion = ({ item, index }) => {
   return (
     <div
       key={item.id}
-      class="questions__item"
+      class="@1024:w-[49%] relative h-auto w-full cursor-pointer rounded-[1rem] bg-[--prestige-blue] p-5 [transition:0.5s] [border:0.0625rem_solid_transparent] [box-shadow:0rem_0.3125rem_2.75rem_0rem_rgba(29,33,45,0.8)] hover:scale-[0.98] hover:bg-transparent hover:outline-none hover:[border:0.0625rem_solid_var(--border)] @767:w-[48.6%] @767:max-w-none @767:p-[1.875rem] @1240:w-full @1240:max-w-[25rem] @1240:p-[1.25rem] @1240:!pt-[0.625rem]"
       onclick={async () => {
         let url = front.Services.functions.makeUrlEvent(`questions/${item.id}`);
 
@@ -286,11 +286,11 @@ const RenderQuestion = ({ item, index }) => {
         }
       }}
     >
-      <div class="questions__item_header questions__user">
-        <div class="avatar">
-          <div class="avatar__icon">
+      <div class="relative">
+        <div class="relative flex h-auto w-auto">
+          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
             <img
-              class="avatar__photo"
+              class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={
                 item.author?.avatar?.name
                   ? `/assets/upload/avatar/${item.author.avatar?.name}`
@@ -298,7 +298,7 @@ const RenderQuestion = ({ item, index }) => {
               }
             />
             <img
-              class="avatar__frame"
+              class="absolute left-1/2 top-0 z-[2] h-full !w-auto [transform:translateX(-50%)]"
               src={
                 item.author?.frame?.name
                   ? `/contents/images/lenta/${item.author.frame?.name}`
@@ -307,17 +307,19 @@ const RenderQuestion = ({ item, index }) => {
             />
             {item.author?.status?.team ? (
               <img
-                class="avatar__team"
+                class="absolute bottom-[0.4375rem] right-[0.4375rem] z-[2] flex h-5 w-5 items-center justify-center rounded-[50%] bg-[--white] p-[0.1875rem]"
                 src={item.author?.status?.team ? teamLogo : null}
               />
             ) : (
-              <div class="avatar__level">
-                <div class="avatar__wrap">
-                  <img src={leveGray} />
-                  <span>{item.author?.statistics?.level}</span>
+              <div class="absolute !top-auto bottom-0 right-[0.3125rem] z-[2] h-7">
+                <div class="relative flex h-full w-full items-center justify-center">
+                  <img class="h-full" src={leveGray} />
+                  <span class="absolute left-1/2 top-1/2 text-[0.75rem] font-bold tracking-[0.0375rem] text-[--white] [transform:translateX(-50%)_translateY(-50%)]">
+                    {item.author?.statistics?.level}
+                  </span>
                   <div
                     class={[
-                      "avatar__online",
+                      "absolute right-[-0.1563rem] top-[-0.1563rem] h-[0.875rem] w-[0.875rem] rounded-[50%] [background:linear-gradient(225deg,#ff7272_0%,#d93030_100%)] [border:0.1875rem_solid_#ffffff]",
                       item.online ? "avatar__online_active" : null,
                     ]}
                   ></div>
@@ -325,21 +327,23 @@ const RenderQuestion = ({ item, index }) => {
               </div>
             )}
           </div>
-          <div class="avatar__name">
-            <span>{item?.author?.nickname}</span>
+          <div class="absolute left-20 top-5 mb-2 block leading-[24px]">
+            <span class="inline text-[0.875rem] font-semibold leading-[1.375rem] text-[--white]">
+              {item?.author?.nickname}
+            </span>
           </div>
         </div>
-        <div class="questions__item_languages btn_border-wrap">
-          <button class="btn_border_no-hover btn_border">
+        <div class="btn_border-wrap absolute right-0 top-0 h-auto !w-[4.6rem] cursor-default rounded-[50%]">
+          <button class="btn_border !h-[1.6875rem] !text-[0.75rem] !font-semibold">
             {item.language?.origName}
           </button>
         </div>
       </div>
       <div
         class={[
-          "questions__item_preview",
+          "mt-[0.625rem] flex h-[4.6875rem] min-w-full max-w-[20.625rem] cursor-pointer items-center overflow-hidden text-ellipsis text-[1.125rem] font-medium @1240:min-w-[auto]",
           item.title?.length < 15 && item.text
-            ? "questions__item_preview_row"
+            ? "!flex-col !items-start"
             : null,
         ]}
       >

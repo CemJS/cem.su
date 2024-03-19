@@ -482,8 +482,9 @@ export default function () {
                                 tableID: answer.id,
                                 rating: 1,
                               };
+                              front.Services.functions.sendApi("/api/answers/");
                               fetch(
-                                `/api/events/Comments?uuid=${front.Variable.myInfo.uuid}`,
+                                `/api/answers/Comments?uuid=${front.Variable.myInfo.uuid}`,
                                 {
                                   method: "POST",
                                   headers: {
