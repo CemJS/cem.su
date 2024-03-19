@@ -64,14 +64,32 @@ export const loader = async function (Variable: any, Fn: any) {
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
     if (json) {
-      if (!localStorage.getItem("country")) {
+      let baseCountries: any;
+      let localStorageCountry = localStorage.getItem("country");
+      let localStorageLang = localStorage.getItem("lang");
+      let localStorageTranslations = localStorage.getItem("translations");
+
+      if (
+        !localStorageCountry ||
+        localStorageCountry < json.countriesLastUpdateDate.toString() ||
+        !localStorageLang ||
+        localStorageLang < json.languagesLastUpdateDate.toString() ||
+        !localStorageTranslations ||
+        localStorageTranslations < json.translationsLastUpdateDate.toString()
+      ) {
         const response = await sendApi("/api/countries", {});
-        Variable.baseUpdate = await response?.result;
+        baseCountries = response?.result;
+        console.log("Variable.baseUpdate", baseCountries);
         localStorage.setItem("country", json?.countriesLastUpdateDate);
+        localStorage.setItem("lang", json?.languagesLastUpdateDate);
+        localStorage.setItem("translations", json?.translationsLastUpdateDate);
       }
       console.log("local", localStorage.getItem("country"));
+      setTimeout(() => {
+      }, 1000);
 
-      let inx = await indexDB({ json });
+        let inx = indexDB({json});
+
       // Variable.item = await indexDBGetCountry()
       //  console.log("Variable.item", Variable.item);
     } else {

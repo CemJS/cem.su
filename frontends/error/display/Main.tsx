@@ -747,7 +747,7 @@ export default function () {
         onclick={async () => {
           if (front.Variable.myInfo) {
             const get = await front.Services.functions.IndexDBgetByOne({
-              base: "dataUpdate",
+              base: "dateUpdate",
               key: "country",
             });
             console.log("get", get);

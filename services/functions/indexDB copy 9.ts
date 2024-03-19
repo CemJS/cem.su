@@ -9,7 +9,7 @@ async function indexDB({ json }) {
   db = await openDB("CryptoEmergency", 1, {
     upgrade(db) {
       db.createObjectStore("dateUpdate");
-      db.createObjectStore("countries");
+      db.createObjectStore("counts");
     },
   });
 
@@ -29,33 +29,32 @@ async function indexDB({ json }) {
     store.put(json?.translationsLastUpdateDate, "translations");
   }
 
-  transaction = db.transaction(["countries"], "readwrite");
-  store = transaction.objectStore("countries");
-  let countries = await store.get("countries");
+  transaction = db.transaction(["counts"], "readwrite");
+  store = transaction.objectStore("counts");
+  let counts = await store.get("counts");
 
-  if (!countries || reqCountry < json?.countriesLastUpdateDate) {
+  if (!counts || reqCountry < json?.countriesLastUpdateDate) {
     let response = await sendApi("/api/countries", {});
     let data = await response?.result;
     console.log("data", data);
-    transaction = db.transaction(["countries"], "readwrite");
-    store = transaction.objectStore("countries");
-    store.put([data], "countries");
-    console.log("initialized countries with empty array!");
+    transaction = db.transaction(["counts"], "readwrite");
+    store = transaction.objectStore("counts");
+    store.put([data], "counts");
+    console.log("initialized counts with empty array!");
   }
 }
+const IndexDBgetByOne = function (item: any) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(item?.base, "readonly");
+    const store = transaction.objectStore(item?.base);
+    const request = store.get(item?.key);
 
-interface Object {
-  base: string;
-  key: string;
-}
-const IndexDBgetByOne = async function (item: Object) {
-  return new Promise(async (resolve, reject) => {
-    let transaction = db.transaction([item?.base], "readonly");
-    let store = transaction.objectStore(item?.base);
-    let req = store.get(item?.key);
-    let value = await req;
-    resolve(value); // resolve the value
-    req.onerror = function (event: any) {
+    request.onsuccess = function () {
+      let value = request.result;
+      resolve(value); // resolve the value
+    };
+
+    request.onerror = function (event) {
       reject(event.target.error); // reject on error
     };
   });
