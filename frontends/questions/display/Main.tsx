@@ -369,7 +369,7 @@ const RenderQuestion = ({ item, index }) => {
           </span>
         ) : null}
       </div>
-      <div class="questions__item_statistic">
+      <div class="flex h-[3.875rem] items-center justify-around text-[0.8125rem] text-[#838ba3] [&_span]:inline-flex [&_span]:gap-[0.625rem]">
         <span>
           <i class="i i-comment"></i>
           {item.statistics.answers}
@@ -386,7 +386,7 @@ const RenderQuestion = ({ item, index }) => {
           )}
         </span>
       </div>
-      <div class="questions__item_footer btn_border-wrap">
+      <div class="btn_border-wrap text-center">
         <button
           // href={`/questions/show/${item._id}`}
           class=" btn_border"

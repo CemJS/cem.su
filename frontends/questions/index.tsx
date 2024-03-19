@@ -262,10 +262,24 @@ front.loader = async () => {
           if (!json) {
             return;
           }
-          Fn.log("=01c668=", json);
-          Fn.log("=3c43bf=", Static.record);
           Static.record.answers.unshift(json);
           Static.record.statistics.answers++;
+        },
+      },
+      {
+        type: "comment",
+        fn: ({ data }) => {
+          let json = front.Services.functions.strToJson(data);
+          if (!json) {
+            return;
+          }
+          console.log("=f51763=", json);
+          let answerIndex = Static.record.answers.findIndex(
+            (item) => item.id == json.answerId,
+          );
+
+          console.log("=404632=", Static.record.answers[answerIndex].comments);
+          Static.record.answers[answerIndex].comments.unshift(json.comment);
         },
       },
     ];
