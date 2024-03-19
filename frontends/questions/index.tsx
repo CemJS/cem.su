@@ -210,11 +210,25 @@ front.loader = async () => {
           return;
         }
 
+        console.log("=afcef3=", json);
         Static.records = json;
       },
     },
     {
-      type: "add",
+      type: "create",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        console.log("=8587af=", json);
+
+        Static.records.unshift(json);
+        console.log("=4d73fb=", Static.records);
+      },
+    },
+    {
+      type: "skip",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {

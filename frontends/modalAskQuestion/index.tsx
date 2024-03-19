@@ -29,13 +29,15 @@ front.func.checkForm = function () {
 
 front.func.sendQuestion = async function () {
   let data: object = {
-    action: "create",
     title: Static.form.question.value,
     text: Static.form.comment.value,
     languageCode: Static.languageCode,
   };
   Fn.log("=87d71d=", data);
-  let res = await front.Services.functions.sendApi("api/questions", data);
+  let res = await front.Services.functions.sendApi(
+    "api/questions/create",
+    data,
+  );
   console.log("=219b0d=", res);
   Func.close();
 };

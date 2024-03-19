@@ -1,4 +1,4 @@
-import { Cemjsx, Static, Fn, front } from "cemjs-all"
+import { Cemjsx, Static, Fn, front } from "cemjs-all";
 
 const HeaderBack = function ({ title }) {
   return (
@@ -8,8 +8,8 @@ const HeaderBack = function ({ title }) {
           <span
             class="back-inner_arrow"
             onclick={() => {
-              Static.record = null
-              Fn.linkChange("/news")
+              Static.record = null;
+              Fn.linkChange("/news");
             }}
           >
             <i class="i i-arrow-left"></i>
@@ -24,8 +24,8 @@ const HeaderBack = function ({ title }) {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default function () {
   return (
@@ -46,14 +46,17 @@ export default function () {
             class="new-content__text"
             init={($el) => {
               // this.Services.functions.editText(Static.record?.text, $el)
-              this.Services.functions.searchLink(Static.record?.text, $el)
+              this.Services.functions.searchLink(Static.record?.text, $el);
             }}
           ></div>
         </div>
 
-        <div class="new-statistic mt-15">
+        <div class="new-statistic mt-[15px]">
           <div class="new-statistic__el">
-            {front.Services.functions.timeStampToDate(Static.record?.dateCreate, '.')}
+            {front.Services.functions.timeStampToDate(
+              Static.record?.dateCreate,
+              ".",
+            )}
           </div>
           <div class="new-statistic__el">
             <i class="i i-eye"></i>
@@ -66,5 +69,5 @@ export default function () {
         </div>
       </div>
     </div>
-  )
+  );
 }

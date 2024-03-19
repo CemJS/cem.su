@@ -3,7 +3,12 @@ import notFound from "@svg/notFound.svg";
 
 const RenderSearch = function () {
   return (
-    <div class={["modalWindow_field", Static.searchText ? "modalWindow_field__valid" : null]}>
+    <div
+      class={[
+        "modalWindow_field",
+        Static.searchText ? "modalWindow_field__valid" : null,
+      ]}
+    >
       <input
         type="text"
         autocomplete="off"
@@ -26,10 +31,7 @@ const RenderSearch = function () {
 
 const RenderListLanguages = function ({ languages }) {
   return (
-    <ul
-      class="list modal_scroll"
-      role="list"
-    >
+    <ul class="list modal_scroll" role="list">
       {languages.map((item) => {
         return (
           <li
@@ -57,10 +59,7 @@ const RenderListLanguages = function ({ languages }) {
 const RenderNotFound = function () {
   return (
     <div class="notFound">
-      <img
-        src={notFound}
-        alt="Not found"
-      />
+      <img src={notFound} alt="Not found" />
       <span>Не найдено</span>
     </div>
   );
@@ -70,7 +69,17 @@ export default function () {
   return (
     <main class="modal_main">
       {/* {Static.full ? <RenderSearch /> : null} */}
-      <div class="mt-15">{Static.full ? Static.recordsAll ? <RenderListLanguages languages={Static.recordsAll} /> : <RenderNotFound /> : <RenderListLanguages languages={Static.languages} />}</div>
+      <div class="mt-[15px]">
+        {Static.full ? (
+          Static.recordsAll ? (
+            <RenderListLanguages languages={Static.recordsAll} />
+          ) : (
+            <RenderNotFound />
+          )
+        ) : (
+          <RenderListLanguages languages={Static.languages} />
+        )}
+      </div>
     </main>
   );
 }

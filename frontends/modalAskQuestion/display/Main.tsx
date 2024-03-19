@@ -19,8 +19,15 @@ export default function () {
         <i class="i i-arrow-right"></i>
       </button>
 
-      <div class="mt-25">
-        <div class={["modalWindow_field", Static.form.question.value.length ? "modalWindow_field__valid" : null]}>
+      <div class="mt-[25px]">
+        <div
+          class={[
+            "modalWindow_field",
+            Static.form.question.value.length
+              ? "modalWindow_field__valid"
+              : null,
+          ]}
+        >
           <input
             type="text"
             required
@@ -35,17 +42,23 @@ export default function () {
             <i class="i i-user"></i>
             <span>{Static.form.question.placeholder}</span>
           </div>
-          <p
-            class="modalWindow_field__status"
-            style="color:#E84142"
-          >
+          <p class="modalWindow_field__status" style="color:#E84142">
             {Static.form.question.error}
           </p>
         </div>
 
-        <h3 class="mt-15">Комментарий к вопросу</h3>
+        <h3 class="mt-[15px]">Комментарий к вопросу</h3>
 
-        <div class={["modalWindow_field", "mt-15", "modalWindow_field-textarea", Static.form.question.value.length ? "modalWindow_field__valid" : null]}>
+        <div
+          class={[
+            "modalWindow_field",
+            "mt-[15px]",
+            "modalWindow_field-textarea",
+            Static.form.question.value.length
+              ? "modalWindow_field__valid"
+              : null,
+          ]}
+        >
           <textarea
             rows="3"
             oninput={(e: any) => {
@@ -55,7 +68,7 @@ export default function () {
             }}
           ></textarea>
         </div>
-        <div class="d-flex jcc mt-15">
+        <div class="d-flex jcc mt-[15px]">
           <button
             onclick={Func.sendQuestion}
             class={["btn", !Static.form.isValid ? "btn_passive" : null]}
