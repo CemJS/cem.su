@@ -249,9 +249,7 @@ const RenderQuestion = ({ item, index }) => {
       key={item.id}
       class="questions__item"
       onclick={async () => {
-        let url = front.Services.functions.makeUrlEvent("questions", {
-          id: item.id,
-        });
+        let url = front.Services.functions.makeUrlEvent(`questions/${item.id}`);
 
         let listener = [
           {
