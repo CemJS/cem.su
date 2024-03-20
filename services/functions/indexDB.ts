@@ -80,7 +80,7 @@ async function indexDB({ json }) {
     // console.log("data", data);
     transaction = db.transaction(["linguaData"], "readwrite");
     store = transaction.objectStore("linguaData");
-    store.put([data], "languages");
+    store.put([data], "languages"); 
     // console.log("initialized linguaData with empty array!");
   }
 
