@@ -5,12 +5,10 @@ import leveGray from "@svg/lenta/level_gray.svg"
 import Filters from "./Filters/Filters"
 import defaultGray from "@svg/lenta/defaultGray.svg"
 
-
-
 export default function () {
   return (
-    <div class="users users__container">
-      <h1>Пользователи</h1>
+    <div class="pt-[3.125rem] pb-[6.25rem] wrapper w-[calc(100%_-_60px)] ml-auto mr-auto @1240:w-full @1200:ml-auto @1200:mr-auto">
+      <h1 class="text-balance text-center">Пользователи</h1>
       <Filters />
       <div class="users__list">
         {
