@@ -23,6 +23,9 @@ export default {
         "100%": "100%",
         "125%": "125%",
       },
+      // borderWidth: {
+      //   default: '1px',
+      // }
     },
   },
   plugins: [],

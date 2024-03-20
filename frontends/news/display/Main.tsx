@@ -36,11 +36,11 @@ const HeaderBack = function ({ title }) {
 }
 
 export default function () {
-    Fn.log('=1edc7b=', Static.records)
     return (
         <div>
             <HeaderBack title="Новости" />
-            <div class="news">
+            <div class="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 gap-5 pb\
+            ">
                 {
                     Static.records.map((item, index) => {
                         return (

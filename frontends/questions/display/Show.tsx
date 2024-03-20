@@ -412,7 +412,9 @@ const RenderAnswer = ({ answer }) => {
           </div>
         </a>
         <div class="user-comment__body-big">
-          <span>{answer.text}</span>
+          {/* {} */}
+          {/* <span>{answer.text}</span> */}
+          <span html={answer.text}></span>
           {answer.media.map((item) => {
             return item.type == "image" ? (
               <img
@@ -956,7 +958,9 @@ export default function () {
             <p
               ref="itemText"
               class="pt-[0.9375rem] text-[1.125rem]"
-              init={() => (Ref.itemText.innerHTML = Static.record.text)}
+              init={(e) =>
+                front.Services.functions.editText(Static.record.text, e)
+              }
             ></p>
             <RenderStatistic />
           </div>

@@ -4,7 +4,7 @@ import menu from "@json/menu";
 
 const RenderMenu = function ({ menu }) {
   return (
-    <ul class="flex gap-x-4 items-center">
+    <ul class="md:flex gap-x-4 items-center hidden">
       {menu.map((item: any) => {
         return (
           <li
@@ -34,9 +34,10 @@ export default function () {
           <a
             href="/"
             onclick={Fn.link}
-            class="header-logo"
+            class="h-16"
           >
             <img
+              class="h-full"
               src={logo}
               alt="Crypto Emergency"
             />
@@ -46,7 +47,7 @@ export default function () {
 
         <div class="flex items-center gap-x-4">
           <div
-            class="cursor-pointer flex items-center gap-2"
+            class="cursor-pointer md:flex items-center gap-2 hidden"
             onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
           >
             <span>Русский</span>
