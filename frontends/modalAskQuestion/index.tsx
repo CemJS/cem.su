@@ -35,7 +35,7 @@ front.func.sendQuestion = async function () {
   };
   Fn.log("=87d71d=", data);
   let res = await front.Services.functions.sendApi(
-    "api/questions/create",
+    "/api/questions/create",
     data,
   );
   console.log("=219b0d=", res);

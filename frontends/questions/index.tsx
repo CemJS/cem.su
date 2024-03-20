@@ -210,7 +210,6 @@ front.loader = async () => {
           return;
         }
 
-        console.log("=afcef3=", json);
         Static.records = json;
       },
     },
@@ -240,25 +239,52 @@ front.loader = async () => {
   ];
   Events.questions = await Fn.event(url, listener);
 
-  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-    let url = front.Services.functions.makeUrlEvent("questions", {
-      action: "show",
-      id: front.Variable.DataUrl[2],
-    });
-
-    let listener = [
-      {
-        type: "get",
-        fn: ({ data }) => {
-          let json = front.Services.functions.strToJson(data);
-          if (!json) {
-            return;
-          }
-          Static.record = json;
-        },
+  Static.questionListener = [
+    {
+      type: "getById",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.record = json;
       },
-    ];
-    Events.questions = await Fn.event(url, listener);
+    },
+    {
+      type: "answer",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.record.answers.unshift(json);
+        Static.record.statistics.answers++;
+      },
+    },
+    {
+      type: "comment",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        console.log("=f51763=", json);
+        let answerIndex = Static.record.answers.findIndex(
+          (item) => item.id == json.answerId,
+        );
+
+        console.log("=404632=", Static.record.answers[answerIndex].comments);
+        Static.record.answers[answerIndex].comments.unshift(json.comment);
+      },
+    },
+  ];
+
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
+    let url = front.Services.functions.makeUrlEvent(
+      `questions/${front.Variable.DataUrl[2]}`,
+    );
+
+    Events.questions = await Fn.event(url, Static.questionListener);
 
     Static.videoDragStart = false;
 

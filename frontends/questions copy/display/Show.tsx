@@ -361,7 +361,6 @@ export default function () {
                 ref="answerList"
               >
                 {Static.record.answers?.map((answer) => {
-                  Fn.log("=3c6b68=", answer);
                   return (
                     <div
                       class={[
