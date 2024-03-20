@@ -67,31 +67,31 @@ async function indexDB({ json }) {
   if (!countriesData || reqCountry < json?.versions?.countriesLastUpdateDate) {
     let response = await sendApi("/api/countries", {});
     let data = await response?.result;
-    console.log("data", data);
+    // console.log("data", data);
     transaction = db.transaction(["linguaData"], "readwrite");
     store = transaction.objectStore("linguaData");
     store.put([data], "countries");
-    console.log("initialized linguaData with empty array!");
+    // console.log("initialized linguaData with empty array!");
   }
 
   if (!languagesData || reqLang < json?.versions?.languagesLastUpdateDate) {
     let response = await sendApi("/api/languages", {});
     let data = await response?.result;
-    console.log("data", data);
+    // console.log("data", data);
     transaction = db.transaction(["linguaData"], "readwrite");
     store = transaction.objectStore("linguaData");
     store.put([data], "languages");
-    console.log("initialized linguaData with empty array!");
+    // console.log("initialized linguaData with empty array!");
   }
 
   if (!translationsData || reqTranslations < json?.versions?.translationsLastUpdateDate) {
     let response = await sendApi("/api/translations", {});
     let data = await response?.result;
-    console.log("data", data);
+    // console.log("data", data);
     transaction = db.transaction(["linguaData"], "readwrite");
     store = transaction.objectStore("linguaData");
     store.put([data], "translations");
-    console.log("initialized linguaData with empty array!");
+    // console.log("initialized linguaData with empty array!");
   }
 }
 
