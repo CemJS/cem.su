@@ -6,10 +6,39 @@ export { sendApi };
 let db: any;
 
 async function indexDB({ json }) {
+  /*autoChangeVersion */
+  //   const currentVersion = localStorage.getItem("dbVersion") ? Number(localStorage.getItem("dbVersion")) : 0;
+  //  let nextVersion = currentVersion;
+
+  //  let newStores = [];
+
+  //   if (json?.versions?.countriesLastUpdateDate) {
+  //     newStores.push("dateUpdateNew");
+  //   }
+
+  //   if (newStores.length) {
+  //     nextVersion += 1;
+  //     db = await openDB("CryptoEmergency", nextVersion, {
+  //       upgrade(db) {
+  //         newStores.forEach(store => {
+  //           if (!db.objectStoreNames.contains(store)) {
+  //             db.createObjectStore(store);
+  //           }
+  //         })
+  //       },
+  //     });
+  //     localStorage.setItem("dbVersion", nextVersion.toString());
+  //   }
+
+  /**************************************************************************** */
   db = await openDB("CryptoEmergency", 1, {
     upgrade(db) {
-      db.createObjectStore("dateUpdate");
-      db.createObjectStore("countries");
+      if (!db.objectStoreNames.contains("dateUpdate")) {
+        db.createObjectStore("dateUpdate");
+      }
+      if (!db.objectStoreNames.contains("linguaData")) {
+        db.createObjectStore("linguaData");
+      }
     },
   });
 
@@ -19,28 +48,50 @@ async function indexDB({ json }) {
   let reqLang = await store.get("lang");
   let reqTranslations = await store.get("translations");
 
-  if (!reqCountry || reqCountry < json?.countriesLastUpdateDate) {
-    store.put(json?.countriesLastUpdateDate, "country");
+  if (!reqCountry || reqCountry < json?.versions?.countriesLastUpdateDate) {
+    store.put(json?.versions?.countriesLastUpdateDate, "country");
   }
-  if (!reqLang || reqLang < json?.languagesLastUpdateDate) {
-    store.put(json?.languagesLastUpdateDate, "lang");
+  if (!reqLang || reqLang < json?.versions?.languagesLastUpdateDate) {
+    store.put(json?.versions?.languagesLastUpdateDate, "lang");
   }
-  if (!reqTranslations || reqTranslations < json?.translationsLastUpdateDate) {
-    store.put(json?.translationsLastUpdateDate, "translations");
+  if (!reqTranslations || reqTranslations < json?.versions?.translationsLastUpdateDate) {
+    store.put(json?.versions?.translationsLastUpdateDate, "translations");
   }
 
-  transaction = db.transaction(["countries"], "readwrite");
-  store = transaction.objectStore("countries");
-  let countries = await store.get("countries");
+  transaction = db.transaction(["linguaData"], "readwrite");
+  store = transaction.objectStore("linguaData");
+  let countriesData = await store.get("countries");
+  let languagesData = await store.get("languages");
+  let translationsData = await store.get("translations");
 
-  if (!countries || reqCountry < json?.countriesLastUpdateDate) {
+  if (!countriesData || reqCountry < json?.versions?.countriesLastUpdateDate) {
     let response = await sendApi("/api/countries", {});
     let data = await response?.result;
     console.log("data", data);
-    transaction = db.transaction(["countries"], "readwrite");
-    store = transaction.objectStore("countries");
+    transaction = db.transaction(["linguaData"], "readwrite");
+    store = transaction.objectStore("linguaData");
     store.put([data], "countries");
-    console.log("initialized countries with empty array!");
+    console.log("initialized linguaData with empty array!");
+  }
+
+  if (!languagesData || reqLang < json?.versions?.languagesLastUpdateDate) {
+    let response = await sendApi("/api/languages", {});
+    let data = await response?.result;
+    console.log("data", data);
+    transaction = db.transaction(["linguaData"], "readwrite");
+    store = transaction.objectStore("linguaData");
+    store.put([data], "languages");
+    console.log("initialized linguaData with empty array!");
+  }
+
+  if (!translationsData || reqTranslations < json?.versions?.translationsLastUpdateDate) {
+    let response = await sendApi("/api/translations", {});
+    let data = await response?.result;
+    console.log("data", data);
+    transaction = db.transaction(["linguaData"], "readwrite");
+    store = transaction.objectStore("linguaData");
+    store.put([data], "translations");
+    console.log("initialized linguaData with empty array!");
   }
 }
 

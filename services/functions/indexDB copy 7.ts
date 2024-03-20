@@ -19,22 +19,22 @@ async function indexDB({ json }) {
   let reqLang = await store.get("lang");
   let reqTranslations = await store.get("translations");
 
-  if (!reqCountry || reqCountry < json?.countriesLastUpdateDate) {
+  if (!reqCountry || reqCountry < json?.versions?.countriesLastUpdateDate) {
     transaction = db.transaction(["dateUpdate"], "readwrite");
     store = transaction.objectStore("dateUpdate");
-    store.put(json?.countriesLastUpdateDate, "country");
+    store.put(json?.versions?.countriesLastUpdateDate, "country");
     console.log("country value from fetch set!");
   }
-  if (!reqLang || reqLang < json?.languagesLastUpdateDate) {
+  if (!reqLang || reqLang < json?.versions?.languagesLastUpdateDate) {
     transaction = db.transaction(["dateUpdate"], "readwrite");
     store = transaction.objectStore("dateUpdate");
-    store.put(json?.languagesLastUpdateDate, "lang");
+    store.put(json?.versions?.languagesLastUpdateDate, "lang");
     console.log("country value from fetch set!");
   }
-  if (!reqTranslations || reqTranslations < json?.translationsLastUpdateDate) {
+  if (!reqTranslations || reqTranslations < json?.versions?.translationsLastUpdateDate) {
     transaction = db.transaction(["dateUpdate"], "readwrite");
     store = transaction.objectStore("dateUpdate");
-    store.put(json?.translationsLastUpdateDate, "translations");
+    store.put(json?.versions?.translationsLastUpdateDate, "translations");
     console.log("country value from fetch set!");
   }
 
@@ -43,7 +43,7 @@ async function indexDB({ json }) {
   store = transaction.objectStore("counts");
   let counts = await store.get("counts");
 
-  if (!counts || reqCountry < json?.countriesLastUpdateDate) {
+  if (!counts || reqCountry < json?.versions?.countriesLastUpdateDate) {
     let response = await sendApi("/api/countries", {});
     let data = await response?.result;
     console.log("data", data);
