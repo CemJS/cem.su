@@ -732,24 +732,13 @@ const RenderAnswer = ({ answer }) => {
                   class="user-comment__comment_button"
                   onclick={() => {
                     let data = {
-                      action: "insert",
-                      author: "63c7f6063be93e984c962b75",
                       text: Static.textCom,
-                      table: "Answers",
-                      commentId: comment.id,
-                      rating: 1,
                     };
-                    front.Services.functions.sendApi(`/api/answers/`);
-                    fetch(
-                      `/api/events/Comments?uuid=${front.Variable.myInfo.uuid}`,
-                      {
-                        method: "POST",
-                        headers: {
-                          "content-type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                      },
+                    front.Services.functions.sendApi(
+                      `/api/answers/${answer.id}/comments/${comment.id}/comment`,
+                      data,
                     );
+                    console.log("=86680c=", data);
                   }}
                 >
                   <img src={sendMessage} />
@@ -951,6 +940,7 @@ const RenderAnswer = ({ answer }) => {
 };
 
 export default function () {
+  Fn.log("=d35a6a=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }

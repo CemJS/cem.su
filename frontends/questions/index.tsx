@@ -239,51 +239,52 @@ front.loader = async () => {
   ];
   Events.questions = await Fn.event(url, listener);
 
+  Static.questionListener = [
+    {
+      type: "getById",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.record = json;
+      },
+    },
+    {
+      type: "answer",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.record.answers.unshift(json);
+        Static.record.statistics.answers++;
+      },
+    },
+    {
+      type: "comment",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        console.log("=f51763=", json);
+        let answerIndex = Static.record.answers.findIndex(
+          (item) => item.id == json.answerId,
+        );
+
+        console.log("=404632=", Static.record.answers[answerIndex].comments);
+        Static.record.answers[answerIndex].comments.unshift(json.comment);
+      },
+    },
+  ];
+
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
     let url = front.Services.functions.makeUrlEvent(
       `questions/${front.Variable.DataUrl[2]}`,
     );
 
-    let listener = [
-      {
-        type: "getById",
-        fn: ({ data }) => {
-          let json = front.Services.functions.strToJson(data);
-          if (!json) {
-            return;
-          }
-          Static.record = json;
-        },
-      },
-      {
-        type: "answer",
-        fn: ({ data }) => {
-          let json = front.Services.functions.strToJson(data);
-          if (!json) {
-            return;
-          }
-          Static.record.answers.unshift(json);
-          Static.record.statistics.answers++;
-        },
-      },
-      {
-        type: "comment",
-        fn: ({ data }) => {
-          let json = front.Services.functions.strToJson(data);
-          if (!json) {
-            return;
-          }
-          console.log("=f51763=", json);
-          let answerIndex = Static.record.answers.findIndex(
-            (item) => item.id == json.answerId,
-          );
-
-          console.log("=404632=", Static.record.answers[answerIndex].comments);
-          Static.record.answers[answerIndex].comments.unshift(json.comment);
-        },
-      },
-    ];
-    Events.questions = await Fn.event(url, listener);
+    Events.questions = await Fn.event(url, Static.questionListener);
 
     Static.videoDragStart = false;
 
