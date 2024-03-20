@@ -31,7 +31,7 @@ async function indexDB({ json }) {
   //   }
 
   /**************************************************************************** */
-  db = await openDB("CryptoEmergency", 1, {
+  db = await openDB("CryptoEmergency", 2, {
     upgrade(db) {
       if (!db.objectStoreNames.contains("dateUpdate")) {
         db.createObjectStore("dateUpdate");
@@ -77,21 +77,17 @@ async function indexDB({ json }) {
   if (!languagesData || reqLang < json?.versions?.languagesLastUpdateDate) {
     let response = await sendApi("/api/languages", {});
     let data = await response?.result;
-    // console.log("data", data);
     transaction = db.transaction(["linguaData"], "readwrite");
     store = transaction.objectStore("linguaData");
     store.put([data], "languages"); 
-    // console.log("initialized linguaData with empty array!");
   }
 
   if (!translationsData || reqTranslations < json?.versions?.translationsLastUpdateDate) {
     let response = await sendApi("/api/translations", {});
     let data = await response?.result;
-    // console.log("data", data);
     transaction = db.transaction(["linguaData"], "readwrite");
     store = transaction.objectStore("linguaData");
     store.put([data], "translations");
-    // console.log("initialized linguaData with empty array!");
   }
 }
 
