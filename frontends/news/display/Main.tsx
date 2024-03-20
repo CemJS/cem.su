@@ -39,8 +39,7 @@ export default function () {
     return (
         <div>
             <HeaderBack title="Новости" />
-            <div class="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 gap-5 pb\
-            ">
+            <div class="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 gap-5">
                 {
                     Static.records.map((item, index) => {
                         return (
@@ -100,7 +99,7 @@ export default function () {
                                         {front.Services.functions.timeStampToDate(item.dateCreate, ".")}
                                     </div>
                                     <div class="news__item-statistic-el">
-                                        <i class="i i-comment"></i>{item.statistic.comments}
+                                        <i class="i i-comment"></i>{item.statistics.comments}
                                     </div>
                                 </div>
                             </div>
