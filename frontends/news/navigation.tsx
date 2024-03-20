@@ -12,7 +12,7 @@ export default function () {
     );
   }
   return (
-    <section class="mt-55">
+    <section class="mt-[65px]">
       {/* <Category /> */}
       <Main />
     </section>
