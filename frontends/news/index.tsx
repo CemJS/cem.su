@@ -77,7 +77,7 @@ front.loader = async () => {
     Events.news = await Fn.event(url, listener)
 
     if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-        let url = front.Services.functions.makeUrlEvent("News", {
+        let url = front.Services.functions.makeUrlEvent("news", {
             action: "show",
             id: front.Variable.DataUrl[2]
         });
