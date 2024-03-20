@@ -14,7 +14,7 @@ const HeaderBack = function ({ title }) {
                         <i class="i i-arrow-left text-2xl"></i>
                     </span>
 
-                    <h5 class="text-xl text-center px-4 line-clamp-1">{title}</h5>
+                    <h5 class="text-xl text-center px-4 line-clamp-1 font-medium">{title}</h5>
 
                     <span
                         class="relative cursor-pointer w-8 after:content-['...'] after:absolute after:text-5xl after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%]"
@@ -63,7 +63,7 @@ export default function () {
                                     }
                                 }}
                                 onclick={async () => {
-                                    Static.record = item._id
+                                    Static.record = item.id
                                     let listener = [
                                         {
                                             type: "get",
@@ -74,13 +74,10 @@ export default function () {
                                             },
                                         }
                                     ]
-                                    Events.new = await Fn.event(front.Services.functions.makeUrlEvent("News", {
-                                        action: "show",
-                                        id: item._id
-                                    }), listener)
+                                    Events.new = await Fn.event(front.Services.functions.makeUrlEvent(`news/${item._id}`,), listener)
                                     // Static.headerBackTitle = item.title
                                     // Static.headerBackUrl = "/news"
-                                    Fn.linkChange(`/news/show/${item._id}`)
+                                    Fn.linkChange(`/news/show/${item.id}`)
                                 }}
 
                             >
