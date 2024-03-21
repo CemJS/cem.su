@@ -2,7 +2,7 @@ import { Cemjsx, Static, Fn, front } from "cemjs-all";
 
 const HeaderBack = function ({ title }) {
   return (
-    <div class="fixed z-[5] p-[0.5rem_0] top-0 left-0 right-0 border-b-[1px] border-solid border-[#2d3243] w-full bg-[#1d2029]">
+    <div class="fixed z-[5] py-3 top-0 left-0 right-0 border-b-[1px] border-solid border-[#2d3243] w-full bg-[#1d2029]">
       <div class="wrapper">
         <div class="flex justify-between items-center">
           <span
@@ -40,10 +40,10 @@ export default function () {
   return (
     <div>
       <HeaderBack title={Static.record?.title} />
-      <div class="mt-[65px] pb-28">
-        <h1 class="text-center text-lg mb-4">{Static.record?.title}</h1>
+      <div class="mt-[65px]">
+        <h1 class="text-center text-lg @700:text-xl mb-4 font-medium">{Static.record?.title}</h1>
 
-        <div class="mt-4 text-lg">
+        <div class="mt-4 text-base @700:text-lg">
           <div class="w-full @600:w-2/4 float-left max-h-max mt-0 mr-5 mb-5 ml-0">
             <img
               class="w-full rounded-2xl"
@@ -51,9 +51,9 @@ export default function () {
               alt={Static.record?.title}
             />
           </div>
-          <p class="text-base @600:text-lg">{Static.record?.preview}</p>
+          <p >{Static.record?.preview}</p>
           <div
-            class="text-base @600:text-lg mt-4"
+            class=" mt-4"
             init={($el) => {
               // this.Services.functions.editText(Static.record?.text, $el)
               this.Services.functions.searchLink(Static.record?.text, $el);
@@ -61,21 +61,21 @@ export default function () {
           ></div>
         </div>
 
-        <div class="mt-4 flex items-center justify-between text-[#909cbf]">
-          <div class="new-statistic__el">
-            {front.Services.functions.timeStampToDate(
-              Static.record?.dateCreate,
-              ".",
-            )}
-          </div>
-          <div class="flex items-center gap-1">
-            <i class="i i-eye"></i>
-            {/* {Static.record.statistics?.rating} */}
-          </div>
-          <div class="new-statistic__el">
-            <i class="i i-comment"></i>
-            {Static.record?.statistics?.comments}
-          </div>
+      </div>
+      <div class="mt-4 flex items-center justify-between text-[#909cbf] w-full">
+        <div class="new-statistic__el">
+          {front.Services.functions.timeStampToDate(
+            Static.record?.dateCreate,
+            ".",
+          )}
+        </div>
+        <div class="flex items-center gap-1">
+          <i class="i i-eye"></i>
+          {/* {Static.record.statistics?.rating} */}
+        </div>
+        <div class="flex items-center gap-1">
+          <i class="i i-comment"></i>
+          {Static.record?.statistics?.comments}
         </div>
       </div>
     </div>

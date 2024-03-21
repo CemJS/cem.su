@@ -2,7 +2,7 @@ import { Cemjsx, Fn, front, Static, Events, Func } from "cemjs-all";
 
 export default function () {
   return (
-    <div class="fixed z-[5] p-[0.5rem_0] top-0 left-0 right-0 border-b-[1px] border-solid border-[#2d3243] w-full bg-[#1d2029]">
+    <div class="fixed z-[5] py-3 top-0 left-0 right-0 border-b-[1px] border-solid border-[#2d3243] w-full bg-[#1d2029]">
       <div class="wrapper">
         <div class="flex justify-between items-center">
           <span
