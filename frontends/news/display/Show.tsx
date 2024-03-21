@@ -2,24 +2,33 @@ import { Cemjsx, Static, Fn, front } from "cemjs-all";
 
 const HeaderBack = function ({ title }) {
   return (
-    <div class="back">
+    <div class="fixed z-[5] p-[0.5rem_0] top-0 left-0 right-0 border-b-[1px] border-solid border-[#2d3243] w-full bg-[#1d2029]">
       <div class="wrapper">
-        <div class="back-inner">
+        <div class="flex justify-between items-center">
           <span
-            class="back-inner_arrow"
+            class="cursor-pointer flex justify-center items-center"
             onclick={() => {
               Static.record = null;
               Fn.linkChange("/news");
             }}
           >
-            <i class="i i-arrow-left"></i>
+            <i class="i i-arrow-left text-2xl"></i>
           </span>
 
-          <h5 class="back-title">{title}</h5>
+          <h5 class="text-xl text-center px-4 line-clamp-1 font-medium">{title}</h5>
 
           <span
-            class="back-ellipsis"
-            onclick={() => Fn.initOne("modalTools", {})}
+            class="relative cursor-pointer w-8 after:content-['...'] after:absolute after:text-5xl after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%]"
+            onclick={() => Fn.initOne("modalTools", {
+              records: [
+                {
+                  name: "Скопировать URL"
+                },
+                {
+                  name: "Поделиться"
+                }
+              ]
+            })}
           ></span>
         </div>
       </div>
@@ -28,6 +37,7 @@ const HeaderBack = function ({ title }) {
 };
 
 export default function () {
+  Fn.log(Static.record)
   return (
     <div>
       <HeaderBack title={Static.record?.title} />
@@ -46,7 +56,7 @@ export default function () {
             class="new-content__text"
             init={($el) => {
               // this.Services.functions.editText(Static.record?.text, $el)
-              this.Services.functions.searchLink(Static.record?.text, $el);
+              // this.Services.functions.searchLink(Static.record?.text, $el);
             }}
           ></div>
         </div>
@@ -64,7 +74,7 @@ export default function () {
           </div>
           <div class="new-statistic__el">
             <i class="i i-comment"></i>
-            {Static.record?.statistic?.comments}
+            {Static.record?.statistics?.comments}
           </div>
         </div>
       </div>

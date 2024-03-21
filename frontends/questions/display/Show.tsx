@@ -577,7 +577,7 @@ const RenderAnswer = ({ answer }) => {
         </div>
       </div>
       <div class="questions-show__comments" style="display: none">
-        {answer.comments?.map((comment) => {
+        {answer.comments?.map((comment, commentIndex) => {
           return (
             <div class="user-comment__item" style="margin: 0 10px">
               <a class="user-comment__avatar avatar" href="">
@@ -621,7 +621,7 @@ const RenderAnswer = ({ answer }) => {
                 </div>
               </a>
               <div class="user-comment__body">
-                <span>{comment.text}</span>
+                <span html={comment.text}></span>
               </div>
               <div class="user-comment__statistic comment-statistic">
                 <div class="comment-statistic__rating">
@@ -674,9 +674,9 @@ const RenderAnswer = ({ answer }) => {
                 <span
                   class="user-comment__answer"
                   onclick={(e) => {
-                    let el = e.currentTarget;
-                    el.parentElement.parentElement.lastChild.style =
-                      "display: flex";
+                    Ref[`inputComment${commentIndex}`].classList.toggle(
+                      "!flex",
+                    );
                   }}
                 >
                   Ответить
@@ -719,12 +719,16 @@ const RenderAnswer = ({ answer }) => {
                   <img src={points} />
                 </div>
               </div>
-              <div class="user-comment__comment user-comment__form">
+              <div
+                ref={`inputComment${commentIndex}`}
+                class="user-comment__comment user-comment__form"
+              >
                 <div class="user-comment__comment_field">
                   <textarea
                     rows="1"
                     data-max-height="200"
                     data-scroll-last="48"
+                    value={Static.textCom}
                     oninput={(e) => {
                       Static.textCom = e.target.value;
                     }}
@@ -736,8 +740,9 @@ const RenderAnswer = ({ answer }) => {
                     let data = {
                       text: Static.textCom,
                     };
+                    Static.textCom = "";
                     front.Services.functions.sendApi(
-                      `/api/answers/${answer.id}/comments/${comment.id}/comment`,
+                      `/api/answers/${answer.id}/comments/${comment.id}/comment/`,
                       data,
                     );
                     console.log("=86680c=", data);
@@ -746,7 +751,7 @@ const RenderAnswer = ({ answer }) => {
                   <img src={sendMessage} />
                 </button>
               </div>
-              {comment.comments?.map((comm, index) => {
+              {comment.comments?.map((comm, commIndex) => {
                 return (
                   <div class="user-comment__item" style="margin: 0 10px">
                     <a class="user-comment__avatar avatar" href="">
@@ -794,7 +799,7 @@ const RenderAnswer = ({ answer }) => {
                       </div>
                     </a>
                     <div class="user-comment__body">
-                      <span>{comm.text}</span>
+                      <span html={comm.text}></span>
                     </div>
                     <div class="user-comment__statistic comment-statistic">
                       <div class="comment-statistic__rating">
@@ -808,16 +813,7 @@ const RenderAnswer = ({ answer }) => {
                               type: "minus",
                               id: comm.id,
                             };
-                            fetch(
-                              `/api/events/Comments?uuid=${front.Variable.myInfo.uuid}`,
-                              {
-                                method: "POST",
-                                headers: {
-                                  "content-type": "application/json",
-                                },
-                                body: JSON.stringify(data),
-                              },
-                            );
+                            console.log("=d7a607=", data);
                           }}
                         />
                         <span>{comm.statistics?.rating}</span>
@@ -847,22 +843,12 @@ const RenderAnswer = ({ answer }) => {
                       <span
                         class="user-comment__answer"
                         onclick={(e) => {
-                          let elemr = Ref.commentList.childNodes;
-                          for (let i = 0; i < elemr.length; i++) {
-                            for (
-                              let y = 0;
-                              y < elemr[i].childNodes.length;
-                              y++
-                            ) {
-                              elemr[i].childNodes[y].lastChild.style =
-                                "display: none";
-                            }
-                          }
-
-                          let el = e.currentTarget;
-                          el.parentElement.parentElement.lastChild.style =
-                            "display: flex;";
-                          el.parentElement.parentElement.lastChild.firstChild.firstChild.focus();
+                          Ref[
+                            `inputCommentComm${commentIndex}${commIndex}`
+                          ].classList.toggle("!flex");
+                          Ref[
+                            `inputCommentComm${commentIndex}${commIndex}`
+                          ].focus();
                         }}
                       >
                         Ответить
@@ -893,12 +879,16 @@ const RenderAnswer = ({ answer }) => {
                         <img src={points} />
                       </div>
                     </div>
-                    <div class="user-comment__comment user-comment__form">
+                    <div
+                      ref={`inputCommentComm${commentIndex}${commIndex}`}
+                      class="user-comment__comment user-comment__form"
+                    >
                       <div class="user-comment__comment_field">
                         <textarea
                           rows="1"
                           data-max-height="200"
                           data-scroll-last="48"
+                          value={Static.textCom}
                           oninput={(e) => {
                             Static.textCom = e.target.value;
                           }}
@@ -908,22 +898,13 @@ const RenderAnswer = ({ answer }) => {
                         class="user-comment__comment_button"
                         onclick={() => {
                           let data = {
-                            action: "insert",
-                            author: "63c7f6063be93e984c962b75",
+                            quote: comm.id,
                             text: Static.textCom,
-                            table: "Answers",
-                            commentId: comment.id,
-                            rating: 1,
                           };
-                          fetch(
-                            `/api/events/Comments?uuid=${front.Variable.myInfo.uuid}`,
-                            {
-                              method: "POST",
-                              headers: {
-                                "content-type": "application/json",
-                              },
-                              body: JSON.stringify(data),
-                            },
+                          console.log("=ab0e4f=", data);
+                          front.Services.functions.sendApi(
+                            `/api/answers/${answer.id}/comments/${comment.id}/comment/`,
+                            data,
                           );
                         }}
                       >
@@ -942,7 +923,6 @@ const RenderAnswer = ({ answer }) => {
 };
 
 export default function () {
-  Fn.log("=d35a6a=", Static.record);
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
@@ -958,9 +938,7 @@ export default function () {
             <p
               ref="itemText"
               class="pt-[0.9375rem] text-[1.125rem]"
-              init={(e) =>
-                front.Services.functions.editText(Static.record.text, e)
-              }
+              html={Static.record.text}
             ></p>
             <RenderStatistic />
           </div>

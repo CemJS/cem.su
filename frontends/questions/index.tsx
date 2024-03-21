@@ -277,6 +277,27 @@ front.loader = async () => {
         Static.record.answers[answerIndex].comments.unshift(json.comment);
       },
     },
+    {
+      type: "commentToComment",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        console.log("=f51763=", json);
+        let answerIndex = Static.record.answers.findIndex(
+          (item) => item.id == json.answerId,
+        );
+
+        let commentIndex = Static.record.answers[
+          answerIndex
+        ].comments.findIndex((item) => item.id == json.commentId);
+
+        Static.record.answers[answerIndex].comments[
+          commentIndex
+        ].comments.unshift(json.comment);
+      },
+    },
   ];
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
