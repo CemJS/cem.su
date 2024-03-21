@@ -22,7 +22,7 @@ export default function () {
       ]}
     >
       <input
-        class="tsext-[--white] m-0 h-[3.4375rem] w-full rounded-[1.875rem] border-0 bg-[--black-gray] pl-[4.375rem] text-[1rem] [background-position:_left_1.25rem_bottom_1.25rem] [transition:0.5s]"
+        class="focus:[outline:none] text-[--white] m-0 h-[3.4375rem] w-full rounded-[1.875rem] border-0 bg-[--black-gray] pl-[4.375rem] text-[1rem] [background-position:_left_1.25rem_bottom_1.25rem] [transition:0.5s]"
         type="text"
         placeholder="Найти друзей"
         value={Static.search}

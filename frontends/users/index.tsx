@@ -77,7 +77,7 @@ front.loader = async () => {
     };
     Static.makeFilter.action = "get";
     // Fn.log("=827b36=", Static.makeFilter);
-    let res = await front.Services.functions.sendApi("/api/events/Users", Static.makeFilter);
+    let res = await front.Services.functions.sendApi("/api/users", Static.makeFilter);
     front.func.showMore(".users__item")
     // console.log("=f9b841=", res);
     return;
@@ -86,7 +86,7 @@ front.loader = async () => {
 
   Func.updateFilter();
 
-  let url = front.Services.functions.makeUrlEvent("Users", { action: "get" })
+  let url = front.Services.functions.makeUrlEvent("users", { action: "get" })
 
   let listener = [
     {
