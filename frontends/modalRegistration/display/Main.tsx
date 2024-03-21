@@ -3,13 +3,13 @@ import done from "@svg/icons/done.svg";
 
 const RenderSteps = function ({ steps, current }) {
   return (
-    <div class="steps">
+    <div class="flex items-center justify-between relative">
       {steps.map((item) => {
         return (
           <span
             class={[
-              "steps_circle",
-              item <= current ? "steps_circle__active" : null,
+              "relative z-[1] h-12 w-12 max-@464:h-10 max-@464:w-10 rounded-full border-solid border-2  flex items-center justify-center bg-[#202432]  font-bold text-base @700:text-lg transition-all",
+              item <= current ? "border-[#5f479b] text-[#5f479b]" : "border-[#e0e0e0] text-[#999]",
             ]}
           >
             {" "}
@@ -17,8 +17,8 @@ const RenderSteps = function ({ steps, current }) {
           </span>
         );
       })}
-      <div class="steps_progress">
-        <div class="steps_indicator" ref="indicator"></div>
+      <div class="absolute h-[2px] w-[99%] bg-[#e0e0e0] z-0">
+        <div class="absolute h-1 w-[0%] bg-[#5f479b] transition-all" ref="indicator"></div>
       </div>
     </div>
   );
@@ -551,8 +551,8 @@ export default function () {
   return (
     <main class="modal_main">
       <RenderSteps steps={Static.steps} current={Static.currentStep} />
-      <div class="modalReg">
-        <div class="modalReg_line mt-[25px]">
+      <div class="w-full overflow-hidden">
+        <div class="flex w-[400%] mt-6">
           <Step1 />
           <Step2 />
           <Step3 />

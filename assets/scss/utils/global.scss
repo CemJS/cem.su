@@ -100,50 +100,50 @@
 
 // Step by step. Look modal registration
 .steps {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  // position: relative;
 
-  &_circle {
-    position: relative;
-    z-index: 1;
-    height: 3.125rem;
-    width: 3.125rem;
-    border-radius: 50%;
-    border: 3px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--backModal);
-    color: #999;
-    font-weight: 700;
-    font-size: clamp(1rem, 5vw, 1.25rem);
-    transition:
-      border 0.3s ease-in-out,
-      color 0.3s ease-in-out;
+  // &_circle {
+  //   position: relative;
+  //   z-index: 1;
+  //   height: 3.125rem;
+  //   width: 3.125rem;
+  //   border-radius: 50%;
+  //   border: 3px solid #e0e0e0;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   background: var(--backModal);
+  //   color: #999;
+  //   font-weight: 700;
+  //   font-size: clamp(1rem, 5vw, 1.25rem);
+  //   transition:
+  //     border 0.3s ease-in-out,
+  //     color 0.3s ease-in-out;
 
-    &__active {
-      border-color: var(--fiolet);
-      color: var(--fiolet);
-    }
-  }
+  //   &__active {
+  //     border-color: var(--fiolet);
+  //     color: var(--fiolet);
+  //   }
+  // }
 
-  &_progress {
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background: #e0e0e0;
-    z-index: 0;
-  }
+  // &_progress {
+  //   position: absolute;
+  //   height: 3px;
+  //   width: 100%;
+  //   background: #e0e0e0;
+  //   z-index: 0;
+  // }
 
-  &_indicator {
-    position: absolute;
-    height: 4px;
-    width: 0%;
-    background: var(--fiolet);
-    transition: width 0.3s ease-in-out;
-  }
+  // &_indicator {
+  //   position: absolute;
+  //   height: 4px;
+  //   width: 0%;
+  //   background: var(--fiolet);
+  //   transition: width 0.3s ease-in-out;
+  // }
 
   @media (max-width: 464px) {
     &_circle {
