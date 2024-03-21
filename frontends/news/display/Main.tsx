@@ -2,7 +2,7 @@ import { Cemjsx, Static, Fn, front, Events } from "cemjs-all"
 
 const HeaderBack = function ({ title }) {
     return (
-        <div class="fixed z-[5] p-[0.5rem_0] top-0 left-0 right-0 border-b-[1px] border-solid border-[#2d3243] w-full bg-[#1d2029]">
+        <div class="fixed z-[5] py-3 top-0 left-0 right-0 border-b-[1px] border-solid border-[#2d3243] w-full bg-[#1d2029]">
             <div class="wrapper">
                 <div class="flex justify-between items-center">
                     <span
@@ -14,7 +14,7 @@ const HeaderBack = function ({ title }) {
                         <i class="i i-arrow-left text-2xl"></i>
                     </span>
 
-                    <h5 class="text-xl text-center px-4 line-clamp-1 font-medium">{title}</h5>
+                    <h5 class="@700:text-xl text-center px-4 line-clamp-1 font-medium text-base">{title}</h5>
 
                     <span
                         class="relative cursor-pointer w-8 after:content-['...'] after:absolute after:text-5xl after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%]"
@@ -63,33 +63,22 @@ export default function () {
                                     }
                                 }}
                                 onclick={async () => {
-                                    Static.record = item.id
-                                    let listener = [
-                                        {
-                                            type: "get",
-                                            fn: ({ data }) => {
-                                                let json = front.Services.functions.strToJson(data)
-                                                if (!json) { return }
-                                                Static.record = json
-                                            },
-                                        }
-                                    ]
-                                    Events.new = await Fn.event(front.Services.functions.makeUrlEvent(`news/${item._id}`,), listener)
-                                    // Static.headerBackTitle = item.title
-                                    // Static.headerBackUrl = "/news"
-                                    Fn.linkChange(`/news/show/${item.id}`)
+                                    Static.record = item
+                                    let url = front.Services.functions.makeUrlEvent(`news/${item.id}`);
+                                    Events.news = await Fn.event(url, Static.newListener);
+                                    Fn.linkChange(`/news/show/${item.id}`);
                                 }}
 
                             >
                                 <div class="[grid-area:image]">
                                     <img
                                         class="rounded-[0.6rem] object-contain w-auto @870:rounded-2xl @870:object-cover @870:h-full @870:w-full"
-                                        src={`/assets/upload/news/${item.image}`}
+                                        src={`/assets/upload/news/${item.mediaName}`}
                                         alt={item.title}
                                     />
                                 </div>
                                 <h3 class="line-clamp-1 font-semibold [grid-area:title] h-[1.3rem] text-base @870:text-lg @870:pt-4 @870:mb-2 @870:h-auto">{item.title}</h3>
-                                <p class="font-medium line-clamp-2 [grid-area:desc] leading-[130%] text-sm @870:text-base lg:line-clamp-3">{item.preview}</p>
+                                <p class="font-medium line-clamp-2 [grid-area:desc] leading-[132%] text-sm @870:text-base lg:line-clamp-3">{item.preview}</p>
 
                                 <div class="flex items-center justify-between relative text-[#909cbf] [grid-area:statistics] text-xs @870:absolute @870:left-5 @870:right-5 @870:bottom-2 @870:text-base">
                                     <div class="flex items-center gap-1">

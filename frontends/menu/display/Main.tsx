@@ -3,41 +3,38 @@ import cem from "@svg/cem.svg";
 
 export default function () {
 	return (
-		<div class="wrapper">
-			<ul class="menu-inner flex w-full justify-between relative">
+		<div class="max-w-4xl mx-auto">
+			<ul class="px-4 py-3 flex w-full justify-between relative">
 				<li>
 					<a
-						class="menu__item relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
+						class="relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
 						onclick={() => {
 							Fn.linkChange("/");
 						}}>
 						<img src={cem} alt="Главная страница" class="w-[1.8rem]" />
-						<span class="menu__item-name absolute whitespace-nowrap font-medium">Главная</span>
 					</a>
 				</li>
 				<li>
 					<a
-						class="menu__item relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
+						class="relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
 						onclick={() => {
 							Fn.linkChange("/lenta");
 						}}>
-						<i class={["i", `i-lenta`]}></i>
-						<span class="menu__item-name absolute whitespace-nowrap font-medium">Лента</span>
+						<i class={["i", `i-lenta`, `text-2xl`]}></i>
 					</a>
 				</li>
 				<li>
 					<a
-						class="menu__item relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
+						class="relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
 						onclick={() => {
 							Fn.linkChange("/messanger");
 						}}>
-						<i class={["i", `i-messanger`]}></i>
-						<span class="menu__item-name absolute whitespace-nowrap font-medium">Сообщения</span>
+						<i class={["i", `i-messanger`, `text-2xl`]}></i>
 					</a>
 				</li>
 				<li>
 					<a
-						class="menu__item relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
+						class="relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
 						onclick={(e) => {
 							if (!front.Variable.Auth) {
 								e.preventDefault();
@@ -57,32 +54,28 @@ export default function () {
 								});
 							}
 						}}>
-						<i class={["i", `i-add`]}></i>
-						<span class="menu__item-name absolute whitespace-nowrap font-medium">Опубликовать</span>
+						<i class={["i", `i-add`, `text-2xl`]}></i>
 					</a>
 				</li>
 				<li>
 					<a
-						class="menu__item relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
+						class="relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
 						onclick={() => {
 							Fn.linkChange("/questions");
 						}}>
-						<i class={["i", `i-qa`]}></i>
-						<span class="menu__item-name absolute whitespace-nowrap font-medium">Вопросы и ответы</span>
+						<i class={["i", `i-qa`, `text-2xl`]}></i>
 					</a>
 				</li>
 				<li
-					class="menu__item relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
+					class="relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
 					onclick={() => {
 						Fn.initOne("modalAuthtorization", {});
 					}}>
-					<i class={["i", `i-notice-empty`]}></i>
-					<span class="menu__item-name absolute whitespace-nowrap font-medium">Уведомления</span>
+					<i class={["i", `i-notice-empty`, `text-2xl`]}></i>
 				</li>
-				<li class="menu__item relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
+				<li class="relative flex justify-center items-center rounded-full text-white w-[3rem] h-[3rem] cursor-pointer"
 					onclick={() => Fn.initOne("sidebar", {})}>
-					<i class="i i-burger"></i>
-					<span class="menu__item-name absolute whitespace-nowrap font-medium">Меню</span>
+					<i class="i i-burger text-2xl"></i>
 				</li>
 			</ul>
 		</div>

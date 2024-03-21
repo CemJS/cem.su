@@ -301,9 +301,9 @@ const RenderNotFound = () => {
 
 const RenderAddAnswer = () => {
   return (
-    <div ref={`ans${Static.record.id}`} class="answer">
+    <div ref={`ans${Static.record.id}`} class="hidden">
       <textarea
-        class="answer__field"
+        class="w-full resize-none rounded-[0.9375rem] border-[0] bg-[#313543] p-5 text-[1rem] text-[--white]"
         cols="20"
         rows="10"
         value={Static.text}
@@ -311,7 +311,7 @@ const RenderAddAnswer = () => {
           Static.text = e.target.value;
         }}
       ></textarea>
-      <div class="answer__btn-wrapper">
+      <div class="flex justify-center p-10">
         <button
           class="btn"
           type="button"
@@ -333,24 +333,24 @@ const RenderAddAnswer = () => {
 
 const RenderStatistic = () => {
   return (
-    <div class="questions__item_statistic questions-show__statistic">
+    <div class="flex h-auto flex-wrap items-center justify-between pb-[0.625rem] text-[0.875rem] text-[#838ba3] [border-bottom:0.0625rem_solid] [border-color:var(--border-answer)] [row-gap:1.25rem] @767:col-[1/span_2] @767:h-[3.875rem] @767:justify-around @767:text-[0.8125rem] [&_span]:flex [&_span]:gap-[0.625rem]">
       <span>
         <i class="i i-comment"></i>
         {Static.record.statistics.answers}
       </span>
-      <span class="questions-show__statistic_view">
+      <span>
         <i class="i i-faq"></i>
         {Static.record.statistics.views}
       </span>
       <span>{`${front.Services.functions.timeStampToDate(Static.record.showDate, ".")} ${Func.addNull(Func.getDate(Static.record.showDate).getHours())}:${Func.addNull(Func.getDate(Static.record.showDate).getMinutes())}`}</span>
       {!Static.record.closed ? (
-        <div class="questions__item-open btn_border-wrap">
+        <div class="btn_border-wrap !m-0 !w-full @600:!w-[12.625rem] ">
           <button
             onclick={(e: any) => {
               Static.open == "Ответить"
                 ? (Static.open = "Отменить")
                 : (Static.open = "Ответить");
-              Ref[`ans${Static.record.id}`].classList.toggle("answer_active");
+              Ref[`ans${Static.record.id}`].classList.toggle("!block");
             }}
             class="btn_border"
           >
@@ -366,7 +366,7 @@ const RenderAnswer = ({ answer }) => {
   return (
     <div
       class={[
-        "questions-show__item",
+        "mb-[0.9375rem] rounded-[0.9375rem] bg-[#313643]",
         answer.best ? "questions-show__item_best" : null,
       ]}
     >
@@ -742,7 +742,7 @@ const RenderAnswer = ({ answer }) => {
                     };
                     Static.textCom = "";
                     front.Services.functions.sendApi(
-                      `/api/answers/${answer.id}/comments/${comment.id}/comment/`,
+                      `/api/answers/${answer.id}/comments/${comment.id}/comment`,
                       data,
                     );
                     console.log("=86680c=", data);
@@ -902,8 +902,9 @@ const RenderAnswer = ({ answer }) => {
                             text: Static.textCom,
                           };
                           console.log("=ab0e4f=", data);
+                          Static.textCom = "";
                           front.Services.functions.sendApi(
-                            `/api/answers/${answer.id}/comments/${comment.id}/comment/`,
+                            `/api/answers/${answer.id}/comments/${comment.id}/comment`,
                             data,
                           );
                         }}
@@ -943,12 +944,12 @@ export default function () {
             <RenderStatistic />
           </div>
 
-          <div class="user-comment questions-show__answers">
+          <div class="mx-auto mt-10 max-w-[53.125rem]">
             <RenderAddAnswer />
 
             {Static.record.answers?.length > 0 ? (
               <div
-                class="user-comment__list questions-show__list"
+                class="relative mb-5 w-full rounded-[0.9375rem] bg-[#2b3040] p-[1.5625rem_0rem] !pb-0 !pt-[0.125rem] [border:0.0625rem_solid_#353c50]"
                 ref="answerList"
               >
                 {Static.record.answers?.map((answer) => {
