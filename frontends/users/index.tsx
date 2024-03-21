@@ -51,7 +51,7 @@ front.loader = async () => {
       entries.forEach(async entry => {
         if (entry.isIntersecting) {
           observer.unobserve(entry.target)
-          let res = await front.Services.functions.sendApi("/api/Users", {
+          let res = await front.Services.functions.sendApi("/api/users", {
             ...Static.makeFilter,
             "action": "skip",
             "skip": Static.records?.length,
