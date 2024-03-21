@@ -108,36 +108,55 @@ export default function () {
               <div class="user-badge flex items-center justify-center pt-[.9375rem]">
                 {item?.awards?.slice(0, 5)?.map((award: any, key: number) => {
                   return (
-                    <div class="relative mr-[.5625rem] cursor-pointer">
-                      <div class="user-badge-description hover:!block top-[3.375rem} absolute left-[50%] z-[100] hidden min-h-[5rem] w-[10rem] rounded-[.4375rem] bg-[--prestige-blue] p-[.9375rem] [transform:translateX(-50%)] [border:2px_solid_#232733] [box-shadow:-1px_1px_5px_#000000]">
-                        <p class="text-center mb-[.3125rem] text-[clamp(.625rem,_3vw,_.75rem)] font-bold tracking-[.0437rem] leading-[1rem]">{award?.name}</p>
-                        <span>{award?.description}</span>
+                    <div class="group relative mr-[.5625rem] cursor-pointer">
+                      <div class="user-badge-description absolute left-[50%] top-[3.375rem] z-[100] hidden min-h-[5rem] w-[10rem] rounded-[.4375rem] bg-[--prestige-blue] p-[.9375rem] [transform:translateX(-50%)] [border:2px_solid_#232733] [box-shadow:-1px_1px_5px_#000000] group-hover:block">
+                        <p class="mb-[.3125rem] text-center text-[clamp(.625rem,_3vw,_.75rem)] font-bold leading-[1rem] tracking-[.0437rem]">
+                          {award?.name}
+                        </p>
+                        <span class="inline-block w-full text-center text-[clamp(.625rem,_3vw,_.75rem)] leading-[1rem]">
+                          {award?.description}
+                        </span>
                       </div>
-                      <img src={`contents/svg/personalAwards/${award?.icon}`} />
+                      <img
+                        class="h-[3.125rem]"
+                        src={`contents/svg/personalAwards/${award?.icon}`}
+                      />
                     </div>
                   );
                 })}
               </div>
 
-              <div class="users__item_statistic">
-                <div class="users__item_info">
-                  <span>{item?.statistic?.answer}</span>
-                  <span>ответов</span>
+              <div class="users-statistic flex justify-around pt-[2rem]">
+                <div class="user-info flex h-[1.25rem] flex-col items-center [&:nth-child(1)]:w-[30%]">
+                  <span class="first:mb-[.625rem] first:text-[clamp(.625rem,_3vw,_.8125rem)] first:font-bold">
+                    {item?.statistic?.answer}
+                  </span>
+                  <span class="last:text-[clamp(10px,_2vw,_13px)] last:uppercase last:text-[#bfc4ce]">
+                    ответов
+                  </span>
                 </div>
-                <div class="users__item_info">
-                  <span>{item.statistic.subscribe}</span>
-                  <span>подписчиков</span>
+                <div class="user-info flex h-[1.25rem] flex-col items-center  [&:nth-child(2)]:w-[40%] [&:nth-child(2)]:border-0 [&:nth-child(2)]:[border-left:_1px_solid_#707DA0] [&:nth-child(2)]:[border-right:_1px_solid_#707DA0]">
+                  <span class="first:mb-[.625rem] first:text-[clamp(.625rem,_3vw,_.8125rem)] first:font-bold">
+                    {item.statistic.subscribe}
+                  </span>
+                  <span class="last:text-[clamp(10px,_2vw,_13px)] last:uppercase last:text-[#bfc4ce]">
+                    подписчиков
+                  </span>
                 </div>
-                <div class="users__item_info">
-                  <span>{item.statistic.view}</span>
-                  <span>просмотров</span>
+                <div class="user-info flex h-[1.25rem] flex-col items-center [&:nth-child(3)]:w-[30%]">
+                  <span class="first:mb-[.625rem] first:text-[clamp(.625rem,_3vw,_.8125rem)] first:font-bold">
+                    {item.statistic.view}
+                  </span>
+                  <span class="last:text-[clamp(10px,_2vw,_13px)] last:uppercase last:text-[#bfc4ce]">
+                    просмотров
+                  </span>
                 </div>
               </div>
-              <div class="users__item_buttons">
-                <button class="users_btn-padding btn btn_gradient mt-10">
+              <div class="buttons flex items-center justify-center gap-[1.875rem] pt-[2rem]">
+                <button class="m-[.625rem] mt-10 h-[3.2rem] w-[50%] cursor-pointer whitespace-nowrap rounded-[0.5rem] border-none px-[1rem] py-[0.8rem] text-[1rem] text-[--white] [background-size:125%] [background:--mainGradient] [outline:none] [transition:all_0.2s_ease-out] hover:bg-right active:scale-[0.97]">
                   Написать
                 </button>
-                <button class="users_btn-padding btn btn_gradient mt-10">
+                <button class="m-[.625rem] mt-10 h-[3.2rem] w-[50%] cursor-pointer whitespace-nowrap rounded-[0.5rem] border-none px-[1rem] py-[0.8rem] text-[1rem] text-[--white] [background-size:125%] [background:--mainGradient] [outline:none] [transition:all_0.2s_ease-out] hover:bg-right active:scale-[0.97]">
                   Подписаться
                 </button>
               </div>
