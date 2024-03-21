@@ -79,9 +79,9 @@ front.loader = async () => {
     if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
         let url = front.Services.functions.makeUrlEvent(`news/${front.Variable.DataUrl[2]}`,);
 
-        let listener = [
+        Static.newListener = [
             {
-                type: "get",
+                type: "getById",
                 fn: ({ data }) => {
                     let json = front.Services.functions.strToJson(data);
                     if (!json) {
@@ -91,7 +91,7 @@ front.loader = async () => {
                 },
             },
         ];
-        Events.news = await Fn.event(url, listener);
+        Events.news = await Fn.event(url, Static.newListener);
     }
 
     return

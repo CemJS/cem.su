@@ -14,7 +14,7 @@ export default function () {
             <i class="i i-arrow-left text-2xl"></i>
           </span>
 
-          <h5 class="text-xl text-center px-4 line-clamp-1 font-medium">Пользовательское соглашение</h5>
+          <h5 class="@700:text-xl text-center px-4 line-clamp-1 font-medium text-base">Пользовательское соглашение</h5>
 
           <span
             class="relative cursor-pointer w-8 after:content-['...'] after:absolute after:text-5xl after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%]"
