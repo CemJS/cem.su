@@ -30,7 +30,22 @@ const Step1 = function () {
       <div class="flex flex-col">
         <h3 class="font-semibold text-lg max-@600:text-base mb-4">Подтвердите адрес электронной почты</h3>
 
-        <label for="input-group-1" class="block mb-2 text-sm font-medium text-white">Email</label>
+        <div class="relative mb-3" data-twe-input-wrapper-init>
+          <input
+            type="text"
+            class="peer block min-h-[auto] w-full rounded border-solid border-[1px] border-[#5f479b] bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
+            id="email"
+            placeholder="Example label" />
+          <label
+            for="email"
+            class="bg-[#202432] pointer-events-none absolute left-3 top-1.5 mb-0 max-w-[90%] origin-[0_0] truncate leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
+          >
+            <i class="i i-user"></i>
+            Example label
+          </label>
+        </div>
+
+        {/* <label for="input-group-1" class="block mb-2 text-sm font-medium text-white">Email</label>
         <div class="relative mb-6">
           <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
@@ -48,7 +63,7 @@ const Step1 = function () {
               front.Services.functions.formEmail(Static.form.email);
             }}
           />
-        </div>
+        </div> */}
 
 
         {/* <div
