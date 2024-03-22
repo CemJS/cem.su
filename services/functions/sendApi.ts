@@ -1,9 +1,18 @@
+import { Fn, front } from "cemjs-all";
+
 export const sendApi = async function (
   url: string,
   data: any,
   method = "POST",
+  auth = false,
 ) {
   try {
+    Fn.log("=be8e57=", front);
+
+    if (auth) {
+      front;
+      alert(1);
+    }
     data.uuid = localStorage.uuid;
     data.suuid = localStorage.suuid;
     url += `?uuid=${localStorage.uuid}`;

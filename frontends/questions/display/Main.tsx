@@ -323,7 +323,7 @@ const RenderQuestion = ({ item, index }) => {
             </span>
           </div>
         </div>
-        <div class="btn_border-wrap absolute right-0 top-0 h-auto !w-[4.6rem] cursor-default rounded-[50%]">
+        <div class="btn_border-wrap absolute right-0 top-0 h-auto !w-[4.6rem] cursor-default">
           <button class="btn_border !h-[1.6875rem] !text-[0.75rem] !font-semibold">
             {item.language?.origName}
           </button>

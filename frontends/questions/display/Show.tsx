@@ -333,7 +333,7 @@ const RenderAddAnswer = () => {
 
 const RenderStatistic = () => {
   return (
-    <div class="flex h-auto flex-wrap items-center justify-between pb-[0.625rem] text-[0.875rem] text-[#838ba3] [border-bottom:0.0625rem_solid] [border-color:var(--border-answer)] [row-gap:1.25rem] @767:col-[1/span_2] @767:h-[3.875rem] @767:justify-around @767:text-[0.8125rem] [&_span]:flex [&_span]:gap-[0.625rem]">
+    <div class="flex h-auto flex-wrap items-center justify-between pb-[0.625rem] text-[0.875rem] text-[#838ba3] ![border-color:var(--border-answer)] [border-bottom:0.0625rem_solid] [row-gap:1.25rem] @767:col-[1/span_2] @767:h-[3.875rem] @767:text-[0.8125rem] [&_span]:flex [&_span]:gap-[0.625rem]">
       <span>
         <i class="i i-comment"></i>
         {Static.record.statistics.answers}
@@ -362,7 +362,7 @@ const RenderStatistic = () => {
   );
 };
 
-const RenderAnswer = ({ answer }) => {
+const RenderAnswer = ({ answer, answerIndex }) => {
   return (
     <div
       class={[
@@ -437,46 +437,50 @@ const RenderAnswer = ({ answer }) => {
           <div
             class="m-0 !ml-[0.3125rem] inline-block cursor-pointer !bg-clip-text pt-[0.625rem] text-[1rem] font-semibold [-webkit-text-fill-color:transparent] [background:linear-gradient(56.57deg,#2973ff_0,#8846d3_51.56%,#ff22ac_105.28%)]"
             onclick={(e) => {
-              let elemr = Ref.answerList.childNodes;
-              for (let i = 0; i < elemr.length; i++) {
-                for (let y = 0; y < elemr[i].childNodes.length; y++) {
-                  if (
-                    elemr[i].childNodes[y].firstChild?.nextSibling?.nextSibling
-                  ) {
-                    elemr[i].childNodes[
-                      y
-                    ].firstChild.nextSibling.nextSibling.style =
-                      "display: none";
-                  }
-                }
-              }
-
-              let el = e.currentTarget;
-              el.parentElement.nextSibling.style = "display: flex";
-              el.parentElement.nextSibling.firstChild.firstChild.focus();
+              // let elemr = Ref.answerList.childNodes;
+              // for (let i = 0; i < elemr.length; i++) {
+              //   for (let y = 0; y < elemr[i].childNodes.length; y++) {
+              //     if (
+              //       elemr[i].childNodes[y].firstChild?.nextSibling?.nextSibling
+              //     ) {
+              //       elemr[i].childNodes[
+              //         y
+              //       ].firstChild.nextSibling.nextSibling.style =
+              //         "display: none";
+              //     }
+              //   }
+              // }
+              Ref[`inputAns${answerIndex}`].classList.toggle("!flex");
+              Ref[`inputAns${answerIndex}`].focus();
             }}
           >
             Ответить
           </div>
         </div>
-        <div class="user-comment__comment user-comment__form">
-          <div class="user-comment__comment_field">
+        <div
+          ref={`inputAns${answerIndex}`}
+          class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
+        >
+          <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
             <textarea
+              class="relative flex min-h-[2.5625rem] w-full resize-none rounded-[0.625rem] bg-[#313543] p-[0.625rem_1.5625rem] text-[1rem] font-medium text-[--white] outline-none [border:0.0625rem_solid_#44495c]"
               rows="1"
               data-max-height="200"
               data-scroll-last="48"
+              value={Static.textAns}
               oninput={(e) => {
-                Static.textCom = e.target.value;
+                Static.textAns = e.target.value;
               }}
             ></textarea>
           </div>
           <button
-            class="user-comment__comment_button"
+            class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
             onclick={() => {
               let data = {
-                text: Static.textCom,
+                text: Static.textAns,
                 answerId: answer.id,
               };
+              Static.textAns = "";
               front.Services.functions.sendApi(
                 `/api/answers/${answer.id}/comment`,
                 data,
@@ -487,7 +491,7 @@ const RenderAnswer = ({ answer }) => {
           </button>
         </div>
         {answer.statistics.comments > 0 ? (
-          <div class="[transform: translate(0, 0)] relative ml-[0.3125rem] mt-[1rem] pb-[0.625rem]">
+          <div class="relative ml-[0.3125rem] mt-[1rem] pb-[0.625rem] [transform:translate(0,0)]">
             <button
               class="relative block min-h-[2rem] w-max cursor-pointer overflow-hidden rounded-[0.1875rem] border-none bg-transparent pl-[0.625rem] pr-[0.625rem] pt-0 text-center text-[0.875rem] font-semibold text-[--white] no-underline"
               onclick={(e) => {
@@ -509,9 +513,10 @@ const RenderAnswer = ({ answer }) => {
             </button>
           </div>
         ) : null}
-        <div class="user-comment__statistic comment-statistic">
-          <div class="comment-statistic__rating">
+        <div class="static flex items-center justify-end gap-[0.3125rem] pb-[0.375rem] @410:absolute @410:right-[0.9375rem] @410:top-[0.9375rem] @410:pb-0">
+          <div class="flex w-16 items-center justify-between">
             <img
+              class="h-5 w-5 cursor-pointer rounded-[50%]"
               src={dislike}
               onclick={() => {
                 let data = {
@@ -533,8 +538,11 @@ const RenderAnswer = ({ answer }) => {
                 );
               }}
             />
-            <span>{answer.statistics.rating}</span>
+            <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
+              {answer.statistics.rating}
+            </span>
             <img
+              class="h-5 w-5 cursor-pointer rounded-[50%]"
               src={like}
               onclick={() => {
                 let data = {
@@ -558,7 +566,7 @@ const RenderAnswer = ({ answer }) => {
             />
           </div>
           <div
-            class="user-comment__settings"
+            class="ml-[0.625rem] flex h-[1.375rem] w-[1.875rem] cursor-pointer items-center"
             onclick={() => {
               let records = [];
               records.push({
@@ -587,14 +595,20 @@ const RenderAnswer = ({ answer }) => {
           </div>
         </div>
       </div>
-      <div class="questions-show__comments" style="display: none">
+      <div
+        class="bg-[#242835] [border-radius:0_0_0.9375rem_0.9375rem]"
+        style="display: none"
+      >
         {answer.comments?.map((comment, commentIndex) => {
           return (
-            <div class="user-comment__item" style="margin: 0 10px">
-              <a class="user-comment__avatar avatar" href="">
-                <div class="avatar__icon">
+            <div class="relative p-[0_0.625rem]" style="margin: 0 10px">
+              <a
+                class="relative left-[-0.25rem] top-[0.625rem] flex h-[auto] w-[auto] no-underline"
+                href=""
+              >
+                <div class="relative z-[1] ml-[0.625rem] h-[2.625rem] w-[2.25rem] min-w-[2.9375rem]">
                   <img
-                    class="avatar__photo"
+                    class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] [transform:translateX(-50%)_translateY(-50%)] [object-fit:cover]"
                     src={
                       comment.author.avatar?.name
                         ? `/assets/upload/avatar/${comment.author.avatar?.name}`
@@ -602,7 +616,7 @@ const RenderAnswer = ({ answer }) => {
                     }
                   />
                   <img
-                    class="avatar__frame"
+                    class="absolute left-1/2 top-[0] z-[2] h-full !w-auto [transform:translateX(-50%)]"
                     src={
                       comment.author.frame?.name &&
                       comment.author.frame?.name != "default.svg"
@@ -612,26 +626,28 @@ const RenderAnswer = ({ answer }) => {
                   />
                   {comment.author.status?.team ? (
                     <img
-                      class="avatar__team"
+                      class="absolute bottom-[0] right-0 z-[2] h-[1.0625rem] w-[1.0625rem] rounded-[50%] bg-[--white] p-[0.1875rem]"
                       src={comment.author.status?.team ? teamLogo : null}
                     />
                   ) : (
                     <div>
-                      <div class="avatar__level">
-                        <img src={leveGray} />
-                        <span>{comment.author.statistics.level}</span>
+                      <div class="absolute !top-[auto] bottom-0 right-[0] z-[2] h-[1.125rem]">
+                        <img class="h-full" src={leveGray} />
+                        <span class="absolute left-1/2 top-1/2 text-[0.625rem] font-bold tracking-[0.0375rem] text-[--white] [transform:translateX(-50%)_translateY(-50%)]">
+                          {comment.author.statistics.level}
+                        </span>
                       </div>
                     </div>
                   )}
                 </div>
-                <div class="user-comment__avatar_info">
-                  <div class="user-comment__avatar_name">
+                <div class="absolute left-[3.75rem] top-[0.625rem] block w-[8.125rem]">
+                  <div class="text-[0.625rem] leading-[1.25rem] text-[--white] [font-weight:600]">
                     {comment.author.nickname}
                   </div>
                   <div class="user-comment__avatar_time">{`${front.Services.functions.timeStampToDate(comment.showDate, ".")} ${Func.addNull(Func.getDate(comment.showDate).getHours())}:${Func.addNull(Func.getDate(comment.showDate).getMinutes())}`}</div>
                 </div>
               </a>
-              <div class="user-comment__body">
+              <div class="mb-[0.125rem] w-full pt-[0.875rem]">
                 <span html={comment.text}></span>
               </div>
               <div class="user-comment__statistic comment-statistic">
@@ -732,10 +748,11 @@ const RenderAnswer = ({ answer }) => {
               </div>
               <div
                 ref={`inputComment${commentIndex}`}
-                class="user-comment__comment user-comment__form"
+                class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
               >
-                <div class="user-comment__comment_field">
+                <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
                   <textarea
+                    class="relative flex min-h-[2.5625rem] w-full resize-none rounded-[0.625rem] bg-[#313543] p-[0.625rem_1.5625rem] text-[1rem] font-medium text-[--white] outline-none [border:0.0625rem_solid_#44495c]"
                     rows="1"
                     data-max-height="200"
                     data-scroll-last="48"
@@ -746,7 +763,7 @@ const RenderAnswer = ({ answer }) => {
                   ></textarea>
                 </div>
                 <button
-                  class="user-comment__comment_button"
+                  class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
                   onclick={() => {
                     let data = {
                       text: Static.textCom,
@@ -764,11 +781,14 @@ const RenderAnswer = ({ answer }) => {
               </div>
               {comment.comments?.map((comm, commIndex) => {
                 return (
-                  <div class="user-comment__item" style="margin: 0 10px">
-                    <a class="user-comment__avatar avatar" href="">
-                      <div class="avatar__icon">
+                  <div class="relative p-[0_0.625rem]" style="margin: 0 10px">
+                    <a
+                      class="relative left-[-0.25rem] top-[0.625rem] flex h-[auto] w-[auto] no-underline"
+                      href=""
+                    >
+                      <div class="relative z-[1] ml-[0.625rem] h-[2.625rem] w-[2.25rem] min-w-[2.9375rem]">
                         <img
-                          class="avatar__photo"
+                          class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] [transform:translateX(-50%)_translateY(-50%)] [object-fit:cover]"
                           src={
                             comm.author.avatar?.name
                               ? `/assets/upload/avatar/${comm.author.avatar?.name}`
@@ -776,7 +796,7 @@ const RenderAnswer = ({ answer }) => {
                           }
                         />
                         <img
-                          class="avatar__frame"
+                          class="absolute left-1/2 top-[0] z-[2] h-full !w-auto [transform:translateX(-50%)]"
                           src={
                             comm.author.frame?.name
                               ? `/contents/images/lenta/${comm.author.frame?.name}`
@@ -785,20 +805,22 @@ const RenderAnswer = ({ answer }) => {
                         />
                         {comm.author.status?.team ? (
                           <img
-                            class="avatar__team"
+                            class=""
                             src={comm.author.status?.team ? teamLogo : null}
                           />
                         ) : (
                           <div>
-                            <div class="avatar__level">
-                              <img src={leveGray} />
-                              <span>{comm.author?.statistics?.level}</span>
+                            <div class="absolute !top-[auto] bottom-0 right-[0] z-[2] h-[1.125rem]">
+                              <img class="h-full" src={leveGray} />
+                              <span class="absolute left-1/2 top-1/2 text-[0.625rem] font-bold tracking-[0.0375rem] text-[--white] [transform:translateX(-50%)_translateY(-50%)]">
+                                {comm.author?.statistics?.level}
+                              </span>
                             </div>
                           </div>
                         )}
                       </div>
-                      <div class="user-comment__avatar_info">
-                        <div class="user-comment__avatar_name">
+                      <div class="absolute left-[3.75rem] top-[0.625rem] block w-[8.125rem]">
+                        <div class="text-[0.625rem] leading-[1.25rem] text-[--white] [font-weight:600]">
                           {comm.author.nickname}
                         </div>
                         <div class="user-comment__avatar_time">
@@ -809,7 +831,7 @@ const RenderAnswer = ({ answer }) => {
                         </div>
                       </div>
                     </a>
-                    <div class="user-comment__body">
+                    <div class="mb-[0.125rem] w-full pt-[0.875rem]">
                       <span html={comm.text}></span>
                     </div>
                     <div class="user-comment__statistic comment-statistic">
@@ -899,9 +921,9 @@ const RenderAnswer = ({ answer }) => {
                           rows="1"
                           data-max-height="200"
                           data-scroll-last="48"
-                          value={Static.textCom}
+                          value={Static.textComCom}
                           oninput={(e) => {
-                            Static.textCom = e.target.value;
+                            Static.textComCom = e.target.value;
                           }}
                         ></textarea>
                       </div>
@@ -910,10 +932,10 @@ const RenderAnswer = ({ answer }) => {
                         onclick={() => {
                           let data = {
                             quote: comm.id,
-                            text: Static.textCom,
+                            text: Static.textComCom,
                           };
                           console.log("=ab0e4f=", data);
-                          Static.textCom = "";
+                          Static.textComCom = "";
                           front.Services.functions.sendApi(
                             `/api/answers/${answer.id}/comments/${comment.id}/comment`,
                             data,
@@ -963,8 +985,8 @@ export default function () {
                 class="relative mb-5 w-full rounded-[0.9375rem] bg-[#2b3040] p-[1.5625rem_0rem] !pb-0 !pt-[0.125rem] [border:0.0625rem_solid_#353c50]"
                 ref="answerList"
               >
-                {Static.record.answers?.map((answer) => {
-                  return <RenderAnswer answer={answer} />;
+                {Static.record.answers?.map((answer, index) => {
+                  return <RenderAnswer answer={answer} answerIndex={index} />;
                 })}
               </div>
             ) : (
