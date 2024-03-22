@@ -104,10 +104,10 @@
   }
   /* градиентная кнопка при наведении */
   .btn_border-wrap {
-    @apply mx-auto w-[12.625rem] rounded-[--btnR] bg-[--mainGradient] p-[0.0725rem];
+    @apply mx-auto w-[12.625rem] rounded-[--btnR] p-[0.0725rem] [background:--mainGradient];
   }
   .btn_border {
-    @apply relative z-[1] h-[2.625rem] w-full cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--black-gray] bg-100% text-center text-[1rem] font-semibold text-white outline-none;
+    @apply relative z-[1] h-[2.625rem] w-full cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--black-gray] bg-100% text-center text-[1rem] font-semibold text-white outline-none [transition:all_0.3s_ease-in-out] hover:bg-transparent;
   }
   /*  */
 
