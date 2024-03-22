@@ -6,6 +6,7 @@ import Filters from "./Filters/Filters";
 import defaultGray from "@svg/lenta/defaultGray.svg";
 
 export default function () {
+  
   return (
     <div class="wrapper ml-auto mr-auto w-[calc(100%_-_60px)] pb-[6.25rem] pt-[3.125rem] @1200:ml-auto @1200:mr-auto @1240:w-full">
       <h1 class="text-balance text-center">Пользователи</h1>

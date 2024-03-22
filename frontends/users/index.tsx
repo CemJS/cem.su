@@ -8,23 +8,23 @@ import Navigation from "./navigation"
 //     creator: true
 //   }
 
-//   front.func.updateFilter = async () => {
-//     const areAllFalse = Object.values(Static.checkBox).every(value => value === false);
+  // front.func.updateFilter = async () => {
+  //   const areAllFalse = Object.values(Static.checkBox).every(value => value === false);
 
-//     Static.makeFilter = {
-//       search: Static.search,
-//       lang: Static.lang?.code,
-//       country: Static.country?.code
-//     };
+  //   Static.makeFilter = {
+  //     search: Static.search,
+  //     lang: Static.lang?.code,
+  //     country: Static.country?.code
+  //   };
 
-//     if (!areAllFalse) {
-//       Static.makeFilter.role = Static.checkBox;
-//     }
+  //   if (!areAllFalse) {
+  //     Static.makeFilter.role = Static.checkBox;
+  //   }
 
-//     Static.makeFilter.action = "get";
-//     let res = await front.Services.functions.sendApi("/api/events/Users", Static.makeFilter);
-//     return;
-//   };
+  //   Static.makeFilter.action = "get";
+  //   let res = await front.Services.functions.sendApi("/api/events/Users", Static.makeFilter);
+  //   return;
+  // };
 
 
 front.listener.finish = () => {
@@ -78,15 +78,14 @@ front.loader = async () => {
     Static.makeFilter.action = "get";
     // Fn.log("=827b36=", Static.makeFilter);
     let res = await front.Services.functions.sendApi("/api/users", Static.makeFilter);
-    front.func.showMore(".users__item")
+    front.func.showMore(".users-item")
     // console.log("=f9b841=", res);
     return;
   };
 
-
   Func.updateFilter();
 
-  let url = front.Services.functions.makeUrlEvent("users", { action: "get" })
+  let url = front.Services.functions.makeUrlEvent("users", {})
 
   let listener = [
     {
