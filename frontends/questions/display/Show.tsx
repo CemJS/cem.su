@@ -367,14 +367,16 @@ const RenderAnswer = ({ answer }) => {
     <div
       class={[
         "mb-[0.9375rem] rounded-[0.9375rem] bg-[#313643]",
-        answer.best ? "questions-show__item_best" : null,
+        answer.best
+          ? "!order-[-1] !rounded-[15px] ![border:1px_solid_#00e741]"
+          : null,
       ]}
     >
-      <div class="user-comment__item">
-        <a class="avatar" href="">
-          <div class="avatar__icon">
+      <div class="relative p-[0_0.625rem]">
+        <a class="relative flex h-auto w-auto" href="">
+          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
             <img
-              class="avatar__photo"
+              class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={
                 answer.author.avatar?.name
                   ? `/assets/upload/avatar/${answer.author.avatar?.name}`
@@ -382,7 +384,7 @@ const RenderAnswer = ({ answer }) => {
               }
             />
             <img
-              class="avatar__frame"
+              class="absolute left-1/2 top-0 z-[2] h-full !w-auto [transform:translateX(-50%)]"
               src={
                 answer.author.frame?.name &&
                 answer.author.frame?.name != "default.svg"
@@ -392,29 +394,34 @@ const RenderAnswer = ({ answer }) => {
             />
             {answer.author.status?.team ? (
               <img
-                class="avatar__team"
+                class="absolute bottom-[0.4375rem] right-[0.4375rem] z-[2] flex h-5 w-5 items-center justify-center rounded-[50%] bg-[--white] p-[0.1875rem]"
                 src={answer.author.status?.team ? teamLogo : null}
               />
             ) : (
               <div>
-                <div class="avatar__level">
-                  <img src={leveGray} />
-                  <span>{answer.author.statistics.level}</span>
+                <div class="absolute !top-auto bottom-0 right-[0.3125rem] z-[2] h-7">
+                  <img class="h-full" src={leveGray} />
+                  <span class="absolute left-1/2 top-1/2 text-[0.75rem] font-bold tracking-[0.0375rem] text-[--white] [transform:translateX(-50%)_translateY(-50%)]">
+                    {answer.author.statistics.level}
+                  </span>
                 </div>
               </div>
             )}
           </div>
-          <div class="user-comment__avatar_info-big">
-            <div class="user-comment__avatar_name-big">
+          <div class="absolute left-[4.5625rem] top-5 block w-[8.125rem]">
+            <div class="text-[0.875rem] font-semibold leading-[1.375rem] text-[--white]">
               {answer.author.nickname}
             </div>
-            <div class="user-comment__avatar_time">{`${front.Services.functions.timeStampToDate(answer.showDate, ".")} ${Func.addNull(Func.getDate(answer.showDate).getHours())}:${Func.addNull(Func.getDate(answer.showDate).getMinutes())}`}</div>
+            <div class="relative top-[-0.4375rem] inline-block text-[0.8125rem] font-medium leading-[1.375rem] text-[#b0b7cd]">{`${front.Services.functions.timeStampToDate(answer.showDate, ".")} ${Func.addNull(Func.getDate(answer.showDate).getHours())}:${Func.addNull(Func.getDate(answer.showDate).getMinutes())}`}</div>
           </div>
         </a>
-        <div class="user-comment__body-big">
+        <div class="mb-[0.125rem] w-full pt-[0.375rem]">
           {/* {} */}
           {/* <span>{answer.text}</span> */}
-          <span html={answer.text}></span>
+          <span
+            class="relative mx-auto block overflow-hidden break-words p-[0_0.5rem] text-[1rem] font-medium leading-[1.375rem] text-[--white]"
+            html={answer.text}
+          ></span>
           {answer.media.map((item) => {
             return item.type == "image" ? (
               <img
@@ -428,7 +435,7 @@ const RenderAnswer = ({ answer }) => {
             ) : null;
           })}
           <div
-            class="user-comment__answer questions-show__tell"
+            class="m-0 !ml-[0.3125rem] inline-block cursor-pointer !bg-clip-text pt-[0.625rem] text-[1rem] font-semibold [-webkit-text-fill-color:transparent] [background:linear-gradient(56.57deg,#2973ff_0,#8846d3_51.56%,#ff22ac_105.28%)]"
             onclick={(e) => {
               let elemr = Ref.answerList.childNodes;
               for (let i = 0; i < elemr.length; i++) {
@@ -480,8 +487,9 @@ const RenderAnswer = ({ answer }) => {
           </button>
         </div>
         {answer.statistics.comments > 0 ? (
-          <div class="answer__comments">
+          <div class="[transform: translate(0, 0)] relative ml-[0.3125rem] mt-[1rem] pb-[0.625rem]">
             <button
+              class="relative block min-h-[2rem] w-max cursor-pointer overflow-hidden rounded-[0.1875rem] border-none bg-transparent pl-[0.625rem] pr-[0.625rem] pt-0 text-center text-[0.875rem] font-semibold text-[--white] no-underline"
               onclick={(e) => {
                 let el = e.currentTarget;
                 let elemComments =
@@ -495,7 +503,10 @@ const RenderAnswer = ({ answer }) => {
                   elemComments.style = "display: none";
                 }
               }}
-            >{`${Static.showComments} (${answer.statistics.comments})`}</button>
+            >
+              {`${Static.showComments} (${answer.statistics.comments})`}{" "}
+              <div class="absolute top-0 z-[-1] inline-block h-[3.4375rem] w-[27.5rem] bg-[#3bade3] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_10%,#9844b7_70%,#ff357f_90%)] [transform:translateX(-20.625rem)]   [transition:transform_400ms_ease-in]"></div>
+            </button>
           </div>
         ) : null}
         <div class="user-comment__statistic comment-statistic">
