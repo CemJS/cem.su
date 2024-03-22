@@ -12,7 +12,7 @@ front.func.test = () => {
 
 front.loader = async () => {
     Static.records = []
-    let url = front.Services.functions.makeUrlEvent("CoinsCourses", {})
+    let url = front.Services.functions.makeUrlEvent("/api/coins-courses", {})
 
     let listener = [
         {

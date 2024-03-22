@@ -1,6 +1,8 @@
 import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all"
 
 export default function () {
+    console.log("Static.records", Static.records);
+    
     return (
         <table class="exchange-rates__table table">
             <thead class="exchange-rates__table__head">

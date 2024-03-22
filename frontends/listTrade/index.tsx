@@ -16,7 +16,7 @@ front.loader = async () => {
   Static.tradeFilter = {
     cat: "CEX",
   }
-  let url = front.Services.functions.makeUrlEvent("Trades", { category: Static.tradeFilter.cat });
+  let url = front.Services.functions.makeUrlEvent("exchangers", { category: Static.tradeFilter.cat });
 
   let listener = [
     {
