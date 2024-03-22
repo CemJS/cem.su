@@ -5,11 +5,11 @@ export default function ({ item, index }) {
     return (
         <div class="flex justify-center items-center @700:hidden">
             <div class="mb-[.9375rem] w-full max-w-[31.25rem] rounded-[--borderR] bg-[#3b3d49] p-[.625rem]">
-                <div class="flex items-center justify-between p-[0_10px_15px_10px]">
+                <div class="flex items-center justify-center p-[0_10px_15px_10px]">
                     <img class="relative top-[-.125rem] mr-[1.875rem] pt-[10px] my-[.3125rem] mx-0 max-h-[3.75rem]"
                         src={`/assets/upload/worldPress/${item?.mediaName}`}>
                     </img>
-                    {/* <div class="body-card__container_font-size pt-10">{item.name}</div> */}
+                    <div class="body-card__container_font-size pt-10">{item.name}</div>
                     <div class="pt-[.625rem] text-[1.125rem] text-center">{item?.score}</div>
                     <div class="hidden @410:block p-[0_0_5px_0]">
                         <img
