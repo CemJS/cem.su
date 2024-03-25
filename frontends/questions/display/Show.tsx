@@ -780,7 +780,6 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       `/api/answers/${answer.id}/comments/${comment.id}/comment`,
                       data,
                     );
-                    console.log("=86680c=", data);
                   }}
                 >
                   <img src={sendMessage} />
