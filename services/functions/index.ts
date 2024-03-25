@@ -64,8 +64,7 @@ export const loader = async function (Variable: any, Fn: any) {
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
     if (json) {
-      // console.log("json", json);
-        let inx = indexDB({json});
+      let inx = indexDB({ json });
     } else {
       return;
     }

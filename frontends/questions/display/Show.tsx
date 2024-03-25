@@ -648,11 +648,15 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                 </div>
               </a>
               <div class="mb-[0.125rem] w-full pt-[0.875rem]">
-                <span html={comment.text}></span>
+                <span
+                  class="relative mx-auto block overflow-hidden break-words p-[0_0.5rem] text-[0.75rem] font-medium leading-[1.375rem] text-[--white]"
+                  html={comment.text}
+                ></span>
               </div>
-              <div class="user-comment__statistic comment-statistic">
-                <div class="comment-statistic__rating">
+              <div class="static flex items-center justify-end gap-[0.3125rem] pb-[0.375rem] @410:absolute @410:right-[0.9375rem] @410:top-[0.9375rem]">
+                <div class="flex w-16 items-center justify-between">
                   <img
+                    class="h-5 w-5 cursor-pointer rounded-[50%]"
                     src={dislike}
                     onclick={() => {
                       let data = {
@@ -674,8 +678,11 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       );
                     }}
                   />
-                  <span>{comment.statistics.rating}</span>
+                  <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
+                    {comment.statistics.rating}
+                  </span>
                   <img
+                    class="h-5 w-5 cursor-pointer rounded-[50%]"
                     src={like}
                     onclick={() => {
                       let data = {
@@ -699,7 +706,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   />
                 </div>
                 <span
-                  class="user-comment__answer"
+                  class="m-0 !ml-[0.3125rem] inline-block cursor-pointer !bg-clip-text text-[0.75rem] font-semibold [-webkit-text-fill-color:transparent] [background:linear-gradient(56.57deg,#2973ff_0,#8846d3_51.56%,#ff22ac_105.28%)]"
                   onclick={(e) => {
                     Ref[`inputComment${commentIndex}`].classList.toggle(
                       "!flex",
@@ -709,7 +716,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   Ответить
                 </span>
                 <div
-                  class="user-comment__settings"
+                  class="ml-[0.625rem] flex h-[1.375rem] w-[1.875rem] cursor-pointer items-center"
                   onclick={() => {
                     // Fn.initOne({
                     //   name: "modalTool",
@@ -832,11 +839,15 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       </div>
                     </a>
                     <div class="mb-[0.125rem] w-full pt-[0.875rem]">
-                      <span html={comm.text}></span>
+                      <span
+                        class="relative mx-auto block overflow-hidden break-words p-[0_0.5rem] text-[0.75rem] font-medium leading-[1.375rem] text-[--white]"
+                        html={comm.text}
+                      ></span>
                     </div>
-                    <div class="user-comment__statistic comment-statistic">
-                      <div class="comment-statistic__rating">
+                    <div class="static flex items-center justify-end gap-[0.3125rem] pb-[0.375rem] @410:absolute @410:right-[0.9375rem] @410:top-[0.9375rem]">
+                      <div class="flex w-16 items-center justify-between">
                         <img
+                          class="h-5 w-5 cursor-pointer rounded-[50%]"
                           src={dislike}
                           onclick={() => {
                             let data = {
@@ -849,8 +860,11 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                             console.log("=d7a607=", data);
                           }}
                         />
-                        <span>{comm.statistics?.rating}</span>
+                        <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
+                          {comm.statistics?.rating}
+                        </span>
                         <img
+                          class="h-5 w-5 cursor-pointer rounded-[50%]"
                           src={like}
                           onclick={() => {
                             let data = {
@@ -874,7 +888,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                         />
                       </div>
                       <span
-                        class="user-comment__answer"
+                        class="m-0 !ml-[0.3125rem] inline-block cursor-pointer !bg-clip-text text-[0.75rem] font-semibold [-webkit-text-fill-color:transparent] [background:linear-gradient(56.57deg,#2973ff_0,#8846d3_51.56%,#ff22ac_105.28%)]"
                         onclick={(e) => {
                           Ref[
                             `inputCommentComm${commentIndex}${commIndex}`
@@ -887,7 +901,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                         Ответить
                       </span>
                       <div
-                        class="user-comment__settings"
+                        class="ml-[0.625rem] flex h-[1.375rem] w-[1.875rem] cursor-pointer items-center"
                         onclick={() => {
                           // Fn.initOne({
                           //   name: "modalTool",
@@ -914,11 +928,12 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                     </div>
                     <div
                       ref={`inputCommentComm${commentIndex}${commIndex}`}
-                      class="user-comment__comment user-comment__form"
+                      class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
                     >
-                      <div class="user-comment__comment_field">
+                      <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
                         <textarea
                           rows="1"
+                          class="relative flex min-h-[2.5625rem] w-full resize-none rounded-[0.625rem] bg-[#313543] p-[0.625rem_1.5625rem] text-[1rem] font-medium text-[--white] outline-none [border:0.0625rem_solid_#44495c]"
                           data-max-height="200"
                           data-scroll-last="48"
                           value={Static.textComCom}
@@ -928,7 +943,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                         ></textarea>
                       </div>
                       <button
-                        class="user-comment__comment_button"
+                        class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
                         onclick={() => {
                           let data = {
                             quote: comm.id,

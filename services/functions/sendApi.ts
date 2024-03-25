@@ -7,7 +7,7 @@ export const sendApi = async function (
   auth = false,
 ) {
   try {
-    Fn.log("=be8e57=", front);
+    Fn.log("=be8e57=", front.Variable);
 
     if (auth) {
       front;

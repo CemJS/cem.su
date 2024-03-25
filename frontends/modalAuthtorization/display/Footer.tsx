@@ -4,10 +4,10 @@ import success from "@svg/icons/success.svg";
 export default function () {
   return (
     <footer class="modal-footer">
-      <div class="g-colEqual-2 w100 modal-footer_auth mt-[15px]">
+      <div class="g-colEqual-2 modal-footer_auth mt-[15px] w-full">
         <button
-          // class="btn w100"
-          class={["btn", "w100", Static.form.isValid ? null : "btn_passive"]}
+          // class="btn w-full"
+          class={["btn", "w-full", Static.form.isValid ? null : "btn_passive"]}
           onclick={async () => {
             if (!Static.form.isValid) return;
 
@@ -59,13 +59,13 @@ export default function () {
           Вход
         </button>
         <div
-          class="btn_border-wrap w100"
+          class="btn_border-wrap w-full"
           onclick={() => {
             Func.close();
             Fn.initOne("modalRegistration", {});
           }}
         >
-          <button class="btn_border w100 h100">РЕГИСТРАЦИЯ</button>
+          <button class="btn_border h100 w-full">РЕГИСТРАЦИЯ</button>
         </div>
       </div>
     </footer>

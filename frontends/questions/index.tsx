@@ -131,6 +131,7 @@ front.func.bestAnswer = async (id: string) => {
 };
 
 front.loader = async () => {
+  console.log("=1ca13d=", 123, "loader", front.Variable);
   Static.open = "Ответить";
 
   Static.search = "";

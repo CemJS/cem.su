@@ -7,7 +7,7 @@ export default function () {
     <footer class="modal-footer">
       <div class="g-colEqual-2 mt-[15px]">
         <button
-          class={["btn", "w100"]}
+          class={["btn", "w-full"]}
           onclick={() => {
             Static.callback(Static.filterCoins);
             Func.close();
@@ -15,7 +15,7 @@ export default function () {
         >
           Применить
         </button>
-        <div class="btn_border-wrap w100">
+        <div class="btn_border-wrap w-full">
           <button
             class="btn_border h100"
             onclick={() => {

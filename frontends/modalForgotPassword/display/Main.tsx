@@ -348,7 +348,7 @@ export default function () {
   return (
     <main class="modal_main">
       <RenderSteps steps={Static.steps} current={Static.currentStep} />
-      <div class="w100 overflow-hidden">
+      <div class="w-full overflow-hidden">
         <div class="modal-recover__line mt-[25px]">
           <Step1 />
           <Step2 />

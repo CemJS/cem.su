@@ -2,7 +2,7 @@ import { Cemjsx, Static, front, Func, Ref, Fn } from "cemjs-all";
 
 export default function () {
   return (
-    <main class="modal_main p-relative mt-40">
+    <main class="modal_main p-relative mt-[40px]">
       <span class="form-error p-absolute">
         {Static.form.error ? Static.form.error : null}
       </span>
