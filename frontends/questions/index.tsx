@@ -17,14 +17,6 @@ front.func.playAndPause = (video: any) => {
   return;
 };
 
-front.func.timeUpdate = (e: any) => {
-  let { currentTime, duration } = e.target;
-  let percent = (currentTime / duration) * 100;
-  Static.currentTime = currentTime;
-  Ref.progressBar.style.width = `${percent}%`;
-  return;
-};
-
 front.func.formatTime = (time: any) => {
   let seconds = Math.floor(time % 60),
     minutes = Math.floor(time / 60) % 60,
@@ -93,12 +85,8 @@ front.func.deleteQuestion = async () => {
 };
 
 front.func.closeQuestion = async () => {
-  let data: object = {
-    action: "close",
-    id: Static.record.id,
-  };
   Static.record.closed = true;
-  let res = await front.Services.functions.sendApi("/api/questions", data);
+  Func.sendAuth(`/api/questions/${Static.record.id}/close`, {});
 };
 
 front.func.share = () => {
@@ -122,16 +110,37 @@ front.func.deleteAnswer = async (id: string) => {
 };
 
 front.func.bestAnswer = async (id: string) => {
-  let data: object = {
-    action: "bestAnswer",
-    questionId: Static.record.id,
-    answerId: id,
-  };
-  let res = await front.Services.functions.sendApi("/api/questions", data);
+  Static.record.closed = true;
+  let res = await front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/answers/${id}/close`,
+    {},
+  );
+};
+
+front.func.reportQuestion = async () => {
+  front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/complain`,
+    {},
+  );
+};
+
+front.func.sendAuth = async (url: string, data: object, method = "POST") => {
+  if (front.Variable.Auth) {
+    return await front.Services.functions.sendApi(url, data, method);
+  } else {
+    Fn.initOne("modalAuthtorization", {});
+  }
+};
+
+front.func.hideInputs = () => {
+  let inputs = document.querySelectorAll("#form");
+  let arr = [...inputs];
+  for (let elem of arr) {
+    elem.classList.remove("!flex");
+  }
 };
 
 front.loader = async () => {
-  console.log("=1ca13d=", 123, "loader", front.Variable);
   Static.open = "Ответить";
 
   Static.search = "";
@@ -273,8 +282,12 @@ front.loader = async () => {
         let answerIndex = Static.record.answers.findIndex(
           (item) => item.id == json.answerId,
         );
-
-        console.log("=404632=", Static.record.answers[answerIndex].comments);
+        Static.record.answers[answerIndex].statistics.comments++;
+        if (!Array.isArray(Static.record.answers[answerIndex].comments)) {
+          Static.record.answers[answerIndex].comments = [];
+        }
+        console.log("=8ff2c7=", 1);
+        console.log("=52f6ca=", Static.record.answers[answerIndex]);
         Static.record.answers[answerIndex].comments.unshift(json.comment);
       },
     },
@@ -285,7 +298,7 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        console.log("=f51763=", json);
+        console.log("=8e724a=", json);
         let answerIndex = Static.record.answers.findIndex(
           (item) => item.id == json.answerId,
         );
@@ -294,6 +307,14 @@ front.loader = async () => {
           answerIndex
         ].comments.findIndex((item) => item.id == json.commentId);
 
+        if (
+          !Array.isArray(
+            Static.record.answers[answerIndex].comments[commentIndex].comments,
+          )
+        ) {
+          Static.record.answers[answerIndex].comments[commentIndex].comments =
+            [];
+        }
         Static.record.answers[answerIndex].comments[
           commentIndex
         ].comments.unshift(json.comment);
