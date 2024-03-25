@@ -23,7 +23,7 @@ front.func.close = function () {
 
 front.loader = async () => {
   if (front.Variable.myInfo) {
-    Static.records = await front.Services.functions.IndexDBgetByOne({
+    Static.records = await front.Services.functions.IndexDBGetByOne({
       base: "linguaData",
       key: "countries",
     });

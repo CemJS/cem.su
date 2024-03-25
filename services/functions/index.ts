@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { editText, searchLink } from "./editText";
 import moment from "moment";
 import { sendApi } from "./sendApi";
-import { indexDB, IndexDBgetByOne } from "./indexDB";
+import { indexDB, IndexDBGetByOne } from "./indexDB";
 import "moment/min/locales";
 
 export * from "./validForms";
@@ -106,4 +106,4 @@ export const loader = async function (Variable: any, Fn: any) {
   return;
 };
 
-export { uuidv4, editText, searchLink, indexDB, IndexDBgetByOne };
+export { uuidv4, editText, searchLink, indexDB, IndexDBGetByOne };

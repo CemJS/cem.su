@@ -1,5 +1,5 @@
 import { Fn, Static, front } from "cemjs-all";
-import { indexDB, IndexDBgetByOne } from "./indexDB";
+import { indexDB, IndexDBGetByOne } from "./indexDB";
 
 export const sendApi = async function (
   url: string,
@@ -10,7 +10,7 @@ export const sendApi = async function (
   try {
     Fn.initOne("modalAuthtorization", {});
     console.log("=1c5dda=", 1);
-    Static.authState = await IndexDBgetByOne({
+    Static.authState = await IndexDBGetByOne({
       base: "auth",
       key: "authorized",
     });
@@ -36,4 +36,4 @@ export const sendApi = async function (
   }
 };
 
-export { indexDB, IndexDBgetByOne };
+export { indexDB, IndexDBGetByOne };

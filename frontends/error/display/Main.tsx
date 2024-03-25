@@ -746,7 +746,7 @@ export default function () {
         class="btn"
         onclick={async () => {
           if (front.Variable.myInfo) {
-            const get = await front.Services.functions.IndexDBgetByOne({
+            const get = await front.Services.functions.IndexDBGetByOne({
               base: "linguaData",
               key: "countries",
             });

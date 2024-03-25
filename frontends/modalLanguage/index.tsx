@@ -24,7 +24,7 @@ front.func.close = function () {
 front.loader = async () => {
   if (front.Variable.myInfo) {
     if (!Static.full) {
-      Static.languages = await front.Services.functions.IndexDBgetByOne({
+      Static.languages = await front.Services.functions.IndexDBGetByOne({
         base: "linguaData",
         key: "languages",
       });

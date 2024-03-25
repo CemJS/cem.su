@@ -112,7 +112,7 @@ interface Object {
   base: string;
   key: string;
 }
-const IndexDBgetByOne = async function (item: Object) {
+const IndexDBGetByOne = async function (item: Object) {
   return new Promise(async (resolve, reject) => {
     let transaction = db.transaction([item?.base], "readonly");
     let store = transaction.objectStore(item?.base);
@@ -124,4 +124,4 @@ const IndexDBgetByOne = async function (item: Object) {
     };
   });
 };
-export { indexDB, IndexDBgetByOne };
+export { indexDB, IndexDBGetByOne };
