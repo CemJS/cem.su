@@ -31,13 +31,16 @@ async function indexDB({ json }) {
   //   }
 
   /**************************************************************************** */
-  db = await openDB("CryptoEmergency", 2, {
+  db = await openDB("CryptoEmergency", 3, {
     upgrade(db) {
       if (!db.objectStoreNames.contains("dateUpdate")) {
         db.createObjectStore("dateUpdate");
       }
       if (!db.objectStoreNames.contains("linguaData")) {
         db.createObjectStore("linguaData");
+      }
+      if (!db.objectStoreNames.contains("auth")) {
+        db.createObjectStore("auth");
       }
     },
   });
@@ -54,8 +57,19 @@ async function indexDB({ json }) {
   if (!reqLang || reqLang < json?.versions?.languagesLastUpdateDate) {
     store.put(json?.versions?.languagesLastUpdateDate, "lang");
   }
-  if (!reqTranslations || reqTranslations < json?.versions?.translationsLastUpdateDate) {
+  if (
+    !reqTranslations ||
+    reqTranslations < json?.versions?.translationsLastUpdateDate
+  ) {
     store.put(json?.versions?.translationsLastUpdateDate, "translations");
+  }
+
+  transaction = db.transaction(["auth"], "readwrite");
+  store = transaction.objectStore("auth");
+  let reqAuthorized = await store.get("authorized");
+
+  if (!reqAuthorized || reqAuthorized !== json?.auth) {
+    store.put(json?.auth, "authorized");
   }
 
   transaction = db.transaction(["linguaData"], "readwrite");
@@ -79,10 +93,13 @@ async function indexDB({ json }) {
     let data = await response?.result;
     transaction = db.transaction(["linguaData"], "readwrite");
     store = transaction.objectStore("linguaData");
-    store.put([data], "languages"); 
+    store.put([data], "languages");
   }
 
-  if (!translationsData || reqTranslations < json?.versions?.translationsLastUpdateDate) {
+  if (
+    !translationsData ||
+    reqTranslations < json?.versions?.translationsLastUpdateDate
+  ) {
     let response = await sendApi("/api/translations", {});
     let data = await response?.result;
     transaction = db.transaction(["linguaData"], "readwrite");
