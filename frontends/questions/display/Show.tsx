@@ -644,7 +644,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   <div class="text-[0.625rem] leading-[1.25rem] text-[--white] [font-weight:600]">
                     {comment.author.nickname}
                   </div>
-                  <div class="user-comment__avatar_time">{`${front.Services.functions.timeStampToDate(comment.showDate, ".")} ${Func.addNull(Func.getDate(comment.showDate).getHours())}:${Func.addNull(Func.getDate(comment.showDate).getMinutes())}`}</div>
+                  <div class="relative top-[-0.4375rem] inline-block leading-[1.375rem] text-[#b0b7cd] [font-size:0.8125rem] [font-weight:500]">{`${front.Services.functions.timeStampToDate(comment.showDate, ".")} ${Func.addNull(Func.getDate(comment.showDate).getHours())}:${Func.addNull(Func.getDate(comment.showDate).getMinutes())}`}</div>
                 </div>
               </a>
               <div class="mb-[0.125rem] w-full pt-[0.875rem]">
@@ -823,7 +823,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                         <div class="text-[0.625rem] leading-[1.25rem] text-[--white] [font-weight:600]">
                           {comm.author.nickname}
                         </div>
-                        <div class="user-comment__avatar_time">
+                        <div class="relative top-[-0.4375rem] inline-block leading-[1.375rem] text-[#b0b7cd] [font-size:0.8125rem] [font-weight:500]">
                           {front.Services.functions.timeStampToDate(
                             comm.showDate,
                             ".",
