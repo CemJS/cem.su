@@ -4,95 +4,15 @@ import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import Filters from "./Filters/Filters";
 import defaultGray from "@svg/lenta/defaultGray.svg";
+import { UsersObject } from "../interface";
 
 export default function () {
-  interface UsersObject {
-    avatar: {
-      active: boolean;
-      dateCreate: number;
-      name: string;
-      type: string;
-    };
-    awards: [
-      {
-        action: string;
-        active: boolean;
-        dateCreate: string;
-        description: string;
-        icon: string;
-        id: string;
-        name: string;
-        type: string;
-      },
-    ];
-    country: {
-      active: boolean;
-      code: string;
-      dateCreate: number;
-      dateUpdate: number;
-      engName: string;
-      euro: boolean;
-      id: string;
-      origName: string;
-      phone: number;
-    };
-    frame: {
-      active: boolean;
-      dateCreate: string;
-      name: string;
-    };
-    fullname: string;
-    id: string;
-    information: {
-      speciality: string;
-    };
-    mainLanguage: {
-      code: string;
-      id: string;
-    };
-    nickname: string;
-    rank: {
-      expert: boolean;
-    };
-    showDate: string;
-    statistic: {
-      answer: number;
-      bestAnswer: number;
-      comment: number;
-      complaint: number;
-      complaintDo: number;
-      evaluationMinus: number;
-      evaluationPlus: number;
-      exp: number;
-      expNext: number;
-      expTotal: number;
-      follower: number;
-      level: number;
-      post: number;
-      question: number;
-      rating: number;
-      referral: number;
-      referralPay: number;
-      referralReg: number;
-      subscribe: number;
-      timeOnline: number;
-      view: number;
-    };
-    status: {
-      active: boolean;
-      manualOutput: boolean;
-      role: boolean;
-      team: boolean;
-    };
-  }
   return (
     <div class="wrapper ml-auto mr-auto w-[calc(100%_-_60px)] pb-[6.25rem] pt-[3.125rem] @1200:ml-auto @1200:mr-auto @1240:w-full">
       <h1 class="text-balance text-center">Пользователи</h1>
       <Filters />
       <div class="users-list gap relative grid min-h-[12.5rem] grid-cols-[100%] [grid-gap:.75rem] @950:grid-cols-[calc(50%_-_8px)_calc(50%_-_8px)] @1200:grid-cols-[calc(33.3%_-_8px)_calc(33.3%_-_8px)_calc(33.3%_-_8px)]">
         {Static.records?.map((item: UsersObject, index: number) => {
-          Fn.log("Static.records", Static.records);
-
           return (
             <div
               class="users-item relative rounded-[.6875rem] border-transparent bg-[--prestige-blue] p-0 [box-shadow:_0px_5px_44px_0px_rgba(29,_33,_45,_0.8)] @1200:p-[1.875rem]"

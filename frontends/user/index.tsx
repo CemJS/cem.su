@@ -24,7 +24,7 @@ front.loader = async () => {
 
   // Fn.log('=be3efb=', 5555)
   if (front.Variable.DataUrl[0] && front.Variable.DataUrl[0] == "user") {
-    let url = front.Services.functions.makeUrlEvent("Users/profile", { action: "get", nickname: front.Variable.DataUrl[1] });
+    let url = front.Services.functions.makeUrlEvent(`users/${front.Variable?.DataUrl[1]}/profile`, {});
     // Fn.log('=2b8a89=',url)
     let listener = [
       {

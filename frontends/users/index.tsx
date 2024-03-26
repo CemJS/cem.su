@@ -1,32 +1,6 @@
 import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all"
 import Navigation from "./navigation"
 
-// Static.search = "";
-//   Static.checkBox = {
-//     basic: true,
-//     expert: true,
-//     creator: true
-//   }
-
-  // front.func.updateFilter = async () => {
-  //   const areAllFalse = Object.values(Static.checkBox).every(value => value === false);
-
-  //   Static.makeFilter = {
-  //     search: Static.search,
-  //     lang: Static.lang?.code,
-  //     country: Static.country?.code
-  //   };
-
-  //   if (!areAllFalse) {
-  //     Static.makeFilter.role = Static.checkBox;
-  //   }
-
-  //   Static.makeFilter.action = "get";
-  //   let res = await front.Services.functions.sendApi("/api/events/Users", Static.makeFilter);
-  //   return;
-  // };
-
-
 front.listener.finish = () => {
   return
 }
@@ -43,7 +17,6 @@ front.loader = async () => {
     expert: true,
     creator: true
   }
-  // Static.lang.code ="ru"
 
   front.func.showMore = async (className: string, $el: any) => {
 
