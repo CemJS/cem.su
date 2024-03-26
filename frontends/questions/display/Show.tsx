@@ -321,7 +321,7 @@ const RenderAddAnswer = () => {
               questionId: Static.record.id,
             };
             Static.text = "";
-            front.Services.functions.sendApi("/api/answers/create", data);
+            Func.sendAuth("/api/answers/create", data);
           }}
         >
           Отправить
@@ -437,27 +437,22 @@ const RenderAnswer = ({ answer, answerIndex }) => {
           <div
             class="m-0 !ml-[0.3125rem] inline-block cursor-pointer !bg-clip-text pt-[0.625rem] text-[1rem] font-semibold [-webkit-text-fill-color:transparent] [background:linear-gradient(56.57deg,#2973ff_0,#8846d3_51.56%,#ff22ac_105.28%)]"
             onclick={(e) => {
-              // let elemr = Ref.answerList.childNodes;
-              // for (let i = 0; i < elemr.length; i++) {
-              //   for (let y = 0; y < elemr[i].childNodes.length; y++) {
-              //     if (
-              //       elemr[i].childNodes[y].firstChild?.nextSibling?.nextSibling
-              //     ) {
-              //       elemr[i].childNodes[
-              //         y
-              //       ].firstChild.nextSibling.nextSibling.style =
-              //         "display: none";
-              //     }
-              //   }
-              // }
-              Ref[`inputAns${answerIndex}`].classList.toggle("!flex");
-              Ref[`inputAns${answerIndex}`].focus();
+              let isShow =
+                Ref[`inputAns${answerIndex}`].classList.contains("!flex");
+              Func.hideInputs();
+              if (!isShow) {
+                Ref[`inputAns${answerIndex}`].classList.add("!flex");
+                Ref[`inputAns${answerIndex}`].focus();
+              } else {
+                Ref[`inputAns${answerIndex}`].classList.remove("!flex");
+              }
             }}
           >
             Ответить
           </div>
         </div>
         <div
+          id="form"
           ref={`inputAns${answerIndex}`}
           class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
         >
@@ -467,9 +462,9 @@ const RenderAnswer = ({ answer, answerIndex }) => {
               rows="1"
               data-max-height="200"
               data-scroll-last="48"
-              value={Static.textAns}
+              value={Static[`${answerIndex}`]}
               oninput={(e) => {
-                Static.textAns = e.target.value;
+                Static[`${answerIndex}`] = e.target.value;
               }}
             ></textarea>
           </div>
@@ -477,14 +472,12 @@ const RenderAnswer = ({ answer, answerIndex }) => {
             class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
             onclick={() => {
               let data = {
-                text: Static.textAns,
+                text: Static[`${answerIndex}`],
                 answerId: answer.id,
               };
-              Static.textAns = "";
-              front.Services.functions.sendApi(
-                `/api/answers/${answer.id}/comment`,
-                data,
-              );
+              Static[`${answerIndex}`] = "";
+              Ref[`inputAns${answerIndex}`].classList.toggle("!flex");
+              Func.sendAuth(`/api/answers/${answer.id}/comment`, data);
             }}
           >
             <img src={sendMessage} />
@@ -518,24 +511,14 @@ const RenderAnswer = ({ answer, answerIndex }) => {
             <img
               class="h-5 w-5 cursor-pointer rounded-[50%]"
               src={dislike}
-              onclick={() => {
-                let data = {
-                  action: "update",
-                  author: "63c7f6063be93e984c962b75",
-                  rating: -1,
-                  type: "minus",
-                  answerId: answer.id,
-                };
-                fetch(
-                  `/api/events/Answers?uuid=${front.Variable.myInfo.uuid}`,
-                  {
-                    method: "POST",
-                    headers: {
-                      "content-type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                  },
+              onclick={async () => {
+                let { error } = await Func.sendAuth(
+                  `/api/answers/${answer.id}/dislike`,
+                  {},
                 );
+                if (!error) {
+                  answer.statistics.rating--;
+                }
               }}
             />
             <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
@@ -544,24 +527,14 @@ const RenderAnswer = ({ answer, answerIndex }) => {
             <img
               class="h-5 w-5 cursor-pointer rounded-[50%]"
               src={like}
-              onclick={() => {
-                let data = {
-                  action: "update",
-                  author: "63c7f6063be93e984c962b75",
-                  rating: 1,
-                  type: "plus",
-                  answerId: answer.id,
-                };
-                fetch(
-                  `/api/events/Answers?uuid=${front.Variable.myInfo.uuid}`,
-                  {
-                    method: "POST",
-                    headers: {
-                      "content-type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                  },
+              onclick={async () => {
+                let { error } = await Func.sendAuth(
+                  `/api/answers/${answer.id}/like`,
+                  {},
                 );
+                if (!error) {
+                  answer.statistics.rating++;
+                }
               }}
             />
           </div>
@@ -596,7 +569,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
         </div>
       </div>
       <div
-        class="bg-[#242835] [border-radius:0_0_0.9375rem_0.9375rem]"
+        class="bg-[#242835] pb-[0.4rem] [border-radius:0_0_0.9375rem_0.9375rem]"
         style="display: none"
       >
         {answer.comments?.map((comment, commentIndex) => {
@@ -658,24 +631,16 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   <img
                     class="h-5 w-5 cursor-pointer rounded-[50%]"
                     src={dislike}
-                    onclick={() => {
-                      let data = {
-                        action: "update",
-                        author: "63c7f6063be93e984c962b75",
-                        rating: -1,
-                        type: "minus",
-                        id: comment.id,
-                      };
-                      fetch(
-                        `/api/events/Comments?uuid=${front.Variable.myInfo.uuid}`,
-                        {
-                          method: "POST",
-                          headers: {
-                            "content-type": "application/json",
-                          },
-                          body: JSON.stringify(data),
-                        },
+                    onclick={async () => {
+                      let { error } = await Func.sendAuth(
+                        `/api/comments/${comment.id}/dislike`,
+                        {},
                       );
+                      console.log("=6fec2d=", error);
+
+                      if (!error) {
+                        comment.statistics.rating--;
+                      }
                     }}
                   />
                   <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
@@ -684,33 +649,36 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   <img
                     class="h-5 w-5 cursor-pointer rounded-[50%]"
                     src={like}
-                    onclick={() => {
-                      let data = {
-                        action: "update",
-                        author: "63c7f6063be93e984c962b75",
-                        rating: 1,
-                        type: "plus",
-                        id: comment.id,
-                      };
-                      fetch(
-                        `/api/events/Comments?uuid=${front.Variable.myInfo.uuid}`,
-                        {
-                          method: "POST",
-                          headers: {
-                            "content-type": "application/json",
-                          },
-                          body: JSON.stringify(data),
-                        },
+                    onclick={async () => {
+                      let { error } = await Func.sendAuth(
+                        `/api/comments/${comment.id}/like`,
+                        {},
                       );
+                      console.log("=6fec2d=", error);
+                      if (!error) {
+                        comment.statistics.rating++;
+                      }
                     }}
                   />
                 </div>
                 <span
                   class="m-0 !ml-[0.3125rem] inline-block cursor-pointer !bg-clip-text text-[0.75rem] font-semibold [-webkit-text-fill-color:transparent] [background:linear-gradient(56.57deg,#2973ff_0,#8846d3_51.56%,#ff22ac_105.28%)]"
                   onclick={(e) => {
-                    Ref[`inputComment${commentIndex}`].classList.toggle(
-                      "!flex",
-                    );
+                    let isShow =
+                      Ref[
+                        `inputComment${answerIndex}${commentIndex}`
+                      ].classList.contains("!flex");
+                    Func.hideInputs();
+                    if (!isShow) {
+                      Ref[
+                        `inputComment${answerIndex}${commentIndex}`
+                      ].classList.add("!flex");
+                      Ref[`inputComment${answerIndex}${commentIndex}`].focus();
+                    } else {
+                      Ref[
+                        `inputComment${answerIndex}${commentIndex}`
+                      ].classList.remove("!flex");
+                    }
                   }}
                 >
                   Ответить
@@ -754,7 +722,8 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                 </div>
               </div>
               <div
-                ref={`inputComment${commentIndex}`}
+                id="form"
+                ref={`inputComment${answerIndex}${commentIndex}`}
                 class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
               >
                 <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
@@ -763,9 +732,10 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                     rows="1"
                     data-max-height="200"
                     data-scroll-last="48"
-                    value={Static.textCom}
+                    value={Static[`inputComment${answerIndex}${commentIndex}`]}
                     oninput={(e) => {
-                      Static.textCom = e.target.value;
+                      Static[`inputComment${answerIndex}${commentIndex}`] =
+                        e.target.value;
                     }}
                   ></textarea>
                 </div>
@@ -773,10 +743,13 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
                   onclick={() => {
                     let data = {
-                      text: Static.textCom,
+                      text: Static[`inputComment${answerIndex}${commentIndex}`],
                     };
-                    Static.textCom = "";
-                    front.Services.functions.sendApi(
+                    Static[`inputComment${answerIndex}${commentIndex}`] = "";
+                    Ref[
+                      `inputComment${answerIndex}${commentIndex}`
+                    ].classList.toggle("!flex");
+                    Func.sendAuth(
                       `/api/answers/${answer.id}/comments/${comment.id}/comment`,
                       data,
                     );
@@ -848,15 +821,14 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                         <img
                           class="h-5 w-5 cursor-pointer rounded-[50%]"
                           src={dislike}
-                          onclick={() => {
-                            let data = {
-                              action: "update",
-                              author: "63c7f6063be93e984c962b75",
-                              rating: -1,
-                              type: "minus",
-                              id: comm.id,
-                            };
-                            console.log("=d7a607=", data);
+                          onclick={async () => {
+                            let { error } = await Func.sendAuth(
+                              `/api/comments/${comm.id}/dislike`,
+                              {},
+                            );
+                            if (!error) {
+                              comm.statistics.rating--;
+                            }
                           }}
                         />
                         <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
@@ -865,36 +837,37 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                         <img
                           class="h-5 w-5 cursor-pointer rounded-[50%]"
                           src={like}
-                          onclick={() => {
-                            let data = {
-                              action: "update",
-                              author: "63c7f6063be93e984c962b75",
-                              rating: 1,
-                              type: "plus",
-                              id: comm.id,
-                            };
-                            fetch(
-                              `/api/events/Comments?uuid=${front.Variable.myInfo.uuid}`,
-                              {
-                                method: "POST",
-                                headers: {
-                                  "content-type": "application/json",
-                                },
-                                body: JSON.stringify(data),
-                              },
+                          onclick={async () => {
+                            let { error } = await Func.sendAuth(
+                              `/api/comments/${comm.id}/like`,
+                              {},
                             );
+                            if (!error) {
+                              comm.statistics.rating++;
+                            }
                           }}
                         />
                       </div>
                       <span
                         class="m-0 !ml-[0.3125rem] inline-block cursor-pointer !bg-clip-text text-[0.75rem] font-semibold [-webkit-text-fill-color:transparent] [background:linear-gradient(56.57deg,#2973ff_0,#8846d3_51.56%,#ff22ac_105.28%)]"
                         onclick={(e) => {
-                          Ref[
-                            `inputCommentComm${commentIndex}${commIndex}`
-                          ].classList.toggle("!flex");
-                          Ref[
-                            `inputCommentComm${commentIndex}${commIndex}`
-                          ].focus();
+                          let isShow =
+                            Ref[
+                              `inputCommentComm${answerIndex}${commentIndex}${commIndex}`
+                            ].classList.contains("!flex");
+                          Func.hideInputs();
+                          if (!isShow) {
+                            Ref[
+                              `inputCommentComm${answerIndex}${commentIndex}${commIndex}`
+                            ].classList.add("!flex");
+                            Ref[
+                              `inputCommentComm${answerIndex}${commentIndex}${commIndex}`
+                            ].focus();
+                          } else {
+                            Ref[
+                              `inputCommentComm${answerIndex}${commentIndex}${commIndex}`
+                            ].classList.remove("!flex");
+                          }
                         }}
                       >
                         Ответить
@@ -926,7 +899,8 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       </div>
                     </div>
                     <div
-                      ref={`inputCommentComm${commentIndex}${commIndex}`}
+                      id="form"
+                      ref={`inputCommentComm${answerIndex}${commentIndex}${commIndex}`}
                       class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
                     >
                       <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
@@ -935,9 +909,13 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                           class="relative flex min-h-[2.5625rem] w-full resize-none rounded-[0.625rem] bg-[#313543] p-[0.625rem_1.5625rem] text-[1rem] font-medium text-[--white] outline-none [border:0.0625rem_solid_#44495c]"
                           data-max-height="200"
                           data-scroll-last="48"
-                          value={Static.textComCom}
+                          value={
+                            Static[`${answerIndex}${commentIndex}${commIndex}`]
+                          }
                           oninput={(e) => {
-                            Static.textComCom = e.target.value;
+                            Static[
+                              `${answerIndex}${commentIndex}${commIndex}`
+                            ] = e.target.value;
                           }}
                         ></textarea>
                       </div>
@@ -946,11 +924,16 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                         onclick={() => {
                           let data = {
                             quote: comm.id,
-                            text: Static.textComCom,
+                            text: Static[
+                              `${answerIndex}${commentIndex}${commIndex}`
+                            ],
                           };
-                          console.log("=ab0e4f=", data);
-                          Static.textComCom = "";
-                          front.Services.functions.sendApi(
+                          Ref[
+                            `inputCommentComm${answerIndex}${commentIndex}${commIndex}`
+                          ].classList.toggle("!flex");
+                          Static[`${answerIndex}${commentIndex}${commIndex}`] =
+                            "";
+                          Func.sendAuth(
                             `/api/answers/${answer.id}/comments/${comment.id}/comment`,
                             data,
                           );
@@ -971,6 +954,8 @@ const RenderAnswer = ({ answer, answerIndex }) => {
 };
 
 export default function () {
+  Fn.log("=6fcbb8=", Static.record);
+
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
@@ -996,7 +981,7 @@ export default function () {
 
             {Static.record.answers?.length > 0 ? (
               <div
-                class="relative mb-5 w-full rounded-[0.9375rem] bg-[#2b3040] p-[1.5625rem_0rem] !pb-0 !pt-[0.125rem] [border:0.0625rem_solid_#353c50]"
+                class="relative mb-5 w-full rounded-[0.9375rem] p-[1.5625rem_0rem] !pb-0 !pt-[0.125rem]"
                 ref="answerList"
               >
                 {Static.record.answers?.map((answer, index) => {

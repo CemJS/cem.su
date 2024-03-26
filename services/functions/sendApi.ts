@@ -1,11 +1,7 @@
-import { Fn, Static, front } from "cemjs-all";
-import { indexDB, IndexDBGetByOne } from "./indexDB";
-
 export const sendApi = async function (
   url: string,
   data: any,
   method = "POST",
-  auth = false,
 ) {
   try {
     // Fn.initOne("modalAuthtorization", {});
@@ -35,5 +31,3 @@ export const sendApi = async function (
     return { error };
   }
 };
-
-export { indexDB, IndexDBGetByOne };
