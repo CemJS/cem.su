@@ -57,7 +57,7 @@ Static.endPartners = partners.slice(partners.length / 2);
 export default function () {
   return (
     <div class="partners">
-      <h2 class="z-[10] mx-0 my-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
+      <h2 class="z-[10] mx-0 py-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
         Информационные партнёры
       </h2>
       <div

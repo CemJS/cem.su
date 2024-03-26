@@ -23,6 +23,8 @@ front.loader = async () => {
       type: "get",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
+        console.log("json", json);
+        
         if (!json) {
           return;
         }

@@ -8,13 +8,13 @@ front.listener.finish = () => {
 
 front.func.show = function ($el: HTMLElement) {
     setTimeout(() => {
-        $el.classList.add('modal__active');
+        $el.classList.add('opacity-[1]', 'scale-[1]');
         // front.Variable.$el.body.style.overflow = 'hidden';
     }, 100);
 }
 
 front.func.close = function () {
-    Ref.modal.classList.remove('modal__active');
+    Ref.modal.classList.remove('opacity-[1]', 'scale-[1]');
     setTimeout(() => {
         Fn.clearData()
         // front.Variable.$el.body.style.overflow = 'auto';
@@ -24,7 +24,7 @@ front.func.close = function () {
 front.loader = async () => {
     // Static.filterCoins
     Static.records, Static.coins = []
-    let url = front.Services.functions.makeUrlEvent("Coins", {})
+    let url = front.Services.functions.makeUrlEvent("coins", {})
     let listener = [
         {
             type: "get",
@@ -52,7 +52,7 @@ front.loader = async () => {
 
 front.display = () => {
     return (
-        <div class="modal" ref="modal" init={Func.show}
+        <div class="fixed top-0 left-0 w-full h-full bg-[#00000080] z-[10] opacity-0 scale-[1.2] [transition:transform_0.2s_0s_ease-in-out,_opacity_0.2s_0s_ease-in-out]" ref="modal" init={Func.show}
             onclick={(e: any) => {
                 if (e.target === Ref.modalBody) {
                     Func.close()

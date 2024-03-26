@@ -24,9 +24,8 @@ export default function () {
                     Static.filterCoins = filterCoinsFromModal;
                     // console.log("filterCoins", Static.filterCoins);
                     let res = front.Services.functions.sendApi(
-                      "/api/events/Exchanges",
+                      "/api/exchanges",
                       {
-                        action: "get",
                         coins: Static.filterCoins,
                         // "uuid": `${localStorage?.uuid}`,
                       },
@@ -52,11 +51,9 @@ export default function () {
                   Static.filterCoins = filterCoinsFromModal;
                   // console.log("filterCoins", Static.filterCoins);
                   let res = front.Services.functions.sendApi(
-                    "/api/events/Exchanges",
+                    "/api/exchanges",
                     {
-                      action: "get",
                       coins: Static.filterCoins,
-                      uuid: `${localStorage?.uuid}`,
                     },
                   );
                   if (!filterCoinsFromModal.length) {
@@ -88,11 +85,9 @@ export default function () {
                         if (entry.isIntersecting) {
                           observer.unobserve($el);
                           let res = front.Services.functions.sendApi(
-                            "/api/events/exchanges",
+                            "/api/exchanges",
                             {
-                              action: "skip",
                               skip: Static.records?.length,
-                              uuid: `${localStorage?.uuid}`,
                             },
                           );
                         }
