@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Ref, front } from "cemjs-all";
+import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
 import footer from "@json/footer";
 import appStore from "@svg/icons/appStore.svg";
 import playMarket from "@svg/icons/playMarket.svg";
@@ -95,12 +95,18 @@ export default function () {
                       Fn.link(e);
                     } else {
                       e.preventDefault();
-                      Ref[`lang${i}`].classList.toggle("opacity-100");
-                      Ref[`lang${i}`].classList.toggle("pointer-events-auto");
-                      setTimeout(() => {
-                        Ref[`lang${i}`].classList.toggle("opacity-100");
-                        Ref[`lang${i}`].classList.toggle("pointer-events-auto");
-                      }, 1500);
+                      Ref[`lang${i}`].classList.add("opacity-100");
+                      Ref[`lang${i}`].classList.add("pointer-events-auto");
+                      if (!Static[`show${i}`]) {
+                        Static[`show${i}`] = true;
+                        setTimeout(() => {
+                          Ref[`lang${i}`].classList.remove("opacity-100");
+                          Ref[`lang${i}`].classList.remove(
+                            "pointer-events-auto",
+                          );
+                          Static[`show${i}`] = false;
+                        }, 1500);
+                      }
                     }
                   }}
                   target={!Array.isArray(item.href) ? "_blank" : ""}
