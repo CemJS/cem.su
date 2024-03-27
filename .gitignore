@@ -1,7 +1,9 @@
 frontends.json
 services.json
 pages.json
+settings.json
 public/assets
 node_modules
 package-lock.json
 .env
+.пока не удалять мои штучки! kvk.txt

@@ -1,29 +1,29 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all"
 import Tiles from "./Tiles"
+import Card from "./Card"
 
-Static.stateFeed = true
 
 export default function () {
-    Fn.log('=1614f1=', Static.stateFeed)
+    // Fn.log('=dfbb06=', Static.record)
     return (
-        <div class="block-one c-container">
+        <div class="block-one">
             <div class="feed-main-block">
                 <div class="user-feed">
                     <div class="user-feed__block">
                         <div class="user-feed__header">
                             <h2>Лента пользователя</h2>
                             <ul class="user-feed__toggles-view">
-                                <li>
+                                <li onclick={() => { Static.feedState = false }}>
                                     <a
-                                        onclick={() => { Static.stateFeed = false }}
-                                        class={Static.stateFeed ? "user-feed__toggles" : "user-feed__toggles user-feed__toggles-active"}>
+                                        class={Static.feedState ? "user-feed__toggles" : "user-feed__toggles user-feed__toggles-active"}>
                                         Список
                                     </a>
                                 </li>
-                                <li>
+                                <li onclick={() => {
+                                    Static.feedState = true
+                                }}>
                                     <a
-                                        onclick={() => { Static.stateFeed = true }}
-                                        class={Static.stateFeed ? "user-feed__toggles user-feed__toggles-tile user-feed__toggles-active"
+                                        class={Static.feedState ? "user-feed__toggles user-feed__toggles-tile user-feed__toggles-active"
                                             :
                                             "user-feed__toggles user-feed__toggles-tile"}>
                                         Плитка
@@ -31,9 +31,7 @@ export default function () {
                                 </li>
                             </ul>
                         </div>
-                        <div class="video__container ">
-                            <Tiles />
-                        </div>
+                        {Static.feedState ? <Tiles /> : <Card />}
                     </div>
                 </div>
             </div>

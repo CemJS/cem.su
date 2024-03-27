@@ -1,24 +1,24 @@
 .modalReg {
-  width: 100%;
-  overflow: hidden;
+  // width: 100%;
+  // overflow: hidden;
 
-  &_line {
-    display: flex;
-    width: 400%;
-  }
+  // &_line {
+  //   display: flex;
+  //   width: 400%;
+  // }
 
-  &_page {
-    width: 25%;
+  // &_page {
+  //   width: 25%;
 
-    transition: margin-left 0.35s ease-in-out;
+  //   transition: margin-left 0.35s ease-in-out;
 
-    &-title {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      line-height: 1.5;
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-  }
+  //   &-title {
+  //     font-size: clamp(1rem, 2vw, 1.25rem);
+  //     line-height: 1.5;
+  //     font-weight: 600;
+  //     margin-bottom: 15px;
+  //   }
+  // }
 
   &_form {
     display: flex;
@@ -235,15 +235,15 @@
   &_field {
     width: 100%;
     position: relative;
-    height: 50px;
-    line-height: 50px;
+    height: 3.125rem;
+    line-height: 3.125rem;
 
     &.textarea {
       height: 10rem;
     }
 
     input,
-    textarea {
+    &_span {
       position: absolute;
       width: 100%;
       outline: none;
@@ -256,13 +256,28 @@
       transition: border 0.1s ease;
       z-index: 3;
       color: var(--white);
-      resize: none;
     }
 
-    textarea {
-      padding: 0.625rem 1.875rem;
-      line-height: 1.5rem;
+    &-textarea {
+      height: auto;
+      line-height: normal;
+
+      textarea {
+        border-radius: var(--borderR);
+        border: 1px solid var(--fiolet);
+        background: transparent;
+        resize: none;
+        width: 100%;
+        color: var(--white);
+        padding: 0.625rem 1.875rem;
+        outline: none;
+      }
     }
+
+    // textarea {
+    //   padding: 0.625rem 1.875rem;
+    //   line-height: 1.5rem;
+    // }
 
     &_labelLine {
       position: absolute;
@@ -361,6 +376,7 @@
       display: flex;
       align-items: center;
       transition: all 0.3s ease-in-out;
+      z-index: 5;
 
       &:hover {
         color: var(--fiolet);

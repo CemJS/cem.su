@@ -1,5 +1,7 @@
 import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
 import { Display } from "@elements/GallerySlider";
+import { DisplaySchedule } from "@elements/GallerySchedule";
+import { DisplayImages } from "@elements/GalleryForumImages";
 
 export default function () {
   return (
@@ -23,7 +25,9 @@ export default function () {
         <div class="modalWindow_content modalWindow_content_gallery">
           <main class="modalWindow_main">
             <div class="modalGallery_carousel">
-              <Display items={Static.records} />
+              {Static.records ? <Display items={Static.records} /> : null}
+              {Static.schedule ? <DisplaySchedule items={Static.schedule} /> : null}
+              {Static.images ? <DisplayImages items={Static.images} /> : null}
               {/* <img src={`/assets/upload/worldPress/${Static.records[Static.activeIndex].name}`} /> */}
             </div>
           </main>

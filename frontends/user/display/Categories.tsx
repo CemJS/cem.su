@@ -7,10 +7,11 @@ import Subscriptions from "./iconsCategories/Subscriptions"
 import Awards from "./iconsCategories/Awards"
 import Socials from "./iconsCategories/Socials"
 import Feed from "./iconsCategories/Feed"
+import Gallery from "./iconsCategories/Gallery"
 
 export default function () {
     return (
-        <div class="c-usercategories  c-container">
+        <div class="c-usercategories">
             <Feed />
             <Information />
             <Questions />
@@ -19,6 +20,7 @@ export default function () {
             <Subscriptions />
             <Awards />
             <Socials />
+            <Gallery />
         </div >
     )
 }

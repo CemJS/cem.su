@@ -1,0 +1,133 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* prettier-ignore */
+@layer base {
+  :root {
+    --backSecond: #303545;
+    --backModal: #202432;
+    --back700: #1d2029;
+    --textSecond: #909cbf;
+    --textGray: #5b6274;
+    --textGray-light: #cacaca;
+    --border: rgba(150, 150, 150, 0.5);
+    --white: #ffffff;
+    --pink: #ff357f;
+    --noble_black: #1d2029;
+    --noble-black: #1d2029;
+    --black_light: #1d1f28;
+    --gray: #b6b6b6;
+    --light-gray-3: #adb3c9;
+    --gray-active: #40f2d0;
+    --light-gray: #2f3240;
+    --light-gray-2: #32384b;
+    --black-gray: #2b3040;
+    --sky100: #3bade3;
+    --sky500: #576fe6;
+    --purple: #9844b7;
+    --fiolet: #5f479b;
+    --orangeH: #f57707;
+    --fioletDark: #3b2d4a;
+    --border-colorH: #2d3243;
+    --border-color: #434954;
+    --success-color: rgb(37, 249, 48);
+    --polar_mist: #aeafbf;
+    --cold_heights: #20e0f6;
+    --kingly_cloud: #dfdfdf;
+    --black_flame: #474c5a;
+    --prestige_blue: #313643;
+    --prestige-blue: #313643;
+    --ancestral_water: #d0d0d0;
+    --carbon_blue: #363c50;
+    --atlantic_charter: #2b3040;
+    --summer_sky: #3bade3;
+    --blue_oyster_cult: #576fe6;
+    --textBlue: #6e44d7;
+    /* --akebi_purple: #9844b7; */
+    --akebi-purple: #9844b7;
+    --lilac_lotion: #ff357f;
+    --green: #02c6a9;
+    --green_light: #01c8ab;
+    --green-light: #01c8ab;
+    --opacity_gray: rgba(255, 255, 255, 0.1);
+    --marquee_elements_displayed: 4;
+     /* информационые парнтеры карусель */
+
+    /* // numerical */
+    --btnR: 0.5rem;
+    --borderR: 1rem;
+    --ellipse: 50%;
+
+    /* // padding */
+    --p: 1.25rem;
+
+    /* // transition */
+    --tran-03: all 0.3s ease-in-out;
+    --tran-05: all 0.5s ease-in-out;
+
+    /* // gradient */
+    --mainGradient: linear-gradient(to left,#2973ff,#8846d3,#ff22ac);
+    --grayGradient: linear-gradient(149.17deg,#282d3c 0.97%,rgba(40,45,60,0) 86.74%);
+    --blueGradient: linear-gradient(89.03deg,#679fef 0.54%,#a87fff 97.66%);
+    --lightBlueGradient: radial-gradient(41.76% 41.76% at 50% 50%,#915dff 0%,rgba(191,9,255,0) 100%);
+    --darkBlueGradient: linear-gradient(90deg,#2f66b9 2.08%,#8a5be5 97.67%);
+    --greenGradient: linear-gradient(90deg,#01c8ab 0%,#02c3a7 13%,#04b49a 28%,#079b85 45%,#0b7969 62%,#104c43 81%,#171717 100%);
+  }
+}
+
+@layer base {
+  .page {
+    @apply relative overflow-x-hidden py-24;
+  }
+  .page__date {
+    @apply mb-[0.9375rem] flex items-center justify-start whitespace-nowrap text-[clamp(0.6rem,2vw,0.75rem)] font-medium italic leading-[3.25rem] text-[--textSecond];
+  }
+  .wrapper {
+    @apply mx-auto max-w-7xl px-[1rem] xl:px-0;
+  }
+
+  /* для страниц соглашений(3шт) */
+  .title {
+    @apply mb-3 text-center text-[clamp(1.3rem,1.5vw,1.6rem)] font-bold leading-8 text-[--white];
+  }
+  .content {
+    @apply mb-5 text-justify [&_p]:m-[0_0_0.8rem] [&_p]:text-justify [&_p]:indent-8 [&_p]:leading-[1.4] [&_p]:lg:leading-[1.5];
+  }
+  /*  */
+
+  .link {
+    @apply bg-clip-text text-transparent [background:--mainGradient];
+  }
+  .btn {
+    @apply h-[3.2rem] w-fit cursor-pointer whitespace-nowrap rounded-[--btnR] border-none bg-125% px-4 py-[0.8rem] text-[1rem] text-[--white] outline-none [background:--mainGradient] [transition:all_0.2s_ease-out] hover:bg-right;
+  }
+
+  .btn_dark {
+    @apply flex h-fit w-fit items-center justify-between gap-[0.3rem] bg-125% p-[0.5rem_0.6rem] text-[1rem] text-slate-300 [background:var(--back700)] [border:1px_solid_transparent] [transition:var(--tran-03)] hover:text-[--white] hover:[border:1px_solid_var(--border-color)];
+  }
+
+  /* градиентная кнопка при наведении */
+  .btn_border-wrap {
+    @apply mx-auto w-[12.625rem] rounded-[--btnR] p-[0.0725rem] [background:--mainGradient];
+  }
+  .btn_border {
+    @apply relative z-[1] h-[2.625rem] w-full cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--black-gray] bg-100% text-center text-[1rem] font-semibold text-white outline-none [transition:all_0.3s_ease-in-out] hover:bg-transparent;
+  }
+  /*  */
+
+  /* notFound */
+  .not_found {
+    @apply z-0 flex h-[300px] w-full flex-col items-center justify-center gap-2 overflow-hidden rounded-[--borderR] bg-[--light-gray];
+  }
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}

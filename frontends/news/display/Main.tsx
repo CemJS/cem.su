@@ -2,23 +2,32 @@ import { Cemjsx, Static, Fn, front, Events } from "cemjs-all"
 
 const HeaderBack = function ({ title }) {
     return (
-        <div class="back">
+        <div class="fixed z-[5] py-3 top-0 left-0 right-0 border-b-[1px] border-solid border-[#2d3243] w-full bg-[#1d2029]">
             <div class="wrapper">
-                <div class="back-inner">
+                <div class="flex justify-between items-center">
                     <span
-                        class="back-inner_arrow"
+                        class="cursor-pointer flex justify-center items-center"
                         onclick={() => {
                             Fn.linkChange("/")
                         }}
                     >
-                        <i class="i i-arrow-left"></i>
+                        <i class="i i-arrow-left text-2xl"></i>
                     </span>
 
-                    <h5 class="back-title">{title}</h5>
+                    <h5 class="@700:text-xl text-center px-4 line-clamp-1 font-medium text-base">{title}</h5>
 
                     <span
-                        class="back-ellipsis"
-                        onclick={() => Fn.initOne("modalTools", {})}
+                        class="relative cursor-pointer w-8 after:content-['...'] after:absolute after:text-5xl after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%]"
+                        onclick={() => Fn.initOne("modalTools", {
+                            records: [
+                                {
+                                    name: "Скопировать URL"
+                                },
+                                {
+                                    name: "Поделиться"
+                                }
+                            ]
+                        })}
                     ></span>
                 </div>
             </div>
@@ -28,13 +37,13 @@ const HeaderBack = function ({ title }) {
 
 export default function () {
     return (
-        <section>
+        <div>
             <HeaderBack title="Новости" />
-            <div class="news">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 @464:gap-4">
                 {
                     Static.records.map((item, index) => {
                         return (
-                            <a class="news__item"
+                            <div class="cursor-pointer rounded-2xl relative bg-[#303545] grid grid-cols-[5rem_1fr] grid-rows-[1.5rem_2.5rem_auto] p-[0.8rem] gap-3 [grid-template-areas:'image_title'_'image_desc'_'statistics_statistics'] @870:block @870:pt-5 @870:pr-5 @870:pl-5 @870:pb-10"
                                 init={($el: any) => {
                                     if (index == Static.records?.length - 1) {
                                         const observer = new IntersectionObserver((entries) => {
@@ -54,50 +63,36 @@ export default function () {
                                     }
                                 }}
                                 onclick={async () => {
-                                    Static.record = item._id
-                                    let listener = [
-                                        {
-                                            type: "get",
-                                            fn: ({ data }) => {
-                                                let json = front.Services.functions.strToJson(data)
-                                                if (!json) { return }
-                                                Static.record = json
-                                            },
-                                        }
-                                    ]
-                                    Events.new = await Fn.event(front.Services.functions.makeUrlEvent("News", {
-                                        action: "show",
-                                        id: item._id
-                                    }), listener)
-                                    Static.headerBackTitle = item.title
-                                    Static.headerBackUrl = "/news"
-                                    Fn.linkChange(`/news/show/${item._id}`)
+                                    Static.record = item
+                                    let url = front.Services.functions.makeUrlEvent(`news/${item.id}`);
+                                    Events.news = await Fn.event(url, Static.newListener);
+                                    Fn.linkChange(`/news/show/${item.id}`);
                                 }}
 
                             >
-                                <div class="news__item-img">
+                                <div class="[grid-area:image]">
                                     <img
-                                        src={`/assets/upload/news/${item.image}`}
+                                        class="rounded-[0.6rem] object-contain w-auto @870:rounded-2xl @870:object-cover @870:h-full @870:w-full"
+                                        src={`/assets/upload/news/${item.mediaName}`}
                                         alt={item.title}
                                     />
                                 </div>
-                                <h3 class="news__item-title">{item.title}</h3>
-                                <p class="news__item-desc">{item.preview}</p>
+                                <h3 class="line-clamp-1 font-semibold [grid-area:title] h-[1.3rem] text-base @870:text-lg @870:pt-4 @870:mb-2 @870:h-auto">{item.title}</h3>
+                                <p class="font-medium line-clamp-2 [grid-area:desc] leading-[132%] text-sm @870:text-base lg:line-clamp-3">{item.preview}</p>
 
-                                <div class="news__item-statistic">
-                                    <div class="news__item-statistic-el">
-                                        {/* <i class="i i-calendar"></i> */}
+                                <div class="flex items-center justify-between relative text-[#909cbf] [grid-area:statistics] text-xs @870:absolute @870:left-5 @870:right-5 @870:bottom-2 @870:text-base">
+                                    <div class="flex items-center gap-1">
                                         {front.Services.functions.timeStampToDate(item.dateCreate, ".")}
                                     </div>
-                                    <div class="news__item-statistic-el">
-                                        <i class="i i-comment"></i>{item.statistic.comments}
+                                    <div class="flex items-center gap-1">
+                                        <i class="i i-comment text-xs @870:text-base"></i>{item.statistics.comments}
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         )
                     })
                 }
             </div>
-        </section>
+        </div>
     )
 }

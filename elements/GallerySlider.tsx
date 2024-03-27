@@ -332,7 +332,6 @@ export const Display = function ({ items }) {
   if (!items || !items.length) {
     return <div />;
   }
-  Fn.log("=45caef=", items[0].name);
   return (
     <div style="position: relative;">
       <div

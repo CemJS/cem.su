@@ -13,13 +13,12 @@ export default function () {
                     Static.subscriptions = false
                     Static.awards = false
                     Static.socials = false
-                    // const getQuestions = {
-                    //     "action": "getQuestions",
-                    //     "id": Static.record?.id,
-                    //     "uuid": `${localStorage?.uuid}`
-                    // }
-                    // let content = await front.Services.functions.sendApi("/api/Users/profile", getQuestions)
-                }}
+                    Static.gallery = false
+                    const getInfo = {
+                        "action": "getInfo",
+                        "id": Static.record?.id
+                    }
+                    let content = await front.Services.functions.sendApi("/api/Users/profile", getInfo)                }}
                 class={`c-usercategories__icon c-usercategories__icon--${Static.aboutMe === true ? "information"
                     : "information_inactive"}`}
                 data-profilepage="aboutUser"></i>

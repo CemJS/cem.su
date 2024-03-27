@@ -1,4 +1,17 @@
-import { validLogin, validEmail, validNickName, validLang, validCountry, validPassword, validConfirmPassword, validName, validComment, validTelegram } from "./validator";
+import {
+  validLogin,
+  validEmail,
+  validNickName,
+  validLang,
+  validCountry,
+  validPassword,
+  validConfirmPassword,
+  validName,
+  validComment,
+  validTelegram,
+  validEmailOrNickName,
+  validQuestion,
+} from "./validator";
 
 interface Form {
   value: string;
@@ -8,6 +21,24 @@ interface Form {
   view: boolean;
   disable: boolean;
 }
+
+export const formEmailOrNickName = function (form: Form) {
+  if (!form.value.length) {
+    form.error = false;
+    form.valid = false;
+    return false;
+  }
+  let check = validEmailOrNickName(form.value);
+  if (check) {
+    form.error = false;
+    form.valid = true;
+    return true;
+  } else {
+    form.error = "Некорректно введённые данные!";
+    form.valid = false;
+    return false;
+  }
+};
 
 export const formLogin = function (form: Form) {
   if (!form.value.length) {
@@ -199,6 +230,24 @@ export const formConfirmPassword = async function (formPass: Form, formConfirmPa
   } else {
     formConfirmPass.error = "Пароли не совпадают";
     formConfirmPass.valid = false;
+    return false;
+  }
+};
+
+export const formQuestion = async function (form: Form) {
+  if (!form.value.length) {
+    form.error = false;
+    form.valid = false;
+    return false;
+  }
+  let check = validQuestion(form.value);
+  if (check) {
+    form.error = false;
+    form.valid = true;
+    return true;
+  } else {
+    form.error = "Минимум 5 символов";
+    form.valid = false;
     return false;
   }
 };

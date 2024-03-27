@@ -1,0 +1,4 @@
+{
+  "url": "/forum_old",
+  "front": ["header", "forum_old", "footer", "menu"]
+}

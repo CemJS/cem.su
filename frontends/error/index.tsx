@@ -15,7 +15,10 @@ front.loader = async () => {
   Static.t = 0;
 
   Static.records = [];
-  let url = front.Services.functions.makeUrlEvent("CoinsCourses", { live: true });
+  
+  let url = front.Services.functions.makeUrlEvent("CoinsCourses", {
+    live: true,
+  });
   let listener = [
     {
       type: "add",
@@ -49,7 +52,7 @@ front.loader = async () => {
 
 front.display = () => {
   return (
-    <div class="error mX-auto">
+    <div class="mx-auto flex w-full items-center gap-[1.5625rem] bg-no-repeat [background-image:url(/assets/background_image-WTFH7ZBE.jpg)] [background-position:calc(50%_-_4.375rem)_-1%;]  sm:[background-size:unset]">
       <Navigation />
     </div>
   );

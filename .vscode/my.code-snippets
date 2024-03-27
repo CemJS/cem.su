@@ -2,7 +2,7 @@
   "Consolelog": {
     "scope": "javascript,typescript,typescriptreact",
     "prefix": "_log",
-    "body": ["Fn.log('=$RANDOM_HEX=',${1:Переменная})"],
+    "body": ["console.log('=$RANDOM_HEX=',${1:Переменная})"],
     "description": "Лог с рандомным указателем"
   },
   "Consolefnlog": {

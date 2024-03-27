@@ -100,8 +100,8 @@ export default function () {
       <RenderSidebarMenu menu={Static.sections} />
       {front.Variable.Auth ? <span class="sidebar-subtitle">Меню</span> : null}
       {front.Variable.Auth ? <RenderSidebarMenu menu={Static.menu} /> : null}
-      {/* <span class="sidebar-subtitle">Меню</span>
-      <RenderSidebarMenu menu={Static.menu} /> */}
+      <span class="sidebar-subtitle">Меню</span>
+      <RenderSidebarMenu menu={Static.menu} />
       <span class="sidebar-subtitle">Crypto Emergency</span>
       <RenderSidebarSubmenu submenu={Static.submenu} />
       <span class="sidebar-subtitle">Социальные сети</span>

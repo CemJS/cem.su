@@ -49,6 +49,7 @@
     font-weight: 300;
     color: var(--white);
     text-decoration: none;
+    width: 50%;
     &-link {
       display: block;
       position: relative;
@@ -124,7 +125,7 @@
       cursor: pointer;
       transition: all 0.3s ease-in-out;
       &_active {
-        height: 7rem;
+        height: 7.3rem;
         & img {
           transform: rotate(180deg);
         }

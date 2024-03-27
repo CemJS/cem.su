@@ -12,6 +12,8 @@
   --noble_black: #1d2029;
   --black_light: #1d1f28;
   --gray: #b6b6b6;
+  --light-gray-3: #adb3c9;
+  --gray-active: #40f2d0;
   --light-gray: #2f3240;
   --light-gray-2: #32384b;
   --black-gray: #2b3040;
@@ -27,16 +29,19 @@
   --polar_mist: #aeafbf;
   --cold_heights: #20e0f6;
   --kingly_cloud: #dfdfdf;
-  --black_flame: #474c5a;
-  --prestige_blue: #313643;
+  --black-flame: #474c5a;
+  --prestige-blue: #313643;
   --ancestral_water: #d0d0d0;
   --carbon_blue: #363c50;
   --atlantic_charter: #2b3040;
   --summer_sky: #3bade3;
   --blue_oyster_cult: #576fe6;
+  --textBlue: #6e44d7;
   --akebi_purple: #9844b7;
   --lilac_lotion: #ff357f;
   --green: #02c6a9;
+  --green_light: #01c8ab;
+  --opacity_gray: rgba(255, 255, 255, 0.1);
 
   // numerical
   --btnR: 0.5rem;
@@ -52,9 +57,23 @@
 
   // gradient
   --mainGradient: linear-gradient(to left, #2973ff, #8846d3, #ff22ac);
-  --grayGradient: linear-gradient(149.17deg, #282d3c 0.97%, rgba(40, 45, 60, 0) 86.74%);
+  --grayGradient: linear-gradient(
+    149.17deg,
+    #282d3c 0.97%,
+    rgba(40, 45, 60, 0) 86.74%
+  );
   --blueGradient: linear-gradient(89.03deg, #679fef 0.54%, #a87fff 97.66%);
-  --greenGradient: linear-gradient(90deg, #01c8ab 0%, #02c3a7 13%, #04b49a 28%, #079b85 45%, #0b7969 62%, #104c43 81%, #171717 100%);
+  --darkBlueGradient: linear-gradient(90deg, #2f66b9 2.08%, #8a5be5 97.67%);
+  --greenGradient: linear-gradient(
+    90deg,
+    #01c8ab 0%,
+    #02c3a7 13%,
+    #04b49a 28%,
+    #079b85 45%,
+    #0b7969 62%,
+    #104c43 81%,
+    #171717 100%
+  );
   // =========================================================
   // variables color tailwind
   --slate-50: #f8fafc;

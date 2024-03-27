@@ -5,7 +5,7 @@ const editText = function (text: string, parent: HTMLElement) {
 
   let result = rows.map((row) => {
     return (
-      `<p>${row}</p>`
+      `<p class="mt-4">${row}</p>`
     )
   })
 
@@ -23,7 +23,7 @@ const searchLink = function (text: string, parent: HTMLElement) {
       message[i] = `<a class="link" href="${message[i]}" target="_blank">${message[i]}</a>`
     }
     if (message[i] == '') {
-      message[i] = `<p></p>`
+      message[i] = `<p class="mt-4"></p>`
     }
   }
 

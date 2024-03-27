@@ -1,112 +1,132 @@
-import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all"
+import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all";
 import Card from "./Card";
-import filter from '@svg/icon/filter.svg'
+import filter from "@svg/icon/filter.svg";
 
 export default function () {
-    return (
-        <table class="listExchange__table table">
-            <thead class="listExchange__table-head">
-                <tr class="listExchange__table-row">
-                    <th class="listExchange__table-name disable-tableName" style="justify-content: start;">Название</th>
-                    <th class="listExchange__table-coins disable-tableName">Коины</th>
-                    <th class="listExchange__table-filter">
-                        <img src={filter} 
-                         onclick={() => Fn.initOne("modalFilterExchange", {
-                            filterCoins: Static.filterCoins,
-                            callback: async (filterCoinsFromModal: []) => {
-                                Static.filterCoins = filterCoinsFromModal
-                                // console.log("filterCoins", Static.filterCoins);
-                                let res = front.Services.functions.sendApi("/api/events/Exchanges", {
-                                    "action": "get",
-                                    "coins": Static.filterCoins,
-                                    "uuid": `${localStorage?.uuid}`,
-                                })
-                                if (!filterCoinsFromModal.length) {
-                                    return;
-                                }
-                            }
-                        })}/>
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="table_body listExchange__table-body">
-                <div class="filterShow">
-                    <img src={filter} 
-                     onclick={() => Fn.initOne("modalFilterExchange", {
-                        filterCoins: Static.filterCoins,
-                        callback: async (filterCoinsFromModal: []) => {
-                            Static.filterCoins = filterCoinsFromModal
-                            // console.log("filterCoins", Static.filterCoins);
-                            let res = front.Services.functions.sendApi("/api/events/Exchanges", {
-                                "action": "get",
-                                "coins": Static.filterCoins,
-                                "uuid": `${localStorage?.uuid}`,
-                            })
-                            if (!filterCoinsFromModal.length) {
-                                return;
-                            }
+  return (
+    <table class="relative w-full border-collapse">
+      <thead class="text-[1.125rem]">
+        <tr class="hidden grid-cols-3 @700:grid">
+          <th class="hidden items-center justify-start px-[.9375rem] py-[.625rem] @700:flex">
+            Название
+          </th>
+          <th class="hidden items-center justify-center px-[.9375rem] py-[.625rem] @700:flex">
+            Коины
+          </th>
+          <th class="hidden items-center justify-end px-[.9375rem] py-[.625rem] @700:flex">
+            <img
+              class="h-[2.1875rem] w-[2.1875rem] cursor-pointer"
+              src={filter}
+              onclick={() =>
+                Fn.initOne("modalFilterExchange", {
+                  filterCoins: Static.filterCoins,
+                  callback: async (filterCoinsFromModal: []) => {
+                    Static.filterCoins = filterCoinsFromModal;
+                    // console.log("filterCoins", Static.filterCoins);
+                    let res = front.Services.functions.sendApi(
+                      "/api/exchanges",
+                      {
+                        coins: Static.filterCoins,
+                        // "uuid": `${localStorage?.uuid}`,
+                      },
+                    );
+                    if (!filterCoinsFromModal.length) {
+                      return;
+                    }
+                  },
+                })
+              }
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody class="block rounded-tl-[--borderR] rounded-tr-[--borderR] border-none text-[1rem] font-medium @700:[border:1px_solid_var(--border)]">
+        <div class="flex cursor-pointer items-center justify-center pb-[.9375rem] @700:!hidden">
+          <img
+            src={filter}
+            onclick={() =>
+              Fn.initOne("modalFilterExchange", {
+                filterCoins: Static.filterCoins,
+                callback: async (filterCoinsFromModal: []) => {
+                  Static.filterCoins = filterCoinsFromModal;
+                  // console.log("filterCoins", Static.filterCoins);
+                  let res = front.Services.functions.sendApi(
+                    "/api/exchanges",
+                    {
+                      coins: Static.filterCoins,
+                    },
+                  );
+                  if (!filterCoinsFromModal.length) {
+                    return;
+                  }
+                },
+              })
+            }
+          />
+        </div>
+        {Static.records?.map((item: any, index: any) => {
+          // console.log("item", item);
+          return (
+            <div>
+              <tr
+                class="hidden grid-cols-3 items-center [border-bottom:1px_solid_var(--border)] @700:grid"
+                isVisible={() => {
+                  if (index == Static.records?.length - 3) {
+                    // console.log('=индкекс равен =', index, 'Static.records.length - 3', Static.records.length - 3)
+                    Static.moreid =
+                      Static.records[Static.records.length - 1]?._id;
+                    // fn("addEvent")
+                  }
+                }}
+                init={($el: any) => {
+                  if (index == Static.records?.length - 1) {
+                    const observer = new IntersectionObserver((entries) => {
+                      entries.forEach(async (entry) => {
+                        if (entry.isIntersecting) {
+                          observer.unobserve($el);
+                          let res = front.Services.functions.sendApi(
+                            "/api/exchanges",
+                            {
+                              skip: Static.records?.length,
+                            },
+                          );
                         }
-                    })}/>
-                </div>
-                {
-                    Static.records?.map((item: any, index: any) => {
-                        return (
-                            <div>
-                                <tr
-                                    class="table_row listExchange__table-row"
-                                    isVisible={() => {
-                                        if (index == Static.records?.length - 3) {
-                                            // console.log('=индкекс равен =', index, 'Static.records.length - 3', Static.records.length - 3)
-                                            Static.moreid = Static.records[Static.records.length - 1]?._id
-                                            // fn("addEvent")
-                                        }
-                                    }}
-                                    init={($el: any) => {
-                                        if (index == Static.records?.length - 1) {
-                                            const observer = new IntersectionObserver((entries) => {
-                                                entries.forEach(async entry => {
-                                                    if (entry.isIntersecting) {
-                                                        observer.unobserve($el)
-                                                        let res = front.Services.functions.sendApi("/api/events/Exchanges", {
-                                                            "action": "skip",
-                                                            "skip": Static.records?.length,
-                                                            "uuid": `${localStorage?.uuid}`,
-                                                        })
-                                                    }
-                                                })
-                                            })
-                                            observer.observe($el)
-                                        }
-                                    }}>
-
-                                    <td class="listExchange__table-name" style="justify-content: start;">{item?.name}</td>
-                                    <td class="listExchange__table-coins">
-                                        <div class="coins_wrap">
-                                            {
-                                                item?.listCoins?.map((el: any, index: number) => {
-                                                    return (
-                                                        <img src={`/contents/coins/${el?.icon}.svg`} class="coins_wrap_item"></img>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                    </td>
-                                    <td class="listExchange__table-btn">
-                                        <div class="btn_border-wrap mY-auto h100">
-                                            <a href={item?.url} onclick={Fn.link}>
-                                                <button class="btn_border bgMW">
-                                                    Обменять
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <Card item={item} index={index} />
-                            </div>
-                        )
-                    })
-                }
-            </tbody>
-        </table>
-    )
+                      });
+                    });
+                    observer.observe($el);
+                  }
+                }}
+              >
+                <td class="flex items-center justify-start px-[.9375rem] py-[.625rem]">
+                  {item?.name}
+                </td>
+                <td class="flex items-center justify-center px-[.9375rem] py-[.625rem]">
+                  <div class="mt-[.625rem] flex">
+                    {item?.listCoins?.map((el: any, index: number) => {
+                      return (
+                        <img
+                          src={`/contents/coins/${el?.mediaName}.svg`}
+                          class="h-[2rem] w-[2rem] [transition:_all_ease-in-out_0.3s] hover:[transform:translateY(-10px)]"
+                        ></img>
+                      );
+                    })}
+                  </div>
+                </td>
+                <td class="flex items-center justify-end px-[.9375rem] py-[.625rem]">
+                  <div class="mx-0 mt-auto h-full w-[12.625rem] rounded-[--btnR] p-[0.0725rem] [background:var(--mainGradient)]">
+                    <a href={item?.url} onclick={Fn.link}>
+                      <button class="bg-[--noble_black] relative z-[1] h-[2.625rem] w-full min-w-[9.375rem] cursor-pointer overflow-hidden rounded-[--btnR] border-none text-center text-[1rem] font-semibold text-[--white] outline-none before:absolute before:bottom-0 before:left-0 before:right-0 before:top-0 before:z-[-1] before:h-full before:w-full before:opacity-0 before:content-[''] before:[background:var(--mainGradient)] before:[transition:all_0.3s_ease-in-out] hover:before:opacity-100">
+                        Обменять
+                      </button>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              <Card item={item} index={index} />
+            </div>
+          );
+        })}
+      </tbody>
+    </table>
+  );
 }

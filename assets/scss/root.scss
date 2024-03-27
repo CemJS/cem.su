@@ -5,7 +5,6 @@
 @import "utils/fonts.scss";
 @import "utils/global.scss";
 @import "utils/globalModal.scss";
-@import "utils/indents.scss";
 @import "utils/flexGrid.scss";
 
 *,
@@ -19,11 +18,12 @@
 
   &::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
   }
 
   &::-webkit-scrollbar-button {
     background-repeat: no-repeat;
-    width: 6px;
+    width: 3px;
     height: 0px;
   }
 
@@ -75,6 +75,6 @@ p {
 
   html,
   body {
-    font-size: 14px;
+    font-size: 16px;
   }
 }

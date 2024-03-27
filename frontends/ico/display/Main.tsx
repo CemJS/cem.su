@@ -16,6 +16,7 @@ const states = [
 ];
 
 const RenderItems = function ({ items }) {
+  Fn.log("=f60085=", items);
   return (
     <div class="ico">
       <div class="ico_inner">
@@ -52,10 +53,6 @@ const RenderItems = function ({ items }) {
               </div>
             );
           })}
-          <div
-            class="ico__tabs-slider"
-            ref="tabsSlider"
-          ></div>
         </div>
         {!items.length ? (
           <div class="notFound">
@@ -110,12 +107,12 @@ const RenderItems = function ({ items }) {
                       }
                     }}
                   >
-                    <span class="category">{item.category}</span>
                     <div class="ico__list-item-image">
                       <img
                         src={`/assets/upload/worldPress/${item.icon}`}
                         alt="ICO Rating"
                       ></img>
+                      <span class="ico__category">{item.category}</span>
                     </div>
 
                     <div class="ico__list-item-info">

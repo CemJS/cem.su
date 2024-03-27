@@ -10,9 +10,9 @@ import question_status_delete from "@svg/questions/question_status_delete.svg"
 import dots from "@svg/questions/dots.svg"
 
 export default function () {
-
+// Fn.log('=880ada=',Static.record)
     return (
-        <div class="block-one c-container">
+        <div class="block-one">
             <h2>Заданные вопросы</h2>
             <div class="questions-table__labels">
                 <span>Вопрос</span>

@@ -22,31 +22,36 @@ export default function () {
                             <div class="user__info-short">
                                 <span>Имя</span>
                                 <div>
-                                    <input readonly="true" value={Static.record?.fullName ? Static.record?.fullName : ""} />
+                                    <div>{Static.record?.fullName}</div>
+                                    {/* <input readonly="true" value={Static.record?.fullName ? Static.record?.fullName : ""} /> */}
                                 </div>
                             </div>
                             <div class="user__info-short">
                                 <span>Специализация</span>
                                 <div>
-                                    <input readonly="true" value={Static.record?.information?.speciality ? Static.record?.information?.speciality : ""} />
+                                    <div>{Static.record?.information?.speciality}</div>
+                                    {/* <input readonly="true" value={Static.record?.information?.speciality ? Static.record?.information?.speciality : ""} /> */}
                                 </div>
                             </div>
                             <div class="user__info-short">
                                 <span>Страна</span>
                                 <div>
-                                    <input readonly="true" value={Static.record?.country?.engName ? Static.record?.country?.engName : ""} />
+                                    <div>{Static.record?.country?.engName}</div>
+                                    {/* <input readonly="true" value={Static.record?.country?.engName ? Static.record?.country?.engName : ""} /> */}
                                 </div>
                             </div>
                             <div class="user__info-short">
                                 <span>Город</span>
                                 <div>
-                                    <input readonly="true" value={Static.record?.information?.city ? Static.record?.information?.city : ""} />
+                                    <div>{Static.record?.information?.city}</div>
+                                    {/* <input readonly="true" value={Static.record?.information?.city ? Static.record?.information?.city : ""} /> */}
                                 </div>
                             </div>
                             <div class="user__info-short">
                                 <span>Зарегистрирован</span>
                                 <div>
-                                    <input readonly="true" value={Static.record?.information?.dateCreate ? formatDate(Static.record?.information?.dateCreate) : ""} />
+                                    <div>{formatDate(Static.record?.information?.dateCreate)}</div>
+                                    {/* <input readonly="true" value={Static.record?.information?.dateCreate ? formatDate(Static.record?.information?.dateCreate) : ""} /> */}
                                 </div>
                             </div>
                         </div>

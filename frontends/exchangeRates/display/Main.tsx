@@ -5,9 +5,9 @@ import Table from "./Table"
 export default function () {
 
     return (
-        <section class="exchangerates effect_lines">
+        <section class="exchangerates">
             <div>
-                <h1 class="general__title">Курсы <t/> валют</h1>
+                <h1 class="text-[clamp(2rem,_3vw,_2.5rem)] leading-[3.625rem] font-bold m-[0.625rem_0_1.5625rem_0] text-center text-balance">Курсы <t/> валют</h1>
               <Table />
             </div>
             {/* <img src={lineB} class="listExchange_lineB"></img> */}

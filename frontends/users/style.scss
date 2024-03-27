@@ -86,7 +86,8 @@
       display: none;
 
       &:checked+.checkbox__label::before {
-        background: linear-gradient(56.57deg, #2973FF 0%, #8846D3 51.56%, #FF22AC 105.28%);
+        // background: linear-gradient(56.57deg, #2973FF 0%, #8846D3 51.56%, #FF22AC 105.28%);
+        background: linear-gradient( 56.57deg, #3366BB 0%, #895BE5 85%);
       }
 
       &:checked+.checkbox__label::after {
@@ -294,9 +295,9 @@
       }
     }
 
-    &_name {
+    &__name {
       margin: 10px 0;
-      font-size: 20px;
+      font-size: clamp(15px, 3vw, 20px);
       font-weight: 500;
       text-align: center;
     }
@@ -520,6 +521,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    padding: 0 !important;
   }
 
   .users__search {
@@ -538,11 +540,13 @@
     height: 35px;
   }
 }
+
 @media (max-width: 300px) {
   .badge-container img {
     height: 25px;
   }
 }
-.w100User {
+
+.w-fullUser {
   width: 100% !important;
 }

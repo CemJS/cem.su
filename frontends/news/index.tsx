@@ -54,7 +54,7 @@ front.loader = async () => {
     // =======================
 
     Static.records = []
-    let url = front.Services.functions.makeUrlEvent("News", { lang: "ru" })
+    let url = front.Services.functions.makeUrlEvent("news", { lang: "ru" })
     let listener = [
         {
             type: "get",
@@ -77,14 +77,11 @@ front.loader = async () => {
     Events.news = await Fn.event(url, listener)
 
     if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-        let url = front.Services.functions.makeUrlEvent("News", {
-            action: "show",
-            id: front.Variable.DataUrl[2]
-        });
+        let url = front.Services.functions.makeUrlEvent(`news/${front.Variable.DataUrl[2]}`,);
 
-        let listener = [
+        Static.newListener = [
             {
-                type: "get",
+                type: "getById",
                 fn: ({ data }) => {
                     let json = front.Services.functions.strToJson(data);
                     if (!json) {
@@ -94,7 +91,7 @@ front.loader = async () => {
                 },
             },
         ];
-        Events.news = await Fn.event(url, listener);
+        Events.news = await Fn.event(url, Static.newListener);
     }
 
     return

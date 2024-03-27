@@ -1,15 +1,13 @@
 import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all"
 import Navigation from "./navigation"
 
-
 front.listener.finish = () => {
   return
 }
 const filterCoin = function ({ choosenCoin }) {
   this.Static.network = choosenCoin
-
-
 }
+
 front.func.test = () => {
   return
 }
@@ -18,7 +16,7 @@ front.loader = async () => {
   Static.tradeFilter = {
     cat: "CEX",
   }
-  let url = front.Services.functions.makeUrlEvent("Trades", { category: Static.tradeFilter.cat });
+  let url = front.Services.functions.makeUrlEvent("exchangers", { category: Static.tradeFilter.cat });
 
   let listener = [
     {
@@ -29,7 +27,6 @@ front.loader = async () => {
           return;
         }
         // Fn.log("=68682c=", "get", json);
-
         Static.records = json;
       },
     },
@@ -46,7 +43,6 @@ front.loader = async () => {
     },
   ];
   Events.exchangers = await Fn.event(url, listener);
-
   return
 }
 

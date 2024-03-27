@@ -16,7 +16,7 @@ front.loader = () => {
 
 front.display = () => {
     return (
-        <div class="menu">
+        <div class="fixed left-0 bottom-0 w-full z-50 bg-[#2B3040] border-solid border-[#363C50] border-t-[1px]">
             <Navigation />
         </div>
     )

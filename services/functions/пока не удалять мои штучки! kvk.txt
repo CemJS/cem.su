@@ -1,0 +1,96 @@
+const indexDB = async function () {
+  // получаем текущую версию базы
+  const currentVersion = localStorage.getItem("dbVersion");
+
+  // увеличиваем версию базы на 1 или устанавливаем в 1, если версии не было
+  const nextVersion = currentVersion ? Number(currentVersion) + 1 : 1;
+
+  // сохраняем новую версию базы
+  localStorage.setItem("dbVersion", nextVersion.toString());
+
+  let openRequest = indexedDB.open("db", nextVersion);
+
+  openRequest.onupgradeneeded = function() {
+    let db = openRequest.result;
+    if (!db.objectStoreNames.contains('books')) {
+      db.createObjectStore('books', {keyPath: 'id'});
+    }
+    db.deleteObjectStore('books');
+  };
+};
+
+ОБВНОВЛЕНИЕ ВЕРСИИ 
+............................................................................
+
+const indexDB = async function () {
+  let openRequest = indexedDB.open("db", 2);
+
+// создаём хранилище объектов для books, если ешё не существует
+openRequest.onupgradeneeded = function() {
+  let db = openRequest.result;
+  if (!db.objectStoreNames.contains('books')) { // если хранилище "books" не существует
+    db.createObjectStore('books', {keyPath: 'id'}); // создаём хранилище
+  }
+  db.deleteObjectStore('books')
+};
+};
+
+УДАЛЕНИЕ ХРАНИЛИЩА 
+..............................................................................
+
+var DBDeleteRequest = window.indexedDB.deleteDatabase("db");
+
+DBDeleteRequest.onerror = function(event) {
+  console.log("Error deleting database.");
+};
+ 
+DBDeleteRequest.onsuccess = function(event) {
+  console.log("Database deleted successfully");
+   
+  console.log(event.result); // should be undefined
+};
+
+УДАЛЕНИЕ БАЗЫ
+.............................................................................
+
+const indexDB = async function () {
+  let openRequest = indexedDB.open("db", 2);
+
+  openRequest.onerror = function() {
+    console.log("Error", openRequest.error);
+  };
+
+  openRequest.onupgradeneeded = function() {
+    let db = openRequest.result;
+    if (!db.objectStoreNames.contains("books")) { 
+      db.createObjectStore("books", {keyPath: 'id'});
+    }
+  };
+
+  openRequest.onsuccess = function() {
+    let db = openRequest.result;
+
+    let transaction = db.transaction("books", "readwrite"); 
+
+    let books = transaction.objectStore("books"); 
+
+    let book = {
+      id: 'js',
+      price: 10,
+      created: new Date()
+    };
+
+    let request = books.add(book); 
+
+    request.onsuccess = function() {
+      console.log("Book added to the storage", request.result);
+    };
+
+    request.onerror = function() {
+      console.log("Error", request.error);
+    };
+  };
+};
+
+ДОБАВЛЕНИЕ В ХРАНИЛИЩЕ 
+............................................................................

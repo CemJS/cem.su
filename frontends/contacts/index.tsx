@@ -7,7 +7,9 @@ front.listener.finish = () => {
 };
 
 front.func.checkForm = () => {
-  Static.form.name.valid && Static.form.email.valid && Static.form.comment.valid ? (Static.form.isValid = true) : (Static.form.isValid = false);
+  Static.form.name.valid && Static.form.email.valid && Static.form.comment.valid
+    ? (Static.form.isValid = true)
+    : (Static.form.isValid = false);
   return;
 };
 
@@ -39,7 +41,10 @@ front.func.sendForm = async () => {
         comment: Static.form.comment.value,
       },
     };
-    let res = await front.Services.functions.sendApi("api/tg/crypto-emergency", data);
+    let res = await front.Services.functions.sendApi(
+      "api/tg/crypto-emergency",
+      data,
+    );
     if (!res.error) {
       Func.clearForm();
       Fn.initOne("alert", {
@@ -57,8 +62,12 @@ front.func.sendForm = async () => {
     }
   } else {
     !Static.form.name.valid ? (Static.form.name.error = "Введите имя") : null;
-    !Static.form.email.valid ? (Static.form.email.error = "Введите email") : null;
-    !Static.form.comment.valid ? (Static.form.comment.error = "Введите сообщение") : null;
+    !Static.form.email.valid
+      ? (Static.form.email.error = "Введите email")
+      : null;
+    !Static.form.comment.valid
+      ? (Static.form.comment.error = "Введите сообщение")
+      : null;
   }
 
   return;
@@ -100,11 +109,7 @@ front.loader = () => {
 };
 
 front.display = () => {
-  return (
-    <div>
-      <Navigation />
-    </div>
-  );
+  return <Navigation />;
 };
 
 export { front };

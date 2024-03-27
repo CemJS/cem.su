@@ -17,14 +17,6 @@ front.func.playAndPause = (video: any) => {
   return;
 };
 
-front.func.timeUpdate = (e: any) => {
-  let { currentTime, duration } = e.target;
-  let percent = (currentTime / duration) * 100;
-  Static.currentTime = currentTime;
-  Ref.progressBar.style.width = `${percent}%`;
-  return;
-};
-
 front.func.formatTime = (time: any) => {
   let seconds = Math.floor(time % 60),
     minutes = Math.floor(time / 60) % 60,
@@ -54,12 +46,19 @@ front.func.updateFilter = async () => {
     sort: Static.sort,
     order: Static.order,
     search: Static.search,
-    isClosed: Static.type == "opened" ? false : Static.type == "closed" ? true : undefined,
+    isClosed:
+      Static.type == "opened"
+        ? false
+        : Static.type == "closed"
+          ? true
+          : undefined,
     isBest: Static.type == "best",
     language: Static.chooseLanguage.code,
   };
-  Fn.log("=13809b=", Static.makeFilter);
-  let res = await front.Services.functions.sendApi("/api/events/Questions", Static.makeFilter);
+  let res = await front.Services.functions.sendApi(
+    "/api/questions",
+    Static.makeFilter,
+  );
   return;
 };
 
@@ -72,11 +71,80 @@ front.func.addNull = (str: any) => {
   return str.length < 2 ? `0${str}` : str;
 };
 
+front.func.deleteQuestion = async () => {
+  let data: object = {
+    action: "delete",
+    id: Static.record.id,
+  };
+  let res = await front.Services.functions.sendApi("/api/questions", data);
+  front.Variable.$el.header.classList.remove("hide");
+  front.Variable.$el.footer.classList.remove("hide");
+  Static.record = null;
+  Events.questions.close();
+  Fn.linkChange("/questions");
+};
+
+front.func.closeQuestion = async () => {
+  Static.record.closed = true;
+  Func.sendAuth(`/api/questions/${Static.record.id}/close`, {});
+};
+
+front.func.share = () => {
+  navigator.share({
+    title: document.title,
+    url: window.location.href,
+  });
+};
+
+front.func.deleteAnswer = async (id: string) => {
+  let data: object = {
+    action: "delete",
+    id: Static.record.id,
+  };
+  let res = await front.Services.functions.sendApi("/api/questions", data);
+  front.Variable.$el.header.classList.remove("hide");
+  front.Variable.$el.footer.classList.remove("hide");
+  Static.record = null;
+  Events.questions.close();
+  Fn.linkChange("/questions");
+};
+
+front.func.bestAnswer = async (id: string) => {
+  Static.record.closed = true;
+  let res = await front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/answers/${id}/close`,
+    {},
+  );
+};
+
+front.func.reportQuestion = async () => {
+  front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/complain`,
+    {},
+  );
+};
+
+front.func.sendAuth = async (url: string, data: object, method = "POST") => {
+  if (front.Variable.Auth) {
+    return await front.Services.functions.sendApi(url, data, method);
+  } else {
+    Fn.initOne("modalAuthtorization", {});
+  }
+};
+
+front.func.hideInputs = () => {
+  let inputs = document.querySelectorAll("#form");
+  let arr = [...inputs];
+  for (let elem of arr) {
+    elem.classList.remove("!flex");
+  }
+};
+
 front.loader = async () => {
   Static.open = "Ответить";
 
   Static.search = "";
-  Static.order = 1;
+  Static.order = -1;
   Static.types = [
     {
       name: "All",
@@ -99,8 +167,8 @@ front.loader = async () => {
   Static.type = "All";
 
   Static.chooseLanguage = {
-    eng_name: "Russian",
-    orig_name: "Русский",
+    engName: "Russian",
+    origName: "Русский",
     code: "ru",
   };
 
@@ -124,18 +192,25 @@ front.loader = async () => {
   // Func.updateFilter();
 
   Static.makeFilter = {
-    action: "get",
     sort: Static.sort,
     order: Static.order,
     search: Static.search,
-    isClosed: Static.type == "opened" ? false : Static.type == "closed" ? true : undefined,
+    isClosed:
+      Static.type == "opened"
+        ? false
+        : Static.type == "closed"
+          ? true
+          : undefined,
     isBest: Static.type == "best",
     language: Static.chooseLanguage.code,
   };
 
   delete Static.makeFilter.isClosed; //== undefined ? Static.makeFilter.
 
-  let url = front.Services.functions.makeUrlEvent("Questions", Static.makeFilter);
+  let url = front.Services.functions.makeUrlEvent(
+    "questions",
+    Static.makeFilter,
+  );
   let listener = [
     {
       type: "get",
@@ -149,34 +224,110 @@ front.loader = async () => {
       },
     },
     {
-      type: "add",
+      type: "create",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {
           return;
         }
-        Static.records.push(...json);
+        console.log("=8587af=", json);
+
+        Static.records.unshift(json);
+        console.log("=4d73fb=", Static.records);
+      },
+    },
+    {
+      type: "skip",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.records = [...Static.records, ...json];
       },
     },
   ];
   Events.questions = await Fn.event(url, listener);
 
-  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-    let url = front.Services.functions.makeUrlEvent("Questions", { action: "show", id: front.Variable.DataUrl[2] });
-
-    let listener = [
-      {
-        type: "get",
-        fn: ({ data }) => {
-          let json = front.Services.functions.strToJson(data);
-          if (!json) {
-            return;
-          }
-          Static.record = json;
-        },
+  Static.questionListener = [
+    {
+      type: "getById",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.record = json;
       },
-    ];
-    Events.questions = await Fn.event(url, listener);
+    },
+    {
+      type: "answer",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.record.answers.unshift(json);
+        Static.record.statistics.answers++;
+      },
+    },
+    {
+      type: "comment",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        console.log("=f51763=", json);
+        let answerIndex = Static.record.answers.findIndex(
+          (item) => item.id == json.answerId,
+        );
+        Static.record.answers[answerIndex].statistics.comments++;
+        if (!Array.isArray(Static.record.answers[answerIndex].comments)) {
+          Static.record.answers[answerIndex].comments = [];
+        }
+        console.log("=8ff2c7=", 1);
+        console.log("=52f6ca=", Static.record.answers[answerIndex]);
+        Static.record.answers[answerIndex].comments.unshift(json.comment);
+      },
+    },
+    {
+      type: "commentToComment",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        console.log("=8e724a=", json);
+        let answerIndex = Static.record.answers.findIndex(
+          (item) => item.id == json.answerId,
+        );
+
+        let commentIndex = Static.record.answers[
+          answerIndex
+        ].comments.findIndex((item) => item.id == json.commentId);
+
+        if (
+          !Array.isArray(
+            Static.record.answers[answerIndex].comments[commentIndex].comments,
+          )
+        ) {
+          Static.record.answers[answerIndex].comments[commentIndex].comments =
+            [];
+        }
+        Static.record.answers[answerIndex].comments[
+          commentIndex
+        ].comments.unshift(json.comment);
+      },
+    },
+  ];
+
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
+    let url = front.Services.functions.makeUrlEvent(
+      `questions/${front.Variable.DataUrl[2]}`,
+    );
+
+    Events.questions = await Fn.event(url, Static.questionListener);
 
     Static.videoDragStart = false;
 

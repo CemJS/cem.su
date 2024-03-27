@@ -8,13 +8,15 @@ front.listener.finish = () => {
 
 front.func.show = function ($el: HTMLElement) {
     setTimeout(() => {
-        $el.classList.add('modal__active');
+        $el.classList.remove('opacity-0');
+        $el.classList.remove('scale-125');
         front.Variable.$el.body.style.overflow = 'hidden';
     }, 100);
 }
 
 front.func.close = function () {
-    Ref.modal.classList.remove('modal__active');
+    Ref.modal.classList.add('opacity-0');
+    Ref.modal.classList.add('scale-125')
     setTimeout(() => {
         Fn.clearData()
         front.Variable.$el.body.style.overflow = 'auto';
@@ -84,6 +86,19 @@ front.func.checkForm = async function () {
     }
 }
 
+front.func.checkLogin = async function () {
+    let answer = await front.Services.functions.sendApi(`/api/Register`, {
+        action: "checkNick",
+        step: Static.currentStep,
+        nickname: Static.form.nickName.value
+    })
+
+    if (answer.error) {
+        Static.form.nickName.error = "Логин занят!"
+        Static.form.nickName.valid = false
+    }
+}
+
 front.func.clickNext = function () {
     Ref.slidePage.style.marginLeft = `-${Static.widthSlide * Static.currentStep}%`
     Static.currentStep++;
@@ -93,7 +108,7 @@ front.func.clickNext = function () {
 front.func.clickPrev = function () {
     Static.currentStep = --Static.currentStep
     Ref.indicator.style.width = `${(Static.currentStep - 1) / (Static.steps.length - 1) * 100}%`
-    Ref.slidePage.style.marginLeft = `${Static.widthSlide * Static.currentStep}%`
+    Ref.slidePage.style.marginLeft = `-25%`
 }
 
 front.func.changeEmail = function () {
@@ -208,7 +223,7 @@ front.loader = () => {
 
 front.display = () => {
     return (
-        <div class="modal" ref="modal" init={Func.show}>
+        <div class="fixed w-full h-full top-0 left-0 bg-[rgba(0,0,0,0.5)] z-10 transition-all opacity-0 scale-125" ref="modal" init={Func.show}>
             <Navigation />
         </div>
     )
