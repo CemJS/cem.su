@@ -1,0 +1,8 @@
+{
+  "url": "/exchanges",
+  "front": [
+    "header",
+    "exchanges",
+    "menu"
+  ]
+}

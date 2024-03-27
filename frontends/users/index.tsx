@@ -73,7 +73,7 @@ front.loader = async () => {
       },
     },
     {
-      type: "add",
+      type: "skip",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {
