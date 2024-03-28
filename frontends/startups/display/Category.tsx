@@ -4,7 +4,7 @@ let x1,
 export default function ({ items }) {
   return (
     <ul
-      class="category-carousel"
+      class="z-[1] m-0 grid grid-flow-col grid-cols-[auto] gap-[0.625rem] overflow-hidden overflow-x-scroll scroll-smooth p-[0.625rem_0.3125rem] @767:gap-[0.9375rem] @767:p-[1.25rem_0] [&.dragging]:scroll-auto [&.dragging]:[scroll-snap-type:none] [&.dragging_.category-item]:cursor-grab [&.dragging_.category-item]:select-none"
       ref="categoryCarousel"
       onmousedown={(e) => {
         Static.isDrag = true;
@@ -15,7 +15,8 @@ export default function ({ items }) {
       onmousemove={(e) => {
         if (!Static.isDrag) return;
         e.preventDefault();
-        Ref.categoryCarousel.scrollLeft = Static.startScrollLeft - (e.pageX - Static.startX);
+        Ref.categoryCarousel.scrollLeft =
+          Static.startScrollLeft - (e.pageX - Static.startX);
       }}
       onmouseup={(e) => {
         Static.isDrag = false;
@@ -24,7 +25,10 @@ export default function ({ items }) {
       onscroll={() => {
         if (Ref.categoryCarousel.scrollLeft === 0) {
           // Ref.categoryCarousel.classList.remove("category-wrap_shadow-left");
-        } else if (Ref.categoryCarousel.scrollLeft === Ref.categoryCarousel.scrollWidth - Ref.categoryCarousel.offsetWidth) {
+        } else if (
+          Ref.categoryCarousel.scrollLeft ===
+          Ref.categoryCarousel.scrollWidth - Ref.categoryCarousel.offsetWidth
+        ) {
           Ref.categoryCarousel.classList.remove("category-wrap_shadow-right");
         }
         // init();
@@ -70,7 +74,10 @@ export default function ({ items }) {
           <li
             ref="categoryEl"
             draggable="false"
-            class={["category__item", Static.catActive == item.name ? "category__item_active" : null]}
+            class={[
+              "category__item",
+              Static.catActive == item.name ? "category__item_active" : null,
+            ]}
             onclick={() => {
               if (Static.catActive == item.name) {
                 return;
@@ -78,8 +85,7 @@ export default function ({ items }) {
 
               Static.catActive = item.name;
               // Fn.log("=0cf81d=", Static.catActive);
-              front.Services.functions.sendApi("/api/Startups", {
-                action: "get",
+              front.Services.functions.sendApi("/api/startups", {
                 category: Static.catActive == "Все" ? "All" : Static.catActive,
               });
             }}

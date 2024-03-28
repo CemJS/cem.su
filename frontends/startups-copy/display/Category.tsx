@@ -1,11 +1,10 @@
-import { Cemjsx, Static, Ref, Fn, front } from "cemjs-all";
-
+import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
 let x1,
   y1 = null;
-export default function ({ items, active }) {
+export default function ({ items }) {
   return (
     <ul
-      class="z-[1] m-0 grid grid-flow-col grid-cols-[auto] gap-[0.625rem] overflow-hidden overflow-x-scroll scroll-smooth p-[0.625rem_0.3125rem] @767:gap-[0.9375rem] @767:p-[1.25rem_0] [&.dragging]:scroll-auto [&.dragging]:[scroll-snap-type:none] [&.dragging_.category-item]:cursor-grab [&.dragging_.category-item]:select-none"
+      class="category-carousel"
       ref="categoryCarousel"
       onmousedown={(e) => {
         Static.isDrag = true;
@@ -70,38 +69,31 @@ export default function ({ items, active }) {
         y1 = null;
       }}
     >
-      {items
-        ? items.map((item: any, index: number) => {
-            item.name == "Все" ? (item.name = "All") : null;
-            return (
-              <li
-                ref="categoryEl"
-                draggable="false"
-                class={[
-                  "category__item",
-                  active == item.name ? "category__item_active" : null,
-                ]}
-                onclick={() => {
-                  if (Static.makeFilter.cat == item.name) {
-                    return;
-                  }
-                  Static.makeFilter.cat = item.name;
+      {items.map((item: any, index: number) => {
+        return (
+          <li
+            ref="categoryEl"
+            draggable="false"
+            class={[
+              "category__item",
+              Static.catActive == item.name ? "category__item_active" : null,
+            ]}
+            onclick={() => {
+              if (Static.catActive == item.name) {
+                return;
+              }
 
-                  front.Services.functions.sendApi("/api/Icos", {
-                    action: "get",
-                    category:
-                      Static.makeFilter.cat == "Все"
-                        ? "All"
-                        : Static.makeFilter.cat,
-                    type: Static.makeFilter.active,
-                  });
-                }}
-              >
-                <span>{item.name}</span>
-              </li>
-            );
-          })
-        : null}
+              Static.catActive = item.name;
+              // Fn.log("=0cf81d=", Static.catActive);
+              front.Services.functions.sendApi("/api/startups", {
+                category: Static.catActive == "Все" ? "All" : Static.catActive,
+              });
+            }}
+          >
+            <span>{item.name}</span>
+          </li>
+        );
+      })}
     </ul>
   );
 }

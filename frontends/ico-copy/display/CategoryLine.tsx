@@ -5,7 +5,7 @@ let x1,
 export default function ({ items, active }) {
   return (
     <ul
-      class="z-[1] m-0 grid grid-flow-col grid-cols-[auto] gap-[0.625rem] overflow-hidden overflow-x-scroll scroll-smooth p-[0.625rem_0.3125rem] @767:gap-[0.9375rem] @767:p-[1.25rem_0] [&.dragging]:scroll-auto [&.dragging]:[scroll-snap-type:none] [&.dragging_.category-item]:cursor-grab [&.dragging_.category-item]:select-none"
+      class="category-carousel"
       ref="categoryCarousel"
       onmousedown={(e) => {
         Static.isDrag = true;
@@ -16,8 +16,7 @@ export default function ({ items, active }) {
       onmousemove={(e) => {
         if (!Static.isDrag) return;
         e.preventDefault();
-        Ref.categoryCarousel.scrollLeft =
-          Static.startScrollLeft - (e.pageX - Static.startX);
+        Ref.categoryCarousel.scrollLeft = Static.startScrollLeft - (e.pageX - Static.startX);
       }}
       onmouseup={(e) => {
         Static.isDrag = false;
@@ -26,10 +25,7 @@ export default function ({ items, active }) {
       onscroll={() => {
         if (Ref.categoryCarousel.scrollLeft === 0) {
           // Ref.categoryCarousel.classList.remove("category-wrap_shadow-left");
-        } else if (
-          Ref.categoryCarousel.scrollLeft ===
-          Ref.categoryCarousel.scrollWidth - Ref.categoryCarousel.offsetWidth
-        ) {
+        } else if (Ref.categoryCarousel.scrollLeft === Ref.categoryCarousel.scrollWidth - Ref.categoryCarousel.offsetWidth) {
           Ref.categoryCarousel.classList.remove("category-wrap_shadow-right");
         }
         // init();
@@ -77,10 +73,7 @@ export default function ({ items, active }) {
               <li
                 ref="categoryEl"
                 draggable="false"
-                class={[
-                  "category__item",
-                  active == item.name ? "category__item_active" : null,
-                ]}
+                class={["category__item", active == item.name ? "category__item_active" : null]}
                 onclick={() => {
                   if (Static.makeFilter.cat == item.name) {
                     return;
@@ -89,10 +82,7 @@ export default function ({ items, active }) {
 
                   front.Services.functions.sendApi("/api/Icos", {
                     action: "get",
-                    category:
-                      Static.makeFilter.cat == "Все"
-                        ? "All"
-                        : Static.makeFilter.cat,
+                    category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
                     type: Static.makeFilter.active,
                   });
                 }}

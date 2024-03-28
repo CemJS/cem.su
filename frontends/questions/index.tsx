@@ -289,6 +289,7 @@ front.loader = async () => {
         console.log("=8ff2c7=", 1);
         console.log("=52f6ca=", Static.record.answers[answerIndex]);
         Static.record.answers[answerIndex].comments.unshift(json.comment);
+        Static.record.statistics.answers++;
       },
     },
     {
@@ -318,6 +319,7 @@ front.loader = async () => {
         Static.record.answers[answerIndex].comments[
           commentIndex
         ].comments.unshift(json.comment);
+        Static.record.statistics.answers++;
       },
     },
   ];
