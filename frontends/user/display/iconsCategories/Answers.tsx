@@ -1,4 +1,6 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
+import answers from "@svg/sections/answers.svg";
+import answers_inactive from "@svg/sections/answers_inactive.svg";
 
 export default function () {
   return (
@@ -20,11 +22,12 @@ export default function () {
           );
           //   Fn.log('=4b78f5=',Static.record?.statistics)
         }}
-        class={`block h-[2.625rem] w-[2.875rem] @464:h-[4.0625rem] @464:w-[4.4375rem] ${
+        style={
           Static.answers === true
-            ? "[background:no-repeat_url('/contents/svg/sections/answers.svg')_center_/_100%]"
-            : "[background:no-repeat_url('/contents/svg/sections/answers_inactive.svg')_center_/_100%]"
-        }`}
+            ? `background: no-repeat url('${answers}') center/100%`
+            : `background: no-repeat url('${answers_inactive}') center/100%`
+        }
+        class="block h-[2.625rem] w-[2.875rem] @464:h-[4.0625rem] @464:w-[4.4375rem]"
         data-profilepage="aboutUser"
       ></i>
       <div class="absolute right-[.625rem] top-[-.3125rem] h-[1.375rem] w-[1.375rem] rounded-[50%] bg-[linear-gradient(45deg,_#3bade3_0,_#576fe6_45%,_#9844b7_57%,_#ff357f_70%)] p-[.125rem]">

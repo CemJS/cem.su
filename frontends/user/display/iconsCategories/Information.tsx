@@ -1,4 +1,6 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
+import information from "@svg/sections/information.svg";
+import information_inactive from "@svg/sections/information_inactive.svg";
 
 export default function () {
   return (
@@ -20,12 +22,12 @@ export default function () {
             { category: "information" },
           );
         }}
-        class={`block h-[2.625rem] w-[2.875rem] @464:h-[4.0625rem] @464:w-[4.4375rem] ${
+        style={
           Static.aboutMe === true
-            ? "[background:no-repeat_url('/contents/svg/sections/information.svg')_center_/_100%]"
-            : "[background:no-repeat_url('/contents/svg/sections/information_inactive.svg')_center_/_100%]"
-        }`}
-        data-profilepage="aboutUser"
+            ? `background: no-repeat url('${information}') center/100%`
+            : `background: no-repeat url('${information_inactive}') center/100%`
+        }
+        class="block h-[2.625rem] w-[2.875rem] @464:h-[4.0625rem] @464:w-[4.4375rem]"        data-profilepage="aboutUser"
       ></i>
     </div>
   );

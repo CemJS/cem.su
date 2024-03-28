@@ -38,6 +38,19 @@ front.loader = async () => {
           // Fn.initAll();
         },
       },
+      {
+        type: "changeCategory",
+        fn: ({ data }) => {
+          let json = front.Services.functions.strToJson(data);
+          if (!json) {
+            return;
+          }
+          Static.record = json;
+          console.log("Static.record123", json);
+          
+          // Fn.initAll();
+        },
+      },
     ];
     Events.user = await Fn.event(url, listener);
   }

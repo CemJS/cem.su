@@ -1,4 +1,6 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
+import social from "@svg/sections/social.svg";
+import social_inactive from "@svg/sections/social_inactive.svg";
 
 export default function () {
   return (
@@ -20,11 +22,12 @@ export default function () {
           );
           //проверка на error
         }}
-        class={`block h-[2.625rem] w-[2.875rem] @464:h-[4.0625rem] @464:w-[4.4375rem] ${
+        style={
           Static.socials === true
-            ? "[background:no-repeat_url('/contents/svg/sections/social.svg')_center_/_100%]"
-            : "[background:no-repeat_url('/contents/svg/sections/social_inactive.svg')_center_/_100%]"
-        }`}
+            ? `background: no-repeat url('${social}') center/100%`
+            : `background: no-repeat url('${social_inactive}') center/100%`
+        }
+        class="block h-[2.625rem] w-[2.875rem] @464:h-[4.0625rem] @464:w-[4.4375rem]"
         data-profilepage="aboutUser"
       ></i>
     </div>

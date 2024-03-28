@@ -1,4 +1,6 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
+import followers from "@svg/sections/followers.svg";
+import followers_inactive from "@svg/sections/followers_inactive.svg";
 
 export default function () {
   return (
@@ -20,11 +22,12 @@ export default function () {
           );
           //проверка на error
         }}
-        class={`block h-[2.625rem] w-[2.875rem] @464:h-[4.0625rem] @464:w-[4.4375rem] ${
+        style={
           Static.subscribers === true
-            ? "[background:no-repeat_url('/contents/svg/sections/followers.svg')_center_/_100%]"
-            : "[background:no-repeat_url('/contents/svg/sections/followers_inactive.svg')_center_/_100%]"
-        }`}
+            ? `background: no-repeat url('${followers}') center/100%`
+            : `background: no-repeat url('${followers_inactive}') center/100%`
+        }
+        class="block h-[2.625rem] w-[2.875rem] @464:h-[4.0625rem] @464:w-[4.4375rem]"
         data-profilepage="aboutUser"
       ></i>
       <div class="absolute right-[.625rem] top-[-.3125rem] h-[1.375rem] w-[1.375rem] rounded-[50%] bg-[linear-gradient(45deg,_#3bade3_0,_#576fe6_45%,_#9844b7_57%,_#ff357f_70%)] p-[.125rem]">
