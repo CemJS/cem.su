@@ -79,7 +79,10 @@ front.loader = async () => {
       name: "IFO",
     },
   ];
-  let url = front.Services.functions.makeUrlEvent("Icos", { action: "get", category: Static.makeFilter.cat, type: Static.makeFilter.active });
+  let url = front.Services.functions.makeUrlEvent("icos", {
+    category: Static.makeFilter.cat,
+    type: Static.makeFilter.active,
+  });
   let listener = [
     {
       type: "get",
@@ -93,7 +96,7 @@ front.loader = async () => {
       },
     },
     {
-      type: "add",
+      type: "skip",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {
@@ -106,7 +109,10 @@ front.loader = async () => {
   Events.icos = await Fn.event(url, listener);
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-    let url = front.Services.functions.makeUrlEvent("Icos", { action: "show", id: front.Variable.DataUrl[2] });
+    let url = front.Services.functions.makeUrlEvent("icos", {
+      action: "show",
+      id: front.Variable.DataUrl[2],
+    });
 
     let listener = [
       {

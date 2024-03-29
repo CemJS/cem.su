@@ -86,6 +86,9 @@
   .wrapper {
     @apply mx-auto max-w-7xl px-[1rem] xl:px-0;
   }
+  .disable_scroll {
+    @apply relative h-screen overflow-hidden;
+  }
 
   /* для страниц соглашений(3шт) */
   .title {

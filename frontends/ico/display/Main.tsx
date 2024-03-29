@@ -20,24 +20,27 @@ const RenderItems = function ({ items }) {
   return (
     <div class="ico">
       <div class="ico_inner">
-        <div
-          class="ico__tabs"
-          ref="tabs"
-        >
+        <div class="ico__tabs" ref="tabs">
           {states.map((item, index) => {
             return (
               <div
                 ref="tabsItem"
-                class={["ico__tabs-item", Static.activeIndex == index ? "ico__tabs-item_active" : null]}
+                class={[
+                  "ico__tabs-item",
+                  Static.activeIndex == index ? "ico__tabs-item_active" : null,
+                ]}
                 onclick={() => {
                   if (Static.makeFilter.active == item.name) {
                     return;
                   }
                   Static.makeFilter.active = item.name;
                   // fn("addEvent");
-                  front.Services.functions.sendApi("/api/Icos", {
+                  front.Services.functions.sendApi("/api/icos", {
                     action: "get",
-                    category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
+                    category:
+                      Static.makeFilter.cat == "Все"
+                        ? "All"
+                        : Static.makeFilter.cat,
                     type: Static.makeFilter.active,
                   });
                   Static.activeIndex = index;
@@ -56,17 +59,11 @@ const RenderItems = function ({ items }) {
         </div>
         {!items.length ? (
           <div class="notFound">
-            <img
-              src={notFound}
-              alt="Нет записей"
-            />
+            <img src={notFound} alt="Нет записей" />
             Нет записей
           </div>
         ) : null}
-        <div
-          class="ico__list"
-          ref="icoList"
-        >
+        <div class="ico__list" ref="icoList">
           {!items.length
             ? null
             : items.map((item: any, index: number) => {
@@ -93,12 +90,18 @@ const RenderItems = function ({ items }) {
                             if (entry.isIntersecting) {
                               // Fn.log("=2a3c8e=", 6666666);
                               observer.unobserve($el);
-                              let res = front.Services.functions.sendApi("/api/Icos", {
-                                action: "skip",
-                                category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
-                                type: Static.makeFilter.active,
-                                skip: Static.records.length,
-                              });
+                              let res = front.Services.functions.sendApi(
+                                "/api/icos",
+                                {
+                                  action: "skip",
+                                  category:
+                                    Static.makeFilter.cat == "Все"
+                                      ? "All"
+                                      : Static.makeFilter.cat,
+                                  type: Static.makeFilter.active,
+                                  skip: Static.records.length,
+                                },
+                              );
                               // Fn.log("=e26cda=", res);
                             }
                           });
@@ -119,25 +122,46 @@ const RenderItems = function ({ items }) {
                       <h5>{item.title}</h5>
                       <p>{item.description}</p>
                       <p class="ico__list-item-finance pt_15">
-                        <span class="text_important">${item.nowMoney ? item.nowMoney : 0}</span> / ${item.targetMoney ? item.targetMoney : 0}
+                        <span class="text_important">
+                          ${item.nowMoney ? item.nowMoney : 0}
+                        </span>{" "}
+                        / ${item.targetMoney ? item.targetMoney : 0}
                         <span class="pl_15 ico__percent">
-                          {item.targetMoney ? (item.targetMoney <= 0 ? "0" : Math.round(((item.nowMoney && item.nowMoney > 0 ? item.nowMoney : 0) * 100) / item.targetMoney)) : "0"}%
+                          {item.targetMoney
+                            ? item.targetMoney <= 0
+                              ? "0"
+                              : Math.round(
+                                  ((item.nowMoney && item.nowMoney > 0
+                                    ? item.nowMoney
+                                    : 0) *
+                                    100) /
+                                    item.targetMoney,
+                                )
+                            : "0"}
+                          %
                         </span>
                       </p>
                     </div>
 
                     {item.dateIsKnow ? (
                       <span class="ico__tba">
-                        <img
-                          src={calendar}
-                          alt="Date"
-                        ></img>
+                        <img src={calendar} alt="Date"></img>
                         TBA
                       </span>
                     ) : (
                       <div class="ico__list-item-date">
-                        <span>{front.Services.functions.timeStampToDate(item.dateCreate, ".")}</span>
-                        <span>{front.Services.functions.timeStampToDate(item.dateUpdate, ".")}</span>
+                        <span>
+                          {front.Services.functions.timeStampToDate(
+                            item.dateCreate,
+                            ".",
+                          )}
+                        </span>
+                        <span>
+                          {front.Services.functions.timeStampToDate(
+                            item.dateUpdate,
+                            ".",
+                          )}
+                        </span>
                       </div>
                     )}
                   </a>

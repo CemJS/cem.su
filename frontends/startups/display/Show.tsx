@@ -5,19 +5,62 @@ import { Display } from "@elements/TeamSlider";
 import test from "@images/events/test.jpg";
 import test2 from "@images/events/test2.png";
 
+let tokenomicaColorMap = {
+  0: "#e7f700",
+  1: "#a43cf9",
+  2: "#ff9b00",
+  3: "#1d7af8",
+  4: "#ff6e6c",
+  5: "violet",
+  6: "rgb(61, 153, 61)",
+  7: "red",
+  8: "#ff357f",
+  9: "#ffdead",
+  10: "#800000",
+  11: "#a7fc00",
+  12: "#fff8e7",
+  13: "#ff00ff",
+};
+
+let RenderSaveList = () => {
+  return (
+    <div id="saveList" class="stroke-[#a43cf9] [background:#a43cf9]">
+      <div class="stroke-[#e7f700] [background:#e7f700]"></div>
+      <div class="stroke-[#ff9b00] [background:#ff9b00]"></div>
+      <div class="stroke-[#1d7af8] [background:#1d7af8]"></div>
+      <div class="stroke-[#ff6e6c] [background:#ff6e6c]"></div>
+      <div class="stroke-[violet] [background:violet]"></div>
+      <div class="stroke-[rgb(61,153,61)] [background:rgb(61,153,61)]"></div>
+      <div class="stroke-[red] [background:red]"></div>
+      <div class="stroke-[#ff357f] [background:#ff357f]"></div>
+      <div class="stroke-[#ffdead] [background:#ffdead]"></div>
+      <div class="stroke-[#800000] [background:#800000]"></div>
+      <div class="stroke-[#a7fc00] [background:#a7fc00]"></div>
+      <div class="stroke-[#fff8e7] [background:#fff8e7]"></div>
+      <div class="stroke-[#ff00ff] [background:#ff00ff]"></div>
+    </div>
+  );
+};
+
 export default function () {
   let currentTokenomica = -0;
   return (
-    <div class="startaps_show effect_lines">
-      <div class="page page_list">
-        <div class="wrapper wrapper_padding">
-          <h2 class="general__title">{Static.record.title}</h2>
+    <div id="show">
+      <RenderSaveList />
+      <div class="page">
+        <div class="wrapper">
+          <h2 class="m-[0.625rem_0_1.5625rem_0] text-center text-[clamp(2rem,2vw,2.75rem)] font-bold leading-[3.625rem]">
+            {Static.record.title}
+          </h2>
 
-          <section class="startap__info">
-            <div class="startap__info-item startap__info-item-media">
-              <div class="startap__info_cover">
+          <section class="flex grid-cols-2 flex-col gap-[1.5625rem] @992:grid">
+            <div class="flex flex-col gap-[1.5625rem] @992:gap-[0.9375rem]">
+              <div class="mx-auto h-[21.875rem] max-w-[40.625rem] @992:mx-[unset]">
                 {Static.record.cover ? (
-                  <img src={`/assets/upload/worldPress/${Static.record.cover}`}></img>
+                  <img
+                    class="h-full w-full rounded-[--borderR] object-cover"
+                    src={`/assets/upload/worldPress/${Static.record.cover}`}
+                  ></img>
                 ) : Static.record.coverVideo ? (
                   <iframe
                     class="social-video"
@@ -32,38 +75,55 @@ export default function () {
                   ></iframe>
                 ) : null}
               </div>
-              <div class="startap__box">
-                <p class="startap__text">{Static.record.descriptionShort}</p>
+              <div class="relative z-[1] overflow-hidden rounded-[--borderR] p-[0.9375rem] [box-shadow:0_0_16px_0_rgba(33,31,31,0.2)]">
+                <div
+                  id="bg"
+                  class="absolute bottom-0 left-0 right-0 top-0 z-[-1] bg-[rebeccapurple] blur-[3.75rem]"
+                ></div>
+                <p class="text-[1.125rem] font-normal leading-[1.5625rem]">
+                  {Static.record.descriptionShort}
+                </p>
               </div>
-              <div class="startap__btns">
+              <div class="flex gap-[0.9375rem]">
                 <a
                   onclick={Fn.link}
                   href={Static.record.whitePaperLink}
-                  class={["btn", Static.record.whitePaperLink ? "btn_gradient" : "btn_disable"]}
+                  class={[
+                    "btn",
+                    Static.record.whitePaperLink
+                      ? "btn_gradient"
+                      : "btn_disable",
+                  ]}
                 >
                   <span>WhitePaper</span>
                 </a>
                 <a
                   onclick={Fn.link}
-                  class={["btn", Static.record.siteLink ? "btn_gradient" : "btn_disable"]}
+                  class={[
+                    "btn",
+                    Static.record.siteLink ? "btn_gradient" : "btn_disable",
+                  ]}
                   href={Static.record.siteLink}
                 >
                   <span>WebSite</span>
                 </a>
               </div>
             </div>
-            <div class="startap__info-item startap__info-item-desc">
-              <p class="startap_text">{Static.record.description}</p>
+            <div class="flex flex-col gap-[1.5625rem] @992:flex-row">
+              <p class="!h-auto overflow-y-scroll pr-[0.625rem] @992:h-[21.75rem]">
+                {Static.record.description}
+              </p>
               {Static.record.social?.length ? (
-                <div class="social-networks pt-15">
+                <div class="flex flex-wrap justify-center gap-[1.5625rem] pt-[15px]">
                   {Static.record.social.map((item, index) => {
                     return (
                       <a
                         href={item.url}
                         onclick={Fn.link}
-                        class="social-networks__item"
+                        class="inline-flex h-[3.125rem] w-[3.125rem] items-center justify-center rounded-[--ellipse] [background:rgba(255,255,255,0.09)] [box-shadow:0rem_0.3125rem_2.75rem_0rem_rgba(29,33,45,0.8)] [transition:all_0.3s_ease] hover:bg-transparent hover:[border:0.0625rem_solid_var(--border)] hover:[transform:scale(1.1)]"
                       >
                         <img
+                          class="h-5"
                           src={`/contents/icons/social_networks/${item.channel}.svg`}
                           alt={item.channel}
                         />
@@ -76,19 +136,29 @@ export default function () {
           </section>
 
           {Static.record.roadMap?.length ? (
-            <section class="startap__roadmap">
-              <h2 class="general__title">Дорожная карта</h2>
-              {Static.record.roadMap.length && Static.record.roadMap[0].image ? (
-                <div class="startap__roadmap-image">
-                  <img src={`/assets/upload/worldPress/${Static.record.roadMap[0].image}`} />
+            <section>
+              <h2 class="m-[0.625rem_0_1.5625rem_0] text-center text-[clamp(2rem,2vw,2.75rem)] font-bold leading-[3.625rem]">
+                Дорожная карта
+              </h2>
+              {Static.record.roadMap.length &&
+              Static.record.roadMap[0].image ? (
+                <div class="flex items-center justify-center">
+                  <img
+                    class="h-full rounded-[--borderR]"
+                    src={`/assets/upload/worldPress/${Static.record.roadMap[0].image}`}
+                  />
                 </div>
               ) : (
-                <div class="startap__roadmap-board">
+                <div class="grid grid-cols-4 gap-[1.5625rem]">
                   {Static.record.roadMap.map((item, index) => {
                     return (
-                      <div class="startap__roadmap-board-item">
-                        <span class="text_important">{item.year}</span>
-                        <p>{item.description}</p>
+                      <div class="flex flex-col gap-[0.9375rem] [&_span]:text-[1.75rem] [&_span]:font-bold [&_span]:leading-[2.25rem]">
+                        <span class="bg-clip-text !text-[clamp(1rem,2vw,1.125rem)] !font-bold !leading-[1.375rem] [-webkit-text-fill-color:transparent] [background:var(--mainGradient)]">
+                          {item.year}
+                        </span>
+                        <p class="text-[1.125rem] font-medium leading-[1.625rem]">
+                          {item.description}
+                        </p>
                       </div>
                     );
                   })}
@@ -97,28 +167,34 @@ export default function () {
             </section>
           ) : null}
 
-          {Static.record.Tokenomica?.length ? (
-            <section class="startap__tokenomica">
-              <h2 class="general__title">Токеномика</h2>
-              <div class="tokenomica__board">
-                <div class="tokenomica__pie">
-                  <div class="tokenomica__canvas">
+          {Static.record.tokenomica?.length ? (
+            <section id="tokenomica">
+              <h2 class="m-[0.625rem_0_1.5625rem_0] text-center text-[clamp(2rem,2vw,2.75rem)] font-bold leading-[3.625rem]">
+                Токеномика
+              </h2>
+              <div class="flex grid-cols-2 flex-col items-center gap-[1.5625rem] rounded-[--borderR] bg-[--light-gray] p-[1.5625rem_1.5625rem_2.1875rem_1.5625rem] [box-shadow:0rem_0.3125rem_2_75rem_0rem_rgba(29,33,45,0.8)] @992:grid">
+                <div id="pie">
+                  <div id="canvas">
                     <svg
-                      class="tokenomica__chart"
+                      class="h-[18.75rem] w-[18.75rem] fill-[--light-navy]"
                       width="500"
                       height="500"
                       viewBox="0 0 50 50"
                     >
-                      {Static.record.Tokenomica.map((item, index) => {
+                      {Static.record.tokenomica.map((item, index) => {
                         return (
                           <circle
                             ref={`circle-${index}`}
-                            class={[`tokenomica__unit-${index}`]}
+                            class={[
+                              `fill-none stroke-2 [transition:all_0.3s_ease] [animation-duration:1.5s] [animation-name:render] hover:stroke-[4] hover:opacity-80 stroke-[${tokenomicaColorMap[index]}]`,
+                            ]}
                             r="15.9"
                             cx="50%"
                             cy="50%"
                             stroke-dasharray={`${item.value} 100`}
-                            stroke-dashoffset={index == 0 ? "-0" : currentTokenomica}
+                            stroke-dashoffset={
+                              index == 0 ? "-0" : currentTokenomica
+                            }
                           >
                             {(currentTokenomica -= item.value)}
                           </circle>
@@ -127,22 +203,42 @@ export default function () {
                     </svg>
                   </div>
                 </div>
-                <div class="tokenomica__desc">
-                  {Static.record.Tokenomica.map((item, index) => {
+                <div class="flex flex-wrap justify-evenly [column-gap:1.875rem] [row-gap:2.5rem]">
+                  {Static.record.tokenomica.map((item, index) => {
                     return (
                       <div
                         onmouseover={() => {
-                          Ref[`circle-${index}`].classList.add("hovered");
+                          Ref[`circle-${index}`].classList.add("!opacity-80");
+                          Ref[`circle-${index}`].classList.add("!stroke-[4]");
                         }}
                         onmouseout={() => {
-                          Ref[`circle-${index}`].classList.remove("hovered");
+                          Ref[`circle-${index}`].classList.remove(
+                            "!opacity-80",
+                          );
+                          Ref[`circle-${index}`].classList.remove(
+                            "!stroke-[4]",
+                          );
                         }}
-                        class="tokenomica__desc-item"
+                        class="flex items-center gap-[0.625rem]"
                       >
-                        <div class={["tokenomica__desc-item-line", `tokenomica__desc-item-line-${index}`]}>
-                          <span class={["tokenomica__desc-item-value", `tokenomica__desc-item-value-${index}`]}>{item.value}%</span>
+                        <div
+                          class={[
+                            "relative block h-[0.3125rem] w-[3.125rem] rounded-[0.3125rem]",
+                            `[background:${tokenomicaColorMap[index]}]`,
+                          ]}
+                        >
+                          <span
+                            class={[
+                              "absolute bottom-[-1.5625rem] left-1/2 font-semibold [transform:translateX(-50%)]",
+                              `text-[${tokenomicaColorMap[index]}]`,
+                            ]}
+                          >
+                            {item.value}%
+                          </span>
                         </div>
-                        <span class="tokenomica__desc-item-name">{item.descriptionShort}</span>
+                        <span class="text-[1.125rem] font-medium leading-[1.625rem]">
+                          {item.descriptionShort}
+                        </span>
                       </div>
                     );
                   })}
@@ -152,152 +248,31 @@ export default function () {
           ) : null}
 
           {Static.record.team?.length ? (
-            <section class="startap__team">
-              <h2 class="general__title">Команда</h2>
+            <section id="team">
+              <h2 class="m-[0.625rem_0_1.5625rem_0] text-center text-[clamp(2rem,2vw,2.75rem)] font-bold leading-[3.625rem]">
+                Команда
+              </h2>
               <Display items={Static.record.team} />
-              {/* <div class="startap__team_wrap">
-                <button class="icoItem__btn icoItem__btn_prev">
-                  <img src={back} />
-                </button>
-                <button class="icoItem__btn icoItem__btn_next">
-                  <img src={next} />
-                </button>
-                <div class="buttonsShow">
-                  <button
-                    ref="next"
-                    class="nextBtnEvents"
-                    onclick={() => {
-                      let gap = 13;
-                      let slidesNum = Ref.gallery_container.children.length;
-                      let itemWidth = Ref.gallery_container_slide.offsetWidth + gap;
-                      let maxWidth = slidesNum * itemWidth;
-                      if (Ref.gallery_container.scrollLeft < maxWidth) {
-                        Ref.gallery_container.scrollLeft += itemWidth;
-                      }
-                    }}
-                  >
-                    <img
-                      src={next}
-                      alt=""
-                    />
-                  </button>
-                  <button
-                    ref="back"
-                    class="prevBtnEvents"
-                    onclick={() => {
-                      let gap = 13;
-                      let itemWidth = Ref.gallery_container_slide.offsetWidth + gap;
-
-                      if (Ref.gallery_container.scrollLeft > 0) {
-                        Ref.gallery_container.scrollLeft -= itemWidth;
-                      }
-                    }}
-                  >
-                    <img
-                      src={back}
-                      alt=""
-                    />
-                  </button>
-                  <div class="slider-hidden">
-                    <div
-                      class="gallery-container"
-                      ref="gallery_container"
-                      onmousedown={(e) => {
-                        Static.isDragging = true;
-                        Static.startX = e.pageX;
-                        Static.startScrollLeft = Ref.gallery_container.scrollLeft;
-                      }}
-                      onmousemove={(e) => {
-                        if (!Static.isDragging) return;
-                        // console.log('=ab8faf=',e.pageX - Static.startX)
-                        e.preventDefault();
-                        Ref.gallery_container.scrollLeft = Static.startScrollLeft - (e.pageX - Static.startX);
-                      }}
-                      onmouseup={() => {
-                        Static.isDragging = false;
-                      }}
-                      ontouchstart={(e) => {
-                        console.log("=d004e1=", e);
-                        const firstTouch = e.touches[0];
-                        Static.x1 = firstTouch.clientX;
-                        Static.y1 = firstTouch.clientY;
-                      }}
-                      ontouchmove={(e) => {
-                        if (!Static.x1 || !Static.y1) return false;
-                        let x2 = e.touches[0].clientX;
-                        let y2 = e.touches[0].clientY;
-                        let xDiff = x2 - Static.x1;
-                        let yDiff = y2 - Static.y1;
-                        console.log("=cb2f82=", xDiff);
-
-                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                          if (xDiff > -5) {
-                            Ref.gallery_container.scrollLeft -= Ref.gallery_container_slide.offsetWidth + 16;
-                          } else if (xDiff > 5) {
-                            Ref.gallery_container.scrollLeft += Ref.gallery_container_slide.offsetWidth + 16;
-                          }
-                        }
-                        Static.x1 = null;
-                        Static.y1 = null;
-                      }}
-                    >
-                      {Static.record.team.map((item) => {
-                        return (
-                          <div
-                            ref="gallery_container_slide"
-                            class=""
-                          >
-                            {
-                              <div class="startap__team-item slider__item">
-                                <div class="startap__team-item-img">
-                                  <img src={`/assets/upload/worldPress/${item.photo}`}></img>
-                                </div>
-                                <span class="startap__team-item-name">{item.descriptionShort}</span>
-                                <span class="startap__team-item-pos">{item.position}</span>
-                              </div>
-                            }
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-                {/* <div class="startap__team-carousel slider">
-                  <div class="slider__list-wrap">
-                    <ul class="slider__list">
-                      {Static.record.team.map((item, index) => {
-                        return (
-                          <div class="startap__team-item slider__item">
-                            <div class="startap__team-item-img">
-                              <img src={`/assets/upload/worldPress/${item.photo}`}></img>
-                            </div>
-                            <span class="startap__team-item-name">{item.descriptionShort}</span>
-                            <span class="startap__team-item-pos">{item.position}</span>
-                          </div>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                </div> */}
-              {/* </div> */}
             </section>
           ) : null}
 
           {Static.record.media?.length ? (
-            <section class="icoItem__gallery pt_25">
-              <h2 class="general__title">Галерея</h2>
-              <div class="icoItem__gallery_wrap pt_20">
+            <section id="gallery" class="pt-[25px]">
+              <h2 class="m-[0.625rem_0_1.5625rem_0] text-center text-[clamp(2rem,2vw,2.75rem)] font-bold leading-[3.625rem]">
+                Галерея
+              </h2>
+              <div class="relative pt-[20px]">
                 {/* <button class="icoItem__btn icoItem__btn_prev">
                   <img src={back} />
                 </button>
                 <button class="icoItem__btn icoItem__btn_next">
                   <img src={next} />
                 </button> */}
-                <div class="icoItem__carousel">
+                <div class="flex flex-wrap justify-center gap-[0.9375rem] overflow-hidden">
                   {Static.record.media.map((item, index) => {
                     return (
                       <div
-                        class="icoItem__carousel-item"
+                        class="h-[21.875rem] w-[21.875rem] cursor-pointer"
                         onclick={() => {
                           let records = Static.record.media;
                           let activeIndex = index;
@@ -305,6 +280,7 @@ export default function () {
                         }}
                       >
                         <img
+                          class="h-full w-full rounded-[--borderR] object-cover"
                           src={`/assets/upload/worldPress/${item.name}`}
                           alt="Gallery photo"
                         />

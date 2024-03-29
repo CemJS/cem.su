@@ -75,8 +75,10 @@ export default function ({ items }) {
             ref="categoryEl"
             draggable="false"
             class={[
-              "category__item",
-              Static.catActive == item.name ? "category__item_active" : null,
+              "relative z-[1] flex h-[1.875rem] w-full cursor-pointer items-center justify-center rounded-[3.125rem] border-none bg-[#363b4b] p-[0_0.7375rem] text-[0.875rem] font-semibold leading-[18] [transition:0.7s] @464:h-[2.125rem] @464:text-[1rem] @464:leading-[1.125rem]",
+              Static.catActive == item.name
+                ? "!border-[0.125rem] !bg-[none]"
+                : null,
             ]}
             onclick={() => {
               if (Static.catActive == item.name) {
@@ -90,7 +92,10 @@ export default function ({ items }) {
               });
             }}
           >
-            <span>{item.name}</span>
+            <span class="whitespace-nowrap text-[--text-grey]">
+              {item.name}
+            </span>
+            <div class="absolute left-0 top-0 z-[-1] h-full w-full rounded-[3.125rem] opacity-0 [background:var(--darkBlueGradient)] [transition:1s]"></div>
           </li>
         );
       })}
