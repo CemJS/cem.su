@@ -10,7 +10,7 @@ import Feed from "./blocks/feed/Feed"
 
 export default function () {
     return (
-        <div class="user-main-block flex mb-[5rem]">
+        <div class="flex mb-[5rem]">
             {Static.feed === true ?
                 <Feed />
                 : null}

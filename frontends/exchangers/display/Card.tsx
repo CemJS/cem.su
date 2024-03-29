@@ -27,7 +27,7 @@ export default function ({ item, index }) {
                     <img class="relative top-[-.125rem] mr-[1.875rem] pt-[10px] my-[.3125rem] mx-0 max-h-[3.75rem]"
                         src={`/assets/upload/worldPress/${item?.mediaName}`}>
                     </img>
-                    <div class="body-card__container_font-size pt-10">{item.name}</div>
+                    {/* <div class="body-card__container_font-size pt-10">{item.name}</div> */}
                     <div class="pt-[.625rem] text-[1.125rem] text-center">{item?.score}</div>
                     <div class="hidden @410:block p-[0_0_5px_0]">
                         <img

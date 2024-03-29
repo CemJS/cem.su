@@ -1,30 +1,32 @@
-import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all"
-import MyPlacesOfWork from "./MyPlacesOfWork"
+import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
+import MyPlacesOfWork from "./MyPlacesOfWork";
 
 export default function () {
-    // Fn.log('=2fc7ab=',Static.aboutMe)
-    return (
-        <div class="user__info-ection-1 user__info-section-row_type-2">
-            <div class="user__info-section-row_type-3">
-                <div class="user__info-section">
-                    <div class="user__info-section_inner">
-                        <p>Мои интересы</p>
-                        {Static.record?.interests?.map((item: any, key: number) => {
-                            return (
-                                <div key={key} style="position: relative;">
-                                    <b>{item?.title}</b>
-                                    <div>
-                                        <span>
-                                            {item?.description}
-                                        </span>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
+  // Fn.log('=2fc7ab=',Static.aboutMe)
+  return (
+    <div class="@1370:my-0 last:mb-0 @1370:mx-[.5rem] @1370:w-[calc(50%_-_16px)] m-0 w-full max-@1024:mb-[1.25rem]">
+      <div class="m-0 mb-[1.25rem] @1024:my-0 @1024:mx-[.5rem] w-full @1024:!w-[calc(100%_-_16px)]">
+        <div class="z-0 m-0 cursor-col-resize rounded-[0] border-x-0 border-b-0 bg-[--black-gray] p-[.1875rem] text-[--white] [border:1px_solid_#363C50] @1024:mt-[2rem] @1024:rounded-[.9375rem]">
+          <div class="relative h-full w-full cursor-default rounded-[.9375rem] bg-[--black-gray] px-[1.25rem] py-[2rem]">
+            <p>Мои интересы</p>
+            {Static.record?.interests?.map((item: any, key: number) => {
+              return (
+                <div key={key} style="position: relative;">
+                  <b class="mb-[.9375rem] mt-[1.4375rem] block text-[1rem] font-bold leading-[1.5rem] text-[--white]">
+                    {item?.title}
+                  </b>
+                  <div>
+                    <span class="text-[1rem] font-normal leading-[1.5rem] text-[--white]">
+                      {item?.description}
+                    </span>
+                  </div>
                 </div>
-            </div>
-            <MyPlacesOfWork />
-        </div >
-    )
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      <MyPlacesOfWork />
+    </div>
+  );
 }

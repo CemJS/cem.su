@@ -8,7 +8,7 @@ export default function () {
       <h2 class="mx-0 my-[1.25rem] text-balance text-center text-[clamp(15px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
         Личная информация
       </h2>
-      <div class="m-auto relative flex flex-wrap mt-[.9375rem] max-[767px]:w-full max-[1200px]:w-[calc(100%_-_24px)]">
+      <div class="m-auto relative flex flex-wrap mt-[.9375rem] max-@767:w-full max-@1200:w-[calc(100%_-_24px)]">
         <AboutMe />
         <Interests />
       </div>

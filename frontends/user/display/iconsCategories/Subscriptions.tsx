@@ -19,7 +19,7 @@ export default function () {
 
           let content = await front.Services.functions.sendApi(
             `/api/users/${Static.record?.nickname}/profile`,
-            { category: "subscribers" },
+            { category: "subscriptions" },
           );
           //проверка на error
         }}

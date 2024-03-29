@@ -2,8 +2,8 @@ import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
 
 export default function () {
   return (
-    <div class="relative h-[7.1875rem] max-[1720px]:h-auto">
-      <div class="relative bottom-auto left-[50%] ml-0 flex translate-x-[-50%] flex-row flex-wrap items-center justify-center text-center max-[1720px]:mb-[.625rem] max-[1720px]:mt-[2.0625rem] @1720:absolute @1720:bottom-[1.375rem] @1720:ml-[-.9375rem]">
+    <div class="relative h-[7.1875rem] max-@1720:h-auto">
+      <div class="relative bottom-auto left-[50%] ml-0 flex translate-x-[-50%] flex-row flex-wrap items-center justify-center text-center max-@1720:mb-[.625rem] max-@1720:mt-[2.0625rem] @1720:absolute @1720:bottom-[1.375rem] @1720:ml-[-.9375rem]">
         <a class=""></a>
         <a class="inline-block h-[2.5625rem] w-[2.5625rem] rounded-[50%] p-[.125rem] [background:linear-gradient(45deg,_rgb(59,_173,_227)_0px,_rgb(87,_111,_230)_45%,_rgb(152,_68,_183)_57%,_rgb(255,_53,_127)_70%)]">
           {Static.record?.country?.code && (

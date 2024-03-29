@@ -18,7 +18,7 @@ export default function () {
           Static.gallery = false;
           let content = await front.Services.functions.sendApi(
             `/api/users/${Static.record?.nickname}/profile`,
-            { category: "subscriptions" }
+            { category: "subscribers" }
           );
           //проверка на error
         }}

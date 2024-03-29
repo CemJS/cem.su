@@ -5,7 +5,6 @@ Static.stateCex = true;
 Static.stateDex = false;
 
 export default function () {
-  console.log("Static.records", Static.records);
 
   return (
     <table class="relative w-full border-collapse">
@@ -56,7 +55,7 @@ export default function () {
           <th class="hidden items-center justify-start px-[.625rem] py-0 @700:flex">
             Название
           </th>
-          <th class="hidden px-[.625rem] @700:flex justify-start">Рейтинг</th>
+          <th class="hidden px-[.625rem] @700:flex justify-center">Рейтинг</th>
           <th class="hidden px-[.625rem] @700:flex justify-start">График</th>
           <th class="flex justify-end px-[.625rem]"></th>
         </tr>
@@ -100,9 +99,9 @@ export default function () {
                     class="relative top-[-.125rem] mr-[10px] max-h-[2.5rem]"
                     src={`/assets/upload/worldPress/${item?.mediaName}`}
                   ></img>
-                  {/* {item?.name} */}
+                  {item?.name}
                 </td>
-                <td class="flex items-center justify-start">{item?.score}</td>
+                <td class="flex items-center justify-center">{item?.score}</td>
                 <td class="flex items-center justify-start">
                   <img
                     class="[filter:hue-rotate(226deg)_saturate(210%)_brightness(0.7)_contrast(170%)] static h-[4rem] p-[0_0_5px_0]"

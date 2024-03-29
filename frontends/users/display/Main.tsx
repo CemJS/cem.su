@@ -44,15 +44,11 @@ export default function () {
                   <a
                     class="user-avatar relative flex h-auto w-full justify-center text-inherit no-underline"
                     onclick={async () => {
-                      const getUser = {
-                        action: "getInfo",
-                        nickname: item?.nickname,
-                        uuid: `${localStorage?.uuid}`,
-                      };
-                      let userContent = await front.Services.functions.sendApi(
-                        "/api/Users/profile",
-                        getUser,
-                      );
+                      let userContent =
+                        await front.Services.functions.makeUrlEvent(
+                          `/api/events/users/${item?.nickname}/profile`,
+                          {},
+                        );
                       //проверка на error
                       Static.contentUser = userContent?.result;
                       Fn.linkChange(`/user/${item?.nickname}`);
