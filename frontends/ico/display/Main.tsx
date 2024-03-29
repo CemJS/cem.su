@@ -36,7 +36,6 @@ const RenderItems = function ({ items }) {
                   Static.makeFilter.active = item.name;
                   // fn("addEvent");
                   front.Services.functions.sendApi("/api/icos", {
-                    action: "get",
                     category:
                       Static.makeFilter.cat == "Все"
                         ? "All"

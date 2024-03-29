@@ -87,7 +87,6 @@ export default function ({ items, active }) {
                   Static.makeFilter.cat = item.name;
 
                   front.Services.functions.sendApi("/api/icos", {
-                    action: "get",
                     category:
                       Static.makeFilter.cat == "Все"
                         ? "All"
