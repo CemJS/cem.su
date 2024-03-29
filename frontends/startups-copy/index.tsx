@@ -11,9 +11,6 @@ front.func.test = () => {
 
 front.loader = async () => {
   Static.records = [];
-  Static.makeFilter = {
-    category: Static.catActive == "Все" ? "All" : Static.catActive,
-  };
   Static.catActive = "Все";
   Static.categories = [
     {
@@ -86,7 +83,7 @@ front.loader = async () => {
       },
     },
     {
-      type: "skip",
+      type: "add",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {
@@ -99,7 +96,7 @@ front.loader = async () => {
   Events.icos = await Fn.event(url, listener);
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-    let url = front.Services.functions.makeUrlEvent("startups", {
+    let url = front.Services.functions.makeUrlEvent("Startups", {
       action: "show",
       id: front.Variable.DataUrl[2],
     });

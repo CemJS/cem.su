@@ -4,7 +4,7 @@ let x1,
 export default function ({ items }) {
   return (
     <ul
-      class="z-[1] m-0 grid grid-flow-col grid-cols-[auto] gap-[0.625rem] overflow-hidden overflow-x-scroll scroll-smooth p-[0.625rem_0.3125rem] @767:gap-[0.9375rem] @767:p-[1.25rem_0] [&.dragging]:scroll-auto [&.dragging]:[scroll-snap-type:none] [&.dragging_.category-item]:cursor-grab [&.dragging_.category-item]:select-none"
+      class="category-carousel"
       ref="categoryCarousel"
       onmousedown={(e) => {
         Static.isDrag = true;
@@ -75,10 +75,8 @@ export default function ({ items }) {
             ref="categoryEl"
             draggable="false"
             class={[
-              "relative z-[1] flex h-[1.875rem] w-full cursor-pointer items-center justify-center rounded-[3.125rem] border-none bg-[#363b4b] p-[0_0.7375rem] text-[0.875rem] font-semibold leading-[18] [transition:0.7s] @464:h-[2.125rem] @464:text-[1rem] @464:leading-[1.125rem]",
-              Static.catActive == item.name
-                ? "!border-[0.125rem] !bg-[none]"
-                : null,
+              "category__item",
+              Static.catActive == item.name ? "category__item_active" : null,
             ]}
             onclick={() => {
               if (Static.catActive == item.name) {
@@ -92,10 +90,7 @@ export default function ({ items }) {
               });
             }}
           >
-            <span class="whitespace-nowrap text-[--text-grey]">
-              {item.name}
-            </span>
-            <div class="absolute left-0 top-0 z-[-1] h-full w-full rounded-[3.125rem] opacity-0 [background:var(--darkBlueGradient)] [transition:1s]"></div>
+            <span>{item.name}</span>
           </li>
         );
       })}
