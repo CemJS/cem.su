@@ -246,6 +246,19 @@ front.loader = async () => {
         Static.records = [...Static.records, ...json];
       },
     },
+    {
+      type: "delete",
+      fn: ({ data }) => {
+        let { id } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+        console.log("=05c3a3=", id);
+        Static.records = [
+          ...Static.records.filter((record) => record.id != id),
+        ];
+      },
+    },
   ];
   Events.questions = await Fn.event(url, listener);
 
@@ -267,6 +280,7 @@ front.loader = async () => {
         if (!json) {
           return;
         }
+        console.log("=c3e823=", json);
         Static.record.answers.unshift(json);
         Static.record.statistics.answers++;
       },
