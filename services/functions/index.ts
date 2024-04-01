@@ -54,14 +54,18 @@ export const timeStampToDate = function (
 };
 
 export const loader = async function (Variable: any, Fn: any) {
+  console.log("=de326c=", 1);
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
+  console.log("=1d3a9c=", localStorage.uuid);
+
   let eventSource = new EventSource(
     `/api/events/web-clients/me?uuid=${localStorage.uuid}`,
   );
 
   eventSource.addEventListener("get", async ({ data }) => {
+    console.log("=data=", data);
     let json = strToJson(data);
     if (json) {
       let inx = indexDB({ json });

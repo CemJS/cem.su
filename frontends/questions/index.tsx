@@ -72,11 +72,10 @@ front.func.addNull = (str: any) => {
 };
 
 front.func.deleteQuestion = async () => {
-  let data: object = {
-    action: "delete",
-    id: Static.record.id,
-  };
-  let res = await front.Services.functions.sendApi("/api/questions", data);
+  let res = await front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/delete`,
+    {},
+  );
   front.Variable.$el.header.classList.remove("hide");
   front.Variable.$el.footer.classList.remove("hide");
   Static.record = null;
@@ -125,6 +124,7 @@ front.func.reportQuestion = async () => {
 };
 
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
+  console.log("=5ebb41=", front.Variable);
   if (front.Variable.Auth) {
     return await front.Services.functions.sendApi(url, data, method);
   } else {

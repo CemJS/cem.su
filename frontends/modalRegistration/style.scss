@@ -38,7 +38,9 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
 
     &__active {
       opacity: 1;
@@ -87,7 +89,7 @@
       font-weight: 600;
     }
 
-    @media(max-width: 464px) {
+    @media (max-width: 464px) {
       gap: 0.5rem;
 
       &_input {
@@ -133,14 +135,12 @@
       }
     }
 
-    @media(max-width: 464px) {
+    @media (max-width: 464px) {
       grid-template-columns: 1fr;
       gap: 1rem;
     }
   }
 }
-
-
 
 .modalWindow {
   position: fixed;
@@ -152,7 +152,9 @@
   z-index: 10;
   opacity: 0;
   transform: scale(1.2);
-  transition: transform 0.2s 0s ease-in-out, opacity 0.2s 0s ease-in-out;
+  transition:
+    transform 0.2s 0s ease-in-out,
+    opacity 0.2s 0s ease-in-out;
 
   &.activeModal {
     opacity: 1;
@@ -173,19 +175,15 @@
     max-width: 800px;
     width: 100%;
     position: relative;
-    padding: 35px;
-    background: var(--backModal);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(7px);
     color: #ffffff;
-
 
     &_gallery {
       height: 70%;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 2.1875rem;
     }
 
     &__narrow {
@@ -292,8 +290,8 @@
       color: var(--secondary_text);
     }
 
-    input:focus+.modalWindow_field_labelLine,
-    textarea:focus+.modalWindow_field_labelLine {
+    input:focus + .modalWindow_field_labelLine,
+    textarea:focus + .modalWindow_field_labelLine {
       height: 30px;
       line-height: 30px;
       transform: translate(-15px, -16px) scale(0.88);
@@ -341,7 +339,6 @@
     }
 
     &__disabled {
-
       input,
       textarea {
         opacity: 0.5;

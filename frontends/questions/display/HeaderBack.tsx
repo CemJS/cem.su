@@ -2,7 +2,7 @@ import { Cemjsx, Fn, front, Static, Events, Func } from "cemjs-all";
 
 export default function () {
   return (
-    <div class="fixed left-0 right-0 top-0 z-[5] w-full border-b-[1px] border-solid border-[#2d3243] bg-[#1d2029] py-3">
+    <div class="fixed left-0 right-0 top-0 z-[10] w-full border-b-[1px] border-solid border-[#2d3243] bg-[#1d2029] py-3">
       <div class="wrapper">
         <div class="flex items-center justify-between">
           <span
@@ -29,6 +29,7 @@ export default function () {
             onclick={() => {
               let records = [];
               records.push({ name: "Поделиться", func: Func.share });
+              Fn.log("=3c4bc2=", front.Variable);
               if (front.Variable.myInfo.id == Static.record.author.id) {
                 records.push({ name: "Удалить", func: Func.deleteQuestion });
                 !Static.record.closed

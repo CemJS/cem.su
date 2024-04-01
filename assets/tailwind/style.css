@@ -123,6 +123,11 @@
   .not_found {
     @apply z-0 flex h-[300px] w-full flex-col items-center justify-center gap-2 overflow-hidden rounded-[--borderR] bg-[--light-gray];
   }
+
+  /* animation */
+  .animated {
+    @apply [-moz-animation-duration:1s] [-moz-animation-fill-mode:both] [-moz-animation-name:fadeInRight] [-o-animation-duration:1s] [-o-animation-fill-mode:both] [-o-animation-name:fadeInRight] [-webkit-animation-duration:1s] [-webkit-animation-fill-mode:both] [-webkit-animation-name:fadeInRight] [animation-duration:1s] [animation-fill-mode:both] [animation-name:fadeInRight];
+  }
 }
 
 @keyframes scrolling {
