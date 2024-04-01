@@ -274,6 +274,20 @@ front.loader = async () => {
       },
     },
     {
+      type: "bestAnswer",
+      fn: ({ data }) => {
+        let { id } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Static.record.answers.findIndex(
+          (item) => item.id == id,
+        );
+        Static.record.answers[answerIndex].best = true;
+      },
+    },
+    {
       type: "answer",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);

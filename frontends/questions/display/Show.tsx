@@ -957,6 +957,7 @@ export default function () {
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
+  console.log("=9c2a78=", Static.record);
   return (
     <div>
       <div class="pb-20">
