@@ -72,11 +72,10 @@ front.func.addNull = (str: any) => {
 };
 
 front.func.deleteQuestion = async () => {
-  let data: object = {
-    action: "delete",
-    id: Static.record.id,
-  };
-  let res = await front.Services.functions.sendApi("/api/questions", data);
+  let res = await front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/delete`,
+    {},
+  );
   front.Variable.$el.header.classList.remove("hide");
   front.Variable.$el.footer.classList.remove("hide");
   Static.record = null;
@@ -125,6 +124,7 @@ front.func.reportQuestion = async () => {
 };
 
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
+  console.log("=5ebb41=", front.Variable);
   if (front.Variable.Auth) {
     return await front.Services.functions.sendApi(url, data, method);
   } else {
@@ -246,6 +246,19 @@ front.loader = async () => {
         Static.records = [...Static.records, ...json];
       },
     },
+    {
+      type: "delete",
+      fn: ({ data }) => {
+        let { id } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+        console.log("=05c3a3=", id);
+        Static.records = [
+          ...Static.records.filter((record) => record.id != id),
+        ];
+      },
+    },
   ];
   Events.questions = await Fn.event(url, listener);
 
@@ -261,12 +274,27 @@ front.loader = async () => {
       },
     },
     {
+      type: "bestAnswer",
+      fn: ({ data }) => {
+        let { id } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Static.record.answers.findIndex(
+          (item) => item.id == id,
+        );
+        Static.record.answers[answerIndex].best = true;
+      },
+    },
+    {
       type: "answer",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {
           return;
         }
+        console.log("=c3e823=", json);
         Static.record.answers.unshift(json);
         Static.record.statistics.answers++;
       },

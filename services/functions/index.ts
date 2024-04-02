@@ -57,6 +57,7 @@ export const loader = async function (Variable: any, Fn: any) {
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
+
   let eventSource = new EventSource(
     `/api/events/web-clients/me?uuid=${localStorage.uuid}`,
   );
@@ -68,7 +69,6 @@ export const loader = async function (Variable: any, Fn: any) {
     } else {
       return;
     }
-    console.log("=MyInfo=", json);
 
     localStorage.suuid = json.suuid;
     localStorage.suuid = json.suuid;

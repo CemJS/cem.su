@@ -954,11 +954,10 @@ const RenderAnswer = ({ answer, answerIndex }) => {
 };
 
 export default function () {
-  Fn.log("=6fcbb8=", Static.record);
-
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
+  console.log("=9c2a78=", Static.record);
   return (
     <div>
       <div class="pb-20">
@@ -970,7 +969,7 @@ export default function () {
             </p>
             <p
               ref="itemText"
-              class="pt-[0.9375rem] text-[1.125rem]"
+              class="pb-4 pt-[0.9375rem] text-[1.125rem] @767:pb-0"
               html={Static.record.text}
             ></p>
             <RenderStatistic />
