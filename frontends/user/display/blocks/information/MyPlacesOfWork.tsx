@@ -1,15 +1,26 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
+import dots from "@svg/questions/dots.svg";
 
 export default function () {
   // Fn.log('=2fc7ab=',Static.aboutMe)
   return (
-    <div class="m-0 mb-[1.25rem] @1024:my-0 @1024:mx-[.5rem] w-full @1024:w-[calc(100%_-_16px)]">
+    <div class="m-0 mb-[1.25rem] w-full @1024:mx-[.5rem] @1024:my-0 @1024:w-[calc(100%_-_16px)]">
       <div class="z-0 m-0 cursor-col-resize rounded-[0] border-x-0 border-b-0 bg-[--black-gray] p-[.1875rem] text-[--white] [border:1px_solid_#363C50] @1024:mt-[2rem] @1024:rounded-[.9375rem]">
         <div class="relative h-full w-full cursor-default rounded-[.9375rem] bg-[--black-gray] px-[1.25rem] py-[2rem]">
           <p class="relative left-[-.375rem] top-[-.375rem] mb-[2.5rem] text-[1rem] font-normal leading-[1.25rem] text-[--white]">
             Мои места работы
           </p>
-          <div style=""></div>
+          <div style="w-full"></div>
+          {front.Variable.myInfo?.nickname === front.Variable.DataUrl[1] && (
+            <div class="absolute right-[1.25rem] top-[1.375rem]">
+              <div class="relative ml-[.625rem] h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
+                <img
+                  class="box-content w-[1.375rem] cursor-pointer p-[.625rem]"
+                  src={dots}
+                />
+              </div>
+            </div>
+          )}
           {Static.record?.work?.map((item: any, key: number) => {
             return (
               <div class="box-border w-full pl-[1.25rem] [border-left:2px_solid_#6948AC]">

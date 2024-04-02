@@ -1,6 +1,8 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
 
 export default function () {
+  console.log("Static", Static.record);
+  
   return (
     <div class="relative h-[7.1875rem] max-@1720:h-auto">
       <div class="relative bottom-auto left-[50%] ml-0 flex translate-x-[-50%] flex-row flex-wrap items-center justify-center text-center max-@1720:mb-[.625rem] max-@1720:mt-[2.0625rem] @1720:absolute @1720:bottom-[1.375rem] @1720:ml-[-.9375rem]">
@@ -40,19 +42,18 @@ export default function () {
             onKeyDown={async (event: any) => {
               if (event.key === "Enter" && !event.shiftKey) {
                 const edit = {
-                  action: "update",
                   information: {
                     status: Static.record?.status,
                   },
                   uuid: `${localStorage?.uuid}`,
                 };
                 let res = await front.Services.functions.sendApi(
-                  "/api/MyInfo",
+                  "/api/users/update",
                   edit,
                 );
               }
             }}
-            class="flex min-h-[1.75rem] basis-full cursor-pointer items-center justify-center rounded-[.3125rem] border-0 px-[.25rem] my-[.3125rem] font-[.8125rem] leading-[1.125rem] text-[#bbc2d1] [outline:none] [background:0_0] [transition:0.4s] hover:bg-[#3d4252]"
+            class="my-[.3125rem] flex min-h-[1.75rem] basis-full cursor-pointer items-center justify-center rounded-[.3125rem] border-0 px-[.25rem] font-[.8125rem] leading-[1.125rem] text-[#bbc2d1] [outline:none] [background:0_0] [transition:0.4s] hover:bg-[#3d4252]"
             id="userstatus"
             contenteditable="true"
           >
@@ -60,7 +61,7 @@ export default function () {
           </input>
         ) : (
           <div
-            class="flex min-h-[1.75rem] basis-full cursor-pointer items-center justify-center rounded-[.3125rem] border-0 px-[.25rem] my-[.3125rem] font-[.8125rem] leading-[1.125rem] text-[#bbc2d1] [outline:none] [background:0_0] [transition:0.4s] hover:bg-[#3d4252]"
+            class="my-[.3125rem] flex min-h-[1.75rem] basis-full cursor-pointer items-center justify-center rounded-[.3125rem] border-0 px-[.25rem] font-[.8125rem] leading-[1.125rem] text-[#bbc2d1] [outline:none] [background:0_0] [transition:0.4s] hover:bg-[#3d4252]"
             id="userstatus"
           >
             {Static.record?.status}
@@ -70,9 +71,9 @@ export default function () {
       <div class="absolute bottom-0 left-[.4375rem] h-[.375rem] w-[calc(100%_-_14px)] bg-[#514591]">
         <div
           style={`width: ${((Static.record?.statistics?.exp / Static.record?.statistics?.expNext) * 100).toFixed(2)}%;`}
-          class="absolute h-full top-0 left-0 bg-[#C126CE]"
+          class="absolute left-0 top-0 h-full bg-[#C126CE]"
         />
-        <div class="absolute top-0 h-full w-full text-[.3125rem] text-center z-[100] hidden"></div>
+        <div class="absolute top-0 z-[100] hidden h-full w-full text-center text-[.3125rem]"></div>
       </div>
     </div>
   );

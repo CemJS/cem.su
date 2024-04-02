@@ -87,7 +87,7 @@ export const loader = async function (Variable: any, Fn: any) {
       let res = await sendApi("/api/countries", {
         action: "get",
       });
-      console.log("res", res);
+      // console.log("res", res);
 
       if (!res.error) {
         localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate;
