@@ -568,10 +568,6 @@ export default function () {
                             class="user-comment__settings"
                             onclick={() => {
                               let records = [];
-                              records.push({
-                                name: "Поделиться",
-                                func: Func.share,
-                              });
                               if (
                                 front.Variable.myInfo.id ==
                                 Static.record.author.id

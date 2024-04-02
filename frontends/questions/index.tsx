@@ -71,6 +71,8 @@ front.func.addNull = (str: any) => {
   return str.length < 2 ? `0${str}` : str;
 };
 
+// questions
+
 front.func.deleteQuestion = async () => {
   let res = await front.Services.functions.sendApi(
     `/api/questions/${Static.record.id}/delete`,
@@ -88,24 +90,20 @@ front.func.closeQuestion = async () => {
   Func.sendAuth(`/api/questions/${Static.record.id}/close`, {});
 };
 
-front.func.share = () => {
-  navigator.share({
-    title: document.title,
-    url: window.location.href,
-  });
+front.func.reportQuestion = async () => {
+  front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/complain`,
+    {},
+  );
 };
 
+// answer
+
 front.func.deleteAnswer = async (id: string) => {
-  let data: object = {
-    action: "delete",
-    id: Static.record.id,
-  };
-  let res = await front.Services.functions.sendApi("/api/questions", data);
-  front.Variable.$el.header.classList.remove("hide");
-  front.Variable.$el.footer.classList.remove("hide");
-  Static.record = null;
-  Events.questions.close();
-  Fn.linkChange("/questions");
+  let res = await front.Services.functions.sendApi(
+    `/api/answers/${id}/delete`,
+    {},
+  );
 };
 
 front.func.bestAnswer = async (id: string) => {
@@ -116,12 +114,30 @@ front.func.bestAnswer = async (id: string) => {
   );
 };
 
-front.func.reportQuestion = async () => {
-  front.Services.functions.sendApi(
-    `/api/questions/${Static.record.id}/complain`,
+front.func.deleteAnswer = async (id: string) => {
+  let res = await front.Services.functions.sendApi(
+    `/api/answers/${id}/delete`,
     {},
   );
 };
+
+// comment
+
+front.func.deleteComment = async (
+  id: string,
+  answerId: string,
+  commentId: string,
+) => {
+  let data = {
+    commentId: commentId ? commentId : undefined,
+  };
+  let res = await front.Services.functions.sendApi(
+    `/api/${answerId}/comments/${id}/delete`,
+    data,
+  );
+};
+
+// функция проверки авторизации
 
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   console.log("=5ebb41=", front.Variable);
@@ -132,12 +148,24 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   }
 };
 
+//
+
 front.func.hideInputs = () => {
   let inputs = document.querySelectorAll("#form");
   let arr = [...inputs];
   for (let elem of arr) {
     elem.classList.remove("!flex");
   }
+};
+
+front.func.findIndexComment = (id, answerIndex) => {
+  return Static.record.answers[answerIndex].comments.findIndex(
+    (item) => item.id == id,
+  );
+};
+
+front.func.findIndexAnswer = (id) => {
+  return Static.record.answers.findIndex((item) => item.id == id);
 };
 
 front.loader = async () => {
@@ -288,13 +316,25 @@ front.loader = async () => {
       },
     },
     {
+      type: "deleteAnswer",
+      fn: ({ data }) => {
+        let { id } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        Static.record.answers = Static.record.answers.filter(
+          (item) => item.id != id,
+        );
+      },
+    },
+    {
       type: "answer",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {
           return;
         }
-        console.log("=c3e823=", json);
         Static.record.answers.unshift(json);
         Static.record.statistics.answers++;
       },
@@ -306,18 +346,62 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        console.log("=f51763=", json);
-        let answerIndex = Static.record.answers.findIndex(
-          (item) => item.id == json.answerId,
-        );
+
+        let answerIndex = Func.findIndexAnswer(json.answerId);
+
         Static.record.answers[answerIndex].statistics.comments++;
         if (!Array.isArray(Static.record.answers[answerIndex].comments)) {
           Static.record.answers[answerIndex].comments = [];
         }
-        console.log("=8ff2c7=", 1);
-        console.log("=52f6ca=", Static.record.answers[answerIndex]);
         Static.record.answers[answerIndex].comments.unshift(json.comment);
         Static.record.statistics.answers++;
+      },
+    },
+    {
+      type: "deleteComment",
+      fn: ({ data }) => {
+        let { id, answerId } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(answerId);
+        let commentIndex = Func.findIndexComment(id, answerIndex);
+
+        let comments = Static.record.answers[answerIndex]?.comments[
+          commentIndex
+        ].comments?.length
+          ? Static.record.answers[answerIndex]?.comments[commentIndex].comments
+              ?.length
+          : 0;
+
+        console.log("=759005=", comments);
+
+        Static.record.answers[answerIndex].statistics.comments -= comments + 1;
+
+        Static.record.answers[answerIndex].comments = Static.record.answers[
+          answerIndex
+        ].comments.filter((item) => item.id != id);
+      },
+    },
+    {
+      type: "deleteCommentToComment",
+      fn: ({ data }) => {
+        let { id, answerId, commentId } =
+          front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(answerId);
+        let commentIndex = Func.findIndexComment(commentId, answerIndex);
+
+        Static.record.answers[answerIndex].statistics.comments--;
+
+        Static.record.answers[answerIndex].comments[commentIndex].comments =
+          Static.record.answers[answerIndex].comments[
+            commentIndex
+          ].comments.filter((item) => item.id != id);
       },
     },
     {
@@ -327,14 +411,12 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        console.log("=8e724a=", json);
-        let answerIndex = Static.record.answers.findIndex(
-          (item) => item.id == json.answerId,
-        );
 
-        let commentIndex = Static.record.answers[
-          answerIndex
-        ].comments.findIndex((item) => item.id == json.commentId);
+        let answerIndex = Func.findIndexAnswer(json.answerId);
+
+        let commentIndex = Func.findIndexComment(json.commentId, answerIndex);
+
+        Static.record.answers[answerIndex].statistics.comments++;
 
         if (
           !Array.isArray(

@@ -28,10 +28,12 @@ export default function () {
             class="relative w-8 cursor-pointer after:absolute after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%] after:text-5xl after:content-['...']"
             onclick={() => {
               let records = [];
-              records.push({ name: "Поделиться", func: Func.share });
-              Fn.log("=3c4bc2=", front.Variable);
               if (front.Variable.myInfo.id == Static.record.author.id) {
-                records.push({ name: "Удалить", func: Func.deleteQuestion });
+                records.push({
+                  name: "Удалить",
+                  func: Func.deleteQuestion,
+                  type: "danger",
+                });
                 !Static.record.closed
                   ? records.push({
                       name: "Закрыть вопрос",
@@ -41,6 +43,7 @@ export default function () {
               }
               Fn.initOne("modalTools", {
                 records,
+                userId: Static.record.author.id,
               });
             }}
           ></span>

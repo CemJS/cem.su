@@ -1,4 +1,4 @@
-import { Cemjsx, Static, Func, Ref } from "cemjs-all";
+import { Cemjsx, Static, Func, Ref, front } from "cemjs-all";
 
 export default function () {
   return (
@@ -23,6 +23,15 @@ export default function () {
         <div class="bottomSheet-content__body">
           {/* <h2 class="bottomSheet-title">Tools</h2> */}
           <ul class="bottomSheet-list" role="list">
+            <li
+              class="bottomSheet-list__item"
+              onclick={() => {
+                Func.share();
+              }}
+            >
+              Поделиться
+            </li>
+
             {Static.records.map((item, index) => {
               return (
                 <li
@@ -30,12 +39,39 @@ export default function () {
                     item.func();
                     Func.close();
                   }}
-                  class="bottomSheet-list__item"
+                  class={[
+                    "bottomSheet-list__item",
+                    item.type == "danger" ? "text-red-600" : null,
+                  ]}
                 >
                   {item.name}
                 </li>
               );
             })}
+
+            {Static.userId && front.Variable.myInfo.id != Static.userId ? (
+              <li
+                class="bottomSheet-list__item text-red-600"
+                onclick={() => {
+                  Func.complainUser();
+                }}
+              >
+                Пожаловаться на пользователя
+              </li>
+            ) : null}
+
+            {front.Variable.Auth &&
+            Static.userId &&
+            front.Variable.myInfo.id != Static.userId ? (
+              <li
+                class="bottomSheet-list__item text-red-600"
+                onclick={() => {
+                  Func.blacklistUser();
+                }}
+              >
+                В черный список
+              </li>
+            ) : null}
 
             <li
               class="bottomSheet-list__item mt-[15px]"
