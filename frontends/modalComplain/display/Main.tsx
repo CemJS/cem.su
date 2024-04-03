@@ -3,7 +3,7 @@ import { Cemjsx, Static, Fn, Func, front, Ref } from "cemjs-all";
 const RenderCheckbox = ({ text, value }) => {
   return (
     <div class="flex items-center">
-      <div class="relative inline-block h-6 w-6">
+      <div class="relative inline-block h-6 w-full max-w-6">
         <input
           id={`checkbox-${value}`}
           ref="checkbox"
@@ -28,7 +28,7 @@ const RenderCheckbox = ({ text, value }) => {
       <label
         id="checkmark"
         for={`checkbox-${value}`}
-        class="ml-2 flex select-none items-center text-sm text-gray-900 dark:text-gray-300"
+        class="ml-2 flex select-none items-center text-sm text-[--white]"
       >
         {text}
       </label>
