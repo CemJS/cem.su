@@ -87,11 +87,11 @@ front.loader = () => {
       name: "Пожаловаться на пользователя",
       func: () => {
         Fn.initOne("modalComplain", {
-          callback: (complains) => {
+          callback: (сategories) => {
             console.log("=ec453f=", userId);
             let res = front.Services.functions.sendApi(
               `/api/users/${userId}/complain`,
-              { complains },
+              { сategories },
             );
           },
         });
