@@ -78,6 +78,50 @@ front.func.blacklistUser = async () => {
 //
 
 front.loader = () => {
+  if (Static.userId && front.Variable.myInfo.id != Static.userId) {
+    console.log("=83340e=", Static.userId);
+
+    let userId = Static.userId;
+
+    Static.records.push({
+      name: "Пожаловаться на пользователя",
+      func: () => {
+        Fn.initOne("modalComplain", {
+          callback: (complains) => {
+            console.log("=ec453f=", userId);
+            let res = front.Services.functions.sendApi(
+              `/api/users/${userId}/complain`,
+              { complains },
+            );
+          },
+        });
+        Func.complainUser();
+      },
+      type: "danger",
+    });
+  }
+  if (
+    front.Variable.Auth &&
+    Static.userId &&
+    front.Variable.myInfo.id != Static.userId
+  ) {
+    !Static.records.find((i) => i.name == "В чёрный список")
+      ? (Static.records = [
+          ...Static.records,
+          {
+            name: "В чёрный список",
+            func: () => {
+              Fn.initOne("alert", {
+                text: "Пользователь добавлен в чёрный список",
+                type: "danger",
+              });
+              Func.blacklistUser();
+            },
+            type: "danger",
+          },
+        ])
+      : null;
+  }
   return;
 };
 

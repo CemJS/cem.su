@@ -545,13 +545,6 @@ const RenderAnswer = ({ answer, answerIndex }) => {
             class="ml-[0.625rem] flex h-[1.375rem] w-[1.875rem] cursor-pointer items-center"
             onclick={() => {
               let records = [];
-              if (front.Variable.myInfo.id != Static.record.author.id) {
-                records.push({
-                  name: "Выбрать лучшим",
-                  func: () => Func.bestAnswer(answer.id),
-                  type: "danger",
-                });
-              }
               if (front.Variable.myInfo.id == Static.record.author.id) {
                 !Static.record.closed
                   ? records.push({

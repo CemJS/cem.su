@@ -49,30 +49,6 @@ export default function () {
               );
             })}
 
-            {Static.userId && front.Variable.myInfo.id != Static.userId ? (
-              <li
-                class="bottomSheet-list__item text-red-600"
-                onclick={() => {
-                  Func.complainUser();
-                }}
-              >
-                Пожаловаться на пользователя
-              </li>
-            ) : null}
-
-            {front.Variable.Auth &&
-            Static.userId &&
-            front.Variable.myInfo.id != Static.userId ? (
-              <li
-                class="bottomSheet-list__item text-red-600"
-                onclick={() => {
-                  Func.blacklistUser();
-                }}
-              >
-                В черный список
-              </li>
-            ) : null}
-
             <li
               class="bottomSheet-list__item mt-[15px]"
               onclick={() => {
