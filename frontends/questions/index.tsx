@@ -158,14 +158,20 @@ front.func.hideInputs = () => {
   }
 };
 
+front.func.findIndexAnswer = (id) => {
+  return Static.record.answers.findIndex((item) => item.id == id);
+};
+
 front.func.findIndexComment = (id, answerIndex) => {
   return Static.record.answers[answerIndex].comments.findIndex(
     (item) => item.id == id,
   );
 };
 
-front.func.findIndexAnswer = (id) => {
-  return Static.record.answers.findIndex((item) => item.id == id);
+front.func.findIndexCommentToComment = (id, answerIndex, commentIndex) => {
+  return Static.record.answers[answerIndex].comments[
+    commentIndex
+  ].comments.findIndex((item) => item.id == id);
 };
 
 front.loader = async () => {
@@ -301,6 +307,7 @@ front.loader = async () => {
         Static.record = json;
       },
     },
+    // answer
     {
       type: "bestAnswer",
       fn: ({ data }) => {
@@ -309,9 +316,8 @@ front.loader = async () => {
           return;
         }
 
-        let answerIndex = Static.record.answers.findIndex(
-          (item) => item.id == id,
-        );
+        let answerIndex = Func.findIndexAnswer(id);
+
         Static.record.answers[answerIndex].best = true;
       },
     },
@@ -339,6 +345,33 @@ front.loader = async () => {
         Static.record.statistics.answers++;
       },
     },
+    {
+      type: "likeAnswer",
+      fn: ({ data }) => {
+        let { id } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(id);
+
+        Static.record.answers[answerIndex].statistics.rating++;
+      },
+    },
+    {
+      type: "dislikeAnswer",
+      fn: ({ data }) => {
+        let { id } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(id);
+
+        Static.record.answers[answerIndex].statistics.rating--;
+      },
+    },
+    // comment
     {
       type: "comment",
       fn: ({ data }) => {
@@ -385,6 +418,37 @@ front.loader = async () => {
       },
     },
     {
+      type: "likeComment",
+      fn: ({ data }) => {
+        let { id, answerId } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(answerId);
+        let commentIndex = Func.findIndexComment(id, answerIndex);
+
+        Static.record.answers[answerIndex].comments[commentIndex].statistics
+          .rating++;
+      },
+    },
+    {
+      type: "dislikeComment",
+      fn: ({ data }) => {
+        let { id, answerId } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(answerId);
+        let commentIndex = Func.findIndexComment(id, answerIndex);
+
+        Static.record.answers[answerIndex].comments[commentIndex].statistics
+          .rating--;
+      },
+    },
+    // comment to comment
+    {
       type: "deleteCommentToComment",
       fn: ({ data }) => {
         let { id, answerId, commentId } =
@@ -430,6 +494,50 @@ front.loader = async () => {
           commentIndex
         ].comments.unshift(json.comment);
         Static.record.statistics.answers++;
+      },
+    },
+    {
+      type: "likeCommentToComment",
+      fn: ({ data }) => {
+        let { id, answerId, commentId } =
+          front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(answerId);
+        let commentIndex = Func.findIndexComment(commentId, answerIndex);
+        let commentToCommentIndex = Func.findIndexComment(
+          id,
+          answerIndex,
+          commentIndex,
+        );
+
+        Static.record.answers[answerIndex].comments[commentIndex].comments[
+          commentToCommentIndex
+        ].statistics.rating++;
+      },
+    },
+    {
+      type: "dislikeCommentToComment",
+      fn: ({ data }) => {
+        let { id, answerId, commentId } =
+          front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(answerId);
+        let commentIndex = Func.findIndexComment(commentId, answerIndex);
+        let commentToCommentIndex = Func.findIndexComment(
+          id,
+          answerIndex,
+          commentIndex,
+        );
+
+        Static.record.answers[answerIndex].comments[commentIndex].comments[
+          commentToCommentIndex
+        ].statistics.rating--;
       },
     },
   ];

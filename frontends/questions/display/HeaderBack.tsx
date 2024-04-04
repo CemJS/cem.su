@@ -44,6 +44,11 @@ export default function () {
               Fn.initOne("modalTools", {
                 records,
                 userId: Static.record.author.id,
+                complainTo: {
+                  name: "questions",
+                  text: "вопрос",
+                  id: Static.record?.id,
+                },
               });
             }}
           ></span>

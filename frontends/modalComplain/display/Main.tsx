@@ -3,33 +3,41 @@ import { Cemjsx, Static, Fn, Func, front, Ref } from "cemjs-all";
 const RenderCheckbox = ({ text, value, other = false }) => {
   return (
     <div class="flex items-center">
-      <div class="relative inline-block h-6 w-full max-w-6 appearance-none rounded border border-gray-300 bg-gray-100 checked:border-transparent checked:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:checked:bg-blue-600 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800">
+      <div
+        onclick={(e) => {
+          if (other) {
+            Static.currentComplains.splice(0, Static.currentComplains.length);
+            Static.showOther = !Static.showOther;
+            console.log("=f9a222=", Static.currentComplains);
+
+            return;
+          }
+
+          if (Static.showOther) {
+            Static.currentComplains.splice(0, Static.currentComplains.length);
+            Static.showOther = false;
+            console.log("=7a45ff=", Static.showOther);
+          }
+          let isActive = Static.currentComplains.findIndex((i) => i == value);
+          !(isActive >= 0)
+            ? Static.currentComplains.push(value)
+            : Static.currentComplains.splice(isActive, 1);
+          console.log("=f9a222=", Static.currentComplains);
+        }}
+        class={[
+          "relative inline-block h-6 w-full max-w-6 appearance-none rounded border border-gray-300 bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600",
+          !other
+            ? Static.currentComplains.find((i) => i == value) &&
+              "!border-transparent !bg-blue-600 [&_svg]:block"
+            : Static.showOther &&
+              "!border-transparent !bg-blue-600 [&_svg]:block",
+        ]}
+      >
         <input
           id={`checkbox-${value}`}
           ref="checkbox"
           type="checkbox"
-          checked={
-            !other
-              ? !!Static.currentComplains.find((i) => i == value)
-              : !!Static.showOther
-          }
-          onchange={(e) => {
-            if (other) {
-              Static.showOther = true;
-              return;
-            }
-
-            if (Static.showOther) {
-              Static.currentComplains.splice(0, Static.currentComplains);
-              Static.showOther = false;
-              console.log("=7a45ff=", Static.showOther);
-            }
-            let isActive = Static.currentComplains.findIndex((i) => i == value);
-            !(isActive >= 0)
-              ? Static.currentComplains.push(value)
-              : Static.currentComplains.splice(isActive, 1);
-          }}
-          class="peer hidden [&:checked_+_svg]:block"
+          class="peer pointer-events-none opacity-0"
         />
         <svg
           class="pointer-events-none absolute left-1/2 top-1/2 hidden h-4 w-4 translate-x-[-50%] translate-y-[-50%] fill-current text-white"
@@ -72,20 +80,22 @@ export default function () {
           >
             <textarea
               rows="3"
+              value={Static.currentComplains[0]}
               oninput={(e: any) => {
-                Static.complains[0] = e.target.value;
-                // front.Services.functions.formComment(Static.form.comment)
-                // Func.checkForm()
+                Static.currentComplains[0] = e.target.value;
               }}
             ></textarea>
           </div>
         </div>
 
         <button
-          onclick={(e) => Static.callback(Static.currentComplains)}
+          onclick={(e) => {
+            Static.callback(Static.currentComplains);
+            Func.close();
+          }}
           class={[
             "btn self-center",
-            !(Static.currentComplains.length > 0) ? "btn_passive" : null,
+            !(Static.currentComplains[0]?.length > 0) ? "btn_passive" : null,
           ]}
         >
           Отправить

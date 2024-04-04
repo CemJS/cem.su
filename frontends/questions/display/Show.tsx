@@ -333,7 +333,7 @@ const RenderAddAnswer = () => {
 
 const RenderStatistic = () => {
   return (
-    <div class="flex h-auto flex-wrap items-center justify-between pb-[0.625rem] text-[0.875rem] text-[#838ba3] ![border-color:var(--border-answer)] [border-bottom:0.0625rem_solid] [row-gap:1.25rem] @767:col-[1/span_2] @767:h-[3.875rem] @767:text-[0.8125rem] [&_span]:flex [&_span]:gap-[0.625rem]">
+    <div class="flex h-auto flex-wrap items-center justify-between pb-[0.625rem] text-[0.875rem] text-[#838ba3] [border-bottom:0.0625rem_solid] ![border-color:var(--border-answer)] [row-gap:1.25rem] @767:col-[1/span_2] @767:h-[3.875rem] @767:text-[0.8125rem] [&_span]:flex [&_span]:gap-[0.625rem]">
       <span>
         <i class="i i-comment"></i>
         {Static.record.statistics.answers}
@@ -519,9 +519,6 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   `/api/answers/${answer.id}/dislike`,
                   {},
                 );
-                if (!error) {
-                  answer.statistics.rating--;
-                }
               }}
             />
             <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
@@ -535,9 +532,6 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   `/api/answers/${answer.id}/like`,
                   {},
                 );
-                if (!error) {
-                  answer.statistics.rating++;
-                }
               }}
             />
           </div>
@@ -561,7 +555,15 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                 });
               }
 
-              Fn.initOne("modalTools", { records, userId: answer.author.id });
+              Fn.initOne("modalTools", {
+                records,
+                userId: answer.author.id,
+                complainTo: {
+                  name: "answers",
+                  text: "ответ",
+                  id: answer?.id,
+                },
+              });
             }}
           >
             <img src={points} />
@@ -585,7 +587,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                 >
                   <div class="relative z-[1] ml-[0.625rem] h-[2.625rem] w-[2.25rem] min-w-[2.9375rem]">
                     <img
-                      class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] [transform:translateX(-50%)_translateY(-50%)] [object-fit:cover]"
+                      class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] [object-fit:cover] [transform:translateX(-50%)_translateY(-50%)]"
                       src={
                         comment.author.avatar?.name
                           ? `/assets/upload/avatar/${comment.author.avatar?.name}`
@@ -638,13 +640,8 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       onclick={async () => {
                         let { error } = await Func.sendAuth(
                           `/api/comments/${comment.id}/dislike`,
-                          {},
+                          { answerId: answer.id },
                         );
-                        console.log("=6fec2d=", error);
-
-                        if (!error) {
-                          comment.statistics.rating--;
-                        }
                       }}
                     />
                     <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
@@ -656,12 +653,8 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       onclick={async () => {
                         let { error } = await Func.sendAuth(
                           `/api/comments/${comment.id}/like`,
-                          {},
+                          { answerId: answer.id },
                         );
-                        console.log("=6fec2d=", error);
-                        if (!error) {
-                          comment.statistics.rating++;
-                        }
                       }}
                     />
                   </div>
@@ -704,6 +697,11 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       Fn.initOne("modalTools", {
                         records,
                         userId: comment.author.id,
+                        complainTo: {
+                          name: "comments",
+                          text: "комментарий",
+                          id: comment?.id,
+                        },
                       });
                     }}
                   >
@@ -760,7 +758,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       >
                         <div class="relative z-[1] ml-[0.625rem] h-[2.625rem] w-[2.25rem] min-w-[2.9375rem]">
                           <img
-                            class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] [transform:translateX(-50%)_translateY(-50%)] [object-fit:cover]"
+                            class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] [object-fit:cover] [transform:translateX(-50%)_translateY(-50%)]"
                             src={
                               comm.author.avatar?.name
                                 ? `/assets/upload/avatar/${comm.author.avatar?.name}`
@@ -817,11 +815,8 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                             onclick={async () => {
                               let { error } = await Func.sendAuth(
                                 `/api/comments/${comm.id}/dislike`,
-                                {},
+                                { answerId: answer.id, commentId: comment.id },
                               );
-                              if (!error) {
-                                comm.statistics.rating--;
-                              }
                             }}
                           />
                           <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
@@ -833,11 +828,8 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                             onclick={async () => {
                               let { error } = await Func.sendAuth(
                                 `/api/comments/${comm.id}/like`,
-                                {},
+                                { answerId: answer.id, commentId: comment.id },
                               );
-                              if (!error) {
-                                comm.statistics.rating++;
-                              }
                             }}
                           />
                         </div>
@@ -884,6 +876,11 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                             Fn.initOne("modalTools", {
                               records,
                               userId: comm.author.id,
+                              complainTo: {
+                                name: "comments",
+                                text: "комментарий",
+                                id: comm?.id,
+                              },
                             });
                           }}
                         >

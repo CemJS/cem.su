@@ -79,9 +79,28 @@ front.func.blacklistUser = async () => {
 
 front.loader = () => {
   if (Static.userId && front.Variable.myInfo.id != Static.userId) {
-    console.log("=83340e=", Static.userId);
+    console.log("=83340e=", Static.complainTo);
 
     let userId = Static.userId;
+
+    if (Static.complainTo) {
+      let { name, text, id } = Static.complainTo;
+
+      Static.records.push({
+        name: `Пожаловаться на ${text}`,
+        func: () => {
+          Fn.initOne("modalComplain", {
+            callback: (categories) => {
+              let res = front.Services.functions.sendApi(
+                `/api/${name}/${id}/complain`,
+                { categories },
+              );
+            },
+          });
+        },
+        type: "danger",
+      });
+    }
 
     Static.records.push({
       name: "Пожаловаться на пользователя",
