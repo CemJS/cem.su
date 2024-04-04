@@ -416,12 +416,44 @@ const RenderAnswer = ({ answer, answerIndex }) => {
           </div>
         </a>
         <div class="mb-[0.125rem] w-full pt-[0.375rem]">
-          {/* {} */}
-          {/* <span>{answer.text}</span> */}
-          <span
-            class="relative mx-auto block overflow-hidden break-words p-[0_0.5rem] text-[1rem] font-medium leading-[1.375rem] text-[--white]"
-            html={answer.text}
-          ></span>
+          {!Static[`isEditing${answer.id}`] ? (
+            <span
+              class="relative mx-auto block overflow-hidden break-words p-[0_0.5rem] text-[1rem] font-medium leading-[1.375rem] text-[--white]"
+              html={answer.text}
+            ></span>
+          ) : (
+            <div
+              id="form"
+              class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] flex w-full max-w-[64rem] items-stretch justify-between"
+            >
+              <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
+                <textarea
+                  class="relative flex min-h-[2.5625rem] w-full resize-none rounded-[0.625rem] bg-[#313543] p-[0.625rem_1.5625rem] text-[1rem] font-medium text-[--white] outline-none [border:0.0625rem_solid_#44495c]"
+                  rows="1"
+                  data-max-height="200"
+                  data-scroll-last="48"
+                  value={Static[`edit${answerIndex}`]}
+                  oninput={(e) => {
+                    Static[`edit${answerIndex}`] = e.target.value;
+                  }}
+                ></textarea>
+              </div>
+              <button
+                class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
+                onclick={() => {
+                  let data = {
+                    text: Static[`edit${answerIndex}`],
+                  };
+                  Static[`edit${answerIndex}`] = "";
+                  Func.closeEdit(answer.id);
+                  Func.sendAuth(`/api/answers/${answer.id}/update`, data);
+                }}
+              >
+                <img src={sendMessage} />
+              </button>
+            </div>
+          )}
+
           {answer.media.map((item) => {
             return item.type == "image" ? (
               <img
@@ -540,6 +572,13 @@ const RenderAnswer = ({ answer, answerIndex }) => {
             onclick={() => {
               let records = [];
               if (front.Variable.myInfo.id == Static.record.author.id) {
+                Func.isEditable(answer.showDate)
+                  ? records.push({
+                      name: "Редактировать",
+                      func: () => Func.edit(answer.id),
+                    })
+                  : null;
+
                 !Static.record.closed
                   ? records.push({
                       name: "Выбрать лучшим",
@@ -687,6 +726,13 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                     onclick={() => {
                       let records = [];
                       if (front.Variable.myInfo.id == comment.author.id) {
+                        Func.isEditable(comment.showDate)
+                          ? records.push({
+                              name: "Редактировать",
+                              func: () => Func.edit(comment.id),
+                            })
+                          : null;
+
                         records.push({
                           name: "Удалить",
                           func: () => Func.deleteComment(comment.id, answer.id),
@@ -862,6 +908,13 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                           onclick={() => {
                             let records = [];
                             if (front.Variable.myInfo.id == comm.author.id) {
+                              Func.isEditable(comm.showDate)
+                                ? records.push({
+                                    name: "Редактировать",
+                                    func: () => Func.edit(comm.id),
+                                  })
+                                : null;
+
                               records.push({
                                 name: "Удалить",
                                 func: () =>

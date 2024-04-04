@@ -71,6 +71,25 @@ front.func.addNull = (str: any) => {
   return str.length < 2 ? `0${str}` : str;
 };
 
+front.func.isEditable = (timestamp: string | number) => {
+  let createDate = new Date(timestamp).getTime();
+  let date = new Date().getTime();
+
+  let isOneDayExpired = (date - createDate) / 3600000 < 24;
+
+  return isOneDayExpired;
+};
+
+front.func.edit = (id) => {
+  Func.hideInputs();
+  Static[`isEditing${id}`] = true;
+};
+
+front.func.closeEdit = (id) => {
+  Func.hideInputs();
+  Static[`isEditing${id}`] = false;
+};
+
 // questions
 
 front.func.deleteQuestion = async () => {
