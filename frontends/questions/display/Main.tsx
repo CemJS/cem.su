@@ -261,7 +261,6 @@ const RenderQuestion = ({ item, index }) => {
               if (entry.isIntersecting) {
                 observer.unobserve($el);
                 let skip = { ...Static.makeFilter };
-                skip.action = "skip";
                 skip.skip = Static.records.length;
                 let res = await front.Services.functions.sendApi(
                   "/api/questions",

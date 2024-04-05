@@ -22,27 +22,6 @@ front.func.throttle = (timeout) => {
   };
 };
 
-// front.func.checkPosition = () => {
-//   const height = document.body.offsetHeight;
-//   const screenHeight = window.innerHeight;
-
-//   const scrolled = window.scrollY;
-
-//   const threshold = height - screenHeight / 4;
-
-//   const position = scrolled + screenHeight;
-
-//   if (position >= threshold) {
-//     Fn.log("=447881=", 1);
-//     front.Services.functions.sendApi("/api/events/Icos", {
-//       action: "skip",
-//       category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
-//       type: Static.makeFilter.active,
-//       skip: 20,
-//     });
-//   }
-// };
-
 front.loader = async () => {
   Fn.log("=38f35e=", Static.record);
   Static.makeFilter = {

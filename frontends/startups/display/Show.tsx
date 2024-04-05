@@ -1,7 +1,7 @@
 import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
 import back from "@svg/icon/prev.svg";
 import next from "@svg/icon/next.svg";
-import { Display } from "@elements/TeamSlider";
+import Slider from "@elements/Slider";
 import test from "@images/events/test.jpg";
 import test2 from "@images/events/test2.png";
 
@@ -109,12 +109,12 @@ export default function () {
                 </a>
               </div>
             </div>
-            <div class="flex flex-col gap-[1.5625rem] @992:flex-row">
+            <div class="flex flex-col gap-[1.5625rem]">
               <p class="!h-auto overflow-y-scroll pr-[0.625rem] @992:h-[21.75rem]">
                 {Static.record.description}
               </p>
               {Static.record.social?.length ? (
-                <div class="flex flex-wrap justify-center gap-[1.5625rem] pt-[15px]">
+                <div class="flex flex-wrap justify-center gap-[1.5625rem] pt-[15px] @992:justify-start">
                   {Static.record.social.map((item, index) => {
                     return (
                       <a
@@ -186,7 +186,7 @@ export default function () {
                           <circle
                             ref={`circle-${index}`}
                             class={[
-                              `fill-none stroke-2 [transition:all_0.3s_ease] [animation-duration:1.5s] [animation-name:render] hover:stroke-[4] hover:opacity-80 stroke-[${tokenomicaColorMap[index]}]`,
+                              `fill-none stroke-2 [animation-duration:1.5s] [animation-name:render] [transition:all_0.3s_ease] hover:stroke-[4] hover:opacity-80 stroke-[${tokenomicaColorMap[index]}]`,
                             ]}
                             r="15.9"
                             cx="50%"
@@ -252,7 +252,28 @@ export default function () {
               <h2 class="m-[0.625rem_0_1.5625rem_0] text-center text-[clamp(2rem,2vw,2.75rem)] font-bold leading-[3.625rem]">
                 Команда
               </h2>
-              <Display items={Static.record.team} />
+              {/* <Slider items={Static.record.team} /> */}
+              <Slider
+                adaptive={{ 992: 2, 1240: 3 }}
+                items={Static.record.team.map((item) => {
+                  return (
+                    <div class="flex flex-col items-center gap-[0.625rem] text-center">
+                      <div class="flex h-[28.875rem] w-[21.875rem] items-center justify-center">
+                        <img
+                          class="pointer-events-none h-full w-full rounded-[--borderR] object-cover"
+                          src={`/assets/upload/worldPress/${item.photo}`}
+                        ></img>
+                      </div>
+                      <span class="text-[1.125rem] font-semibold leading-[1.625rem]">
+                        {item.descriptionShort}
+                      </span>
+                      <span class="text-[1.125rem] font-semibold leading-[1.625rem]">
+                        {item.position}
+                      </span>
+                    </div>
+                  );
+                })}
+              />
             </section>
           ) : null}
 

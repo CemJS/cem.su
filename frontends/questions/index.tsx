@@ -42,7 +42,6 @@ front.func.draggableProgressBar = (e: any) => {
 
 front.func.updateFilter = async () => {
   Static.makeFilter = {
-    action: "get",
     sort: Static.sort,
     order: Static.order,
     search: Static.search,
@@ -159,9 +158,14 @@ front.func.deleteComment = async (
 // функция проверки авторизации
 
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
-  console.log("=5ebb41=", front.Variable);
   if (front.Variable.Auth) {
-    return await front.Services.functions.sendApi(url, data, method);
+    let res = await front.Services.functions.sendApi(url, data, method);
+    console.log("=55a7bd=", res);
+    if (res?.status == 409) {
+      Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
+      return;
+    }
+    return res;
   } else {
     Fn.initOne("modalAuthtorization", {});
   }

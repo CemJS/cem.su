@@ -40,6 +40,7 @@ class Gallery {
   dotsItem: any;
   dotNodes: any;
   firstManage: boolean;
+  adaptive: object;
 
   constructor(
     element: HTMLElement,
@@ -47,7 +48,7 @@ class Gallery {
     next: HTMLElement,
     prev: HTMLElement,
     options = { margin: 10 },
-    slide: any,
+    adaptive: object,
   ) {
     this.element = element;
     this.elementEmpty = undefined;
@@ -55,8 +56,9 @@ class Gallery {
     this.dots = dots;
     this.next = next;
     this.prev = prev;
+    this.adaptive = adaptive;
     this.firstManage = false;
-    this.countSlides = 5;
+    this.countSlides = 1;
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
@@ -95,27 +97,39 @@ class Gallery {
     this.dots.classList.add(GalleryDotsClassName);
     this.dots.innerHTML = "";
 
-    if (this.countSlides > 1) {
-      this.dotsItem = Array.from(Array(this.size).keys()).map((key) => {
-        wrapElementBtn(this.dots, GalleryDotClassName, key, this.currentSlide);
-      });
+    if (this.countSlides <= this.size) {
+      if (this.countSlides > 1) {
+        this.dotsItem = Array.from(Array(this.size).keys()).map((key) => {
+          wrapElementBtn(
+            this.dots,
+            GalleryDotClassName,
+            key,
+            this.currentSlide,
+          );
+        });
+      }
+      this.prev.classList.remove("!hidden");
+      this.next.classList.remove("!hidden");
+      this.dotNodes = this.dots.querySelectorAll(`.${GalleryDotClassName}`);
+    } else {
+      this.prev.classList.add("!hidden");
+      this.next.classList.add("!hidden");
     }
-
-    this.dotNodes = this.dots.querySelectorAll(`.${GalleryDotClassName}`);
   }
 
-  adaptive() {
-    if (window.innerWidth < 768) {
-      this.countSlides = 2;
-    } else if (window.innerWidth < 400) {
-      this.countSlides = 1;
-    } else {
-      this.countSlides = 3;
+  setAdaptive() {
+    let isSet;
+    for (let key in this.adaptive) {
+      if (window.innerWidth > key) {
+        this.countSlides = this.adaptive[key];
+        isSet = true;
+      }
     }
+    !isSet ? (this.countSlides = 1) : null;
   }
 
   setParameters() {
-    this.adaptive();
+    this.setAdaptive();
     const coordsContainer = this.element.getBoundingClientRect();
     this.widthContainer = coordsContainer.width;
     this.maximumX =
@@ -327,7 +341,7 @@ function debounce(func, time = 100) {
 
 export { Gallery };
 
-export const init = function (element: HTMLElement) {
+export const init = function (element: HTMLElement, adaptive: object = {}) {
   Static.galleryRun = new Gallery(
     element,
     Ref.galleryDots,
@@ -336,20 +350,26 @@ export const init = function (element: HTMLElement) {
     {
       margin: 30,
     },
+    adaptive,
   );
   // this.init();
 };
 
-export const DisplayImages = function ({ items, buttons = true, dots = true }) {
+export default function ({
+  items,
+  buttons = true,
+  dots = true,
+  adaptive = {},
+}) {
   {
-    Ref.slider ? init(Ref.slider) : null;
+    Ref.slider ? init(Ref.slider, adaptive) : null;
   }
   if (!items || !items?.length) {
     return <div />;
   }
   return (
     <div class={GalleryClassNamePartners} style="position: relative;">
-      <div init={init} ref="slider">
+      <div init={(e) => init(e, adaptive)} ref="slider">
         <div class="gallery_line">{items}</div>
       </div>
       <div
@@ -360,14 +380,25 @@ export const DisplayImages = function ({ items, buttons = true, dots = true }) {
         ref="prevTeam"
         class={["slide__btn slide__btn_prev", buttons ? null : "opacity"]}
       >
-        <img src={back} />
+        <img class="w-[20px]" src={back} />
       </button>
       <button
         ref="nextTeam"
         class={["slide__btn slide__btn_next", buttons ? null : "opacity"]}
       >
-        <img src={next} />
+        <img class="w-[20px]" src={next} />
       </button>
     </div>
   );
-};
+}
+
+// вставлять в items={
+// <div class="gallery_slide">
+// ...контент слайда
+// </div>
+// }
+// adaptive указывать в объекте пример:
+// {
+//   размер экрана: кол слайдов
+//   768:1
+// }

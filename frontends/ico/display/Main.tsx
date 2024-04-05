@@ -57,7 +57,7 @@ const RenderItems = function ({ items }) {
               >
                 <div
                   id="active"
-                  class="absolute left-0 top-0 z-[-1] h-full w-full opacity-0 ease-in-out [transition:all_0.35s] [background:var(--darkBlueGradient)]"
+                  class="absolute left-0 top-0 z-[-1] h-full w-full opacity-0 ease-in-out [background:var(--darkBlueGradient)] [transition:all_0.35s]"
                 ></div>
                 <span class="text-[clamp(1rem,2vw,1.125rem)] [transition:all_0.35s_ease-in-out]">
                   {item.name}
@@ -105,7 +105,6 @@ const RenderItems = function ({ items }) {
                               let res = front.Services.functions.sendApi(
                                 "/api/icos",
                                 {
-                                  action: "skip",
                                   category:
                                     Static.makeFilter.cat == "Все"
                                       ? "All"
@@ -137,15 +136,15 @@ const RenderItems = function ({ items }) {
                       <h5 class="m-[0_0_0.625rem_0] text-[1.125rem] @464:m-[0_0_0.9375rem_0] @464:text-[1.375rem] @464:font-bold">
                         {item.title}
                       </h5>
-                      <p class="@1050:text-[1.125rem] m-0 mr-[0.9375rem] line-clamp-3 text-[0.875rem] leading-[1.5rem] @464:text-[1rem]">
+                      <p class="m-0 mr-[0.9375rem] line-clamp-3 text-[0.875rem] leading-[1.5rem] @464:text-[1rem] @1050:text-[1.125rem]">
                         {item.description}
                       </p>
-                      <p class="@1050:text-[1.125rem] m-0 !mt-[0.625rem] mr-[0.9375rem] line-clamp-3 text-[0.875rem] font-bold leading-[1.5rem] text-[#cbd3eb] @464:text-[1rem]">
-                        <span class="!bg-clip-text text-[clamp(1rem,2vw,1.125rem)] font-bold leading-[1.375rem] [background:var(--mainGradient)] [-webkit-text-fill-color:transparent]">
+                      <p class="m-0 !mt-[0.625rem] mr-[0.9375rem] line-clamp-3 text-[0.875rem] font-bold leading-[1.5rem] text-[#cbd3eb] @464:text-[1rem] @1050:text-[1.125rem]">
+                        <span class="!bg-clip-text text-[clamp(1rem,2vw,1.125rem)] font-bold leading-[1.375rem] [-webkit-text-fill-color:transparent] [background:var(--mainGradient)]">
                           ${item.nowMoney ? item.nowMoney : 0}
                         </span>{" "}
                         / ${item.targetMoney ? item.targetMoney : 0}
-                        <span class="@1050:text-[1.5rem] ml-[0.625rem] text-[1.25rem] text-[--white] @464:text-[1.375rem]">
+                        <span class="ml-[0.625rem] text-[1.25rem] text-[--white] @464:text-[1.375rem] @1050:text-[1.5rem]">
                           {item.targetMoney
                             ? item.targetMoney <= 0
                               ? "0"

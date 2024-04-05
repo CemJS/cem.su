@@ -317,7 +317,7 @@ const RenderAddAnswer = () => {
       ></textarea>
       <div class="flex justify-center p-10">
         <button
-          class="btn"
+          class={["btn", !Static.text ? "btn_passive" : null]}
           type="button"
           onclick={() => {
             let data = {
@@ -325,6 +325,8 @@ const RenderAddAnswer = () => {
               questionId: Static.record.id,
             };
             Static.text = "";
+            Static.open = "Ответить";
+            Ref[`ans${Static.record.id}`].classList.toggle("!block");
             Func.sendAuth("/api/answers/create", data);
           }}
         >
@@ -347,7 +349,8 @@ const RenderStatistic = () => {
         {Static.record.statistics.views}
       </span>
       <span>{`${front.Services.functions.timeStampToDate(Static.record.showDate, ".")} ${Func.addNull(Func.getDate(Static.record.showDate).getHours())}:${Func.addNull(Func.getDate(Static.record.showDate).getMinutes())}`}</span>
-      {!Static.record.closed ? (
+      {!Static.record.closed &&
+      front.Variable.myInfo.id != Static.record?.author.id ? (
         <div class="btn_border-wrap !m-0 !w-full @600:!w-[12.625rem] ">
           <button
             onclick={(e: any) => {
@@ -522,6 +525,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                 answerId: answer.id,
               };
               Static[`${answerIndex}`] = "";
+              Static[`showComments${answerIndex}`] = "Скрыть комментарии";
               Ref[`inputAns${answerIndex}`].classList.toggle("!flex");
               Func.sendAuth(`/api/answers/${answer.id}/comment`, data);
             }}
@@ -537,16 +541,12 @@ const RenderAnswer = ({ answer, answerIndex }) => {
               }
               class="relative block min-h-[2rem] w-max cursor-pointer overflow-hidden rounded-[0.1875rem] border-none bg-transparent pl-[0.625rem] pr-[0.625rem] pt-0 text-center text-[0.875rem] font-semibold text-[--white] no-underline "
               onclick={(e) => {
-                let el = e.currentTarget;
-                let elemComments =
-                  el.parentElement.parentElement.parentElement.lastChild;
-
-                if (elemComments.style.display == "none") {
+                if (
+                  Static[`showComments${answerIndex}`] == "Показать комментарии"
+                ) {
                   Static[`showComments${answerIndex}`] = "Скрыть комментарии";
-                  elemComments.style = "display: block";
                 } else {
                   Static[`showComments${answerIndex}`] = "Показать комментарии";
-                  elemComments.style = "display: none";
                 }
               }}
             >
@@ -561,10 +561,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
               class="h-5 w-5 cursor-pointer rounded-[50%]"
               src={dislike}
               onclick={async () => {
-                let { error } = await Func.sendAuth(
-                  `/api/answers/${answer.id}/dislike`,
-                  {},
-                );
+                await Func.sendAuth(`/api/answers/${answer.id}/dislike`, {});
               }}
             />
             <span class="relative ml-[0.125rem] min-w-[1.125rem] !bg-clip-text text-center text-[0.9375rem] font-bold tracking-[0.0625rem] [-webkit-text-fill-color:transparent] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_25%,#9844b7_51%,#ff357f_100%)]">
@@ -574,10 +571,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
               class="h-5 w-5 cursor-pointer rounded-[50%]"
               src={like}
               onclick={async () => {
-                let { error } = await Func.sendAuth(
-                  `/api/answers/${answer.id}/like`,
-                  {},
-                );
+                await Func.sendAuth(`/api/answers/${answer.id}/like`, {});
               }}
             />
           </div>
@@ -623,11 +617,9 @@ const RenderAnswer = ({ answer, answerIndex }) => {
           </div>
         </div>
       </div>
-      {answer.comments.length > 0 ? (
-        <div
-          class="mb-[-0.625rem] bg-[#242835] pb-[0.4rem] [border-radius:0_0_0.9375rem_0.9375rem]"
-          style="display: none"
-        >
+      {answer.comments.length > 0 &&
+      Static[`showComments${answerIndex}`] == "Скрыть комментарии" ? (
+        <div class="mb-[-0.625rem] bg-[#242835] pb-[0.4rem] [border-radius:0_0_0.9375rem_0.9375rem]">
           {answer.comments?.map((comment, commentIndex) => {
             return (
               <div
@@ -732,7 +724,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       class="h-5 w-5 cursor-pointer rounded-[50%]"
                       src={dislike}
                       onclick={async () => {
-                        let { error } = await Func.sendAuth(
+                        await Func.sendAuth(
                           `/api/comments/${comment.id}/dislike`,
                           { answerId: answer.id },
                         );
@@ -745,7 +737,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       class="h-5 w-5 cursor-pointer rounded-[50%]"
                       src={like}
                       onclick={async () => {
-                        let { error } = await Func.sendAuth(
+                        await Func.sendAuth(
                           `/api/comments/${comment.id}/like`,
                           { answerId: answer.id },
                         );
@@ -965,7 +957,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                             class="h-5 w-5 cursor-pointer rounded-[50%]"
                             src={dislike}
                             onclick={async () => {
-                              let { error } = await Func.sendAuth(
+                              await Func.sendAuth(
                                 `/api/comments/${comm.id}/dislike`,
                                 { answerId: answer.id, commentId: comment.id },
                               );
@@ -978,7 +970,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                             class="h-5 w-5 cursor-pointer rounded-[50%]"
                             src={like}
                             onclick={async () => {
-                              let { error } = await Func.sendAuth(
+                              await Func.sendAuth(
                                 `/api/comments/${comm.id}/like`,
                                 { answerId: answer.id, commentId: comment.id },
                               );
@@ -1114,7 +1106,6 @@ export default function () {
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
-  console.log("=9c2a78=", Static.record);
   return (
     <div>
       <div class="pb-20">
