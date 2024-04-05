@@ -246,7 +246,11 @@ const RenderVideo = function () {
 const RenderUser = () => {
   return (
     <div id="user">
-      <a class="relative flex h-auto w-auto" href="#">
+      <a
+        onclick={Fn.link}
+        class="relative inline-flex h-auto w-auto"
+        href={`/user/${Static.record?.author.nickname}`}
+      >
         <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
           <img
             class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
@@ -373,7 +377,11 @@ const RenderAnswer = ({ answer, answerIndex }) => {
       ]}
     >
       <div class="relative p-[0_0.625rem]">
-        <a class="relative flex h-auto w-auto" href="">
+        <a
+          onclick={Fn.link}
+          class="relative inline-flex h-auto w-auto"
+          href={`/user/${answer?.author.nickname}`}
+        >
           <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
@@ -424,7 +432,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
           ) : (
             <div
               id="form"
-              class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] flex w-full max-w-[64rem] items-stretch justify-between"
+              class="relative z-[6] mx-auto !mb-[0.625rem] !mt-[0.625rem] flex w-full max-w-[64rem] items-stretch justify-between"
             >
               <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
                 <textarea
@@ -432,19 +440,22 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   rows="1"
                   data-max-height="200"
                   data-scroll-last="48"
-                  value={Static[`edit${answerIndex}`]}
+                  value={Static[`edit${answer.id}`]}
                   oninput={(e) => {
-                    Static[`edit${answerIndex}`] = e.target.value;
+                    Static[`edit${answer.id}`] = e.target.value;
                   }}
                 ></textarea>
               </div>
               <button
-                class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
+                class={[
+                  "m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]",
+                  !Static[`edit${answer.id}`] ? "btn_passive" : null,
+                ]}
                 onclick={() => {
                   let data = {
-                    text: Static[`edit${answerIndex}`],
+                    text: Static[`edit${answer.id}`],
                   };
-                  Static[`edit${answerIndex}`] = "";
+                  Static[`edit${answer.id}`] = "";
                   Func.closeEdit(answer.id);
                   Func.sendAuth(`/api/answers/${answer.id}/update`, data);
                 }}
@@ -486,7 +497,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
         <div
           id="form"
           ref={`inputAns${answerIndex}`}
-          class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
+          class="relative z-[6] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
         >
           <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
             <textarea
@@ -501,7 +512,10 @@ const RenderAnswer = ({ answer, answerIndex }) => {
             ></textarea>
           </div>
           <button
-            class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
+            class={[
+              "m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]",
+              !Static[`${answerIndex}`] ? "btn_passive" : null,
+            ]}
             onclick={() => {
               let data = {
                 text: Static[`${answerIndex}`],
@@ -621,8 +635,9 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                 style="margin: 0 10px"
               >
                 <a
-                  class="relative left-[-0.25rem] top-[0.625rem] flex h-[auto] w-[auto] no-underline"
-                  href=""
+                  onclick={Fn.link}
+                  class="relative left-[-0.25rem] top-[0.625rem] inline-flex h-[auto] w-[auto] no-underline"
+                  href={`/user/${comment?.author.nickname}`}
                 >
                   <div class="relative z-[1] ml-[0.625rem] h-[2.625rem] w-[2.25rem] min-w-[2.9375rem]">
                     <img
@@ -666,10 +681,50 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   </div>
                 </a>
                 <div class="mb-[0.125rem] w-full pt-[0.875rem]">
-                  <span
-                    class="relative mx-auto block overflow-hidden break-words p-[0_0.5rem] text-[0.75rem] font-medium leading-[1.375rem] text-[--white]"
-                    html={comment.text}
-                  ></span>
+                  {!Static[`isEditing${comment.id}`] ? (
+                    <span
+                      class="relative mx-auto block overflow-hidden break-words p-[0_0.5rem] text-[1rem] font-medium leading-[1.375rem] text-[--white]"
+                      html={comment.text}
+                    ></span>
+                  ) : (
+                    <div
+                      id="form"
+                      class="relative z-[6] mx-auto !mb-[0.625rem] !mt-[0.625rem] flex w-full max-w-[64rem] items-stretch justify-between"
+                    >
+                      <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
+                        <textarea
+                          class="relative flex min-h-[2.5625rem] w-full resize-none rounded-[0.625rem] bg-[#313543] p-[0.625rem_1.5625rem] text-[1rem] font-medium text-[--white] outline-none [border:0.0625rem_solid_#44495c]"
+                          rows="1"
+                          data-max-height="200"
+                          data-scroll-last="48"
+                          value={Static[`edit${comment.id}`]}
+                          oninput={(e) => {
+                            Static[`edit${comment.id}`] = e.target.value;
+                          }}
+                        ></textarea>
+                      </div>
+                      <button
+                        class={[
+                          "m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]",
+                          !Static[`edit${comment.id}`] ? "btn_passive" : null,
+                        ]}
+                        onclick={() => {
+                          let data = {
+                            text: Static[`edit${comment.id}`],
+                            answerId: answer.id,
+                          };
+                          Static[`edit${comment.id}`] = "";
+                          Func.closeEdit(comment.id);
+                          Func.sendAuth(
+                            `/api/comments/${comment.id}/update`,
+                            data,
+                          );
+                        }}
+                      >
+                        <img src={sendMessage} />
+                      </button>
+                    </div>
+                  )}
                 </div>
                 <div class="static flex items-center justify-end gap-[0.3125rem] pb-[0.375rem] @410:absolute @410:right-[0.9375rem] @410:top-[0.9375rem]">
                   <div class="flex w-16 items-center justify-between">
@@ -757,7 +812,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                 <div
                   id="form"
                   ref={`inputComment${answerIndex}${commentIndex}`}
-                  class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
+                  class="relative z-[6] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
                 >
                   <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
                     <textarea
@@ -775,7 +830,12 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                     ></textarea>
                   </div>
                   <button
-                    class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
+                    class={[
+                      "m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]",
+                      !Static[`inputComment${answerIndex}${commentIndex}`]
+                        ? "btn_passive"
+                        : null,
+                    ]}
                     onclick={() => {
                       let data = {
                         text: Static[
@@ -799,8 +859,9 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                   return (
                     <div class="relative p-[0_0.625rem]" style="margin: 0 10px">
                       <a
-                        class="relative left-[-0.25rem] top-[0.625rem] flex h-[auto] w-[auto] no-underline"
-                        href=""
+                        onclick={Fn.link}
+                        class="relative left-[-0.25rem] top-[0.625rem] inline-flex h-[auto] w-[auto] no-underline"
+                        href={`/user/${comm?.author.nickname}`}
                       >
                         <div class="relative z-[1] ml-[0.625rem] h-[2.625rem] w-[2.25rem] min-w-[2.9375rem]">
                           <img
@@ -848,10 +909,55 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                         </div>
                       </a>
                       <div class="mb-[0.125rem] w-full pt-[0.875rem]">
-                        <span
-                          class="relative mx-auto block overflow-hidden break-words p-[0_0.5rem] text-[0.75rem] font-medium leading-[1.375rem] text-[--white]"
-                          html={comm.text}
-                        ></span>
+                        {!Static[`isEditing${comm.id}`] ? (
+                          <span
+                            class="relative mx-auto block overflow-hidden break-words p-[0_0.5rem] text-[1rem] font-medium leading-[1.375rem] text-[--white]"
+                            html={comm.text}
+                          ></span>
+                        ) : (
+                          <div
+                            id="form"
+                            class="relative z-[6] mx-auto !mb-[0.625rem] !mt-[0.625rem] flex w-full max-w-[64rem] items-stretch justify-between"
+                          >
+                            <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
+                              <textarea
+                                class="relative flex min-h-[2.5625rem] w-full resize-none rounded-[0.625rem] bg-[#313543] p-[0.625rem_1.5625rem] text-[1rem] font-medium text-[--white] outline-none [border:0.0625rem_solid_#44495c]"
+                                rows="1"
+                                data-max-height="200"
+                                data-scroll-last="48"
+                                value={Static[`edit${comm.id}`]}
+                                oninput={(e) => {
+                                  Static[`edit${comm.id}`] = e.target.value;
+                                }}
+                              ></textarea>
+                            </div>
+                            <button
+                              class={[
+                                "m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]",
+                                !Static[
+                                  `${answerIndex}${commentIndex}${commIndex}`
+                                ]
+                                  ? "btn_passive"
+                                  : null,
+                              ]}
+                              onclick={() => {
+                                let data = {
+                                  text: Static[`edit${comm.id}`],
+                                  answerId: answer.id,
+                                  commentId: comment.id,
+                                };
+                                Static[`edit${comm.id}`] = "";
+                                Func.closeEdit(comm.id);
+                                Func.sendAuth(
+                                  `/api/comments/${comm.id}/update`,
+                                  data,
+                                );
+                              }}
+                            >
+                              <img src={sendMessage} />
+                            </button>
+                          </div>
+                        )}
                       </div>
                       <div class="static flex items-center justify-end gap-[0.3125rem] pb-[0.375rem] @410:absolute @410:right-[0.9375rem] @410:top-[0.9375rem]">
                         <div class="flex w-16 items-center justify-between">
@@ -943,7 +1049,7 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                       <div
                         id="form"
                         ref={`inputCommentComm${answerIndex}${commentIndex}${commIndex}`}
-                        class="relative z-[100] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
+                        class="relative z-[6] mx-auto !mb-[0.625rem] !mt-[0.625rem] hidden w-full max-w-[64rem] items-stretch justify-between"
                       >
                         <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
                           <textarea
@@ -964,7 +1070,12 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                           ></textarea>
                         </div>
                         <button
-                          class="m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]"
+                          class={[
+                            "m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]",
+                            !Static[`${answerIndex}${commentIndex}${commIndex}`]
+                              ? "btn_passive"
+                              : null,
+                          ]}
                           onclick={() => {
                             let data = {
                               quote: comm.id,

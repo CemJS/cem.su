@@ -82,11 +82,11 @@ front.func.isEditable = (timestamp: string | number) => {
 
 front.func.edit = (id) => {
   Func.hideInputs();
+  Static.currentEditing = id;
   Static[`isEditing${id}`] = true;
 };
 
 front.func.closeEdit = (id) => {
-  Func.hideInputs();
   Static[`isEditing${id}`] = false;
 };
 
@@ -170,6 +170,8 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 //
 
 front.func.hideInputs = () => {
+  console.log("=00e74a=", Static.currentEditing);
+  Func.closeEdit(Static.currentEditing);
   let inputs = document.querySelectorAll("#form");
   let arr = [...inputs];
   for (let elem of arr) {
@@ -188,6 +190,11 @@ front.func.findIndexComment = (id, answerIndex) => {
 };
 
 front.func.findIndexCommentToComment = (id, answerIndex, commentIndex) => {
+  console.log("=b53b67=", id);
+  console.log(
+    "=09f769=",
+    Static.record.answers[answerIndex].comments[commentIndex].comments,
+  );
   return Static.record.answers[answerIndex].comments[
     commentIndex
   ].comments.findIndex((item) => item.id == id);
@@ -390,6 +397,19 @@ front.loader = async () => {
         Static.record.answers[answerIndex].statistics.rating--;
       },
     },
+    {
+      type: "updateAnswer",
+      fn: ({ data }) => {
+        let { id, text } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(id);
+
+        Static.record.answers[answerIndex].text = text;
+      },
+    },
     // comment
     {
       type: "comment",
@@ -466,6 +486,20 @@ front.loader = async () => {
           .rating--;
       },
     },
+    {
+      type: "updateComment",
+      fn: ({ data }) => {
+        let { id, answerId, text } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(answerId);
+        let commentIndex = Func.findIndexComment(id, answerIndex);
+
+        Static.record.answers[answerIndex].comments[commentIndex].text = text;
+      },
+    },
     // comment to comment
     {
       type: "deleteCommentToComment",
@@ -526,7 +560,7 @@ front.loader = async () => {
 
         let answerIndex = Func.findIndexAnswer(answerId);
         let commentIndex = Func.findIndexComment(commentId, answerIndex);
-        let commentToCommentIndex = Func.findIndexComment(
+        let commentToCommentIndex = Func.findIndexCommentToComment(
           id,
           answerIndex,
           commentIndex,
@@ -548,7 +582,7 @@ front.loader = async () => {
 
         let answerIndex = Func.findIndexAnswer(answerId);
         let commentIndex = Func.findIndexComment(commentId, answerIndex);
-        let commentToCommentIndex = Func.findIndexComment(
+        let commentToCommentIndex = Func.findIndexCommentToComment(
           id,
           answerIndex,
           commentIndex,
@@ -557,6 +591,28 @@ front.loader = async () => {
         Static.record.answers[answerIndex].comments[commentIndex].comments[
           commentToCommentIndex
         ].statistics.rating--;
+      },
+    },
+    {
+      type: "updateCommentToComment",
+      fn: ({ data }) => {
+        let { id, answerId, commentId, text } =
+          front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(answerId);
+        let commentIndex = Func.findIndexComment(commentId, answerIndex);
+        let commentToCommentIndex = Func.findIndexCommentToComment(
+          id,
+          answerIndex,
+          commentIndex,
+        );
+
+        Static.record.answers[answerIndex].comments[commentIndex].comments[
+          commentToCommentIndex
+        ].text = text;
       },
     },
   ];

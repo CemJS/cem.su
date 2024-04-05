@@ -27,18 +27,14 @@ front.func.checkForm = function () {
     : (Static.form.isValid = false);
 };
 
-front.func.sendQuestion = async function () {
+front.func.sendQuestion = function () {
   let data: object = {
     title: Static.form.question.value,
     text: Static.form.comment.value,
     languageCode: Static.languageCode,
   };
   Fn.log("=87d71d=", data);
-  let res = await front.Services.functions.sendApi(
-    "/api/questions/create",
-    data,
-  );
-  console.log("=219b0d=", res);
+  let res = front.Services.functions.sendApi("/api/questions/create", data);
   Func.close();
 };
 
