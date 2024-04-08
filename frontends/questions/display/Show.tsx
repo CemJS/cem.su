@@ -378,6 +378,23 @@ const RenderAnswer = ({ answer, answerIndex }) => {
           ? "!order-[-1] !rounded-[15px] ![border:1px_solid_#00e741]"
           : null,
       ]}
+      init={($el: any) => {
+        if (answerIndex == Static.record?.answers?.length - 1) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(async (entry) => {
+              if (entry.isIntersecting) {
+                observer.unobserve($el);
+                let skip = Static.record.answers?.length;
+                front.Services.functions.sendApi(
+                  `/api/questions/${Static.record?.id}/answers`,
+                  { skip },
+                );
+              }
+            });
+          });
+          observer.observe($el);
+        }
+      }}
     >
       <div class="relative p-[0_0.625rem]">
         <a
@@ -544,6 +561,13 @@ const RenderAnswer = ({ answer, answerIndex }) => {
                 if (
                   Static[`showComments${answerIndex}`] == "Показать комментарии"
                 ) {
+                  if (!answer.comments?.length) {
+                    front.Services.functions.sendApi(
+                      `/api/questions/${Static.record?.id}/answers/${answer.id}/comments`,
+                      {},
+                    );
+                  }
+
                   Static[`showComments${answerIndex}`] = "Скрыть комментарии";
                 } else {
                   Static[`showComments${answerIndex}`] = "Показать комментарии";

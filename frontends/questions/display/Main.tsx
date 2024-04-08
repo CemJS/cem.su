@@ -249,9 +249,7 @@ const RenderQuestion = ({ item, index }) => {
       key={item.id}
       class="relative h-auto w-full cursor-pointer rounded-[1rem] bg-[--prestige-blue] p-5 [border:0.0625rem_solid_transparent] [box-shadow:0rem_0.3125rem_2.75rem_0rem_rgba(29,33,45,0.8)] [transition:0.5s] hover:scale-[0.98] hover:bg-transparent hover:outline-none hover:[border:0.0625rem_solid_var(--border)] @767:w-[48.6%] @767:max-w-none @767:p-[1.875rem] @1024:w-[49%] @1240:w-full @1240:max-w-[25rem] @1240:p-[1.25rem] @1240:!pt-[0.625rem]"
       onclick={async () => {
-        let url = front.Services.functions.makeUrlEvent(`questions/${item.id}`);
-
-        Events.question = await Fn.event(url, Static.questionListener);
+        Func.getQuestion(item.id);
         Fn.linkChange(`/questions/show/${item.id}`);
       }}
       init={($el: any) => {

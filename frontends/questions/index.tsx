@@ -91,6 +91,14 @@ front.func.closeEdit = (id) => {
 
 // questions
 
+front.func.getQuestion = async (id) => {
+  let url = front.Services.functions.makeUrlEvent(`questions/${id}`);
+
+  Events.questions = await Fn.event(url, Static.questionListener);
+
+  front.Services.functions.sendApi(`/api/questions/${id}/answers`, {});
+};
+
 front.func.deleteQuestion = async () => {
   let res = await front.Services.functions.sendApi(
     `/api/questions/${Static.record.id}/delete`,
@@ -327,6 +335,7 @@ front.loader = async () => {
   Events.questions = await Fn.event(url, listener);
 
   Static.questionListener = [
+    // get question
     {
       type: "getById",
       fn: ({ data }) => {
@@ -337,7 +346,31 @@ front.loader = async () => {
         Static.record = json;
       },
     },
-    // answer
+    // answer -------------------
+    // get
+    {
+      type: "getAnswers",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        console.log("=09be12=", json);
+        Static.record.answers = json;
+      },
+    },
+    // skip
+    {
+      type: "skipAnswers",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.record.answers = [...Static.record.answers, ...json];
+      },
+    },
+    // best
     {
       type: "bestAnswer",
       fn: ({ data }) => {
@@ -351,6 +384,7 @@ front.loader = async () => {
         Static.record.answers[answerIndex].best = true;
       },
     },
+    // delete
     {
       type: "deleteAnswer",
       fn: ({ data }) => {
@@ -364,6 +398,7 @@ front.loader = async () => {
         );
       },
     },
+    // create answer
     {
       type: "answer",
       fn: ({ data }) => {
@@ -375,6 +410,7 @@ front.loader = async () => {
         Static.record.statistics.answers++;
       },
     },
+    // like
     {
       type: "likeAnswer",
       fn: ({ data }) => {
@@ -388,6 +424,7 @@ front.loader = async () => {
         Static.record.answers[answerIndex].statistics.rating++;
       },
     },
+    // dislike
     {
       type: "dislikeAnswer",
       fn: ({ data }) => {
@@ -401,6 +438,7 @@ front.loader = async () => {
         Static.record.answers[answerIndex].statistics.rating--;
       },
     },
+    // edit
     {
       type: "updateAnswer",
       fn: ({ data }) => {
@@ -414,7 +452,22 @@ front.loader = async () => {
         Static.record.answers[answerIndex].text = text;
       },
     },
-    // comment
+    // comment ------------------------
+    // get
+    {
+      type: "getAnswerComments",
+      fn: ({ data }) => {
+        let { answerId, comments } = front.Services.functions.strToJson(data);
+        if (!answerId) {
+          return;
+        }
+
+        let answerIndex = Func.findIndexAnswer(answerId);
+
+        Static.record.answers[answerIndex].comments = comments;
+      },
+    },
+    // create
     {
       type: "comment",
       fn: ({ data }) => {
@@ -433,6 +486,7 @@ front.loader = async () => {
         Static.record.statistics.answers++;
       },
     },
+    // delete
     {
       type: "deleteComment",
       fn: ({ data }) => {
@@ -460,6 +514,7 @@ front.loader = async () => {
         ].comments.filter((item) => item.id != id);
       },
     },
+    // like
     {
       type: "likeComment",
       fn: ({ data }) => {
@@ -475,6 +530,7 @@ front.loader = async () => {
           .rating++;
       },
     },
+    // dislike
     {
       type: "dislikeComment",
       fn: ({ data }) => {
@@ -490,6 +546,7 @@ front.loader = async () => {
           .rating--;
       },
     },
+    // edit
     {
       type: "updateComment",
       fn: ({ data }) => {
@@ -504,7 +561,8 @@ front.loader = async () => {
         Static.record.answers[answerIndex].comments[commentIndex].text = text;
       },
     },
-    // comment to comment
+    // comment to comment -------------------------
+    // delete
     {
       type: "deleteCommentToComment",
       fn: ({ data }) => {
@@ -525,6 +583,7 @@ front.loader = async () => {
           ].comments.filter((item) => item.id != id);
       },
     },
+    // create
     {
       type: "commentToComment",
       fn: ({ data }) => {
@@ -553,6 +612,7 @@ front.loader = async () => {
         Static.record.statistics.answers++;
       },
     },
+    // like
     {
       type: "likeCommentToComment",
       fn: ({ data }) => {
@@ -575,6 +635,7 @@ front.loader = async () => {
         ].statistics.rating++;
       },
     },
+    // dislike
     {
       type: "dislikeCommentToComment",
       fn: ({ data }) => {
@@ -597,6 +658,7 @@ front.loader = async () => {
         ].statistics.rating--;
       },
     },
+    // edit
     {
       type: "updateCommentToComment",
       fn: ({ data }) => {
@@ -622,11 +684,7 @@ front.loader = async () => {
   ];
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-    let url = front.Services.functions.makeUrlEvent(
-      `questions/${front.Variable.DataUrl[2]}`,
-    );
-
-    Events.questions = await Fn.event(url, Static.questionListener);
+    Func.getQuestion(front.Variable.DataUrl[2]);
 
     Static.videoDragStart = false;
 
@@ -645,22 +703,6 @@ front.loader = async () => {
         value: 0.5,
       },
     ];
-
-    // let urlAns = front.Services.functions.makeUrlEvent("Answers", { id: front.Variable.DataUrl[2] });
-
-    // let listenerAns = [
-    //   {
-    //     type: "get",
-    //     fn: ({ data }) => {
-    //       let json = front.Services.functions.strToJson(data);
-    //       if (!json) {
-    //         return;
-    //       }
-    //       Static.answers = json;
-    //     },
-    //   },
-    // ];
-    // Events.answers = await Fn.event(urlAns, listenerAns);
   }
 
   return;
