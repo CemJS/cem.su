@@ -1,0 +1,4 @@
+{
+  "regex": "/profile/notify",
+  "front": ["header", "profile_notify", "footer"]
+}

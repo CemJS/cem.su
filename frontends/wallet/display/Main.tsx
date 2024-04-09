@@ -109,12 +109,11 @@ const RenderTable = () => {
               (item, index) => {
                 return (
                   <button
-                    class={item.class}
+                    class={`${Static.currentPage == index + 1}`}
                     onclick={(e) => {
                       Static.currentPage = item.number;
                       Func.setCurrentPage(Static.currentPage);
                       Func.pagination(Static.currentPage);
-                      item.class += "active ";
                       if (Static.currentPage < 3) {
                         Ref.first_two.classList.add("hidden");
                         Static.Begin = 0;

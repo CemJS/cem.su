@@ -1,4 +1,4 @@
-import { Cemjsx, front, Func, Static, Fn, Ref } from "cemjs-all";
+import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 
 front.listener.finish = () => {
@@ -61,7 +61,7 @@ front.func.pagination = (pageNum) => {
   return;
 };
 
-front.loader = () => {
+front.loader = async () => {
   Static.data = [
     {
       img: "transaction_newmember_bonus",
@@ -988,6 +988,34 @@ front.loader = () => {
   Func.setCurrentPage(1);
   Static.Pages[0].class += "active";
   Static.lastPage = Static.Pages.at(-1).number;
+
+  let url = front.Services.functions.makeUrlEvent("wallet");
+  let listener = [
+    {
+      type: "get",
+      fn: ({ data }) => {
+        let { bonuses, balance } = front.Services.functions.strToJson(data);
+        if (!bonuses) {
+          return;
+        }
+
+        Static.balance = balance;
+        Static.records = bonuses;
+        Fn.log("=c2a25f=", Static.records);
+      },
+    },
+    {
+      type: "skip",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.records = [...Static.records, ...json];
+      },
+    },
+  ];
+  Events.wallet = await Fn.event(url, listener);
   return;
 };
 

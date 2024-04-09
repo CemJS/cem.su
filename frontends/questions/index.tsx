@@ -355,7 +355,6 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        console.log("=09be12=", json);
         Static.record.answers = json;
       },
     },
