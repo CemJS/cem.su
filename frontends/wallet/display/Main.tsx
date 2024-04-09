@@ -109,7 +109,7 @@ const RenderTable = () => {
               (item, index) => {
                 return (
                   <button
-                    class={`${Static.currentPage == index + 1}`}
+                    class={`${Static.currentPage == index + 1 ? "active" : null}`}
                     onclick={(e) => {
                       Static.currentPage = item.number;
                       Func.setCurrentPage(Static.currentPage);
@@ -138,7 +138,6 @@ const RenderTable = () => {
                   Static.currentPage = item.number;
                   Func.setCurrentPage(Static.currentPage);
                   Func.pagination(Static.currentPage);
-                  item.class += "active ";
                 }}
               >
                 {item.number}

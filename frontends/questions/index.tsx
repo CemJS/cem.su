@@ -481,7 +481,7 @@ front.loader = async () => {
         if (!Array.isArray(Static.record.answers[answerIndex].comments)) {
           Static.record.answers[answerIndex].comments = [];
         }
-        Static.record.answers[answerIndex].comments.unshift(json.comment);
+        Static.record.answers[answerIndex].comments.push(json.comment);
         Static.record.statistics.answers++;
       },
     },
@@ -605,9 +605,9 @@ front.loader = async () => {
           Static.record.answers[answerIndex].comments[commentIndex].comments =
             [];
         }
-        Static.record.answers[answerIndex].comments[
-          commentIndex
-        ].comments.unshift(json.comment);
+        Static.record.answers[answerIndex].comments[commentIndex].comments.push(
+          json.comment,
+        );
         Static.record.statistics.answers++;
       },
     },

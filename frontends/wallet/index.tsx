@@ -986,7 +986,6 @@ front.loader = async () => {
   Static.test = 1;
 
   Func.setCurrentPage(1);
-  Static.Pages[0].class += "active";
   Static.lastPage = Static.Pages.at(-1).number;
 
   let url = front.Services.functions.makeUrlEvent("wallet");

@@ -253,6 +253,9 @@ const RenderQuestion = ({ item, index }) => {
         Fn.linkChange(`/questions/show/${item.id}`);
       }}
       init={($el: any) => {
+        // if ((item.id = "6601828fffbbd9f5a898715a")) {
+        //   $el.scrollIntoView();
+        // }
         if (index == Static.records?.length - 1) {
           const observer = new IntersectionObserver((entries) => {
             entries.forEach(async (entry) => {
