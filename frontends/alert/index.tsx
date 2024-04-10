@@ -23,6 +23,7 @@ front.func.close = function () {
   }, 500);
 };
 front.loader = () => {
+  console.log("=0c6604=", Static);
   return;
 };
 
