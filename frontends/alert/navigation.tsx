@@ -4,15 +4,15 @@ import Main from "./display/Main";
 export default function () {
   return (
     <div
-      class={["notice", Static.type]}
+      class={[
+        "fixed right-[1.3rem] top-[10%] z-[15] opacity-0 [transition:all_0.5s_ease]",
+        Static.type,
+      ]}
       ref="notice"
       init={Func.show}
     >
       <Main />
-      <span
-        class="notice_close"
-        onclick={Func.close}
-      >
+      <span class="notice_close" onclick={Func.close}>
         x
       </span>
     </div>

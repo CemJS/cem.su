@@ -125,10 +125,10 @@ export const loader = async function (Variable: any, Fn: any) {
     // Variable.myInfo = Object.assign(Variable.myInfo, myInfo)
   });
   eventSource.addEventListener("notifyQuestion", async ({ data }) => {
-    console.log("=bfdcf5=", data);
+    let { name, description } = strToJson(data);
     Fn.initOne("alert", {
-      title: Variable.words[data?.name],
-      text: Variable.words[data?.description],
+      title: Variable.words[name],
+      text: Variable.words[description],
     });
   });
 
