@@ -54,13 +54,20 @@ export const timeStampToDate = function (
 };
 
 export const loader = async function (Variable: any, Fn: any) {
-  window.addEventListener("beforeunload", function (e) {
-    // закрытие
-    var confirmationMessage = "o/";
 
-    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-    return confirmationMessage; //Webkit, Safari, Chrome
-  });
+  // window.onbeforeunload = async function () {
+  //   console.log('=07afdb=', 123)
+  //   return true
+  //   await Fn.clearDataAll()
+  //   console.log('=07afdb=', 1234)
+
+  // }
+
+  window.onunload = async function () {
+    await Fn.clearDataAll()
+
+  }
+
 
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
