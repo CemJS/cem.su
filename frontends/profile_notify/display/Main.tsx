@@ -2,6 +2,7 @@ import { Cemjsx, Fn, Static, front } from "cemjs-all";
 import question from "@svg/profile_notify/questions.svg";
 
 export default function () {
+  console.log("=2641e1=", front.Variable);
   return (
     <div class="page !pt-0">
       <div id="notifications" class="wrapper">
@@ -74,12 +75,12 @@ export default function () {
                           }
                         />
                         <p class="inline-block text-[12px] font-bold leading-[125%] text-[#efefef] @479:text-[15px]">
-                          {Static.words[item.name]}
+                          {front.Variable.words[item.name]}
                         </p>
                       </div>
 
                       <span class="mt-[15px] block text-[12px] font-medium leading-[125%] text-[#767c85] [font-style:normal] @479:text-[14px]">
-                        {Static.words[item.description]}
+                        {front.Variable.words[item.description]}
                       </span>
                     </div>
                     {item.nickName ? (

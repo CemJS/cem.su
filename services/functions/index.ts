@@ -54,6 +54,14 @@ export const timeStampToDate = function (
 };
 
 export const loader = async function (Variable: any, Fn: any) {
+  window.addEventListener("beforeunload", function (e) {
+    // закрытие
+    var confirmationMessage = "o/";
+
+    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    return confirmationMessage; //Webkit, Safari, Chrome
+  });
+
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
@@ -61,6 +69,16 @@ export const loader = async function (Variable: any, Fn: any) {
   let eventSource = new EventSource(
     `/api/events/web-clients/me?uuid=${localStorage.uuid}`,
   );
+
+  const lang = localStorage.lang;
+  // Variable.words = await IndexDBGetByOne({
+  //   base: "linguaData",
+  //   key: "translations",
+  // });
+  // Variable.words = Variable.words[0];
+  // Variable.words = Variable.words.find((item) => item.code == lang);
+  // Variable.words = Variable.words?.notify;
+  console.log("=91e8e1=", Variable.words);
 
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
@@ -101,6 +119,10 @@ export const loader = async function (Variable: any, Fn: any) {
     // }
     // let myInfo = JSON.parse(answ.data)
     // Variable.myInfo = Object.assign(Variable.myInfo, myInfo)
+  });
+  eventSource.addEventListener("notifyQuestion", async ({ data }) => {
+    console.log("=bfdcf5=", data);
+    Fn.initOne("alert", { text: "1" });
   });
   // Variable.Auth = false
   return;
