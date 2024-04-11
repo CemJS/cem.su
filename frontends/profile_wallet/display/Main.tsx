@@ -8,7 +8,7 @@ import nav_arrow from "@svg/events/show/nav_arrow.svg";
 const RenderTop = () => {
   return (
     <div class="relative">
-      <h1 class="mt-0 flex justify-center">Мои активы</h1>
+      <h1 class="mt-0 flex justify-center text-[1.3rem]">Мои активы</h1>
 
       <div class="absolute top-[50%] mb-10 flex cursor-pointer items-center justify-start gap-[12px] [transform:translateY(-50%)]">
         <img src={nav_arrow} alt="" />
@@ -22,10 +22,10 @@ const RenderTop = () => {
 
 const RenderCard = () => {
   return (
-    <div class="mt-6">
+    <div class="mt-10">
       <div
         id="card"
-        class="relative mb-[10px] aspect-[0] w-full max-w-[420px] rounded-[20px] bg-[url(/assets/card-R2FX7L43.png)] bg-cover p-[40px_60px_40px_30px]"
+        class="relative mb-[10px] aspect-[0] w-full max-w-[420px] rounded-[20px] bg-cover p-[40px_60px_40px_30px] [background-image:url('/contents/images/wallet/card.png')]"
       >
         <div class="mb-5 flex flex-col text-[20px] font-semibold leading-[1]">
           <p class="mb-[10px] text-[15px] font-medium leading-[1]">Мой счет</p>
@@ -85,18 +85,27 @@ const RenderCard = () => {
 
 const RenderTable = () => {
   const RenderPagination = () => {
-    const RenderButton = ({ page, active = false, hidden = false }) => {
+    const RenderButton = ({
+      page,
+      active = false,
+      hidden = false,
+      position = "",
+    }) => {
       console.log("=cd63cb=", page);
 
       return (
         <button
+          onclick={() => {
+            Func.setCurrentPage(page);
+          }}
           class={[
-            "relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-gray-200 transition-all hover:bg-gray-200/10 active:bg-gray-200/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none",
+            "relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-gray-200 transition-all hover:bg-gray-200/10 active:bg-gray-200/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none [&#second]:hidden @600:[&#second]:block",
             active
               ? "!focus:shadow-none !active:opacity-[0.85] !bg-gray-200 !text-gray-900 !shadow-md !shadow-gray-200/10 active:shadow-none"
               : null,
-            hidden ? "hidden" : null,
+            hidden ? "!hidden" : null,
           ]}
+          id={[position]}
           type="button"
         >
           <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
@@ -105,10 +114,14 @@ const RenderTable = () => {
         </button>
       );
     };
-    return (
-      <div class="flex items-center gap-4 pt-2">
+    const RenderPrevButton = ({ page, disabled = false }) => {
+      return (
         <button
-          class="flex select-none items-center gap-2 rounded-full px-6 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-gray-200 transition-all hover:bg-gray-200/10 active:bg-gray-200/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          disabled={disabled}
+          onclick={() => {
+            Func.setCurrentPage(page);
+          }}
+          class="flex select-none items-center gap-2 rounded-full px-3 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-gray-200 transition-all hover:bg-gray-200/10 active:bg-gray-200/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none @767:px-6 [&_#text]:hidden @767:[&_#text]:inline"
           type="button"
         >
           <svg
@@ -126,43 +139,21 @@ const RenderTable = () => {
               d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
             ></path>
           </svg>
-          Previous
+          <span id="text">Previous</span>
         </button>
-        <div class="flex items-center gap-2">
-          <RenderButton page={1} hidden={Static.currentPage - 3 <= 0} />
-          <span class={Static.currentPage - 3 <= 0 ? "hidden" : null}>...</span>
-          <RenderButton
-            page={Static.currentPage - 2}
-            hidden={Static.currentPage - 2 <= 0}
-          />
-          <RenderButton
-            page={Static.currentPage - 1}
-            hidden={Static.currentPage - 1 <= 0}
-          />
-          <RenderButton page={Static.currentPage} active={true} />
-          <RenderButton
-            page={Static.currentPage + 1}
-            hidden={Static.currentPage + 1 > Static.pageCount}
-          />
-          <RenderButton
-            page={Static.currentPage + 2}
-            hidden={Static.currentPage + 2 > Static.pageCount}
-          />
-          <span
-            class={Static.currentPage + 3 > Static.pageCount ? "hidden" : null}
-          >
-            ...
-          </span>
-          <RenderButton
-            page={Static.pageCount}
-            hidden={Static.currentPage + 3 > Static.pageCount}
-          />
-        </div>
+      );
+    };
+    const RenderNextButton = ({ page, disabled = false }) => {
+      return (
         <button
-          class="flex select-none items-center gap-2 rounded-full px-6 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-gray-200 transition-all hover:bg-gray-200/10 active:bg-gray-200/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          disabled={disabled}
+          onclick={() => {
+            Func.setCurrentPage(page);
+          }}
+          class="flex select-none items-center gap-2 rounded-full px-3 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-gray-200 transition-all hover:bg-gray-200/10 active:bg-gray-200/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none @767:px-6 [&_#text]:hidden @767:[&_#text]:inline"
           type="button"
         >
-          Next
+          <span id="text">Next</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -179,6 +170,65 @@ const RenderTable = () => {
             ></path>
           </svg>
         </button>
+      );
+    };
+    return (
+      <div class="flex items-center gap-4 pt-2">
+        <div class="flex items-center gap-2">
+          <RenderPrevButton
+            page={Static.currentPage - 1}
+            disabled={Static.currentPage - 1 < 1}
+          />
+          <RenderButton
+            position="second"
+            page={1}
+            hidden={Static.currentPage - 3 <= 0}
+          />
+          <span
+            class={[
+              "pointer-events-none hidden select-none @600:inline",
+              Static.currentPage - 3 <= 0 ? "!hidden" : null,
+            ]}
+          >
+            ...
+          </span>
+          <RenderButton
+            position="second"
+            page={Static.currentPage - 2}
+            hidden={Static.currentPage - 2 <= 0}
+          />
+          <RenderButton
+            page={Static.currentPage - 1}
+            hidden={Static.currentPage - 1 <= 0}
+          />
+          <RenderButton page={Static.currentPage} active={true} />
+          <RenderButton
+            page={Static.currentPage + 1}
+            hidden={Static.currentPage + 1 > Static.pageCount}
+          />
+          <RenderButton
+            position="second"
+            page={Static.currentPage + 2}
+            hidden={Static.currentPage + 2 > Static.pageCount}
+          />
+          <span
+            class={[
+              "pointer-events-none hidden select-none @600:inline",
+              Static.currentPage + 3 > Static.pageCount ? "!hidden" : null,
+            ]}
+          >
+            ...
+          </span>
+          <RenderButton
+            position="second"
+            page={Static.pageCount}
+            hidden={Static.currentPage + 3 > Static.pageCount}
+          />
+          <RenderNextButton
+            page={Static.currentPage + 1}
+            disabled={Static.currentPage + 1 > Static.pageCount}
+          />
+        </div>
       </div>
     );
   };

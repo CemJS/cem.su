@@ -16,7 +16,10 @@ front.loader = async () => {
     `/api/notifications`,
     {},
   );
-  Static.questionsList = result.notifyQuestions;
+  Static.questionsList = [
+    ...result.notifyQuestions,
+    ...front.Variable.notifies.questions,
+  ];
   Static.awardsList = result.notifyAwards;
   Static.systemList = result.notifySystem;
   Static.actualNotify = Static.questionsList;
@@ -27,7 +30,6 @@ front.loader = async () => {
 };
 
 front.destroy = async () => {
-  console.log("=fb6061=", 1);
   return;
 };
 

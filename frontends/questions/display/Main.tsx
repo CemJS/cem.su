@@ -331,7 +331,7 @@ const RenderQuestion = ({ item, index }) => {
           </div>
         </a>
         <div class="btn_border-wrap absolute right-0 top-0 h-auto !w-[4.6rem] cursor-default">
-          <button class="btn_border !h-[1.6875rem] !text-[0.75rem] !font-semibold">
+          <button class="btn_border !h-[1.6875rem] !text-[0.75rem] !font-semibold hover:bg-[--black-gray]">
             {item.language?.origName}
           </button>
         </div>

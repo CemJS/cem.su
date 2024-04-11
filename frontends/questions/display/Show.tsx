@@ -350,7 +350,7 @@ const RenderStatistic = () => {
       </span>
       <span>{`${front.Services.functions.timeStampToDate(Static.record.showDate, ".")} ${Func.addNull(Func.getDate(Static.record.showDate).getHours())}:${Func.addNull(Func.getDate(Static.record.showDate).getMinutes())}`}</span>
       {!Static.record.closed &&
-      front.Variable.myInfo.id != Static.record?.author?.id ? (
+      front.Variable?.myInfo?.id != Static.record?.author?.id ? (
         <div class="btn_border-wrap !m-0 !w-full @600:!w-[12.625rem] ">
           <button
             onclick={(e: any) => {

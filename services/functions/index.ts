@@ -85,8 +85,11 @@ export const loader = async function (Variable: any, Fn: any) {
         key: "translations",
       });
 
-      Variable.words = Variable.words[0];
-      Variable.words = Variable.words?.find((item) => item.code == lang);
+      Variable.words = Variable?.words[0];
+      console.log("=b7bda2=", Variable.words);
+      Array.isArray(Variable.words)
+        ? (Variable.words = Variable?.words?.find((item) => item?.code == lang))
+        : null;
       Variable.words = Variable.words?.notify;
     } else {
       return;
@@ -100,6 +103,7 @@ export const loader = async function (Variable: any, Fn: any) {
     Variable.Auth = json.auth;
     Variable.myInfo = json;
     Variable.Lang = "Русский";
+    Variable.notifies = { awards: [], questions: [], system: [] };
 
     if (
       !localStorage.countries_update ||
@@ -125,11 +129,14 @@ export const loader = async function (Variable: any, Fn: any) {
     // Variable.myInfo = Object.assign(Variable.myInfo, myInfo)
   });
   eventSource.addEventListener("notifyQuestion", async ({ data }) => {
-    let { name, description } = strToJson(data);
+    let res = strToJson(data);
     Fn.initOne("alert", {
-      title: Variable.words[name],
-      text: Variable.words[description],
+      title: Variable.words[res.name],
+      text: Variable.words[res.description],
     });
+    Variable.notifies[res?.type].push(res);
+    console.log("=348e1f=", Variable.notifies);
+    Fn.initAll();
   });
 
   // Variable.Auth = false
