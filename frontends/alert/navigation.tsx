@@ -12,9 +12,9 @@ export default function () {
       init={Func.show}
     >
       <Main />
-      <span class="notice_close" onclick={Func.close}>
+      {/* <span class="notice_close" onclick={Func.close}>
         x
-      </span>
+      </span> */}
     </div>
   );
 }
