@@ -76,6 +76,7 @@ export const loader = async function (Variable: any, Fn: any) {
 
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
+    console.log("=022338=", json);
     if (json) {
       let inx = await indexDB({ json });
     } else {
