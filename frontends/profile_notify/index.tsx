@@ -16,10 +16,7 @@ front.loader = async () => {
     `/api/notifications`,
     {},
   );
-  Static.questionsList = [
-    ...result.notifyQuestions,
-    ...front.Variable.notifies.questions,
-  ];
+  Static.questionsList = result.notifyQuestions;
   Static.awardsList = result.notifyAwards;
   Static.systemList = result.notifySystem;
   Static.actualNotify = Static.questionsList;
