@@ -78,27 +78,11 @@ export const loader = async function (Variable: any, Fn: any) {
     let json = strToJson(data);
     if (json) {
       let inx = await indexDB({ json });
-
-      const lang = localStorage.lang;
-      console.log("=7d2281=", lang);
-      Variable.words = await IndexDBGetByOne({
-        base: "linguaData",
-        key: "translations",
-      });
-
-      Variable.words = Variable?.words[0];
-      console.log("=b7bda2=", Variable?.words);
-      Array.isArray(Variable.words)
-        ? (Variable.words = Variable?.words?.find((item) => item?.code == lang))
-        : null;
-      console.log("=b7bda2=", Variable.words);
-
-      Variable.words = Variable.words?.notify;
-      console.log("=02c186=", Variable.words);
     } else {
       return;
     }
 
+    !localStorage.lang ? localStorage.setItem("lang", "ru") : null;
     localStorage.suuid = json.suuid;
     localStorage.suuid = json.suuid;
     localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate;
@@ -108,6 +92,23 @@ export const loader = async function (Variable: any, Fn: any) {
     Variable.myInfo = json;
     Variable.Lang = "Русский";
     Variable.notifies = { awards: [], questions: [], system: [] };
+
+    const lang = localStorage.lang;
+    console.log("=7d2281=", lang);
+    Variable.words = await IndexDBGetByOne({
+      base: "linguaData",
+      key: "translations",
+    });
+
+    Variable.words = Variable?.words[0];
+    console.log("=b7bda2=", Variable?.words);
+    Array.isArray(Variable.words)
+      ? (Variable.words = Variable?.words?.find((item) => item?.code == lang))
+      : null;
+    console.log("=b7bda2=", Variable.words);
+
+    Variable.words = Variable.words?.notify;
+    console.log("=02c186=", Variable.words);
 
     if (
       !localStorage.countries_update ||
