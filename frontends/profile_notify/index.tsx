@@ -16,13 +16,13 @@ front.loader = async () => {
     `/api/notifications`,
     {},
   );
-  Static.questionsList = result.notifyQuestions;
-  Static.awardsList = result.notifyAwards;
-  Static.systemList = result.notifySystem;
+
+  Static.questionsList = result?.notifyQuestions;
+  Static.awardsList = result?.notifyAwards;
+  Static.systemList = result?.notifySystem;
   Static.actualNotify = Static.questionsList;
 
-  console.log("=799db1=", Static.questionsList);
-
+  console.log("=46c3c3=", Static.questionsList);
   return;
 };
 

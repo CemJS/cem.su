@@ -117,6 +117,7 @@ const IndexDBGetByOne = async function (item: Object) {
     let transaction = db.transaction([item?.base], "readonly");
     let store = transaction.objectStore(item?.base);
     let req = store.get(item?.key);
+    console.log("=e2fa27=", await req);
     let value = await req;
     resolve(value); // resolve the value
     req.onerror = function (event: any) {

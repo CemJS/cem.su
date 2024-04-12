@@ -80,17 +80,21 @@ export const loader = async function (Variable: any, Fn: any) {
       let inx = await indexDB({ json });
 
       const lang = localStorage.lang;
+      console.log("=7d2281=", lang);
       Variable.words = await IndexDBGetByOne({
         base: "linguaData",
         key: "translations",
       });
 
       Variable.words = Variable?.words[0];
-      console.log("=b7bda2=", Variable.words);
+      console.log("=b7bda2=", Variable?.words);
       Array.isArray(Variable.words)
         ? (Variable.words = Variable?.words?.find((item) => item?.code == lang))
         : null;
+      console.log("=b7bda2=", Variable.words);
+
       Variable.words = Variable.words?.notify;
+      console.log("=02c186=", Variable.words);
     } else {
       return;
     }
