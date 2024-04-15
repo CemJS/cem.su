@@ -32,7 +32,6 @@ front.loader = async () => {
     `/api/notifications`,
     {},
   );
-  console.log("=aba35f=", result);
   return;
 };
 

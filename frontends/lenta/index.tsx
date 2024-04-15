@@ -1,4 +1,4 @@
-import { Cemjsx, front, Func, Static, Fn, Ref } from "cemjs-all";
+import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 
 front.listener.finish = () => {
@@ -7,6 +7,7 @@ front.listener.finish = () => {
 // ======== videoplayer start ========
 front.func.playAndPause = (video: any) => {
   // video.paused ? video.play() : video.pause()
+  console.log("=d30c49=", video);
   if (video.paused) {
     video.play();
   } else {
@@ -16,11 +17,11 @@ front.func.playAndPause = (video: any) => {
   return;
 };
 
-front.func.timeUpdate = (e) => {
+front.func.timeUpdate = (e, index) => {
   let { currentTime, duration } = e.target;
   let percent = (currentTime / duration) * 100;
-  Static.currentTime = currentTime;
-  Ref.progressBar.style.width = `${percent}%`;
+  Static[`currentTime${index}`] = currentTime;
+  Ref[`progressBar${index}`].style.width = `${percent}%`;
   return;
 };
 
@@ -39,10 +40,11 @@ front.func.formatTime = (time) => {
   return `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 };
 
-front.func.draggableProgressBar = (e: any) => {
-  let timeLineWidth = Ref.videoTimeLine.clientWidth;
-  Ref.progressBar.style.width = `${e.offsetX}px`;
-  Ref.video.currentTime = (e.offsetX / timeLineWidth) * Ref.video.duration;
+front.func.draggableProgressBar = (e: any, index: any) => {
+  let timeLineWidth = Ref[`videoTimeLine${index}`].clientWidth;
+  Ref[`progressBar${index}`].style.width = `${e.offsetX}px`;
+  Ref[`video${index}`].currentTime =
+    (e.offsetX / timeLineWidth) * Ref[`video${index}`].duration;
   return;
 };
 // ======== videoplayer end ========
@@ -467,7 +469,7 @@ customElements.define("audio-player", AudioPlayer);
 
 // ======== audio player ========
 
-front.loader = () => {
+front.loader = async () => {
   Static.videoDragStart = false;
 
   Static.activeSpeed = 1;
@@ -485,6 +487,47 @@ front.loader = () => {
       value: 0.5,
     },
   ];
+
+  let url = front.Services.functions.makeUrlEvent("posts");
+  let listener = [
+    {
+      type: "get",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+
+        Static.records = json;
+
+        console.log("=9ecc45=", Static.records);
+      },
+    },
+    // {
+    //   type: "create",
+    //   fn: ({ data }) => {
+    //     let json = front.Services.functions.strToJson(data);
+    //     if (!json) {
+    //       return;
+    //     }
+    //     console.log("=8587af=", json);
+
+    //     Static.records.unshift(json);
+    //     console.log("=4d73fb=", Static.records);
+    //   },
+    // },
+    {
+      type: "skip",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.records = [...Static.records, ...json];
+      },
+    },
+  ];
+  Events.posts = await Fn.event(url, listener);
   return;
 };
 
