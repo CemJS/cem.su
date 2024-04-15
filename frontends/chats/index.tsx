@@ -6,11 +6,17 @@ front.listener.finish = () => {
     return
 }
 
-front.func.test = () => {
-    return
-}
-
 front.loader = () => {
+
+    Static.listLetters = [
+        {
+            nickname: 'Annyshka',
+            unread: 5,
+            lastMessageDate: '12:30',
+
+        }
+    ]
+
     return
 }
 
