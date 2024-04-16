@@ -1,7 +1,7 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
 
 export default function () {
-  console.log("Static", Static.record);
+  // console.log("Static", Static.record);
   
   return (
     <div class="relative h-[7.1875rem] max-@1720:h-auto">

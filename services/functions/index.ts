@@ -95,27 +95,27 @@ export const loader = async function (Variable: any, Fn: any) {
     Variable.notifies = { awards: [], questions: [], system: [] };
 
     const lang = localStorage.lang;
-    console.log("=7d2281=", lang);
+    // console.log("=7d2281=", lang);
     Variable.words = await IndexDBGetByOne({
       base: "linguaData",
       key: "translations",
     });
 
     Variable.words = Variable?.words[0];
-    console.log("=b7bda2=", Variable?.words);
+    // console.log("=b7bda2=", Variable?.words);
     Array.isArray(Variable.words)
       ? (Variable.words = Variable?.words?.find((item) => item?.code == lang))
       : null;
-    console.log("=b7bda2=", Variable.words);
+    // console.log("=b7bda2=", Variable.words);
 
     Variable.words = Variable.words?.notify;
-    console.log("=02c186=", Variable.words);
+    // console.log("=02c186=", Variable.words);
 
     if (
       !localStorage.countries_update ||
       localStorage.countries_update < json.countries_update
     ) {
-      console.log("No countries_update or less");
+      // console.log("No countries_update or less");
       let res = await sendApi("/api/countries", {
         action: "get",
       });
