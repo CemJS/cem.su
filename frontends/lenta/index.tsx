@@ -4,50 +4,6 @@ import Navigation from "./navigation";
 front.listener.finish = () => {
   return;
 };
-// ======== videoplayer start ========
-front.func.playAndPause = (video: any) => {
-  // video.paused ? video.play() : video.pause()
-  console.log("=d30c49=", video);
-  if (video.paused) {
-    video.play();
-  } else {
-    video.pause();
-  }
-
-  return;
-};
-
-front.func.timeUpdate = (e, index) => {
-  let { currentTime, duration } = e.target;
-  let percent = (currentTime / duration) * 100;
-  Static[`currentTime${index}`] = currentTime;
-  Ref[`progressBar${index}`].style.width = `${percent}%`;
-  return;
-};
-
-front.func.formatTime = (time) => {
-  let seconds = Math.floor(time % 60),
-    minutes = Math.floor(time / 60) % 60,
-    hours = Math.floor(time / 3600);
-
-  seconds = seconds < 10 ? Number(`0${seconds}`) : seconds;
-  minutes = minutes < 10 ? Number(`0${minutes}`) : minutes;
-  hours = hours < 10 ? Number(`0${hours}`) : hours;
-
-  if (hours == 0) {
-    return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-  }
-  return `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-};
-
-front.func.draggableProgressBar = (e: any, index: any) => {
-  let timeLineWidth = Ref[`videoTimeLine${index}`].clientWidth;
-  Ref[`progressBar${index}`].style.width = `${e.offsetX}px`;
-  Ref[`video${index}`].currentTime =
-    (e.offsetX / timeLineWidth) * Ref[`video${index}`].duration;
-  return;
-};
-// ======== videoplayer end ========
 
 // ======== audio player ========
 
@@ -469,6 +425,79 @@ customElements.define("audio-player", AudioPlayer);
 
 // ======== audio player ========
 
+// функция проверки авторизации
+
+front.func.sendAuth = async (url: string, data: object, method = "POST") => {
+  if (front.Variable.Auth) {
+    let res = await front.Services.functions.sendApi(url, data, method);
+    if (res?.status == 409) {
+      Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
+      return;
+    }
+    return res;
+  } else {
+    Fn.initOne("modalAuthtorization", {});
+  }
+};
+
+// запросы
+
+front.func.likePost = (id) => {
+  Func.sendAuth(`/api/posts/${id}/like`, {});
+  return;
+};
+
+front.func.dislikePost = (id) => {
+  Func.sendAuth(`/api/posts/${id}/dislike`, {});
+  return;
+};
+
+// поиск индекса
+
+front.func.findIndexPost = (id) => {
+  return Static.records.findIndex((item) => item.id == id);
+};
+
+front.func.findIndexComment = (id, postIndex) => {
+  return Static.records[postIndex].comments.findIndex((item) => item.id == id);
+};
+
+front.func.findIndexCommentToComment = (id, postIndex, commentIndex) => {
+  console.log("=b53b67=", id);
+  console.log(
+    "=09f769=",
+    Static.records[postIndex].comments[commentIndex].comments,
+  );
+  return Static.records[postIndex].comments[commentIndex].comments.findIndex(
+    (item) => item.id == id,
+  );
+};
+
+// функция для init поста
+
+front.func.initPost = ($el, index) => {
+  {
+    if (index == Static.records?.length - 1) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(async (entry) => {
+          if (entry.isIntersecting) {
+            observer.unobserve($el);
+            let skip = { ...Static.makeFilter };
+            skip.skip = Static.records.length;
+            let res = await front.Services.functions.sendApi(
+              "/api/posts",
+              skip,
+            );
+          }
+        });
+      });
+      observer.observe($el);
+    }
+  }
+};
+
+//
+
 front.loader = async () => {
   Static.videoDragStart = false;
 
@@ -490,6 +519,7 @@ front.loader = async () => {
 
   let url = front.Services.functions.makeUrlEvent("posts");
   let listener = [
+    // get
     {
       type: "get",
       fn: ({ data }) => {
@@ -501,6 +531,34 @@ front.loader = async () => {
         Static.records = json;
 
         console.log("=9ecc45=", Static.records);
+      },
+    },
+    // like
+    {
+      type: "likePost",
+      fn: ({ data }) => {
+        let { id } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let postIndex = Func.findIndexPost(id);
+
+        Static.records[postIndex].statistics.rating++;
+      },
+    },
+    // dislike
+    {
+      type: "dislikePost",
+      fn: ({ data }) => {
+        let { id } = front.Services.functions.strToJson(data);
+        if (!id) {
+          return;
+        }
+
+        let postIndex = Func.findIndexPost(id);
+
+        Static.records[postIndex].statistics.rating--;
       },
     },
     // {

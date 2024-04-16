@@ -14,7 +14,6 @@
       display: grid;
       grid-template-columns: 5rem 1fr;
 
-
       &-info {
         width: 100%;
         display: flex;
@@ -61,8 +60,6 @@
   width: 100%;
   height: auto;
   max-height: 100%;
-
-
 
   &-controls,
   &-options {
@@ -117,7 +114,7 @@
     right: 0;
     // bottom: 0;
     bottom: -15px;
-    z-index: 1;
+    z-index: 6;
     opacity: 0;
     pointer-events: none;
     transition: all 0.15s ease-in-out;
@@ -157,17 +154,13 @@
         font-size: 4rem;
         display: block;
       }
-
-
     }
 
     &:active {
-
       .video-play__icon {
         background-color: #0000009c;
         transform: scale(0.87);
       }
-
     }
   }
 
@@ -182,7 +175,7 @@
 
     &__timer {
       font-size: 0.85rem;
-      font-family: 'Open sans';
+      font-family: "Open sans";
     }
 
     &:first-child {
@@ -196,7 +189,6 @@
     input {
       height: 3px;
       max-width: 75px;
-
     }
 
     &-speed {
@@ -213,7 +205,6 @@
         transform-origin: bottom right;
         transition: all 0.3s ease 0.1s;
         z-index: 100;
-
 
         &__item {
           cursor: pointer;
@@ -296,7 +287,6 @@
     }
 
     &:hover {
-
       .video-timeline__area span,
       .video-timeline__progressbar::before {
         opacity: 1;
@@ -345,8 +335,6 @@
           color: var(--fiolet);
         }
       }
-
-
     }
   }
 }
@@ -361,7 +349,7 @@
   }
 
   50% {
-    transform: scale(.95);
+    transform: scale(0.95);
   }
 }
 
@@ -384,8 +372,6 @@
 //   -.2rem -.2rem .5rem var(--white);
 // $inner-shadow: inset .2rem .2rem .5rem var(--greyLight-2),
 //   inset -.2rem -.2rem .5rem var(--white);
-
-
 
 // .circle {
 //   width: 9rem;
