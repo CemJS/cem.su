@@ -1,32 +1,25 @@
 .chat {
-
-  // chat section
   &-section {
     box-shadow: inset 0 160px 0 0 var(--slate-800);
+    // min-height: 100vh;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  // chat container
   &-container {
     max-width: 1360px;
-    width: 100%;
     height: 720px;
     box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.1);
-    background-color: #12161F;
   }
 
-  // chat sidebar list letters
-  &-letters {
-    width: 300px;
-    background-color: #1d2029;
-    border: 1px solid #12161F;
-
-
+  &-conversation {
+    &-main {
+      background-image: url("./images/chats/pattertChat.png");
+    }
   }
+
 }
+
+
 
 // media breakpoints
 @media screen and (max-width: 1600px) {
@@ -34,7 +27,7 @@
     &-container {
       max-width: unset;
       height: 100vh;
-
+      // height: 100%;
     }
   }
 }

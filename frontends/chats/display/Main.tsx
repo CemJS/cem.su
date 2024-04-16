@@ -1,16 +1,15 @@
-import { Cemjsx } from "cemjs-all"
+import { Cemjsx, Fn, Static } from "cemjs-all"
 import Letters from './Letters'
-import Content from './Content'
+import Conversation from './Conversation'
 
 export default function () {
+    // Fn.log('=letters=', Static.records)
     return (
-        // start (maybe use tag section)
-        <div class="chat-section ">
-            <div class="chat-container">
+        <div class="chat-section flex items-center justify-center">
+            <div class="chat-container bg-[#12161F] w-full overflow-hidden flex">
                 <Letters />
-                <Content />
+                <Conversation />
             </div>
         </div>
-        // end
     )
 }
