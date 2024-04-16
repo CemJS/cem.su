@@ -34,10 +34,19 @@ export default function () {
             </div>
             {front.Variable.myInfo?.nickname === front.Variable.DataUrl[1] ? (
               <div class="max-@1200:z-[99]">
-                <div onclick={() => {
-                  console.log("123");
-                  
-                }} class="absolute bottom-0 right-0 z-[2] h-[2.5rem] w-[2.5rem] cursor-pointer text-[0] @767:bottom-[.3125rem] @767:right-[.3125rem] @767:h-[3.125rem] @767:w-[3.125rem]">
+                <div
+                  onclick={() => {
+                    Fn.initOne("modalTools", {
+                      userId: "",
+                      complainTo: {
+                        name: "posts",
+                        text: "пост",
+                        id: "",
+                      },
+                    });
+                  }}
+                  class="absolute bottom-0 right-0 z-[2] h-[2.5rem] w-[2.5rem] cursor-pointer text-[0] @767:bottom-[.3125rem] @767:right-[.3125rem] @767:h-[3.125rem] @767:w-[3.125rem]"
+                >
                   <img src={settingsIcon} />
                 </div>
               </div>

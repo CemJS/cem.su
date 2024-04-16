@@ -32,7 +32,7 @@ export default function () {
               Поделиться
             </li>
 
-            {Static.records.map((item, index) => {
+            {Static.records.map((item: any, index: number) => {
               return (
                 <li
                   onclick={() => {
