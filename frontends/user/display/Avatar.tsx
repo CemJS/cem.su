@@ -4,10 +4,71 @@ import defaultGray from "@svg/lenta/defaultGray.svg";
 import settingsIcon from "@svg/profile/settingsIcon.svg";
 
 let parent = null;
+let records = [
+  {
+    name: "Изменить рамку",
+    func: () => Fn.initOne("modalEditFrame", {}),
+  },
+  {
+    name: "Настройки",
+    func: () =>
+      Fn.initOne("modalTools", {
+        records,
+        userId: "",
+        complainTo: {
+          name: "posts",
+          text: "пост",
+          id: "",
+        },
+      }),
+  },
+];
+
+let answer;
+const changeAvatar = async () => {
+  let input = document.createElement("input");
+  input.type = "file";
+  input.onchange = async (_this) => {
+    let filesArray = [...input?.files];
+    const result = filesArray[0];
+    const extension = result?.name.split(".");
+
+    if (extension[extension?.length - 1] == "svg") {
+      alert("Недопустимый формат!");
+    } else {
+      const formData = new FormData();
+      formData.append("media", result);
+      const options = {
+        method: "POST",
+        body: formData,
+      };
+      let imgPush = await fetch("/upload/avatar", options).then((res) =>
+        res.json(),
+      );
+      // Static.contentNew.image = imgPush?.name;
+      console.log("imgPush?.name", imgPush?.name);
+
+      const edit = {
+        id: Static.contentNew?.id,
+        action: "Edit",
+        field: "image",
+        content: imgPush?.name,
+        uuid: `${localStorage?.uuid}`,
+      };
+      answer = await front.Services.functions.sendApi(
+        "/api/private/News",
+        edit,
+      );
+      if (answer?.status === "updated") {
+        Static.record.avatar.name = answer?.result;
+      }
+    }
+    Fn.init();
+  };
+  input.click();
+};
 
 export default function () {
-  // Fn.log("Static.record", Static.record);
-  // Fn.log('=2ae43c=', front.Variable.DataUrl[1])
   return (
     <div class="absolute bottom-[-1.875rem] left-[50%] z-[10] h-[7.1875rem] w-[6.25rem] translate-x-[-50%] cursor-pointer text-center @479:h-[8.4375rem] @479:w-[7.5rem] @680:h-[9.6875rem] @680:w-[8.75rem] @1240:h-[14.0625rem] @1240:w-[210px]">
       <a class="no-underline">
@@ -37,6 +98,23 @@ export default function () {
                 <div
                   onclick={() => {
                     Fn.initOne("modalTools", {
+                      records: [
+                        {
+                          name: "Изменить рамку",
+                          func: () =>
+                            Fn.initOne("modalEditFrame", {
+                              frame: front.Variable?.myInfo?.frame?.name,
+                              avatar: front.Variable?.myInfo?.avatar?.name,
+                              CallInit: (CallBack: string) => {
+                                Static.record.frame.name = CallBack;
+                              },
+                            }),
+                        },
+                        {
+                          name: "Изменить аватар",
+                          func: changeAvatar,
+                        },
+                      ],
                       userId: "",
                       complainTo: {
                         name: "posts",
