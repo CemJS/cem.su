@@ -10,14 +10,12 @@ let startY, startHeight;
 
 front.func.show = function ($el: HTMLElement) {
   setTimeout(() => {
-    $el.classList.add("bottomSheet_active");
+    $el.classList.add("active");
   }, 100);
 };
 
 front.func.close = function () {
-  Ref.bottomSheet
-    ? Ref.bottomSheet.classList.remove("bottomSheet_active")
-    : null;
+  Ref.bottomSheet ? Ref.bottomSheet.classList.remove("active") : null;
   setTimeout(() => {
     Fn.clearData();
   }, 500);
@@ -144,9 +142,10 @@ front.loader = () => {
 
 front.display = () => {
   return (
+    // bottomSheet
     <div
       ref="bottomSheet"
-      class="bottomSheet"
+      class="pointer-events-none fixed left-0 top-0 z-[66] flex h-full w-full flex-col items-center justify-end opacity-0 [transition:var(--tran-03)] [&.active]:!pointer-events-auto [&.active]:!opacity-100 [&.active_#content]:![transform:translateY(0%)]"
       init={Func.show}
       onclick={(e: any) => {
         if (e.target === Ref.bottomSheetOverlay) {

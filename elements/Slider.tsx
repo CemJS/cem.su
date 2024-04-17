@@ -118,9 +118,9 @@ class Gallery {
   }
 
   setAdaptive() {
-    let isSet;
+    let isSet: boolean;
     for (let key in this.adaptive) {
-      if (window.innerWidth > key) {
+      if (window.innerWidth > Number(key)) {
         this.countSlides = this.adaptive[key];
         isSet = true;
       }
@@ -342,16 +342,18 @@ function debounce(func, time = 100) {
 export { Gallery };
 
 export const init = function (element: HTMLElement, adaptive: object = {}) {
-  Static.galleryRun = new Gallery(
-    element,
-    Ref.galleryDots,
-    Ref.nextTeam,
-    Ref.prevTeam,
-    {
-      margin: 30,
-    },
-    adaptive,
-  );
+  !Static.galleryRun
+    ? (Static.galleryRun = new Gallery(
+        element,
+        Ref.galleryDots,
+        Ref.nextTeam,
+        Ref.prevTeam,
+        {
+          margin: 30,
+        },
+        adaptive,
+      ))
+    : "";
   // this.init();
 };
 

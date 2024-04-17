@@ -4,7 +4,6 @@ import MediaPost from "./post/MediaPost";
 import TextPost from "./post/TextPost";
 import UserPost from "./post/UserPost";
 import StatisticsPost from "./post/StatisticsPost";
-import CommentsPost from "./post/CommentsPost";
 import ShowCommentsButton from "./post/ShowCommentsButton";
 
 const RenderPost = function ({ item, index }) {
@@ -29,7 +28,7 @@ const RenderPost = function ({ item, index }) {
         <ShowCommentsButton item={item} index={index} />
       </div>
 
-      <CommentsPost item={item} index={index} />
+      {/* <CommentsPost item={item} index={index} /> */}
     </div>
   );
 };

@@ -499,24 +499,6 @@ front.func.initPost = ($el, index) => {
 //
 
 front.loader = async () => {
-  Static.videoDragStart = false;
-
-  Static.activeSpeed = 1;
-  Static.speedOptions = [
-    {
-      value: 2,
-    },
-    {
-      value: 1.5,
-    },
-    {
-      value: 0.75,
-    },
-    {
-      value: 0.5,
-    },
-  ];
-
   let url = front.Services.functions.makeUrlEvent("posts");
   let listener = [
     // get
@@ -529,8 +511,6 @@ front.loader = async () => {
         }
 
         Static.records = json;
-
-        console.log("=9ecc45=", Static.records);
       },
     },
     // like
@@ -559,6 +539,53 @@ front.loader = async () => {
         let postIndex = Func.findIndexPost(id);
 
         Static.records[postIndex].statistics.rating--;
+      },
+    },
+    // comments --------------
+    // get
+    {
+      type: "getPostComments",
+      fn: ({ data }) => {
+        let { postId, comments } = front.Services.functions.strToJson(data);
+        if (!postId) {
+          return;
+        }
+
+        let postIndex = Func.findIndexPost(postId);
+
+        // Static.records[postIndex].comments = comments;
+        Static.records[postIndex].comments = comments;
+        console.log("=16810a=", Static.records);
+      },
+    },
+    // create
+    {
+      type: "comment",
+      fn: ({ data }) => {
+        let { comment, postId } = front.Services.functions.strToJson(data);
+        if (!comment) {
+          return;
+        }
+
+        let postIndex = Func.findIndexPost(postId);
+
+        Static.records[postIndex].statistics.comments++;
+        if (!Array.isArray(Static.records[postIndex].comments)) {
+          Static.records[postIndex].comments = [];
+        }
+        Static.records[postIndex].comments.push(comment);
+        Static.records[postIndex].statistics.comments++;
+
+        // Static.modalCallBack(comment);
+
+        // Static.records[postIndex].comments[1].statistics.rating = 50;
+        // Static.modalCallBack(Static.records[postIndex].comments[1]);
+
+        Fn.initOne("modalComments", {
+          item: Static.records[postIndex],
+        });
+
+        console.log("=b00a9b=", Static.records[postIndex]);
       },
     },
     // {

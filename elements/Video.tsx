@@ -1,5 +1,23 @@
 import { Cemjsx, Func, Ref, Static, front } from "cemjs-all";
 
+Static.videoDragStart = false;
+
+Static.activeSpeed = 1;
+Static.speedOptions = [
+  {
+    value: 2,
+  },
+  {
+    value: 1.5,
+  },
+  {
+    value: 0.75,
+  },
+  {
+    value: 0.5,
+  },
+];
+
 export default function ({ src, key }) {
   return (
     <div
