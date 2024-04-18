@@ -20,7 +20,7 @@ export default function () {
     <div class="flex flex-col gap-2" role="list">
       {
         <div class="mb-[-0.625rem] pb-[0.4rem] [border-radius:0_0_0.9375rem_0.9375rem]">
-          {Static.item?.comments?.map((comment, commentIndex) => {
+          {Static.comments?.map((comment, commentIndex) => {
             return (
               <div
                 class="relative !mt-[0.625rem] p-[0_0.625rem]"

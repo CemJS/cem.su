@@ -11,20 +11,12 @@ export default function ({ item, index }) {
             {},
           );
           Fn.initOne("modalComments", {
-            item,
-            index,
-            CallInit: (CallBack) => {
-              Static.modalCallBack = CallBack;
-            },
+            id: item.id,
           });
           return;
         }
         Fn.initOne("modalComments", {
-          item,
-          index,
-          CallInit: (CallBack) => {
-            Static.modalCallBack = CallBack;
-          },
+          id: item.id,
         });
       }}
     >

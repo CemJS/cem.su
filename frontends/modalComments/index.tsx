@@ -1,4 +1,4 @@
-import { Cemjsx, front, Func, Static, Fn, Ref } from "cemjs-all";
+import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 
 front.listener.finish = () => {
@@ -106,20 +106,6 @@ front.func.deleteComment = async (
   );
 };
 
-front.func.modalCallBack = (item) => {
-  let change = false;
-  Static.item.comments.map((itm, index) => {
-    if (itm.id == item.id) {
-      Static.item.comments[index] = item;
-      change = true;
-    }
-  });
-
-  if (!change) {
-    Static.item.comments.push(item);
-  }
-};
-
 // функция проверки авторизации
 
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
@@ -138,10 +124,41 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 
 //
 
-front.loader = () => {
-  if (Static.CallInit) {
-    Static.CallInit(Func.modalCallBack);
-  }
+front.loader = async () => {
+  let url = front.Services.functions.makeUrlEvent(
+    `posts/${Static.id}/comments`,
+  );
+  let listener = [
+    // comments --------------
+    // get
+    {
+      type: "get",
+      fn: ({ data }) => {
+        let { comments } = front.Services.functions.strToJson(data);
+        if (!comments) {
+          return;
+        }
+        Static.comments = comments;
+        Fn.log("=b46cd5=", comments);
+      },
+    },
+    // create
+    {
+      type: "comment",
+      fn: ({ data }) => {
+        let { comment, postId } = front.Services.functions.strToJson(data);
+        if (!comment) {
+          return;
+        }
+
+        if (!Array.isArray(Static.comments)) {
+          Static.comments = [];
+        }
+        Static.comments.push(comment);
+      },
+    },
+  ];
+  Events.comments = await Fn.event(url, listener);
   return;
 };
 
