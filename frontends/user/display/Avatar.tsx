@@ -25,15 +25,15 @@ let records = [
 ];
 
 let answer;
-const changeAvatar = async () => {
+const changeMediaFile = async (url, key) => {
   let input = document.createElement("input");
   input.type = "file";
-  input.onchange = async (_this) => {
+  input.onchange = async () => {
     let filesArray = [...input?.files];
     const result = filesArray[0];
     const extension = result?.name.split(".");
 
-    if (extension[extension?.length - 1] == "svg") {
+    if (extension[extension.length - 1] == "svg") {
       alert("Недопустимый формат!");
     } else {
       const formData = new FormData();
@@ -42,25 +42,18 @@ const changeAvatar = async () => {
         method: "POST",
         body: formData,
       };
-      let imgPush = await fetch("/upload/avatar", options).then((res) =>
-        res.json(),
-      );
-      // Static.contentNew.image = imgPush?.name;
-      console.log("imgPush?.name", imgPush?.name);
+      let imgPush = await fetch(url, options).then((res) => res.json());
 
       const edit = {
-        id: Static.contentNew?.id,
-        action: "Edit",
-        field: "image",
-        content: imgPush?.name,
-        uuid: `${localStorage?.uuid}`,
+        [key]: {
+          type: "image",
+          name: imgPush?.name,
+        },
       };
-      answer = await front.Services.functions.sendApi(
-        "/api/private/News",
-        edit,
-      );
-      if (answer?.status === "updated") {
-        Static.record.avatar.name = answer?.result;
+      answer = await front.Services.functions.sendApi("/api/users/update", edit);
+      
+      if (answer?.status === 200) {
+        Static.record[key].name = imgPush?.name;
       }
     }
     Fn.init();
@@ -96,7 +89,9 @@ export default function () {
             {front.Variable.myInfo?.nickname === front.Variable.DataUrl[1] ? (
               <div class="max-@1200:z-[99]">
                 <div
-                  onclick={() => {
+                  class="absolute bottom-0 right-0 z-[2] h-[2.5rem] w-[2.5rem] text-[0] @767:bottom-[.3125rem] @767:right-[.3125rem] @767:h-[3.125rem] @767:w-[3.125rem]"
+                >
+                  <img  onclick={() => {
                     Fn.initOne("modalTools", {
                       records: [
                         {
@@ -112,7 +107,15 @@ export default function () {
                         },
                         {
                           name: "Изменить аватар",
-                          func: changeAvatar,
+                          func: () => changeMediaFile("/upload/avatar", "avatar"),
+                        },
+                        {
+                          name: "Изменить фон",
+                          func: () => changeMediaFile("/upload/background", "background"),
+                        },
+                        {
+                          name: "Настройки",
+                          func: () => Fn.linkChange("/profile/settings"),
                         },
                       ],
                       userId: "",
@@ -122,10 +125,7 @@ export default function () {
                         id: "",
                       },
                     });
-                  }}
-                  class="absolute bottom-0 right-0 z-[2] h-[2.5rem] w-[2.5rem] cursor-pointer text-[0] @767:bottom-[.3125rem] @767:right-[.3125rem] @767:h-[3.125rem] @767:w-[3.125rem]"
-                >
-                  <img src={settingsIcon} />
+                  }} class="cursor-pointer z-[11]" src={settingsIcon} />
                 </div>
               </div>
             ) : (

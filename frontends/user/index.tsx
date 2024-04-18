@@ -42,6 +42,7 @@ front.loader = async () => {
             return;
           }
           Static.record = json;
+          Fn.log('Static.record', Static.record)
         },
       },
       {

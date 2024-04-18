@@ -78,6 +78,11 @@ export default function () {
           {front.Variable.myInfo?.nickname === front.Variable.DataUrl[1] && (
             <div class="absolute right-[1.25rem] top-[1.375rem]">
               <img
+                onclick={() => {
+                  Fn.initOne("modalEditAboutMe", {
+                    info: Static.record
+                  });
+                }}
                 class="box-content w-[1.375rem] cursor-pointer p-[.625rem]"
                 src="/contents/svg/editProfile.svg"
               />

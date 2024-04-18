@@ -137,6 +137,10 @@
   }
 }
 
+.dateInput::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
 @keyframes scrolling {
   0% {
     transform: translateX(0);
