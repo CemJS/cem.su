@@ -684,24 +684,6 @@ front.loader = async () => {
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
     Func.getQuestion(front.Variable.DataUrl[2]);
-
-    Static.videoDragStart = false;
-
-    Static.activeSpeed = 1;
-    Static.speedOptions = [
-      {
-        value: 2,
-      },
-      {
-        value: 1.5,
-      },
-      {
-        value: 0.75,
-      },
-      {
-        value: 0.5,
-      },
-    ];
   }
 
   return;

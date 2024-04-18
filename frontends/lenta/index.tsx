@@ -1,5 +1,7 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
+import postListenerData from "./listeners/postListener.data";
+import postsListenerData from "./listeners/postsListener.data";
 
 front.listener.finish = () => {
   return;
@@ -496,123 +498,23 @@ front.func.initPost = ($el, index) => {
   }
 };
 
-//
+// получение поста по ссылке /show
+
+front.func.getQuestion = async (id) => {
+  let url = front.Services.functions.makeUrlEvent(`posts/${id}`);
+
+  Events.post = await Fn.event(url, postListenerData);
+
+  front.Services.functions.sendApi(`/api/posts/${id}`, {});
+};
 
 front.loader = async () => {
   let url = front.Services.functions.makeUrlEvent("posts");
-  let listener = [
-    // get
-    {
-      type: "get",
-      fn: ({ data }) => {
-        let json = front.Services.functions.strToJson(data);
-        if (!json) {
-          return;
-        }
+  Events.posts = await Fn.event(url, postsListenerData);
 
-        Static.records = json;
-      },
-    },
-    // like
-    {
-      type: "likePost",
-      fn: ({ data }) => {
-        let { id } = front.Services.functions.strToJson(data);
-        if (!id) {
-          return;
-        }
-
-        let postIndex = Func.findIndexPost(id);
-
-        Static.records[postIndex].statistics.rating++;
-      },
-    },
-    // dislike
-    {
-      type: "dislikePost",
-      fn: ({ data }) => {
-        let { id } = front.Services.functions.strToJson(data);
-        if (!id) {
-          return;
-        }
-
-        let postIndex = Func.findIndexPost(id);
-
-        Static.records[postIndex].statistics.rating--;
-      },
-    },
-    // comments --------------
-    // get
-    {
-      type: "getPostComments",
-      fn: ({ data }) => {
-        let { postId, comments } = front.Services.functions.strToJson(data);
-        if (!postId) {
-          return;
-        }
-
-        let postIndex = Func.findIndexPost(postId);
-
-        // Static.records[postIndex].comments = comments;
-        Static.records[postIndex].comments = comments;
-        console.log("=16810a=", Static.records);
-      },
-    },
-    // create
-    {
-      type: "comment",
-      fn: ({ data }) => {
-        let { comment, postId } = front.Services.functions.strToJson(data);
-        if (!comment) {
-          return;
-        }
-
-        let postIndex = Func.findIndexPost(postId);
-
-        Static.records[postIndex].statistics.comments++;
-        if (!Array.isArray(Static.records[postIndex].comments)) {
-          Static.records[postIndex].comments = [];
-        }
-        Static.records[postIndex].comments.push(comment);
-        Static.records[postIndex].statistics.comments++;
-
-        // Static.modalCallBack(comment);
-
-        // Static.records[postIndex].comments[1].statistics.rating = 50;
-        // Static.modalCallBack(Static.records[postIndex].comments[1]);
-
-        Fn.initOne("modalComments", {
-          item: Static.records[postIndex],
-        });
-
-        console.log("=b00a9b=", Static.records[postIndex]);
-      },
-    },
-    // {
-    //   type: "create",
-    //   fn: ({ data }) => {
-    //     let json = front.Services.functions.strToJson(data);
-    //     if (!json) {
-    //       return;
-    //     }
-    //     console.log("=8587af=", json);
-
-    //     Static.records.unshift(json);
-    //     console.log("=4d73fb=", Static.records);
-    //   },
-    // },
-    {
-      type: "skip",
-      fn: ({ data }) => {
-        let json = front.Services.functions.strToJson(data);
-        if (!json) {
-          return;
-        }
-        Static.records = [...Static.records, ...json];
-      },
-    },
-  ];
-  Events.posts = await Fn.event(url, listener);
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[0] == "show") {
+    Func.getQuestion(front.Variable.DataUrl[1]);
+  }
   return;
 };
 

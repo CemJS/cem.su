@@ -13,7 +13,6 @@ import InputComment from "./InputComment";
 let image = `/contents/images/lenta/avatar_default.png`;
 
 export default function () {
-  console.log("=a10933=", Static.item.comments.length);
   return (
     <div
       class="fixed left-0 top-0 flex h-full w-full flex-col items-center justify-end [background:rgba(0,0,0,0.5)]"
@@ -22,7 +21,7 @@ export default function () {
       {/* content */}
       <div
         id="content"
-        class="relative h-[70vh] max-h-screen w-full max-w-[50rem] rounded-[1rem_1rem_0_0] bg-[--backModal] p-[1.5rem_1.8rem] [transform:translateY(100%)] [transition:var(--tran-03)]"
+        class="relative h-[70vh] max-h-screen w-full max-w-[50rem] rounded-[1rem_1rem_0_0] bg-[--backModal] p-[1.5rem_1.8rem_4.5rem] [transform:translateY(100%)] [transition:var(--tran-03)]"
         ref="bottomSheetContent"
       >
         <Header />
