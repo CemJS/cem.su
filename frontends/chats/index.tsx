@@ -20,27 +20,27 @@ front.func.lastMessageScroll = (b) => {
 
 front.loader = async () => {
 
-    Static.records = []
-    let url = front.Services.functions.makeUrlEvent("chats", {})
-    let listener = [
-        {
-            type: "get",
-            fn: ({ data }) => {
-                let json = front.Services.functions.strToJson(data)
-                if (!json) { return }
-                Static.records = json
-            },
-        },
-        {
-            type: "add",
-            fn: ({ data }) => {
-                let json = front.Services.functions.strToJson(data)
-                if (!json) { return }
-                Static.records.push(...json)
-            },
-        }
-    ]
-    Events.chats = await Fn.event(url, listener)
+    // Static.records = []
+    // let url = front.Services.functions.makeUrlEvent("chats", {})
+    // let listener = [
+    //     {
+    //         type: "get",
+    //         fn: ({ data }) => {
+    //             let json = front.Services.functions.strToJson(data)
+    //             if (!json) { return }
+    //             Static.records = json
+    //         },
+    //     },
+    //     {
+    //         type: "add",
+    //         fn: ({ data }) => {
+    //             let json = front.Services.functions.strToJson(data)
+    //             if (!json) { return }
+    //             Static.records.push(...json)
+    //         },
+    //     }
+    // ]
+    // Events.chats = await Fn.event(url, listener)
 
     return
 }
