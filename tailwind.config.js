@@ -40,6 +40,11 @@ export default {
         "100%": "100%",
         "125%": "125%",
       },
+      backdropBlur: {
+        none: '0',
+        xs: '2px',
+        sm: '4px'
+      }
     },
   },
   plugins: [],
