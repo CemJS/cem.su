@@ -40,7 +40,7 @@ export default function () {
                   ) : (
                     <Form
                       key={"edit" + comment.id}
-                      sendUrl={`/api/comments/${comment.id}/update`}
+                      sendUrl={`/api/posts/${Static.id}/comments/${comment.id}/update`}
                       show={true}
                       extraData={{
                         answerId: Static.item?.id,
@@ -51,8 +51,8 @@ export default function () {
                 <div class="static flex items-center justify-end gap-[0.3125rem] pb-[0.375rem] @410:absolute @410:right-[0.9375rem] @410:top-[0.9375rem]">
                   <CommentRating
                     item={comment}
-                    likeUrl={`/api/comments/${comment.id}/like`}
-                    dislikeUrl={`/api/comments/${comment.id}/dislike`}
+                    likeUrl={`/api/posts/${Static.id}/comments/${comment.id}/like`}
+                    dislikeUrl={`/api/posts/${Static.id}/comments/${comment.id}/dislike`}
                     extraData={{
                       answerId: Static.item?.id,
                     }}
@@ -92,12 +92,12 @@ export default function () {
                     <img src={points} />
                   </div>
                 </div>
-
                 <Form
                   key={`answer${comment.id}`}
-                  sendUrl={`/api/answers/${Static.item?.id}/comments/${comment.id}/comment`}
+                  sendUrl={`/api/posts/${Static.id}/comments/${comment.id}/comment`}
                   extraData={{}}
                 />
+
                 {comment.comments?.map((comm, commIndex) => {
                   return (
                     <div class="relative p-[0_0.625rem]" style="margin: 0 10px">
@@ -115,7 +115,7 @@ export default function () {
                         ) : (
                           <Form
                             key={comm.id}
-                            sendUrl={`/api/comments/${comm.id}/update`}
+                            sendUrl={`/api/posts/${Static.id}/comments/${comm.id}/update`}
                             show={true}
                             extraData={{
                               answerId: Static.item?.id,
@@ -127,8 +127,8 @@ export default function () {
                       <div class="static flex items-center justify-end gap-[0.3125rem] pb-[0.375rem] @410:absolute @410:right-[0.9375rem] @410:top-[0.9375rem]">
                         <CommentRating
                           item={comm}
-                          likeUrl={`/api/comments/${comm.id}/like`}
-                          dislikeUrl={`/api/comments/${comm.id}/dislike`}
+                          likeUrl={`/api/posts/${Static.id}/comments/${comm.id}/like`}
+                          dislikeUrl={`/api/posts/${Static.id}/comments/${comm.id}/dislike`}
                           extraData={{
                             answerId: Static.item?.id,
                             commentId: comment.id,
@@ -174,7 +174,7 @@ export default function () {
                       </div>
                       <Form
                         key={`answer${comm.id}`}
-                        sendUrl={`/api/answers/${Static.item?.id}/comments/${comment.id}/comment`}
+                        sendUrl={`/api/posts/${Static.id}/comments/${comment.id}/comment`}
                         extraData={{
                           quote: comm.id,
                         }}

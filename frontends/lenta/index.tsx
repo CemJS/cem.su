@@ -1,5 +1,7 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
+import postListenerData from "./listeners/postListener.data";
+import postsListenerData from "./listeners/postsListener.data";
 
 front.listener.finish = () => {
   return;
@@ -496,65 +498,23 @@ front.func.initPost = ($el, index) => {
   }
 };
 
-//
+// получение поста по ссылке /show
+
+front.func.getQuestion = async (id) => {
+  let url = front.Services.functions.makeUrlEvent(`posts/${id}`);
+
+  Events.post = await Fn.event(url, postListenerData);
+
+  front.Services.functions.sendApi(`/api/posts/${id}`, {});
+};
 
 front.loader = async () => {
   let url = front.Services.functions.makeUrlEvent("posts");
-  let listener = [
-    // get
-    {
-      type: "get",
-      fn: ({ data }) => {
-        let json = front.Services.functions.strToJson(data);
-        if (!json) {
-          return;
-        }
+  Events.posts = await Fn.event(url, postsListenerData);
 
-        Static.records = json;
-      },
-    },
-    // like
-    {
-      type: "likePost",
-      fn: ({ data }) => {
-        let { id } = front.Services.functions.strToJson(data);
-        if (!id) {
-          return;
-        }
-
-        let postIndex = Func.findIndexPost(id);
-
-        Static.records[postIndex].statistics.rating++;
-      },
-    },
-    // dislike
-    {
-      type: "dislikePost",
-      fn: ({ data }) => {
-        let { id } = front.Services.functions.strToJson(data);
-        if (!id) {
-          return;
-        }
-
-        let postIndex = Func.findIndexPost(id);
-
-        Static.records[postIndex].statistics.rating--;
-      },
-    },
-    // skip
-    {
-      type: "skip",
-      fn: ({ data }) => {
-        let json = front.Services.functions.strToJson(data);
-        if (!json) {
-          return;
-        }
-        Static.records = [...Static.records, ...json];
-      },
-    },
-  ];
-  Events.posts = await Fn.event(url, listener);
-  console.log("=61a408=", url);
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[0] == "show") {
+    Func.getQuestion(front.Variable.DataUrl[1]);
+  }
   return;
 };
 

@@ -4,9 +4,7 @@ import Post from "./post/Post";
 export default function () {
   return (
     <div class="mx-auto w-full max-w-[900px]">
-      {Static.records?.map((item, index) => {
-        return <Post item={item} index={index} />;
-      })}
+      {Static.post ? <Post item={Static.post} index={-1} /> : null}
     </div>
   );
 }

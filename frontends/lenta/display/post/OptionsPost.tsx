@@ -17,7 +17,7 @@ export default function ({ item }) {
           ) {
             records.push({
               name: "Подписаться",
-              func: () => Func.follow(item?.id),
+              func: () => Func.follow(item?.author.id),
             });
           }
 

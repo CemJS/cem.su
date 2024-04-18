@@ -1,8 +1,4 @@
 {
-    "url": "/",
-    "front": [
-        "header",
-        "lenta",
-        "menu"
-    ]
+  "regex": "/",
+  "front": ["header", "lenta", "menu"]
 }

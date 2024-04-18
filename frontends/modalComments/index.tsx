@@ -122,7 +122,11 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   }
 };
 
-//
+// findIndex
+
+front.func.findIndexComment = (id) => {
+  return Static.comments.findIndex((item) => item.id == id);
+};
 
 front.loader = async () => {
   let url = front.Services.functions.makeUrlEvent(
@@ -144,7 +148,7 @@ front.loader = async () => {
     },
     // create
     {
-      type: "comment",
+      type: "addComment",
       fn: ({ data }) => {
         let { comment, postId } = front.Services.functions.strToJson(data);
         if (!comment) {
@@ -155,6 +159,24 @@ front.loader = async () => {
           Static.comments = [];
         }
         Static.comments.push(comment);
+      },
+    },
+    // commentToComment
+    {
+      type: "commentToComment",
+      fn: ({ data }) => {
+        let { comment, commentId } = front.Services.functions.strToJson(data);
+        if (!comment) {
+          return;
+        }
+
+        let commentIndex = Func.findIndexComment(commentId);
+
+        if (!Array.isArray(Static.comments[commentIndex].comments)) {
+          Static.comments[commentIndex].comments = [];
+        }
+        console.log("=a347da=", Static.comments[commentIndex]);
+        Static.comments[commentIndex].comments.push(comment);
       },
     },
   ];

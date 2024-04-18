@@ -5,16 +5,6 @@ export default function ({ item, index }) {
     <button
       class="relative block min-h-[2rem] w-max cursor-pointer overflow-hidden rounded-[0.1875rem] border-none bg-transparent pl-[0.625rem] pr-[0.625rem] pt-0 text-center text-[0.875rem] font-semibold text-[--white] no-underline "
       onclick={async (e) => {
-        if (!item.comments?.length) {
-          await front.Services.functions.sendApi(
-            `/api/posts/${item.id}/comments`,
-            {},
-          );
-          Fn.initOne("modalComments", {
-            id: item.id,
-          });
-          return;
-        }
         Fn.initOne("modalComments", {
           id: item.id,
         });
