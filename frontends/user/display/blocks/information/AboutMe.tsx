@@ -15,7 +15,11 @@ export default function () {
     <div class="my-0 w-full max-@1370:mx-[10px] max-@1024:mx-[0] max-@1024:mb-[1.25rem] @1024:w-[calc(100%_-_1rem)] @1370:w-[calc(50%_-_1rem)]">
       <div class="z-0 m-0 cursor-col-resize rounded-[0] border-x-0 border-b-0 bg-[--black-gray] p-[.1875rem] text-[--white] [border:1px_solid_#363C50] @1024:mt-[2rem] @1024:rounded-[.9375rem]">
         <div class="relative h-full w-full cursor-default rounded-[.9375rem] bg-[--black-gray] px-[1.25rem] py-[2rem]">
-          <p>Обо мне</p>
+          <p class="relative left-[-.375rem] top-[-.375rem] mb-[2.5rem] text-[1rem] font-normal leading-[1.25rem] text-[--white]">
+            {Static.record?.information?.about
+              ? Static.record?.information?.about
+              : "Обо мне"}
+          </p>
           <div class="mt-[1.9375rem]">
             <div class="flex w-full">
               <span class="mr-[.9375rem] block text-[--white] odd:mb-[1.25rem] odd:text-[1rem] odd:font-normal odd:leading-[1.5rem] odd:text-[#ADADAD]">
@@ -45,7 +49,7 @@ export default function () {
               </span>
               <div>
                 <div class="border-0 bg-transparent p-0 text-inherit">
-                  {Static.record?.country?.engName}Russia
+                  {Static.record?.country?.engName ? Static.record?.country?.engName : Static.record?.country?.origName}
                 </div>
                 {/* <input readonly="true" value={Static.record?.country?.engName ? Static.record?.country?.engName : ""} /> */}
               </div>
@@ -80,7 +84,10 @@ export default function () {
               <img
                 onclick={() => {
                   Fn.initOne("modalEditAboutMe", {
-                    info: Static.record
+                    info: Static.record,
+                    CallInit: (CallBack: string) => {
+                      Static.record = CallBack;
+                    },
                   });
                 }}
                 class="box-content w-[1.375rem] cursor-pointer p-[.625rem]"
