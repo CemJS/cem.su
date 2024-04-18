@@ -43,7 +43,7 @@ export default function () {
                       sendUrl={`/api/comments/${comment.id}/update`}
                       show={true}
                       extraData={{
-                        answerId: Static.item?.id,
+                        postId: Static.id,
                       }}
                     />
                   )}
@@ -54,7 +54,7 @@ export default function () {
                     likeUrl={`/api/comments/${comment.id}/like`}
                     dislikeUrl={`/api/comments/${comment.id}/dislike`}
                     extraData={{
-                      answerId: Static.item?.id,
+                      postId: Static.id,
                     }}
                   />
                   <CommentAnswerBtn item={comment} />
@@ -72,8 +72,7 @@ export default function () {
 
                         records.push({
                           name: "Удалить",
-                          func: () =>
-                            Func.deleteComment(comment.id, Static.item?.id),
+                          func: () => Func.deleteComment(comment.id, Static.id),
                           type: "danger",
                         });
                       }
@@ -118,7 +117,7 @@ export default function () {
                             sendUrl={`/api/comments/${comm.id}/update`}
                             show={true}
                             extraData={{
-                              answerId: Static.item?.id,
+                              postId: Static.id,
                               commentId: comment.id,
                             }}
                           />
@@ -130,7 +129,7 @@ export default function () {
                           likeUrl={`/api/comments/${comm.id}/like`}
                           dislikeUrl={`/api/comments/${comm.id}/dislike`}
                           extraData={{
-                            answerId: Static.item?.id,
+                            postId: Static.id,
                             commentId: comment.id,
                           }}
                         />
@@ -152,7 +151,7 @@ export default function () {
                                 func: () =>
                                   Func.deleteComment(
                                     comm.id,
-                                    Static.item?.id,
+                                    Static.id,
                                     comment.id,
                                   ),
                               });

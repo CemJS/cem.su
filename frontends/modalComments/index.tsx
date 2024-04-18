@@ -1,5 +1,6 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
+import listenerData from "./listener.data";
 
 front.listener.finish = () => {
   return;
@@ -132,54 +133,22 @@ front.loader = async () => {
   let url = front.Services.functions.makeUrlEvent(
     `posts/${Static.id}/comments`,
   );
-  let listener = [
-    // comments --------------
-    // get
-    {
-      type: "get",
-      fn: ({ data }) => {
-        let { comments } = front.Services.functions.strToJson(data);
-        if (!comments) {
-          return;
-        }
-        Static.comments = comments;
-        Fn.log("=b46cd5=", comments);
-      },
-    },
-    // create
-    {
-      type: "addComment",
-      fn: ({ data }) => {
-        let { comment, postId } = front.Services.functions.strToJson(data);
-        if (!comment) {
-          return;
-        }
+  let listener = listenerData;
+  Events.comments = await Fn.event(url, listener);
+  return;
+};
 
-        if (!Array.isArray(Static.comments)) {
-          Static.comments = [];
-        }
-        Static.comments.push(comment);
-      },
-    },
-    // commentToComment
-    {
-      type: "commentToComment",
-      fn: ({ data }) => {
-        let { comment, commentId } = front.Services.functions.strToJson(data);
-        if (!comment) {
-          return;
-        }
+front.func.findIndexCommentToComment = (id, commentIndex) => {
+  return Static.comments[commentIndex].comments.findIndex(
+    (item) => item.id == id,
+  );
+};
 
-        let commentIndex = Func.findIndexComment(commentId);
-
-        if (!Array.isArray(Static.comments[commentIndex].comments)) {
-          Static.comments[commentIndex].comments = [];
-        }
-        console.log("=a347da=", Static.comments[commentIndex]);
-        Static.comments[commentIndex].comments.push(comment);
-      },
-    },
-  ];
+front.loader = async () => {
+  let url = front.Services.functions.makeUrlEvent(
+    `posts/${Static.id}/comments`,
+  );
+  let listener = listenerData;
   Events.comments = await Fn.event(url, listener);
   return;
 };
