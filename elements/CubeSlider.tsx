@@ -82,13 +82,11 @@ class Gallery {
       if (this.currentSlide + 1 == this.size) {
         let rest = this.elementCount - this.countSlides * (this.size - 1);
         if (i + 1 > (this.size - 1) * this.countSlides) {
-          width =
-            (this.widthContainer - this.settings.margin * (rest - 1)) / rest;
+          width = this.widthContainer / rest;
         }
       }
       slideNode.style.minWidth = `${width}px`;
       slideNode.style.maxWidth = `${width}px`;
-      slideNode.style.marginRight = `${this.settings.margin}px`;
       slideNode.style.minHeight = `${Static.height}px`;
       slideNode.style.maxHeight = `${Static.height}px`;
       await new Promise((resolve) =>
@@ -219,6 +217,7 @@ export const init = function (element: HTMLElement) {
 };
 
 export default function ({ items }) {
+  console.log("=5c8d9e=", items);
   {
     Ref.slider ? init(Ref.slider) : null;
   }

@@ -44,7 +44,6 @@ export default function ({
           Func.closeEdit(key);
           Func.hideInputs();
           await Func.sendAuth(sendUrl, data);
-          console.log("=f97019=", Ref[`wrapper${Static.id}`]);
           scrollBottom
             ? (Ref[`wrapper${Static.id}`].scrollTop =
                 Ref[`wrapper${Static.id}`].scrollHeight)

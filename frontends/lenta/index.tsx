@@ -436,6 +436,9 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
       Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
       return;
     }
+    if (res?.error) {
+      Fn.initOne("alert", { text: "Ошибка запроса" });
+    }
     return res;
   } else {
     Fn.initOne("modalAuthtorization", {});
@@ -444,8 +447,11 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 
 // запросы
 
-front.func.follow = (id) => {
-  Func.sendAuth(`/api/users/${id}/subscribe`, {});
+front.func.follow = async (id, index) => {
+  !Static.records[index].subscribed
+    ? Func.sendAuth(`/api/users/${id}/subscribe`, {})
+    : Func.sendAuth(`/api/users/${id}/unsubscribe`, {});
+  Static.records[index].subscribed = !Static.records[index].subscribed;
   return;
 };
 

@@ -11,7 +11,6 @@ export default [
       }
 
       Static.records = json;
-      console.log("=628fef=", json);
     },
   },
   // like

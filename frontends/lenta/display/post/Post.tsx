@@ -16,14 +16,14 @@ export default function ({ item, index }) {
       <div class="relative flex gap-4 rounded-tl-[--borderR] rounded-tr-[--borderR] p-[0.7rem_1rem] [background:var(--backSecond)]">
         <UserPost item={item} />
 
-        <OptionsPost item={item} />
+        <OptionsPost index={index} item={item} />
       </div>
 
-      {/* <CubeSlider
-        items={item.media.map((it,i) => {
+      <CubeSlider
+        items={item.media.map((it, i) => {
           return <MediaPost item={it} index={i} />;
         })}
-      /> */}
+      />
 
       <div class="rounded-bl-[--borderR] rounded-br-[--borderR] p-[0.7rem_1rem_2rem] [background:var(--backSecond)]">
         <TextPost item={item} />
