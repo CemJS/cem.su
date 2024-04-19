@@ -444,6 +444,11 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 
 // запросы
 
+front.func.follow = (id) => {
+  Func.sendAuth(`/api/users/${id}/subscribe`, {});
+  return;
+};
+
 front.func.likePost = (id) => {
   Func.sendAuth(`/api/posts/${id}/like`, {});
   return;

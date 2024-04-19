@@ -53,4 +53,18 @@ export default [
       Static.records = [...Static.records, ...json];
     },
   },
+  // comment
+  {
+    type: "comment",
+    fn: ({ data }) => {
+      let { postId } = front.Services.functions.strToJson(data);
+      if (!postId) {
+        return;
+      }
+
+      let postIndex = Func.findIndexPost(postId);
+
+      Static.records[postIndex].statistics.comments++;
+    },
+  },
 ];

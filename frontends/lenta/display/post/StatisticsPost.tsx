@@ -30,6 +30,7 @@ export default function ({ item }) {
           onclick={() => {
             Fn.initOne("modalComments", {
               id: item.id,
+              to: "posts/",
             });
           }}
           class="flex cursor-pointer items-center gap-2"

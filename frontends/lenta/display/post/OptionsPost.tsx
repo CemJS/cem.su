@@ -16,7 +16,7 @@ export default function ({ item }) {
             front.Variable.Auth
           ) {
             records.push({
-              name: "Подписаться",
+              name: !item?.subscribed ? "Подписаться" : "Отписаться",
               func: () => Func.follow(item?.author.id),
             });
           }

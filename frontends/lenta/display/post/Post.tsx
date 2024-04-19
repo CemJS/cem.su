@@ -5,6 +5,7 @@ import TextPost from "./TextPost";
 import UserPost from "./UserPost";
 import StatisticsPost from "./StatisticsPost";
 import TimePost from "./TimePost";
+import CubeSlider from "@elements/CubeSlider";
 
 export default function ({ item, index }) {
   return (
@@ -18,7 +19,11 @@ export default function ({ item, index }) {
         <OptionsPost item={item} />
       </div>
 
-      <MediaPost item={item} index={index} />
+      {/* <CubeSlider
+        items={item.media.map((it,i) => {
+          return <MediaPost item={it} index={i} />;
+        })}
+      /> */}
 
       <div class="rounded-bl-[--borderR] rounded-br-[--borderR] p-[0.7rem_1rem_2rem] [background:var(--backSecond)]">
         <TextPost item={item} />

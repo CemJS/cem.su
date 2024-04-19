@@ -10,9 +10,9 @@ export default function () {
             onclick={() => {
               Fn.linkChange("/");
               if (front.Variable.$el.header) {
-                front.Variable.$el.header.classList.remove("hide");
-                front.Variable.$el.footer.classList.remove("hide");
-                Static.record = null;
+                front.Variable.$el?.header?.classList?.remove("hide");
+                front.Variable.$el?.footer?.classList?.remove("hide");
+                Static.post = null;
                 Events.post.close();
               }
             }}
@@ -28,26 +28,21 @@ export default function () {
             class="relative w-8 cursor-pointer after:absolute after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%] after:text-5xl after:content-['...']"
             onclick={() => {
               let records = [];
-              if (front.Variable.myInfo.id == Static.record.author.id) {
+              console.log("=3f0391=", Static.post);
+              if (front.Variable.myInfo.id == Static.post.authorId) {
                 records.push({
                   name: "Удалить",
                   func: Func.deleteQuestion,
                   type: "danger",
                 });
-                !Static.record.closed
-                  ? records.push({
-                      name: "Закрыть вопрос",
-                      func: Func.closeQuestion,
-                    })
-                  : null;
               }
               Fn.initOne("modalTools", {
                 records,
-                userId: Static.record.author.id,
+                userId: Static.post.authorId,
                 complainTo: {
-                  name: "questions",
-                  text: "вопрос",
-                  id: Static.record?.id,
+                  name: "posts",
+                  text: "пост",
+                  id: Static.post?.id,
                 },
               });
             }}

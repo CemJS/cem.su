@@ -1,7 +1,13 @@
-import { Cemjsx, Func, Static } from "cemjs-all";
+import { Cemjsx, Func, Ref, Static } from "cemjs-all";
 import sendMessage from "@svg/lenta/send_message.svg";
 
-export default function ({ key, sendUrl, extraData = {}, show = false }) {
+export default function ({
+  key,
+  sendUrl,
+  extraData = {},
+  show = false,
+  scrollBottom = false,
+}) {
   return (
     <div
       id="form"
@@ -13,7 +19,8 @@ export default function ({ key, sendUrl, extraData = {}, show = false }) {
     >
       <div class="relative mt-0 w-[calc(100%_-_3.125rem)]">
         <textarea
-          class="relative flex min-h-[2.5625rem] w-full resize-none rounded-[0.625rem] bg-[#313543] p-[0.625rem_1.5625rem] text-[1rem] font-medium text-[--white] outline-none [border:0.0625rem_solid_#44495c]"
+          ref={`input${key}`}
+          class="relative flex min-h-[2.5625rem] w-full resize-none rounded-[0.625rem] bg-[#313543] p-[0.625rem_1.5625rem] text-[1rem] font-medium text-[--white] outline-none [border:0.0625rem_solid_#44495c] "
           rows="1"
           data-max-height="200"
           data-scroll-last="48"
@@ -28,14 +35,20 @@ export default function ({ key, sendUrl, extraData = {}, show = false }) {
           "m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]",
           !Static[`edit${key}`] ? "btn_passive" : null,
         ]}
-        onclick={() => {
+        onclick={async () => {
           let data = {
             text: Static[`edit${key}`],
             ...extraData,
           };
           Static[`edit${key}`] = "";
           Func.closeEdit(key);
-          Func.sendAuth(sendUrl, data);
+          Func.hideInputs();
+          await Func.sendAuth(sendUrl, data);
+          console.log("=f97019=", Ref[`wrapper${Static.id}`]);
+          scrollBottom
+            ? (Ref[`wrapper${Static.id}`].scrollTop =
+                Ref[`wrapper${Static.id}`].scrollHeight)
+            : null;
         }}
       >
         <img src={sendMessage} />

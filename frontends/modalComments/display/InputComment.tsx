@@ -8,6 +8,7 @@ export default function () {
         key={Static.id}
         sendUrl={`/api/posts/${Static.id}/comment`}
         show={true}
+        scrollBottom={true}
       />
     </div>
   );
