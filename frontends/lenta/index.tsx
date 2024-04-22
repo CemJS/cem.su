@@ -531,7 +531,7 @@ front.loader = async () => {
 
 front.display = () => {
   return (
-    <div class="wrapper mt-[25px]">
+    <div class="mt-[25px] px-3">
       <Navigation />
     </div>
   );

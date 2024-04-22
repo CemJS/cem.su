@@ -43,6 +43,7 @@
 
 html,
 body {
+  overflow-x: hidden;
   height: var(--app-height);
 }
 
@@ -72,7 +73,6 @@ p {
 }
 
 @media (max-width: 464px) {
-
   html,
   body {
     font-size: 16px;
