@@ -28,7 +28,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -82,7 +82,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -136,7 +136,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -190,7 +190,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -244,7 +244,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -298,7 +298,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -352,7 +352,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -406,7 +406,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -460,7 +460,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -514,7 +514,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -568,7 +568,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -622,7 +622,7 @@ const RenderMessages = () => {
           href={`/user/Annyshka`}
           class="relative inline-flex h-auto w-auto"
         >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+          <div class="relative z-[1] lg:h-[3.5rem] lg:w-[3.1875rem] xl:h-[4.5rem] xl:w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={avatarDefault}
@@ -672,7 +672,7 @@ const RenderMessages = () => {
 
 export default function () {
   return (
-    <div class="w-[350px] bg-[#2B3040] h-full border-solid border-[#363C50] border-r-[1px]">
+    <div class="md:w-[300px] xl:w-[350px] bg-[#2B3040] h-full border-solid border-[#363C50] border-r-[1px]">
       <RenderSearch />
       <RenderMessages />
     </div>
