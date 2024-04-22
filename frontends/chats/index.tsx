@@ -19,6 +19,8 @@ front.func.lastMessageScroll = (b) => {
 }
 
 front.loader = async () => {
+    // текущая переписка, если underfined -> загрушка "Выберите чат"
+    Static.currentConversation
 
     // Static.records = []
     // let url = front.Services.functions.makeUrlEvent("chats", {})

@@ -14,7 +14,7 @@ const RenderChooseConversation = () => {
 
 const RenderTop = () => {
   return (
-    <div class="flex items-center justify-between bg-[#2B3040] py-1 px-2">
+    <div class="shadow-lg flex items-center justify-between bg-[#2B3040] py-1 px-2">
       <button>
         <i class="i i-chevron-left text-2xl"></i>
       </button>
@@ -465,7 +465,7 @@ const RenderForm = () => {
 
 export default function () {
   return (
-    <div class="chat-conversation h-full w-full">
+    <div ref="conversation" class="chat-conversation h-full w-full absolute left-full top-0 md:relative md:left-auto md:top-auto">
       <RenderTop />
       <RenderMainConversation />
     </div>
