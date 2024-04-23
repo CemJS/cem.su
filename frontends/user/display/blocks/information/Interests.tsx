@@ -64,7 +64,7 @@ export default function () {
                     <img
                       onclick={() => {
                         Fn.initOne("modalAccept", {
-                          title: "свой интерес",
+                          title: "удалить свой интерес",
                           CallInit: async (CallBack: boolean) => {
                             if (CallBack) {
                               Static.record?.interests.splice(key, 1);

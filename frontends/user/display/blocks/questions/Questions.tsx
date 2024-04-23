@@ -10,13 +10,13 @@ import question_status_delete from "@svg/questions/question_status_delete.svg";
 import dots from "@svg/questions/dots.svg";
 
 export default function () {
-  // Fn.log('=880ada=',Static.record)
+  Fn.log("Static.record?.questions", Static.record?.questions);
   return (
     <div class="relative m-0 w-full min-w-full pb-[1.25rem] pt-[.625rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%--_224px)] @1200:pb-[2.5rem]">
       <h2 class="mx-0 my-[1.25rem] text-balance text-center text-[clamp(17px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
         Заданные вопросы
       </h2>
-      <div class="hidden text-[.75rem] leading-[1.25rem] text-[--white] [grid-template-columns:50%_10%_15%_20%_5%] @767:grid">
+      <div class="hidden text-[.75rem] leading-[1.25rem] text-[--white] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:50%_10%_15%_20%_5%]">
         <span class="box-border [&:nth-child(1)]:relative [&:nth-child(1)]:left-[1.25rem]">
           Вопрос
         </span>
@@ -26,7 +26,7 @@ export default function () {
       </div>
       <div class="mb-[3.75rem] mt-[.5rem] rounded-[0] text-[.875rem] font-medium leading-[1.25rem] [border:1px_solid_#323746] @767:rounded-[.9375rem]">
         {Static.record?.questions?.map((item: any, key: number) => {
-          // Fn.log("item", item?.nickname?.length);
+          // Fn.log("item", item);
           return (
             <div
               key={key}
@@ -115,19 +115,68 @@ export default function () {
                   <img
                     class="relative top-[50%] h-[1.875rem] translate-y-[-20%]"
                     src={
-                      item?.del
-                        ? question_status_delete
-                        : item?.isClosed
-                          ? item?.bestAnswerAuthor?.nickname?.length
-                            ? best_answer
-                            : closed_question
+                      item?.isClosed
+                        ? closed_question
+                        : item?.bestAnswerAuthor?.nickname?.length
+                          ? best_answer
                           : open_question
                     }
                   />
                 </div>
               </div>
               <div class="absolute right-[1.25rem] top-[.625rem] box-border cursor-pointer">
-                <div class="relative ml-[.625rem] box-border h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
+                <div
+                  class="relative ml-[.625rem] box-border h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]"
+                  onclick={() => {
+                    Fn.initOne("modalTools", {
+                      records: [
+                        {
+                          name: "Удалить",
+                          type: "danger",
+                          func: () =>
+                            Fn.initOne("modalAccept", {
+                              title: "удалить свой вопрос",
+                              CallInit: async (CallBack: boolean) => {
+                                if (CallBack) {
+                                  Static.record?.questions?.splice(key, 1);
+                                  let res =
+                                    await front.Services.functions.sendApi(
+                                      `/api/questions/${item?.id}/delete`,
+                                      {},
+                                    );
+
+                                  if (res?.status === 200) {
+                                    // Static.record.work = array;
+                                  }
+                                }
+                              },
+                            }),
+                        },
+                        {
+                          name: "Закрыть вопрос",
+                          func: () =>
+                            Fn.initOne("modalAccept", {
+                              title: "закрыть свой вопрос",
+                              CallInit: async (CallBack: boolean) => {
+                                if (CallBack) {
+                                  item.isClosed = true;
+                                  let res =
+                                    await front.Services.functions.sendApi(
+                                      `/api/questions/${item?.id}/close`,
+                                      {},
+                                    );
+
+                                  if (res?.status === 200) {
+                                    // Static.record.work = array;
+                                  }
+                                }
+                              },
+                            }),
+                        },
+                      ],
+                    });
+                  }}
+                >
                   <img
                     class="absolute left-[50%] top-[50%] box-border translate-x-[-50%] translate-y-[-50%]"
                     src={dots}

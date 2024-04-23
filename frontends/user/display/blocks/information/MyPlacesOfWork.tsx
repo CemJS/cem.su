@@ -63,7 +63,7 @@ export default function () {
                   <img
                     onclick={async () => {
                       Fn.initOne("modalAccept", {
-                        title: "свое место работы",
+                        title: "удалить свое место работы",
                         CallInit: async (CallBack: boolean) => {
                           if (CallBack) {
                             Static.record?.work.splice(key, 1);

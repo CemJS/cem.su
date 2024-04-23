@@ -25,7 +25,8 @@ export default function () {
       </div>
       <div class="">
         {Static.record?.answers?.map((item: any, key: number) => {
-          Fn.log("item", item);
+          // Fn.log("Static.record?.answers", Static.record?.answers)
+          // Fn.log("item", item);
           return (
             <div
               key={key}
@@ -88,7 +89,7 @@ export default function () {
                   Комментариев
                 </span>
                 <span class="relative top-0 text-[.9375rem] font-bold @767:absolute @767:top-[2.1875rem]">
-                  {item?.commentsCount}
+                  {item?.statistics?.comments}
                 </span>
               </div>
               <div class="relative box-border inline-block text-left max-@767:mr-[1.5625rem] max-@767:mt-[1.25rem] @767:text-center">
@@ -96,7 +97,7 @@ export default function () {
                   Рейтинг
                 </span>
                 <span class="relative top-0 text-[.9375rem] font-bold @767:absolute @767:top-[2.1875rem]">
-                  {item?.rating}
+                  {item?.statistics?.rating}
                 </span>
               </div>
               <div class="questions-table__avatar flex items-end max-@767:mb-[1.5625rem] max-@767:mr-[3.125rem]">
@@ -107,6 +108,17 @@ export default function () {
               <div class="absolute right-[1.25rem] top-[.625rem] box-border cursor-pointer">
                 <div class="relative ml-[.625rem] box-border h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
                   <img
+                  onclick={() => {
+                    Fn.initOne("modalTools", {
+                      // records,
+                      userId: Static.record.author.id,
+                      complainTo: {
+                        name: "questions",
+                        text: "вопрос",
+                        id: Static.record?.id,
+                      },
+                    });
+                  }}
                     class="absolute left-[50%] top-[50%] box-border translate-x-[-50%] translate-y-[-50%]"
                     src={dots}
                   />
