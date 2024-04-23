@@ -1,10 +1,5 @@
 import { Cemjsx, Static, front, Fn } from "cemjs-all";
 
-Static.dataInterests = {
-  title: "",
-  description: "",
-};
-
 const RenderFieldName = function () {
   return (
     <div class="p-0">

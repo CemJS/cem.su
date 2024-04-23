@@ -62,18 +62,25 @@ export default function () {
                       class="absolute right-[1rem] mr-[.5rem] inline w-[1.125rem] cursor-pointer"
                     />
                     <img
-                      onclick={async () => {
-                        Static.record?.interests.splice(key, 1);
-                        let res = await front.Services.functions.sendApi(
-                          "/api/users/update",
-                          {
-                            interest: Static.record?.interests,
-                          },
-                        );
+                      onclick={() => {
+                        Fn.initOne("modalAccept", {
+                          title: "свой интерес",
+                          CallInit: async (CallBack: boolean) => {
+                            if (CallBack) {
+                              Static.record?.interests.splice(key, 1);
+                              let res = await front.Services.functions.sendApi(
+                                "/api/users/update",
+                                {
+                                  interest: Static.record?.interests,
+                                },
+                              );
 
-                        if (res?.status === 200) {
-                          // Static.record.interests = array;
-                        }
+                              if (res?.status === 200) {
+                                // Static.record.interests = array;
+                              }
+                            }
+                          },
+                        });
                       }}
                       src={deleteIcon}
                       alt="editIcon"

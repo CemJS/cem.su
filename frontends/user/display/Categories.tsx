@@ -11,7 +11,7 @@ import Gallery from "./iconsCategories/Gallery"
 
 export default function () {
     return (
-        <div class="sticky right-[5.75rem] top-0 flex justify-between w-full max-[1024px]:px-[.625rem] [margin:10px_auto_0] pt-[.625rem] bg-[--noble_black] overflow-y-hidden overflow-x-auto">
+        <div class="sticky right-[5.75rem] z-[2] top-0 flex justify-between w-full max-[1024px]:px-[.625rem] [margin:10px_auto_0] pt-[.625rem] bg-[--noble_black] overflow-y-hidden overflow-x-auto">
             <Feed />
             <Information />
             <Questions />

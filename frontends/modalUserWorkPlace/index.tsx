@@ -21,6 +21,12 @@ front.func.close = function () {
 };
 
 front.loader = async () => {
+  Static.dataWork = {
+    title: "",
+    description: "",
+    period: "",
+  };
+  
   return;
 };
 

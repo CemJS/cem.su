@@ -1,11 +1,5 @@
 import { Cemjsx, Static, front, Fn } from "cemjs-all";
 
-Static.dataWork = {
-  title: "",
-  description: "",
-  period: "",
-};
-
 const RenderFieldTitle = function () {
   return (
     <div class="p-0">
