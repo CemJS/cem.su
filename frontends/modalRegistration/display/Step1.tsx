@@ -9,22 +9,26 @@ export default function () {
           Подтвердите адрес электронной почты
         </h3>
 
-
         <div class="relative">
-          <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+          <div class="absolute top-2 left-4 pointer-events-none">
             <i class="i i-envelope text-xl"></i>
           </div>
           <input
             type="email"
-            class="bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5"
+            class="bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 valid:[&:not(:placeholder-shown)]:border-green-500"
             placeholder="name@flowbite.com"
+            autoComplete="off"
+            required
             oninput={(e: any) => {
               Static.form.email.value = e.target.value;
               front.Services.functions.formEmail(Static.form.email);
               Func.checkForm();
             }}
           />
+          <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">{Static.form.email.error}</span>
         </div>
+
+
 
         {/* <div
           class={[
@@ -155,7 +159,6 @@ export default function () {
               if (!Static.form.isValid) {
                 return;
               }
-              console.log('=6fcaea=', Static.waitCode)
               Func.sendCode();
               return;
             }}
