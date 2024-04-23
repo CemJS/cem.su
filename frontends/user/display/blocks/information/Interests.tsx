@@ -63,7 +63,7 @@ export default function () {
                     />
                     <img
                       onclick={async () => {
-                        delete Static.record?.interests[key];
+                        Static.record?.interests.splice(key, 1);
                         let res = await front.Services.functions.sendApi(
                           "/api/users/update",
                           {

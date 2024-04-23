@@ -6,9 +6,9 @@ export default function () {
       <h2 class="m-0 w-full text-balance text-center text-[clamp(1.2rem,_3vw,_1.5rem)] font-bold leading-[125%] text-inherit">
         Мои интересы
       </h2>
-      <button class="btn bg-none" onclick={Func.close}>
+      {/* <button class="btn bg-none" onclick={Func.close}>
         <i class="i-cancel !font-['cemicons'] normal-case [-webkit-font-smoothing:antialiased] [font-style:normal] [font-variant:normal] [font-weight:normal]"></i>
-      </button>
+      </button> */}
     </header>
   );
 }

@@ -1,69 +1,93 @@
-import { Cemjsx, Static, Fn, Func, front } from "cemjs-all";
+import { Cemjsx, Static, front, Fn } from "cemjs-all";
 
-const RenderFieldTextarea = function ({ about }) {
+Static.dataWork = {
+  title: "",
+  description: "",
+  period: "",
+};
+
+const RenderFieldTitle = function () {
   return (
-    <div
-      class={[
-        "modalWindow_field",
-        "mt-[15px]",
-        "modalWindow_field-textarea",
-        "modalWindow_field__valid",
-      ]}
-    >
-      <textarea
-        rows="3"
-        oninput={(e: any) => {
-          about = e.target.value;
-        }}
-      >
-        {about}
-      </textarea>
+    <div class="p-0">
+      <div class="mt-[1.25rem]">
+        <label class="mb-[.5rem] block text-[1rem] font-medium leading-[115%] text-[#9CA2B5]">
+          Введите название
+        </label>
+        <input
+          type="text"
+          value={Static.edit ? Static?.work[Static.key]?.title : ""}
+          placeholder="Название"
+          oninput={(event: InputEvent) => {
+            const target = event.target as HTMLInputElement;
+            Static.edit
+              ? (Static.work[Static.key].title = target.value)
+              : (Static.dataWork.title = target.value);
+          }}
+          class="mb-[1.25rem] h-[3.75rem] w-full rounded-[.625rem] bg-[#313543] p-[1.375rem] text-[--white] outline-none [border:1px_solid_#44495C]"
+        />
+      </div>
     </div>
   );
 };
 
-const RenderField = function ({ field, placeholder, className }) {
+const RenderFieldRange = function () {
   return (
-    <div
-      class={[
-        "modalWindow_field",
-        `${className}`,
-        field?.length ? "modalWindow_field__valid" : null,
-      ]}
-    >
-      <input
-        type="text"
-        value={field}
-        autocomplete="off"
-        oninput={(e: any) => {
-          field = e.target.value;
-        }}
-      />
-      <div class="modalWindow_field_labelLine">
-        <i class="i i-user"></i>
-        <span>{placeholder}</span>
+    <div class="p-0">
+      <div class="mt-[1.25rem]">
+        <label class="mb-[.5rem] block text-[1rem] font-medium leading-[115%] text-[#9CA2B5]">
+          Укажите сроки
+        </label>
+        <input
+          type="text"
+          value={Static.edit ? Static?.work[Static.key]?.period : ""}
+          placeholder="Сроки"
+          oninput={(event: InputEvent) => {
+            const target = event.target as HTMLInputElement;
+            Static.edit
+              ? (Static.work[Static.key].period = target.value)
+              : (Static.dataWork.period = target.value);
+          }}
+          class="mb-[1.25rem] h-[3.75rem] w-full rounded-[.625rem] bg-[#313543] p-[1.375rem] text-[--white] outline-none [border:1px_solid_#44495C]"
+        />
+      </div>
+    </div>
+  );
+};
+
+const RenderFielddetails = function () {
+  return (
+    <div class="p-0">
+      <div class="mt-[1.25rem]">
+        <label class="mb-[.5rem] block text-[1rem] font-medium leading-[115%] text-[#9CA2B5]">
+          Укажите подробности
+        </label>
+        <textarea
+          type="text"
+          placeholder="Поле для ввода"
+          oninput={(event: InputEvent) => {
+            const target = event.target as HTMLInputElement;
+            Static.edit
+              ? (Static.work[Static.key].description = target.value)
+              : (Static.dataWork.description = target.value);
+          }}
+          class="mb-[1.25rem] h-[3.75rem] w-full rounded-[.625rem] bg-[#313543] p-[1.375rem] text-[--white] outline-none [border:1px_solid_#44495C]"
+        >
+          {Static.edit
+            ? Static?.work[Static.key]?.description
+            : Static.dataWork?.description}
+        </textarea>
       </div>
     </div>
   );
 };
 
 export default function () {
+
   return (
-    <main class="modal_main">
-      <div class="pY-15">
-        <RenderField
-          field={Static.work?.title}
-          placeholder="Введите название"
-          className=""
-        />
-        <RenderField
-          field={Static.work?.period}
-          placeholder="Укажите сроки"
-          className="mt-30"
-        />
-        <h3 class="mt-[25px]">Укажите подробности</h3>
-        <RenderFieldTextarea about={Static.work?.description} />
-      </div>
-    </main>
+    <div>
+      <RenderFieldTitle />
+      <RenderFieldRange />
+      <RenderFielddetails />
+    </div>
   );
 }
