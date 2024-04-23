@@ -15,9 +15,10 @@ export default function () {
           </div>
           <input
             type="email"
-            class="bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 valid:[&:not(:placeholder-shown)]:border-green-500"
+            class="bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 valid:[&:not(:placeholder-shown)]:border-green-500 disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700"
+            disabled={Static.form.email.disable}
             placeholder="name@flowbite.com"
-            autoComplete="off"
+            autocomplete="off"
             required
             oninput={(e: any) => {
               Static.form.email.value = e.target.value;
@@ -26,65 +27,36 @@ export default function () {
             }}
           />
           <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">{Static.form.email.error}</span>
-        </div>
-
-
-
-        {/* <div
-          class={[
-            "w-full relative h-12 leading-10",
-            Static.form.email.value.length ? "modalWindow_field__valid" : null,
-            Static.form.email.error ? "modalWindow_field__error" : null,
-            Static.form.email.valid ? "modalWindow_field__success" : null,
-            Static.form.email.disable ? "modalWindow_field__disabled" : null,
-          ]}
-        >
-          <input
-            class="h-12 absolute w-full outline-none text-base px-7 rounded-2xl border-solid border-[#5f479b] border-[1px] bg-[transparent] transition-all z-[3px] text-white"
-            type="email"
-            required
-            autocomplete="off"
-            oninput={(e: any) => {
-              Static.form.email.value = e.target.value;
-              front.Services.functions.formEmail(Static.form.email);
-              Func.checkForm();
-            }}
-          />
-          <div class="absolute text-base px-2 mx-5 bg-[#202432] transition-all flex items-center gap-2">
-            <i class="i i-user"></i>
-            <span>{Static.form.email.placeholder}</span>
-          </div>
-          <p class="modalWindow_field__status" style="color:#E84142">
-            {Static.form.email.error}
-          </p>
-
           {Static.form.email.disable ? (
-            <span
-              class="modalWindow_field__edit"
+            <div
+              class="absolute top-0 right-4 cursor-pointer h-full flex items-center transition-all z-10"
               onclick={() => {
                 Func.changeEmail();
               }}
             >
-              <i class="i i-edit"></i>
-            </span>
+              <i class="i i-pencil"></i>
+            </div>
           ) : null}
-        </div> */}
+        </div>
+
       </div>
 
       {this.Static.waitCode ? (
         <div
           class={[
-            "modalReg-confirmCode",
-            Static.waitCode ? "modalReg-confirmCode__active" : null,
+            "flex mt-8 flex-col justify-center items-center gap-4 transition-all",
+            Static.waitCode ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none",
           ]}
         >
-          <div class="modalReg-code">
+          <div class="flex justify-center items-center gap-4 relative">
             {Static.code.map((item: number, index: number) => {
               return (
                 <input
                   ref={`code${index + 1}`}
                   type="number"
-                  class={["modalReg-code_input"]}
+                  class={["bg-[#202432] border-[1px] border-solid text-base text-white w-[2.5rem] h-[2.5rem] flex items-center justify-center text-center rounded-lg focus:border-[#5f479b] focus:outline-0 p-2 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
+                    Static.form.code.error ? "border-red-500 focus:border-red-500" : "border-[#5f479b]"
+                  ]}
                   oninput={(e) => {
                     if (e.data == null && e.target.value.length > 1) {
                       let arr = e.target.value.trim().split("");
@@ -121,26 +93,23 @@ export default function () {
             })}
           </div>
 
-          {Static.form.code.error ? (
-            <span class="modalReg-code__error">{Static.form.code.error}</span>
-          ) : null}
+          {Static.form.code.error ? <span class="font-semibold text-red-500">{Static.form.code.error}</span> : null}
 
-          <div class="modalReg_timer">
+          <div>
             {Static.time > 0 ? (
               <div>
-                <p class="modalReg_timer__text">
+                <p class="inline-block">
                   Запросить новый код подтверждения можно через{" "}
-                  <span class="pl-10">
+                  <span class="pl-3">
                     {Static.time < 10
                       ? `0 : 0${Static.time}`
                       : `0 : ${Static.time}`}
                   </span>
                 </p>
-                {/* <p class="modalReg_timer__text pl-10"></p> */}
               </div>
             ) : (
               <button
-                class="btn btn_timing"
+                class="btn"
                 onclick={() => {
                   Func.sendCode();
                   return;

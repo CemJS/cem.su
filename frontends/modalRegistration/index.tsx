@@ -39,6 +39,7 @@ front.func.checkForm = async function () {
 
             let answer = await front.Services.functions.sendApi(`/api/users/register`,
                 {
+                    action: "checkCode",
                     email: Static.form.email.value,
                     step: Static.currentStep,
                     code: Static.form.code.value

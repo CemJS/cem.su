@@ -29,6 +29,7 @@ class Gallery {
   dotsItem: any;
   dotNodes: any;
   dragShift: number;
+  firstManage: boolean;
   adaptive: object;
 
   constructor(element: HTMLElement) {
@@ -38,6 +39,7 @@ class Gallery {
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
+    this.firstManage = true;
 
     // чтобы при вызове методов не слетали контексты вызываем  bind
     this.manageHTML = this.manageHTML.bind(this);
@@ -69,13 +71,11 @@ class Gallery {
   setParameters() {
     const coordsContainer = this.element.getBoundingClientRect();
     this.widthContainer = coordsContainer.width;
-    // this.maximumX = -(this.size - 1) * this.widthContainer;
     this.x = -(this.currentSlide * 90);
     this.size = Math.ceil(this.elementCount / this.countSlides);
 
-    // this.setStyleTransition();
     this.lineNode.style.width = `${this.widthContainer}px`;
-    // this.setStylePosition();
+    let maxHeight = 0;
     Array.from(Ref.cube.children).forEach(async (slideNode: any, i) => {
       if (
         this.currentSlide == i ||
@@ -86,12 +86,18 @@ class Gallery {
       } else {
         slideNode.style.zIndex = 0;
       }
-      // slideNode.style.transform = `rotateX(0deg) rotateY(${90 * i}deg) translate3d(0px, 0px, 0px)`;
-      // slideNode.style.minWidth = `${this.widthContainer}px`;
-      // slideNode.style.maxWidth = `${this.widthContainer}px`;
-      // slideNode.style.minHeight = `${Static.height}px`;
-      // slideNode.style.maxHeight = `${Static.height}px`;
+      if (this.firstManage) {
+        let slideHeight = slideNode.getBoundingClientRect().height;
+        slideHeight > maxHeight ? (maxHeight = slideHeight) : null;
+      }
     });
+    console.log("=fc862b=", maxHeight);
+    if (this.firstManage) {
+      Ref.slider.style.minHeight = `${maxHeight}px`;
+      Ref.slider.style.maxHeight = `${maxHeight}px`;
+    }
+    this.firstManage = false;
+
     // this.manageHTML();
   }
 
@@ -192,7 +198,6 @@ class Gallery {
     //   Math.min(this.startX + this.dragShift, easing),
     //   this.widthContainer + easing,
     // );
-    console.log("=2702b8=", this.dragShift);
     if (this.currentSlide + 1 == this.size) {
       this.dragShift = Math.max(this.dragX - this.clickX, -100);
     } else if (this.currentSlide == 0) {
@@ -249,12 +254,8 @@ export default function ({ items }) {
     return <div />;
   }
   return (
-    <div
-      init={init}
-      class="mx-auto h-[400px] w-[400px] [&_img]:w-full"
-      ref="slider"
-    >
-      <div class="line flex h-full w-full items-center justify-center [perspective-origin:50%] [perspective:800px]">
+    <div init={init} class="mx-auto h-full w-full [&_img]:w-full" ref="slider">
+      <div class="line flex h-full w-full items-center justify-center [perspective-origin:50%] [perspective:1200px]">
         <div
           id="cube"
           ref="cube"
@@ -267,7 +268,7 @@ export default function ({ items }) {
               <div
                 ref={`slide${i}`}
                 class={[
-                  "slid absolute h-[400px] w-[400px] select-none [&_img]:pointer-events-none [&_img]:h-full [&_img]:w-full",
+                  "slid absolute h-full w-full select-none [&_img]:pointer-events-none [&_img]:h-full [&_img]:w-full",
                   "[&.front]:[transform:translateZ(200px)]",
                   "[&.right]:[transform-origin:100%_0] [&.right]:[transform:rotateY(-270deg)_translateX(200px)]",
                   "[&.back]:[transform:translateZ(-200px)_rotateY(180deg)]",

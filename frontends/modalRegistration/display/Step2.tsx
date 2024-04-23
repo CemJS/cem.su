@@ -3,26 +3,20 @@ import { Cemjsx, Static, front, Func, Ref, Fn } from "cemjs-all";
 export default function () {
   return (
     <div class="w-1/4 transition-all">
-      <div class="modalReg_form">
-        <div class="f-col">
-          <h3 class="modalReg_page-title">Заполните информация о себе</h3>
-          <div
-            class={[
-              "modalWindow_field",
-              Static.form.nickName.value.length
-                ? "modalWindow_field__valid"
-                : null,
-              Static.form.nickName.error ? "modalWindow_field__error" : null,
-              Static.form.nickName.valid ? "modalWindow_field__success" : null,
-              Static.form.nickName.disable
-                ? "modalWindow_field__disabled"
-                : null,
-            ]}
-          >
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4">
+          <h3 class="text-lg font-semibold max-@600:text-base">Заполните информация о себе</h3>
+
+          <div class="relative">
+            <div class="absolute top-2 left-4 pointer-events-none">
+              <i class="i i-user text-xl"></i>
+            </div>
             <input
               type="text"
               required
               autocomplete="off"
+              class="bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 valid:[&:not(:placeholder-shown)]:border-green-500 disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700"
+              placeholder="Логин"
               oninput={async (e: any) => {
                 Static.form.nickName.value = e.target.value;
                 front.Services.functions.formNickName(Static.form.nickName);
@@ -51,33 +45,8 @@ export default function () {
                 }
               }}
             />
-            <div class="modalWindow_field_labelLine">
-              <i class="i i-user"></i>
-              <span>{Static.form.nickName.placeholder}</span>
-            </div>
-            <p class="modalWindow_field__status" style="color:#E84142">
-              {Static.form.nickName.error}
-            </p>
-            <div class="modalWindow_field__tooltip">
-              <div
-                class="tooltip"
-                onmouseover={() => {
-                  Ref.tooltipContent.classList.add("tooltip-content__active");
-                }}
-                onmouseleave={() => {
-                  Ref.tooltipContent.classList.remove(
-                    "tooltip-content__active",
-                  );
-                }}
-              >
-                <div class="tooltip-content" ref="tooltipContent">
-                  <p class="tooltip-content_text">
-                    Логин не должен начинаться с цифр и спецсимволов
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
+
         </div>
 
         <div class="g-colEqual-2 modalReg-choose">
