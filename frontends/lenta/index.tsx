@@ -436,6 +436,9 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
       Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
       return;
     }
+    if (res?.error) {
+      Fn.initOne("alert", { text: "Ошибка запроса" });
+    }
     return res;
   } else {
     Fn.initOne("modalAuthtorization", {});
@@ -443,6 +446,14 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 };
 
 // запросы
+
+front.func.follow = async (id, index) => {
+  !Static.records[index].subscribed
+    ? Func.sendAuth(`/api/users/${id}/subscribe`, {})
+    : Func.sendAuth(`/api/users/${id}/unsubscribe`, {});
+  Static.records[index].subscribed = !Static.records[index].subscribed;
+  return;
+};
 
 front.func.likePost = (id) => {
   Func.sendAuth(`/api/posts/${id}/like`, {});
@@ -520,7 +531,7 @@ front.loader = async () => {
 
 front.display = () => {
   return (
-    <div class="wrapper mt-[25px]">
+    <div class="mt-[25px] px-3">
       <Navigation />
     </div>
   );

@@ -15,12 +15,12 @@ import CommentRating from "./Comments/CommentRating";
 
 let image = `/contents/images/lenta/avatar_default.png`;
 
-export default function () {
+export default function ({ to = "" }) {
   return (
     <div class="flex flex-col gap-2" role="list">
       {
         <div class="mb-[-0.625rem] pb-[0.4rem] [border-radius:0_0_0.9375rem_0.9375rem]">
-          {Static.comments?.map((comment, commentIndex) => {
+          {Static.comments?.map((comment) => {
             return (
               <div
                 class="relative !mt-[0.625rem] p-[0_0.625rem]"
@@ -40,7 +40,7 @@ export default function () {
                   ) : (
                     <Form
                       key={"edit" + comment.id}
-                      sendUrl={`/api/comments/${comment.id}/update`}
+                      sendUrl={`/api/${to}${Static.id}/comments/${comment.id}/update`}
                       show={true}
                       extraData={{
                         postId: Static.id,
@@ -93,7 +93,7 @@ export default function () {
                 </div>
                 <Form
                   key={`answer${comment.id}`}
-                  sendUrl={`/api/comments/${comment.id}/comment`}
+                  sendUrl={`/api/${to}${Static.id}/comments/${comment.id}/comment`}
                   extraData={{}}
                 />
 
@@ -114,7 +114,7 @@ export default function () {
                         ) : (
                           <Form
                             key={comm.id}
-                            sendUrl={`/api/comments/${comm.id}/update`}
+                            sendUrl={`/api/${to}${Static.id}/comments/${comm.id}/update`}
                             show={true}
                             extraData={{
                               postId: Static.id,
@@ -173,7 +173,7 @@ export default function () {
                       </div>
                       <Form
                         key={`answer${comm.id}`}
-                        sendUrl={`/api/comments/${comment.id}/comment`}
+                        sendUrl={`/api/${to}${Static.id}/comments/${comment.id}/comment`}
                         extraData={{
                           quote: comm.id,
                         }}

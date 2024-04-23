@@ -11,7 +11,7 @@ export default function ({ item }) {
           }}
           class="flex cursor-pointer items-center gap-2"
         >
-          <i class="i i-likeFull"></i>
+          <i class="i i-hand-thumb-up"></i>
           {item?.statistics.rating}
         </div>
         <div
@@ -21,7 +21,7 @@ export default function ({ item }) {
           }}
           class="flex cursor-pointer items-center gap-2"
         >
-          <i class="i i-dislikeFull"></i>
+          <i class="i i-hand-thumb-down"></i>
           {item?.statistics.rating}
         </div>
       </li>
@@ -30,11 +30,12 @@ export default function ({ item }) {
           onclick={() => {
             Fn.initOne("modalComments", {
               id: item.id,
+              to: "posts/",
             });
           }}
           class="flex cursor-pointer items-center gap-2"
         >
-          <i class="i i-comments"></i>
+          <i class="i i-chat-bubble-left-right"></i>
           {item?.statistics.comments}
         </div>
         <div class="flex items-center gap-2">

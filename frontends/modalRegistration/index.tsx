@@ -118,7 +118,7 @@ front.func.changeEmail = function () {
 }
 
 front.func.sendCode = async function () {
-    let answer = await front.Services.functions.sendApi(`/api/Register`, { action: "registration", email: Static.form.email.value, step: Static.currentStep })
+    let answer = await front.Services.functions.sendApi(`/api/users/register`, { action: "registration", email: Static.form.email.value, step: Static.currentStep })
     if (answer.error) {
         Static.form.email.error = "Пользователь с таким email уже существует!"
         Static.form.email.valid = false

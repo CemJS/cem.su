@@ -82,7 +82,7 @@ export default function () {
             }
           }}
         >
-          <i class={["i", `i-notice-empty`, `text-2xl`]}></i>
+          <i class={["i", `i-notice`, `text-2xl`]}></i>
         </li>
         <li
           class="relative flex h-[3rem] w-[3rem] cursor-pointer items-center justify-center rounded-full text-white"

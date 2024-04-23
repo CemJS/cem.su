@@ -26,9 +26,14 @@ export default function () {
       >
         <Header />
         {/* body */}
-        <div class="h-full overflow-y-auto p-[1rem_0_2.5rem]">
-          {/* <h2 class="bottomSheet-title">Tools</h2> */}
-          <Comments />
+        <div class="h-full p-[1rem_0_1.3rem]">
+          <div
+            ref={`wrapper${Static.id}`}
+            class="h-full overflow-y-auto scroll-smooth"
+          >
+            {/* <h2 class="bottomSheet-title">Tools</h2> */}
+            <Comments to={Static.to} />
+          </div>
         </div>
 
         <InputComment item={Static.item} />

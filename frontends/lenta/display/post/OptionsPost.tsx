@@ -1,7 +1,7 @@
 import { Cemjsx, Fn, Func, front } from "cemjs-all";
 import points from "@svg/lenta/points.svg";
 
-export default function ({ item }) {
+export default function ({ item, index }) {
   return (
     <div class="flex w-full items-center justify-between">
       <span class="font-medium">{item?.author?.nickname}</span>
@@ -16,8 +16,8 @@ export default function ({ item }) {
             front.Variable.Auth
           ) {
             records.push({
-              name: "Подписаться",
-              func: () => Func.follow(item?.author.id),
+              name: !item?.subscribed ? "Подписаться" : "Отписаться",
+              func: () => Func.follow(item?.author.id, index),
             });
           }
 

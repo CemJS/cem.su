@@ -173,6 +173,10 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
       Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
       return;
     }
+    if (res?.error) {
+      Fn.initOne("alert", { text: "Ошибка запроса" });
+      return;
+    }
     return res;
   } else {
     Fn.initOne("modalAuthtorization", {});
