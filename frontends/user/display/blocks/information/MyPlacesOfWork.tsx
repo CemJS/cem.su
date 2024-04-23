@@ -15,6 +15,23 @@ export default function () {
             <div class="absolute right-[1.25rem] top-[1.375rem]">
               <div class="relative ml-[.625rem] h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
                 <img
+                 onclick={() => {
+                  Fn.initOne("modalTools", {
+                    records: [
+                      {
+                        name: "Добавить",
+                        func: () =>
+                          Fn.initOne("modalUserWorkPlace", {
+                            interests: Static.record?.interests,
+                            edit: false,
+                            CallInit: (CallBack: string) => {
+                              Static.record.interests = CallBack;
+                            },
+                          }),
+                      },
+                    ],
+                  });
+                }}
                   class="box-content w-[1.375rem] cursor-pointer p-[.625rem]"
                   src={dots}
                 />

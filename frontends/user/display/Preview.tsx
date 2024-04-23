@@ -4,9 +4,7 @@ import Avatar from "./Avatar";
 let parent = null;
 
 export default function () {
-  // Fn.log("Static.record", Static.record);
-  console.log("Static.record?.background?.name", Static.record?.background?.name);
-  
+  // Fn.log("Static.record", Static.record);  
   return (
     <div class="relative left-[.4375rem] w-[calc(100%_-_14px)] bg-cover bg-no-repeat">
       <Avatar />

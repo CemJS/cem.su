@@ -4,25 +4,6 @@ import defaultGray from "@svg/lenta/defaultGray.svg";
 import settingsIcon from "@svg/profile/settingsIcon.svg";
 
 let parent = null;
-let records = [
-  {
-    name: "Изменить рамку",
-    func: () => Fn.initOne("modalEditFrame", {}),
-  },
-  {
-    name: "Настройки",
-    func: () =>
-      Fn.initOne("modalTools", {
-        records,
-        userId: "",
-        complainTo: {
-          name: "posts",
-          text: "пост",
-          id: "",
-        },
-      }),
-  },
-];
 
 let answer;
 const changeMediaFile = async (url, key) => {
@@ -50,8 +31,11 @@ const changeMediaFile = async (url, key) => {
           name: imgPush?.name,
         },
       };
-      answer = await front.Services.functions.sendApi("/api/users/update", edit);
-      
+      answer = await front.Services.functions.sendApi(
+        "/api/users/update",
+        edit,
+      );
+
       if (answer?.status === 200) {
         Static.record[key].name = imgPush?.name;
       }
@@ -88,44 +72,51 @@ export default function () {
             </div>
             {front.Variable.myInfo?.nickname === front.Variable.DataUrl[1] ? (
               <div class="max-@1200:z-[99]">
-                <div
-                  class="absolute bottom-0 right-0 z-[2] h-[2.5rem] w-[2.5rem] text-[0] @767:bottom-[.3125rem] @767:right-[.3125rem] @767:h-[3.125rem] @767:w-[3.125rem]"
-                >
-                  <img  onclick={() => {
-                    Fn.initOne("modalTools", {
-                      records: [
-                        {
-                          name: "Изменить рамку",
-                          func: () =>
-                            Fn.initOne("modalEditFrame", {
-                              frame: front.Variable?.myInfo?.frame?.name,
-                              avatar: front.Variable?.myInfo?.avatar?.name,
-                              CallInit: (CallBack: string) => {
-                                Static.record.frame.name = CallBack;
-                              },
-                            }),
+                <div class="absolute bottom-0 right-0 z-[2] h-[2.5rem] w-[2.5rem] text-[0] @767:bottom-[.3125rem] @767:right-[.3125rem] @767:h-[3.125rem] @767:w-[3.125rem]">
+                  <img
+                    onclick={() => {
+                      Fn.initOne("modalTools", {
+                        records: [
+                          {
+                            name: "Изменить рамку",
+                            func: () =>
+                              Fn.initOne("modalEditFrame", {
+                                frame: front.Variable?.myInfo?.frame?.name,
+                                avatar: front.Variable?.myInfo?.avatar?.name,
+                                CallInit: (CallBack: string) => {
+                                  Static.record.frame.name = CallBack;
+                                },
+                              }),
+                          },
+                          {
+                            name: "Изменить аватар",
+                            func: () =>
+                              changeMediaFile("/upload/avatar", "avatar"),
+                          },
+                          {
+                            name: "Изменить фон",
+                            func: () =>
+                              changeMediaFile(
+                                "/upload/background",
+                                "background",
+                              ),
+                          },
+                          {
+                            name: "Настройки",
+                            func: () => Fn.linkChange("/profile/settings"),
+                          },
+                        ],
+                        userId: "",
+                        complainTo: {
+                          name: "posts",
+                          text: "пост",
+                          id: "",
                         },
-                        {
-                          name: "Изменить аватар",
-                          func: () => changeMediaFile("/upload/avatar", "avatar"),
-                        },
-                        {
-                          name: "Изменить фон",
-                          func: () => changeMediaFile("/upload/background", "background"),
-                        },
-                        {
-                          name: "Настройки",
-                          func: () => Fn.linkChange("/profile/settings"),
-                        },
-                      ],
-                      userId: "",
-                      complainTo: {
-                        name: "posts",
-                        text: "пост",
-                        id: "",
-                      },
-                    });
-                  }} class="cursor-pointer z-[11]" src={settingsIcon} />
+                      });
+                    }}
+                    class="z-[11] cursor-pointer"
+                    src={settingsIcon}
+                  />
                 </div>
               </div>
             ) : (

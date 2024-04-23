@@ -1,6 +1,8 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
 import MyPlacesOfWork from "./MyPlacesOfWork";
 import dots from "@svg/questions/dots.svg";
+import editIcon from "@svg/profile/editIcon.svg";
+import deleteIcon from "@svg/profile/deleteIcon.svg";
 
 export default function () {
   // Fn.log('=2fc7ab=',Static.aboutMe)
@@ -15,6 +17,23 @@ export default function () {
               <div class="absolute right-[1.25rem] top-[1.375rem]">
                 <div class="relative ml-[.625rem] h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
                   <img
+                    onclick={() => {
+                      Fn.initOne("modalTools", {
+                        records: [
+                          {
+                            name: "Добавить",
+                            func: () =>
+                              Fn.initOne("modalUserInterests", {
+                                interests: Static.record?.interests,
+                                edit: false,
+                                CallInit: (CallBack: string) => {
+                                  Static.record.interests = CallBack;
+                                },
+                              }),
+                          },
+                        ],
+                      });
+                    }}
                     class="box-content w-[1.375rem] cursor-pointer p-[.625rem]"
                     src={dots}
                   />
@@ -27,6 +46,39 @@ export default function () {
                 <div key={key} style="position: relative;">
                   <b class="mb-[.9375rem] mt-[1.4375rem] block text-[1rem] font-bold leading-[1.5rem] text-[--white]">
                     {item?.title}
+                    <img
+                      onclick={() => {
+                        Fn.initOne("modalUserInterests", {
+                          interests: Static.record?.interests,
+                          key: key,
+                          edit: true,
+                          CallInit: (CallBack: string) => {
+                            Static.record.interests = CallBack;
+                          },
+                        });
+                      }}
+                      src={editIcon}
+                      alt="editIcon"
+                      class="absolute right-[1rem] mr-[.5rem] inline w-[1.125rem] cursor-pointer"
+                    />
+                    <img
+                      onclick={async () => {
+                        delete Static.record?.interests[key];
+                        let res = await front.Services.functions.sendApi(
+                          "/api/users/update",
+                          {
+                            interest: Static.record?.interests,
+                          },
+                        );
+
+                        if (res?.status === 200) {
+                          // Static.record.interests = array;
+                        }
+                      }}
+                      src={deleteIcon}
+                      alt="editIcon"
+                      class="absolute right-[-.875rem] mr-[.5rem] inline w-[1.125rem] cursor-pointer"
+                    />
                   </b>
                   <div>
                     <span class="text-[1rem] font-normal leading-[1.5rem] text-[--white]">

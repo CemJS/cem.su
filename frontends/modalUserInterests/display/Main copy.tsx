@@ -22,12 +22,11 @@ const RenderFieldTextarea = function ({ about }) {
   );
 };
 
-const RenderField = function ({ field, placeholder, className }) {
+const RenderField = function ({ field, placeholder }) {
   return (
     <div
       class={[
         "modalWindow_field",
-        `${className}`,
         field?.length ? "modalWindow_field__valid" : null,
       ]}
     >
@@ -50,19 +49,13 @@ const RenderField = function ({ field, placeholder, className }) {
 export default function () {
   return (
     <main class="modal_main">
-      <div class="pY-15">
+      <div class="py-15">
         <RenderField
-          field={Static.work?.title}
+          field="{Static.interest?.title}"
           placeholder="Введите название"
-          className=""
-        />
-        <RenderField
-          field={Static.work?.period}
-          placeholder="Укажите сроки"
-          className="mt-30"
         />
         <h3 class="mt-[25px]">Укажите подробности</h3>
-        <RenderFieldTextarea about={Static.work?.description} />
+        <RenderFieldTextarea about={Static.interest?.description} />
       </div>
     </main>
   );
