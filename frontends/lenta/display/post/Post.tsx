@@ -5,7 +5,7 @@ import TextPost from "./TextPost";
 import UserPost from "./UserPost";
 import StatisticsPost from "./StatisticsPost";
 import TimePost from "./TimePost";
-import CubeSlider from "@elements/CubeSlider";
+import CubeSlider from "@elements/CubeSliderS";
 
 export default function ({ item, index }) {
   return (
