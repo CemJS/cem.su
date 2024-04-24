@@ -447,11 +447,12 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 
 // запросы
 
-front.func.follow = async (id, index) => {
-  !Static.records[index].subscribed
-    ? Func.sendAuth(`/api/users/${id}/subscribe`, {})
-    : Func.sendAuth(`/api/users/${id}/unsubscribe`, {});
-  Static.records[index].subscribed = !Static.records[index].subscribed;
+front.func.follow = async (item) => {
+  let res;
+  !item?.subscribed
+    ? (res = await Func.sendAuth(`/api/users/${item?.id}/subscribe`, {}))
+    : (res = await Func.sendAuth(`/api/users/${item?.id}/unsubscribe`, {}));
+  res?.status == 200 ? (item.subscribed = !item?.subscribed) : null;
   return;
 };
 
