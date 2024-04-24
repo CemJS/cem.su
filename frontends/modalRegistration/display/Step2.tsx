@@ -15,8 +15,12 @@ export default function () {
               type="text"
               required
               autocomplete="off"
-              class="bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 valid:[&:not(:placeholder-shown)]:border-green-500 disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700"
               placeholder="Логин"
+              disabled={Static.form.nickName.disable}
+              class={["bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block  disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700",
+                Static.form.nickName.error ? "border-red-400 focus:border-red-400" : null,
+                Static.form.nickName.valid ? "valid:[&:not(:placeholder-shown)]:border-green-500" : null
+              ]}
               oninput={async (e: any) => {
                 Static.form.nickName.value = e.target.value;
                 front.Services.functions.formNickName(Static.form.nickName);
@@ -27,7 +31,7 @@ export default function () {
                   Static.setTimeout = Number(
                     setTimeout(async () => {
                       let answer = await front.Services.functions.sendApi(
-                        `/api/Register`,
+                        `/api/users/register`,
                         {
                           action: "checkNick",
                           step: Static.currentStep,
@@ -46,7 +50,27 @@ export default function () {
               }}
             />
           </div>
-
+          {Static.form.nickName.error ? <span class="mt-2 text-sm text-red-500">{Static.form.nickName.error}</span> : null}
+          {/* modalWindow_field__tooltip */}
+          <div class="absolute right-4">
+            <div
+              class="tooltip"
+              onmouseover={() => {
+                Ref.tooltipContent.classList.add("tooltip-content__active");
+              }}
+              onmouseleave={() => {
+                Ref.tooltipContent.classList.remove(
+                  "tooltip-content__active",
+                );
+              }}
+            >
+              <div class="tooltip-content" ref="tooltipContent">
+                <p class="tooltip-content_text">
+                  Логин не должен начинаться с цифр и спецсимволов
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="g-colEqual-2 modalReg-choose">
