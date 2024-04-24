@@ -1,7 +1,7 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 
-front.func.follow = async (item, key) => {
+front.func.follow = async (item) => {
   if (!front.Variable.Auth) {
     Fn.initOne("modalAuthtorization", {});
     return;

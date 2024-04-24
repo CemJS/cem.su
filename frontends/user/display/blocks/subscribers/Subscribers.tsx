@@ -3,6 +3,7 @@ import avatarDefault from "@images/lenta/avatar_default.png";
 import defaultGray from "@svg/lenta/defaultGray.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import dots from "@svg/questions/dots.svg";
+import { subscriberObject } from "./interface";
 
 export default function () {
   return (
@@ -13,8 +14,7 @@ export default function () {
         </h2>
       </div>
       <div class="mt-0 grid grid-cols-[100%] gap-0 @680:grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)] @680:gap-[.625rem] @970:grid-cols-[calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)] @970:gap-[.625rem] @1370:mt-[1.875rem] @1370:grid-cols-[calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)]">
-        {Static.record?.subscribers?.map((item: any, key: number) => {
-          // Fn.log('=9aa675=', item)
+        {Static.record?.subscribers?.map((item: subscriberObject) => {
           return (
             <div class="relative box-border flex max-h-[9.125rem] rounded-[0] bg-[--black-gray] p-[.9375rem] [border:1px_solid_#363C50] max-@1024:border-x-0 max-@1024:border-b-[0] @1024:rounded-[.75rem]">
               <a
@@ -71,7 +71,7 @@ export default function () {
                   ) {
                     records.push({
                       name: !item?.subscribed ? "Подписаться" : "Отписаться",
-                      func: () => Func.follow(item, key),
+                      func: () => Func.follow(item),
                     });
                   }
 
