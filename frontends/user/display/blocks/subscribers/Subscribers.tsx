@@ -71,7 +71,7 @@ export default function () {
                   ) {
                     records.push({
                       name: !item?.subscribed ? "Подписаться" : "Отписаться",
-                      func: () => Func.follow(item, key),
+                      func: () => Func.follow(item),
                     });
                   }
 

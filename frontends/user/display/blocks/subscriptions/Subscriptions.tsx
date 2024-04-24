@@ -61,11 +61,11 @@ export default function () {
                   {item?.fullName}
                 </p>
               </div>
-              <div class="relative ml-auto h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
+              {/* <div class="relative ml-auto h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
                 <div class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
                   <img src={dots} />
                 </div>
-              </div>
+              </div> */}
             </div>
           );
         })}
