@@ -1,6 +1,33 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 
+front.func.follow = async (item, key) => {
+  if (!front.Variable.Auth) {
+    Fn.initOne("modalAuthtorization", {});
+    return;
+  }
+
+  const action = item?.subscribed ? "unsubscribe" : "subscribe";
+  let res = await front.Services.functions.sendApi(
+    `/api/users/${item?.id}/${action}`,
+    {},
+  );
+
+  if (res?.status === 409) {
+    Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
+    return;
+  }
+
+  if (res?.error) {
+    Fn.initOne("alert", { text: "Ошибка запроса" });
+    return;
+  }
+
+  if (res?.status === 200) {
+    item.subscribed = !item?.subscribed;
+  }
+};
+
 front.listener.clickAny = function (e) {
   if (
     Ref.filterCategoryv &&
@@ -42,7 +69,7 @@ front.loader = async () => {
             return;
           }
           Static.record = json;
-          Fn.log('Static.record', Static.record)
+          Fn.log("Static.record", Static.record);
         },
       },
       {

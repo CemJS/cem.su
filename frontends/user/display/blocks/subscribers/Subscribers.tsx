@@ -12,7 +12,7 @@ export default function () {
           Подписчики
         </h2>
       </div>
-      <div class="mt-0 grid grid-cols-[100%] gap-0 @680:grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)] @970:grid-cols-[calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)] @970:gap-[.625rem] @1370:mt-[1.875rem] @1370:grid-cols-[calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)]">
+      <div class="mt-0 grid grid-cols-[100%] gap-0 @680:grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)] @680:gap-[.625rem] @970:grid-cols-[calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)] @970:gap-[.625rem] @1370:mt-[1.875rem] @1370:grid-cols-[calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)]">
         {Static.record?.subscribers?.map((item: any, key: number) => {
           // Fn.log('=9aa675=', item)
           return (
@@ -61,7 +61,26 @@ export default function () {
                   {item?.fullName}
                 </p>
               </div>
-              <div class="relative ml-auto h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
+              <div
+                class="relative ml-auto h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]"
+                onclick={() => {
+                  let records = [];
+                  if (
+                    front.Variable.myInfo.id != item?.id &&
+                    front.Variable.Auth
+                  ) {
+                    records.push({
+                      name: !item?.subscribed ? "Подписаться" : "Отписаться",
+                      func: () => Func.follow(item, key),
+                    });
+                  }
+
+                  Fn.initOne("modalTools", {
+                    userId: item?.id,
+                    records,
+                  });
+                }}
+              >
                 <img
                   class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
                   src={dots}

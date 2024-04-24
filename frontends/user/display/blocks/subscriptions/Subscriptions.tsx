@@ -12,7 +12,7 @@ export default function () {
           Мои подписки
         </h2>
       </div>
-      <div class="mt-0 grid grid-cols-[100%] gap-0 @680:grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)] @970:grid-cols-[calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)] @970:gap-[.625rem] @1370:mt-[1.875rem] @1370:grid-cols-[calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)]">
+      <div class="mt-0 grid grid-cols-[100%] gap-0 @680:grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)] @680:gap-[.625rem] @970:grid-cols-[calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)_calc(33.3%_-_6.6px)] @970:gap-[.625rem] @1370:mt-[1.875rem] @1370:grid-cols-[calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)_calc(25%_-_7.5008px)]">
         {Static.record?.subscriptions?.map((item: any, key: number) => {
           // Fn.log('=9aa675=', item)
           return (

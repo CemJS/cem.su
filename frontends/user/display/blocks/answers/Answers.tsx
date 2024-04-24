@@ -4,6 +4,7 @@ import defaultGray from "@svg/lenta/defaultGray.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import dots from "@svg/questions/dots.svg";
+import AnswersBtbMyProf from "./AnswersBtbMyProf";
 
 export default function () {
   //   console.log("Static.record", Static.record);
@@ -105,25 +106,12 @@ export default function () {
                   <p class="mb-[1rem] mt-0" html={item?.text}></p>
                 </div>
               </div>
-              <div class="absolute right-[1.25rem] top-[.625rem] box-border cursor-pointer">
-                <div class="relative ml-[.625rem] box-border h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
-                  <img
-                  onclick={() => {
-                    Fn.initOne("modalTools", {
-                      // records,
-                      userId: Static.record.author.id,
-                      complainTo: {
-                        name: "questions",
-                        text: "вопрос",
-                        id: Static.record?.id,
-                      },
-                    });
-                  }}
-                    class="absolute left-[50%] top-[50%] box-border translate-x-[-50%] translate-y-[-50%]"
-                    src={dots}
-                  />
-                </div>
-              </div>
+              {front.Variable?.DataUrl[1] ===
+              front.Variable?.myInfo?.nickname ? (
+                <AnswersBtbMyProf item={item} key={key} />
+              ) : (
+                ""
+              )}
             </div>
           );
         })}

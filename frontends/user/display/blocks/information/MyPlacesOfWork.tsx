@@ -64,7 +64,7 @@ export default function () {
                     onclick={async () => {
                       Fn.initOne("modalAccept", {
                         title: "удалить свое место работы",
-                        CallInit: async (CallBack: boolean) => {
+                        Callback: async (CallBack: boolean) => {
                           if (CallBack) {
                             Static.record?.work.splice(key, 1);
                             let res = await front.Services.functions.sendApi(

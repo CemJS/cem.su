@@ -65,7 +65,7 @@ export default function () {
                       onclick={() => {
                         Fn.initOne("modalAccept", {
                           title: "удалить свой интерес",
-                          CallInit: async (CallBack: boolean) => {
+                          Callback: async (CallBack: boolean) => {
                             if (CallBack) {
                               Static.record?.interests.splice(key, 1);
                               let res = await front.Services.functions.sendApi(

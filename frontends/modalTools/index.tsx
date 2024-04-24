@@ -125,12 +125,20 @@ front.loader = () => {
           ...Static.records,
           {
             name: "В чёрный список",
+
             func: () => {
-              Fn.initOne("alert", {
-                text: "Пользователь добавлен в чёрный список",
-                type: "danger",
+              Fn.initOne("modalAccept", {
+                title: "Добавить пользователя в черный список",
+                Callback: async (CallBack: boolean) => {
+                  if (CallBack) {
+                    Fn.initOne("alert", {
+                      text: "Пользователь добавлен в чёрный список",
+                      type: "danger",
+                    });
+                    Func.blacklistUser();
+                  }
+                },
               });
-              Func.blacklistUser();
             },
             type: "danger",
           },
