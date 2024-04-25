@@ -25,25 +25,25 @@
     }
   }
 
-  &-choose {
-    &_item {
-      padding: 1rem 2rem;
+  // &-choose {
+  //   &_item {
+  //     padding: 1rem 2rem;
 
-      span {
-        font-size: clamp(14px, 5vw, 16px);
-        font-weight: 500;
-      }
+  //     span {
+  //       font-size: clamp(14px, 5vw, 16px);
+  //       font-weight: 500;
+  //     }
 
-      &__success {
-        border: 1px solid var(--green-700);
-      }
-    }
+  //     &__success {
+  //       border: 1px solid var(--green-700);
+  //     }
+  //   }
 
-    @media (max-width: 464px) {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-  }
+  //   @media (max-width: 464px) {
+  //     grid-template-columns: 1fr;
+  //     gap: 1rem;
+  //   }
+  // }
 }
 
 .modalWindow {
