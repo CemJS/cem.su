@@ -24,7 +24,6 @@ export default function ({ item, key }) {
                         );
 
                         if (res?.status === 200) {
-                          // Static.record.work = array;
                         }
                       }
                     },

@@ -24,10 +24,10 @@ export default function () {
                           name: "Добавить",
                           func: () =>
                             Fn.initOne("modalUserWorkPlace", {
-                              work: Static.record?.work,
+                              work: Static.record?.works,
                               edit: false,
                               CallInit: (CallBack: string) => {
-                                Static.record.work = CallBack;
+                                Static.record.works = CallBack;
                               },
                             }),
                         },
@@ -40,7 +40,7 @@ export default function () {
               </div>
             </div>
           )}
-          {Static.record?.work?.map((item: any, key: number) => {
+          {Static.record?.works?.map((item: any, key: number) => {
             return (
               <div class="box-border w-full pl-[1.25rem] [border-left:2px_solid_#6948AC] last:[border-color:rgba(0,_0,_0,_0)]">
                 <span class="text-[1rem] font-normal leading-[1.5625rem] text-[--white] before:first:absolute before:first:left-[-1.6875rem] before:first:top-[.3125rem] before:first:box-border before:first:h-[.75rem] before:first:w-[.75rem] before:first:rounded-[50%] before:first:bg-[--black-gray] before:first:content-[''] before:first:[border:3px_solid_#8462C6] [&:nth-child(1)]:relative [&:nth-child(1)]:top-[-.625rem] [&:nth-child(1)]:block [&:nth-child(1)]:text-[1rem] [&:nth-child(1)]:font-bold [&:nth-child(1)]:text-[--white]">
@@ -48,11 +48,11 @@ export default function () {
                   <img
                     onclick={() => {
                       Fn.initOne("modalUserWorkPlace", {
-                        work: Static.record?.work,
+                        work: Static.record?.works,
                         key: key,
                         edit: true,
                         CallInit: (CallBack: string) => {
-                          Static.record.work = CallBack;
+                          Static.record.works = CallBack;
                         },
                       });
                     }}
@@ -66,24 +66,11 @@ export default function () {
                         title: "удалить свое место работы",
                         Callback: async (CallBack: boolean) => {
                           if (CallBack) {
-                            const array = [...Static.record?.work];
+                            const url = "/api/users/update";
+                            const array = [...Static.record?.works];
                             array.splice(key, 1);
-                            let res = await front.Services.functions.sendApi(
-                              "/api/users/update",
-                              {
-                                work: Static.record?.work,
-                              },
-                            );
-
-                            if (res?.status === 200) {
-                              Static.record.work = array;
-                            } else {
-                              Fn.initOne("alert", {
-                                title: "Ошибка!",
-                                errorText:
-                                  "Соединение не удалось, попробуйте позже",
-                              });
-                            }
+                            const name = "work";
+                            Func.delete(url, array, name);
                           }
                         },
                       });

@@ -31,7 +31,7 @@ export default function () {
           {Static.title ? Static.title : null}
         </h3>
       </div>
-      <div class="mb-4 mt-2 text-sm">{Static.errorText}</div>
+      <div class="mb-4 mt-2 text-sm">{Static.text}</div>
       <div class="flex">
         {/* <button
           type="button"

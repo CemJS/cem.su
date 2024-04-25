@@ -90,8 +90,7 @@ export default function () {
                                   } else {
                                     Fn.initOne("alert", {
                                       title: "Ошибка!",
-                                      errorText:
-                                        "Соединение не удалось, попробуйте позже",
+                                      text: "Соединение не удалось, попробуйте позже",
                                     });
                                   }
                                 }

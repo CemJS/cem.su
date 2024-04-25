@@ -5,6 +5,7 @@ import moment from "moment";
 import { sendApi } from "./sendApi";
 import { indexDB, IndexDBGetByOne } from "./indexDB";
 import "moment/min/locales";
+import { throttle } from "./throttle";
 
 export * from "./validForms";
 export * from "./indexDB";
@@ -149,4 +150,4 @@ export const loader = async function (Variable: any, Fn: any) {
   return;
 };
 
-export { uuidv4, editText, searchLink, indexDB, IndexDBGetByOne };
+export { uuidv4, editText, searchLink, indexDB, IndexDBGetByOne, throttle };
