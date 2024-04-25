@@ -37,6 +37,7 @@ export default function ({ src, key }) {
       <div
         class="video-play"
         onclick={() => {
+          console.log("=58451f=", Ref[`video${key}`]);
           Func.playAndPause(Ref[`video${key}`]);
         }}
         ondblclick={(e: any) => {
@@ -48,8 +49,11 @@ export default function ({ src, key }) {
           }
         }}
       >
-        <div class="video-play__icon !bg-[rgba(0,0,0,0.6117647059)]">
-          <i class="i i-play" ref={`mainPlay${key}`}></i>
+        <div
+          ref={`mainPlay${key}`}
+          class="video-play__icon !bg-[rgba(0,0,0,0.6117647059)]"
+        >
+          <i class="i i-play"></i>
         </div>
       </div>
       <div class="video-wrapper">
@@ -138,13 +142,14 @@ export default function ({ src, key }) {
                 Ref[`video${key}`].currentTime -= 5;
               }}
             >
-              <i class="i i-undo1"></i>
+              <i class="i i-backward"></i>
             </span>
             <span class="video-icon">
               <i
-                class="i i-play3"
+                class="i i-play"
                 ref={`playAndPause${key}`}
                 onclick={() => {
+                  console.log("=ff7156=", Ref[`video${key}`]);
                   Func.playAndPause(Ref[`video${key}`]);
                 }}
               ></i>
@@ -156,7 +161,7 @@ export default function ({ src, key }) {
                 Ref[`video${key}`].currentTime += 5;
               }}
             >
-              <i class="i i-redo1"></i>
+              <i class="i i-forward"></i>
             </span>
           </li>
           <li class="video-options">
@@ -170,7 +175,7 @@ export default function ({ src, key }) {
               }}
             >
               <span class="video-icon">
-                <i class="i i-speed"></i>
+                <i class="i i-ellipsis-vertical"></i>
               </span>
               <ul class="speed-tools" ref={`speedOptions${key}`}>
                 {Static.speedOptions.map((item) => {
@@ -214,12 +219,12 @@ export default function ({ src, key }) {
                 Ref[`video${key}`].requestPictureInPicture();
               }}
             >
-              <i class="i i-onedrive"></i>
+              <i class="i i-arrow-top-right-on-square"></i>
             </span>
             <span class="video-icon">
               <i
                 ref={`fullScreen${key}`}
-                class="i i-share"
+                class="i i-arrows-pointing-out"
                 onclick={() => {
                   let position = document.documentElement.scrollTop;
 
@@ -228,8 +233,8 @@ export default function ({ src, key }) {
                   );
                   if (document.fullscreenElement) {
                     Ref[`fullScreen${key}`].classList.replace(
-                      "i-user",
-                      "i-share",
+                      "i-arrows-pointing-in",
+                      "i-arrows-pointing-out",
                     );
                     document.documentElement.scrollTo(0, position);
                     document.exitFullscreen();
@@ -237,8 +242,8 @@ export default function ({ src, key }) {
                     return;
                   }
                   Ref[`fullScreen${key}`].classList.replace(
-                    "i-share",
-                    "i-user",
+                    "i-arrows-pointing-out",
+                    "i-arrows-pointing-in",
                   );
                   Ref[`videoContainer${key}`].requestFullscreen();
 
@@ -251,8 +256,8 @@ export default function ({ src, key }) {
                           fullscreen,
                         );
                         Ref[`fullScreen${key}`].classList.replace(
-                          "i-user",
-                          "i-share",
+                          "i-arrows-pointing-in",
+                          "i-arrows-pointing-out",
                         );
                         Ref[`videoContainer${key}`].classList.remove(
                           "video-container_fullscreen",
@@ -273,14 +278,14 @@ export default function ({ src, key }) {
         ref={`video${key}`}
         src={src}
         onplay={() => {
-          Ref[`playAndPause${key}`].classList.replace("i-play3", "i-pause2");
-          Ref[`mainPlay${key}`].classList.replace("i-play3", "i-pause2");
+          Ref[`playAndPause${key}`].classList.replace("i-play", "i-pause");
+          Ref[`mainPlay${key}`].classList.replace("i-play", "i-pause");
           Ref[`mainPlay${key}`].style.display = "none";
         }}
         onpause={() => {
-          Ref[`playAndPause${key}`].classList.replace("i-pause2", "i-play3");
-          Ref[`mainPlay${key}`].classList.replace("i-pause2", "i-play3");
-          Ref[`mainPlay${key}`].style.display = "block";
+          Ref[`playAndPause${key}`].classList.replace("i-pause", "i-play");
+          Ref[`mainPlay${key}`].classList.replace("i-pause", "i-play");
+          Ref[`mainPlay${key}`].style.display = "flex";
         }}
         ontimeupdate={(e: any) => {
           Func.timeUpdate(e, key);
@@ -294,6 +299,7 @@ export default function ({ src, key }) {
 }
 
 front.func.playAndPause = (video: any) => {
+  console.log("=0ed98f=", video);
   if (video.paused) {
     video.play();
   } else {

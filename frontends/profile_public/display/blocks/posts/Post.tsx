@@ -27,13 +27,14 @@ const callModal = () => {
       }
       const makeLinksClickable = (text: string, attribute: string) => {
         const urlRegex = /(https?:\/\/[^\s]+)/g;
-        return text.replace(urlRegex, (url) => `<a href="${url}" rel="noreferrer" target="_blank" rel="nofollow noopener" ${attribute}>${url}</a>`);
+        return text.replace(
+          urlRegex,
+          (url) =>
+            `<a href="${url}" rel="noreferrer" target="_blank" rel="nofollow noopener" ${attribute}>${url}</a>`,
+        );
       };
       return (
-        <div
-          key={key}
-          class="feed-card__item"
-        >
+        <div key={key} class="feed-card__item">
           <div class="card-position">
             <div class="feed-card__item__header">
               <a
@@ -45,11 +46,19 @@ const callModal = () => {
                 <div class="feed-card__avatar__icon">
                   <img
                     class="c-avataricon__photo"
-                    src={Static.record?.avatar?.name ? `/assets/upload/avatar/${Static.record?.avatar?.name}` : avatarDefault}
+                    src={
+                      Static.record?.avatar?.name
+                        ? `/assets/upload/avatar/${Static.record?.avatar?.name}`
+                        : avatarDefault
+                    }
                   />
                   <img
                     class="c-avataricon__frame"
-                    src={Static.record?.frame?.name ? `/contents/images/lenta/${Static.record?.frame?.name}` : defaultGray}
+                    src={
+                      Static.record?.frame?.name
+                        ? `/contents/images/lenta/${Static.record?.frame?.name}`
+                        : defaultGray
+                    }
                   />
                   <div>
                     <div class="c-avataricon__level user_avatar_level">
@@ -79,7 +88,9 @@ const callModal = () => {
                 <Cube3d />
               ) : (
                 <div class="feed-card__item__body__image-container">
-                  <img src={`/assets/upload/posts/${Static.data.media[0]?.name}`} />
+                  <img
+                    src={`/assets/upload/posts/${Static.data.media[0]?.name}`}
+                  />
                 </div>
               )}
 
@@ -95,18 +106,28 @@ const callModal = () => {
                       <span>
                         <p
                           class="feed-card__item__body__text feed-card__item__body__text_white-space"
-                          html={makeLinksClickable(Static.data.text, 'class="my-link"')}
+                          html={makeLinksClickable(
+                            Static.data.text,
+                            'class="my-link"',
+                          )}
                         ></p>
                       </span>
                     </div>
                   ) : (
                     <div>
                       <span>
-                        <div>{Static.data.text.length > 51 ? Static.data.text.slice(0, 51) + "..." : Static.data.text}</div>
+                        <div>
+                          {Static.data.text.length > 51
+                            ? Static.data.text.slice(0, 51) + "..."
+                            : Static.data.text}
+                        </div>
                       </span>
                       <div>
                         <span
-                          class={["show-full-post", Static.data.text.length < 51 ? "hide" : null]}
+                          class={[
+                            "show-full-post",
+                            Static.data.text.length < 51 ? "hide" : null,
+                          ]}
                           onclick={() => {
                             Static.showPost[key] = true;
                           }}
@@ -143,17 +164,11 @@ const callModal = () => {
               </div>
               <div class="feed-card__statistic__item">
                 <div class="feed-card__statistic__item__image">
-                  <img
-                    src={msg}
-                    alt="msg"
-                  />
+                  <img src={msg} alt="msg" />
                   <span>0</span>
                 </div>
                 <div class="feed-card__statistic__item__image">
-                  <img
-                    src={eye}
-                    alt="msg"
-                  />
+                  <img src={eye} alt="msg" />
                   <span>0</span>
                 </div>
               </div>
@@ -212,36 +227,47 @@ export default function () {
           contenteditable="plaintext-only"
           onkeyup={(e) => {
             Static.data.text = e.target.textContent;
-            Static.data?.text.length > 1 ? (Static.isValid = true) : (Static.isValid = false);
+            Static.data?.text.length > 1
+              ? (Static.isValid = true)
+              : (Static.isValid = false);
           }}
         />
 
         <div class="post-create__media">
-          <label
-            id="photo"
-            class="post-create__media-item"
-          >
-            <img
-              src={photo}
-              alt=""
-            />
+          <label id="photo" class="post-create__media-item">
+            <img src={photo} alt="" />
             <input
               id="photo"
               ref="photo"
               type="file"
               accept=".jpg, .jpeg, .png, .gif, image/*"
               multiple="true"
-              onclick={(e) => Fn.log("=193ffa=", e)}
+              onchange={async (e) => {
+                const files = [...e.target.files];
+                console.log("=084651=", files);
+                // let err = 0;
+                // files.forEach((file) => {
+                //   if (!(file.type.split("/")[0] == "video")) {
+                //     err++;
+                //   }
+                // });
+                // if (!err) {
+                //   files.forEach((file) => {
+                //     Func.uploadMedia(file, "video");
+                //   });
+                // } else {
+                //   Fn.initOne("alert", {
+                //     type: "danger",
+                //     text: "Неверный формат видео",
+                //   });
+                // }
+
+                e.preventDefault();
+              }}
             />
           </label>
-          <label
-            id="video"
-            class="post-create__media-item"
-          >
-            <img
-              src={video}
-              alt=""
-            />
+          <label id="video" class="post-create__media-item">
+            <img src={video} alt="" />
             <input
               onchange={async (e) => {
                 const files = [...e.target.files];
@@ -256,7 +282,10 @@ export default function () {
                     Func.uploadMedia(file, "video");
                   });
                 } else {
-                  Fn.initOne("alert", { type: "danger", text: "Неверный формат видео" });
+                  Fn.initOne("alert", {
+                    type: "danger",
+                    text: "Неверный формат видео",
+                  });
                 }
 
                 e.preventDefault();
@@ -268,14 +297,8 @@ export default function () {
               multiple="true"
             />
           </label>
-          <label
-            id="audio"
-            class="post-create__media-item"
-          >
-            <img
-              src={audio}
-              alt=""
-            />
+          <label id="audio" class="post-create__media-item">
+            <img src={audio} alt="" />
             <input
               onchange={async (e) => {
                 const files = [...e.target.files];
@@ -290,7 +313,10 @@ export default function () {
                     Func.uploadMedia(file, "audio");
                   });
                 } else {
-                  Fn.initOne("alert", { type: "danger", text: "Неверный формат аудио" });
+                  Fn.initOne("alert", {
+                    type: "danger",
+                    text: "Неверный формат аудио",
+                  });
                 }
 
                 e.preventDefault();
@@ -306,7 +332,11 @@ export default function () {
         <div class="post-create__buttons">
           <div
             onclick={() => (Static.isValid ? callModal() : null)}
-            class={["btn", "post-create__button", !Static.isValid ? "btn_reset" : null]}
+            class={[
+              "btn",
+              "post-create__button",
+              !Static.isValid ? "btn_reset" : null,
+            ]}
           >
             <span>Предпросмотр</span>
           </div>
@@ -314,13 +344,20 @@ export default function () {
             onclick={async (e) => {
               if (Static.isValid) {
                 Fn.log("=d03a2d=", Static.data);
-                let res = await front.Services.functions.sendApi("/api/Posts", Static.data);
+                let res = await front.Services.functions.sendApi(
+                  "/api/Posts",
+                  Static.data,
+                );
                 console.log("=b433f7=", res);
               } else {
                 Fn.initOne("alert", { text: "Заполните пост", type: "danger" });
               }
             }}
-            class={["btn", "post-create__button", !Static.isValid ? "btn_reset" : null]}
+            class={[
+              "btn",
+              "post-create__button",
+              !Static.isValid ? "btn_reset" : null,
+            ]}
           >
             <span>Создать</span>
           </div>

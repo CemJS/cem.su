@@ -25,7 +25,10 @@ front.func.uploadMedia = async (file, type: string) => {
     Static.data.media.push({ type, name: res.name });
     Static.data.media.length > 0 ? (Static.isValid = true) : null;
   } catch {
-    Fn.initOne("alert", { text: `Не удалось загрузить ${errors[type]}`, type: "danger" });
+    Fn.initOne("alert", {
+      text: `Не удалось загрузить ${errors[type]}`,
+      type: "danger",
+    });
   }
   return;
 };
@@ -43,7 +46,9 @@ front.loader = async () => {
   Static.isValid = false;
 
   if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "posts") {
-    let url = front.Services.functions.makeUrlEvent("Posts", { action: "showMy" });
+    let url = front.Services.functions.makeUrlEvent("Posts", {
+      action: "showMy",
+    });
     let listener = [
       {
         type: "get",

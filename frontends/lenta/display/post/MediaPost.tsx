@@ -7,12 +7,12 @@ export default function ({ mediaItem, index }) {
       {mediaItem.type == "video" ? (
         <Video
           src={`/assets/upload/posts/c793dcce7c11a1266adbaf4c5727cca4.mp4`}
-          key={index}
+          key={mediaItem?.mediaName}
         />
       ) : mediaItem.type == "audio" ? (
         <audio-player
-          src="/contents/audio/test2.mp3"
-          title="My media file2"
+          src={`/assets/upload/posts/${mediaItem?.mediaName}`}
+          title={mediaItem?.mediaName}
         ></audio-player>
       ) : mediaItem.type == "image" ? (
         <img
