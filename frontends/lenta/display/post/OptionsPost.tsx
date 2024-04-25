@@ -12,16 +12,17 @@ export default function ({ item, index }) {
           let records = [];
 
           if (
-            front.Variable.myInfo.id != item.author.id &&
-            front.Variable.Auth
+            front.Variable?.myInfo.id != item?.author.id &&
+            front.Variable?.Auth
           ) {
             records.push({
               name: !item?.subscribed ? "Подписаться" : "Отписаться",
-              func: () => Func.follow(item?.author.id, index),
+              func: () => Func.follow(item),
             });
           }
 
           Fn.initOne("modalTools", {
+            shareUrl: `/lenta-users/show/${item.id}`,
             records,
             userId: item?.author.id,
             complainTo: {

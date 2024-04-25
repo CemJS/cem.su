@@ -53,7 +53,7 @@ front.func.updateSheetHeight = (height) => {
 front.func.share = () => {
   navigator.share({
     title: document.title,
-    url: window.location.href,
+    url: window.location.href + Static.shareUrl,
   });
 };
 

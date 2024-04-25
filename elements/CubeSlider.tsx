@@ -29,15 +29,21 @@ class Gallery {
   dotsItem: any;
   dotNodes: any;
   dragShift: number;
+  firstManage: boolean;
   adaptive: object;
+  cube: any;
+  counter: any;
 
-  constructor(element: HTMLElement) {
+  constructor(element: HTMLElement, cube: HTMLElement, counter: HTMLElement) {
     this.element = element;
-    this.elementCount = Ref.cube.children.length;
+    this.cube = cube;
+    this.counter = counter;
+    this.elementCount = this.cube.children.length;
     this.countSlides = 1;
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
     this.currentSlideWasChanged = false;
+    this.firstManage = true;
 
     // чтобы при вызове методов не слетали контексты вызываем  bind
     this.manageHTML = this.manageHTML.bind(this);
@@ -48,7 +54,6 @@ class Gallery {
     this.startDrag = this.startDrag.bind(this);
     this.stopDrag = this.stopDrag.bind(this);
     this.dragging = this.dragging.bind(this);
-    // this.setStylePosition = this.setStylePosition.bind(this);
     this.clickNext = this.clickNext.bind(this);
     this.clickPrev = this.clickPrev.bind(this);
     this.changeCurrentSlide = this.changeCurrentSlide.bind(this);
@@ -64,19 +69,29 @@ class Gallery {
 
   manageHTML() {
     this.lineNode = this.element.querySelector(`.${GalleryLineclass}`);
+    this.counter = this.element.querySelector(`#counter`);
+    this.cube = this.element.querySelector(`#cube`);
   }
 
   setParameters() {
     const coordsContainer = this.element.getBoundingClientRect();
     this.widthContainer = coordsContainer.width;
-    // this.maximumX = -(this.size - 1) * this.widthContainer;
     this.x = -(this.currentSlide * 90);
     this.size = Math.ceil(this.elementCount / this.countSlides);
 
-    // this.setStyleTransition();
     this.lineNode.style.width = `${this.widthContainer}px`;
-    // this.setStylePosition();
-    Array.from(Ref.cube.children).forEach(async (slideNode: any, i) => {
+
+    // поворот куба
+    this.cube.style.transform = `translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(${this.x}deg)`;
+    this.cube.style.transformOrigin = `50% 50% -${this.widthContainer / 2}px`;
+
+    // счётчик
+    this.size > 1
+      ? (this.counter.textContent = `${this.currentSlide + 1} / ${this.size}`)
+      : (this.counter.style.display = "none");
+
+    let counterSlides = 0;
+    Array.from(this.cube.children).forEach(async (slideNode: any, i) => {
       if (
         this.currentSlide == i ||
         this.currentSlide - 1 == i ||
@@ -86,13 +101,31 @@ class Gallery {
       } else {
         slideNode.style.zIndex = 0;
       }
-      // slideNode.style.transform = `rotateX(0deg) rotateY(${90 * i}deg) translate3d(0px, 0px, 0px)`;
-      // slideNode.style.minWidth = `${this.widthContainer}px`;
-      // slideNode.style.maxWidth = `${this.widthContainer}px`;
-      // slideNode.style.minHeight = `${Static.height}px`;
-      // slideNode.style.maxHeight = `${Static.height}px`;
+
+      slideNode.style.width = `${this.widthContainer}px`;
+
+      // расставка слайдов по кругу
+      if (i <= 1) {
+        slideNode.style.transform = `rotateX(0deg) rotateY(${90 * i}deg) translate3d(0px, 0px, 0px)`;
+      } else {
+        counterSlides++;
+
+        counterSlides == 1
+          ? (slideNode.style.transform = `rotateX(0deg) rotateY(${90 * i}deg) translate3d(${this.widthContainer * (i - 1)}px, 0px, ${this.widthContainer}px)`)
+          : null;
+        counterSlides == 2
+          ? (slideNode.style.transform = `rotateX(0deg) rotateY(${90 * i}deg) translate3d(${-this.widthContainer}px, 0px, ${this.widthContainer * i}px)`)
+          : null;
+        counterSlides == 3
+          ? (slideNode.style.transform = `rotateX(0deg) rotateY(${90 * i}deg) translate3d(${-(this.widthContainer * i)}px, 0px, 0px)`)
+          : null;
+        counterSlides == 4
+          ? (slideNode.style.transform = `rotateX(0deg) rotateY(${90 * i}deg) translate3d(0px, 0px, ${-(this.widthContainer * (i - 1))}px)`)
+          : null;
+
+        counterSlides == 4 ? (counterSlides = 0) : null;
+      }
     });
-    // this.manageHTML();
   }
 
   setEvents() {
@@ -143,12 +176,12 @@ class Gallery {
 
   changeCurrentSlide() {
     this.x = -(this.currentSlide * 90);
-    this.setStylePosition();
     this.setStyleTransition();
     this.setParameters();
   }
 
   startDrag(e) {
+    this.cube.style.cursor = "grabbing";
     this.currentSlideWasChanged = false;
     this.clickX = e.pageX;
     this.startX = this.x;
@@ -158,65 +191,81 @@ class Gallery {
   }
 
   stopDrag() {
+    this.cube.style.cursor = "grab";
+
     window.removeEventListener("pointermove", this.dragging);
     this.element.classList.remove("cursor-grab");
     this.changeCurrentSlide();
 
     if (
-      this.dragShift > 100 &&
+      this.dragShift > this.widthContainer / 2 &&
       this.dragShift > 0 &&
       !this.currentSlideWasChanged
     ) {
       this.currentSlideWasChanged = true;
-      console.log("=prev=");
       this.clickPrev();
       this.dragShift = 0;
     }
 
     if (
-      this.dragShift < -100 &&
+      this.dragShift < -this.widthContainer / 2 &&
       this.dragShift < 0 &&
       !this.currentSlideWasChanged
     ) {
       this.currentSlideWasChanged = true;
-      console.log("=next=");
       this.clickNext();
       this.dragShift = 0;
     }
+    this.setStyleTransition();
   }
 
   dragging(e) {
+    this.resetStyleTransition();
     this.dragX = e.pageX;
-    const easing = this.dragShift / 5;
-    // this.x = Math.max(
-    //   Math.min(this.startX + this.dragShift, easing),
-    //   this.widthContainer + easing,
-    // );
-    console.log("=2702b8=", this.dragShift);
-    if (this.currentSlide + 1 == this.size) {
-      this.dragShift = Math.max(this.dragX - this.clickX, -100);
-    } else if (this.currentSlide == 0) {
-      this.dragShift = Math.min(this.dragX - this.clickX, 100);
-    } else {
-      this.dragShift = this.dragX - this.clickX;
+
+    let difference = this.dragX - this.clickX;
+
+    if (this.size > 1) {
+      if (this.currentSlide + 1 == this.size) {
+        this.dragShift = Math.max(Math.min(difference, this.widthContainer), 0);
+      } else if (this.currentSlide == 0) {
+        this.dragShift = Math.min(
+          Math.max(difference, -this.widthContainer),
+          0,
+        );
+      } else {
+        if (difference > 0) {
+          this.dragShift = Math.min(difference, this.widthContainer);
+        } else {
+          this.dragShift = Math.max(difference, -this.widthContainer);
+        }
+      }
     }
+
+    // 90 = 900;
+    // 10;
+    // 90 = 600;
+    // 6.66;
+
+    const separator = this.widthContainer / 90;
+    const easing = this.dragShift / separator;
+
     this.x = -(this.currentSlide * 90 - easing);
+    //change active slide
 
     this.setStylePosition();
-
-    //change active slide
-  }
-
-  setStylePosition() {
-    Ref.cube.style.transform = `rotateY(${this.x}deg)`;
   }
 
   setStyleTransition() {
-    Ref.cube.style.transition = `all 0.25s ease 0s`;
+    this.cube.style.transition = `all 0.25s ease 0s`;
   }
 
   resetStyleTransition() {
-    Ref.cube.style.transition = `all 0s ease 0s`;
+    this.cube.style.transition = `all 0s ease 0s`;
+  }
+
+  setStylePosition() {
+    this.cube.style.transform = `rotateY(${this.x}deg)`;
   }
 }
 
@@ -231,48 +280,44 @@ function debounce(func, time = 100) {
 export { Gallery };
 
 export const init = function (element: HTMLElement) {
-  !Static.galleryRun ? (Static.galleryRun = new Gallery(element)) : "";
+  let cube: HTMLElement = element.querySelector("#cube");
+  let counter: HTMLElement = element.querySelector("#counter");
+  let galleryRun;
+  !galleryRun ? (galleryRun = new Gallery(element, cube, counter)) : "";
 };
 
-export default function ({ items }) {
-  let counter = 0;
-  let slideClassesMap = {
-    1: "front",
-    2: "right",
-    3: "back",
-    4: "left",
-  };
-  {
-    Ref.slider ? init(Ref.slider) : null;
-  }
-  if (!items || !items?.length) {
-    return <div />;
-  }
+export default function ({ items, key = "" }) {
+  // {
+  //   Ref.slider ? init(Ref.slider) : null;
+  // }
+  // if (!items || !items?.length) {
+  //   return <div />;
+  // }
   return (
     <div
       init={init}
-      class="mx-auto h-[400px] w-[400px] [&_img]:w-full"
+      class="relative mx-auto h-full w-full [&_img]:w-full"
       ref="slider"
     >
-      <div class="line flex h-full w-full items-center justify-center [perspective-origin:50%] [perspective:800px]">
+      <div
+        ref="counter"
+        id="counter"
+        class="pointer-events-none absolute right-3 top-3 z-10 flex min-w-[26px] items-center justify-center rounded-[10px] p-[5px] text-center font-semibold [background:rgba(0,0,0,0.6);]"
+      ></div>
+
+      <div class="line h-full w-full touch-none [perspective:1200px]">
         <div
           id="cube"
           ref="cube"
-          class="relative h-full w-full [transform-style:preserve-3d] [transition:2s]"
+          class="relative z-[1] box-content flex h-full w-full cursor-grab [transform-style:preserve-3d]"
         >
           {items.map((item, i) => {
-            counter >= 4 ? (counter = 0) : null;
-            counter++;
             return (
               <div
+                id="slide"
                 ref={`slide${i}`}
                 class={[
-                  "slid absolute h-[400px] w-[400px] select-none [&_img]:pointer-events-none [&_img]:h-full [&_img]:w-full",
-                  "[&.front]:[transform:translateZ(200px)]",
-                  "[&.right]:[transform-origin:100%_0] [&.right]:[transform:rotateY(-270deg)_translateX(200px)]",
-                  "[&.back]:[transform:translateZ(-200px)_rotateY(180deg)]",
-                  "[&.left]:[transform-origin:0_50%] [&.left]:[transform:rotateY(270deg)_translateX(-200px)]",
-                  `${slideClassesMap[counter]}`,
+                  "h-full w-full flex-shrink-0 select-none [backface-visibility:hidden] [transform-origin:0_0] [transform-style:preserve-3d] [&_img]:pointer-events-none [&_img]:select-none",
                 ]}
               >
                 {item}
