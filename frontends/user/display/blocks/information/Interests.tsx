@@ -67,7 +67,8 @@ export default function () {
                           title: "удалить свой интерес",
                           Callback: async (CallBack: boolean) => {
                             if (CallBack) {
-                              Static.record?.interests.splice(key, 1);
+                              const array = [...Static.record?.interests];
+                              array.splice(key, 1);
                               let res = await front.Services.functions.sendApi(
                                 "/api/users/update",
                                 {
@@ -76,7 +77,13 @@ export default function () {
                               );
 
                               if (res?.status === 200) {
-                                // Static.record.interests = array;
+                                Static.record.interests = array;
+                              } else {
+                                Fn.initOne("alert", {
+                                  title: "Ошибка!",
+                                  errorText:
+                                    "Соединение не удалось, попробуйте позже",
+                                });
                               }
                             }
                           },

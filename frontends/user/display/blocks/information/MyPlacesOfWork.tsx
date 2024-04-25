@@ -66,7 +66,8 @@ export default function () {
                         title: "удалить свое место работы",
                         Callback: async (CallBack: boolean) => {
                           if (CallBack) {
-                            Static.record?.work.splice(key, 1);
+                            const array = [...Static.record?.work];
+                            array.splice(key, 1);
                             let res = await front.Services.functions.sendApi(
                               "/api/users/update",
                               {
@@ -75,7 +76,13 @@ export default function () {
                             );
 
                             if (res?.status === 200) {
-                              // Static.record.work = array;
+                              Static.record.work = array;
+                            } else {
+                              Fn.initOne("alert", {
+                                title: "Ошибка!",
+                                errorText:
+                                  "Соединение не удалось, попробуйте позже",
+                              });
                             }
                           }
                         },
