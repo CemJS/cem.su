@@ -15,7 +15,7 @@ export default function () {
               type="text"
               required
               autocomplete="off"
-              placeholder="Логин"
+              placeholder={Static.form.nickName.placeholder}
               disabled={Static.form.nickName.disable}
               class={["bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block  disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700",
                 Static.form.nickName.error ? "border-red-400 focus:border-red-400" : null,
@@ -49,39 +49,43 @@ export default function () {
                 }
               }}
             />
-          </div>
-          {Static.form.nickName.error ? <span class="mt-2 text-sm text-red-500">{Static.form.nickName.error}</span> : null}
-          {/* modalWindow_field__tooltip */}
-          <div class="absolute right-4">
-            <div
-              class="tooltip"
-              onmouseover={() => {
-                Ref.tooltipContent.classList.add("tooltip-content__active");
-              }}
-              onmouseleave={() => {
-                Ref.tooltipContent.classList.remove(
-                  "tooltip-content__active",
-                );
-              }}
-            >
-              <div class="tooltip-content" ref="tooltipContent">
-                <p class="tooltip-content_text">
-                  Логин не должен начинаться с цифр и спецсимволов
-                </p>
+
+            {/* modalWindow_field__tooltip */}
+            <div class="absolute right-4 top-0 h-full z-10 flex items-center gap-2 cursor-pointer">
+              <div
+                class="w-[30px] h-[30px] rounded-full relative bg-[rgba(255,255,255,0.1)] transition-all hover:bg-[rgba(255,255,255,0.15);] hover:text-white before:content-['?'] before:absolute before:top-2/4 before:left-2/4 before:-translate-x-1/2 before:-translate-y-1/2 before:text-[#8d9098] before:text-base before:font-bold before:transition-all"
+                onmouseover={() => {
+                  console.log('=7af2f5=', "over")
+                  Ref.tooltipContent.classList.remove("invisible", "opacity-0");
+                  Ref.tooltipContent.classList.add("visible", "opacity-1");
+                }}
+                onmouseleave={() => {
+                  console.log('=7af2f5=', "leave")
+                  Ref.tooltipContent.classList.remove("visible", "opacity-1");
+                  Ref.tooltipContent.classList.add("invisible", "opacity-0");
+                }}
+              >
+                <div class="w-[250px] shadow-[1px_6px_0px_-4px_rgba(0,0,0,0.15),3px_4px_4px_-1px_rgba(0,0,0,0.15);] bg-[#202432] border border-solid border-[#474c5a] invisible opacity-0 absolute top-[10px] right-[-75px] -translate-x-2/4 -translate-y-2/4 translate-z-[10px] p-3 rounded-md  transition-all before:absolute before:w-[15px] before:h-[15px] before:z-[-1] before:border-t-[1px] before:border-t-solid before:border-t-[#474c5a] before:border-r-[1px] before:border-r-solid before:border-r-[#474c5a] before:bg-[#202432] before:top-1/2 before:right-0 before:translate-x-1/2 before:rotate-[45deg]" ref="tooltipContent">
+                  <p class="text-sm font-medium leading-5 translate-z-[20px]">
+                    Логин не должен начинаться с цифр и спецсимволов
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+
+          {Static.form.nickName.error ? <span class="text-sm text-red-500">{Static.form.nickName.error}</span> : null}
+
         </div>
 
-        <div class="g-colEqual-2 modalReg-choose">
+        <div class="grid grid-cols-2 gap-6">
           <div
             class={[
-              "w-full",
+              "w-full py-4 px-8",
               "btn",
               "btn_dark",
-              "modalReg-choose_item",
               Static.form.mainLang.valid
-                ? "modalReg-choose_item__success"
+                ? "border border-solid border-green-500"
                 : null,
             ]}
             onclick={() => {
@@ -90,70 +94,61 @@ export default function () {
                 callback: (chooseLang) => {
                   if (!chooseLang) return;
 
-                  Static.form.mainLang.nameOrig = chooseLang.orig_name;
+                  Static.form.mainLang.nameOrig = chooseLang.origName;
                   Static.form.mainLang.value = chooseLang.code;
-
                   front.Services.functions.formLang(Static.form.mainLang);
                   Func.checkForm();
                 },
               });
             }}
           >
-            <span>
+            <span class="font-medium text-base">
               {Static.form.mainLang.nameOrig
                 ? Static.form.mainLang.nameOrig
                 : Static.form.mainLang.placeholder}
             </span>
-            <i class="i i-arrow-right"></i>
+            <i class="i i-chevron-right"></i>
           </div>
 
           <div
             class={[
-              "w-full",
+              "w-full py-4 px-8",
               "btn",
               "btn_dark",
-              "modalReg-choose_item",
               Static.form.country.valid
-                ? "modalReg-choose_item__success"
+                ? "border border-solid border-green-500"
                 : null,
             ]}
             onclick={() => {
               Fn.initOne("modalCountry", {
                 callback: (chooseCountry) => {
                   if (!chooseCountry) return;
-
-                  Static.form.country.nameOrig = chooseCountry.orig_name;
+                  Static.form.country.nameOrig = chooseCountry.engName;
                   Static.form.country.value = chooseCountry.code;
-
                   front.Services.functions.formCountry(Static.form.country);
                   Func.checkForm();
                 },
               });
             }}
           >
-            <span>
+            <span class="font-medium text-base">
               {Static.form.country.nameOrig
                 ? Static.form.country.nameOrig
                 : Static.form.country.placeholder}
             </span>
-            <i class="i i-arrow-right"></i>
+            <i class="i i-chevron-right"></i>
           </div>
         </div>
 
-        <div class="f-center modalReg_btns">
+        <div class="flex justify-center items-center gap-5">
           <button
-            class={[
-              "btn",
-              "btn_timing",
-              Static.form.isValid ? null : "btn_passive",
-            ]}
+            class={["btn", Static.form.isValid ? null : "pointer"]}
             onclick={async () => {
               if (!Static.form.isValid) {
                 return;
               }
 
-              let answer = await front.Services.functions.sendApi(
-                `/api/Register`,
+              let answer = await front.Services.functions.sendApi(`/api/users/register`,
                 {
                   step: Static.currentStep,
                   lang: Static.form.mainLang.value,

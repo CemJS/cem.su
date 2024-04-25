@@ -40,14 +40,13 @@ const RenderListLanguages = function ({ languages }) {
     id: string;
     origName: string;
   }
-  
+
   return (
     <ul
-      class="modal-scroll m-0 h-[30rem] max-h-[30rem] list-none overflow-y-scroll p-0"
+      class="m-0 h-[30rem] max-h-[30rem] list-none overflow-y-scroll p-0"
       role="list"
     >
       {languages[0].map((item: LangObject, index: number) => {
-        // console.log("item", item);
         return (
           <li
             class="my-0 mx-[.3125rem] flex cursor-pointer items-center gap-[.625rem] rounded-[--borderR] bg-[#ffffff12] px-[0.9rem] py-[0.6rem] [border:1px_solid_#474c5a] [box-shadow:1px_6px_0px_-4px_rgba(0,_0,_0,_0.15),_3px_4px_4px_-1px_rgba(0,_0,_0,_0.15)] [transition:_background-color_0.3s_ease-in-out,_border_0.3s_ease-in-out,_transform_0.3s_ease-in-out] [&:not(:last-child)]:mb-[0.5rem] hover:scale-[1.01] hover:bg-transparent hover:[border:1px_solid_rgba(150,_150,_150,_0.5)]"

@@ -79,6 +79,10 @@ class Gallery {
     this.x = -(this.currentSlide * 90);
     this.size = Math.ceil(this.elementCount / this.countSlides);
 
+    this.size > 1
+      ? (this.cube.style.cursor = `grab`)
+      : (this.cube.style.cursor = "");
+
     this.lineNode.style.width = `${this.widthContainer}px`;
 
     // поворот куба
@@ -186,7 +190,6 @@ class Gallery {
     this.clickX = e.pageX;
     this.startX = this.x;
     // this.resetStyleTransition();
-    this.element.classList.add("cursor-grab");
     window.addEventListener("pointermove", this.dragging);
   }
 
@@ -194,7 +197,6 @@ class Gallery {
     this.cube.style.cursor = "grab";
 
     window.removeEventListener("pointermove", this.dragging);
-    this.element.classList.remove("cursor-grab");
     this.changeCurrentSlide();
 
     if (
@@ -309,7 +311,7 @@ export default function ({ items, key = "" }) {
         <div
           id="cube"
           ref="cube"
-          class="relative z-[1] box-content flex h-full w-full cursor-grab [transform-style:preserve-3d]"
+          class="relative z-[1] box-content flex h-full w-full [transform-style:preserve-3d]"
         >
           {items.map((item, i) => {
             return (
