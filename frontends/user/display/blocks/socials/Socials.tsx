@@ -3,14 +3,20 @@ import avatarDefault from "@images/lenta/avatar_default.png";
 import defaultGray from "@svg/lenta/defaultGray.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import dots from "@svg/questions/dots.svg";
+import editIcon from "@svg/profile/editIcon.svg";
 
 export default function () {
   return (
-    <div class="relative m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
-      <div class="mb-[.3125rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] @1024:mt-[1.5625rem]">
-        <h2 class="mx-0 my-0 mb-0 mt-[1.25rem] self-start text-balance text-[clamp(25px,_3vw,_30px)] font-bold leading-[115%] text-[--white] max-@1024:px-[.9375rem]">
+    <div class="z-[1] relative m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
+      <div class=" mb-[.3125rem] mt-[1.25rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] @1024:mt-[1.5625rem]">
+        <h2 class="mx-0 my-0 mb-0 self-start text-balance text-[clamp(25px,_3vw,_30px)] font-bold leading-[115%] text-[--white] max-@1024:px-[.9375rem]">
           Социальные сети
         </h2>
+        <img
+          src={editIcon}
+          alt="editIcon"
+          class="absolute right-[1rem] mr-[.5rem] inline w-[1.125rem] cursor-pointer"
+        />
       </div>
       <div class="grid grid-cols-[100%] gap-[.625rem] @680:grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)] @1200:grid-cols-[calc(25%_-_7.5px)_calc(25%_-_7.5px)_calc(25%_-_7.5px)_calc(25%_-_7.5px)]">
         {Static.record?.socials?.map((item: any, key: number) => {
@@ -61,7 +67,38 @@ export default function () {
                   </p>
                 </div>
                 <div class="absolute right-[1.25rem] top-[.625rem] cursor-pointer">
-                  <div class="relative ml-[.625rem] h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">
+                  <div
+                    onclick={() => {
+                      let records = [
+                        {
+                          name: "Удалить",
+                          type: "danger",
+                          func: () =>
+                            Fn.initOne("modalAccept", {
+                              title: "удалить социальную сеть ",
+                              Callback: async (CallBack: boolean) => {
+                                if (CallBack) {
+                                  Static.record?.questions?.splice(key, 1);
+                                  let res =
+                                    await front.Services.functions.sendApi(
+                                      `/api/questions/${item?.id}/delete`,
+                                      {},
+                                    );
+
+                                  if (res?.status === 200) {
+                                    records.splice(key, 1);
+                                  }
+                                }
+                              },
+                            }),
+                        },
+                      ];
+                      Fn.initOne("modalTools", {
+                        records,
+                      });
+                    }}
+                    class="relative ml-[.625rem] z-[2] h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]"
+                  >
                     <img
                       class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
                       src={dots}

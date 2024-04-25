@@ -1,7 +1,7 @@
 import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all";
 
 export default function () {
-  Fn.log("Static.records", Static.records);
+  // Fn.log("Static.records", Static.records);
 
   interface exchangersData {
     change: number;
