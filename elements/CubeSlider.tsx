@@ -203,7 +203,6 @@ class Gallery {
       !this.currentSlideWasChanged
     ) {
       this.currentSlideWasChanged = true;
-      console.log("=prev=");
       this.clickPrev();
       this.dragShift = 0;
     }
@@ -214,7 +213,6 @@ class Gallery {
       !this.currentSlideWasChanged
     ) {
       this.currentSlideWasChanged = true;
-      console.log("=next=");
       this.clickNext();
       this.dragShift = 0;
     }
@@ -251,8 +249,6 @@ class Gallery {
 
     const separator = this.widthContainer / 90;
     const easing = this.dragShift / separator;
-
-    console.log("=cd19e8=", easing);
 
     this.x = -(this.currentSlide * 90 - easing);
     //change active slide
@@ -294,7 +290,6 @@ export default function ({ items, key = "" }) {
   // {
   //   Ref.slider ? init(Ref.slider) : null;
   // }
-  // console.log("=9e10d3=", Ref);
   // if (!items || !items?.length) {
   //   return <div />;
   // }
@@ -310,7 +305,7 @@ export default function ({ items, key = "" }) {
         class="pointer-events-none absolute right-3 top-3 z-10 flex min-w-[26px] items-center justify-center rounded-[10px] p-[5px] text-center font-semibold [background:rgba(0,0,0,0.6);]"
       ></div>
 
-      <div class="line h-full w-full [perspective:1200px]">
+      <div class="line h-full w-full touch-none [perspective:1200px]">
         <div
           id="cube"
           ref="cube"

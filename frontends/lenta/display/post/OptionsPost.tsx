@@ -22,6 +22,7 @@ export default function ({ item, index }) {
           }
 
           Fn.initOne("modalTools", {
+            shareUrl: `/lenta-users/show/${item.id}`,
             records,
             userId: item?.author.id,
             complainTo: {
