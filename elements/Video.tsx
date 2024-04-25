@@ -48,8 +48,8 @@ export default function ({ src, key }) {
           }
         }}
       >
-        <div class="video-play__icon">
-          <i class="i i-play3" ref={`mainPlay${key}`}></i>
+        <div class="video-play__icon !bg-[rgba(0,0,0,0.6117647059)]">
+          <i class="i i-play" ref={`mainPlay${key}`}></i>
         </div>
       </div>
       <div class="video-wrapper">
@@ -85,7 +85,7 @@ export default function ({ src, key }) {
           <li class="video-options">
             <span class="video-icon">
               <i
-                class="i i-volume-medium"
+                class="i i-speaker-wave"
                 ref={`volume${key}`}
                 onclick={(e) => {
                   if (!e.currentTarget.classList.contains("i-volume-medium")) {

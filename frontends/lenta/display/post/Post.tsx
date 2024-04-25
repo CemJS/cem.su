@@ -7,16 +7,16 @@ import StatisticsPost from "./StatisticsPost";
 import TimePost from "./TimePost";
 import CubeSlider from "@elements/CubeSlider";
 
-let media = [
-  { type: "image", mediaName: "3f33a923cde6e8874bb6e135bf9dfcfa.png" },
-  { type: "image", mediaName: "26e8fbeac63095ef0c7bace63dc802c6.png" },
-  { type: "image", mediaName: "f7127a7227230e615e78fd9311d4e3bf.png" },
-  { type: "image", mediaName: "f4750386359ee0eb675e00be1fbc796a.png" },
-  { type: "image", mediaName: "ee3fd58d96825233bd7fe2b3e8c4dd5d.png" },
-  { type: "image", mediaName: "8ee9f1da0d7b7c83bba603f28249f9de.png" },
-  { type: "image", mediaName: "23ac33c3e87825e01b19d5ddb9f09f00.png" },
-  { type: "image", mediaName: "4a8ffef8975b9e8d8cf5322e1fc33a29.png" },
-];
+// let media = [
+//   { type: "image", mediaName: "3f33a923cde6e8874bb6e135bf9dfcfa.png" },
+//   { type: "image", mediaName: "26e8fbeac63095ef0c7bace63dc802c6.png" },
+//   { type: "image", mediaName: "f7127a7227230e615e78fd9311d4e3bf.png" },
+//   { type: "image", mediaName: "f4750386359ee0eb675e00be1fbc796a.png" },
+//   { type: "image", mediaName: "ee3fd58d96825233bd7fe2b3e8c4dd5d.png" },
+//   { type: "image", mediaName: "8ee9f1da0d7b7c83bba603f28249f9de.png" },
+//   { type: "image", mediaName: "23ac33c3e87825e01b19d5ddb9f09f00.png" },
+//   { type: "image", mediaName: "4a8ffef8975b9e8d8cf5322e1fc33a29.png" },
+// ];
 
 export default function ({ item, index }) {
   return (
@@ -31,7 +31,7 @@ export default function ({ item, index }) {
       </div>
 
       <CubeSlider
-        items={media.map((it, i) => {
+        items={item?.media?.map((it, i) => {
           return <MediaPost mediaItem={it} index={i} />;
         })}
       />

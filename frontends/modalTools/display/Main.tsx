@@ -32,14 +32,16 @@ export default function () {
         <div class="h-full overflow-y-auto p-[1rem_0_2.5rem]">
           {/* <h2 class="bottomSheet-title">Tools</h2> */}
           <ul class="flex flex-col gap-2" role="list">
-            <li
-              class="cursor-pointer rounded-[1rem] border border-solid border-slate-700 bg-slate-700 p-[0.8rem] text-center font-medium [transition:var(--tran-03)] hover:border-slate-700 hover:bg-slate-800 active:bg-slate-900"
-              onclick={() => {
-                Func.share();
-              }}
-            >
-              Поделиться
-            </li>
+            {Static.shareUrl ? (
+              <li
+                class="cursor-pointer rounded-[1rem] border border-solid border-slate-700 bg-slate-700 p-[0.8rem] text-center font-medium [transition:var(--tran-03)] hover:border-slate-700 hover:bg-slate-800 active:bg-slate-900"
+                onclick={() => {
+                  Func.share();
+                }}
+              >
+                Поделиться
+              </li>
+            ) : null}
 
             {Static.records?.map((item: any, index: number) => {
               return (

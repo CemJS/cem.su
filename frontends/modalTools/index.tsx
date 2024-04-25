@@ -53,7 +53,7 @@ front.func.updateSheetHeight = (height) => {
 front.func.share = () => {
   navigator.share({
     title: document.title,
-    url: window.location.href,
+    url: Static.shareUrl,
   });
 };
 
@@ -76,6 +76,13 @@ front.func.blacklistUser = async () => {
 //
 
 front.loader = () => {
+  // if (Static.shareUrl) {
+  //   Static.records.push({
+  //     name: "Поделиться",
+
+  //     func: () => Func.share,
+  //   });
+  // }
   if (Static.userId && front.Variable.myInfo.id != Static.userId) {
     console.log("=83340e=", Static.complainTo);
 
