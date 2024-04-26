@@ -12,7 +12,7 @@ export default function () {
             <i class="i i-lock-closed text-xl"></i>
           </div>
           <input
-            type="text"
+            type="password"
             required
             autocomplete="off"
             placeholder={Static.form.pass.placeholder}
@@ -52,14 +52,10 @@ export default function () {
           </div>
         </div>
         {/* ---------------------------- */}
-        <div
-          class={[
-            "modalWindow_field",
-            Static.form.rePass.value.length ? "modalWindow_field__valid" : null,
-            Static.form.rePass.error ? "modalWindow_field__error" : null,
-            Static.form.rePass.valid ? "modalWindow_field__success" : null,
-          ]}
-        >
+        <div class="relative">
+          <div class="absolute top-2 left-4 pointer-events-none">
+            <i class="i i-lock-closed text-xl"></i>
+          </div>
           <input
             type={Static.passType}
             required
@@ -80,7 +76,7 @@ export default function () {
             }}
           />
           <div
-            class="modalWindow_field__tooltip"
+            class="absolute right-4 top-0 h-full z-10 flex items-center gap-2 cursor-pointer"
             onclick={() => {
               if (Static.passType == "password") {
                 Static.passType = "text";
@@ -89,12 +85,12 @@ export default function () {
               }
             }}
           >
-            <i class="i i-eye"></i>
+            <i class={["i", "transition-all", "text-xl", Static.passType == "password" ? "i-eye" : "i-eye-slash"]}></i>
 
           </div>
         </div>
 
-        <div class="f-center modalReg_btns">
+        <div class="flex justify-center items-center">
           <button
             class={[
               "btn",
@@ -107,7 +103,7 @@ export default function () {
               }
 
               let answer = await front.Services.functions.sendApi(
-                `/api/Register`,
+                `/api/users/register`,
                 {
                   step: Static.currentStep,
                   email: Static.form.email.value,
@@ -135,7 +131,6 @@ export default function () {
                 }
 
                 Func.checkLogin();
-
                 return;
               }
 
