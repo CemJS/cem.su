@@ -1,17 +1,15 @@
 import { Cemjsx, Static, Func, Ref, front, Fn } from "cemjs-all";
-import success from "@svg/icons/success.svg";
 
 export default function () {
   return (
-    <footer class="modal-footer">
-      <div class="g-colEqual-2 modal-footer_auth mt-[15px] w-full">
+    <footer class="flex justify-center items-center">
+      <div class="grid grid-cols-2 gap-5 mt-4 w-full">
         <button
-          // class="btn w-full"
           class={["btn", "w-full", Static.form.isValid ? null : "btn_passive"]}
           onclick={async () => {
             if (!Static.form.isValid) return;
 
-            let answer = await front.Services.functions.sendApi(`/api/Auth`, {
+            let answer = await front.Services.functions.sendApi(`/api/users/login`, {
               email: Static.form.email.value,
               password: Static.form.pass.value,
             });
@@ -65,7 +63,7 @@ export default function () {
             Fn.initOne("modalRegistration", {});
           }}
         >
-          <button class="btn_border h100 w-full">РЕГИСТРАЦИЯ</button>
+          <button class="btn_border w-full h-full">РЕГИСТРАЦИЯ</button>
         </div>
       </div>
     </footer>

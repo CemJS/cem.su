@@ -110,6 +110,7 @@ export default function () {
                   nickname: Static.form.nickName.value,
                   lang: Static.form.mainLang.value,
                   country: Static.form.country.value,
+                  code: Static.form.code.value,
                   pass: Static.form.pass.value,
                   repass: Static.form.rePass.value,
                 },
