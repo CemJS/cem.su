@@ -30,7 +30,6 @@ import notFound from "@svg/notFound.svg";
 // };
 
 const RenderListLanguages = function ({ languages }) {
-
   interface LangObject {
     active: boolean;
     code: string;
@@ -46,10 +45,10 @@ const RenderListLanguages = function ({ languages }) {
       class="m-0 h-[30rem] max-h-[30rem] list-none overflow-y-scroll p-0"
       role="list"
     >
-      {languages[0].map((item: LangObject, index: number) => {
+      {languages[0]?.map((item: LangObject, index: number) => {
         return (
           <li
-            class="my-0 mx-[.3125rem] flex cursor-pointer items-center gap-[.625rem] rounded-[--borderR] bg-[#ffffff12] px-[0.9rem] py-[0.6rem] [border:1px_solid_#474c5a] [box-shadow:1px_6px_0px_-4px_rgba(0,_0,_0,_0.15),_3px_4px_4px_-1px_rgba(0,_0,_0,_0.15)] [transition:_background-color_0.3s_ease-in-out,_border_0.3s_ease-in-out,_transform_0.3s_ease-in-out] [&:not(:last-child)]:mb-[0.5rem] hover:scale-[1.01] hover:bg-transparent hover:[border:1px_solid_rgba(150,_150,_150,_0.5)]"
+            class="mx-[.3125rem] my-0 flex cursor-pointer items-center gap-[.625rem] rounded-[--borderR] bg-[#ffffff12] px-[0.9rem] py-[0.6rem] [border:1px_solid_#474c5a] [box-shadow:1px_6px_0px_-4px_rgba(0,_0,_0,_0.15),_3px_4px_4px_-1px_rgba(0,_0,_0,_0.15)] [transition:_background-color_0.3s_ease-in-out,_border_0.3s_ease-in-out,_transform_0.3s_ease-in-out] hover:scale-[1.01] hover:bg-transparent hover:[border:1px_solid_rgba(150,_150,_150,_0.5)] [&:not(:last-child)]:mb-[0.5rem]"
             onclick={() => {
               Static.callback(item);
               Func.close();
@@ -58,11 +57,11 @@ const RenderListLanguages = function ({ languages }) {
             {Static.full ? null : (
               <img
                 class="w-[2rem]"
-                src={`/contents/svg/flags/${item.code}.svg`}
-                alt={item.origName}
+                src={`/contents/svg/flags/${item?.code}.svg`}
+                alt={item?.origName}
               />
             )}
-            <span>{item.engName}</span>
+            <span>{item?.engName}</span>
           </li>
         );
       })}

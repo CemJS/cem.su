@@ -37,7 +37,6 @@ export default function ({ src, key }) {
       <div
         class="video-play"
         onclick={() => {
-          console.log("=58451f=", Ref[`video${key}`]);
           Func.playAndPause(Ref[`video${key}`]);
         }}
         ondblclick={(e: any) => {
@@ -299,7 +298,6 @@ export default function ({ src, key }) {
 }
 
 front.func.playAndPause = (video: any) => {
-  console.log("=0ed98f=", video);
   if (video.paused) {
     video.play();
   } else {

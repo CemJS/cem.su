@@ -107,7 +107,6 @@ const RenderLanguageFilter = () => {
     <div
       onclick={async (e) => {
         Fn.initOne("modalLanguage", {
-          full: true,
           callback: (chooseLanguage) => {
             Static.chooseLanguage = chooseLanguage;
             Func.updateFilter();

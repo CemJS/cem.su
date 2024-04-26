@@ -1,6 +1,5 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
 import Tiles from "./Tiles";
-import Card from "./Card";
 
 export default function () {
   return (
@@ -16,18 +15,34 @@ export default function () {
                     Static.feedState = false;
                   }}
                 >
-                  <a class={Static.feedState ? "user-feed__toggles" : "user-feed__toggles user-feed__toggles-active"}>Список</a>
+                  <a
+                    class={
+                      Static.feedState
+                        ? "user-feed__toggles"
+                        : "user-feed__toggles user-feed__toggles-active"
+                    }
+                  >
+                    Список
+                  </a>
                 </li>
                 <li
                   onclick={() => {
                     Static.feedState = true;
                   }}
                 >
-                  <a class={Static.feedState ? "user-feed__toggles user-feed__toggles-tile user-feed__toggles-active" : "user-feed__toggles user-feed__toggles-tile"}>Плитка</a>
+                  <a
+                    class={
+                      Static.feedState
+                        ? "user-feed__toggles user-feed__toggles-tile user-feed__toggles-active"
+                        : "user-feed__toggles user-feed__toggles-tile"
+                    }
+                  >
+                    Плитка
+                  </a>
                 </li>
               </ul>
             </div>
-            {Static.feedState ? <Tiles /> : <Card />}
+            {/* {Static.feedState ? <Tiles /> : <Card />} */}
           </div>
         </div>
       </div>
