@@ -26,7 +26,7 @@ export default function () {
                               Fn.initOne("modalUserInterests", {
                                 interests: Static.record?.interests,
                                 edit: false,
-                                CallInit: (CallBack: string) => {
+                                CallBack: (CallBack: string) => {
                                   Static.record.interests = CallBack;
                                 },
                               }),
@@ -52,7 +52,7 @@ export default function () {
                           interests: Static.record?.interests,
                           key: key,
                           edit: true,
-                          CallInit: (CallBack: string) => {
+                          CallBack: (CallBack: string) => {
                             Static.record.interests = CallBack;
                           },
                         });
@@ -67,7 +67,7 @@ export default function () {
                           title: "удалить свой интерес",
                           Callback: async (CallBack: boolean) => {
                             if (CallBack) {
-                              const url = "/api/users/update1";
+                              const url = "/api/users/update";
                               const array = [...Static.record?.interests];
                               array.splice(key, 1);
                               const name = "interest";

@@ -1,10 +1,11 @@
 import { Cemjsx, Static, front, Fn, Func } from "cemjs-all";
 
-// Your specific function to be throttled
 const clickEvent = () => {
-  Static.CallBackState = true;
-  Static.Callback(Static.CallBackState);
-  Func.close();
+  if (Static.Callback) {
+    Static.CallBackState = true;
+    Static?.Callback(Static?.CallBackState);
+    Func.close();
+  }
 };
 
 export default function () {

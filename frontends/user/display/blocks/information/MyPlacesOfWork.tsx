@@ -26,7 +26,7 @@ export default function () {
                             Fn.initOne("modalUserWorkPlace", {
                               work: Static.record?.works,
                               edit: false,
-                              CallInit: (CallBack: string) => {
+                              Callback: (CallBack: string) => {
                                 Static.record.works = CallBack;
                               },
                             }),
@@ -51,7 +51,7 @@ export default function () {
                         work: Static.record?.works,
                         key: key,
                         edit: true,
-                        CallInit: (CallBack: string) => {
+                        Callback: (CallBack: string) => {
                           Static.record.works = CallBack;
                         },
                       });
