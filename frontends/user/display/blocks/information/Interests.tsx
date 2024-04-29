@@ -12,7 +12,6 @@ export default function () {
         <div class="z-0 m-0 cursor-col-resize rounded-[0] border-x-0 border-b-0 bg-[--black-gray] p-[.1875rem] text-[--white] [border:1px_solid_#363C50] @1024:mt-[2rem] @1024:rounded-[.9375rem]">
           <div class="relative h-full w-full cursor-default rounded-[.9375rem] bg-[--black-gray] px-[1.25rem] py-[2rem]">
             <p>Мои интересы</p>
-
             {front.Variable.myInfo?.nickname === front.Variable.DataUrl[1] && (
               <div class="absolute right-[1.25rem] top-[1.375rem]">
                 <div class="relative ml-[.625rem] h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]">

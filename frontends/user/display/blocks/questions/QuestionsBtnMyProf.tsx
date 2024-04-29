@@ -37,10 +37,6 @@ export default function ({ item, key }) {
                         `/api/questions/${item?.id}/close`,
                         {},
                       );
-
-                      if (res?.status === 200) {
-                        // Static.record.work = array;
-                      }
                     }
                   },
                 }),

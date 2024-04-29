@@ -78,7 +78,6 @@ const RenderFielddetails = function () {
 // };
 
 export default function () {
-  console.log("interest", Static?.edit);
 
   return (
     <div>

@@ -4,7 +4,9 @@ export default function Select_Frame_App() {
   return (
     <textarea
       placeholder="Обо мне"
-      value={Static?.info?.information?.about}
+      value={
+        Static?.info?.information?.about ? Static?.info?.information?.about : ""
+      }
       oninput={(event: InputEvent) => {
         const target = event.target as HTMLInputElement;
         Static.info.information.about = target.value;

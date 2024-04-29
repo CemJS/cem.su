@@ -7,7 +7,8 @@ import editIcon from "@svg/profile/editIcon.svg";
 import FormSocials from "./FormSocials";
 
 export default function () {
-
+  console.log("Static.record", Static.record);
+  
   return (
     <div class="relative z-[1] m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
       <div class=" mb-[.3125rem] mt-[1.25rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] @1024:mt-[1.5625rem]">

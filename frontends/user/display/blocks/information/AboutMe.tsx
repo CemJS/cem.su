@@ -85,7 +85,7 @@ export default function () {
                 onclick={() => {
                   Fn.initOne("modalEditAboutMe", {
                     info: Static.record,
-                    CallInit: (CallBack: string) => {
+                    CallBack: (CallBack: string) => {
                       Static.record = CallBack;
                     },
                   });

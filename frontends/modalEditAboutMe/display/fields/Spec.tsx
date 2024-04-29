@@ -5,7 +5,11 @@ export default function Select_Frame_App() {
     <div>
       <input
         type="text"
-        value={Static?.info?.information?.speciality}
+        value={
+          Static?.info?.information?.speciality
+            ? Static?.info?.information?.speciality
+            : ""
+        }
         placeholder="Специализация"
         oninput={(event: InputEvent) => {
           const target = event.target as HTMLInputElement;

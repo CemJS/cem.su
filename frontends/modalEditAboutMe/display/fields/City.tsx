@@ -5,12 +5,14 @@ export default function Select_Frame_App() {
     <div>
       <input
         type="text"
-        value={Static?.info?.information?.city}
+        value={
+          Static?.info?.information?.city ? Static?.info?.information?.city : ""
+        }
         placeholder="Город"
         oninput={(event: InputEvent) => {
-            const target = event.target as HTMLInputElement;
-            Static.info.information.city = target.value;
-          }}
+          const target = event.target as HTMLInputElement;
+          Static.info.information.city = target.value;
+        }}
         class="mb-[1.25rem] h-[3.75rem] w-full rounded-[.625rem] bg-[#313543] p-[1.375rem] text-[--white] outline-none [border:1px_solid_#44495C]"
       />
     </div>
