@@ -51,26 +51,16 @@ export default function () {
 
         <div class="flex items-center gap-x-4">
           <div
-            class="cursor-pointer md:flex items-center gap-2 hidden"
+            class="hidden sm:flex btn btn_dark"
             onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
           >
-            <span>Русский</span>
             <i class="i i-globe-alt text-xl"></i>
+            <span>{front.Variable.lang ? front.Variable.lang : "Выберите язык"}</span>
+            <i class="i i-chevron-right text-xl"></i>
           </div>
 
-          {front.Variable.Auth ? (
-            // <div
-            //   class="cursor-pointer"
-            //   onclick={() => {
-            //     Fn.linkChange(`/user/${front.Variable.myInfo?.nickname}`)
-            //   }}>
-            //   Profile</div>
+          {front.Variable?.myInfo?.auth ? (
             <div
-              // onclick={(e) => {
-              //   e.stopPropagation();
-              //   Fn.link(e);
-              // }}
-              // href={`/user/Annyshka`}
               onclick={() => {
                 Fn.linkChange(`/user/${front.Variable.myInfo?.nickname}`)
               }}
@@ -79,29 +69,36 @@ export default function () {
               <div class="relative z-[1] h-[3.5rem] w-[3.1875rem] min-w-[2.9375rem]">
                 <img
                   class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
-                  // src={avatarDefault}
-                  src={front.Variable.myInfo?.avatar}
+                  src={
+                    front.Variable.myInfo?.avatar?.name
+                      ? `/assets/upload/avatar/${front.Variable.myInfo?.avatar?.name}`
+                      : avatarDefault
+                  }
                 />
                 <img
                   class="absolute left-1/2 top-0 z-[2] h-full !w-auto [transform:translateX(-50%)]"
-                  src={frameDefault}
+                  src={
+                    front.Variable.myInfo?.frame?.name
+                      ? `/contents/images/lenta/${front.Variable.myInfo?.frame?.name}`
+                      : frameDefault
+                  }
                 />
-                {5 < 0 ? (
+                {front.Variable.myInfo?.status?.team ? (
                   <img
                     class="absolute bottom-[0.4375rem] right-[0.4375rem] z-[2] flex h-5 w-5 items-center justify-center rounded-[50%] bg-[--white] p-[0.1875rem]"
-                    src={teamLogo}
+                    src={front.Variable.myInfo?.status?.team ? teamLogo : null}
                   />
                 ) : (
                   <div class="absolute !top-auto bottom-0 right-[0.3125rem] z-[2] h-7">
                     <div class="relative flex h-full w-full items-center justify-center">
                       <img class="h-full" src={leveGray} />
                       <span class="absolute left-1/2 top-1/2 text-[0.75rem] font-bold tracking-[0.0375rem] text-[--white] [transform:translateX(-50%)_translateY(-50%)]">
-                        12
+                        {front.Variable.myInfo?.statistic?.level}
                       </span>
                       <div
                         class={[
                           "absolute right-[-0.1563rem] top-[-0.1563rem] h-[0.875rem] w-[0.875rem] rounded-[50%] [background:linear-gradient(225deg,#ff7272_0%,#d93030_100%)] [border:0.1875rem_solid_#ffffff]",
-                          5 > 0
+                          front.Variable.myInfo?.online
                             ? "[background:linear-gradient(225deg,#72ffb6_0,#10d194_100%)]"
                             : null,
                         ]}

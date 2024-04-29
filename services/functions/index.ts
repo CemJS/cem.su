@@ -136,6 +136,17 @@ export const loader = async function (Variable: any, Fn: any) {
     // let myInfo = JSON.parse(answ.data)
     // Variable.myInfo = Object.assign(Variable.myInfo, myInfo)
   });
+
+  eventSource.addEventListener("login", async ({ data }) => {
+    let json = strToJson(data);
+    Variable.myInfo = json;
+  });
+
+  eventSource.addEventListener("register", async ({ data }) => {
+    let json = strToJson(data);
+    Variable.myInfo = json;
+  });
+
   eventSource.addEventListener("notifyQuestion", async ({ data }) => {
     let res = strToJson(data);
     Fn.initOne("alert", {

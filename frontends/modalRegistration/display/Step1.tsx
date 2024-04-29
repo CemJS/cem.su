@@ -15,7 +15,11 @@ export default function () {
           </div>
           <input
             type="email"
-            class="bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 valid:[&:not(:placeholder-shown)]:border-green-500 disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700"
+            class={[
+              "bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block  disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700",
+              Static.form.email.error ? "border-red-400 focus:border-red-400" : null,
+              Static.form.email.valid ? "valid:[&:not(:placeholder-shown)]:border-green-500" : null
+            ]}
             disabled={Static.form.email.disable}
             placeholder="name@flowbite.com"
             autocomplete="off"
@@ -26,7 +30,7 @@ export default function () {
               Func.checkForm();
             }}
           />
-          <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">{Static.form.email.error}</span>
+          {/* <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">{Static.form.email.error}</span> */}
           {Static.form.email.disable ? (
             <div
               class="absolute top-0 right-4 cursor-pointer h-full flex items-center transition-all z-10"
@@ -39,12 +43,14 @@ export default function () {
           ) : null}
         </div>
 
+        <span class="mt-2 text-sm text-red-500 min-h-[20px]">{Static.form.email.error}</span>
+
       </div>
 
       {this.Static.waitCode ? (
         <div
           class={[
-            "flex mt-8 flex-col justify-center items-center gap-4 transition-all",
+            "flex mt-2 flex-col justify-center items-center gap-4 transition-all",
             Static.waitCode ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none",
           ]}
         >

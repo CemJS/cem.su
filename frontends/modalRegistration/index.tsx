@@ -93,16 +93,45 @@ front.func.checkForm = async function () {
 }
 
 front.func.checkLogin = async function () {
-    let answer = await front.Services.functions.sendApi(`/api/Register`, {
-        action: "checkNick",
-        step: Static.currentStep,
-        nickname: Static.form.nickName.value
-    })
+    // let answer = await front.Services.functions.sendApi(`/api/users/register`, {
+    //     action: "checkNick",
+    //     step: Static.currentStep,
+    //     nickname: Static.form.nickName.value
+    // })
 
-    if (answer.error) {
+    // if (answer.error) {
+    //     Static.form.nickName.error = "Логин занят!"
+    //     Static.form.nickName.valid = false
+    // }
+
+    // if (answer.error == "already register") {
+    //     Static.form.nickName.error = "Логин занят!"
+    //     Static.form.nickName.valid = false
+    // }
+    // Fn.log("answer checkLogin", answer)
+    let answer = await front.Services.functions.sendApi(`/api/users/register`,
+        {
+            step: Static.currentStep,
+            lang: Static.form.mainLang.value,
+            country: Static.form.country.value,
+            email: Static.form.email.value,
+            nickName: Static.form.nickName.value,
+        },
+    );
+    // Fn.log('=answer step 2=', answer)
+    if (answer.error == "already register") {
         Static.form.nickName.error = "Логин занят!"
         Static.form.nickName.valid = false
+        return
     }
+
+    if (answer.error) {
+        Fn.log("=error=", answer.error);
+        return;
+    }
+
+    Func.clickNext();
+    return;
 }
 
 front.func.clickNext = function () {
@@ -115,6 +144,12 @@ front.func.clickPrev = function () {
     Static.currentStep = --Static.currentStep
     Ref.indicator.style.width = `${(Static.currentStep - 1) / (Static.steps.length - 1) * 100}%`
     Ref.slidePage.style.marginLeft = `-25%`
+}
+
+front.func.clickPrevBegin = function () {
+    Static.currentStep = 1
+    Ref.indicator.style.width = `${(Static.currentStep - 1) / (Static.steps.length - 1) * 100}%`
+    Ref.slidePage.style.marginLeft = `0%`
 }
 
 front.func.changeEmail = function () {

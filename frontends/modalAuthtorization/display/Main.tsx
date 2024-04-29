@@ -12,13 +12,14 @@ export default function () {
           <i class="i i-envelope text-xl"></i>
         </div>
         <input
+          ref="email"
           type="email"
           class={["bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 valid:[&:not(:placeholder-shown)]:border-green-500 disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700",
             Static.form.email.error ? "border-red-400 focus:border-red-400" : null,
             Static.form.email.valid ? "valid:[&:not(:placeholder-shown)]:border-green-500" : null
           ]}
           disabled={Static.form.email.disable}
-          placeholder="name@flowbite.com"
+          placeholder={Static.form.email.placeholder}
           autocomplete="off"
           required
           oninput={(e: any) => {
@@ -36,9 +37,11 @@ export default function () {
           <i class="i i-lock-closed text-xl"></i>
         </div>
         <input
-          type={Static.passType}
+          ref="pass"
           required
           autocomplete="off"
+          type={Static.passType}
+          placeholder={Static.form.pass.placeholder}
           class={["bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block  disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700",
             Static.form.pass.error ? "border-red-400 focus:border-red-400" : null,
             Static.form.pass.valid ? "valid:[&:not(:placeholder-shown)]:border-green-500" : null
@@ -67,7 +70,7 @@ export default function () {
       {Static.form.pass.error ? <span class="text-sm font-bold text-red-500">{Static.form.pass.error}</span> : null}
 
 
-      <p class="mt-4">
+      <p class="mt-4 text-sm sm:text-base">
         При использовании платформы вы соглашаетесь с{" "}
         <span
           class="link"
@@ -81,7 +84,7 @@ export default function () {
       </p>
 
       <span
-        class="link"
+        class="link text-sm sm:text-base"
         onclick={() => {
           Func.close();
           Fn.initOne("modalForgotPassword", {});
