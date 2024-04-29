@@ -61,7 +61,7 @@ front.loader = async () => {
   Static.awards = false;
   Static.socials = false;
   Static.feed = false;
-  Static.galary = false;
+  Static.gallery = false;
 
   // Fn.log('=be3efb=', 5555)
   if (front.Variable.DataUrl[0] && front.Variable.DataUrl[0] == "user") {
