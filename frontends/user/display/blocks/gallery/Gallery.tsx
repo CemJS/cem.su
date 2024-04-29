@@ -4,27 +4,29 @@ import defaultGray from "@svg/lenta/defaultGray.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import dots from "@svg/questions/dots.svg";
 import editIcon from "@svg/profile/editIcon.svg";
-import FormSocials from "./FormSocials";
+import FormGallery from "./FormGallery";
 
 export default function () {
-  console.log("Static.record", Static.record);
-  
+  console.log("Static.record1", Static.record);
+
   return (
     <div class="relative z-[1] m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
       <div class=" mb-[.3125rem] mt-[1.25rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] @1024:mt-[1.5625rem]">
-        <h2 class="mx-0 my-0 mb-0 self-start text-balance text-[clamp(25px,_3vw,_30px)] font-bold leading-[115%] text-[--white] max-@1024:px-[.9375rem]">
-          Социальные сети
+        <h2 class="mx-0 my-[1.25rem] text-balance text-center text-[clamp(17px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
+          Заданные вопросы
         </h2>
-        <img
-          onclick={() => {
-            Static.showForm = !Static.showForm;
-          }}
-          src={editIcon}
-          alt="editIcon"
-          class="absolute right-[1rem] mr-[.5rem] inline w-[1.125rem] cursor-pointer"
-        />
+        <ul class="m-0 flex list-none items-stretch gap-[.4375rem] p-0 max-@1024:pr-[.625rem]">
+          <li>
+            <a
+              class={[
+                "block h-[1.8125rem] w-[1.8125rem] [background:no-repeat_url(/contents/svg/gallery/infinity.svg)_center_/_90%]",
+                "[border:2px_solid_#40f2d0]",
+              ]}
+            ></a>
+          </li>
+        </ul>
       </div>
-      {Static.showForm && <FormSocials />}
+      {Static.showForm && <FormGallery />}
 
       <div class="grid grid-cols-[100%] gap-[.625rem] @680:grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)] @1200:grid-cols-[calc(25%_-_7.5px)_calc(25%_-_7.5px)_calc(25%_-_7.5px)_calc(25%_-_7.5px)]">
         {Static.record?.socials?.map((item: any, key: number) => {

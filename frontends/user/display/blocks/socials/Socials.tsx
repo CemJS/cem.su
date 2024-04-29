@@ -11,7 +11,7 @@ export default function () {
   return (
     <div class="relative z-[1] m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
       <div class=" mb-[.3125rem] mt-[1.25rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] @1024:mt-[1.5625rem]">
-        <h2 class="mx-0 my-0 mb-0 self-start text-balance text-[clamp(25px,_3vw,_30px)] font-bold leading-[115%] text-[--white] max-@1024:px-[.9375rem]">
+        <h2 class="mx-0 my-0 mb-0 self-start text-balance text-[clamp(25px,_3vw,_30px)] font-normal leading-[115%] text-[--white] max-@1024:px-[.9375rem]">
           Социальные сети
         </h2>
         <img

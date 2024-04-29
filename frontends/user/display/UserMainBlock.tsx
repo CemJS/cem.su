@@ -7,7 +7,7 @@ import Subscriptions from "./blocks/subscriptions/Subscriptions";
 import Awards from "./blocks/awards/Awards";
 import Socials from "./blocks/socials/Socials";
 import Feed from "./blocks/feed/Feed";
-// import Gallary from "./blocks/gallary/Gallary";
+import Gallery from "./blocks/gallery/Gallery";
 
 export default function () {
   return (
@@ -20,7 +20,7 @@ export default function () {
       {Static.subscriptions === true ? <Subscriptions /> : null}
       {Static.awards === true ? <Awards /> : null}
       {Static.socials === true ? <Socials /> : null}
-      {/* {Static.gallary === true ? <Gallary /> : null} */}
+      {Static.gallery === true ? <Gallery /> : null}
     </div>
   );
 }
