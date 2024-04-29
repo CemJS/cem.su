@@ -48,7 +48,7 @@ const RenderField = function ({ field, placeholder }) {
 
 export default function () {
   return (
-    <main class="modal_main">
+    <main id="modal_main">
       <div class="py-15">
         <RenderField
           field="{Static.interest?.title}"

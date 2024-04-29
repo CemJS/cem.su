@@ -16,26 +16,29 @@ const RenderPhotoButton = () => {
         ref="photo"
         type="file"
         accept=".jpg, .jpeg, .png, .gif, image/*"
-        multiple="true"
+        multiple="false"
         onchange={async (e) => {
           const files = [...e.target.files];
           console.log("=084651=", files);
-          // let err = 0;
-          // files.forEach((file) => {
-          //   if (!(file.type.split("/")[0] == "video")) {
-          //     err++;
-          //   }
-          // });
-          // if (!err) {
-          //   files.forEach((file) => {
-          //     Func.uploadMedia(file, "video");
-          //   });
-          // } else {
-          //   Fn.initOne("alert", {
-          //     type: "danger",
-          //     text: "Неверный формат видео",
-          //   });
-          // }
+          let err = 0;
+          files.forEach((file) => {
+            if (!(file.type.split("/")[0] == "image")) {
+              err++;
+            }
+          });
+          if (!err) {
+            const file = files[0];
+
+            Fn.initOne("modalCropImage", { cropImage: file });
+            // files.forEach((file) => {
+            //   Func.uploadMedia(file, "image");
+            // });
+          } else {
+            Fn.initOne("alert", {
+              type: "danger",
+              text: "Неверный формат видео",
+            });
+          }
 
           e.preventDefault();
         }}

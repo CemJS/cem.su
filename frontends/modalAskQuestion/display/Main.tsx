@@ -2,7 +2,7 @@ import { Cemjsx, Static, Fn, Func, front } from "cemjs-all";
 
 export default function () {
   return (
-    <main class="modal_main">
+    <main id="modal_main">
       <button
         class="btn btn_dark"
         onclick={async (e) => {

@@ -6,7 +6,7 @@ front.listener.finish = () => {
   return;
 };
 
-front.func.uploadMedia = async (file, type: string) => {
+front.func.uploadMedia = async (file: any, type: string) => {
   let data = new FormData();
   data.append("media", file);
 
