@@ -60,7 +60,7 @@ const RenderCheckbox = ({ text, value, other = false }) => {
 
 export default function () {
   return (
-    <main class="modal_main">
+    <main id="modal_main">
       <div class="mt-[15px] flex flex-col gap-[15px]">
         <div class="flex flex-col gap-2">
           {Static.complains?.map((item) => {

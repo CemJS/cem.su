@@ -153,15 +153,22 @@ export default function () {
                   step: Static.currentStep,
                   lang: Static.form.mainLang.value,
                   country: Static.form.country.value,
-                  action: "checkNick",
                   email: Static.form.email.value,
                   nickName: Static.form.nickName.value,
                 },
               );
+              // Fn.log('=answer step 2=', answer)
+              if (answer.error == "already register") {
+                Static.form.nickName.error = "Логин занят!"
+                Static.form.nickName.valid = false
+                return
+              }
+
               if (answer.error) {
                 Fn.log("=error=", answer.error);
                 return;
               }
+
               Func.clickNext();
               return;
             }}

@@ -1,14 +1,13 @@
-import { Cemjsx, Static, Func, Ref } from "cemjs-all";
+import { Cemjsx, Func } from "cemjs-all";
 
 export default function () {
   return (
-    <header class="modal-header">
+    <header class="mb-[1.2rem] flex items-center justify-between">
       <h2 class="text-[clamp(1.2rem,2vw,1.5rem)] leading-[125%]">
-        Отликнуться на вакансию
+        Добавление фото
       </h2>
-
       <button class="btn btn_dark" onclick={Func.close}>
-        <i class="i i-cancel"></i>
+        <i class="i i-x-mark"></i>
       </button>
     </header>
   );

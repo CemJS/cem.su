@@ -177,7 +177,7 @@ export default function ({ src, key }) {
                 <i class="i i-ellipsis-vertical"></i>
               </span>
               <ul class="speed-tools" ref={`speedOptions${key}`}>
-                {Static.speedOptions.map((item) => {
+                {Static.speedOptions?.map((item) => {
                   return (
                     <li
                       class={[

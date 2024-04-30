@@ -25,7 +25,7 @@ const RenderListServices = function () {
 
 export default function () {
   return (
-    <main class="modal_main">
+    <main id="modal_main">
       <div class="mt-[15px]">
         <RenderListServices />
       </div>

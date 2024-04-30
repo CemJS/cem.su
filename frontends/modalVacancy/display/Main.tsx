@@ -2,7 +2,7 @@ import { Cemjsx, Static, front, Func, Ref, Fn } from "cemjs-all";
 
 export default function () {
   return (
-    <main class="modal_main">
+    <main id="modal_main">
       <div class="modalVacancy">
         <div
           class={[

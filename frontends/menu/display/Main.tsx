@@ -47,7 +47,7 @@ export default function () {
                   records: [
                     {
                       name: "Опубликовать пост",
-                      func: () => Fn.linkChange("/profile/public/posts"),
+                      func: () => Fn.linkChange("/profile/public/post"),
                     },
                     {
                       name: "Задать вопрос",

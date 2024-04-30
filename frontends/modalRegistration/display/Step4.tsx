@@ -4,14 +4,14 @@ import done from "@svg/icons/done.svg";
 export default function () {
   return (
     <div class="w-1/4 transition-all">
-      <div class="modalReg_form">
-        <h3 class="modalReg_page-title text-center">
+      <div class="flex flex-col h-full justify-between gap-7">
+        <h3 class="text-lg font-semibold max-@600:text-base text-center">
           Поздравляем, Вы успешно зарегистрированы!
         </h3>
-        <div class="modalReg_success">
-          <img src={done} alt="Пользователь успешно зарегистрирован" />
+        <div class="flex justify-center items-center">
+          <img class="w-[min(50%,100px)]" src={done} alt="Пользователь успешно зарегистрирован" />
         </div>
-        <div class="f-center modalReg_btns">
+        <div class="flex justify-center items-center gap-5">
           <button
             class="btn btn_timing"
             onclick={() => {

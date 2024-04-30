@@ -4,10 +4,11 @@ import { Cemjsx, Static, Func, Ref, front, Fn } from "cemjs-all"
 export default function () {
   return (
     <div class="w-1/4 transition-all">
-      <div class="flex flex-col h-full justify-between gap-7">
+      {/* <div class="flex flex-col h-full justify-between gap-7"> */}
+      <div class="h-full">
         <h3 class="text-lg font-semibold max-@600:text-base">Придумайте пароль</h3>
         {/* ---------------------------- */}
-        <div class="relative">
+        <div class="relative mt-4">
           <div class="absolute top-2 left-4 pointer-events-none">
             <i class="i i-lock-closed text-xl"></i>
           </div>
@@ -51,6 +52,8 @@ export default function () {
             </div>
           </div>
         </div>
+
+        <span class="mt-2 mb-2 text-sm text-red-500 min-h-[15px] block">{Static.form.pass.error}</span>
         {/* ---------------------------- */}
         <div class="relative">
           <div class="absolute top-2 left-4 pointer-events-none">
@@ -60,7 +63,7 @@ export default function () {
             type={Static.passType}
             required
             autocomplete="off"
-            placeholder="Логин"
+            placeholder={Static.form.rePass.placeholder}
             disabled={Static.form.rePass.disable}
             class={["bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block  disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700",
               Static.form.rePass.error ? "border-red-400 focus:border-red-400" : null,
@@ -90,6 +93,8 @@ export default function () {
           </div>
         </div>
 
+        <span class="mt-2 text-sm text-red-500 min-h-[15px] block">{Static.form.rePass.error}</span>
+
         <div class="flex justify-center items-center">
           <button
             class={[
@@ -117,21 +122,55 @@ export default function () {
               );
               Fn.log("=a028de=", answer);
 
-              if (answer.error === "already register") {
+              if (answer.error === "username allready taken") {
                 Static.form.isValid = false;
                 Func.clickPrev();
                 front.Services.functions.formNickName(Static.form.nickName);
+                Static.form.nickName.error = "Логин занят!"
+                Static.form.nickName.valid = false
                 front.Services.functions.formLang(Static.form.mainLang);
                 front.Services.functions.formCountry(Static.form.country);
                 Func.checkForm();
 
-                Fn.log("=Static.form.isValid=", Static.form.isValid);
+                if (!Static.form.isValid) {
+                  return;
+                }
+                // Func.checkLogin();
+                return;
+              }
+
+              if (answer.error === "email allready taken") {
+                Static.form.isValid = false;
+                Func.clickPrevBegin();
+                front.Services.functions.formNickName(Static.form.nickName);
+                Static.form.email.error = "Email занят!"
+                Static.form.email.valid = false
+                Static.form.email.disable = false
+                front.Services.functions.formLang(Static.form.mainLang);
+                front.Services.functions.formCountry(Static.form.country);
+                Func.checkForm();
 
                 if (!Static.form.isValid) {
                   return;
                 }
 
-                Func.checkLogin();
+                return;
+              }
+
+              if (answer.error === "code not verified") {
+                Static.form.isValid = false;
+                Func.clickPrevBegin();
+                front.Services.functions.formNickName(Static.form.nickName);
+                front.Services.functions.formLang(Static.form.mainLang);
+                front.Services.functions.formCountry(Static.form.country);
+                Static.form.email.error = "Email занят! Получите новый код на другую почту"
+                Static.form.email.valid = false
+                Static.form.email.disable = false
+                Func.checkForm();
+
+                if (!Static.form.isValid) {
+                  return;
+                }
                 return;
               }
 
@@ -150,6 +189,6 @@ export default function () {
           </button>
         </div>
       </div>
-    </div>
+    </div >
   )
 }

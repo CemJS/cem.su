@@ -26,13 +26,12 @@ const RenderLoader = (index) => {
           init={(e) => {
             setTimeout(() => {
               Ref[`half${index}`].style.opacity = "1";
-              Ref[`half${index}`].style.transition = "transform 1s";
               Ref[`half${index}`].style.transform = "rotate(180deg)";
             }, 1000);
           }}
           id="half"
           ref={`half${index}`}
-          class="absolute h-full w-full rounded-[50%] opacity-0 [clip:rect(0px,70px,70px,35px)] [transform:rotate(0deg)] ![transition-delay:0.5s]"
+          class="absolute h-full w-full rounded-[50%] opacity-0 [clip:rect(0px,70px,70px,35px)] [transform:rotate(0deg)] ![transition-delay:0.5s] [transition:transform_1s]"
         >
           <div class="absolute h-full w-full rounded-[50%] [background:radial-gradient(rgba(0,0,0,0)_57%,#F8F8F8_60%)] [transform:rotate(0deg)] [transition:1s]"></div>
         </div>
