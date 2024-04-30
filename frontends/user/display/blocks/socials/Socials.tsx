@@ -7,7 +7,6 @@ import editIcon from "@svg/profile/editIcon.svg";
 import FormSocials from "./FormSocials";
 
 export default function () {
-
   return (
     <div class="relative z-[1] m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
       <div class=" mb-[.3125rem] mt-[1.25rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] @1024:mt-[1.5625rem]">
@@ -60,7 +59,7 @@ export default function () {
               <div class="flex h-full w-full flex-row items-center rounded-[.4375rem] bg-[--black-gray] px-[.625rem] py-[.3125rem] @680:flex-col @680:px-[.9375rem] @680:py-[.625rem]">
                 <a
                   onclick={Fn.link}
-                  href={item?.url}
+                  href={item?.url + item?.name}
                   class={[
                     "flex h-[3.75rem] min-h-[3.75rem] w-[3.75rem] min-w-[3.75rem] items-center justify-center rounded-[50%] [&_img]:h-full [&_img]:max-h-[60%] [&_img]:w-full [&_img]:max-w-[60%]",
                     item?.channel === "youtube"
@@ -134,21 +133,11 @@ export default function () {
                               title: "удалить социальную сеть ",
                               Callback: async (CallBack: boolean) => {
                                 if (CallBack) {
+                                  const url = "/api/users/update";
                                   const array = [...Static.record?.socials];
                                   array?.splice(key, 1);
-                                  let res =
-                                    await front.Services.functions.sendApi(
-                                      `/api/users/update`,
-                                      { social: array },
-                                    );
-                                  if (res?.status === 200) {
-                                    Static.record.socials = array;
-                                  } else {
-                                    Fn.initOne("alert", {
-                                      title: "Ошибка!",
-                                      text: "Соединение не удалось, попробуйте позже",
-                                    });
-                                  }
+                                  const name = "social";
+                                  Func.delete(url, array, name);
                                 }
                               },
                             }),

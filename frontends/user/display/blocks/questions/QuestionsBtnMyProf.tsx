@@ -33,10 +33,9 @@ export default function ({ item, key }) {
                   Callback: async (CallBack: boolean) => {
                     if (CallBack) {
                       item.isClosed = true;
-                      let res = await front.Services.functions.sendApi(
-                        `/api/questions/${item?.id}/close`,
-                        {},
-                      );
+                      const url = `/api/questions/${item?.id}/close`;
+                      console.log("url", url);
+                      Func.sendAuth(url, {});
                     }
                   },
                 }),

@@ -26,6 +26,7 @@ front.func.follow = async (item: subscriberObject) => {
   }
 };
 
+// Удаление где не требуется указывать id обьекта!
 front.func.delete = async (url: string, array: object, name: string) => {
   let res = await Func.sendAuth(url, { [name]: array });
   if (res?.status === 200) {
