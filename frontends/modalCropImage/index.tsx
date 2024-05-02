@@ -5,46 +5,43 @@ import Cropper from "cropperjs";
 front.listener.finish = () => {
   if (Static.cropImage) {
     let rationButtons = document.querySelectorAll("#ratio");
-    console.log("=c90bda=", Ref);
     Ref.image.src = URL.createObjectURL(Static.cropImage);
 
-    const cropper = new Cropper(Ref.image, {
-      dragMode: "move",
-      autoCrop: false,
-    });
-    // const croppedImage = cropper.getCroppedCanvas().toDataURL("image/png");
+    !Static.cropper ? Func.cropperGo() : null;
 
-    // rationButtons.forEach((button: HTMLElement) => {
-    //   let buttonText = button.innerText;
-
-    //   button.addEventListener("click", () => {
-    //     if (buttonText == "Auto") {
-    //       cropper.setAspectRatio(NaN);
-    //     } else {
-    //       cropper.setAspectRatio(eval(buttonText.replace(":", "/")));
-    //     }
-    //   });
-    // });
-    rationButtons.forEach((button: HTMLElement) => {
-      let buttonText = button.innerText;
-    
-      button.addEventListener("click", () => {
-        if (buttonText == "Auto") {
-          cropper.setAspectRatio(NaN);
-        } else {
-          // Split the buttonText by ":" to get the ratio parts
-          const ratioParts = buttonText.split(":").map(Number);
-          if (ratioParts.length === 2) {
-            // Calculate the aspect ratio without using eval()
-            const aspectRatio = ratioParts[0] / ratioParts[1];
-            cropper.setAspectRatio(aspectRatio);
-          }
-        }
-      });
-    });
+    const ratioParts = Static.ratio.split(":").map(Number);
+    if (ratioParts.length === 2) {
+      Static.aspectRatio = ratioParts[1] / ratioParts[0];
+      Static.cropper.setAspectRatio(Static.aspectRatio);
+      console.log("=56d875=", Static.aspectRatio);
+    }
   }
 
   return;
+};
+
+front.func.cropperGo = function ($el: HTMLElement) {
+  if (Static.cropper) {
+    Static.cropper.destroy();
+  }
+  Static.cropper = new Cropper(Ref.image, {
+    viewMode: 3,
+    dragMode: "move",
+    autoCropArea: 1,
+    autoCrop: false,
+    restore: false,
+    modal: false,
+    guides: false,
+    highlight: true,
+    cropBoxMovable: true,
+    cropBoxResizable: true,
+    // cropBoxDraggble: true,
+    toggleDragModeOnDblclick: false,
+
+    crop: function (e) {
+      var data = e.detail;
+    },
+  });
 };
 
 front.func.show = function ($el: HTMLElement) {
@@ -63,6 +60,7 @@ front.func.close = function () {
 };
 
 front.loader = async () => {
+  !Static.ratio ? (Static.ratio = "16:9") : null;
   return;
 };
 

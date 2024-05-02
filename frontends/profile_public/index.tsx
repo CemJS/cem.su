@@ -19,14 +19,9 @@ front.func.uploadMedia = async (file: any, type: string) => {
   let mediaIndex: number;
   try {
     mediaIndex = Static.data.media.push({ type, name: "" }) - 1;
-    console.log("=7f5785=", mediaIndex);
-    let answer = await fetch("/upload/posts", {
-      method: "POST",
-      body: data,
-    });
-    let res = await answer.json();
 
-    console.log("=60cd8e=", res);
+    let res = await front.Services.functions.uploadMedia(file, type);
+    console.log("=380962=", res);
 
     Static.data.media[mediaIndex]
       ? (Static.data.media[mediaIndex] = { type, name: res.name })

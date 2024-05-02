@@ -7,6 +7,7 @@ import { indexDB, IndexDBGetByOne } from "./indexDB";
 import "moment/min/locales";
 import { throttle } from "./throttle";
 import { debounce } from "./debounce";
+import uploadMedia from "./uploadMedia";
 
 export * from "./validForms";
 export * from "./indexDB";
@@ -162,4 +163,13 @@ export const loader = async function (Variable: any, Fn: any) {
   return;
 };
 
-export { uuidv4, editText, searchLink, indexDB, IndexDBGetByOne, throttle, debounce };
+export {
+  uuidv4,
+  editText,
+  searchLink,
+  indexDB,
+  IndexDBGetByOne,
+  throttle,
+  debounce,
+  uploadMedia,
+};
