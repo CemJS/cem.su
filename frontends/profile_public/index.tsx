@@ -7,34 +7,14 @@ front.listener.finish = () => {
 };
 
 front.func.uploadMedia = async (file: any, type: string) => {
-  let data = new FormData();
-  data.append("media", file);
+  let mediaIndex: number = Static.data.media.push({ type, name: "" }) - 1;
 
-  let errors = {
-    video: "видео",
-    image: "картинку",
-    audio: "аудиозапись",
-  };
+  let res = await front.Services.functions.uploadMedia(file, type);
 
-  let mediaIndex: number;
-  try {
-    mediaIndex = Static.data.media.push({ type, name: "" }) - 1;
-
-    let res = await front.Services.functions.uploadMedia(file, type);
-    console.log("=380962=", res);
-
-    Static.data.media[mediaIndex]
-      ? (Static.data.media[mediaIndex] = { type, name: res.name })
-      : 0;
-    Static.data.media.length > 0 ? (Static.isValid = true) : null;
-  } catch {
-    Static.data.media.splice(mediaIndex, 1);
-    Fn.initOne("alert", {
-      text: `Не удалось загрузить ${errors[type]}`,
-      type: "danger",
-    });
-  }
-  return;
+  Static.data.media[mediaIndex]
+    ? (Static.data.media[mediaIndex] = { type, name: res.name })
+    : 0;
+  Static.data.media.length > 0 ? (Static.isValid = true) : null;
 };
 
 front.loader = async () => {
@@ -65,9 +45,6 @@ front.loader = async () => {
   if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "question") {
     Static.page = "question";
     return;
-  }
-  if (!front.Variable.DataUrl[2]) {
-    console.log("=533d6f=", 1);
   }
 };
 

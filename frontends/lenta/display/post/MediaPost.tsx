@@ -6,7 +6,7 @@ export default function ({ mediaItem, index }) {
     <div class="relative h-full w-full select-none">
       {mediaItem.type == "video" ? (
         <Video
-          src={`/assets/upload/posts/c793dcce7c11a1266adbaf4c5727cca4.mp4`}
+          src={`/assets/upload/posts/${mediaItem?.mediaName}`}
           key={mediaItem?.mediaName}
         />
       ) : mediaItem.type == "audio" ? (
