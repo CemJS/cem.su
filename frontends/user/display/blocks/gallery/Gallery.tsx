@@ -1,5 +1,6 @@
 import { Cemjsx, Fn, Static } from "cemjs-all";
 import FormGallery from "./FormGallery";
+import infinity from "@svg/profile/infinity.svg";
 
 // Инициализируем состояние иконок
 const blockIcons = {
@@ -10,34 +11,30 @@ const blockIcons = {
 // Функция для создания иконки
 const createIcon = (icon: string, backgroundUrl: string) => (
   <li>
-    <a
+    <img
       onclick={() => setActiveIcon(icon)}
+      src={backgroundUrl}
       class={[
         "block h-[1.8125rem] w-[1.8125rem]",
-        `[background:no-repeat_url(${backgroundUrl})_center_/_90%]`,
+        // `[background:no-repeat_url(${infinity})_center_/_90%]`,
         blockIcons[icon]
           ? "cursor-default rounded-[.3125rem] [border:2px_solid_#40f2d0]"
           : "cursor-pointer",
       ]}
-    ></a>
+    />
   </li>
 );
 
 // Функция для установки активной иконки
 function setActiveIcon(icon: string) {
-  // Получаем ключи объекта blockIcons
-  const keys = Object.keys(blockIcons);
-  console.log("keys", keys);
-  
   // Обновляем состояние иконок
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i];
+  Object.keys(blockIcons).forEach((key) => {
     blockIcons[key] = key === icon;
-  }
-  
+  });
   // Переинициализируем компонент
   Fn.init();
-}// Компонент для отображения иконок
+}
+// Компонент для отображения иконок
 export default function () {
   return (
     <div class="relative z-[1] m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">

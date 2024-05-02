@@ -14,14 +14,31 @@ front.listener.finish = () => {
     });
     // const croppedImage = cropper.getCroppedCanvas().toDataURL("image/png");
 
+    // rationButtons.forEach((button: HTMLElement) => {
+    //   let buttonText = button.innerText;
+
+    //   button.addEventListener("click", () => {
+    //     if (buttonText == "Auto") {
+    //       cropper.setAspectRatio(NaN);
+    //     } else {
+    //       cropper.setAspectRatio(eval(buttonText.replace(":", "/")));
+    //     }
+    //   });
+    // });
     rationButtons.forEach((button: HTMLElement) => {
       let buttonText = button.innerText;
-
+    
       button.addEventListener("click", () => {
         if (buttonText == "Auto") {
           cropper.setAspectRatio(NaN);
         } else {
-          cropper.setAspectRatio(eval(buttonText.replace(":", "/")));
+          // Split the buttonText by ":" to get the ratio parts
+          const ratioParts = buttonText.split(":").map(Number);
+          if (ratioParts.length === 2) {
+            // Calculate the aspect ratio without using eval()
+            const aspectRatio = ratioParts[0] / ratioParts[1];
+            cropper.setAspectRatio(aspectRatio);
+          }
         }
       });
     });
