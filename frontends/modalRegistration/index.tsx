@@ -93,22 +93,6 @@ front.func.checkForm = async function () {
 }
 
 front.func.checkLogin = async function () {
-    // let answer = await front.Services.functions.sendApi(`/api/users/register`, {
-    //     action: "checkNick",
-    //     step: Static.currentStep,
-    //     nickname: Static.form.nickName.value
-    // })
-
-    // if (answer.error) {
-    //     Static.form.nickName.error = "Логин занят!"
-    //     Static.form.nickName.valid = false
-    // }
-
-    // if (answer.error == "already register") {
-    //     Static.form.nickName.error = "Логин занят!"
-    //     Static.form.nickName.valid = false
-    // }
-    // Fn.log("answer checkLogin", answer)
     let answer = await front.Services.functions.sendApi(`/api/users/register`,
         {
             step: Static.currentStep,

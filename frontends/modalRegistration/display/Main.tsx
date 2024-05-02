@@ -34,7 +34,7 @@ const RenderSteps = function ({ steps, current }) {
 
 export default function () {
   return (
-    <main id="modal_main">
+    <main>
       <RenderSteps steps={Static.steps} current={Static.currentStep} />
       <div class="w-full overflow-hidden">
         <div class="mt-6 flex w-[400%]">
