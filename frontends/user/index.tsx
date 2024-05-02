@@ -1,7 +1,6 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 import { subscriberObject } from "./display/blocks/subscribers/interface";
-
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   if (front.Variable.Auth) {
     let res = await front.Services.functions.sendApi(url, data, method);

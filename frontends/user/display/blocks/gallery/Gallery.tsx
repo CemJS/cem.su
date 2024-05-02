@@ -1,6 +1,5 @@
 import { Cemjsx, Fn, Static } from "cemjs-all";
-import FormGallery from "./FormGallery";
-import infinity from "@svg/profile/infinity.svg";
+import GridGallery from "./GridGallery";
 
 // Инициализируем состояние иконок
 const blockIcons = {
@@ -36,11 +35,12 @@ function setActiveIcon(icon: string) {
 }
 // Компонент для отображения иконок
 export default function () {
+  Fn.log("Static.gallery", Static.record);
   return (
     <div class="relative z-[1] m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
       <div class="mb-[.3125rem] mt-[1.25rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] @1024:mt-[1.5625rem]">
         <h2 class="mx-0 my-[1.25rem] text-balance text-center text-[clamp(17px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
-          Заданные вопросы
+          Галерея
         </h2>
         <ul class="m-0 flex list-none items-stretch gap-[.4375rem] p-0 max-@1024:pr-[.625rem]">
           {createIcon("infinity", "/contents/svg/gallery/infinity.svg")}
@@ -49,7 +49,7 @@ export default function () {
         </ul>
       </div>
       {/* Показываем форму, если это необходимо */}
-      {Static.showForm && <FormGallery />}
+      <GridGallery />
     </div>
   );
 }
