@@ -50,7 +50,14 @@ export default function () {
         })}
       </div>
       <div class="flex justify-between">
-        <div class="btn !w-[48%]">Загрузить</div>
+        <div
+          onclick={() => {
+            console.log("=b59a84=", Static.cropper.crop());
+          }}
+          class="btn !w-[48%]"
+        >
+          Загрузить
+        </div>
         <div class="btn btn_reset !w-[48%]" onclick={Func.close}>
           Отменить
         </div>
