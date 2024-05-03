@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Static, front } from "cemjs-all";
+import { Cemjsx, Fn, Static, front, Func } from "cemjs-all";
 import dots from "@svg/questions/dots.svg";
 
 export default function ({ item, key }) {
@@ -17,14 +17,11 @@ export default function ({ item, key }) {
                     title: "удалить свой ответ",
                     Callback: async (CallBack: boolean) => {
                       if (CallBack) {
-                        Static.record?.answers?.splice(key, 1);
-                        let res = await front.Services.functions.sendApi(
-                          `/api/answers/${item?.id}/delete`,
-                          {},
-                        );
-
-                        if (res?.status === 200) {
-                        }
+                        const url = `/api/answers/${item?.id}/delete`;
+                        const array = [...Static.record?.answers];
+                        array?.splice(key, 1);
+                        const name = "answer";
+                        Func.delete(url, array, name);
                       }
                     },
                   }),

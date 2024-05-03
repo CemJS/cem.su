@@ -6,6 +6,7 @@ import dots from "@svg/questions/dots.svg";
 import { subscriberObject } from "./interface";
 
 export default function () {
+
   return (
     <div class="relative m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
       <div class="mb-[.3125rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] @1024:mt-[1.5625rem]">

@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Static, front } from "cemjs-all";
+import { Cemjsx, Fn, Static, front, Func } from "cemjs-all";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
@@ -7,6 +7,8 @@ import defaultGray from "@svg/lenta/defaultGray.svg";
 import { UsersObject } from "../interface";
 
 export default function () {
+  console.log("Static.records", Static.records);
+  
   return (
     <div class="wrapper ml-auto mr-auto w-[calc(100%_-_60px)] pb-[6.25rem] pt-[3.125rem] @1200:ml-auto @1200:mr-auto @1240:w-full">
       <h1 class="text-balance text-center">Пользователи</h1>
@@ -44,14 +46,7 @@ export default function () {
                   <a
                     class="user-avatar relative flex h-auto w-full justify-center text-inherit no-underline"
                     onclick={async () => {
-                      let userContent =
-                        await front.Services.functions.makeUrlEvent(
-                          `/api/events/users/${item?.nickname}/profile`,
-                          {},
-                        );
-                      //проверка на error
-                      Static.contentUser = userContent?.result;
-                      Fn.linkChange(`/user/${item?.nickname}`);
+                      Func.showUser(item?.nickname);
                     }}
                   >
                     <div class="avatar-icon relative z-[1] ml-[10px] h-[6.25rem] w-[6.25rem] min-w-[2.9375rem]">
@@ -106,7 +101,7 @@ export default function () {
                 {item?.awards?.slice(0, 5)?.map((award: any, key: number) => {
                   return (
                     <div class="group relative mr-[.5625rem] cursor-pointer">
-                      <div class="user-badge-description absolute left-[50%] top-[3.375rem] z-[100] hidden min-h-[5rem] w-[10rem] rounded-[.4375rem] bg-[--prestige-blue] p-[.9375rem] [transform:translateX(-50%)] [border:2px_solid_#232733] [box-shadow:-1px_1px_5px_#000000] group-hover:block">
+                      <div class="user-badge-description absolute left-[50%] top-[3.375rem] z-[100] hidden min-h-[5rem] w-[10rem] rounded-[.4375rem] bg-[--prestige-blue] p-[.9375rem] [border:2px_solid_#232733] [box-shadow:-1px_1px_5px_#000000] [transform:translateX(-50%)] group-hover:block">
                         <p class="mb-[.3125rem] text-center text-[clamp(.625rem,_3vw,_.75rem)] font-bold leading-[1rem] tracking-[.0437rem]">
                           {award?.name}
                         </p>
@@ -153,8 +148,12 @@ export default function () {
                 <button class="m-[.625rem] mt-10 h-[3.2rem] w-[50%] cursor-pointer whitespace-nowrap rounded-[0.5rem] border-none px-[1rem] py-[0.8rem] text-[1rem] text-[--white] [background-size:125%] [background:--mainGradient] [outline:none] [transition:all_0.2s_ease-out] hover:bg-right active:scale-[0.97]">
                   Написать
                 </button>
-                <button class="m-[.625rem] mt-10 h-[3.2rem] w-[50%] cursor-pointer whitespace-nowrap rounded-[0.5rem] border-none px-[1rem] py-[0.8rem] text-[1rem] text-[--white] [background-size:125%] [background:--mainGradient] [outline:none] [transition:all_0.2s_ease-out] hover:bg-right active:scale-[0.97]">
+                <button
+                  class="m-[.625rem] mt-10 h-[3.2rem] w-[50%] cursor-pointer whitespace-nowrap rounded-[0.5rem] border-none px-[1rem] py-[0.8rem] text-[1rem] text-[--white] [background-size:125%] [background:--mainGradient] [outline:none] [transition:all_0.2s_ease-out] hover:bg-right active:scale-[0.97]"
+                  onclick={() => Func.follow(item)}
+                >
                   Подписаться
+                  {/* {!item?.subscribed ? "Подписаться" : "Отписаться"} */}
                 </button>
               </div>
             </div>

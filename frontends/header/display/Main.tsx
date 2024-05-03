@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, front } from "cemjs-all";
+import { Cemjsx, Fn, front, Func } from "cemjs-all";
 import logo from "@svg/logo.svg";
 import menu from "@json/menu";
 import frameDefault from "@svg/lenta/default.svg";
@@ -8,7 +8,7 @@ import leveGray from "@svg/lenta/level_gray.svg";
 
 const RenderMenu = function ({ menu }) {
   return (
-    <ul class="md:flex gap-x-4 items-center hidden">
+    <ul class="hidden items-center gap-x-4 md:flex">
       {menu.map((item: any) => {
         return (
           <li
@@ -35,36 +35,35 @@ export default function () {
     >
       <div class="flex items-center justify-between">
         <nav class="flex gap-x-4">
-          <a
-            href="/"
-            onclick={Fn.link}
-            class="h-16"
-          >
-            <img
-              class="h-full"
-              src={logo}
-              alt="Crypto Emergency"
-            />
+          <a href="/" onclick={Fn.link} class="h-16">
+            <img class="h-full" src={logo} alt="Crypto Emergency" />
           </a>
           <RenderMenu menu={menu} />
         </nav>
 
         <div class="flex items-center gap-x-4">
           <div
-            class="hidden sm:flex btn btn_dark"
-            onclick={() => Fn.initOne("modalLanguage", { title: "Выбор основного языка" })}
+            class="btn btn_dark hidden sm:flex"
+            onclick={() =>
+              Fn.initOne("modalLanguage", { title: "Выбор основного языка" })
+            }
           >
             <i class="i i-globe-alt text-xl"></i>
-            <span>{front.Variable.lang ? front.Variable.lang : "Выберите язык"}</span>
+            <span>
+              {front.Variable.lang ? front.Variable.lang : "Выберите язык"}
+            </span>
             <i class="i i-chevron-right text-xl"></i>
           </div>
 
           {front.Variable?.myInfo?.auth ? (
             <div
               onclick={() => {
-                Fn.linkChange(`/user/${front.Variable.myInfo?.nickname}`)
+                Func.showUser(
+                  `users/${front.Variable.myInfo?.nickname}/profile`,
+                  `/user/${front.Variable.myInfo?.nickname}`,
+                );
               }}
-              class="relative hidden lg:inline-flex h-auto w-auto ml-2 cursor-pointer"
+              class="relative ml-2 hidden h-auto w-auto cursor-pointer lg:inline-flex"
             >
               <div class="relative z-[1] h-[3.5rem] w-[3.1875rem] min-w-[2.9375rem]">
                 <img
@@ -109,11 +108,14 @@ export default function () {
               </div>
             </div>
           ) : (
-            <div class="flex items-center gap-2 cursor-pointer">
-              <span onclick={() => Fn.initOne("modalAuthtorization", {})}>Вход</span>
+            <div class="flex cursor-pointer items-center gap-2">
+              <span onclick={() => Fn.initOne("modalAuthtorization", {})}>
+                Вход
+              </span>
               <button
                 class="btn"
-                onclick={() => Fn.initOne("modalRegistration", {})}>
+                onclick={() => Fn.initOne("modalRegistration", {})}
+              >
                 Регистрация
               </button>
             </div>

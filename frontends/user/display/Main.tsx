@@ -5,7 +5,7 @@ import Categories from "./Categories"
 import UserMainBlock from "./UserMainBlock"
 
 export default function () {
-  // Fn.log('=dfbb213=', Static.record)
+  // Fn.log('Static.record2', Static)
   return (
     <div class="c-main-body">
       <div class="wrapper">

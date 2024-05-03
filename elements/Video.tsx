@@ -17,11 +17,10 @@ Static.speedOptions = [
     value: 0.5,
   },
 ];
-
 export default function ({ src, key }) {
   return (
     <div
-      class="video-container "
+      class="video-container h-full w-full"
       ref={`videoContainer${key}`}
       onmousemove={(e) => {
         e.currentTarget.classList.add("video-container_showControlls");

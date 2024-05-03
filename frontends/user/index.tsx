@@ -1,6 +1,7 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 import { subscriberObject } from "./display/blocks/subscribers/interface";
+
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   if (front.Variable.Auth) {
     let res = await front.Services.functions.sendApi(url, data, method);
@@ -52,7 +53,6 @@ front.listener.clickAny = function (e) {
 
 front.loader = async () => {
   Static.feedState = true;
-
   Static.aboutMe = true;
   Static.questions = false;
   Static.answers = false;
@@ -69,12 +69,14 @@ front.loader = async () => {
       `users/${front.Variable?.DataUrl[1]}/profile`,
       {},
     );
-    // Fn.log('=2b8a89=',url)
+    // Fn.log("=2b8a89=", url);
     let listener = [
       {
         type: "get",
         fn: ({ data }) => {
           let json = front.Services.functions.strToJson(data);
+          Fn.log("json", json);
+
           if (!json) {
             return;
           }

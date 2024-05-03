@@ -7,7 +7,6 @@ export default function ({ item, key }) {
       <div
         class="relative ml-[.625rem] box-border h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]"
         onclick={() => {
-          
           Fn.initOne("modalTools", {
             records: [
               {
@@ -18,15 +17,11 @@ export default function ({ item, key }) {
                     title: "удалить свой вопрос",
                     Callback: async (CallBack: boolean) => {
                       if (CallBack) {
-                        Static.record?.questions?.splice(key, 1);
-                        let res = await front.Services.functions.sendApi(
-                          `/api/questions/${item?.id}/delete`,
-                          {},
-                        );
-
-                        if (res?.status === 200) {
-                          // Static.record.work = array;
-                        }
+                        const url = `/api/questions/${item?.id}/delete`;
+                        const array = [...Static.record?.questions];
+                        array?.splice(key, 1);
+                        const name = "question";
+                        Func.delete(url, array, name);
                       }
                     },
                   }),

@@ -20,6 +20,8 @@ export default function () {
             `/api/users/${Static.record?.nickname}/profile`,
             { category: "gallery" },
           );
+          // console.log("content", content);
+          
           //проверка на error
         }}
         style={

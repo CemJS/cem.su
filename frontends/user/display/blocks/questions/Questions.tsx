@@ -122,12 +122,9 @@ export default function () {
                   />
                 </div>
               </div>
-              {front.Variable?.DataUrl[1] ===
-                front.Variable?.myInfo?.nickname ? (
+            
                 <QuestionsBtnMyProf item={item} key={key} />
-              ) : (
-                null
-              )}
+            
             </div>
           );
         })}
