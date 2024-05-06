@@ -43,7 +43,6 @@ const changeMediaFile = async () => {
   input.click();
 };
 export default function () {
-  
   return (
     <div class="grid [grid-template-columns:repeat(3,_minmax(100px,_1fr))]">
       {front.Variable.DataUrl[1] === front.Variable.myInfo?.nickname && (
@@ -68,6 +67,10 @@ export default function () {
                 <Video src={`/assets/upload/gallery/${item?.name}`} key />
               ) : (
                 <img
+                  onclick={() => {
+                    // let activeIndex = key;
+                    Fn.initOne("modalGallery", { image: item?.name });
+                  }}
                   class="absolute h-auto min-h-full min-w-full bg-[#1D2029] bg-contain bg-no-repeat object-cover"
                   src={`/assets/upload/gallery/${item?.name}`}
                   alt=""
