@@ -4,7 +4,6 @@ import Cropper from "cropperjs";
 
 front.listener.finish = () => {
   if (Static.cropImage) {
-    let rationButtons = document.querySelectorAll("#ratio");
     Ref.image.src = URL.createObjectURL(Static.cropImage);
 
     !Static.cropper ? Func.cropperGo() : null;
@@ -12,8 +11,7 @@ front.listener.finish = () => {
     const ratioParts = Static.ratio.split(":").map(Number);
     if (ratioParts.length === 2) {
       Static.aspectRatio = ratioParts[1] / ratioParts[0];
-      Static.cropper.setAspectRatio(Static.aspectRatio);
-      console.log("=56d875=", Static.aspectRatio);
+      // Static.cropper.setAspectRatio(Static.aspectRatio);
     }
   }
 
@@ -60,7 +58,10 @@ front.func.close = function () {
 };
 
 front.loader = async () => {
-  !Static.ratio ? (Static.ratio = "16:9") : null;
+  console.log("=c2ee37=", Static.defaultRatio);
+  !Static.defaultRatio
+    ? (Static.ratio = "16:9")
+    : (Static.ratio = Static.defaultRatio);
   return;
 };
 

@@ -11,7 +11,7 @@ export default function () {
         style={`height:${Static.aspectRatio != "Auto" ? `calc(${Ref?.container?.offsetWidth + "px"} * ${Static.aspectRatio})` + ";" : "auto"}`}
         class="w-full overflow-hidden"
       >
-        <img class="block w-full max-w-full" ref="image" id="image" />
+        <img class="block max-w-full" ref="image" id="image" />
       </div>
       <div id="ration__buttons" class="my-3 flex w-full justify-between">
         {ratioValues.map((ratio, index) => {
@@ -20,7 +20,7 @@ export default function () {
               onclick={() => {
                 Static.ratio = ratio;
                 if (Static.ratio == "Auto") {
-                  Static.cropper.setAspectRatio(NaN);
+                  // Static.cropper.setAspectRatio(NaN);
                   Static.aspectRatio = "Auto";
                   Func.cropperGo();
                 } else {
@@ -28,10 +28,11 @@ export default function () {
                   if (ratioParts.length === 2) {
                     Static.aspectRatio = ratioParts[1] / ratioParts[0];
                     Func.cropperGo();
-                    Static.cropper.setAspectRatio(Static.aspectRatio);
+                    // Static.cropper.setAspectRatio(Static.aspectRatio);
                   }
                 }
               }}
+              disabled={Static.defaultRatio && Static.defaultRatio != ratio}
               id="ratio"
               class={[
                 "relative h-[48px] w-full border border-[#0d6efd] [background:--mainGradient] [&.active_#bg]:opacity-0 [&:hover_#bg]:opacity-0",
@@ -52,7 +53,30 @@ export default function () {
       <div class="flex justify-between">
         <div
           onclick={() => {
-            console.log("=b59a84=", Static.cropper.crop());
+            console.log(
+              "=696eeb=",
+              Ref.container.offsetWidth,
+              Ref.container.offsetHeight,
+            );
+            Static.cropper.crop();
+            setTimeout(() => {
+              Static.cropper.setData({ width: "100%", height: "100%" });
+            }, 500);
+            Static.cropper
+              .getCroppedCanvas({
+                maxWidth: Ref.container.offsetWidth,
+                width: Ref.container.offsetWidth,
+                height: Ref.container.offsetHeight,
+                maxHeight: Ref.container.offsetHeight,
+              })
+              .toBlob((blob: Blob) => {
+                const image = new File([blob], "image.png", {
+                  type: "image/png",
+                });
+
+                Static.callback(image, Static.ratio);
+                Func.close();
+              });
           }}
           class="btn !w-[48%]"
         >

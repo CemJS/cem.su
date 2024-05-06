@@ -1,8 +1,15 @@
 import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all";
 import Navigation from "./navigation";
 import postListener from "./listeners/post.listener";
+import { AudioPlayer } from "@elements/Audio";
 
 front.listener.finish = () => {
+  // плеер
+
+  if (!Static.define) {
+    customElements.define("audio-player", AudioPlayer);
+    Static.define = true;
+  }
   return;
 };
 

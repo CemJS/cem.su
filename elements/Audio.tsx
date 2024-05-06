@@ -225,12 +225,21 @@ export class AudioPlayer extends HTMLElement {
     this.currentTimeEl.textContent = `${min}:${sec}`;
   }
 
+  truncateText = (str: string, length = 5) => {
+    const ending = "...";
+    if (str.length > length) {
+      return str.substring(0, length - ending.length) + ending;
+    } else {
+      return str;
+    }
+  };
+
   stylePlayer() {
     return `
             <style>
                 :host{
                     width: 100%;
-                    max-width: 400px;
+                    max-width: 700px;
                     font-family: sans-serif;
                 }
 
@@ -241,7 +250,8 @@ export class AudioPlayer extends HTMLElement {
                 .audio{
                     background: #24283a;
                     border-radius: 0.6rem;
-                    margin: 0.8rem 1rem;
+                    margin: 0;
+                    max-width: 700px;
                     padding: 0.8rem 1rem;
                 }
 
@@ -252,12 +262,21 @@ export class AudioPlayer extends HTMLElement {
                     font-size: 0.8rem;
                     margin-bottom: 0.3rem;
                     color: #cbd5e1;
+                    width: 20%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 .audio-body{
                     display: flex;
                     align-items: center;
                     gap: 1rem;
+                }
+                @media(max-width: 700px){
+                    .audio-body{
+                      justify-content: space-between;
+                    }
                 }
 
                 .audio-icon{
@@ -292,6 +311,11 @@ export class AudioPlayer extends HTMLElement {
                     position: relative;
                     height: 3.5rem;
                 }
+                @media(max-width: 700px){
+                    .audio-waves{
+                      display: none;
+                    }
+                }
 
                 .audio-waves__canvas{
                     position: absolute;
@@ -323,6 +347,11 @@ export class AudioPlayer extends HTMLElement {
 
                 .audio-volume__progress{
                     width: 4.5rem;
+                }
+                @media(max-width: 700px){
+                  .audio-volume{
+                    margin-left: auto;
+                  }
                 }
 
                 input[type="range"]{
@@ -387,7 +416,7 @@ export class AudioPlayer extends HTMLElement {
                         <img src="/contents/audio/music.svg" alt="Аудиофайл" />
                     </div>
                     <div class="audio-waves">
-                        <figcaption class="audio__name">${this.title}</figcaption>
+                        <figcaption class="audio__name">${this.truncateText(this.title)}</figcaption>
                         <canvas class="audio-waves__canvas"></canvas>
                     </div>
                     <div class="audio-volume">

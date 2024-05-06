@@ -1,4 +1,5 @@
 import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
+import { AudioPlayer } from "@elements/Audio";
 
 const RenderLoader = (index) => {
   return (
@@ -54,39 +55,79 @@ const RenderStopLoading = (index) => {
 
 export default function () {
   return (
-    <div
-      id="files"
-      class={[
-        "grid w-full gap-[0.625rem] overflow-y-auto bg-[#313543] p-[0.625rem_1.5625rem] [border:1px_solid_#44495c] first:rounded-[30px]",
-        "@1540:grid-cols-[calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)]",
-        "@970:grid-cols-[calc(20%_-_8px)_calc(20%_-_8px)_calc(20%_-_8px)_calc(20%_-_8px)_calc(20%_-_8px)]",
-        "@500:grid-cols-[calc(33.3%_-_6.66px)_calc(33.3%_-_6.66px)_calc(33.3%_-_6.66px)]",
-        "grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)]",
-      ]}
-      // max-h-[12.5rem]
-    >
-      {Static.data.media.map((item, index) => {
-        return (
-          <div
-            id="preview"
-            class="relative flex h-full min-h-[6.25rem] w-full items-center justify-center overflow-hidden [&_video]:h-full [&_video]:w-full"
-          >
-            {item.name ? (
-              <video src={`/assets/upload/posts/${item.name}`}></video>
-            ) : (
-              <div>
-                <img
-                  class="h-full w-full object-cover"
-                  src="/contents/images/posterBG.png"
-                  alt="poster"
-                />
-                <RenderLoader index={index} />
-                <RenderStopLoading index={index} />
+    <div>
+      <div
+        id="files"
+        class={[
+          "grid w-full gap-[0.625rem] overflow-y-auto bg-[#313543] p-[0.625rem_1.5625rem] [border:1px_solid_#44495c] first:rounded-[30px]",
+          "@1540:grid-cols-[calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)_calc(12.5%_-_8.75px)]",
+          "@970:grid-cols-[calc(20%_-_8px)_calc(20%_-_8px)_calc(20%_-_8px)_calc(20%_-_8px)_calc(20%_-_8px)]",
+          "@500:grid-cols-[calc(33.3%_-_6.66px)_calc(33.3%_-_6.66px)_calc(33.3%_-_6.66px)]",
+          "grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)]",
+        ]}
+        // max-h-[12.5rem]
+      >
+        {Static.data.media
+          ?.filter((item) => item.type == "video" || item.type == "image")
+          .map((item, index) => {
+            return (
+              <div
+                id="preview"
+                class="relative flex h-full min-h-[6.25rem] w-full items-center justify-center overflow-hidden [&_video]:h-full [&_video]:w-full"
+              >
+                {item.name && item?.type == "video" ? (
+                  <video
+                    style={`aspect-ratio:${Static.aspect.replace(":", "/")};`}
+                    src={`/assets/upload/posts/${item.name}`}
+                  ></video>
+                ) : item.name && item?.type == "image" ? (
+                  <img
+                    class="h-full w-full object-contain"
+                    style={`aspect-ratio:${Static.aspect.replace(":", "/")};`}
+                    src={`/assets/upload/posts/${item.name}`}
+                  />
+                ) : (
+                  <div>
+                    <img
+                      class="h-full w-full object-cover"
+                      src="/contents/images/posterBG.png"
+                      alt="poster"
+                    />
+                    <RenderLoader index={index} />
+                    <RenderStopLoading index={index} />
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        );
-      })}
+            );
+          })}
+      </div>
+      <div
+        id="audio-container"
+        ref="audio-container"
+        class={[
+          "flex w-full flex-col items-center justify-center gap-[0.625rem] overflow-y-auto bg-[#313543] p-[0.625rem_1.5625rem] [border:1px_solid_#44495c]",
+        ]}
+      >
+        {Static.data.media
+          ?.filter((item) => item.type == "audio")
+          ?.map((item, index) => {
+            return (
+              <div
+                id="previewAudio"
+                class="relative flex h-full min-h-[6.25rem] w-full flex-col items-center justify-center overflow-hidden"
+              >
+                {item.name && item?.type == "audio" ? (
+                  <audio-player
+                    src={`/assets/upload/posts/${item.name}`}
+                    title={item?.name}
+                  ></audio-player>
+                ) : !item.name && item?.type == "audio" ? (
+                  <RenderStopLoading index={index} />
+                ) : null}
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }

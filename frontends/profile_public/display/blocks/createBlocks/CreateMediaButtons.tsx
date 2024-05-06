@@ -19,7 +19,6 @@ const RenderPhotoButton = () => {
         multiple="false"
         onchange={async (e) => {
           const files = [...e.target.files];
-          console.log("=084651=", files);
           let err = 0;
           files.forEach((file) => {
             if (!(file.type.split("/")[0] == "image")) {
@@ -29,10 +28,14 @@ const RenderPhotoButton = () => {
           if (!err) {
             const file = files[0];
 
-            Fn.initOne("modalCropImage", { cropImage: file });
-            // files.forEach((file) => {
-            //   Func.uploadMedia(file, "image");
-            // });
+            Fn.initOne("modalCropImage", {
+              cropImage: file,
+              defaultRatio: Static.aspect ? Static.aspect : undefined,
+              callback: async (photo, aspect) => {
+                Static.aspect = aspect;
+                Func.uploadMedia(photo, "image");
+              },
+            });
           } else {
             Fn.initOne("alert", {
               type: "danger",
