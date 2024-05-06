@@ -30,8 +30,11 @@ const RenderPhotoButton = () => {
 
             Fn.initOne("modalCropImage", {
               cropImage: file,
-              defaultRatio: Static.aspect ? Static.aspect : undefined,
-              callback: async (photo, aspect) => {
+              defaultRatio:
+                Static.data.media.length > 0 && Static.aspect
+                  ? Static.aspect
+                  : undefined,
+              callback: (photo, aspect) => {
                 Static.aspect = aspect;
                 Func.uploadMedia(photo, "image");
               },
@@ -39,7 +42,7 @@ const RenderPhotoButton = () => {
           } else {
             Fn.initOne("alert", {
               type: "danger",
-              text: "Неверный формат видео",
+              text: "Неверный формат фото",
             });
           }
 

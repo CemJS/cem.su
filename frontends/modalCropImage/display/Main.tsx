@@ -15,6 +15,8 @@ export default function () {
       </div>
       <div id="ration__buttons" class="my-3 flex w-full justify-between">
         {ratioValues.map((ratio, index) => {
+          let disabled = Static.defaultRatio && Static.defaultRatio != ratio;
+
           return (
             <button
               onclick={() => {
@@ -32,13 +34,16 @@ export default function () {
                   }
                 }
               }}
-              disabled={Static.defaultRatio && Static.defaultRatio != ratio}
+              disabled={disabled}
               id="ratio"
               class={[
-                "relative h-[48px] w-full border border-[#0d6efd] [background:--mainGradient] [&.active_#bg]:opacity-0 [&:hover_#bg]:opacity-0",
-                index == 0 ? "rounded-s-[5px]" : null,
-                index == ratioValues.length - 1 ? "rounded-e-[5px]" : null,
-                Static.ratio == ratio ? "active" : null,
+                "relative h-[48px] w-full cursor-not-allowed border border-[#0d6efd] [background:--mainGradient] [&.active_#bg]:opacity-0 ",
+                !disabled
+                  ? "!cursor-pointer [&:hover_#bg]:opacity-0"
+                  : "grayscale",
+                index == 0 && "rounded-s-[5px]",
+                index == ratioValues.length - 1 && "rounded-e-[5px]",
+                Static.ratio == ratio && "active",
               ]}
             >
               <span class="relative z-[2]">{ratio}</span>
@@ -62,21 +67,14 @@ export default function () {
             setTimeout(() => {
               Static.cropper.setData({ width: "100%", height: "100%" });
             }, 500);
-            Static.cropper
-              .getCroppedCanvas({
-                maxWidth: Ref.container.offsetWidth,
-                width: Ref.container.offsetWidth,
-                height: Ref.container.offsetHeight,
-                maxHeight: Ref.container.offsetHeight,
-              })
-              .toBlob((blob: Blob) => {
-                const image = new File([blob], "image.png", {
-                  type: "image/png",
-                });
-
-                Static.callback(image, Static.ratio);
-                Func.close();
+            Static.cropper.getCroppedCanvas().toBlob((blob: Blob) => {
+              const image = new File([blob], "image.png", {
+                type: "image/png",
               });
+
+              Static.callback(image, Static.ratio);
+              Func.close();
+            });
           }}
           class="btn !w-[48%]"
         >

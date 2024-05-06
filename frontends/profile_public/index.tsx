@@ -24,6 +24,11 @@ front.func.uploadMedia = async (file: any, type: string) => {
   Static.data.media.length > 0 ? (Static.isValid = true) : null;
 };
 
+front.func.findIndexByMediaName = (mediaName: string) => {
+  let index = Static.data.media?.findIndex((item) => item?.name == mediaName);
+  return index;
+};
+
 front.loader = async () => {
   Static.data = {
     languageCode: "ru",
