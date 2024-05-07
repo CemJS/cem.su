@@ -29,7 +29,7 @@ export default function () {
           <a
             class="relative flex h-[3rem] w-[3rem] cursor-pointer items-center justify-center rounded-full text-white"
             onclick={() => {
-              Fn.linkChange("/messanger");
+              Fn.linkChange("/profile/chats")
             }}
           >
             <i class={["i", `i-messanger`, `text-2xl`]}></i>

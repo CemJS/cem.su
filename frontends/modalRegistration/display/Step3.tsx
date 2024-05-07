@@ -95,7 +95,7 @@ export default function () {
 
         <span class="mt-2 text-sm text-red-500 min-h-[15px] block">{Static.form.rePass.error}</span>
 
-        <div class="flex justify-center items-center">
+        <div class="flex justify-center items-center mt-2">
           <button
             class={[
               "btn",
@@ -120,7 +120,7 @@ export default function () {
                   repass: Static.form.rePass.value,
                 },
               );
-              Fn.log("=a028de=", answer);
+              // Fn.log("=a028de=", answer);
 
               if (answer.error === "username allready taken") {
                 Static.form.isValid = false;

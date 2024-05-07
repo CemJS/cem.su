@@ -148,6 +148,8 @@ front.func.sendCode = async function () {
             email: Static.form.email.value,
             step: Static.currentStep
         })
+
+    console.log('=87b61d=', answer.error)
     if (answer.error) {
         Static.form.email.error = "Пользователь с таким email уже существует!"
         Static.form.email.valid = false

@@ -4,8 +4,8 @@ export default function () {
   return (
     <div class="w-1/4 transition-all">
       <div class="flex flex-col gap-4">
-        <div class="flex flex-col gap-4">
-          <h3 class="text-lg font-semibold max-@600:text-base">Заполните информация о себе</h3>
+        <div class="flex flex-col">
+          <h3 class="mb-4 text-lg font-semibold max-@600:text-base">Заполните информация о себе</h3>
 
           <div class="relative">
             <div class="absolute top-2 left-4 pointer-events-none">
@@ -74,14 +74,14 @@ export default function () {
             </div>
           </div>
 
-          {Static.form.nickName.error ? <span class="text-sm text-red-500">{Static.form.nickName.error}</span> : null}
+          {Static.form.nickName.error ? <span class="text-sm text-red-500 mt-2">{Static.form.nickName.error}</span> : null}
 
         </div>
 
-        <div class="grid grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div
             class={[
-              "w-full py-4 px-8",
+              "w-full py-3 px-4 sm:py-4 sm:px-8",
               "btn",
               "btn_dark",
               Static.form.mainLang.valid
@@ -112,7 +112,7 @@ export default function () {
 
           <div
             class={[
-              "w-full py-4 px-8",
+              "w-full py-3 px-4 sm:py-4 sm:px-8",
               "btn",
               "btn_dark",
               Static.form.country.valid
@@ -144,6 +144,8 @@ export default function () {
           <button
             class={["btn", Static.form.isValid ? null : "pointer"]}
             onclick={async () => {
+              Func.checkForm();
+              console.log('=50b10d=', Static.form.isValid)
               if (!Static.form.isValid) {
                 return;
               }

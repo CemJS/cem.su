@@ -107,80 +107,24 @@ export default function () {
               }
 
               let answer = await front.Services.functions.sendApi(
-                `/api/users/register`,
+                `/api/users/change-password`,
                 {
                   step: Static.currentStep,
                   email: Static.form.email.value,
-                  nickname: Static.form.nickName.value,
-                  lang: Static.form.mainLang.value,
-                  country: Static.form.country.value,
                   code: Static.form.code.value,
                   pass: Static.form.pass.value,
                   repass: Static.form.rePass.value,
                 },
               );
-              Fn.log("=a028de=", answer);
-
-              if (answer.error === "username allready taken") {
-                Static.form.isValid = false;
-                Func.clickPrev();
-                front.Services.functions.formNickName(Static.form.nickName);
-                Static.form.nickName.error = "Логин занят!"
-                Static.form.nickName.valid = false
-                front.Services.functions.formLang(Static.form.mainLang);
-                front.Services.functions.formCountry(Static.form.country);
-                Func.checkForm();
-
-                if (!Static.form.isValid) {
-                  return;
-                }
-                // Func.checkLogin();
-                return;
-              }
-
-              if (answer.error === "email allready taken") {
-                Static.form.isValid = false;
-                Func.clickPrevBegin();
-                front.Services.functions.formNickName(Static.form.nickName);
-                Static.form.email.error = "Email занят!"
-                Static.form.email.valid = false
-                Static.form.email.disable = false
-                front.Services.functions.formLang(Static.form.mainLang);
-                front.Services.functions.formCountry(Static.form.country);
-                Func.checkForm();
-
-                if (!Static.form.isValid) {
-                  return;
-                }
-
-                return;
-              }
-
-              if (answer.error === "code not verified") {
-                Static.form.isValid = false;
-                Func.clickPrevBegin();
-                front.Services.functions.formNickName(Static.form.nickName);
-                front.Services.functions.formLang(Static.form.mainLang);
-                front.Services.functions.formCountry(Static.form.country);
-                Static.form.email.error = "Email занят! Получите новый код на другую почту"
-                Static.form.email.valid = false
-                Static.form.email.disable = false
-                Func.checkForm();
-
-                if (!Static.form.isValid) {
-                  return;
-                }
-                return;
-              }
+              // Fn.log("=a028de=", answer);
 
               if (answer.error) {
                 Static.form.isValid = false;
-                Static.form.error = "Неверные данные";
+                Static.form.error = "Пароли не совпадают!";
                 return;
               }
 
               Func.clickNext();
-              Fn.log("=b02443=", front.Variable.myInfo);
               return;
             }}
           >
