@@ -6,11 +6,11 @@ export default function () {
       onclick={async (e) => {
         if (Static.isValid) {
           Fn.log("=d03a2d=", Static.data);
-          let res = await front.Services.functions.sendApi(
-            "/api/Posts",
-            Static.data,
-          );
-          console.log("=b433f7=", res);
+          // let res = await front.Services.functions.sendApi(
+          //   "/api/Posts",
+          //   Static.data,
+          // );
+          // console.log("=b433f7=", res);
         } else {
           Fn.initOne("alert", { text: "Заполните пост", type: "danger" });
         }

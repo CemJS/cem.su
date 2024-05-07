@@ -1,4 +1,4 @@
-import { Cemjsx, Static, Func, Ref, front, Fn } from "cemjs-all"
+import { Cemjsx, Static, Func, Ref, front, Fn } from "cemjs-all";
 
 export default function () {
   return (
@@ -6,21 +6,24 @@ export default function () {
       <div
         class="btn btn_dark"
         onclick={() => {
-          Func.close()
-          Fn.initOne("modalServices", {})
+          Func.close();
+          Fn.initOne("modalServices", {});
         }}
       >
         Сервисы
       </div>
       <div
         class="btn btn_dark"
-        onclick={() => { Ref.slideSection.style.marginLeft = `-50%` }}
+        onclick={() => {
+          Ref.slideSection.style.marginLeft = `-50%`;
+        }}
       >
-        {front.Variable.Lang}<i class="i i-arrow-right"></i>
+        {front.Variable.Lang}
+        <i class="i i-arrow-right"></i>
       </div>
       <button class="btn btn_dark" onclick={Func.close}>
-        <i class="i i-cancel"></i>
+        <i class="i i-x-mark"></i>
       </button>
     </header>
-  )
+  );
 }
