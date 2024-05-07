@@ -71,7 +71,7 @@ export default function () {
                     // let activeIndex = key;
                     Fn.initOne("modalGallery", { image: item?.name });
                   }}
-                  class="absolute h-auto min-h-full min-w-full bg-[#1D2029] bg-contain bg-no-repeat object-cover"
+                  class="cursor-pointer absolute h-auto min-h-full min-w-full bg-[#1D2029] bg-contain bg-no-repeat object-cover"
                   src={`/assets/upload/gallery/${item?.name}`}
                   alt=""
                 />
