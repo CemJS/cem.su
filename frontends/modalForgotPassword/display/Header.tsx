@@ -7,7 +7,7 @@ export default function () {
         Восстановление пароля
       </h2>
       <button class="btn btn_dark" onclick={Func.close}>
-        <i class="i i-x-mark text-2xl"></i>
+        <i class="i i-x-mark text-base sm:text-2xl"></i>
       </button>
     </header>
   );

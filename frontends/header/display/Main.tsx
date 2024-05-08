@@ -12,7 +12,7 @@ const RenderMenu = function ({ menu }) {
       {menu.map((item: any) => {
         return (
           <li
-            class="cursor-pointer"
+            class="cursor-pointer whitespace-nowrap"
             onclick={async () => {
               Fn.linkChange(`${item.url}`, { item: 5, test: 7, t: "hhh" });
             }}

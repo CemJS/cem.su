@@ -11,7 +11,7 @@ const RenderSteps = function ({ steps, current }) {
         return (
           <span
             class={[
-              "relative z-[1] flex h-12 w-12 items-center justify-center rounded-full border-2  border-solid bg-[#202432] text-base font-bold  transition-all max-@464:h-10 max-@464:w-10 @700:text-lg",
+              "relative z-[1] flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border-2  border-solid bg-[#202432] text-sm sm:text-base font-bold  transition-all",
               item <= current
                 ? "border-[#5f479b] text-[#5f479b]"
                 : "border-[#e0e0e0] text-[#999]",
@@ -37,7 +37,7 @@ export default function () {
     <main>
       <RenderSteps steps={Static.steps} current={Static.currentStep} />
       <div class="w-full overflow-hidden">
-        <div class="mt-6 flex w-[400%]">
+        <div class="mt-4 sm:mt-6 flex w-[400%]">
           <Step1 />
           <Step2 />
           <Step3 />

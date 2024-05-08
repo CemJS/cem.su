@@ -37,7 +37,6 @@ front.func.changeEmail = function () {
 front.func.sendCode = async function () {
     let answer = await front.Services.functions.sendApi(`/api/users/change-password`,
         {
-            action: "checkCode",
             email: Static.form.email.value,
             step: Static.currentStep
         })
@@ -51,6 +50,20 @@ front.func.sendCode = async function () {
     Static.form.email.disable = true
     Func.timer(60)
     return
+}
+
+front.func.timer = function (sec: number) {
+    Static.time = sec
+    if (Static.setInterval) {
+        clearInterval(Number(Static.setInterval))
+    }
+
+    Static.setInterval = Number(setInterval(() => {
+        Static.time = Static.time - 1
+        if (Static.time <= 0) {
+            clearInterval(Number(Static.setInterval))
+        }
+    }, 1000));
 }
 
 front.func.checkForm = async function () {
@@ -74,6 +87,7 @@ front.func.checkForm = async function () {
                     step: Static.currentStep,
                     code: Static.form.code.value
                 })
+            console.log('=94b29f=', answer)
             if (answer.error) {
                 Static.form.code.error = "Код указан не верно!"
 
@@ -100,6 +114,17 @@ front.func.checkForm = async function () {
         }
         return
     }
+
+    if (Static.currentStep == 2) {
+        if (Static.form.pass.valid && Static.form.rePass.valid) {
+            Static.form.isValid = true
+
+            return
+        } else {
+            Static.form.isValid = false
+        }
+        return
+    }
 }
 
 front.loader = () => {
@@ -120,6 +145,14 @@ front.loader = () => {
             valid: false,
             error: false,
             placeholder: "Email",
+            view: false,
+            disable: false
+        },
+        code: {
+            value: "",
+            valid: false,
+            error: false,
+            placeholder: "",
             view: false,
             disable: false
         },

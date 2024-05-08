@@ -7,7 +7,7 @@ export default function () {
         Задать вопрос сообществу
       </h2>
       <button class="btn btn_dark" onclick={Func.close}>
-        <i class="i i-cancel"></i>
+        <i class="i i-x-mark"></i>
       </button>
     </header>
   );

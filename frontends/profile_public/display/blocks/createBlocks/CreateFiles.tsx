@@ -1,6 +1,6 @@
 import { Cemjsx, Fn, Func, Ref, Static } from "cemjs-all";
 import { AudioPlayer } from "@elements/Audio";
-import SwitchImage from "@elements/media/SwitchImage";
+import SettingsImage from "@elements/media/SettingsImage";
 
 const RenderLoader = (index) => {
   return (
@@ -85,11 +85,16 @@ export default function () {
                         // style={`aspect-ratio:${Static.aspect?.replace(":", "/")};`}
                         src={`/assets/upload/posts/${item.name}`}
                       ></video>
-                      <SwitchImage
-                        preview={"1"}
+                      <SettingsImage
                         clickIconSettings={() =>
                           Fn.initOne("modalTools", {
                             records: [
+                              {
+                                name: "Превью",
+                                func: () => {
+                                  Fn.initOne("modalPreviews", {});
+                                },
+                              },
                               {
                                 name: "Удалить",
                                 func: () => {
@@ -107,12 +112,11 @@ export default function () {
                   ) : item.name && item?.type == "image" ? (
                     <div>
                       <img
-                        class="h-full w-full object-contain"
+                        class="h-full w-full object-contain [box-shadow:rgba(11,20,26,0.16)_0px_3px_12px_0px]"
                         // style={`aspect-ratio:${Static.aspect?.replace(":", "/")};`}
                         src={`/assets/upload/posts/${item.name}`}
                       />
-                      <SwitchImage
-                        preview={"1"}
+                      <SettingsImage
                         clickIconSettings={() =>
                           Fn.initOne("modalTools", {
                             records: [

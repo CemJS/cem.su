@@ -7,7 +7,7 @@ export default function () {
         Подать жалобу
       </h2>
       <button class="btn btn_dark" onclick={Func.close}>
-        <i class="i i-cancel"></i>
+        <i class="i i-x-mark"></i>
       </button>
     </header>
   );

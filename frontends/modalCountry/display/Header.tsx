@@ -7,7 +7,7 @@ export default function () {
         Выбрать страну
       </h2>
       <button class="btn bg-none" onclick={Func.close}>
-        <i class="i-cancel !font-['cemicons'] normal-case [-webkit-font-smoothing:antialiased] [font-style:normal] [font-variant:normal] [font-weight:normal]"></i>
+        <i class="i-x-mark !font-['cemicons'] normal-case [-webkit-font-smoothing:antialiased] [font-style:normal] [font-variant:normal] [font-weight:normal]"></i>
       </button>
     </header>
   );
