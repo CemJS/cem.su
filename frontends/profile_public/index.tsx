@@ -18,9 +18,14 @@ front.func.uploadMedia = async (file: any, type: string) => {
 
   let res = await front.Services.functions.uploadMedia(file, type);
 
-  Static.data.media[mediaIndex]
-    ? (Static.data.media[mediaIndex] = { type, name: res.name })
-    : 0;
+  if (res.error == null) {
+    Static.data?.media[mediaIndex]
+      ? (Static.data.media[mediaIndex] = { type, name: res.name })
+      : 0;
+  } else {
+    Static.data?.media.splice(mediaIndex, 1);
+  }
+
   Static.data.media.length > 0 ? (Static.isValid = true) : null;
 };
 
@@ -37,7 +42,6 @@ front.loader = async () => {
     media: [],
   };
   Static.origName = "Русский";
-  Static.data.action = "create";
   Static.show = "grid";
   Static.isValid = false;
   Static.pageMap = {

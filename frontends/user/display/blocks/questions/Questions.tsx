@@ -26,9 +26,11 @@ export default function () {
               class="relative z-[1] block rounded-[0] px-[1.5625rem] py-[1.875rem] pt-[.9375rem] first:rounded-t-[.9375rem] odd:bg-[#323746] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:50%_10%_15%_20%_5%]"
             >
               <div
-                class="relative top-0 @767:top-[1.25rem] cursor-pointer"
+                class="relative top-0 cursor-pointer @767:top-[1.25rem]"
                 onclick={async () => {
-                  Fn.linkChange(`/question/show/${item.id}`, {link: `/user/${front.Variable.myInfo?.nickname}`});
+                  Fn.linkChange(`/question/show/${item.id}`, {
+                    link: `/user/${front.Variable.DataUrl[1]}`,
+                  });
                 }}
               >
                 <a

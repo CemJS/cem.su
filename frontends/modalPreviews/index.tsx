@@ -21,6 +21,14 @@ front.func.close = function () {
   }, 500);
 };
 
+front.func.uploadMedia = async (file: any, type: string) => {
+  let res = await front.Services.functions.uploadMedia(file, type, "gallery");
+
+  Static.previews[0] ? (Static.previews[0] = { mediaName: res.name }) : 0;
+
+  return res.name;
+};
+
 front.func.changeMediaFile = function () {
   let input = document.createElement("input");
   input.type = "file";
@@ -42,17 +50,20 @@ front.func.changeMediaFile = function () {
         res.json(),
       );
 
-      const edit = { mediaName: mediaPush?.name };
-      let answer = await front.Services.functions.sendApi(
-        "/api/user/previews/create",
-        edit,
-      );
-      console.log("=65b18b=", answer);
-      if (answer?.error === "") {
-        console.log("=613f18=", Static.previews);
-        Static.previews.unshift(answer?.result);
-        console.log("=613f18=", Static.previews);
-      }
+      Fn.initOne("modalCropImage", {
+        cropImage: mediaPush?.name,
+        callback: async (photo, aspect) => {
+          let resImage = await Func.uploadMedia(photo, "image");
+          const edit = { mediaName: resImage };
+          let answer = await front.Services.functions.sendApi(
+            "/api/user/previews/create",
+            edit,
+          );
+          // if (answer?.error === "") {
+          //   Static.previews.unshift(answer?.result);
+          // }
+        },
+      });
     }
     Fn.init();
   };
