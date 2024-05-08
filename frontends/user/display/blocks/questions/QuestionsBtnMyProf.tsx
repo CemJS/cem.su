@@ -18,8 +18,10 @@ export default function ({ item, key }) {
                     title: "удалить свой вопрос",
                     Callback: async (CallBack: boolean) => {
                       if (CallBack) {
-                        const array = [...Static.record?.questions];
-                        array.splice(key, 1);
+                        const array = Static.record?.questions?.toSpliced(
+                          key,
+                          1,
+                        );
                         const url = `/api/questions/${item?.id}/delete`;
                         const name = "question";
                         Func.delete(url, array, name);
@@ -55,8 +57,7 @@ export default function ({ item, key }) {
                   title: "удалить свой вопрос",
                   Callback: async (CallBack: boolean) => {
                     if (CallBack) {
-                      const array = [...Static.record?.questions];
-                      array.splice(key, 1);
+                      const array = Static.record?.questions?.toSpliced(key, 1);
                       const url = `/api/questions/${item?.id}/delete`;
                       const name = "question";
                       Func.delete(url, array, name);
@@ -75,7 +76,8 @@ export default function ({ item, key }) {
         }}
       >
         <img
-          class="absolute left-[50%] top-[50%] box-border translate-x-[-50%] translate-y-[-50%]"
+          class="absolute left-[50%] top-[50%] box-border translate-x-[-50%]
+          translate-y-[-50%]"
           src={dots}
         />
       </div>

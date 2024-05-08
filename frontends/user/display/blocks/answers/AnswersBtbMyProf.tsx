@@ -3,7 +3,7 @@ import dots from "@svg/questions/dots.svg";
 
 export default function ({ item, key }) {
   return (
-    <div class="absolute right-[1.25rem] top-[.625rem] box-border cursor-pointer">
+    <div class="absolute right-[1.25rem] top-[.625rem] z-[10] box-border cursor-pointer">
       <div
         class="relative ml-[.625rem] box-border h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]"
         onclick={() => {
@@ -18,8 +18,7 @@ export default function ({ item, key }) {
                     Callback: async (CallBack: boolean) => {
                       if (CallBack) {
                         const url = `/api/answers/${item?.id}/delete`;
-                        const array = [...Static.record?.answers];
-                        array?.splice(key, 1);
+                        const array = Static.record?.answers?.toSpliced(key, 1);
                         const name = "answer";
                         Func.delete(url, array, name);
                       }

@@ -1,9 +1,9 @@
 {
-  "regex": "/questions",
-  "front": [
-    "header",
-    "questions",
-    "footer",
-    "menu"
-  ]
-}
+    "regex": "/question",
+    "front": [
+      "header",
+      "question",
+      "footer",
+      "menu"
+    ]
+  }

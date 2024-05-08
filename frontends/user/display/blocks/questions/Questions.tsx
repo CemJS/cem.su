@@ -11,7 +11,6 @@ import QuestionsBtnUser from "./QuestionsBtnUser";
 import Header from "./Header";
 
 export default function () {
-  Fn.log("Static.record?.questions", Static.record?.questions)
   return (
     <div class="relative m-0 w-full min-w-full pb-[1.25rem] pt-[.625rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%--_224px)] @1200:pb-[2.5rem]">
       <h2 class="mx-0 my-[1.25rem] text-balance text-center text-[clamp(17px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
@@ -24,12 +23,14 @@ export default function () {
           return (
             <div
               key={key}
-              class="cursor-pointer relative block rounded-[0] px-[1.5625rem] py-[1.875rem] pt-[.9375rem] first:rounded-t-[.9375rem] odd:bg-[#323746] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:50%_10%_15%_20%_5%]"
-              onclick={async () => {
-                Fn.linkChange(`/questions/show/${item.id}`);
-              }}
+              class="relative z-[1] block rounded-[0] px-[1.5625rem] py-[1.875rem] pt-[.9375rem] first:rounded-t-[.9375rem] odd:bg-[#323746] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:50%_10%_15%_20%_5%]"
             >
-              <div class="relative top-0 @767:top-[1.25rem]">
+              <div
+                class="relative top-0 @767:top-[1.25rem] cursor-pointer"
+                onclick={async () => {
+                  Fn.linkChange(`/question/show/${item.id}`, {link: `/user/${front.Variable.myInfo?.nickname}`});
+                }}
+              >
                 <a
                   class="text-inherit no-underline"
                   // href={`/question/show/${item?.id}`}
@@ -66,7 +67,11 @@ export default function () {
               <div class="flex items-end max-@767:mb-[1.5625rem] max-@767:pr-[3.125rem]">
                 <a
                   href={`/user/${item?.id}`}
-                  class={["left-[-.9375rem] w-[5rem] pl-0 text-inherit no-underline", item?.bestAnswerAuthor?.nickname === "" && "flex justify-center"]}
+                  class={[
+                    "left-[-.9375rem] w-[5rem] pl-0 text-inherit no-underline",
+                    item?.bestAnswerAuthor?.nickname === "" &&
+                      "flex justify-center",
+                  ]}
                 >
                   {item?.bestAnswerAuthor?.nickname ? (
                     <div class="relative z-[1] ml-[.625rem] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
@@ -97,7 +102,7 @@ export default function () {
                           style="display: none;"
                           class="absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [background:linear-gradient(225deg,_#72FFB6_0,_#10D194_100%)] [border:3px_solid_#ffffff]"
                         ></div>
-                        <div class="absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [border:3px_solid_#ffffff] [background:linear-gradient(225deg,_#FF7272_0%,_#D93030_100%)]"></div>
+                        <div class="absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [background:linear-gradient(225deg,_#FF7272_0%,_#D93030_100%)] [border:3px_solid_#ffffff]"></div>
                       </div>
                     </div>
                   ) : (
@@ -125,9 +130,8 @@ export default function () {
                   />
                 </div>
               </div>
-            
-                <QuestionsBtnMyProf item={item} key={key} />
-            
+
+              <QuestionsBtnMyProf item={item} key={key} />
             </div>
           );
         })}

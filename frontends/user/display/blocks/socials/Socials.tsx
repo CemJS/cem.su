@@ -134,8 +134,8 @@ export default function () {
                               Callback: async (CallBack: boolean) => {
                                 if (CallBack) {
                                   const url = "/api/users/update";
-                                  const array = [...Static.record?.socials];
-                                  array?.splice(key, 1);
+                                  const array =
+                                    Static.record?.socials.toSpliced(key, 1);
                                   const name = "social";
                                   Func.delete(url, array, name);
                                 }

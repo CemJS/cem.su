@@ -1,5 +1,4 @@
 import { Cemjsx, Fn, front, Static, Events, Func } from "cemjs-all";
-
 export default function () {
   return (
     <div class="fixed left-0 right-0 top-0 z-[10] w-full border-b-[1px] border-solid border-[#2d3243] bg-[#1d2029] py-3">
@@ -8,7 +7,7 @@ export default function () {
           <span
             class="flex cursor-pointer items-center justify-center"
             onclick={() => {
-              Fn.linkChange("/questions");
+              Fn.linkChange(Static.link ? Static.link : "/questions");
               if (front.Variable.$el.header) {
                 front.Variable.$el.header.classList.remove("hide");
                 front.Variable.$el.footer.classList.remove("hide");

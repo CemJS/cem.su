@@ -18,8 +18,10 @@ export default function ({ item, key }) {
                     Callback: async (CallBack: boolean) => {
                       if (CallBack) {
                         const url = `/api/questions/${item?.id}/delete`;
-                        const array = [...Static.record?.questions];
-                        array?.splice(key, 1);
+                        const array = Static.record?.questions?.toSpliced(
+                          key,
+                          1,
+                        );
                         const name = "question";
                         Func.delete(url, array, name);
                       }

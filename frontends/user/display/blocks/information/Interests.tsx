@@ -67,8 +67,7 @@ export default function () {
                           Callback: async (CallBack: boolean) => {
                             if (CallBack) {
                               const url = "/api/users/update";
-                              const array = [...Static.record?.interests];
-                              array.splice(key, 1);
+                              const array = Static.record?.interests?.toSpliced(key, 1)
                               const name = "interest";
                               Func.delete(url, array, name);
                             }

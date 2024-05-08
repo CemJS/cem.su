@@ -7,8 +7,7 @@ import dots from "@svg/questions/dots.svg";
 import AnswersBtbMyProf from "./AnswersBtbMyProf";
 
 export default function () {
-  //   console.log("Static.record", Static.record);
-
+  // Fn.log("Static.record?.answers", Static.record?.answers)
   return (
     <div class="relative m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
       <h2 class="mx-0 my-[1.25rem] text-center text-[clamp(15px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
@@ -26,17 +25,17 @@ export default function () {
       </div>
       <div class="">
         {Static.record?.answers?.map((item: any, key: number) => {
-          // Fn.log("Static.record?.answers", Static.record?.answers)
-          // Fn.log("item", item);
           return (
             <div
               key={key}
-              class="cursor-pointer relative block rounded-[0] px-[1.5625rem] py-[1.875rem] pt-[.9375rem] odd:bg-[#323746] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:40%_10%_15%_30%_5%]"
-              onclick={async () => {
-                Fn.linkChange(`/questions/show/${item.id}`);
-              }}
+              class="relative block rounded-[0] px-[1.5625rem] py-[1.875rem] pt-[.9375rem] odd:bg-[#323746] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:40%_10%_15%_30%_5%]"
             >
-              <div class="relative top-0 @767:top-[1.25rem]">
+              <div
+                class="relative top-0 @767:top-[1.25rem] cursor-pointer"
+                onclick={async () => {
+                  Fn.linkChange(`/question/show/${item.questionId}`);
+                }}
+              >
                 <div class="flex">
                   <a
                     // href={`/user/${item?.id}`}
@@ -70,7 +69,7 @@ export default function () {
                           style="display: none;"
                           class="absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [background:linear-gradient(225deg,_#72FFB6_0,_#10D194_100%)] [border:3px_solid_#ffffff]"
                         ></div>
-                        <div class="absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [border:3px_solid_#ffffff] [background:linear-gradient(225deg,_#FF7272_0%,_#D93030_100%)]"></div>
+                        <div class="absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [background:linear-gradient(225deg,_#FF7272_0%,_#D93030_100%)] [border:3px_solid_#ffffff]"></div>
                       </div>
                     </div>
                   </a>

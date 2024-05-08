@@ -6,27 +6,66 @@ front.listener.finish = () => {
 };
 
 // ======== videoplayer start ========
+front.func.playAndPause = (video: any) => {
+  // video.paused ? video.play() : video.pause()
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
 
-// ======== videoplayer end ========
-front.func.updateFilter = async () => {
-  Static.makeFilter = {
-    sort: Static.sort,
-    order: Static.order,
-    search: Static.search,
-    isClosed:
-      Static.type == "opened"
-        ? false
-        : Static.type == "closed"
-          ? true
-          : undefined,
-    isBest: Static.type == "best",
-    language: Static.chooseLanguage.code,
-  };
-  let res = await front.Services.functions.sendApi(
-    "/api/questions",
-    Static.makeFilter,
-  );
   return;
+};
+
+front.func.formatTime = (time: any) => {
+  let seconds = Math.floor(time % 60),
+    minutes = Math.floor(time / 60) % 60,
+    hours = Math.floor(time / 3600);
+
+  seconds = seconds < 10 ? Number(`0${seconds}`) : seconds;
+  minutes = minutes < 10 ? Number(`0${minutes}`) : minutes;
+  hours = hours < 10 ? Number(`0${hours}`) : hours;
+
+  if (hours == 0) {
+    return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  }
+  return `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+};
+
+front.func.draggableProgressBar = (e: any) => {
+  let timeLineWidth = Ref.videoTimeLine.clientWidth;
+  Ref.progressBar.style.width = `${e.offsetX}px`;
+  Ref.video.currentTime = (e.offsetX / timeLineWidth) * Ref.video.duration;
+  return;
+};
+// ======== videoplayer end ========
+
+front.func.getDate = (timestamp: any) => {
+  return new Date(timestamp);
+};
+
+front.func.addNull = (str: any) => {
+  str = String(str);
+  return str.length < 2 ? `0${str}` : str;
+};
+
+front.func.isEditable = (timestamp: string | number) => {
+  let createDate = new Date(timestamp).getTime();
+  let date = new Date().getTime();
+
+  let isOneDayExpired = (date - createDate) / 3600000 < 24;
+
+  return isOneDayExpired;
+};
+
+front.func.edit = (id) => {
+  Func.hideInputs();
+  Static.currentEditing = id;
+  Static[`isEditing${id}`] = true;
+};
+
+front.func.closeEdit = (id) => {
+  Static[`isEditing${id}`] = false;
 };
 
 // questions
@@ -37,6 +76,123 @@ front.func.getQuestion = async (id) => {
   Events.questions = await Fn.event(url, Static.questionListener);
 
   front.Services.functions.sendApi(`/api/questions/${id}/answers`, {});
+};
+
+front.func.deleteQuestion = async () => {
+  let res = await front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/delete`,
+    {},
+  );
+  front.Variable.$el.header.classList.remove("hide");
+  front.Variable.$el.footer.classList.remove("hide");
+  Static.record = null;
+  Events.questions.close();
+  Fn.linkChange("/questions");
+};
+
+front.func.closeQuestion = async () => {
+  Static.record.closed = true;
+  Func.sendAuth(`/api/questions/${Static.record.id}/close`, {});
+};
+
+front.func.reportQuestion = async () => {
+  front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/complain`,
+    {},
+  );
+};
+
+// answer
+
+front.func.deleteAnswer = async (id: string) => {
+  let res = await front.Services.functions.sendApi(
+    `/api/answers/${id}/delete`,
+    {},
+  );
+};
+
+front.func.bestAnswer = async (id: string) => {
+  Static.record.closed = true;
+  let res = await front.Services.functions.sendApi(
+    `/api/questions/${Static.record.id}/answers/${id}/close`,
+    {},
+  );
+};
+
+front.func.deleteAnswer = async (id: string) => {
+  let res = await front.Services.functions.sendApi(
+    `/api/answers/${id}/delete`,
+    {},
+  );
+};
+
+// comment
+
+front.func.deleteComment = async (
+  id: string,
+  answerId: string,
+  commentId: string,
+) => {
+  let data = {
+    commentId: commentId ? commentId : undefined,
+  };
+  let res = await front.Services.functions.sendApi(
+    `/api/${answerId}/comments/${id}/delete`,
+    data,
+  );
+};
+
+// функция проверки авторизации
+
+front.func.sendAuth = async (url: string, data: object, method = "POST") => {
+  if (front.Variable.Auth) {
+    let res = await front.Services.functions.sendApi(url, data, method);
+    console.log("=55a7bd=", res);
+    if (res?.status == 409) {
+      Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
+      return;
+    }
+    if (res?.error) {
+      Fn.initOne("alert", { text: "Ошибка запроса" });
+      return;
+    }
+    return res;
+  } else {
+    Fn.initOne("modalAuthtorization", {});
+  }
+};
+
+//
+
+front.func.hideInputs = () => {
+  console.log("=00e74a=", Static.currentEditing);
+  Func.closeEdit(Static.currentEditing);
+  let inputs = document.querySelectorAll("#form");
+  let arr = [...inputs];
+  for (let elem of arr) {
+    elem.classList.remove("!flex");
+  }
+};
+
+front.func.findIndexAnswer = (id) => {
+  return Static.record.answers.findIndex((item) => item.id == id);
+};
+
+front.func.findIndexComment = (id, answerIndex) => {
+  return Static.record.answers[answerIndex].comments.findIndex(
+    (item) => item.id == id,
+  );
+};
+
+front.func.findIndexCommentToComment = (id, answerIndex, commentIndex) => {
+  console.log("=b53b67=", id);
+  console.log(
+    "=09f769=",
+    Static.record.answers[answerIndex].comments[commentIndex].comments,
+  );
+  return Static.record.answers[answerIndex].comments[
+    commentIndex
+  ].comments.findIndex((item) => item.id == id);
 };
 
 front.loader = async () => {
@@ -88,7 +244,6 @@ front.loader = async () => {
 
   Static.sort = "date";
 
-  // Func.updateFilter();
 
   Static.makeFilter = {
     sort: Static.sort,
@@ -509,7 +664,7 @@ front.loader = async () => {
     },
   ];
 
-  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] === "show") {
     Func.getQuestion(front.Variable.DataUrl[2]);
   }
 
