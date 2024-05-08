@@ -24,15 +24,18 @@ export default function () {
           return (
             <div
               key={key}
-              class="relative block rounded-[0] px-[1.5625rem] py-[1.875rem] pt-[.9375rem] first:rounded-t-[.9375rem] odd:bg-[#323746] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:50%_10%_15%_20%_5%]"
+              class="cursor-pointer relative block rounded-[0] px-[1.5625rem] py-[1.875rem] pt-[.9375rem] first:rounded-t-[.9375rem] odd:bg-[#323746] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:50%_10%_15%_20%_5%]"
+              onclick={async () => {
+                Fn.linkChange(`/questions/show/${item.id}`);
+              }}
             >
               <div class="relative top-0 @767:top-[1.25rem]">
                 <a
                   class="text-inherit no-underline"
-                  href={`/question/show/${item?.id}`}
-                  onclick={() => {
-                    Fn.link;
-                  }}
+                  // href={`/question/show/${item?.id}`}
+                  // onclick={() => {
+                  //   Fn.link;
+                  // }}
                 >
                   <div class="mb-[.625rem] text-[1.125rem] max-@767:mr-[1.25rem]">
                     {item?.title}

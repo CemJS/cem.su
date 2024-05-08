@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, front, Func } from "cemjs-all";
+import { Cemjsx, Fn, front, Func, Events } from "cemjs-all";
 import logo from "@svg/logo.svg";
 import menu from "@json/menu";
 import frameDefault from "@svg/lenta/default.svg";

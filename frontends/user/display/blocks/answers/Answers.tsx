@@ -31,12 +31,15 @@ export default function () {
           return (
             <div
               key={key}
-              class="relative block rounded-[0] px-[1.5625rem] py-[1.875rem] pt-[.9375rem] odd:bg-[#323746] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:40%_10%_15%_30%_5%]"
+              class="cursor-pointer relative block rounded-[0] px-[1.5625rem] py-[1.875rem] pt-[.9375rem] odd:bg-[#323746] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:40%_10%_15%_30%_5%]"
+              onclick={async () => {
+                Fn.linkChange(`/questions/show/${item.id}`);
+              }}
             >
               <div class="relative top-0 @767:top-[1.25rem]">
                 <div class="flex">
                   <a
-                    href={`/user/${item?.id}`}
+                    // href={`/user/${item?.id}`}
                     class="left-[-.9375rem] w-[5rem] pl-0 text-inherit no-underline"
                   >
                     <div class="relative z-[1] ml-0 mr-[.9375rem] h-[4.625rem] w-[4.1875rem] min-w-[3.5625rem]">

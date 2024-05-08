@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, front, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, front, Static, Events } from "cemjs-all";
 import addMedia from "@svg/profile/addMedia.svg";
 import iconSettings from "@svg/profile/iconSettings.svg";
 import { objectGallery } from "./interface";
@@ -43,6 +43,8 @@ const changeMediaFile = async () => {
   input.click();
 };
 export default function () {
+  console.log("Events.user", Events.user);
+
   return (
     <div class="grid [grid-template-columns:repeat(3,_minmax(100px,_1fr))]">
       {front.Variable.DataUrl[1] === front.Variable.myInfo?.nickname && (
@@ -71,7 +73,7 @@ export default function () {
                     // let activeIndex = key;
                     Fn.initOne("modalGallery", { image: item?.name });
                   }}
-                  class="cursor-pointer absolute h-auto min-h-full min-w-full bg-[#1D2029] bg-contain bg-no-repeat object-cover"
+                  class="absolute h-auto min-h-full min-w-full cursor-pointer bg-[#1D2029] bg-contain bg-no-repeat object-cover"
                   src={`/assets/upload/gallery/${item?.name}`}
                   alt=""
                 />
