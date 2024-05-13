@@ -110,7 +110,7 @@
   }
 
   .btn {
-    @apply h-[3.2rem] w-fit cursor-pointer whitespace-nowrap rounded-[--btnR] border-none px-4 py-[0.8rem] text-center text-[1rem] text-[--white] outline-none ![background-size:150%] [background:--mainGradient] [transition:all_0.2s_ease-out] hover:!bg-right hover:![background-position-x:-50px];
+    @apply h-[3.2rem] w-fit cursor-pointer whitespace-nowrap rounded-[--btnR] border-none px-4 py-[0.8rem] text-center text-[1rem] text-[--white] outline-none ![background-size:150%] [background:--mainGradient] [transition:all_0.2s_ease-out] hover:!bg-right hover:![background-position-x:-50px] [&:disabled]:pointer-events-none [&:disabled]:grayscale;
   }
 
   .btn_reset {

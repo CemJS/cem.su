@@ -4,11 +4,8 @@ import postListener from "./listeners/post.listener";
 import { AudioPlayer } from "@elements/Audio";
 
 front.listener.finish = () => {
-  // плеер
-
-  if (!Static.define) {
+  if (!customElements.get("audio-player")) {
     customElements.define("audio-player", AudioPlayer);
-    Static.define = true;
   }
   return;
 };
@@ -18,9 +15,14 @@ front.func.uploadMedia = async (file: any, type: string) => {
 
   let res = await front.Services.functions.uploadMedia(file, type);
 
-  Static.data.media[mediaIndex]
-    ? (Static.data.media[mediaIndex] = { type, name: res.name })
-    : 0;
+  if (res?.name) {
+    Static.data?.media[mediaIndex]
+      ? (Static.data.media[mediaIndex] = { type, name: res.name })
+      : 0;
+  } else {
+    Static.data?.media.splice(mediaIndex, 1);
+  }
+
   Static.data.media.length > 0 ? (Static.isValid = true) : null;
 };
 
@@ -37,7 +39,6 @@ front.loader = async () => {
     media: [],
   };
   Static.origName = "Русский";
-  Static.data.action = "create";
   Static.show = "grid";
   Static.isValid = false;
   Static.pageMap = {
@@ -47,9 +48,7 @@ front.loader = async () => {
 
   if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "post") {
     Static.page = "post";
-    let url = front.Services.functions.makeUrlEvent("Posts", {
-      action: "showMy",
-    });
+    let url = front.Services.functions.makeUrlEvent("posts");
     let listener = postListener;
     Events.posts = await Fn.event(url, listener);
     return;

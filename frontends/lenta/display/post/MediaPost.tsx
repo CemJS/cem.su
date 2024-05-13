@@ -7,7 +7,7 @@ export default function ({ mediaItem, index }) {
       {mediaItem.type == "video" ? (
         <Video
           src={`/assets/upload/posts/${mediaItem?.mediaName}`}
-          key={mediaItem?.mediaName}
+          key={mediaItem?.mediaName + index}
         />
       ) : mediaItem.type == "audio" ? (
         <audio-player

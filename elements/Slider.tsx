@@ -88,6 +88,9 @@ class Gallery {
     this.destroyEvents();
     this.setEvents();
     this.resizeGallery();
+    setTimeout(() => {
+      this.setParameters();
+    }, 1000);
     // setInterval(this.clickNext, 4000);
   }
 
@@ -154,13 +157,13 @@ class Gallery {
       slideNode.style.minWidth = `${width}px`;
       slideNode.style.maxWidth = `${width}px`;
       slideNode.style.marginRight = `${this.settings.margin}px`;
-      slideNode.style.minHeight = `${Static.height}px`;
-      slideNode.style.maxHeight = `${Static.height}px`;
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          i == 0 ? (Static.height = slideNode.offsetHeight) : null;
-        }, 200),
-      );
+      // slideNode.style.minHeight = `${Static.height}px`;
+      // slideNode.style.maxHeight = `${Static.height}px`;
+      // await new Promise((resolve) =>
+      //   setTimeout(() => {
+      //     i == 0 ? (Static.height = slideNode.offsetHeight) : null;
+      //   }, 200),
+      // );
     });
     this.manageHTML();
   }

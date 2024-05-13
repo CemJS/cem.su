@@ -73,7 +73,9 @@ front.func.closeEdit = (id) => {
 front.func.getQuestion = async (id) => {
   let url = front.Services.functions.makeUrlEvent(`questions/${id}`);
 
-  Events.questions = await Fn.event(url, Static.questionListener);
+  console.log("=c01a68=", id);
+  Events.question = await Fn.event(url, Static.questionListener);
+  console.log("=5e6d17=", id);
 
   front.Services.functions.sendApi(`/api/questions/${id}/answers`, {});
 };
@@ -86,7 +88,7 @@ front.func.deleteQuestion = async () => {
   front.Variable.$el.header.classList.remove("hide");
   front.Variable.$el.footer.classList.remove("hide");
   Static.record = null;
-  Events.questions.close();
+  Events.question.close();
   Fn.linkChange("/questions");
 };
 
@@ -244,7 +246,6 @@ front.loader = async () => {
 
   Static.sort = "date";
 
-
   Static.makeFilter = {
     sort: Static.sort,
     order: Static.order,
@@ -260,61 +261,6 @@ front.loader = async () => {
   };
 
   delete Static.makeFilter.isClosed; //== undefined ? Static.makeFilter.
-
-  let url = front.Services.functions.makeUrlEvent(
-    "questions",
-    Static.makeFilter,
-  );
-  let listener = [
-    {
-      type: "get",
-      fn: ({ data }) => {
-        let json = front.Services.functions.strToJson(data);
-        if (!json) {
-          return;
-        }
-
-        Static.records = json;
-      },
-    },
-    {
-      type: "create",
-      fn: ({ data }) => {
-        let json = front.Services.functions.strToJson(data);
-        if (!json) {
-          return;
-        }
-        console.log("=8587af=", json);
-
-        Static.records.unshift(json);
-        console.log("=4d73fb=", Static.records);
-      },
-    },
-    {
-      type: "skip",
-      fn: ({ data }) => {
-        let json = front.Services.functions.strToJson(data);
-        if (!json) {
-          return;
-        }
-        Static.records = [...Static.records, ...json];
-      },
-    },
-    {
-      type: "delete",
-      fn: ({ data }) => {
-        let { id } = front.Services.functions.strToJson(data);
-        if (!id) {
-          return;
-        }
-        console.log("=05c3a3=", id);
-        Static.records = [
-          ...Static.records.filter((record) => record.id != id),
-        ];
-      },
-    },
-  ];
-  Events.questions = await Fn.event(url, listener);
 
   Static.questionListener = [
     // get question
@@ -338,6 +284,7 @@ front.loader = async () => {
           return;
         }
         Static.record.answers = json;
+        console.log("=f80e63=", data);
       },
     },
     // skip
@@ -664,8 +611,11 @@ front.loader = async () => {
     },
   ];
 
-  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] === "show") {
+  // Static.isEvent = false;
+
+  if (front.Variable.DataUrl[1] === "show") {
     Func.getQuestion(front.Variable.DataUrl[2]);
+    // Static.isEvent = true;
   }
 
   return;

@@ -1,6 +1,6 @@
 import { Fn } from "cemjs-all";
 
-export default async function (file: any, type: string) {
+export default async function (file: any, type: string, url: string = "posts") {
   let data = new FormData();
   data.append("media", file);
 
@@ -11,7 +11,7 @@ export default async function (file: any, type: string) {
   };
 
   try {
-    let answer = await fetch("/upload/posts", {
+    let answer = await fetch(`/upload/${url}`, {
       method: "POST",
       body: data,
     });

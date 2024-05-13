@@ -84,6 +84,11 @@ export default function () {
                       <video
                         // style={`aspect-ratio:${Static.aspect?.replace(":", "/")};`}
                         src={`/assets/upload/posts/${item.name}`}
+                        poster={
+                          item.preview
+                            ? `/assets/upload/gallery/${item.preview}`
+                            : ""
+                        }
                       ></video>
                       <SettingsImage
                         clickIconSettings={() =>
@@ -92,7 +97,11 @@ export default function () {
                               {
                                 name: "Превью",
                                 func: () => {
-                                  Fn.initOne("modalPreviews", {});
+                                  Fn.initOne("modalPreviews", {
+                                    callback: (photo) => {
+                                      item.preview = photo;
+                                    },
+                                  });
                                 },
                               },
                               {

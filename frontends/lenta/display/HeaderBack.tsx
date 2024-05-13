@@ -17,7 +17,7 @@ export default function () {
               }
             }}
           >
-            <i class="i i-arrow-left text-2xl"></i>
+            <i class="i i-chevron-left text-2xl"></i>
           </span>
 
           <h5 class="line-clamp-1 px-4 text-center text-base font-medium @700:text-xl">

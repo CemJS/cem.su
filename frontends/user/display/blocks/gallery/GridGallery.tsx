@@ -71,7 +71,7 @@ export default function () {
                 <img
                   onclick={() => {
                     // let activeIndex = key;
-                    Fn.initOne("modalGallery", { image: item?.name });
+                    Fn.initOne("modalNewGallery", { images: [item?.name] });
                   }}
                   class="absolute h-auto min-h-full min-w-full cursor-pointer bg-[#1D2029] bg-contain bg-no-repeat object-cover"
                   src={`/assets/upload/gallery/${item?.name}`}

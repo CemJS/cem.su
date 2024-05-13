@@ -3,10 +3,10 @@ import Tiles from "./Tiles";
 
 export default function () {
   return (
-    <div class="block-one">
-      <div class="feed-main-block">
-        <div class="user-feed user-feed_posts">
-          <div class="user-feed__block user-feed__block_posts">
+    <div class="w-full pb-5 pt-3">
+      <div class="mx-auto flex flex-col items-center">
+        <div class="m-auto w-full text-white">
+          <div class="mx-auto flex w-full max-w-full flex-col items-center px-3 pt-4">
             <div class="user-feed__header">
               <h2>Моя лента</h2>
               <ul class="user-feed__toggles-view">

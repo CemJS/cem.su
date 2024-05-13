@@ -4,7 +4,12 @@ import Cropper from "cropperjs";
 
 front.listener.finish = () => {
   if (Static.cropImage) {
-    Ref.image.src = URL.createObjectURL(Static.cropImage);
+    typeof Static.cropImage == "object"
+      ? (Ref.image.src = URL.createObjectURL(Static.cropImage))
+      : "";
+    typeof Static.cropImage == "string"
+      ? (Ref.image.src = `/assets/upload/gallery/${Static.cropImage}`)
+      : "";
 
     !Static.cropper ? Func.cropperGo() : null;
 

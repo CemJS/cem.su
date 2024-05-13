@@ -22,8 +22,8 @@ export default function () {
         <CreateMediaButtons />
 
         <div class="mx-auto flex max-w-[500px] gap-4 py-[20px] @410:gap-[30px]">
-          <CreatePreviewButton />
           <CreateCreateButton />
+          <CreatePreviewButton />
         </div>
       </form>
     </div>
