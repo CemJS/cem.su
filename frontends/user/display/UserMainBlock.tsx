@@ -11,7 +11,7 @@ import Gallery from "./blocks/gallery/Gallery";
 
 export default function () {
   return (
-    <div class="mb-[5rem] flex">
+    <div class="mb-[5rem] flex max-w-[79rem]">
       {Static.feed === true ? <Feed /> : null}
       {Static.aboutMe === true ? <Information /> : null}
       {Static.questions === true ? <Questions /> : null}

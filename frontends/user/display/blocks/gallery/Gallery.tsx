@@ -37,16 +37,22 @@ async function setActiveIcon(icon: string, mediaType: string) {
   // Переинициализируем компонент
   Fn.init();
 }
+
 // Компонент для отображения иконок
+
+const RenderFieldTextarea = function () {
+  return <GridGallery />;
+};
+
 export default function () {
   // Fn.log("Static.gallery", Static.record);
   return (
-    <div class="relative z-[1] m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
-      <div class="mb-[.3125rem] mt-[1.25rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] @1024:mt-[1.5625rem]">
+    <div class="relative z-[1] m-0 w-full min-w-full px-0 py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
+      <div class="mb-[.3125rem] mt-[1.25rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] max-@1024:px-[.625rem] @1024:mt-[1.5625rem]">
         <h2 class="mx-0 my-[1.25rem] text-balance text-center text-[clamp(17px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
           Галерея
         </h2>
-        <ul class="m-0 flex list-none items-stretch gap-[.4375rem] p-0 max-@1024:pr-[.625rem]">
+        <ul class="m-0 flex list-none items-stretch gap-[.4375rem] p-0 ">
           {createIcon("infinity", "/contents/svg/gallery/infinity.svg", "")}
           {createIcon(
             "mountains",
@@ -56,8 +62,19 @@ export default function () {
           {createIcon("player", "/contents/svg/gallery/player.svg", "video")}
         </ul>
       </div>
-      {/* Показываем форму, если это необходимо */}
-      <GridGallery />
+      {Static.record?.gallery ? (
+        <RenderFieldTextarea />
+      ) : (
+        <div class="it flex justify-center">
+          <div id="preloader">
+            <div class="relative flex justify-center">
+              <div class="absolute h-[12.5rem] w-[12.5rem] rounded-[50%] [border:0px_solid_var(--noble-black)] [&:nth-child(1)]:border-b-[.5rem] [&:nth-child(1)]:border-[--pink] [&:nth-child(1)]:[animation:rotate1_2s_linear_infinite]"></div>
+              <div class="absolute h-[12.5rem] w-[12.5rem] rounded-[50%] [border:0px_solid_var(--noble-black)] [&:nth-child(2)]:border-r-[.5rem] [&:nth-child(2)]:border-[--purple] [&:nth-child(2)]:[animation:rotate2_2s_linear_infinite]"></div>
+              <div class="absolute h-[12.5rem] w-[12.5rem] rounded-[50%] [border:0px_solid_var(--noble-black)] [&:nth-child(3)]:border-t-[.5rem] [&:nth-child(3)]:border-[--fiolet] [&:nth-child(3)]:[animation:rotate3_2s_linear_infinite]"></div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
