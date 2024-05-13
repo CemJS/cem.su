@@ -63,7 +63,7 @@ export default function () {
       )}
       {Static.record?.gallery?.map((item: objectGallery, key: number) => {
         return (
-          <div key={key} class="text block aspect-square">
+          <div key={key} class="text block aspect-square last:[border-right:0.5px_solid_#353C50]">
             <figure class="relative z-[1] m-0 h-full overflow-hidden [border-bottom:0.5px_solid_#353C50] [border-left:0.5px_solid_#353C50] [&:nth-child(1)]:[border-top:0.5px_solid_#353C50] [&:nth-child(2)]:[border-top:0.5px_solid_#353C50] [&:nth-child(3)]:[border-top:0.5px_solid_#353C50] [&:nth-child(3n+3)]:[border-right:0.5px_solid_#353C50]">
               {item?.type === "video/quicktime" ? (
                 <Video src={`/assets/upload/gallery/${item?.name}`} key />
