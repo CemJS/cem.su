@@ -10,7 +10,7 @@ export default function () {
             class="flex cursor-pointer items-center justify-center"
             onclick={() => Fn.linkChange("/")}
           >
-            <i class="i-arrow-left bg-clip-text font-['cemicons'] text-[1.3rem] font-normal normal-case not-italic leading-4"></i>
+            <i class="i-chevron-left bg-clip-text font-['cemicons'] text-[1.3rem] font-normal normal-case not-italic leading-4"></i>
           </span>
 
           <h5

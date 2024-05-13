@@ -11,7 +11,7 @@ export default function () {
               Fn.linkChange("/")
             }}
           >
-            <i class="i i-arrow-left text-2xl"></i>
+            <i class="i i-chevron-left text-2xl"></i>
           </span>
 
           <h5 class="@700:text-xl text-center px-4 line-clamp-1 font-medium text-base">Политика использования данных</h5>

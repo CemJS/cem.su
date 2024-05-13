@@ -17,7 +17,7 @@ export default function () {
               }
             }}
           >
-            <i class="i i-arrow-left"></i>
+            <i class="i i-chevron-left"></i>
           </span>
 
           <h5 class="back-title">Вопрос</h5>
@@ -30,9 +30,9 @@ export default function () {
                 records.push({ name: "Удалить", func: Func.deleteQuestion });
                 !Static.record.closed
                   ? records.push({
-                      name: "Закрыть вопрос",
-                      func: Func.closeQuestion,
-                    })
+                    name: "Закрыть вопрос",
+                    func: Func.closeQuestion,
+                  })
                   : null;
               }
               Fn.initOne("modalTools", { records });
