@@ -1,7 +1,14 @@
-import { Cemjsx, Static, Fn } from "cemjs-all";
-
-let listBtnState: boolean = true;
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
+import Feed from "./blocks/Feed";
+import Create from "./blocks/Create";
 
 export default function () {
-  return <div></div>;
+  Static.feedState = false;
+
+  return (
+    <div class="wrapper wrapper_padding">
+      <Create />
+      <Feed />
+    </div>
+  );
 }

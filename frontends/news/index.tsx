@@ -54,7 +54,7 @@ front.loader = async () => {
     // =======================
 
     Static.records = []
-    let url = front.Services.functions.makeUrlEvent("news", { lang: "ru" })
+    let url = front.Services.functions.makeUrlEvent("news", {})
     let listener = [
         {
             type: "get",

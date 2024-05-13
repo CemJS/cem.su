@@ -41,7 +41,13 @@ class Gallery {
   dotNodes: any;
   firstManage: boolean;
 
-  constructor(element: HTMLElement, dots: HTMLElement, next: HTMLElement, prev: HTMLElement, options = { margin: 10 }) {
+  constructor(
+    element: HTMLElement,
+    dots: HTMLElement,
+    next: HTMLElement,
+    prev: HTMLElement,
+    options = { margin: 10 },
+  ) {
     this.element = element;
     this.elementEmpty = undefined;
     this.elementCount = element.children[0].childElementCount;
@@ -126,7 +132,8 @@ class Gallery {
     this.adaptive();
     const coordsContainer = this.element.getBoundingClientRect();
     this.widthContainer = coordsContainer.width;
-    this.maximumX = -(this.size - 1) * (this.widthContainer + this.settings.margin);
+    this.maximumX =
+      -(this.size - 1) * (this.widthContainer + this.settings.margin);
     this.x = -this.currentSlide * (this.widthContainer + this.settings.margin);
     this.size = Math.ceil(this.elementCount / this.countSlides);
 
@@ -134,11 +141,14 @@ class Gallery {
     this.lineNode.style.width = `${this.size * (this.widthContainer + this.settings.margin)}px`;
     this.setStylePosition();
     Array.from(this.lineNode.children).forEach(async (slideNode: any, i) => {
-      let width = (this.widthContainer - this.settings.margin * (this.countSlides - 1)) / this.countSlides;
+      let width =
+        (this.widthContainer - this.settings.margin * (this.countSlides - 1)) /
+        this.countSlides;
       if (this.currentSlide + 1 == this.size) {
         let rest = this.elementCount - this.countSlides * (this.size - 1);
         if (i + 1 > (this.size - 1) * this.countSlides) {
-          width = (this.widthContainer - this.settings.margin * (rest - 1)) / rest;
+          width =
+            (this.widthContainer - this.settings.margin * (rest - 1)) / rest;
         }
       }
       slideNode.style.minWidth = `${width}px`;
@@ -149,7 +159,7 @@ class Gallery {
       await new Promise((resolve) =>
         setTimeout(() => {
           i == 0 ? (Static.height = slideNode.offsetHeight) : null;
-        }, 200)
+        }, 200),
       );
     });
     this.manageHTML();
@@ -205,11 +215,13 @@ class Gallery {
   clickNext() {
     if (!(this.currentSlide + 1 == this.size)) {
       this.currentSlide++;
-      this.x = -this.currentSlide * (this.widthContainer + this.settings.margin);
+      this.x =
+        -this.currentSlide * (this.widthContainer + this.settings.margin);
       this.changeCurrentSlide();
     } else {
       this.currentSlide = 0;
-      this.x = -this.currentSlide * (this.widthContainer + this.settings.margin);
+      this.x =
+        -this.currentSlide * (this.widthContainer + this.settings.margin);
       this.changeCurrentSlide();
     }
   }
@@ -217,11 +229,13 @@ class Gallery {
   clickPrev() {
     if (this.currentSlide > 0) {
       this.currentSlide--;
-      this.x = -this.currentSlide * (this.widthContainer + this.settings.margin);
+      this.x =
+        -this.currentSlide * (this.widthContainer + this.settings.margin);
       this.changeCurrentSlide();
     } else {
       this.currentSlide = this.size - 1;
-      this.x = -this.currentSlide * (this.widthContainer + this.settings.margin);
+      this.x =
+        -this.currentSlide * (this.widthContainer + this.settings.margin);
       this.changeCurrentSlide();
     }
   }
@@ -264,7 +278,10 @@ class Gallery {
     this.dragX = e.pageX;
     const dragShift = this.dragX - this.clickX;
     const easing = dragShift / 7;
-    this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
+    this.x = Math.max(
+      Math.min(this.startX + dragShift, easing),
+      this.maximumX + easing,
+    );
     this.setStylePosition();
 
     //change active slide
@@ -325,9 +342,15 @@ function debounce(func, time = 100) {
 export { Gallery };
 
 export const init = function (element: HTMLElement) {
-  Static.galleryRun = new Gallery(element, Ref.galleryDots, Ref.nextTeam, Ref.prevTeam, {
-    margin: 30,
-  });
+  Static.galleryRun = new Gallery(
+    element,
+    Ref.galleryDots,
+    Ref.nextTeam,
+    Ref.prevTeam,
+    {
+      margin: 30,
+    },
+  );
   // this.init();
 };
 
@@ -339,14 +362,8 @@ export const DisplayImages = function ({ items, buttons = true, dots = true }) {
     return <div />;
   }
   return (
-    <div
-      class={GalleryClassNamePartners}
-      style="position: relative;"
-    >
-      <div
-        init={init}
-        ref="slider"
-      >
+    <div class={GalleryClassNamePartners} style="position: relative;">
+      <div init={init} ref="slider">
         <div class="gallery_line">{items}</div>
       </div>
       <div

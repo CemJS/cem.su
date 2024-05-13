@@ -1,0 +1,4 @@
+{
+  "regex": "/list-startups-copy",
+  "front": ["header", "startups-copy", "menu"]
+}

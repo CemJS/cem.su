@@ -83,7 +83,7 @@ const RenderFieldCountry = function ({ country, placeholder, className }) {
 
 export default function () {
   return (
-    <main class="modal_main">
+    <main id="modal_main">
       <div class="pY-15 modal_scroll">
         <h3>Обо мне</h3>
         <RenderFieldTextarea about={Static.information.about} />

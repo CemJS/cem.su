@@ -1,33 +1,37 @@
 import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all";
 import Navigation from "./navigation";
+import postListener from "./listeners/post.listener";
+import { AudioPlayer } from "@elements/Audio";
 
 front.listener.finish = () => {
+  // плеер
+
+  if (!Static.define) {
+    customElements.define("audio-player", AudioPlayer);
+    Static.define = true;
+  }
   return;
 };
 
-front.func.uploadMedia = async (file, type: string) => {
-  let data = new FormData();
-  data.append("media", file);
+front.func.uploadMedia = async (file: any, type: string) => {
+  let mediaIndex: number = Static.data.media.push({ type, name: "" }) - 1;
 
-  let errors = {
-    video: "видео",
-    image: "картинку",
-    audio: "аудиозапись",
-  };
+  let res = await front.Services.functions.uploadMedia(file, type);
 
-  try {
-    let answer = await fetch("/upload/posts", {
-      method: "POST",
-      body: data,
-    });
-    let res = await answer.json();
-
-    Static.data.media.push({ type, name: res.name });
-    Static.data.media.length > 0 ? (Static.isValid = true) : null;
-  } catch {
-    Fn.initOne("alert", { text: `Не удалось загрузить ${errors[type]}`, type: "danger" });
+  if (res.error == null) {
+    Static.data?.media[mediaIndex]
+      ? (Static.data.media[mediaIndex] = { type, name: res.name })
+      : 0;
+  } else {
+    Static.data?.media.splice(mediaIndex, 1);
   }
-  return;
+
+  Static.data.media.length > 0 ? (Static.isValid = true) : null;
+};
+
+front.func.findIndexByMediaName = (mediaName: string) => {
+  let index = Static.data.media?.findIndex((item) => item?.name == mediaName);
+  return index;
 };
 
 front.loader = async () => {
@@ -38,39 +42,26 @@ front.loader = async () => {
     media: [],
   };
   Static.origName = "Русский";
-  Static.data.action = "create";
   Static.show = "grid";
   Static.isValid = false;
+  Static.pageMap = {
+    post: "пост",
+    question: "вопрос",
+  };
 
-  if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "posts") {
-    let url = front.Services.functions.makeUrlEvent("Posts", { action: "showMy" });
-    let listener = [
-      {
-        type: "get",
-        fn: ({ data }) => {
-          let json = front.Services.functions.strToJson(data);
-          if (!json) {
-            return;
-          }
-
-          Static.records = json;
-        },
-      },
-      {
-        type: "add",
-        fn: ({ data }) => {
-          let json = front.Services.functions.strToJson(data);
-          if (!json) {
-            return;
-          }
-          Static.records = [...Static.records, ...json];
-        },
-      },
-    ];
+  if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "post") {
+    Static.page = "post";
+    let url = front.Services.functions.makeUrlEvent("Posts", {
+      action: "showMy",
+    });
+    let listener = postListener;
     Events.posts = await Fn.event(url, listener);
+    return;
   }
-
-  return;
+  if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "question") {
+    Static.page = "question";
+    return;
+  }
 };
 
 front.display = () => {

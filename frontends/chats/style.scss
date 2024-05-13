@@ -1,0 +1,34 @@
+.chat {
+  &-section {
+    box-shadow: inset 0 160px 0 0 var(--slate-800);
+    // min-height: 100vh;
+    min-height: 100vh;
+  }
+
+  &-container {
+    max-width: 1360px;
+    // height: 720px;
+    height: calc(100vh - 70px);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.1);
+  }
+
+  &-conversation {
+    &-main {
+      background-image: url("./images/chats/pattertChat.png");
+    }
+  }
+
+}
+
+
+
+// media breakpoints
+@media screen and (max-width: 1600px) {
+  .chat {
+    &-container {
+      max-width: unset;
+      height: 100vh;
+      // height: 100%;
+    }
+  }
+}

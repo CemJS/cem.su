@@ -107,7 +107,6 @@ const RenderLanguageFilter = () => {
     <div
       onclick={async (e) => {
         Fn.initOne("modalLanguage", {
-          full: true,
           callback: (chooseLanguage) => {
             Static.chooseLanguage = chooseLanguage;
             Func.updateFilter();
@@ -247,21 +246,22 @@ const RenderQuestion = ({ item, index }) => {
   return (
     <div
       key={item.id}
-      class="relative h-auto w-full cursor-pointer rounded-[1rem] bg-[--prestige-blue] p-5 [transition:0.5s] [border:0.0625rem_solid_transparent] [box-shadow:0rem_0.3125rem_2.75rem_0rem_rgba(29,33,45,0.8)] hover:scale-[0.98] hover:bg-transparent hover:outline-none hover:[border:0.0625rem_solid_var(--border)] @767:w-[48.6%] @767:max-w-none @767:p-[1.875rem] @1024:w-[49%] @1240:w-full @1240:max-w-[25rem] @1240:p-[1.25rem] @1240:!pt-[0.625rem]"
+      class="relative h-auto w-full cursor-pointer rounded-[1rem] bg-[--prestige-blue] p-5 [border:0.0625rem_solid_transparent] [box-shadow:0rem_0.3125rem_2.75rem_0rem_rgba(29,33,45,0.8)] [transition:0.5s] hover:scale-[0.98] hover:bg-transparent hover:outline-none hover:[border:0.0625rem_solid_var(--border)] @767:w-[48.6%] @767:max-w-none @767:p-[1.875rem] @1024:w-[49%] @1240:w-full @1240:max-w-[25rem] @1240:p-[1.25rem] @1240:!pt-[0.625rem]"
       onclick={async () => {
-        let url = front.Services.functions.makeUrlEvent(`questions/${item.id}`);
-
-        Events.question = await Fn.event(url, Static.questionListener);
-        Fn.linkChange(`/questions/show/${item.id}`);
+        // Func.getQuestion(item.id);
+        // Fn.clearData();
+        Fn.linkChange(`/question/show/${item.id}`);
       }}
       init={($el: any) => {
+        // if ((item.id = "6601828fffbbd9f5a898715a")) {
+        //   $el.scrollIntoView();
+        // }
         if (index == Static.records?.length - 1) {
           const observer = new IntersectionObserver((entries) => {
             entries.forEach(async (entry) => {
               if (entry.isIntersecting) {
                 observer.unobserve($el);
                 let skip = { ...Static.makeFilter };
-                skip.action = "skip";
                 skip.skip = Static.records.length;
                 let res = await front.Services.functions.sendApi(
                   "/api/questions",
@@ -275,7 +275,14 @@ const RenderQuestion = ({ item, index }) => {
       }}
     >
       <div class="relative">
-        <div class="relative flex h-auto w-auto">
+        <a
+          onclick={(e) => {
+            e.stopPropagation();
+            Fn.link(e);
+          }}
+          href={`/user/${item?.author.nickname}`}
+          class="relative inline-flex h-auto w-auto"
+        >
           <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
@@ -322,9 +329,9 @@ const RenderQuestion = ({ item, index }) => {
               {item?.author?.nickname}
             </span>
           </div>
-        </div>
+        </a>
         <div class="btn_border-wrap absolute right-0 top-0 h-auto !w-[4.6rem] cursor-default">
-          <button class="btn_border !h-[1.6875rem] !text-[0.75rem] !font-semibold">
+          <button class="btn_border !h-[1.6875rem] !text-[0.75rem] !font-semibold hover:bg-[--black-gray]">
             {item.language?.origName}
           </button>
         </div>
@@ -365,7 +372,7 @@ const RenderQuestion = ({ item, index }) => {
       </div>
       <div class="btn_border-wrap text-center">
         <button
-          // href={`/questions/show/${item._id}`}
+          // href={`/question/show/${item._id}`}
           class=" btn_border"
           onclick={(e) => {
             // e.stopPropagation();
@@ -399,6 +406,8 @@ const TurnOffFilters = () => {
 };
 
 export default function () {
+  console.log("question");
+
   return (
     <div
       onclick={(e) => {
@@ -409,7 +418,7 @@ export default function () {
     >
       <div
         id="questions"
-        class="before:fixed before:right-0 before:top-1/2 before:h-[25rem] before:w-[25rem] before:bg-[#8989bb] before:blur-[18.75rem] before:[content:''] before:[background-image:linear-gradient(315deg,#8989bb_0%,#a5a4cb_74%)] before:[transform:translate(-50%,-50%)] after:fixed after:left-[-16.875rem] after:top-[-4.375rem] after:z-[-1] after:h-full after:w-full after:bg-no-repeat after:opacity-[0.7] after:![background-size:100%_100%] after:[background:url(/contents/svg/questions/line.svg)] after:[content:'']"
+        class="before:fixed before:right-0 before:top-1/2 before:h-[25rem] before:w-[25rem] before:bg-[#8989bb] before:blur-[18.75rem] before:[background-image:linear-gradient(315deg,#8989bb_0%,#a5a4cb_74%)] before:[content:''] before:[transform:translate(-50%,-50%)] after:fixed after:left-[-16.875rem] after:top-[-4.375rem] after:z-[-1] after:h-full after:w-full after:bg-no-repeat after:opacity-[0.7] after:![background-size:100%_100%] after:[background:url(/contents/svg/questions/line.svg)] after:[content:'']"
       >
         <div class="wrapper wrapper_padding">
           <div class="pt-5">

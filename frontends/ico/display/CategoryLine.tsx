@@ -5,7 +5,7 @@ let x1,
 export default function ({ items, active }) {
   return (
     <ul
-      class="category-carousel"
+      class="z-[1] m-0 grid grid-flow-col grid-cols-[auto] gap-[0.625rem] overflow-hidden overflow-x-scroll scroll-smooth p-[0.625rem_0.3125rem] @767:gap-[0.9375rem] @767:p-[1.25rem_0] [&.dragging]:scroll-auto [&.dragging]:[scroll-snap-type:none] [&.dragging_.category-item]:cursor-grab [&.dragging_.category-item]:select-none"
       ref="categoryCarousel"
       onmousedown={(e) => {
         Static.isDrag = true;
@@ -16,7 +16,8 @@ export default function ({ items, active }) {
       onmousemove={(e) => {
         if (!Static.isDrag) return;
         e.preventDefault();
-        Ref.categoryCarousel.scrollLeft = Static.startScrollLeft - (e.pageX - Static.startX);
+        Ref.categoryCarousel.scrollLeft =
+          Static.startScrollLeft - (e.pageX - Static.startX);
       }}
       onmouseup={(e) => {
         Static.isDrag = false;
@@ -25,8 +26,10 @@ export default function ({ items, active }) {
       onscroll={() => {
         if (Ref.categoryCarousel.scrollLeft === 0) {
           // Ref.categoryCarousel.classList.remove("category-wrap_shadow-left");
-        } else if (Ref.categoryCarousel.scrollLeft === Ref.categoryCarousel.scrollWidth - Ref.categoryCarousel.offsetWidth) {
-          Ref.categoryCarousel.classList.remove("category-wrap_shadow-right");
+        } else if (
+          Ref.categoryCarousel.scrollLeft ===
+          Ref.categoryCarousel.scrollWidth - Ref.categoryCarousel.offsetWidth
+        ) {
         }
         // init();
       }}
@@ -73,21 +76,34 @@ export default function ({ items, active }) {
               <li
                 ref="categoryEl"
                 draggable="false"
-                class={["category__item", active == item.name ? "category__item_active" : null]}
+                class={[
+                  "relative z-[1] flex h-[1.875rem] w-full cursor-pointer items-center justify-center rounded-[3.125rem] border-none bg-[#363b4b] p-[0_0.7375rem] text-[0.875rem] font-semibold leading-[18] [transition:0.7s] @464:h-[2.125rem] @464:text-[1rem] @464:leading-[1.125rem] [&:hover_#bg]:opacity-100",
+                  active == item.name
+                    ? "!border-[0.125rem] !bg-[none] [&_#bg]:opacity-100"
+                    : null,
+                ]}
                 onclick={() => {
                   if (Static.makeFilter.cat == item.name) {
                     return;
                   }
                   Static.makeFilter.cat = item.name;
 
-                  front.Services.functions.sendApi("/api/Icos", {
-                    action: "get",
-                    category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
+                  front.Services.functions.sendApi("/api/icos", {
+                    category:
+                      Static.makeFilter.cat == "Все"
+                        ? "All"
+                        : Static.makeFilter.cat,
                     type: Static.makeFilter.active,
                   });
                 }}
               >
-                <span>{item.name}</span>
+                <span class="whitespace-nowrap text-[--text-grey]">
+                  {item.name}
+                </span>
+                <div
+                  id="bg"
+                  class="absolute left-0 top-0 z-[-1] h-full w-full rounded-[3.125rem] opacity-0 [background:var(--darkBlueGradient)] [transition:1s]"
+                ></div>
               </li>
             );
           })

@@ -2,23 +2,26 @@ import { Cemjsx, Static, front, Func, Ref, Fn } from "cemjs-all";
 
 export default function () {
   return (
-    <main class="modal_main p-relative mt-[40px]">
-      <span class="form-error p-absolute">
+    <main class="relative">
+      <span class=" text-sm text-red-500 font-bold">
         {Static.form.error ? Static.form.error : null}
       </span>
 
-      <div
-        class={[
-          "modalWindow_field",
-          Static.form.email.value.length ? "modalWindow_field__valid" : null,
-          Static.form.email.error ? "modalWindow_field__error" : null,
-          Static.form.email.valid ? "modalWindow_field__success" : null,
-        ]}
-      >
+      <div class="relative">
+        <div class="absolute top-2 left-4 pointer-events-none">
+          <i class="i i-envelope text-xl"></i>
+        </div>
         <input
+          ref="email"
           type="email"
-          required
+          class={["bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 valid:[&:not(:placeholder-shown)]:border-green-500 disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700",
+            Static.form.email.error ? "border-red-400 focus:border-red-400" : null,
+            Static.form.email.valid ? "valid:[&:not(:placeholder-shown)]:border-green-500" : null
+          ]}
+          disabled={Static.form.email.disable}
+          placeholder={Static.form.email.placeholder}
           autocomplete="off"
+          required
           oninput={(e: any) => {
             Static.form.email.value = e.target.value;
             Static.form.error = false;
@@ -26,27 +29,23 @@ export default function () {
             Func.checkForm();
           }}
         />
-        <div class="modalWindow_field_labelLine">
-          <i class="i i-user"></i>
-          <span>{Static.form.email.placeholder}</span>
-        </div>
-        <p class="modalWindow_field__status" style="color:#E84142">
-          {Static.form.email.error}
-        </p>
+        <span class="mt-2 hidden text-sm text-red-500 font-bold">{Static.form.email.error}</span>
       </div>
 
-      <div
-        class={[
-          "modalWindow_field",
-          "mt-[25px]",
-          Static.form.pass.value.length ? "modalWindow_field__valid" : null,
-          Static.form.pass.error ? "modalWindow_field__error" : null,
-          Static.form.pass.valid ? "modalWindow_field__success" : null,
-        ]}
-      >
+      <div class="relative mt-4 mb-2">
+        <div class="absolute top-2 left-4 pointer-events-none">
+          <i class="i i-lock-closed text-xl"></i>
+        </div>
         <input
-          type="password"
+          ref="pass"
           required
+          autocomplete="off"
+          type={Static.passType}
+          placeholder={Static.form.pass.placeholder}
+          class={["bg-[#202432] border-[1px] border-solid border-[#5f479b] text-white text-base rounded-lg focus:border-[#5f479b] focus:outline-0 block w-full ps-10 p-2.5 [&:not(:placeholder-shown):not(:focus):invalid~span]:block  disabled:opacity-75 disabled:border-slate-700 disabled:bg-gray-700",
+            Static.form.pass.error ? "border-red-400 focus:border-red-400" : null,
+            Static.form.pass.valid ? "valid:[&:not(:placeholder-shown)]:border-green-500" : null
+          ]}
           oninput={(e: any) => {
             Static.form.pass.value = e.target.value;
             Static.form.error = false;
@@ -54,16 +53,24 @@ export default function () {
             Func.checkForm();
           }}
         />
-        <div class="modalWindow_field_labelLine">
-          <i class="i i-lock"></i>
-          <span>{Static.form.pass.placeholder}</span>
+        <div
+          class="absolute right-4 top-0 h-full z-10 flex items-center gap-2 cursor-pointer"
+          onclick={() => {
+            if (Static.passType == "password") {
+              Static.passType = "text";
+            } else {
+              Static.passType = "password";
+            }
+          }}
+        >
+          <i class={["i", "transition-all", "text-xl", Static.passType == "password" ? "i-eye" : "i-eye-slash"]}></i>
         </div>
-        <p class="modalWindow_field__status" style="color:#E84142">
-          {Static.form.pass.error}
-        </p>
       </div>
 
-      <p class="mt-[15px]">
+      {Static.form.pass.error ? <span class="text-sm font-bold text-red-500">{Static.form.pass.error}</span> : null}
+
+
+      <p class="mt-4 text-sm sm:text-base">
         При использовании платформы вы соглашаетесь с{" "}
         <span
           class="link"
@@ -77,7 +84,7 @@ export default function () {
       </p>
 
       <span
-        class="link"
+        class="link text-sm sm:text-base"
         onclick={() => {
           Func.close();
           Fn.initOne("modalForgotPassword", {});

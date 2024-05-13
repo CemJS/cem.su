@@ -22,6 +22,7 @@ front.func.close = function () {
 };
 
 front.loader = async () => {
+  console.log("=6fcad8=", Static.full);
   if (front.Variable.myInfo) {
     if (!Static.full) {
       Static.languages = await front.Services.functions.IndexDBGetByOne({

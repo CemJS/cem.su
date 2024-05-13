@@ -26,10 +26,14 @@ export default function () {
             class="back-ellipsis"
             onclick={() => {
               let records = [];
-              records.push({ name: "Поделиться", func: Func.share });
               if (front.Variable.myInfo.id == Static.record.author.id) {
                 records.push({ name: "Удалить", func: Func.deleteQuestion });
-                !Static.record.closed ? records.push({ name: "Закрыть вопрос", func: Func.closeQuestion }) : null;
+                !Static.record.closed
+                  ? records.push({
+                      name: "Закрыть вопрос",
+                      func: Func.closeQuestion,
+                    })
+                  : null;
               }
               Fn.initOne("modalTools", { records });
             }}

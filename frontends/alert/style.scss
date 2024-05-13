@@ -1,13 +1,9 @@
 .notice {
-  background: linear-gradient(180deg, #baedb2 0%, #3eac77 89.57%);
-  border-radius: 1rem;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
   position: fixed;
   top: 10%;
   right: 1.3rem;
   z-index: 15;
-  transform: translateX(100%);
+  opacity: 0;
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
 
   &.danger {
@@ -15,7 +11,7 @@
   }
 
   &__active {
-    transform: translateX(0);
+    opacity: 1;
   }
 
   &_content {

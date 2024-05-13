@@ -1,4 +1,4 @@
 {
   "regex": "/profile/wallet",
-  "front": ["header", "wallet", "footer"]
+  "front": ["header", "profile_wallet", "footer"]
 }

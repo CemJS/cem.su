@@ -11,6 +11,9 @@ front.func.test = () => {
 
 front.loader = async () => {
   Static.records = [];
+  Static.makeFilter = {
+    category: Static.catActive == "Все" ? "All" : Static.catActive,
+  };
   Static.catActive = "Все";
   Static.categories = [
     {
@@ -66,7 +69,9 @@ front.loader = async () => {
   Static.x1 = null;
   Static.y1 = null;
 
-  let url = front.Services.functions.makeUrlEvent("Startups", { action: "get", category: Static.catActive == "Все" ? "All" : Static.catActive });
+  let url = front.Services.functions.makeUrlEvent("startups", {
+    category: Static.catActive == "Все" ? "All" : Static.catActive,
+  });
 
   let listener = [
     {
@@ -81,7 +86,7 @@ front.loader = async () => {
       },
     },
     {
-      type: "add",
+      type: "skip",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {
@@ -94,26 +99,12 @@ front.loader = async () => {
   Events.icos = await Fn.event(url, listener);
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-    let url = front.Services.functions.makeUrlEvent("Startups", { action: "show", id: front.Variable.DataUrl[2] });
-
-    let listener = [
-      {
-        type: "get",
-        fn: ({ data }) => {
-          let json = front.Services.functions.strToJson(data);
-          if (!json) {
-            return;
-          }
-          Static.record = json;
-          // Fn.initAll();
-        },
-      },
-    ];
-    Events.icos = await Fn.event(url, listener);
+    let { result } = await front.Services.functions.sendApi(
+      `/api/startups/${front.Variable.DataUrl[2]}`,
+      {},
+    );
+    Static.record = result;
   }
-  // Fn.log("=872519=", front.Variable.DataUrl);
-
-  return;
 };
 
 front.display = () => {

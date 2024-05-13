@@ -1,25 +1,53 @@
-import { Cemjsx, front, Func, Static, Fn } from "cemjs-all"
-import Navigation from "./navigation"
+import { Cemjsx, front, Func, Events, Static, Fn } from "cemjs-all";
+import Navigation from "./navigation";
 
-
+front.func.showUser = async (url, urlLink) => {
+  let urlEvents = front.Services.functions.makeUrlEvent(url, {});
+  let listener = [
+    {
+      type: "get",
+      fn: async ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        // console.log("=896749=", json);
+        Fn.linkChange(urlLink, { record: json });
+      },
+    },
+    {
+      type: "changeCategory",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        // Static.record = json;
+        Fn.linkChange(urlLink, { record: json });
+        // Fn.initAll();
+      },
+    },
+  ];
+  Events.user = await Fn.event(urlEvents, listener);
+};
 front.listener.finish = () => {
-    return
-}
+  return;
+};
 
 front.func.test = () => {
-    return
-}
+  return;
+};
 
 front.loader = () => {
-    return
-}
+  return;
+};
 
 front.display = () => {
-    return (
-        <header class="font-medium py-2 bg-[#24283a] z-10 border-solid border-[#2d3243] border-b-[1px]">
-            <Navigation />
-        </header>
-    )
-}
+  return (
+    <header class="z-10 border-b-[1px] border-solid border-[#2d3243] bg-[#24283a] py-2 font-medium">
+      <Navigation />
+    </header>
+  );
+};
 
-export { front }
+export { front };

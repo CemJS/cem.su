@@ -22,27 +22,6 @@ front.func.throttle = (timeout) => {
   };
 };
 
-// front.func.checkPosition = () => {
-//   const height = document.body.offsetHeight;
-//   const screenHeight = window.innerHeight;
-
-//   const scrolled = window.scrollY;
-
-//   const threshold = height - screenHeight / 4;
-
-//   const position = scrolled + screenHeight;
-
-//   if (position >= threshold) {
-//     Fn.log("=447881=", 1);
-//     front.Services.functions.sendApi("/api/events/Icos", {
-//       action: "skip",
-//       category: Static.makeFilter.cat == "Все" ? "All" : Static.makeFilter.cat,
-//       type: Static.makeFilter.active,
-//       skip: 20,
-//     });
-//   }
-// };
-
 front.loader = async () => {
   Fn.log("=38f35e=", Static.record);
   Static.makeFilter = {
@@ -79,7 +58,10 @@ front.loader = async () => {
       name: "IFO",
     },
   ];
-  let url = front.Services.functions.makeUrlEvent("Icos", { action: "get", category: Static.makeFilter.cat, type: Static.makeFilter.active });
+  let url = front.Services.functions.makeUrlEvent("icos", {
+    category: Static.makeFilter.cat,
+    type: Static.makeFilter.active,
+  });
   let listener = [
     {
       type: "get",
@@ -93,7 +75,7 @@ front.loader = async () => {
       },
     },
     {
-      type: "add",
+      type: "skip",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {
@@ -106,16 +88,19 @@ front.loader = async () => {
   Events.icos = await Fn.event(url, listener);
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
-    let url = front.Services.functions.makeUrlEvent("Icos", { action: "show", id: front.Variable.DataUrl[2] });
+    let url = front.Services.functions.makeUrlEvent(
+      `icos/${front.Variable.DataUrl[2]}`,
+    );
 
     let listener = [
       {
-        type: "get",
+        type: "getById",
         fn: ({ data }) => {
           let json = front.Services.functions.strToJson(data);
           if (!json) {
             return;
           }
+          console.log("=23143c=", json);
           Static.record = json;
         },
       },

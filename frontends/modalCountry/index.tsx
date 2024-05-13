@@ -61,7 +61,7 @@ front.loader = async () => {
 front.display = () => {
   return (
     <div
-      class="fixed left-0 top-0 z-10 h-full w-full scale-[1.2] bg-[rgba(0,_0,_0,_0.5)] opacity-0 [transition:transform_0.2s_0s_ease-in-out,_opacity_0.2s_0s_ease-in-out]"
+      class="fixed left-0 top-0 z-[101] h-full w-full scale-[1.2] bg-[rgba(0,_0,_0,_0.5)] opacity-0 [transition:transform_0.2s_0s_ease-in-out,_opacity_0.2s_0s_ease-in-out]"
       ref="modal"
       init={Func.show}
       onclick={(e: any) => {

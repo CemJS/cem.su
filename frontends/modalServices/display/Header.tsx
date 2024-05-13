@@ -1,12 +1,14 @@
-import { Cemjsx, Func } from "cemjs-all"
+import { Cemjsx, Func } from "cemjs-all";
 
 export default function () {
-    return (
-        <header class="modal-header">
-            <h2 class="modal-header__title">Сервисы платформы</h2>
-            <button class="btn btn_dark" onclick={Func.close}>
-                <i class="i i-cancel"></i>
-            </button>
-        </header>
-    )
+  return (
+    <header class="modal-header">
+      <h2 class="text-[clamp(1.2rem,2vw,1.5rem)] leading-[125%]">
+        Сервисы платформы
+      </h2>
+      <button class="btn btn_dark" onclick={Func.close}>
+        <i class="i i-x-mark"></i>
+      </button>
+    </header>
+  );
 }

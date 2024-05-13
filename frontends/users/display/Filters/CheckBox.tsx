@@ -2,7 +2,7 @@ import { Cemjsx, Fn, Static, front } from "cemjs-all";
 import resetFilters from "@svg/users/reset_filter.svg";
 
 export default function () {
-  console.log("Static.checkBox.basic", Static.checkBox.basic);
+  // console.log("Static.checkBox.basic", Static.checkBox.basic);
 
   return (
     <div class="mx-0 my-[20px] flex items-center justify-center max-[650px]:flex-col max-[650px]:items-start">

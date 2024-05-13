@@ -5,6 +5,9 @@ import moment from "moment";
 import { sendApi } from "./sendApi";
 import { indexDB, IndexDBGetByOne } from "./indexDB";
 import "moment/min/locales";
+import { throttle } from "./throttle";
+import { debounce } from "./debounce";
+import uploadMedia from "./uploadMedia";
 
 export * from "./validForms";
 export * from "./indexDB";
@@ -54,22 +57,36 @@ export const timeStampToDate = function (
 };
 
 export const loader = async function (Variable: any, Fn: any) {
+  // window.onbeforeunload = async function () {
+  //   console.log('=07afdb=', 123)
+  //   return true
+  //   await Fn.clearDataAll()
+  //   console.log('=07afdb=', 1234)
+
+  // }
+
+  window.onunload = async function () {
+    await Fn.clearDataAll();
+  };
+
   if (!localStorage.uuid) {
     localStorage.uuid = uuidv4();
   }
+
   let eventSource = new EventSource(
     `/api/events/web-clients/me?uuid=${localStorage.uuid}`,
   );
 
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
+    console.log("=022338=", json);
     if (json) {
-      let inx = indexDB({ json });
+      let inx = await indexDB({ json });
     } else {
       return;
     }
-    console.log("=MyInfo=", json);
 
+    !localStorage.lang ? localStorage.setItem("lang", "ru") : null;
     localStorage.suuid = json.suuid;
     localStorage.suuid = json.suuid;
     localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate;
@@ -78,16 +95,34 @@ export const loader = async function (Variable: any, Fn: any) {
     Variable.Auth = json.auth;
     Variable.myInfo = json;
     Variable.Lang = "Русский";
+    Variable.notifies = { awards: [], questions: [], system: [] };
+
+    const lang = localStorage.lang;
+    // console.log("=7d2281=", lang);
+    Variable.words = await IndexDBGetByOne({
+      base: "linguaData",
+      key: "translations",
+    });
+
+    Variable.words = Variable?.words[0];
+    // console.log("=b7bda2=", Variable?.words);
+    Array.isArray(Variable.words)
+      ? (Variable.words = Variable?.words?.find((item) => item?.code == lang))
+      : null;
+    // console.log("=b7bda2=", Variable.words);
+
+    Variable.words = Variable.words?.notify;
+    // console.log("=02c186=", Variable.words);
 
     if (
       !localStorage.countries_update ||
       localStorage.countries_update < json.countries_update
     ) {
-      console.log("No countries_update or less");
+      // console.log("No countries_update or less");
       let res = await sendApi("/api/countries", {
         action: "get",
       });
-      console.log("res", res);
+      // console.log("res", res);
 
       if (!res.error) {
         localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate;
@@ -102,8 +137,39 @@ export const loader = async function (Variable: any, Fn: any) {
     // let myInfo = JSON.parse(answ.data)
     // Variable.myInfo = Object.assign(Variable.myInfo, myInfo)
   });
+
+  eventSource.addEventListener("login", async ({ data }) => {
+    let json = strToJson(data);
+    Variable.myInfo = json;
+  });
+
+  eventSource.addEventListener("register", async ({ data }) => {
+    let json = strToJson(data);
+    Variable.myInfo = json;
+  });
+
+  eventSource.addEventListener("notifyQuestion", async ({ data }) => {
+    let res = strToJson(data);
+    Fn.initOne("alert", {
+      title: Variable.words[res.name],
+      text: Variable.words[res.description],
+    });
+    Variable.notifies[res?.type].push(res);
+    console.log("=348e1f=", Variable.notifies);
+    Fn.initAll();
+  });
+
   // Variable.Auth = false
   return;
 };
 
-export { uuidv4, editText, searchLink, indexDB, IndexDBGetByOne };
+export {
+  uuidv4,
+  editText,
+  searchLink,
+  indexDB,
+  IndexDBGetByOne,
+  throttle,
+  debounce,
+  uploadMedia,
+};

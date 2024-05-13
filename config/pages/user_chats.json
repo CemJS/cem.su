@@ -1,0 +1,7 @@
+{
+  "regex": "/profile/chats",
+  "front": [
+    "chats",
+    "menu"
+  ]
+}

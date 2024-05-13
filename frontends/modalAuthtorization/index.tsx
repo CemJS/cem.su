@@ -8,13 +8,15 @@ front.listener.finish = () => {
 
 front.func.show = function ($el: HTMLElement) {
     setTimeout(() => {
-        $el.classList.add('modal__active');
+        $el.classList.remove('opacity-0');
+        $el.classList.remove('scale-125');
         front.Variable.$el.body.style.overflow = 'hidden';
     }, 100);
 }
 
 front.func.close = function () {
-    Ref.modal.classList.remove('modal__active');
+    Ref.modal.classList.add('opacity-0');
+    Ref.modal.classList.add('scale-125')
     setTimeout(() => {
         Fn.clearData()
         front.Variable.$el.body.style.overflow = 'auto';
@@ -48,7 +50,7 @@ front.loader = () => {
             value: "",
             valid: false,
             error: false,
-            placeholder: "Введите пароль:",
+            placeholder: "Введите пароль",
             view: false,
             disable: false
         },
@@ -60,7 +62,7 @@ front.loader = () => {
 
 front.display = () => {
     return (
-        <div class="modal" ref="modal" init={Func.show}>
+        <div class="fixed w-full h-full top-0 left-0 bg-[rgba(0,0,0,0.5)] z-10 transition-all opacity-0 scale-125" ref="modal" init={Func.show}>
             <Navigation />
         </div>
     )

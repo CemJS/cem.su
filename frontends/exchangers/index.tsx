@@ -4,7 +4,6 @@ import Navigation from "./navigation"
 front.listener.finish = () => {
   return
 }
-
 const filterCoin = function ({ choosenCoin }) {
   this.Static.network = choosenCoin
 }
@@ -14,44 +13,42 @@ front.func.test = () => {
 }
 
 front.loader = async () => {
-  Static.filterCoins = []
-
-  let url = front.Services.functions.makeUrlEvent("exchanges");
+  Static.tradeFilter = {
+    cat: "CEX",
+  }
+  let url = front.Services.functions.makeUrlEvent("exchangers", { category: Static.tradeFilter.cat });
 
   let listener = [
     {
       type: "get",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
-        console.log("json", json);
-        
         if (!json) {
           return;
         }
         // Fn.log("=68682c=", "get", json);
-
         Static.records = json;
       },
     },
     {
-      type: "add",
+      type: "skip",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
         if (!json) {
           return;
         }
-        Static.records = [...Static.records, ...json];
+        // Fn.log("=68682c=", "add", json);
+        Static.records.push(...json);
       },
     },
   ];
   Events.exchangers = await Fn.event(url, listener);
-
   return
 }
 
 front.display = () => {
   return (
-    <div>
+    <div class="wrapper">
       <Navigation />
     </div>
   )
