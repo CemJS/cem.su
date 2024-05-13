@@ -6,14 +6,20 @@ front.listener.finish = () => {
 };
 
 front.func.show = function ($el: HTMLElement) {
+  $el.classList.remove('opacity-0', 'pointer-events-none')
+  $el.classList.add('opacity-1', 'pointer-events-all')
+  Ref.sidebarWrap.classList.remove('translate-x-full')
+  Ref.sidebarWrap.classList.add('translate-x-0')
   setTimeout(() => {
-    $el.classList.add("sidebar_active");
-    front.Variable.$el.body.style.overflow = "hidden";
+    front.Variable.$el.body.style.overflow = "hidden"
   }, 100);
 };
 
 front.func.close = function () {
-  Ref.sidebar.classList.remove("sidebar_active");
+  Ref.sidebar.classList.remove('opacity-1', 'pointer-events-all')
+  Ref.sidebar.classList.add('opacity-0', 'pointer-events-all')
+  Ref.sidebarWrap.classList.remove('translate-x-0')
+  Ref.sidebarWrap.classList.add('translate-x-full')
   setTimeout(() => {
     Fn.clearData();
     front.Variable.$el.body.style.overflow = "auto";
@@ -28,6 +34,7 @@ front.func.searchLang = function (e: any, languages) {
 
 front.loader = async () => {
   Static.activeLangList = false;
+  Static.currentYear = new Date().getFullYear();
 
   Static.sections = [
     {
@@ -41,65 +48,65 @@ front.loader = async () => {
       link: "/questions",
     },
     {
-      icon: "faq",
+      icon: "chart-bar",
       name: "ICO Рейтинг",
       link: "/list-icostartups",
     },
     {
-      icon: "user",
+      icon: "rocket-launch",
       name: "Стартапы",
       link: "/list-startups",
     },
     {
-      icon: "phone",
+      icon: "arrow-path-rounded-square",
       name: "Обменники",
-      link: "/exchangers",
-    },
-    {
-      icon: "copy",
-      name: "Пользователи",
-      link: "/users",
-    },
-    {
-      icon: "bubbles2",
-      name: "Эксперты",
-      link: "/experts",
+      link: "/exchanges",
     },
     {
       icon: "users",
-      name: "Создатели контента",
-      link: "/content-creator",
+      name: "Пользователи",
+      link: "/users",
     },
+    // {
+    //   icon: "academic-cap",
+    //   name: "Эксперты",
+    //   link: "/experts",
+    // },
+    // {
+    //   icon: "users",
+    //   name: "Создатели контента",
+    //   link: "/content-creator",
+    // },
   ];
 
   Static.menu = [
     {
       icon: "user",
       name: "Профиль",
-      link: "#",
+      link: `/user/${front.Variable.myInfo.nickname}`,
     },
     {
-      icon: "faq",
+      icon: "trophy",
       name: "Награды",
       link: "#",
     },
     {
-      icon: "faq",
+      icon: "currency-dollar",
       name: "Мои активы",
-      link: "/user/wallet",
+      link: "/profile/wallet",
     },
     {
-      icon: "faq",
+      icon: "user-group",
       name: "Партнерская программа",
       link: "/user/affiliate",
     },
     {
-      icon: "user",
+      icon: "cog-6-tooth",
       name: "Настройки",
       link: "/profile/settings",
     },
     {
-      icon: "phone",
+      icon: "arrow-right-start-on-rectangle",
       name: "Выход",
       link: "#",
     },
@@ -107,7 +114,6 @@ front.loader = async () => {
 
   Static.submenu = [
     {
-      icon: "settings",
       name: "Компания",
       options: [
         {
@@ -128,7 +134,6 @@ front.loader = async () => {
       ],
     },
     {
-      icon: "support",
       name: "Поддержка",
       options: [
         {
@@ -139,7 +144,6 @@ front.loader = async () => {
       ],
     },
     {
-      icon: "rules",
       name: "Правила",
       options: [
         {
@@ -160,7 +164,6 @@ front.loader = async () => {
       ],
     },
     {
-      icon: "cem",
       name: "CEM",
       options: [
         {
@@ -180,7 +183,8 @@ front.loader = async () => {
 front.display = () => {
   return (
     <div
-      class="sidebar"
+      // class="sidebar"
+      class="fixed top-0 left-0 w-full h-full z-50 opacity-0 pointer-events-none transition-all"
       ref="sidebar"
       init={Func.show}
       onclick={(e: any) => {

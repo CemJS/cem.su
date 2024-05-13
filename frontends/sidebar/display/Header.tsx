@@ -2,7 +2,7 @@ import { Cemjsx, Static, Func, Ref, front, Fn } from "cemjs-all";
 
 export default function () {
   return (
-    <header class="sidebar-header">
+    <header class="p-4 flex items-center justify-between border-b-[1px] border-solid border-[#434954]">
       <div
         class="btn btn_dark"
         onclick={() => {
@@ -19,7 +19,7 @@ export default function () {
         }}
       >
         {front.Variable.Lang}
-        <i class="i i-arrow-right"></i>
+        <i class="i i-chevron-right"></i>
       </div>
       <button class="btn btn_dark" onclick={Func.close}>
         <i class="i i-x-mark"></i>

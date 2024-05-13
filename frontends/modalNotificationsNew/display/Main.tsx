@@ -5,18 +5,11 @@ import socials from "@json/socials";
 
 const RenderSidebarMenu = function ({ menu }) {
   return (
-    <div
-      // class="sidebar-menu"
-      class="w-full"
-    >
+    <div class="sidebar-menu">
       {menu.map((item) => {
         return (
-          <div
-            // class="sidebar-menu__item"
-            class="relative cursor-pointer transition-all"
-          >
+          <div class="sidebar-menu__item">
             <span
-              class="font-medium text-slate-300 text-lg no-underline p-4 flex items-center gap-4 transition-all cursor-pointer hover:bg-[#1d2029] hover:text-white"
               onclick={() => {
                 Func.close()
                 Fn.linkChange(`${item.link}`);
@@ -34,17 +27,13 @@ const RenderSidebarMenu = function ({ menu }) {
 
 const RenderSidebarSubmenu = function ({ submenu }) {
   return (
-    <div
-      // class="sidebar-menu"
-      class="w-full"
-    >
+    <div class="sidebar-menu">
       {submenu.map((item) => {
         return (
           <div
-            // class="sidebar-menu__item"
-            class="font-medium text-slate-300 text-lg no-underline p-4 flex items-center gap-4 transition-all cursor-pointer hover:bg-[#1d2029] hover:text-white"
+            class="sidebar-menu__item"
             onclick={(e: any) => {
-              e.currentTarget.classList.toggle("bg-[#1d2029]", "hover:text-white");
+              e.currentTarget.classList.toggle("sidebar-menu__item_active");
             }}
           >
             <div class="sidebar-menu__item-btn">
@@ -111,30 +100,16 @@ const RenderSocials = function ({ socials }) {
 export default function () {
   return (
     <main class="sidebar-content">
-      <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#434954]">
-        Разделы
-      </span>
+      <span class="sidebar-subtitle border-top-none">Разделы</span>
       <RenderSidebarMenu menu={Static.sections} />
-      {front.Variable.Auth ?
-        <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#434954]">
-          Меню
-        </span>
-        : null}
+      {front.Variable.Auth ? <span class="sidebar-subtitle">Меню</span> : null}
       {front.Variable.Auth ? <RenderSidebarMenu menu={Static.menu} /> : null}
-
-      <span
-        class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#434954]"
-      >
-        Crypto Emergency
-      </span>
+      <span class="sidebar-subtitle">Меню</span>
+      <RenderSidebarMenu menu={Static.menu} />
+      <span class="sidebar-subtitle">Crypto Emergency</span>
       <RenderSidebarSubmenu submenu={Static.submenu} />
-      <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#434954]">
-        Социальные сети
-      </span>
-      <div
-        // class="sidebar-downloads"
-        class="grid grid-cols-2 p-4 pb-0 gap-2"
-      >
+      <span class="sidebar-subtitle">Социальные сети</span>
+      <div class="sidebar-downloads">
         <a
           href="https://apps.apple.com/ru/app/crypto-emergency/id1635628021"
           onclick={Fn.link}
@@ -155,7 +130,7 @@ export default function () {
         </a>
       </div>
       <RenderSocials socials={socials} />
-      <p class="text-center p-4 text-slate-300">{`©2020-${Static.currentYear} Crypto Emergency`}</p>
+      <p class="sidebar-footer">©2020-2024 Crypto Emergency</p>
     </main>
   );
 }
