@@ -10,10 +10,12 @@ export default function ({ mediaItem, index }) {
           key={mediaItem?.mediaName + index}
         />
       ) : mediaItem.type == "audio" ? (
-        <audio-player
-          src={`/assets/upload/posts/${mediaItem?.mediaName}`}
-          title={mediaItem?.mediaName}
-        ></audio-player>
+        <div class="flex items-center justify-center">
+          <audio-player
+            src={`/assets/upload/posts/${mediaItem?.mediaName}`}
+            title={mediaItem?.mediaName}
+          ></audio-player>
+        </div>
       ) : mediaItem.type == "image" ? (
         <img
           class="w-full"
