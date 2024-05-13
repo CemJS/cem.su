@@ -46,7 +46,7 @@ export default function ({
           await Func.sendAuth(sendUrl, data);
           scrollBottom
             ? (Ref[`wrapper${Static.id}`].scrollTop =
-                Ref[`wrapper${Static.id}`].scrollHeight)
+                Ref[`wrapper${Static.id}`]?.scrollHeight)
             : null;
         }}
       >

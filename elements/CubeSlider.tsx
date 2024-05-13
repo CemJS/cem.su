@@ -289,12 +289,6 @@ export const init = function (element: HTMLElement) {
 };
 
 export default function ({ items, key = "" }) {
-  // {
-  //   Ref.slider ? init(Ref.slider) : null;
-  // }
-  // if (!items || !items?.length) {
-  //   return <div />;
-  // }
   return (
     <div
       init={init}

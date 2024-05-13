@@ -4,10 +4,7 @@ import Post from "./post/Post";
 export default function () {
   return (
     <div class="mx-auto w-full max-w-[900px]">
-      {Static.records?.map((item, index) => {
-        console.log("=5b08bc=", item);
-        return <Post item={item} index={item.id} />;
-      })}
+      {Static.post ? <Post item={Static.post} index={-1} /> : null}
     </div>
   );
 }

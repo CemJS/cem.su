@@ -2,7 +2,6 @@ import { Cemjsx, Fn, Func, Ref, Static, front } from "cemjs-all";
 import Post from "./post/Post";
 
 export default function () {
-  console.log("=327e73=", Static.records);
   return (
     <div class="mx-auto w-full max-w-[900px]">
       {Static.records?.map((item, index) => {

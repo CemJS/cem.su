@@ -21,10 +21,7 @@ import CubeSlider from "@elements/CubeSlider";
 
 export default function ({ item, index }: { item: Post; index: number }) {
   return (
-    <div
-      init={($el: any) => Func.initPost($el, index)}
-      class="relative mb-[1.2rem] rounded-[--borderR]"
-    >
+    <div class="relative mb-[1.2rem] rounded-[--borderR]">
       <div class="relative flex gap-4 rounded-tl-[--borderR] rounded-tr-[--borderR] p-[0.7rem_1rem] [background:var(--backSecond)]">
         <UserPost item={item} />
 
