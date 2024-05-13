@@ -9,7 +9,8 @@ export default [
         return;
       }
 
-      Static.records = json;
+      console.log("=9bba39=", json);
+      Static.posts = json;
     },
   },
   {
@@ -19,7 +20,7 @@ export default [
       if (!json) {
         return;
       }
-      Static.records = [...Static.records, ...json];
+      Static.posts = [...Static.records, ...json];
     },
   },
 ];

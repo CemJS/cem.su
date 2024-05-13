@@ -1,6 +1,5 @@
 import { Cemjsx, Static, front } from "cemjs-all";
 import Main from "./display/Main";
-import Show from "./display/Show";
 import HeaderBack from "./display/HeaderBack";
 
 export default function () {
@@ -14,10 +13,8 @@ export default function () {
     return (
       <section class="pt-5">
         <HeaderBack />
-        <Show />
+        <Main />
       </section>
     );
   }
-
-  return <Main />;
 }

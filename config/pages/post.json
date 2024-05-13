@@ -1,4 +1,4 @@
 {
-  "regex": "/profile/public/",
-  "front": ["header", "profile_public", "menu", "footer"]
+  "regex": "/post",
+  "front": ["header", "post", "menu", "footer"]
 }

@@ -1,7 +1,6 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 import postListenerData from "./listeners/postListener.data";
-import postsListenerData from "./listeners/postsListener.data";
 import { AudioPlayer } from "@elements/Audio";
 
 front.listener.finish = () => {
@@ -71,32 +70,20 @@ front.func.findIndexCommentToComment = (id, postIndex, commentIndex) => {
   );
 };
 
-// функция для init поста
+// получение поста по ссылке /show
 
-front.func.initPost = ($el, index) => {
-  {
-    if (index == Static.records?.length - 1) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(async (entry) => {
-          if (entry.isIntersecting) {
-            observer.unobserve($el);
-            let skip = { ...Static.makeFilter };
-            skip.skip = Static.records.length;
-            let res = await front.Services.functions.sendApi(
-              "/api/posts",
-              skip,
-            );
-          }
-        });
-      });
-      observer.observe($el);
-    }
-  }
+front.func.getQuestion = async (id) => {
+  let url = front.Services.functions.makeUrlEvent(`posts/${id}`);
+
+  Events.post = await Fn.event(url, postListenerData);
+
+  // front.Services.functions.sendApi(`/api/posts/${id}`, {});
 };
 
 front.loader = async () => {
-  let url = front.Services.functions.makeUrlEvent("posts");
-  Events.posts = await Fn.event(url, postsListenerData);
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "show") {
+    Func.getQuestion(front.Variable.DataUrl[2]);
+  }
   return;
 };
 

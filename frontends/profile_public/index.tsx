@@ -48,7 +48,7 @@ front.loader = async () => {
 
   if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "post") {
     Static.page = "post";
-    let url = front.Services.functions.makeUrlEvent("posts");
+    let url = front.Services.functions.makeUrlEvent("me/posts");
     let listener = postListener;
     Events.posts = await Fn.event(url, listener);
     return;
