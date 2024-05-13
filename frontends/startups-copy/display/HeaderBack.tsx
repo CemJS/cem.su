@@ -16,7 +16,7 @@ export default function () {
               // Fn.clearData();
             }}
           >
-            <i class="i i-arrow-left"></i>
+            <i class="i i-chevron-left"></i>
           </span>
 
           <h5 class="back-title">Стартап</h5>

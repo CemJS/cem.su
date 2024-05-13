@@ -10,7 +10,7 @@ export default function () {
           }}
           class="preview__arrow"
         >
-          <i class="i i-arrow-left"></i>
+          <i class="i i-chevron-left"></i>
           <span>Назад</span>
         </div>
         <div class="preview__body">{Static.item()}</div>

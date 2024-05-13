@@ -34,7 +34,7 @@ export default function () {
             Ref.slideSection.style.marginLeft = `0`;
           }}
         >
-          <i class="i i-arrow-left"></i> Вернуться в меню
+          <i class="i i-chevron-left"></i> Вернуться в меню
         </div>
         <button class="btn btn_dark" onclick={Func.close}>
           <i class="i i-x-mark"></i>

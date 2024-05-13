@@ -8,7 +8,7 @@ export default function () {
                 <span
                     onclick={() => { Func.prevSlide() }}
                 >
-                    <i class="i i-arrow-left"></i>
+                    <i class="i i-chevron-left"></i>
                 </span>
             </div>
             <ul

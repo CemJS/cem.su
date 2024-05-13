@@ -10,7 +10,7 @@ export default function () {
             class="flex cursor-pointer items-center justify-center"
             onclick={() => Fn.linkChange("/")}
           >
-            <i class="i i-arrow-left"></i>
+            <i class="i i-chevron-left"></i>
           </span>
 
           <h5 class="line-clamp-1 px-4 text-center text-base font-medium @700:text-xl">
