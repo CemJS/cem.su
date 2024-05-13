@@ -313,13 +313,13 @@ export default function ({ items, key = "" }) {
           ref="cube"
           class="relative z-[1] box-content flex h-full w-full [transform-style:preserve-3d]"
         >
-          {items.map((item, i) => {
+          {items?.map((item, i) => {
             return (
               <div
                 id="slide"
                 ref={`slide${i}`}
                 class={[
-                  "h-full w-full flex-shrink-0 select-none [backface-visibility:hidden] [transform-origin:0_0] [transform-style:preserve-3d] [&_img]:pointer-events-none [&_img]:select-none",
+                  "w-full flex-shrink-0 select-none [backface-visibility:hidden] [transform-origin:0_0] [transform-style:preserve-3d] [&_img]:pointer-events-none [&_img]:select-none",
                 ]}
               >
                 {item}

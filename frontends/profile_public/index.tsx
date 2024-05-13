@@ -4,11 +4,8 @@ import postListener from "./listeners/post.listener";
 import { AudioPlayer } from "@elements/Audio";
 
 front.listener.finish = () => {
-  // плеер
-
-  if (!Static.define) {
+  if (!customElements.get("audio-player")) {
     customElements.define("audio-player", AudioPlayer);
-    Static.define = true;
   }
   return;
 };
@@ -18,7 +15,7 @@ front.func.uploadMedia = async (file: any, type: string) => {
 
   let res = await front.Services.functions.uploadMedia(file, type);
 
-  if (res.error == null) {
+  if (res?.name) {
     Static.data?.media[mediaIndex]
       ? (Static.data.media[mediaIndex] = { type, name: res.name })
       : 0;
@@ -51,9 +48,7 @@ front.loader = async () => {
 
   if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "post") {
     Static.page = "post";
-    let url = front.Services.functions.makeUrlEvent("Posts", {
-      action: "showMy",
-    });
+    let url = front.Services.functions.makeUrlEvent("posts");
     let listener = postListener;
     Events.posts = await Fn.event(url, listener);
     return;

@@ -5,9 +5,8 @@ import postsListenerData from "./listeners/postsListener.data";
 import { AudioPlayer } from "@elements/Audio";
 
 front.listener.finish = () => {
-  if (!Static.define) {
+  if (!customElements.get("audio-player")) {
     customElements.define("audio-player", AudioPlayer);
-    Static.define = true;
   }
   return;
 };

@@ -32,7 +32,7 @@ export default function ({ item, index }) {
 
       <CubeSlider
         items={item?.media?.map((it, i) => {
-          return <MediaPost mediaItem={it} index={i} />;
+          return <MediaPost mediaItem={it} index={index + i} />;
         })}
       />
 
