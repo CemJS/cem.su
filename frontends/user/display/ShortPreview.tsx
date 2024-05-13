@@ -1,8 +1,21 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
 
+const handleUpdate = () => {
+  const edit = {
+    information: {
+      status: Static.record?.status,
+    },
+    uuid: `${localStorage?.uuid}`,
+  };
+  front.Services.functions.sendApi("/api/users/update", edit);
+  Static.stateStatus = false;
+};
 export default function () {
-  // console.log("Static", Static.record);
-  
+  const debouncedHandleUpdate = front.Services.functions.debounce(
+    handleUpdate,
+    1000,
+  );
+
   return (
     <div class="relative h-[7.1875rem] max-@1720:h-auto">
       <div class="relative bottom-auto left-[50%] ml-0 flex translate-x-[-50%] flex-row flex-wrap items-center justify-center text-center max-@1720:mb-[.625rem] max-@1720:mt-[2.0625rem] @1720:absolute @1720:bottom-[1.375rem] @1720:ml-[-.9375rem]">
@@ -32,36 +45,28 @@ export default function () {
           <input
             style="text-align: center;"
             maxLength="32"
+            // autoFocus={true}
+            onBlur={debouncedHandleUpdate}
             value={
               Static.record?.status === undefined ? "" : Static.record?.status
             }
+            // onclick={handleUpdate}
             oninput={(event: any) => {
               Static.record.status = event.target.value;
               //   Fn.log("Static.record.status", Static.record.status);
             }}
-            onKeyDown={async (event: any) => {
+            onKeyDown={(event: any) => {
               if (event.key === "Enter" && !event.shiftKey) {
-                const edit = {
-                  information: {
-                    status: Static.record?.status,
-                  },
-                  uuid: `${localStorage?.uuid}`,
-                };
-                let res = await front.Services.functions.sendApi(
-                  "/api/users/update",
-                  edit,
-                );
+                debouncedHandleUpdate();
               }
             }}
-            class="my-[.3125rem] flex min-h-[1.75rem] basis-full cursor-pointer items-center justify-center rounded-[.3125rem] border-0 px-[.25rem] font-[.8125rem] leading-[1.125rem] text-[#bbc2d1] [outline:none] [background:0_0] [transition:0.4s] hover:bg-[#3d4252]"
+            class="my-[.3125rem] flex min-h-[1.75rem] basis-full cursor-pointer items-center justify-center rounded-[.3125rem] border-0 px-[.25rem] font-[.8125rem] leading-[1.125rem] text-[#bbc2d1] [background:0_0] [outline:none] [transition:0.4s] hover:bg-[#3d4252]"
             id="userstatus"
             contenteditable="true"
-          >
-            {Static.record?.status}
-          </input>
+          ></input>
         ) : (
           <div
-            class="my-[.3125rem] flex min-h-[1.75rem] basis-full cursor-pointer items-center justify-center rounded-[.3125rem] border-0 px-[.25rem] font-[.8125rem] leading-[1.125rem] text-[#bbc2d1] [outline:none] [background:0_0] [transition:0.4s] hover:bg-[#3d4252]"
+            class="my-[.3125rem] flex min-h-[1.75rem] basis-full cursor-pointer items-center justify-center rounded-[.3125rem] border-0 px-[.25rem] font-[.8125rem] leading-[1.125rem] text-[#bbc2d1] [background:0_0] [outline:none] [transition:0.4s] hover:bg-[#3d4252]"
             id="userstatus"
           >
             {Static.record?.status}

@@ -12,3 +12,16 @@ function debounce(func: Function, wait: number) {
     timeout = setTimeout(later, wait);
   };
 }
+// function debounce(func: Function, wait: number) {
+//   return function perform(...args) {
+//     let previousCall = this.lastCall
+
+//     this.lastCall = Date.now()
+
+//     if (previousCall && this.lastCall - previousCall <= wait) {
+//       clearTimeout(this.lastCallTimer)
+//     }
+
+//     this.lastCallTimer = setTimeout(() => func(...args), wait)
+//   }
+// }
