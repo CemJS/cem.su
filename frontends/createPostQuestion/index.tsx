@@ -32,12 +32,27 @@ front.func.findIndexByMediaName = (mediaName: string) => {
 };
 
 front.loader = async () => {
-  Static.data = {
-    languageCode: "ru",
-    forFriends: false,
-    text: "",
-    media: [],
-  };
+  console.log("=9404ba=", Static.edit);
+  if (Static.edit) {
+    Static.data = {
+      languageCode: Static.edit?.languages?.code
+        ? Static.edit?.languages?.code
+        : "ru",
+      forFriends: Static.edit?.forFriends ? Static.edit?.forFriends : false,
+      text: Static.edit?.text ? Static.edit?.text : "",
+      media: Static.edit?.media ? Static.edit?.media : [],
+    };
+  } else {
+    Static.data = {
+      languageCode: "ru",
+      forFriends: false,
+      text: "",
+      media: [],
+    };
+  }
+
+  console.log("=d1ce83=", Static.data);
+
   Static.origName = "Русский";
   Static.show = "grid";
   Static.isValid = false;

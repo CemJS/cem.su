@@ -37,7 +37,7 @@ export default function ({ item, index }: { item: Post; index: number }) {
         })}
       />
 
-      <div class="rounded-bl-[--borderR] rounded-br-[--borderR] p-[0.7rem_1rem_2rem] [background:var(--backSecond)]">
+      <div class="rounded-bl-[--borderR] rounded-br-[--borderR] p-[0rem_0rem_2rem] [background:var(--backSecond)]">
         <TextPost item={item} />
 
         <StatisticsPost item={item} />

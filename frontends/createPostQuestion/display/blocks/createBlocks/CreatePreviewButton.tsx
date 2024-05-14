@@ -10,15 +10,16 @@ const callModal = () => {
 
 export default function () {
   return (
-    <div
+    <button
       onclick={() => (Static.isValid ? callModal() : null)}
       class={[
         "btn",
-        "!flex !w-1/2 !items-center !justify-center",
+        "!flex !items-center !justify-center",
         !Static.isValid ? "!btn_reset" : null,
+        !Static.edit ? "!w-1/2" : "",
       ]}
     >
       <span>Предпросмотр</span>
-    </div>
+    </button>
   );
 }

@@ -31,6 +31,19 @@ export default function () {
 
               if (front.Variable?.myInfo.id == Static.post?.author.id) {
                 records.push({
+                  name: "Редактировать",
+                  func: () => {
+                    Fn.linkChange("/create/pst", { edit: Static.post });
+                    if (front.Variable.$el.header) {
+                      front.Variable.$el?.header?.classList?.remove("hide");
+                      front.Variable.$el?.footer?.classList?.remove("hide");
+                      Static.post = null;
+                      Events.post.close();
+                    }
+                  },
+                });
+
+                records.push({
                   name: "Удалить",
                   func: () => {
                     Fn.initOne("modalAccept", {

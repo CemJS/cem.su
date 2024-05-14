@@ -1,40 +1,15 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
 import play_btn from "@svg/icons/play_button.svg";
+import { Post as PostType } from "types/post.type";
+import Post from "./post/Post";
 
 export default function () {
   // Fn.log("wtf?", Static.record?.feed[0]);
 
   return (
-    <div class="feed-tiles">
-      {Static.records?.map((item: any, key: number) => {
-        // Fn.log('=b56954=', item)
-        return (
-          <a
-            key={key}
-            class="feed-tiles__item"
-          >
-            <figure class="feed-tiles__card">
-              <div class="video__container">
-                <div>
-                  <img
-                    src={play_btn}
-                    class="img-tiles"
-                  />
-                  {item?.media[0]?.type === "video" ? (
-                    <video
-                      playsinline="true"
-                      poster=""
-                      preload="none"
-                      src={"/assets/upload/posts/" + item?.media[0]?.name}
-                    />
-                  ) : (
-                    <img src={"/assets/upload/posts/" + item?.media[0]?.name} />
-                  )}
-                </div>
-              </div>
-            </figure>
-          </a>
-        );
+    <div>
+      {Static.posts?.map((item: PostType, key: number) => {
+        return <Post item={item} index={key} />;
       })}
     </div>
   );

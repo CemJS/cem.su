@@ -7,6 +7,8 @@ import CreateText from "./createBlocks/CreateText";
 import CreatePreviewButton from "./createBlocks/CreatePreviewButton";
 import CreateCreateButton from "./createBlocks/CreateCreateButton";
 import CreateMediaButtons from "./createBlocks/CreateMediaButtons";
+import EditCancel from "./createBlocks/editBlocks/EditCancel";
+import EditSave from "./createBlocks/editBlocks/EditSave";
 
 export default function () {
   return (
@@ -17,13 +19,15 @@ export default function () {
       <form id="create__form">
         <CreateLang />
         <CreateForFriends />
-        {Static.data?.media.length ? <CreateFiles /> : null}
+        {Static.data?.media?.length ? <CreateFiles /> : null}
         <CreateText />
         <CreateMediaButtons />
 
         <div class="mx-auto flex max-w-[500px] gap-4 py-[20px] @410:gap-[30px]">
-          <CreateCreateButton />
-          {/* <CreatePreviewButton /> */}
+          <CreatePreviewButton />
+          {Static.edit && <EditCancel />}
+          {Static.edit && <EditSave />}
+          {!Static.edit && <CreateCreateButton />}
         </div>
       </form>
     </div>

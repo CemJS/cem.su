@@ -71,22 +71,22 @@ export default function () {
           ]}
           // max-h-[12.5rem]
         >
-          {Static.data.media
-            ?.filter((item) => item.type == "video" || item.type == "image")
+          {Static.data?.media
+            ?.filter((item) => item?.type == "video" || item?.type == "image")
             .map((item, index) => {
               return (
                 <div
                   id="preview"
                   class="relative flex h-full min-h-[6.25rem] w-full items-center justify-center overflow-hidden [&_video]:h-full [&_video]:w-full"
                 >
-                  {item.name && item?.type == "video" ? (
+                  {(item?.name || item?.mediaName) && item?.type == "video" ? (
                     <div class="relative">
                       <video
                         // style={`aspect-ratio:${Static.aspect?.replace(":", "/")};`}
-                        src={`/assets/upload/posts/${item.name}`}
+                        src={`/assets/upload/posts/${item?.name ? item?.name : item?.mediaName}`}
                         poster={
                           item.preview
-                            ? `/assets/upload/gallery/${item.preview}`
+                            ? `/assets/upload/gallery/${item?.preview}`
                             : ""
                         }
                       ></video>
@@ -118,12 +118,14 @@ export default function () {
                         }
                       />
                     </div>
-                  ) : item.name && item?.type == "image" ? (
+                  ) : (item?.name || item?.mediaName) &&
+                    item?.type == "image" ? (
                     <div>
+                      {console.log("=554297=", item)}
                       <img
                         class="h-full w-full object-contain [box-shadow:rgba(11,20,26,0.16)_0px_3px_12px_0px]"
                         // style={`aspect-ratio:${Static.aspect?.replace(":", "/")};`}
-                        src={`/assets/upload/posts/${item.name}`}
+                        src={`/assets/upload/posts/${item?.name ? item?.name : item?.mediaName}`}
                       />
                       <SettingsImage
                         clickIconSettings={() =>
@@ -132,8 +134,10 @@ export default function () {
                               {
                                 name: "Удалить",
                                 func: () => {
-                                  Static.data.media.splice(
-                                    Func.findIndexByMediaName(item.name),
+                                  Static.data?.media?.splice(
+                                    Func.findIndexByMediaName(
+                                      item?.name ? item?.name : item?.mediaName,
+                                    ),
                                     1,
                                   );
                                 },

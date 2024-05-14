@@ -10,6 +10,7 @@ export default function () {
         class="hidden"
         type="checkbox"
         id="friends"
+        checked={Static.data?.forFriends}
         onclick={(e) => {
           Static.data.forFriends = e.target.checked;
         }}
