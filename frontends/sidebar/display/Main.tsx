@@ -5,16 +5,10 @@ import socials from "@json/socials";
 
 const RenderSidebarMenu = function ({ menu }) {
   return (
-    <div
-      // class="sidebar-menu"
-      class="w-full"
-    >
+    <div>
       {menu.map((item) => {
         return (
-          <div
-            // class="sidebar-menu__item"
-            class="relative cursor-pointer transition-all"
-          >
+          <div class="relative cursor-pointer transition-all">
             <span
               class="font-medium text-slate-300 text-lg no-underline p-4 flex items-center gap-4 transition-all cursor-pointer hover:bg-[#1d2029] hover:text-white"
               onclick={() => {
@@ -22,7 +16,7 @@ const RenderSidebarMenu = function ({ menu }) {
                 Fn.linkChange(`${item.link}`);
               }}
             >
-              <i class={["i", `i-${item.icon}`]}></i>
+              <i class={["i", `i-${item.icon}`, 'text-2xl']}></i>
               {item.name}
             </span>
           </div>
@@ -34,42 +28,43 @@ const RenderSidebarMenu = function ({ menu }) {
 
 const RenderSidebarSubmenu = function ({ submenu }) {
   return (
-    <div
-      // class="sidebar-menu"
-      class="w-full"
-    >
+    <div>
       {submenu.map((item) => {
         return (
           <div
-            // class="sidebar-menu__item"
-            class="font-medium text-slate-300 text-lg no-underline p-4 flex items-center gap-4 transition-all cursor-pointer hover:bg-[#1d2029] hover:text-white"
-            onclick={(e: any) => {
-              e.currentTarget.classList.toggle("bg-[#1d2029]", "hover:text-white");
+            class="relative cursor-pointer transition-all"
+            onclick={() => {
+              item.opened = !item.opened
             }}
           >
-            <div class="sidebar-menu__item-btn">
+            <div
+              class="font-medium text-slate-300 text-lg no-underline p-4 flex items-center gap-4 transition-all cursor-pointer hover:bg-[#1d2029] hover:text-white"
+            >
               {
                 item.icon ?
                   <i class={["i", `i-${item.icon}`]}></i> :
-                  <i class={["i", "i-chevron-down"]}></i>
+                  <i class={["i", 'transition-all', "i-chevron-down", 'text-2xl', item.opened ? "rotate-180" : null]}></i>
               }
               {item.name}
-              {/* <i class="i i-chevron-down"></i> */}
             </div>
-            <div class="sidebar-submenu">
+            <div
+              class={["bg-[#303545] overflow-hidden transition-[max-height_0.3s_ease-in-out;]", item.opened ? "max-h-[500px]" : "max-h-0"]}
+            >
               {item.options.map((element) => {
                 return (
                   element.target ?
-                    <div class="sidebar-submenu__item">
+                    <div>
                       <a
+                        class="font-medium text-slate-300 flex items-center transition-all gap-4 cursor-pointer p-4 pl-10 text-base hover:bg-[#1d2029] hover:text-white"
                         href={element.link}
                         target="_blank"
                       >
                         {element.name}
                       </a>
                     </div> :
-                    <div class="sidebar-submenu__item">
+                    <div>
                       <span
+                        class="font-medium text-slate-300 flex items-center transition-all gap-4 cursor-pointer p-4 pl-10 text-base hover:bg-[#1d2029] hover:text-white"
                         onclick={() => {
                           Func.close()
                           Fn.linkChange(`${element.link}`);
@@ -90,16 +85,16 @@ const RenderSidebarSubmenu = function ({ submenu }) {
 
 const RenderSocials = function ({ socials }) {
   return (
-    <div class="sidebar-socials">
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(50px,1fr));] gap-2 mx-8 mt-4">
       {socials.map((item) => {
         return (
           <div>
             <a
-              class="sidebar-socials__item"
+              class="rounded-full w-12 h-12 bg-[#3B2D4A] shadow-[0_0.25em_0.25em_rgba(0,0,0,0.3);] flex items-center justify-center text-white"
               href={item.url}
               target="_blank"
             >
-              <i class={["i", `i-${item.icon}`]}></i>
+              <i class={["i", `i-${item.icon}`, 'text-2xl']}></i>
             </a>
           </div>
         );
@@ -110,25 +105,25 @@ const RenderSocials = function ({ socials }) {
 
 export default function () {
   return (
-    <main class="sidebar-content">
-      <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#434954]">
+    <main class="relative overflow-hidden">
+      <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-solid border-[#363C50]">
         Разделы
       </span>
       <RenderSidebarMenu menu={Static.sections} />
       {front.Variable.Auth ?
-        <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#434954]">
+        <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#363C50]">
           Меню
         </span>
         : null}
       {front.Variable.Auth ? <RenderSidebarMenu menu={Static.menu} /> : null}
 
       <span
-        class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#434954]"
+        class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#363C50]"
       >
         Crypto Emergency
       </span>
       <RenderSidebarSubmenu submenu={Static.submenu} />
-      <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#434954]">
+      <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#363C50]">
         Социальные сети
       </span>
       <div
