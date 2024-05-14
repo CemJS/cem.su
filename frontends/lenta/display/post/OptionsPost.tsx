@@ -12,6 +12,23 @@ export default function ({ item, index }: { item: Post; index: number }) {
         onclick={() => {
           let records = [];
 
+          if (front.Variable?.myInfo.id == item?.author.id) {
+            records.push({
+              name: "Удалить",
+              func: () => {
+                Fn.initOne("modalAccept", {
+                  title: "удалить свой пост",
+                  Callback: async (CallBack: boolean) => {
+                    if (CallBack) {
+                      Func.delete(item);
+                    }
+                  },
+                });
+              },
+              type: "danger",
+            });
+          }
+
           if (
             front.Variable?.myInfo.id != item?.author.id &&
             front.Variable?.Auth

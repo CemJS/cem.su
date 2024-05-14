@@ -89,7 +89,7 @@ export default function () {
         <RenderAddPreview />
         {Static.previews?.map((preview, index) => {
           return (
-            <div>
+            <div class="relative">
               {preview?.mediaName?.length > 0 ? (
                 <div
                   onclick={() => {

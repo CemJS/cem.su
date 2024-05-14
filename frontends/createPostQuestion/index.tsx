@@ -42,19 +42,19 @@ front.loader = async () => {
   Static.show = "grid";
   Static.isValid = false;
   Static.pageMap = {
-    post: "пост",
-    question: "вопрос",
+    posts: "пост",
+    questions: "вопрос",
   };
 
-  if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "post") {
-    Static.page = "post";
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "pst") {
+    Static.page = "posts";
     let url = front.Services.functions.makeUrlEvent("me/posts");
     let listener = postListener;
     Events.posts = await Fn.event(url, listener);
     return;
   }
-  if (front.Variable.DataUrl[2] && front.Variable.DataUrl[2] == "question") {
-    Static.page = "question";
+  if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "qst") {
+    Static.page = "questions";
     return;
   }
 };

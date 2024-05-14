@@ -31,6 +31,17 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 
 // запросы
 
+front.func.delete = async (item) => {
+  let res = await Func.sendAuth(`/api/posts/${item?.id}/delete`, {});
+  console.log("=be736f=", res);
+  if (res.status == 200) {
+    let index = Func.findIndexPost(item.id);
+    Static.records[index].hide = true;
+  }
+
+  return;
+};
+
 front.func.follow = async (item) => {
   let res;
   !item?.subscribed

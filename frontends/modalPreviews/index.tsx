@@ -22,9 +22,16 @@ front.func.close = function () {
 };
 
 front.func.uploadMedia = async (file: any, type: string) => {
-  let res = await front.Services.functions.uploadMedia(file, type, "gallery");
+  Static.previews?.unshift({ mediaName: "" });
 
-  Static.previews[0] ? (Static.previews[0] = { mediaName: res.name }) : 0;
+  let res = await front.Services.functions.uploadMedia(file, type, "gallery");
+  console.log("=9b0395=", res);
+
+  if ((res.error = "" || res.error == null)) {
+    Static.previews[0] ? (Static.previews[0] = { mediaName: res.name }) : 0;
+  } else {
+    Static.previews?.splice(0, 1);
+  }
 
   return res.name;
 };
@@ -72,7 +79,8 @@ front.func.changeMediaFile = function () {
 
 front.func.getPreviews = async () => {
   let res = await front.Services.functions.sendApi("/api/user/previews", {});
-  Static.previews = res.result;
+  console.log("=5eba25=", res);
+  Static.previews = res.result ? res.result : [];
 };
 
 front.loader = async () => {

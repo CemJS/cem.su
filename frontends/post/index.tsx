@@ -7,6 +7,7 @@ front.listener.finish = () => {
   if (!customElements.get("audio-player")) {
     customElements.define("audio-player", AudioPlayer);
   }
+
   return;
 };
 
@@ -29,6 +30,22 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 };
 
 // запросы
+
+front.func.delete = async (item) => {
+  let res = await Func.sendAuth(`/api/posts/${item?.id}/delete`, {});
+  console.log("=be736f=", res);
+  if (res.status == 200) {
+    if (front.Variable.$el.header) {
+      front.Variable.$el?.header?.classList?.remove("hide");
+      front.Variable.$el?.footer?.classList?.remove("hide");
+      Static.post = null;
+      Events.post.close();
+      Fn.linkChange("/");
+    }
+  }
+
+  return;
+};
 
 front.func.follow = async (item) => {
   let res;

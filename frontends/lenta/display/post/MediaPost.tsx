@@ -6,11 +6,12 @@ export default function ({ mediaItem, index }) {
     <div class="relative h-full w-full select-none">
       {mediaItem.type == "video" ? (
         <Video
+          poster={mediaItem?.preview}
           src={`/assets/upload/posts/${mediaItem?.mediaName}`}
           key={mediaItem?.mediaName + index}
         />
       ) : mediaItem.type == "audio" ? (
-        <div class="flex items-center justify-center">
+        <div class="flex h-full items-center justify-center">
           <audio-player
             src={`/assets/upload/posts/${mediaItem?.mediaName}`}
             title={mediaItem?.mediaName}
