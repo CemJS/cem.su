@@ -59,6 +59,12 @@ export default function () {
             <div class="relative ml-2 h-auto w-auto cursor-pointer inline-flex">
               <div
                 class="flex justify-center items-center mr-2"
+                onclick={() => Fn.initOne("modalNotifications", {})}
+              >
+                <i class="i i-bell-alert text-2xl"></i>
+              </div>
+              <div
+                class="flex justify-center items-center mr-2"
                 onclick={() => Fn.initOne("modalNotificationsNew", {})}
               >
                 <i class="i i-bell text-2xl"></i>
