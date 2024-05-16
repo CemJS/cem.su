@@ -32,6 +32,8 @@ front.loader = async () => {
           return;
         }
 
+        console.log("=46d54c=", bonuses);
+
         Static.pageCount = pagesCount;
         Static.balance = balance;
         Static.records = bonuses;

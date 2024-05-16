@@ -2,7 +2,7 @@ import { Cemjsx, Fn, Static, front } from "cemjs-all";
 
 export default function () {
   return (
-    <div
+    <button
       onclick={async (e) => {
         if (Static.isValid) {
           let res = await front.Services.functions.sendApi(
@@ -23,6 +23,6 @@ export default function () {
       ]}
     >
       <span>Создать</span>
-    </div>
+    </button>
   );
 }

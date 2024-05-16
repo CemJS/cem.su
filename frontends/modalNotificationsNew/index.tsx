@@ -73,7 +73,7 @@ front.loader = async () => {
     {
       icon: "user",
       name: "Профиль",
-      link: `/user/${front.Variable?.myInfo?.nickname}`,
+      link: `/user/${front.Variable.myInfo.nickname}`,
     },
     {
       icon: "trophy",

@@ -1,7 +1,6 @@
 import { Cemjsx } from "cemjs-all"
 import Header from "./display/Header"
 import Main from "./display/Main"
-import Languages from "./display/Languages"
 
 export default function () {
   return (
@@ -13,19 +12,10 @@ export default function () {
         ref="sidebarWrap"
       >
         <div
-          class="w-[200%] flex"
-        >
-          <div
-            class="w-1/2 transition-all"
-            ref="slideSection">
-            <Header />
-            <Main />
-          </div>
-          <div
-            class="w-1/2 transition-all"
-          >
-            <Languages />
-          </div>
+          class="transition-all"
+          ref="slideSection">
+          <Header />
+          <Main />
         </div>
       </div>
     </div>

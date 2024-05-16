@@ -30,13 +30,13 @@ const RenderCard = () => {
         <div class="mb-5 flex flex-col text-[20px] font-semibold leading-[1]">
           <p class="mb-[10px] text-[15px] font-medium leading-[1]">Мой счет</p>
           <div class="flex gap-[10px]">
-            <p class="mb-0 text-[36px] font-semibold leading-[1]">
+            <p class="mb-0 truncate text-[36px] font-semibold leading-[1]">
               {Static.balance}
             </p>
             <p class="mb-0 text-[36px] font-semibold leading-[1]">CEMD</p>
           </div>
         </div>
-        <div class="flex justify-between">
+        {/* <div class="flex justify-between">
           <div class="flex flex-col gap-[5px]">
             <p class="mb-[7px] text-[14px] font-medium leading-[1]">Доллары</p>
             <p class="mb-0 flex flex-col text-[20px] font-semibold leading-[1]">
@@ -49,7 +49,7 @@ const RenderCard = () => {
             </p>
             <p class="mb-0 text-[20px] font-semibold leading-[1]">1.00</p>
           </div>
-        </div>
+        </div> */}
         <img
           src={crem_logo}
           alt=""
@@ -91,8 +91,6 @@ const RenderTable = () => {
       hidden = false,
       position = "",
     }) => {
-      console.log("=cd63cb=", page);
-
       return (
         <button
           onclick={() => {
@@ -289,7 +287,7 @@ export default function () {
         <RenderTop />
 
         {Static.pageCount ? <RenderCard /> : null}
-        {Static.pageCount ? <RenderTable /> : null}
+        {/* {Static.pageCount ? <RenderTable /> : null} */}
       </div>
     </div>
   );

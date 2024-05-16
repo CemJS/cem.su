@@ -43,8 +43,7 @@ export default function () {
                 </li>
               </ul>
             </div>
-            {/* {Static.feedState ? <Tiles /> : <Card />} */}
-            <GridGallery />
+            {Static.feedState ? <Tiles /> : <GridGallery />}
           </div>
         </div>
       </div>

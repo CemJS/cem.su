@@ -9,8 +9,11 @@ export default function ({ item }: { item: Post }) {
         html={item.text}
         id="text"
         class={[
-          "w-full [&_a]:!bg-clip-text [&_a]:!text-transparent [&_a]:[background:--mainGradient] [&_p]:pb-4",
-          item?.media?.length > 0 ? "line-clamp-1" : "",
+          "w-full break-words [&_a]:!bg-clip-text [&_a]:!text-transparent [&_a]:[background:--mainGradient] [&_p]:pb-4",
+          item?.media?.length > 0
+            ? "line-clamp-1"
+            : "flex min-h-[180px] items-center justify-center break-words !bg-cover !bg-no-repeat p-[30px] text-center [background:url('/contents/images/posterBG.png')] @600:min-h-[330px]",
+          ,
         ]}
       ></div>
       {item?.media?.length > 0 ? (

@@ -8,7 +8,6 @@ export default function () {
   return (
     <div class="grid w-full [grid-template-columns:repeat(3,_1fr)]">
       {Static.posts?.map((item: Post, key: number) => {
-        console.log("=0a4598=", item);
         return (
           <div
             onclick={() => {
@@ -21,6 +20,7 @@ export default function () {
               {item?.media?.length > 0 ? (
                 item?.media[0]?.type === "video" ? (
                   <Video
+                    poster={item?.media[0].preview}
                     src={`/assets/upload/gallery/${item?.media[0]?.mediaName}`}
                     key={item?.media[0]?.mediaName + key}
                   />

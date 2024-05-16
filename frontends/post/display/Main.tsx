@@ -3,7 +3,7 @@ import Post from "./post/Post";
 
 export default function () {
   return (
-    <div class="mx-auto w-full max-w-[900px]">
+    <div class="mx-auto w-full max-w-[700px]">
       {Static.post ? <Post item={Static.post} index={-1} /> : null}
     </div>
   );

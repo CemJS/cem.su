@@ -17,7 +17,7 @@ Static.speedOptions = [
     value: 0.5,
   },
 ];
-export default function ({ src, key }) {
+export default function ({ src, key, poster = "" }) {
   return (
     <div
       class="video-container h-full w-full"
@@ -35,7 +35,8 @@ export default function ({ src, key }) {
     >
       <div
         class="video-play"
-        onclick={() => {
+        onclick={(e: Event) => {
+          e.stopPropagation();
           Func.playAndPause(Ref[`video${key}`]);
         }}
         ondblclick={(e: any) => {
@@ -272,8 +273,9 @@ export default function ({ src, key }) {
       </div>
       <video
         id={key}
-        class="video"
+        class="video !h-full"
         ref={`video${key}`}
+        poster={poster ? `assets/upload/gallery/${poster}` : ""}
         src={src}
         onplay={() => {
           Ref[`playAndPause${key}`].classList.replace("i-play", "i-pause");

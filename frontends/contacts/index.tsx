@@ -100,9 +100,9 @@ front.loader = () => {
 
   // front.Variable.Auth = true;
   if (front.Variable.Auth) {
-    Static.form.name.value = "myInfoName";
+    Static.form.name.value = front.Variable?.myInfo?.nickname;
     Static.form.name.valid = true;
-    Static.form.email.value = "myInfoEmail";
+    Static.form.email.value = front.Variable?.myInfo?.email;
     Static.form.email.valid = true;
   }
   return;

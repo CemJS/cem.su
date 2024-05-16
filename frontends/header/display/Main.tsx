@@ -35,7 +35,7 @@ export default function () {
     >
       <div class="flex items-center justify-between">
         <nav class="flex gap-x-4">
-          <a href="/" onclick={Fn.link} class="h-16">
+          <a href="/" onclick={Fn.link} class="h-12 sm:h-16">
             <img class="h-full" src={logo} alt="Crypto Emergency" />
           </a>
           <RenderMenu menu={menu} />
@@ -50,22 +50,34 @@ export default function () {
           >
             <i class="i i-globe-alt text-xl"></i>
             <span>
-              {front.Variable.lang ? front.Variable.lang : "Выберите язык"}
+              {front.Variable.lang ? front.Variable.lang : "Язык"}
             </span>
             <i class="i i-chevron-right text-xl"></i>
           </div>
 
           {front.Variable?.myInfo?.auth ? (
-            <div
-              onclick={() => {
-                Func.showUser(
-                  `users/${front.Variable.myInfo?.nickname}/profile`,
-                  `/user/${front.Variable.myInfo?.nickname}`,
-                );
-              }}
-              class="relative ml-2 hidden h-auto w-auto cursor-pointer lg:inline-flex"
-            >
-              <div class="relative z-[1] h-[3.5rem] w-[3.1875rem] min-w-[2.9375rem]">
+            <div class="relative ml-2 h-auto w-auto cursor-pointer inline-flex">
+              <div
+                class="flex justify-center items-center mr-2"
+                onclick={() => Fn.initOne("modalNotifications", {})}
+              >
+                <i class="i i-bell-alert text-2xl"></i>
+              </div>
+              <div
+                class="flex justify-center items-center mr-2"
+                onclick={() => Fn.initOne("modalNotificationsNew", {})}
+              >
+                <i class="i i-bell text-2xl"></i>
+              </div>
+              <div
+                class="relative z-[1] h-[3.5rem] w-[3.1875rem] min-w-[2.9375rem]"
+                onclick={() => {
+                  Func.showUser(
+                    `users/${front.Variable.myInfo?.nickname}/profile`,
+                    `/user/${front.Variable.myInfo?.nickname}`,
+                  );
+                }}
+              >
                 <img
                   class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
                   src={

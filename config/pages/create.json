@@ -1,0 +1,4 @@
+{
+  "regex": "/create",
+  "front": ["header", "createPostQuestion", "menu"]
+}

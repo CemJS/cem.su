@@ -28,17 +28,51 @@ export default function () {
             class="relative w-8 cursor-pointer after:absolute after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%] after:text-5xl after:content-['...']"
             onclick={() => {
               let records = [];
-              console.log("=3f0391=", Static.post);
-              if (front.Variable.myInfo.id == Static.post.authorId) {
+
+              if (front.Variable?.myInfo.id == Static.post?.author.id) {
+                records.push({
+                  name: "Редактировать",
+                  func: () => {
+                    Fn.linkChange("/create/pst", { edit: Static.post });
+                    if (front.Variable.$el.header) {
+                      front.Variable.$el?.header?.classList?.remove("hide");
+                      front.Variable.$el?.footer?.classList?.remove("hide");
+                      Static.post = null;
+                      Events.post.close();
+                    }
+                  },
+                });
+
                 records.push({
                   name: "Удалить",
-                  func: Func.deleteQuestion,
+                  func: () => {
+                    Fn.initOne("modalAccept", {
+                      title: "удалить свой пост",
+                      Callback: async (CallBack: boolean) => {
+                        if (CallBack) {
+                          Func.delete(Static.post);
+                        }
+                      },
+                    });
+                  },
                   type: "danger",
                 });
               }
+
+              if (
+                front.Variable?.myInfo.id != Static.post?.author.id &&
+                front.Variable?.Auth
+              ) {
+                records.push({
+                  name: !Static.post?.subscribed ? "Подписаться" : "Отписаться",
+                  func: () => Func.follow(Static.post),
+                });
+              }
+
               Fn.initOne("modalTools", {
+                shareUrl: `/post/show/${Static.post.id}`,
                 records,
-                userId: Static.post.authorId,
+                userId: Static.post?.author.id,
                 complainTo: {
                   name: "posts",
                   text: "пост",

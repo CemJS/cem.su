@@ -125,7 +125,7 @@
   }
 
   .btn_dark {
-    @apply flex h-fit w-fit items-center justify-between gap-[0.3rem] bg-125% p-[0.2rem_0.5rem] text-[1rem] text-slate-300 [background:var(--back700)] [border:1px_solid_transparent] [transition:var(--tran-03)] hover:text-[--white] hover:[border:1px_solid_var(--border-color)];
+    @apply flex h-fit w-fit items-center justify-between gap-[0.3rem] bg-125% p-[0.5rem] text-[1rem] text-slate-300 [background:var(--back700)] [border:1px_solid_transparent] [transition:var(--tran-03)] hover:text-[--white] hover:[border:1px_solid_var(--border-color)];
   }
 
   /* градиентная кнопка при наведении */
