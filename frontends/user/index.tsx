@@ -18,6 +18,11 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   }
 };
 
+front.func.preloaderClose = () => {
+  setTimeout(() => {
+    Static.showComp = true;
+  }, 300);
+};
 front.func.follow = async (item: subscriberObject) => {
   const action = item?.subscribed ? "unsubscribe" : "subscribe";
   let res = await Func.sendAuth(`/api/users/${item?.id}/${action}`, {});

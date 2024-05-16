@@ -16,6 +16,12 @@ export default function () {
           Static.awards = false;
           Static.socials = false;
           Static.gallery = true;
+          Static.blockIcons = {
+            infinity: true,
+            mountains: false,
+            player: false,
+          };
+          
           let content = await front.Services.functions.sendApi(
             `/api/users/${Static.record?.nickname}/profile`,
             { category: "gallery" },

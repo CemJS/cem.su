@@ -1,8 +1,8 @@
-import { Cemjsx, Fn, Static, front } from "cemjs-all";
+import { Cemjsx, Fn, Static, front, Func } from "cemjs-all";
 import GridGallery from "./GridGallery";
-
+import GallerySkeleton from "@elements/skeletonLoading/GallerySkeleton";
 // Инициализируем состояние иконок
-const blockIcons = {
+Static.blockIcons = {
   infinity: true,
   mountains: false,
   player: false,
@@ -11,12 +11,12 @@ const blockIcons = {
 const createIcon = (icon: string, backgroundUrl: string, mediaType: string) => (
   <li>
     <img
-      onclick={!blockIcons[icon] ? () => setActiveIcon(icon, mediaType) : null}
+      onclick={!Static.blockIcons[icon] ? () => setActiveIcon(icon, mediaType) : null}
       src={backgroundUrl}
       class={[
         "block h-[1.8125rem] w-[1.8125rem]",
         // `[background:no-repeat_url(${infinity})_center_/_90%]`,
-        blockIcons[icon]
+        Static.blockIcons[icon]
           ? "cursor-default rounded-[.3125rem] [border:2px_solid_#40f2d0]"
           : "cursor-pointer",
       ]}
@@ -27,8 +27,8 @@ const createIcon = (icon: string, backgroundUrl: string, mediaType: string) => (
 // Функция для установки активной иконки
 async function setActiveIcon(icon: string, mediaType: string) {
   // Обновляем состояние иконок
-  Object.keys(blockIcons).forEach((key) => {
-    blockIcons[key] = key === icon;
+  Object.keys(Static.blockIcons).forEach((key) => {
+    Static.blockIcons[key] = key === icon;
   });
   let content = await front.Services.functions.sendApi(
     `/api/users/${Static.record?.nickname}/profile`,
@@ -40,12 +40,15 @@ async function setActiveIcon(icon: string, mediaType: string) {
 
 // Компонент для отображения иконок
 
-const RenderFieldTextarea = function () {
+const RenderGallery = function () {
   return <GridGallery />;
 };
 
 export default function () {
-  // Fn.log("Static.gallery", Static.record);
+  // if (Static.record?.gallery) {
+  //   Func.preloaderClose();
+  // }
+
   return (
     <div class="relative z-[1] m-0 w-full min-w-full px-0 py-0 pb-[1.25rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)] @1200:pt-[.625rem]">
       <div class="mb-[.3125rem] mt-[1.25rem] flex items-center justify-between pb-[.9375rem] pt-[.625rem] max-@1024:px-[.625rem] @1024:mt-[1.5625rem]">
@@ -62,19 +65,7 @@ export default function () {
           {createIcon("player", "/contents/svg/gallery/player.svg", "video")}
         </ul>
       </div>
-      {Static.record?.gallery ? (
-        <RenderFieldTextarea />
-      ) : (
-        <div class="it flex justify-center">
-          <div id="preloader">
-            <div class="relative flex justify-center">
-              <div class="absolute h-[12.5rem] w-[12.5rem] rounded-[50%] [border:0px_solid_var(--noble-black)] [&:nth-child(1)]:border-b-[.5rem] [&:nth-child(1)]:border-[--pink] [&:nth-child(1)]:[animation:rotate1_2s_linear_infinite]"></div>
-              <div class="absolute h-[12.5rem] w-[12.5rem] rounded-[50%] [border:0px_solid_var(--noble-black)] [&:nth-child(2)]:border-r-[.5rem] [&:nth-child(2)]:border-[--purple] [&:nth-child(2)]:[animation:rotate2_2s_linear_infinite]"></div>
-              <div class="absolute h-[12.5rem] w-[12.5rem] rounded-[50%] [border:0px_solid_var(--noble-black)] [&:nth-child(3)]:border-t-[.5rem] [&:nth-child(3)]:border-[--fiolet] [&:nth-child(3)]:[animation:rotate3_2s_linear_infinite]"></div>
-            </div>
-          </div>
-        </div>
-      )}
+      <RenderGallery />
     </div>
   );
 }
