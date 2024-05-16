@@ -26,152 +26,24 @@ front.func.close = function () {
   }, 500);
 };
 
-front.func.searchLang = function (e: any, languages) {
-  let inputValue = e.target.value.toLowerCase();
-  Static.listLanguages = languages.filter((item) => item.name.toLowerCase().includes(inputValue) == true);
-  return;
-};
 
 front.loader = async () => {
-  Static.activeLangList = false;
-  Static.currentYear = new Date().getFullYear();
-
-  Static.sections = [
+  Static.tabs = [
     {
-      icon: "lenta",
-      name: "Лента пользователей",
-      link: "/lenta",
+      name: 'Вопросы',
+      active: true,
     },
     {
-      icon: "qa",
-      name: "Вопросы и ответы",
-      link: "/questions",
+      name: 'Награды',
+      active: false,
+      border: true
     },
     {
-      icon: "chart-bar",
-      name: "ICO Рейтинг",
-      link: "/list-icostartups",
-    },
-    {
-      icon: "rocket-launch",
-      name: "Стартапы",
-      link: "/list-startups",
-    },
-    {
-      icon: "arrow-path-rounded-square",
-      name: "Обменники",
-      link: "/exchanges",
-    },
-    {
-      icon: "users",
-      name: "Пользователи",
-      link: "/users",
+      name: 'Системные',
+      active: false,
     }
-  ];
+  ]
 
-  Static.menu = [
-    {
-      icon: "user",
-      name: "Профиль",
-      link: `/user/${front.Variable.myInfo.nickname}`,
-    },
-    {
-      icon: "trophy",
-      name: "Награды",
-      link: "#",
-    },
-    {
-      icon: "currency-dollar",
-      name: "Мои активы",
-      link: "/profile/wallet",
-    },
-    {
-      icon: "user-group",
-      name: "Партнерская программа",
-      link: "/user/affiliate",
-    },
-    {
-      icon: "cog-6-tooth",
-      name: "Настройки",
-      link: "/profile/settings",
-    },
-    {
-      icon: "arrow-right-start-on-rectangle",
-      name: "Выход",
-      link: "#",
-    },
-  ];
-
-  Static.submenu = [
-    {
-      name: "Компания",
-      opened: false,
-      options: [
-        {
-          name: "О нас",
-          link: "/about",
-          target: false,
-        },
-        {
-          name: "Карьера",
-          link: "/career",
-          target: false,
-        },
-        {
-          name: "Lite Paper",
-          link: "/contents/docs/LitePaperRu.pdf",
-          target: true,
-        },
-      ],
-    },
-    {
-      name: "Поддержка",
-      opened: false,
-      options: [
-        {
-          name: "Контакты",
-          link: "/contacts",
-          target: false,
-        },
-      ],
-    },
-    {
-      name: "Правила",
-      options: [
-        {
-          name: "Пользовательское соглашение",
-          link: "/terms-of-service",
-          target: false,
-        },
-        {
-          name: "Политика использования данных",
-          link: "/data-policy",
-          target: false,
-        },
-        {
-          name: "Политика cookies",
-          link: "/cookies-policy",
-          target: false,
-        },
-      ],
-    },
-    {
-      name: "CEM",
-      opened: false,
-      options: [
-        {
-          name: "CEM Blockchain",
-          link: "https://cemblockchain.com/",
-          target: true,
-        },
-        {
-          name: "CEM Explorer",
-          link: "https://cemscan.com/",
-          target: true,
-        },
-      ],
-    },
-  ];
   return;
 };
 
