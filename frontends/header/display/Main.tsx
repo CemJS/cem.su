@@ -64,10 +64,13 @@ export default function () {
                 <i class="i i-bell-alert text-2xl"></i>
               </div>
               <div
-                class="flex justify-center items-center mr-2"
+                class="flex justify-center items-center mr-2 relative"
                 onclick={() => Fn.initOne("modalNotificationsNew", {})}
               >
                 <i class="i i-bell text-2xl"></i>
+                <div class="absolute top-[4px] right-[-6px] w-5 h-5 rounded-full bg-[#1d2029] flex justify-center items-center border-[1px] border-solid border-[#363C50] shadow">
+                  <span class="text-[10px]">5</span>
+                </div>
               </div>
               <div
                 class="relative z-[1] h-[3.5rem] w-[3.1875rem] min-w-[2.9375rem]"

@@ -1,7 +1,4 @@
 import { Cemjsx, Static, Ref, Fn, front, Func } from "cemjs-all";
-import appStore from "@svg/icons/appStore.svg";
-import playMarket from "@svg/icons/playMarket.svg";
-import socials from "@json/socials";
 
 
 
@@ -12,7 +9,8 @@ export default function () {
         Разделы
       </span> */}
 
-      <div class="rounded mt-3 shadow">
+
+      <div class="rounded mt-3 shadow p-4">
         <div>
           <i class="i i-information-circle"></i>
           <span>Задан новый вопрос!</span>
@@ -21,7 +19,6 @@ export default function () {
       </div>
 
 
-      <p class="text-center p-4 text-slate-300">{`©2020-${Static.currentYear} Crypto Emergency`}</p>
     </main>
   );
 }
