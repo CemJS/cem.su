@@ -39,7 +39,7 @@ front.func.delete = async (item) => {
       front.Variable.$el?.header?.classList?.remove("hide");
       front.Variable.$el?.footer?.classList?.remove("hide");
       Static.post = null;
-      Events.post.close();
+      Events.post?.close();
       Fn.linkChange("/");
     }
   }

@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, front } from "cemjs-all";
+import { Cemjsx, Fn, Static, front } from "cemjs-all";
 import cem from "@svg/cem.svg";
 
 export default function () {
@@ -47,11 +47,32 @@ export default function () {
                   records: [
                     {
                       name: "Опубликовать пост",
-                      func: () => Fn.linkChange("/create/pst"),
+                      func: () => {
+                        let params;
+                        if (front.Variable.DataUrl[1] == "pst") {
+                          params = {
+                            edit: undefined,
+                            reload: true,
+                          };
+                        }
+                        Fn.linkChange("/create/pst", params);
+                      },
                     },
                     {
                       name: "Задать вопрос",
-                      func: () => Fn.linkChange("/create/qst"),
+                      func: () => {
+                        let params;
+                        if (front.Variable.DataUrl[1] == "qst") {
+                          params = {
+                            edit: undefined,
+                            reload: true,
+                          };
+                        }
+                        Fn.linkChange("/create/qst", {
+                          edit: undefined,
+                          reload: true,
+                        });
+                      },
                     },
                   ],
                 });

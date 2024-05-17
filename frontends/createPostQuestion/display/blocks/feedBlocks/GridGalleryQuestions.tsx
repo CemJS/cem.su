@@ -7,11 +7,11 @@ import { Post } from "types/post.type";
 export default function () {
   return (
     <div class="grid w-full [grid-template-columns:repeat(3,_1fr)]">
-      {Static.posts?.map((item: Post, key: number) => {
+      {Static.questions?.map((item: any, key: number) => {
         return (
           <div
             onclick={() => {
-              Fn.linkChange(`/post/show/${item.id}`);
+              Fn.linkChange(`/question/show/${item.id}`);
             }}
             key={key}
             class="text block aspect-square"
@@ -19,7 +19,7 @@ export default function () {
             <figure class="relative z-[1] m-0 flex h-full items-center justify-center overflow-hidden [border-bottom:0.5px_solid_#353C50] [border-left:0.5px_solid_#353C50] [&:nth-child(1)]:[border-top:0.5px_solid_#353C50] [&:nth-child(2)]:[border-top:0.5px_solid_#353C50] [&:nth-child(3)]:[border-top:0.5px_solid_#353C50] [&:nth-child(3n+3)]:[border-right:0.5px_solid_#353C50]">
               {item?.media?.length > 0 ? (
                 item?.media[0]?.type === "video" ? (
-                  <Video
+                  <video
                     poster={item?.media[0].preview}
                     src={`/assets/upload/gallery/${item?.media[0]?.mediaName}`}
                     key={item?.media[0]?.mediaName + key}

@@ -3,7 +3,8 @@ import { Cemjsx, Fn, Static, front } from "cemjs-all";
 export default function () {
   return (
     <button
-      onclick={async (e) => {
+      onclick={async (e: Event) => {
+        e.preventDefault();
         if (Static.isValid) {
           let res = await front.Services.functions.sendApi(
             "/api/posts/create",

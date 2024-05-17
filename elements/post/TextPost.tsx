@@ -9,10 +9,11 @@ export default function ({ item }: { item: Post }) {
         html={item.text}
         id="text"
         class={[
-          "w-full break-words [&_a]:!bg-clip-text [&_a]:!text-transparent [&_a]:[background:--mainGradient] [&_p]:pb-4",
+          "[&_a]:[backgansparent w-full break-words pt-2 [&_a]:!bg-clip-text [&_a]:!text-transparent [&_a]:[background:--mainGradient] [&_p]:pb-4",
           item?.media?.length > 0
             ? "line-clamp-1"
             : "flex min-h-[180px] items-center justify-center break-words !bg-cover !bg-no-repeat p-[30px] text-center [background:url('/contents/images/posterBG.png')] @600:min-h-[330px]",
+          ,
         ]}
       ></div>
       {item?.media?.length > 0 ? (
@@ -23,9 +24,9 @@ export default function ({ item }: { item: Post }) {
               : e.classList.remove("hidden");
             window.addEventListener("resize", () => {
               Ref[`itemText${item?.id}`]?.scrollHeight <= 24
-                ? e.classList?.add("hidden")
+                ? e.classList.add("hidden")
                 : !Static[`showItem${item.id}`]
-                  ? e.classList?.remove("hidden")
+                  ? e.classList.remove("hidden")
                   : null;
             });
           }}
@@ -34,7 +35,7 @@ export default function ({ item }: { item: Post }) {
             Static[`showItem${item.id}`] = true;
             e.target.classList.add("hidden");
           }}
-          class="inline-block cursor-pointer pl-[5px] font-medium text-[--polar-mist]"
+          class="inline-block cursor-pointer font-medium text-[--polar-mist]"
         >
           Показать всё
         </div>

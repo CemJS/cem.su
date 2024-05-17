@@ -28,39 +28,6 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
     Fn.initOne("modalAuthtorization", {});
   }
 };
-
-// запросы
-
-front.func.delete = async (item) => {
-  let res = await Func.sendAuth(`/api/posts/${item?.id}/delete`, {});
-  console.log("=be736f=", res);
-  if (res.status == 200) {
-    let index = Func.findIndexPost(item.id);
-    Static.records[index].hide = true;
-  }
-
-  return;
-};
-
-front.func.follow = async (item) => {
-  let res;
-  !item?.subscribed
-    ? (res = await Func.sendAuth(`/api/users/${item?.id}/subscribe`, {}))
-    : (res = await Func.sendAuth(`/api/users/${item?.id}/unsubscribe`, {}));
-  res?.status == 200 ? (item.subscribed = !item?.subscribed) : null;
-  return;
-};
-
-front.func.likePost = (id) => {
-  Func.sendAuth(`/api/posts/${id}/like`, {});
-  return;
-};
-
-front.func.dislikePost = (id) => {
-  Func.sendAuth(`/api/posts/${id}/dislike`, {});
-  return;
-};
-
 // поиск индекса
 
 front.func.findIndexPost = (id) => {
