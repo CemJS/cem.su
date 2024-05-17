@@ -21,7 +21,6 @@ export default function () {
             `/api/users/${Static.record?.nickname}/profile`,
             { category: "subscriptions" },
           );
-          //проверка на error
         }}
         style={
           Static.subscriptions === true

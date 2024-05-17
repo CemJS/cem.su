@@ -9,16 +9,20 @@ import open_question from "@svg/questions/open_question.svg";
 import QuestionsBtnMyProf from "./QuestionsBtnMyProf";
 import QuestionsBtnUser from "./QuestionsBtnUser";
 import Header from "./Header";
-import QuestionsSkeleton from "@elements/skeletonLoading/QuestionsSkeleton";
+import QuestionsSkeleton from "@elements/skeletonLoading/user/QuestionsSkeleton";
 
 export default function () {
+  if (Static.record?.questions && Static.questions) {
+    Func.activeBlocksProfile();
+  } else Static.showComp = false;
+
   return (
     <div class="relative m-0 w-full min-w-full pb-[1.25rem] pt-[.625rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%--_224px)] @1200:pb-[2.5rem]">
       <h2 class="mx-0 my-[1.25rem] text-balance text-center text-[clamp(17px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
         Заданные вопросы
       </h2>
       <Header />
-      {Static.record?.questions ? (
+      {Static.showComp ? (
         <div class="mb-[3.75rem] mt-[.5rem] rounded-[0] text-[.875rem] font-medium leading-[1.25rem] @767:rounded-[.9375rem] @767:[border:1px_solid_#323746]">
           {Static.record?.questions?.map((item: any, key: number) => {
             // Fn.log("item", item);
@@ -143,7 +147,7 @@ export default function () {
       ) : (
         <div class="mt-[.5rem]">
           <QuestionsSkeleton
-            countQuestions={front.Variable.myInfo?.statistic?.question}
+            countQuestions={Static.record?.statistics?.question}
           />
         </div>
       )}

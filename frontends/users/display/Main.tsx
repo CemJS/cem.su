@@ -7,7 +7,7 @@ import defaultGray from "@svg/lenta/defaultGray.svg";
 import { UsersObject } from "../interface";
 
 export default function () {
-  console.log("Static.records", Static.records);
+  // console.log("Static.records", Static.records);
   
   return (
     <div class="wrapper ml-auto mr-auto w-[calc(100%_-_60px)] pb-[6.25rem] pt-[3.125rem] @1200:ml-auto @1200:mr-auto @1240:w-full">

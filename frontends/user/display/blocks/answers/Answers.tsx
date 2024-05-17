@@ -5,10 +5,14 @@ import leveGray from "@svg/lenta/level_gray.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import dots from "@svg/questions/dots.svg";
 import AnswersBtbMyProf from "./AnswersBtbMyProf";
-import AnswersSkeleton from "@elements/skeletonLoading/AnswersSkeleton";
+import AnswersSkeleton from "@elements/skeletonLoading/user/AnswersSkeleton";
 
 export default function () {
   // Fn.log("Static.record?.answers", Static.record?.answers)
+  if (Static.record?.answers && Static.answers) {
+    Func.activeBlocksProfile();
+  } else Static.showComp = false;
+
   return (
     <div class="relative m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] pt-[.625rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)]">
       <h2 class="mx-0 my-[1.25rem] text-center text-[clamp(15px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
@@ -25,7 +29,7 @@ export default function () {
         <span class="box-border">Ответ</span>
       </div>
       <div class="mt-[.5rem]">
-        {Static.record?.answers ? (
+        {Static.showComp ? (
           Static.record?.answers?.map((item: any, key: number) => {
             return (
               <div

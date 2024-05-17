@@ -29,6 +29,7 @@ front.func.showUser = async (nickname) => {
   Events.users = await Fn.event(url, listener);
 };
 
+
 front.loader = async () => {
   Static.search = "";
   Static.checkBox = {

@@ -2,6 +2,13 @@ import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 import { subscriberObject } from "./display/blocks/subscribers/interface";
 
+Static.showComp = false;
+
+front.func.activeBlocksProfile = () => {
+  setTimeout(() => {
+    Static.showComp = true;
+  }, 300);
+};
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   if (front.Variable.Auth) {
     let res = await front.Services.functions.sendApi(url, data, method);
@@ -18,11 +25,6 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   }
 };
 
-front.func.preloaderClose = () => {
-  setTimeout(() => {
-    Static.showComp = true;
-  }, 300);
-};
 front.func.follow = async (item: subscriberObject) => {
   const action = item?.subscribed ? "unsubscribe" : "subscribe";
   let res = await Func.sendAuth(`/api/users/${item?.id}/${action}`, {});
@@ -86,7 +88,7 @@ front.loader = async () => {
             return;
           }
           Static.record = json;
-          Fn.log("Static.record", Static.record);
+          // Fn.log("Static.record", Static.record);
         },
       },
       {

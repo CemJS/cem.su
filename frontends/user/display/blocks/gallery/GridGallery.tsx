@@ -3,7 +3,7 @@ import addMedia from "@svg/profile/addMedia.svg";
 import iconSettings from "@svg/profile/iconSettings.svg";
 import { objectGallery } from "./interface";
 import Video from "@elements/Video";
-import GallerySkeleton from "@elements/skeletonLoading/GallerySkeleton";
+import GallerySkeleton from "@elements/skeletonLoading/user/GallerySkeleton";
 
 let answer;
 const changeMediaFile = async () => {
@@ -44,26 +44,28 @@ const changeMediaFile = async () => {
   input.click();
 };
 export default function () {
+  if (Static.record?.gallery && Static.gallery) {
+    Func.activeBlocksProfile();
+  } else Static.showComp = false;
+
   return (
     <div class="grid [grid-template-columns:repeat(3,_minmax(100px,_1fr))]">
-      <div class={[!front.Variable.myInfo?.nickname && "hidden"]}>
-        {front.Variable.DataUrl[1] === front.Variable.myInfo?.nickname && (
-          <label class="block aspect-square cursor-pointer [border:2px_dashed_#c5b8eb]">
-            <figure
-              class="relative m-0 flex h-full overflow-hidden"
-              onclick={changeMediaFile}
-            >
-              <img
-                class="static m-auto h-[auto] min-h-0 w-[25%] min-w-0 border-0 bg-[#1D2029] bg-none bg-contain bg-no-repeat object-cover"
-                src={addMedia}
-                alt="addMedia"
-              />
-            </figure>
-          </label>
-        )}
-      </div>
+      {front.Variable.DataUrl[1] === front.Variable.myInfo?.nickname && (
+        <label class="block aspect-square cursor-pointer [border:2px_dashed_#c5b8eb]">
+          <figure
+            class="relative m-0 flex h-full overflow-hidden"
+            onclick={changeMediaFile}
+          >
+            <img
+              class="static m-auto h-[auto] min-h-0 w-[25%] min-w-0 border-0 bg-[#1D2029] bg-none bg-contain bg-no-repeat object-cover"
+              src={addMedia}
+              alt="addMedia"
+            />
+          </figure>
+        </label>
+      )}
 
-      {Static.record?.gallery
+      {Static.showComp
         ? Static.record?.gallery?.map((item: objectGallery, key: number) => {
             return (
               <div
@@ -125,7 +127,7 @@ export default function () {
                         }}
                         class="w-[1.25rem] cursor-pointer"
                         src={iconSettings}
-                        alt=""
+                        alt="iconSettings"
                       />
                     </div>
                   )}

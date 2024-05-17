@@ -6,7 +6,7 @@ const RenderEl = function () {
     <div class="relative z-[1] block max-h-[17rem] animate-pulse px-[1.5625rem] py-[1.875rem] pt-[.9375rem] first:rounded-t-[.9375rem] odd:bg-[#323746] @767:grid @767:max-h-[7.3125rem] @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:50%_10%_15%_20%_5%]">
       <div class="relative top-0 cursor-pointer">
         <a class="mx-[45px] text-inherit no-underline">
-          <div class="h-2 max-w-[15.625rem] rounded bg-slate-700 text-[1.125rem] max-@767:mr-[1.25rem]"></div>
+          <div class="h-2 max-w-[15.625rem] rounded bg-[#3341551f] text-[1.125rem] max-@767:mr-[1.25rem]"></div>
         </a>
         <div>
           <div class="relative mt-[.4375rem] h-2 max-w-[6.25rem] rounded bg-slate-700 max-@767:mb-[.625rem] @767:mt-[.625rem]"></div>

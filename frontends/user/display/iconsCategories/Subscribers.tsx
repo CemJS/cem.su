@@ -16,11 +16,10 @@ export default function () {
           Static.awards = false;
           Static.socials = false;
           Static.gallery = false;
-          let content = await front.Services.functions.sendApi(
+          const content = await front.Services.functions.sendApi(
             `/api/users/${Static.record?.nickname}/profile`,
             { category: "subscribers" }
           );
-          //проверка на error
         }}
         style={
           Static.subscribers === true

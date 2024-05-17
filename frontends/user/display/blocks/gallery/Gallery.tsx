@@ -1,6 +1,6 @@
 import { Cemjsx, Fn, Static, front, Func } from "cemjs-all";
 import GridGallery from "./GridGallery";
-import GallerySkeleton from "@elements/skeletonLoading/GallerySkeleton";
+import GallerySkeleton from "@elements/skeletonLoading/user/GallerySkeleton";
 // Инициализируем состояние иконок
 Static.blockIcons = {
   infinity: true,
