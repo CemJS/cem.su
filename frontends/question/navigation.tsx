@@ -3,7 +3,6 @@ import Show from "./display/Show";
 import HeaderBack from "./display/HeaderBack";
 
 export default function () {
-  console.log("=c919f4=", Static);
   if (Static.record) {
     if (front.Variable.$el.header) {
       front.Variable.$el.header.classList.add("hide");
@@ -18,5 +17,5 @@ export default function () {
       </section>
     );
   }
-  return 123;
+  return "";
 }

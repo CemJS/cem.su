@@ -1,9 +1,4 @@
 {
-  "url": "/questions",
-  "front": [
-    "header",
-    "questions",
-    "footer",
-    "menu"
-  ]
+  "url": "/qsts",
+  "front": ["header", "questions", "footer", "menu"]
 }
