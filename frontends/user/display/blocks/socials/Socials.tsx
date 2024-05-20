@@ -1,11 +1,7 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
-import avatarDefault from "@images/lenta/avatar_default.png";
-import defaultGray from "@svg/lenta/defaultGray.svg";
-import leveGray from "@svg/lenta/level_gray.svg";
 import dots from "@svg/questions/dots.svg";
 import editIcon from "@svg/profile/editIcon.svg";
 import FormSocials from "./FormSocials";
-import Preloader from "@elements/Preloader";
 import SocialsSkeleton from "@elements/skeletonLoading/user/SocialsSkeleton";
 
 export default function () {

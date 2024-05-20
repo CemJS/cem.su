@@ -114,12 +114,7 @@ export default function () {
                     <p class="mb-[1rem] mt-0" html={item?.text}></p>
                   </div>
                 </div>
-                {front.Variable?.DataUrl[1] ===
-                front.Variable?.myInfo?.nickname ? (
                   <AnswersBtbMyProf item={item} key={key} />
-                ) : (
-                  ""
-                )}
               </div>
             );
           })
