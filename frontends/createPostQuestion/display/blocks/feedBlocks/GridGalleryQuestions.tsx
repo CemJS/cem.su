@@ -25,7 +25,7 @@ export default function () {
                       let skip = { ...Static.makeFilter };
                       skip.skip = Static.questions.length;
                       let res = await front.Services.functions.sendApi(
-                        "/api/questions",
+                        "/api/me/questions",
                         skip,
                       );
                     }

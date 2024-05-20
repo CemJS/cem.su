@@ -6,7 +6,7 @@ export default function () {
   return (
     <div class="flex w-full flex-wrap gap-3">
       {Static.questions?.map((item: PostType, key: number) => {
-        return <Question item={item} index={key} />;
+        return <Question item={item} index={key} skipUrl="/api/me/questions" />;
       })}
     </div>
   );

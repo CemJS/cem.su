@@ -9,6 +9,7 @@ import CreateCreateButton from "./createBlocks/CreateCreateButton";
 import CreateMediaButtons from "./createBlocks/CreateMediaButtons";
 import EditCancel from "./createBlocks/editBlocks/EditCancel";
 import EditSave from "./createBlocks/editBlocks/EditSave";
+import Input from "@elements/ui/Input";
 
 export default function () {
   return (
@@ -19,6 +20,11 @@ export default function () {
       <form id="create__form">
         <CreateLang />
         <CreateForFriends />
+        <Input
+          oninput={(e) => {
+            console.log("=413f79=", e.target.value);
+          }}
+        />
         {Static.data?.media?.length ? <CreateFiles /> : null}
         <CreateText />
         <CreateMediaButtons />
