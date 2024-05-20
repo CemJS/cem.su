@@ -5,8 +5,8 @@ import Post from "@elements/post/Post";
 export default function () {
   return (
     <div>
-      {Static.posts?.map((item: PostType, key: number) => {
-        return <Post item={item} index={key} />;
+      {Static.posts?.map((item: PostType, index: number) => {
+        return <Post item={item} index={index} skipUrl="/api/me/posts" />;
       })}
     </div>
   );

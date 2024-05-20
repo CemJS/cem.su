@@ -12,6 +12,7 @@ import EditSave from "./createBlocks/editBlocks/EditSave";
 import Input from "@elements/ui/Input";
 
 export default function () {
+  console.log("=937146=", Static.form);
   return (
     <div id="post-create">
       <h2 class="mb-5 mt-10 text-[26px] font-medium text-white" id="title">
@@ -19,12 +20,25 @@ export default function () {
       </h2>
       <form id="create__form">
         <CreateLang />
-        <CreateForFriends />
-        <Input
-          oninput={(e) => {
-            console.log("=413f79=", e.target.value);
-          }}
-        />
+        {Static.page == "posts" ? <CreateForFriends /> : ""}
+        {Static.page == "questions" ? (
+          <Input
+            className="mb-4"
+            isValid={Static.form?.title?.valid}
+            error={Static.form?.title?.error}
+            placeholder="Вопрос"
+            oninput={(e) => {
+              const target = e.target as HTMLInputElement;
+              Static.form.title.value = target.value;
+              Static.data.title = target.value;
+              front.Services.functions.formQuestion(Static.form.title);
+              Func.checkForm();
+              Func.checkValid();
+            }}
+          />
+        ) : (
+          ""
+        )}
         {Static.data?.media?.length ? <CreateFiles /> : null}
         <CreateText />
         <CreateMediaButtons />

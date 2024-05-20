@@ -14,6 +14,11 @@ export default function ({ item, index }: { item: Post; index: number }) {
             name: "Редактировать",
             func: () => {
               if (front.Variable.DataUrl[1] == "pst") {
+                front.Variable.$el.body.scroll({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth",
+                });
                 Static.edit = item;
                 Static.data = {
                   languageCode: Static.edit?.languages?.code

@@ -100,17 +100,27 @@ export default function () {
                                   Fn.initOne("modalPreviews", {
                                     callback: (photo) => {
                                       item.preview = photo;
+                                      Static.previewChanged = true;
                                     },
                                   });
+                                  Func.checkValid();
                                 },
                               },
                               {
                                 name: "Удалить",
                                 func: () => {
-                                  Static.data.media.splice(
-                                    Func.findIndexByMediaName(item.name),
-                                    1,
-                                  );
+                                  Fn.initOne("modalAccept", {
+                                    title: "удалить медиа",
+                                    CallBack: (CallBack: boolean) => {
+                                      if (CallBack) {
+                                        Static.data.media.splice(
+                                          Func.findIndexByMediaName(item.name),
+                                          1,
+                                        );
+                                        Func.checkValid();
+                                      }
+                                    },
+                                  });
                                 },
                               },
                             ],
@@ -118,13 +128,12 @@ export default function () {
                         }
                       />
                     </div>
-                  ) : (item?.name || item?.mediaName) &&
-                    item?.type == "image" ? (
+                  ) : item?.mediaName && item?.type == "image" ? (
                     <div>
                       <img
                         class="h-full w-full object-contain [box-shadow:rgba(11,20,26,0.16)_0px_3px_12px_0px]"
                         // style={`aspect-ratio:${Static.aspect?.replace(":", "/")};`}
-                        src={`/assets/upload/posts/${item?.name ? item?.name : item?.mediaName}`}
+                        src={`/assets/upload/posts/${item?.mediaName}`}
                       />
                       <SettingsImage
                         clickIconSettings={() =>
@@ -134,9 +143,7 @@ export default function () {
                                 name: "Удалить",
                                 func: () => {
                                   Static.data?.media?.splice(
-                                    Func.findIndexByMediaName(
-                                      item?.name ? item?.name : item?.mediaName,
-                                    ),
+                                    Func.findIndexByMediaName(item?.mediaName),
                                     1,
                                   );
                                 },
@@ -180,12 +187,12 @@ export default function () {
                   id="previewAudio"
                   class="relative flex h-full min-h-[6.25rem] w-full flex-col items-center justify-center overflow-hidden"
                 >
-                  {item.name && item?.type == "audio" ? (
+                  {item?.mediaName && item?.type == "audio" ? (
                     <audio-player
-                      src={`/assets/upload/posts/${item.name}`}
-                      title={item?.name}
+                      src={`/assets/upload/posts/${item.mediaName}`}
+                      title={item?.mediaName}
                     ></audio-player>
-                  ) : !item.name && item?.type == "audio" ? (
+                  ) : !item?.mediaName && item?.type == "audio" ? (
                     <div>
                       <RenderLoader index={index} />
                       <RenderStopLoading index={index} />

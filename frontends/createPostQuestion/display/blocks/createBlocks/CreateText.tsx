@@ -1,18 +1,28 @@
-import { Cemjsx, Fn, Static } from "cemjs-all";
+import Textarea from "@elements/ui/Textarea";
+import { Cemjsx, Fn, Func, Static } from "cemjs-all";
 
 export default function () {
   return (
-    <textarea
-      class="block max-h-[165px] w-full resize-none rounded-[0_0_10px_10px] bg-[#313543] p-[10px_25px] [border:1px_solid_#44495c]"
-      contenteditable="plaintext-only"
-      onkeyup={(e) => {
-        Static.data.text = e.target.value;
-        Static.data?.text.length > 1
-          ? (Static.isValid = true)
-          : (Static.isValid = false);
+    // <textarea
+    //   class="block max-h-[165px] w-full resize-none rounded-[0_0_10px_10px] bg-[#313543] p-[10px_25px] [border:1px_solid_#44495c]"
+    //   contenteditable="plaintext-only"
+    //   onkeyup={(e) => {
+    //     Static.form.text.value = e.target.value;
+    //     Static.data.text = e.target.value;
+    //     Func.checkForm();
+    //     Func.checkValid();
+    //   }}
+    // >
+    //   {Static.data?.text}
+    // </textarea>
+    <Textarea
+      oninput={(e) => {
+        const target = e.target as HTMLInputElement;
+        Static.form.text.value = target.value;
+        Static.data.text = target.value;
+        Func.checkForm();
+        Func.checkValid();
       }}
-    >
-      {Static.data?.text}
-    </textarea>
+    />
   );
 }

@@ -1,22 +1,37 @@
-import { Cemjsx, Func, Static, front } from "cemjs-all";
+import { Cemjsx, Func, Ref, Static, front } from "cemjs-all";
 
 export default function ({
   oninput,
   isValid,
   error,
   placeholder,
+  className,
 }: {
   oninput: (e: InputEvent) => void;
   isValid: boolean;
   error: string;
   placeholder: string;
+  className?: string;
 }) {
   return (
     <div
-      class={["modalWindow_field", isValid ? "modalWindow_field__valid" : null]}
+      class={[
+        "modalWindow_field",
+        className,
+        isValid || error || Ref[placeholder]?.value > 1
+          ? "modalWindow_field__valid"
+          : null,
+      ]}
     >
-      <input type="text" required autocomplete="off" oninput={oninput} />
-      <div class="modalWindow_field_labelLine">
+      <input
+        class="!bg-[#202432]"
+        ref={placeholder + "input"}
+        type="text"
+        required
+        autocomplete="off"
+        oninput={oninput}
+      />
+      <div class="modalWindow_field_labelLine top-[1px] z-[3]">
         <i class="i i-user"></i>
         <span>{placeholder}</span>
       </div>

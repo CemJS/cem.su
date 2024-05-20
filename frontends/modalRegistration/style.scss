@@ -146,8 +146,8 @@
       color: var(--secondary_text);
     }
 
-    input:focus+.modalWindow_field_labelLine,
-    textarea:focus+.modalWindow_field_labelLine {
+    input:focus + .modalWindow_field_labelLine,
+    textarea:focus + .modalWindow_field_labelLine {
       height: 30px;
       line-height: 30px;
       transform: translate(-15px, -16px) scale(0.88);
@@ -195,7 +195,6 @@
     }
 
     &__disabled {
-
       input,
       textarea {
         opacity: 0.5;
