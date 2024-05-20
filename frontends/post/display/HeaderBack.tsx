@@ -13,7 +13,7 @@ export default function () {
                 front.Variable.$el?.header?.classList?.remove("hide");
                 front.Variable.$el?.footer?.classList?.remove("hide");
                 Static.post = null;
-                Events.post.close();
+                Events.post?.close();
               }
             }}
           >
@@ -38,7 +38,7 @@ export default function () {
                       front.Variable.$el?.header?.classList?.remove("hide");
                       front.Variable.$el?.footer?.classList?.remove("hide");
                       Static.post = null;
-                      Events.post.close();
+                      Events.post?.close();
                     }
                   },
                 });

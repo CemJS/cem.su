@@ -11,7 +11,10 @@ const callModal = () => {
 export default function () {
   return (
     <button
-      onclick={() => (Static.isValid ? callModal() : null)}
+      onclick={(e: Event) => {
+        e.preventDefault();
+        Static.isValid ? callModal() : null;
+      }}
       class={[
         "btn",
         "!flex !items-center !justify-center",

@@ -3,17 +3,33 @@ import { Cemjsx, Fn, Static, front } from "cemjs-all";
 export default function () {
   return (
     <button
-      onclick={async (e) => {
-        if (Static.isValid) {
-          let res = await front.Services.functions.sendApi(
-            "/api/posts/create",
-            Static.data,
-          );
-          if (res.error == "") {
-            Fn.linkChange("/");
+      onclick={async (e: Event) => {
+        e.preventDefault();
+        if (Static.page == "posts") {
+          if (Static.isValid) {
+            let res = await front.Services.functions.sendApi(
+              "/api/posts/create",
+              Static.data,
+            );
+            if (res.error == "") {
+              Fn.linkChange("/");
+            }
+          } else {
+            Fn.initOne("alert", { text: "Заполните пост", type: "danger" });
           }
-        } else {
-          Fn.initOne("alert", { text: "Заполните пост", type: "danger" });
+        }
+        if (Static.page == "questions") {
+          if (Static.isValid) {
+            let res = await front.Services.functions.sendApi(
+              "/api/questions/create",
+              Static.data,
+            );
+            if (res.error == "") {
+              Fn.linkChange("/questions");
+            }
+          } else {
+            Fn.initOne("alert", { text: "Заполните вопрос", type: "danger" });
+          }
         }
       }}
       class={[

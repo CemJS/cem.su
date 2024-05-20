@@ -69,20 +69,20 @@ export default [
 ];
 
 front.func.findIndexPost = (id) => {
-  return Static.posts.findIndex((item) => item.id == id);
+  return Static.records.findIndex((item) => item.id == id);
 };
 
 front.func.findIndexComment = (id, postIndex) => {
-  return Static.posts[postIndex].comments.findIndex((item) => item.id == id);
+  return Static.records[postIndex].comments.findIndex((item) => item.id == id);
 };
 
 front.func.findIndexCommentToComment = (id, postIndex, commentIndex) => {
   console.log("=b53b67=", id);
   console.log(
     "=09f769=",
-    Static.posts[postIndex].comments[commentIndex].comments,
+    Static.records[postIndex].comments[commentIndex].comments,
   );
-  return Static.posts[postIndex].comments[commentIndex].comments.findIndex(
+  return Static.records[postIndex].comments[commentIndex].comments.findIndex(
     (item) => item.id == id,
   );
 };

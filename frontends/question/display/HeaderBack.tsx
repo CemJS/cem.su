@@ -7,12 +7,12 @@ export default function () {
           <span
             class="flex cursor-pointer items-center justify-center"
             onclick={() => {
-              Fn.linkChange(Static.link ? Static.link : "/questions");
+              Fn.linkChange(Static.link ? Static.link : "/qsts");
               if (front.Variable.$el.header) {
                 front.Variable.$el.header.classList.remove("hide");
                 front.Variable.$el.footer.classList.remove("hide");
                 Static.record = null;
-                Events.questions.close();
+                Events.questions?.close();
               }
             }}
           >
@@ -35,9 +35,9 @@ export default function () {
                 });
                 !Static.record.closed
                   ? records.push({
-                    name: "Закрыть вопрос",
-                    func: Func.closeQuestion,
-                  })
+                      name: "Закрыть вопрос",
+                      func: Func.closeQuestion,
+                    })
                   : null;
               }
               Fn.initOne("modalTools", {

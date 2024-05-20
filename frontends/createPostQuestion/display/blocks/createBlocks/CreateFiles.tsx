@@ -121,7 +121,6 @@ export default function () {
                   ) : (item?.name || item?.mediaName) &&
                     item?.type == "image" ? (
                     <div>
-                      {console.log("=554297=", item)}
                       <img
                         class="h-full w-full object-contain [box-shadow:rgba(11,20,26,0.16)_0px_3px_12px_0px]"
                         // style={`aspect-ratio:${Static.aspect?.replace(":", "/")};`}

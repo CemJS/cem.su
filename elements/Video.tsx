@@ -275,7 +275,7 @@ export default function ({ src, key, poster = "" }) {
         id={key}
         class="video !h-full"
         ref={`video${key}`}
-        poster={poster ? `assets/upload/gallery/${poster}` : ""}
+        poster={poster ? `/assets/upload/gallery/${poster}` : ""}
         src={src}
         onplay={() => {
           Ref[`playAndPause${key}`].classList.replace("i-play", "i-pause");

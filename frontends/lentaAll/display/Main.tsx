@@ -1,5 +1,5 @@
 import { Cemjsx, Fn, Func, Ref, Static, front } from "cemjs-all";
-import Post from "./post/Post";
+import Post from "@elements/post/Post";
 
 export default function () {
   return (

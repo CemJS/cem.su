@@ -13,6 +13,7 @@ export interface Post {
   subscribed: boolean;
   text: string;
   online: boolean;
+  hide?: boolean;
 }
 
 interface Author {

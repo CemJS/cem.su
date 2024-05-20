@@ -3,8 +3,6 @@ import Feed from "./blocks/Feed";
 import Create from "./blocks/Create";
 
 export default function () {
-  Static.feedState = false;
-
   return (
     <div class="wrapper wrapper_padding">
       <Create />
