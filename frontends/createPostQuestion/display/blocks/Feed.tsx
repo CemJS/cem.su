@@ -12,7 +12,7 @@ export default function () {
           <div class="mx-auto flex w-full max-w-full flex-col items-center px-3 pt-4">
             <div class="mb-1 flex w-full items-center justify-between">
               <h2 class="m-[20px_0] text-center text-[20px] font-bold leading-[115%] text-white">
-                Моя лента
+                {Static.page == "posts" ? "Моя лента" : "Мои вопросы"}
               </h2>
               <ul class="m-0 flex list-none items-stretch gap-2 p-0 [&_li]:p-[7px_3px]">
                 <li
@@ -53,24 +53,26 @@ export default function () {
                 </li>
               </ul>
             </div>
-            {Static.page == "posts" ? (
-              Static.feedState ? (
-                <Posts />
+            <div class="w-full">
+              {Static.page == "posts" ? (
+                Static.feedState ? (
+                  <Posts />
+                ) : (
+                  <GridGalleryPosts />
+                )
               ) : (
-                <GridGalleryPosts />
-              )
-            ) : (
-              ""
-            )}
-            {Static.page == "questions" ? (
-              Static.feedState ? (
-                <Questions />
+                ""
+              )}
+              {Static.page == "questions" ? (
+                Static.feedState ? (
+                  <Questions />
+                ) : (
+                  <GridGalleryQuestions />
+                )
               ) : (
-                <GridGalleryQuestions />
-              )
-            ) : (
-              ""
-            )}
+                ""
+              )}
+            </div>
           </div>
         </div>
       </div>

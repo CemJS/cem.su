@@ -16,7 +16,7 @@ export default function () {
     //   {Static.data?.text}
     // </textarea>
     <Textarea
-      value={Static.data.text}
+      value={Static.data?.text}
       oninput={(e) => {
         const target = e.target as HTMLInputElement;
         Static.form.text.value = target.value;

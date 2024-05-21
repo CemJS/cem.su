@@ -14,7 +14,7 @@ export default function ({
   skipUrl = "/api/posts",
   hideOptions = false,
 }: {
-  item: Post;
+  item: Post | any;
   index: number;
   skipUrl?: string;
   hideOptions?: boolean;

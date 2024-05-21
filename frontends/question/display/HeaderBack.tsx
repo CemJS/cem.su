@@ -29,6 +29,20 @@ export default function () {
               let records = [];
               if (front.Variable.myInfo.id == Static.record.author.id) {
                 records.push({
+                  name: "Редактировать",
+                  func: () => {
+                    Fn.linkChange("/create/qst", {
+                      edit: Static.record,
+                    });
+                    if (front.Variable.$el.header) {
+                      front.Variable.$el?.header?.classList?.remove("hide");
+                      front.Variable.$el?.footer?.classList?.remove("hide");
+                      Static.post = null;
+                      Events.post?.close();
+                    }
+                  },
+                });
+                records.push({
                   name: "Удалить",
                   func: Func.deleteQuestion,
                   type: "danger",

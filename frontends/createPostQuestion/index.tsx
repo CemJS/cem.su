@@ -38,6 +38,7 @@ front.func.checkValid = function () {
 front.func.uploadMedia = async (file: any, type: string) => {
   let mediaIndex: number = Static.data.media.push({ type, mediaName: "" }) - 1;
 
+  console.log("=e352cd=", 1);
   let res = await front.Services.functions.uploadMedia(file, type);
 
   console.log("=ef6b48=", res);
@@ -61,26 +62,7 @@ front.func.findIndexByMediaName = (mediaName: string) => {
 };
 
 front.loader = async () => {
-  if (Static.edit) {
-    Static.data = {
-      languageCode: Static.edit?.languages?.code
-        ? Static.edit?.languages?.code
-        : "ru",
-      forFriends: Static.edit?.forFriends ? Static.edit?.forFriends : false,
-      text: Static.edit?.text ? Static.edit?.text : "",
-      media: Static.edit?.media ? Static.edit?.media : [],
-    };
-  } else {
-    Static.data = {
-      languageCode: "ru",
-      forFriends: Static.page == "posts" ? false : undefined,
-      title: Static.page == "questions" ? "" : undefined,
-      text: "",
-      media: [],
-    };
-  }
-
-  Static.feedState = true;
+  // Static.feedState = true;
   Static.previewChanged = false;
   Static.origName = "Русский";
   Static.show = "grid";
@@ -102,6 +84,39 @@ front.loader = async () => {
     let listener = questionsListener;
     Events.createQuestions = await Fn.event(url, listener);
   }
+
+  if (Static.edit) {
+    if (Static.page == "posts") {
+      Static.data = {
+        languageCode: Static.edit?.languages?.code
+          ? Static.edit?.languages?.code
+          : "ru",
+        forFriends: Static.edit?.forFriends ? Static.edit?.forFriends : false,
+        text: Static.edit?.text ? Static.edit?.text : "",
+        media: Static.edit?.media ? Static.edit?.media : [],
+      };
+    }
+    if (Static.page == "questions") {
+      Static.data = {
+        languageCode: Static.edit?.languages?.code
+          ? Static.edit?.languages?.code
+          : "ru",
+        title: Static.edit?.title ? Static.edit?.title : "",
+        text: Static.edit?.text ? Static.edit?.text : "",
+        media: Static.edit?.media ? Static.edit?.media : [],
+      };
+    }
+  } else {
+    Static.data = {
+      languageCode: "ru",
+      forFriends: Static.page == "posts" ? false : undefined,
+      title: Static.page == "questions" ? "" : undefined,
+      text: "",
+      media: [],
+    };
+  }
+
+  console.log("=98faee=", Static.data);
 
   Static.form = {
     title:

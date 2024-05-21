@@ -1,6 +1,7 @@
 import { Cemjsx, Func, Ref, Static, front } from "cemjs-all";
 
 export default function ({
+  value,
   oninput,
   isValid,
   error,
@@ -12,6 +13,7 @@ export default function ({
   error: string;
   placeholder: string;
   className?: string;
+  value: string;
 }) {
   return (
     <div
@@ -24,6 +26,7 @@ export default function ({
       ]}
     >
       <input
+        value={value}
         class="!bg-[#202432]"
         ref={placeholder + "input"}
         type="text"

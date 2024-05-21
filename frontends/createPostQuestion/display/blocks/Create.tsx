@@ -12,7 +12,7 @@ import EditSave from "./createBlocks/editBlocks/EditSave";
 import Input from "@elements/ui/Input";
 
 export default function () {
-  console.log("=937146=", Static.form);
+  console.log("=937146=", Static.data);
   return (
     <div id="post-create">
       <h2 class="mb-5 mt-10 text-[26px] font-medium text-white" id="title">
@@ -23,6 +23,7 @@ export default function () {
         {Static.page == "posts" ? <CreateForFriends /> : ""}
         {Static.page == "questions" ? (
           <Input
+            value={Static.data?.title}
             className="mb-4"
             isValid={Static.form?.title?.valid}
             error={Static.form?.title?.error}
