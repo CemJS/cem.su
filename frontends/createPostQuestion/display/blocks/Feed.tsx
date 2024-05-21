@@ -17,13 +17,13 @@ export default function () {
               <ul class="m-0 flex list-none items-stretch gap-2 p-0 [&_li]:p-[7px_3px]">
                 <li
                   onclick={() => {
-                    Static.feedState ? (Static.feedState = false) : 0;
+                    !Static.feedState ? (Static.feedState = true) : 0;
                   }}
                 >
                   <a
                     class={[
                       "block h-5 w-5 cursor-pointer rounded-[4px] text-[0] [border:2px_solid_#ffffff] [&.active]:cursor-default [&.active]:[border-color:#40f2d0_!important]",
-                      !Static.feedState && "active",
+                      Static.feedState && "active",
                     ]}
                   >
                     Список
@@ -31,13 +31,13 @@ export default function () {
                 </li>
                 <li
                   onclick={() => {
-                    !Static.feedState ? (Static.feedState = true) : 0;
+                    Static.feedState ? (Static.feedState = false) : 0;
                   }}
                 >
                   <a
                     class={[
-                      "relative block h-5 w-5 cursor-pointer rounded-[4px] text-[0] [border:2px_solid_#ffffff] [&.active]:cursor-default [&.active]:[border-color:#40f2d0_!important]",
-                      Static.feedState ? "active" : "",
+                      "relative block h-5 w-5 cursor-pointer rounded-[4px] text-[0] [border:2px_solid_#ffffff] [&.active]:cursor-default [&.active]:![border-color:#40f2d0] [&.active_#after]:!bg-[#40f2d0] [&.active_#before]:!bg-[#40f2d0]",
+                      !Static.feedState ? "active" : "",
                     ]}
                   >
                     <div

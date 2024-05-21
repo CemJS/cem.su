@@ -12,7 +12,6 @@ import EditSave from "./createBlocks/editBlocks/EditSave";
 import Input from "@elements/ui/Input";
 
 export default function () {
-  console.log("=937146=", Static.data);
   return (
     <div id="post-create">
       <h2 class="mb-5 mt-10 text-[26px] font-medium text-white" id="title">
@@ -25,7 +24,7 @@ export default function () {
           <Input
             value={Static.data?.title}
             className="mb-4"
-            isValid={Static.form?.title?.valid}
+            isValid={Static.form?.title?.value}
             error={Static.form?.title?.error}
             placeholder="Вопрос"
             oninput={(e) => {

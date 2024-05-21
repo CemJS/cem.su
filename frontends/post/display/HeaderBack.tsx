@@ -34,12 +34,8 @@ export default function () {
                   name: "Редактировать",
                   func: () => {
                     Fn.linkChange("/create/pst", { edit: Static.post });
-                    if (front.Variable.$el.header) {
-                      front.Variable.$el?.header?.classList?.remove("hide");
-                      front.Variable.$el?.footer?.classList?.remove("hide");
-                      Static.post = null;
-                      Events.post?.close();
-                    }
+                    Static.post = null;
+                    Events.post?.close();
                   },
                 });
 
