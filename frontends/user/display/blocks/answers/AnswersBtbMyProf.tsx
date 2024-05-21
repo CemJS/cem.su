@@ -7,25 +7,48 @@ export default function ({ item, key }) {
       <div
         class="relative ml-[.625rem] box-border h-[1.875rem] w-[1.875rem] cursor-pointer rounded-[50%]"
         onclick={() => {
+          const records = [];
+          if (front.Variable?.DataUrl[1] === front.Variable?.myInfo?.nickname) {
+            records.push({
+              name: "Удалить",
+              type: "danger",
+              func: () =>
+                Fn.initOne("modalAccept", {
+                  title: "удалить свой ответ",
+                  Callback: async (CallBack: boolean) => {
+                    if (CallBack) {
+                      const url = `/api/answers/${item?.id}/delete`;
+                      const array = Static.record?.answers?.toSpliced(key, 1);
+                      const name = "answer";
+                      Func.delete(url, array, name);
+                    }
+                  },
+                }),
+            });
+          } else {
+            records.push({
+              name: "Пожаловаться на ответ",
+              type: "danger",
+              func: () =>
+                Fn.initOne("modalAccept", {
+                  title: "оставить жалобу?",
+                  Callback: async (CallBack: boolean) => {
+                    if (CallBack) {
+                      const array = Static.record?.questions?.toSpliced(key, 1);
+                      const url = `/api/questions/${item?.id}/delete`;
+                      const name = "question";
+                      Func.delete(url, array, name);
+                    }
+                  },
+                }),
+            });
+          }
           Fn.initOne("modalTools", {
-            records: [
-              {
-                name: "Удалить",
-                type: "danger",
-                func: () =>
-                  Fn.initOne("modalAccept", {
-                    title: "удалить свой ответ",
-                    Callback: async (CallBack: boolean) => {
-                      if (CallBack) {
-                        const url = `/api/answers/${item?.id}/delete`;
-                        const array = Static.record?.answers?.toSpliced(key, 1);
-                        const name = "answer";
-                        Func.delete(url, array, name);
-                      }
-                    },
-                  }),
-              },
-            ],
+            userId:
+              front.Variable?.DataUrl[1] === front.Variable?.myInfo?.nickname
+                ? null
+                : Static.record?.id,
+            records,
           });
         }}
       >
