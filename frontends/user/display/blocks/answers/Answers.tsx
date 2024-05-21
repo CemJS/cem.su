@@ -72,10 +72,13 @@ export default function () {
                             </span>
                           </div>
                           <div
-                            style="display: none;"
-                            class="absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [background:linear-gradient(225deg,_#72FFB6_0,_#10D194_100%)] [border:3px_solid_#ffffff]"
+                            class={[
+                              "absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [border:3px_solid_#ffffff]",
+                              item?.online
+                                ? "[background:linear-gradient(225deg,_#72FFB6_0,_#10D194_100%)]"
+                                : "[background:linear-gradient(225deg,_#FF7272_0%,_#D93030_100%)]",
+                            ]}
                           ></div>
-                          <div class="absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [background:linear-gradient(225deg,_#FF7272_0%,_#D93030_100%)] [border:3px_solid_#ffffff]"></div>
                         </div>
                       </div>
                     </a>
@@ -114,7 +117,7 @@ export default function () {
                     <p class="mb-[1rem] mt-0" html={item?.text}></p>
                   </div>
                 </div>
-                  <AnswersBtbMyProf item={item} key={key} />
+                <AnswersBtbMyProf item={item} key={key} />
               </div>
             );
           })

@@ -19,8 +19,8 @@ export default function () {
   return (
     <div class="relative h-[7.1875rem] max-@1720:h-auto">
       <div class="relative bottom-auto left-[50%] ml-0 flex translate-x-[-50%] flex-row flex-wrap items-center justify-center text-center max-@1720:mb-[.625rem] max-@1720:mt-[2.0625rem] @1720:absolute @1720:bottom-[1.375rem] @1720:ml-[-.9375rem]">
-        <a class=""></a>
-        <a class="inline-block h-[2.5625rem] w-[2.5625rem] rounded-[50%] p-[.125rem] [background:linear-gradient(45deg,_rgb(59,_173,_227)_0px,_rgb(87,_111,_230)_45%,_rgb(152,_68,_183)_57%,_rgb(255,_53,_127)_70%)]">
+        {/* <a class=""></a> */}
+        <a class={["inline-block h-[2.5625rem] w-[2.5625rem] rounded-[50%] p-[.125rem]", Static.record?.country?.code ? "[background:linear-gradient(45deg,_rgb(59,_173,_227)_0px,_rgb(87,_111,_230)_45%,_rgb(152,_68,_183)_57%,_rgb(255,_53,_127)_70%)]" : "bg-slate-700 animate-pulse"]}>
           {Static.record?.country?.code && (
             <img
               class="relative left-0 top-[.1875rem] h-full w-full translate-y-[-.1875rem]"
@@ -28,15 +28,20 @@ export default function () {
             />
           )}
         </a>
-        <input
-          id="username"
-          class="h-[1.75rem] w-[15.625rem] cursor-pointer border-0 bg-transparent p-0 text-center text-[1.5625rem] font-medium leading-[1.125rem] text-[--white] [outline:none]"
-          readonly="true"
-          value={Static.record?.nickname ? Static.record?.nickname : ""}
-        ></input>
+        {Static.record?.nickname ? (
+          <input
+            id="username"
+            class="h-[1.75rem] w-[15.625rem] cursor-pointer border-0 bg-transparent p-0 text-center text-[1.5625rem] font-medium leading-[1.125rem] text-[--white] [outline:none]"
+            readonly="true"
+            value={Static.record?.nickname ? Static.record?.nickname : ""}
+          ></input>
+        ) : (
+          <span class="animate-pulse h-[1.75rem] w-[10.625rem] rounded-[.625rem] border-0 mx-[1.625rem] p-0 text-center text-[1.5625rem] font-medium leading-[1.125rem] text-[--white] [outline:none] bg-slate-700 max-@330:my-[.3125rem]"> </span>
+        )}
+
         <a
           href="#"
-          class="inline-block h-[2.25rem] w-[2.5625rem] !bg-cover !bg-no-repeat text-[.5625rem] font-semibold leading-[1.75rem] text-[--gray-active] [background:url('/contents/svg/heart.svg')] [text-decoration:none]"
+          class={["inline-block h-[2.25rem] w-[2.5625rem] !bg-cover !bg-no-repeat text-[.5625rem] font-semibold leading-[1.75rem] text-[--gray-active] [background:url('/contents/svg/heart.svg')] [text-decoration:none]", !Static.record?.statistics?.rating && "animate-pulse"]}
         >
           {Static.record?.statistics?.rating.toFixed(2) || 0}
         </a>

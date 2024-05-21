@@ -1,4 +1,3 @@
-@import "./css/security.scss";
 
 .profile-settings {
     max-width: 1820px;
@@ -67,8 +66,8 @@
             }
 
             & .profile-settings__list_subcategory_active {
-                background: linear-gradient(56.57deg, #2973FF 0%, #8846D3 51.56%, #FF22AC 105.28%);
-                -webkit-background-clip: text;
+                // background: linear-gradient(56.57deg, #2973FF 0%, #8846D3 51.56%, #FF22AC 105.28%);
+                // -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
 
@@ -88,7 +87,7 @@
             padding-bottom: 5px;
 
             &::before {
-                content: url("svg/personalSettings/minus.svg");
+                // content: url("svg/personalSettings/minus.svg");
                 position: absolute;
                 top: 0;
                 right: 20px;

@@ -47,7 +47,7 @@ const changeMediaFile = async (url, key) => {
 
 export default function () {
   return (
-    <div class="absolute bottom-[-1.875rem] left-[50%] z-[10] h-[7.1875rem] w-[6.25rem] translate-x-[-50%] cursor-pointer text-center @479:h-[8.4375rem] @479:w-[7.5rem] @680:h-[9.6875rem] @680:w-[8.75rem] @1240:h-[14.0625rem] @1240:w-[210px]">
+    <div class={["absolute bottom-[-1.875rem] left-[50%] z-[10] h-[7.1875rem] w-[6.25rem] translate-x-[-50%] cursor-pointer text-center @479:h-[8.4375rem] @479:w-[7.5rem] @680:h-[9.6875rem] @680:w-[8.75rem] @1240:h-[14.0625rem] @1240:w-[210px]", !Static.record?.frame?.name && "animate-pulse"]}>
       <a class="no-underline">
         <div class="relative z-[1] h-full min-w-[2.9375rem]">
           <img
