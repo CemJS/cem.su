@@ -1,4 +1,4 @@
-import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all";
+import { Cemjsx, front, Func, Static, Fn, Events, Ref } from "cemjs-all";
 import Navigation from "./navigation";
 // import postsListener from "./listeners/post.listener";
 import { AudioPlayer } from "@elements/Audio";
@@ -39,6 +39,7 @@ front.func.reset = function () {
     media: [],
   };
   Static.isValid = false;
+  Ref["text"].value = "";
 };
 
 front.func.checkValid = function () {
@@ -71,6 +72,10 @@ front.func.findIndexByMediaName = (mediaName: string) => {
     (item) => item?.mediaName == mediaName,
   );
   return index;
+};
+
+front.destroy = () => {
+  Func.reset();
 };
 
 front.loader = async () => {

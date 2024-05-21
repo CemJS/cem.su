@@ -24,7 +24,7 @@ export default function () {
           <Input
             value={Static.data?.title}
             className="mb-4"
-            isValid={Static.form?.title?.value}
+            isValid={Static.data?.title?.length > 0}
             error={Static.form?.title?.error}
             placeholder="Вопрос"
             oninput={(e) => {
