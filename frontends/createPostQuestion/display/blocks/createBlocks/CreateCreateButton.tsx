@@ -25,7 +25,7 @@ export default function () {
               Static.data,
             );
             if (res.error == "") {
-              Fn.linkChange("/questions");
+              Fn.linkChange("/qsts");
             }
           } else {
             Fn.initOne("alert", { text: "Заполните вопрос", type: "danger" });

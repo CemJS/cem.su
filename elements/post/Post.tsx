@@ -11,18 +11,37 @@ import CubeSlider from "@elements/CubeSlider";
 export default function ({
   item,
   index,
-  initFunction,
+  skipUrl = "/api/posts",
   hideOptions = false,
 }: {
-  item: Post;
+  item: Post | any;
   index: number;
-  initFunction?: Function;
+  skipUrl?: string;
   hideOptions?: boolean;
 }) {
+  // console.log("=f17c41=", index);
   return (
     // Func.initPost($el, index)
     <div
-      init={($el: any) => (initFunction ? initFunction($el, index) : "")}
+      init={($el) => {
+        console.log("=27d6ae=", 1);
+        if (index == Static.posts?.length - 1) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(async (entry) => {
+              if (entry.isIntersecting) {
+                observer.unobserve($el);
+
+                console.log("=46d8f4=", 1);
+
+                let skip = { ...Static.makeFilter };
+                skip.skip = Static.posts.length;
+                let res = await front.Services.functions.sendApi(skipUrl, skip);
+              }
+            });
+          });
+          observer.observe($el);
+        }
+      }}
       class="relative mb-[1.2rem] rounded-[--borderR]"
     >
       <div class="relative flex gap-4 rounded-tl-[--borderR] rounded-tr-[--borderR] p-[0.7rem_1rem] [background:var(--backSecond)]">
@@ -86,7 +105,7 @@ front.func.delete = async (item) => {
   if (res.status == 200) {
     item.hide = true;
   }
-  console.log("=6dc889=", Static.records);
+  console.log("=6dc889=", Static.posts);
   return;
 };
 

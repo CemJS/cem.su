@@ -4,7 +4,15 @@ import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 
-export default function ({ item, index }: { item: any; index: number }) {
+export default function ({
+  item,
+  index,
+  skipUrl = "/api/questions",
+}: {
+  item: any;
+  index: number;
+  skipUrl?: string;
+}) {
   return (
     <div
       key={item.id}
@@ -25,10 +33,7 @@ export default function ({ item, index }: { item: any; index: number }) {
                 observer.unobserve($el);
                 let skip = { ...Static.makeFilter };
                 skip.skip = Static.questions.length;
-                let res = await front.Services.functions.sendApi(
-                  "/api/questions",
-                  skip,
-                );
+                let res = await front.Services.functions.sendApi(skipUrl, skip);
               }
             });
           });

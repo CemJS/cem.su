@@ -4,15 +4,11 @@ import Post from "@elements/post/Post";
 import type { Post as PostType } from "types/post.type";
 
 export default function () {
-  console.log("=c053f3=", Static.records);
+  console.log("=c053f3=", Static.posts);
   return (
     <div class="mx-auto w-full max-w-[700px]">
-      {Static.records?.map((item: PostType, index: number) => {
-        return !item.hide ? (
-          <Post item={item} index={index} initFunction={Func.initPost} />
-        ) : (
-          ""
-        );
+      {Static.posts?.map((item: PostType, index: number) => {
+        return !item.hide ? <Post item={item} index={index} /> : "";
       })}
     </div>
   );

@@ -7,60 +7,13 @@ import like from "@svg/lenta/like.svg";
 import points from "@svg/lenta/points.svg";
 import sendMessage from "@svg/lenta/send_message.svg";
 import notFound from "@svg/icon/notFound.svg";
+import CubeSlider from "@elements/CubeSlider";
+import QuestionMedia from "./blocks/QuestionMedia";
+import QuestionUser from "./blocks/QuestionUser";
+import QuestionStatistic from "./blocks/QuestionStatistic";
 
 Static.showComments = "Показать комментарии";
 let image = `/contents/images/lenta/avatar_default.png`;
-
-const RenderUser = () => {
-  return (
-    <div id="user">
-      <a
-        onclick={Fn.link}
-        class="relative inline-flex h-auto w-auto"
-        href={`/user/${Static.record?.author.nickname}`}
-      >
-        <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
-          <img
-            class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
-            src={
-              Static.record.author.avatar?.name
-                ? `/assets/upload/avatar/${Static.record.author.avatar?.name}`
-                : image
-            }
-          />
-          <img
-            class="absolute left-1/2 top-0 z-[2] h-full !w-auto [transform:translateX(-50%)]"
-            src={
-              Static.record.author.frame?.name
-                ? `/contents/images/lenta/${Static.record.author.frame?.name}`
-                : frameDefault
-            }
-          />
-          {Static.record.author.status?.team ? (
-            <img
-              class="absolute bottom-[0.4375rem] right-[0.4375rem] z-[2] flex h-5 w-5 items-center justify-center rounded-[50%] bg-[--white] p-[0.1875rem]"
-              src={Static.record.author.status?.team ? teamLogo : null}
-            />
-          ) : (
-            <div>
-              <div class="absolute !top-auto bottom-0 right-[0.3125rem] z-[2] h-7">
-                <img class="h-full" src={leveGray} />
-                <span class="text-[0.75rem absolute left-1/2 top-1/2 font-bold tracking-[0.0375rem] text-[--white] [transform:translateX(-50%)_translateY(-50%)]">
-                  {Static.record.author.statistics.level}
-                </span>
-              </div>
-            </div>
-          )}
-        </div>
-        <div class="absolute left-20 top-5 mb-2 block leading-[24px]">
-          <span class="inline text-[0.875rem] font-semibold leading-[1.375rem] text-[--white]">
-            {Static.record.author.nickname}
-          </span>
-        </div>
-      </a>
-    </div>
-  );
-};
 
 const RenderNotFound = () => {
   return (
@@ -101,38 +54,6 @@ const RenderAddAnswer = () => {
           Отправить
         </button>
       </div>
-    </div>
-  );
-};
-
-const RenderStatistic = () => {
-  return (
-    <div class="flex h-auto flex-wrap items-center justify-between pb-[0.625rem] text-[0.875rem] text-[#838ba3] [border-bottom:0.0625rem_solid] ![border-color:var(--border-answer)] [row-gap:1.25rem] @767:col-[1/span_2] @767:h-[3.875rem] @767:text-[0.8125rem] [&_span]:flex [&_span]:gap-[0.625rem]">
-      <span>
-        <i class="i i-comment"></i>
-        {Static.record.statistics.answers}
-      </span>
-      <span>
-        <i class="i i-faq"></i>
-        {Static.record.statistics.views}
-      </span>
-      <span>{`${front.Services.functions.timeStampToDate(Static.record.showDate, ".")} ${Func.addNull(Func.getDate(Static.record.showDate).getHours())}:${Func.addNull(Func.getDate(Static.record.showDate).getMinutes())}`}</span>
-      {!Static.record.closed &&
-      front.Variable?.myInfo?.id != Static.record?.author?.id ? (
-        <div class="btn_border-wrap !m-0 !w-full @600:!w-[12.625rem] ">
-          <button
-            onclick={(e: any) => {
-              Static.open == "Ответить"
-                ? (Static.open = "Отменить")
-                : (Static.open = "Ответить");
-              Ref[`ans${Static.record.id}`].classList.toggle("!block");
-            }}
-            class="btn_border"
-          >
-            {Static.open}
-          </button>
-        </div>
-      ) : null}
     </div>
   );
 };
@@ -898,12 +819,13 @@ export default function () {
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
+  console.log("=a5ae43=", Static.record);
   return (
     <div>
       <div class="pb-20">
         <div class="wrapper">
           <div class="mx-auto max-w-[53.125rem] pt-[3.125rem]">
-            <RenderUser />
+            <QuestionUser item={Static.record} />
             <p class="pt-5 text-[1.125rem] font-semibold">
               {Static.record.title}
             </p>
@@ -912,7 +834,23 @@ export default function () {
               class="pb-4 pt-[0.9375rem] text-[1.125rem] @767:pb-0"
               html={Static.record.text}
             ></p>
-            <RenderStatistic />
+            {Static.record?.media ? (
+              <div class="pt-4">
+                <CubeSlider
+                  items={Static.record?.media?.map((media, i) => {
+                    return <QuestionMedia mediaItem={media} index={i} />;
+                  })}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+            {/* items=
+            {item?.media?.map((it, i) => {
+              return <MediaPost mediaItem={it} index={index + i} />;
+            })}
+            key={item.id + index} */}
+            <QuestionStatistic item={Static.record} />
           </div>
 
           <div class="mx-auto mt-10 max-w-[53.125rem]">

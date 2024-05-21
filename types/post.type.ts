@@ -17,7 +17,7 @@ export interface Post {
 }
 
 interface Author {
-  avatar: { active: boolean; dateCreate: string | number; name: string };
+  avatar: { active?: boolean; dateCreate?: string | number; name?: string };
   background: object;
   country: object;
   frame: {

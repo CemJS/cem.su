@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import photo from "@svg/personalPosts/photo.svg";
 import video from "@svg/personalPosts/video.svg";
 import audio from "@svg/personalPosts/audio.svg";
@@ -72,6 +72,7 @@ const RenderVideoButton = () => {
           });
           if (!err) {
             files.forEach((file) => {
+              console.log("=696c3a=", Func);
               Func.uploadMedia(file, "video");
             });
           } else {

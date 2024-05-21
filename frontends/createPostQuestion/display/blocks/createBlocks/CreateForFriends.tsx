@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static } from "cemjs-all";
 
 export default function () {
   return (
@@ -13,6 +13,7 @@ export default function () {
         checked={Static.data?.forFriends}
         onclick={(e) => {
           Static.data.forFriends = e.target.checked;
+          Func.checkValid();
         }}
       />
       <label

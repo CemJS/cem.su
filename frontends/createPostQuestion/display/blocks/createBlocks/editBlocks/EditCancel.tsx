@@ -7,11 +7,11 @@ export default function () {
         Static.edit = undefined;
         Static.data = {
           languageCode: "ru",
-          forFriends: false,
+          forFriends: Static.page == "posts" ? false : undefined,
+          title: Static.page == "questions" ? "" : undefined,
           text: "",
           media: [],
         };
-        Static.isValid = false;
       }}
       class={["btn", "!flex !items-center !justify-center"]}
     >
