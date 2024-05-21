@@ -19,15 +19,18 @@ export default function ({
   skipUrl?: string;
   hideOptions?: boolean;
 }) {
+  // console.log("=f17c41=", index);
   return (
     // Func.initPost($el, index)
     <div
       init={($el) => {
+        console.log("=27d6ae=", 1);
         if (index == Static.posts?.length - 1) {
           const observer = new IntersectionObserver((entries) => {
             entries.forEach(async (entry) => {
               if (entry.isIntersecting) {
                 observer.unobserve($el);
+
                 console.log("=46d8f4=", 1);
 
                 let skip = { ...Static.makeFilter };

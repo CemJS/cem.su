@@ -80,6 +80,7 @@ front.loader = async () => {
     };
   }
 
+  Static.feedState = true;
   Static.previewChanged = false;
   Static.origName = "Русский";
   Static.show = "grid";
