@@ -32,7 +32,7 @@ export default function () {
       {types.map((type) => {
         return (
           <div class="cursor-pointer" id="type">
-            <img src={type.icon} alt={type.name} />
+            <img class="max-w-[70px]" src={type.icon} alt={type.name} />
           </div>
         );
       })}

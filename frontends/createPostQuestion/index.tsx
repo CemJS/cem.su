@@ -75,8 +75,10 @@ front.func.findIndexByMediaName = (mediaName: string) => {
   );
   return index;
 };
-front.func.findIndexById = (id: string) => {
-  let index = Static.data.media?.findIndex((item) => item?.id == id);
+front.func.findIndex = (item: any) => {
+  let index = Static.data.media?.findIndex(
+    (media) => media?.id == item.id || media?.mediaName == item.mediaName,
+  );
   console.log("=c2d727=", index);
   return index;
 };
