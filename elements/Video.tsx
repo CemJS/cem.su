@@ -299,10 +299,10 @@ export default function ({ src, key, poster = "" }) {
 }
 
 front.func.playAndPause = (video: any) => {
-  if (video.paused) {
-    video.play();
+  if (video?.paused) {
+    video?.play();
   } else {
-    video.pause();
+    video?.pause();
   }
 
   return;

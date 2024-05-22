@@ -161,7 +161,9 @@ export default function () {
                         alt="poster"
                       />
                       <RenderLoader index={index} />
-                      <RenderStopLoading index={index} />
+                      <RenderStopLoading
+                        index={Func.findIndexByMediaName(item.id)}
+                      />
                     </div>
                   )}
                 </div>

@@ -51,16 +51,12 @@ front.func.checkValid = function () {
 front.func.uploadMedia = async (file: any, type: string) => {
   let mediaIndex: number = Static.data.media.push({ type, mediaName: "" }) - 1;
 
-  console.log("=e352cd=", 1);
   let res = await front.Services.functions.uploadMedia(file, type);
-
-  console.log("=ef6b48=", res);
 
   if (res?.name) {
     Static.data?.media[mediaIndex]
       ? (Static.data.media[mediaIndex] = { type, mediaName: res.name })
       : 0;
-    console.log("=63c29c=", Static.data.media);
   } else {
     Static.data?.media.splice(mediaIndex, 1);
   }
