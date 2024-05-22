@@ -1,4 +1,4 @@
-import { Func, Static, front } from "cemjs-all";
+import { Func, Static, front, Fn } from "cemjs-all";
 
 export default [
   {
@@ -19,6 +19,7 @@ export default [
       if (!json) {
         return;
       }
+      Fn.log("json questions",json)
       Static.questions.forEach((item, index) => {
         if (item.id == json.id) {
           Static.questions[index] = json;

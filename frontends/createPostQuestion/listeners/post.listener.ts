@@ -1,4 +1,4 @@
-import { Func, Static, front } from "cemjs-all";
+import { Func, Static, front, Fn } from "cemjs-all";
 
 export default [
   // get
@@ -9,7 +9,7 @@ export default [
       if (!json) {
         return;
       }
-
+      Fn.log('=json=', json)
       Static.posts = json;
     },
   },
