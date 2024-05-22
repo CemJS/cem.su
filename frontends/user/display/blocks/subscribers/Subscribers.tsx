@@ -7,7 +7,7 @@ import { subscriberObject } from "./interface";
 import SubscribersSkeleton from "@elements/skeletonLoading/user/SubscribersSkeleton";
 
 export default function () {
-  if (Static.record?.subscribers && Static.subscribers) {
+  if (Static.record?.subscribers && Static.nameCategory === "subscribers") {
     Func.activeBlocksProfile();
   } else Static.showComp = false;
 

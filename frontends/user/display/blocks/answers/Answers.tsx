@@ -9,7 +9,7 @@ import AnswersSkeleton from "@elements/skeletonLoading/user/AnswersSkeleton";
 
 export default function () {
   // Fn.log("Static.record?.answers", Static.record?.answers)
-  if (Static.record?.answers && Static.answers) {
+  if (Static.record?.answers && Static.nameCategory === "answers") {
     Func.activeBlocksProfile();
   } else Static.showComp = false;
 

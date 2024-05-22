@@ -59,17 +59,7 @@ front.listener.clickAny = function (e) {
 };
 
 front.loader = async () => {
-  Static.feedState = true;
-  Static.aboutMe = true;
-  Static.questions = false;
-  Static.answers = false;
-  Static.subscribers = false;
-  Static.subscriptions = false;
-  Static.awards = false;
-  Static.socials = false;
-  Static.feed = false;
-  Static.gallery = false;
-
+  Static.nameCategory = "aboutMe";
   // Fn.log('=be3efb=', 5555)
   if (front.Variable.DataUrl[0] && front.Variable.DataUrl[0] == "user") {
     let url = front.Services.functions.makeUrlEvent(

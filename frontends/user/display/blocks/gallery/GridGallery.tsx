@@ -44,7 +44,7 @@ const changeMediaFile = async () => {
   input.click();
 };
 export default function () {
-  if (Static.record?.gallery && Static.gallery) {
+  if (Static.record?.gallery && Static.nameCategory === "gallery") {
     Func.activeBlocksProfile();
   } else Static.showComp = false;
 

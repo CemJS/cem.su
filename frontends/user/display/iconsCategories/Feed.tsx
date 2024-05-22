@@ -1,29 +1,27 @@
-import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
+import { Cemjsx, front, Fn, Static, Func, Ref, Events } from "cemjs-all";
 import lentaUser from "@svg/sections/lentaUser.svg";
 import lentaUser_inactive from "@svg/sections/lentaUser_inactive.svg";
+import postsListener from "elements/post/listener/posts.listener";
 
 export default function () {
+  console.log("Static.record?", Static.record);
+  
   return (
     <div class="relative top-[.125rem] cursor-pointer [padding:0_15px_9px_15px]">
       <i
         onclick={async () => {
-          Static.feed = true;
-          Static.aboutMe = false;
-          Static.questions = false;
-          Static.answers = false;
-          Static.subscribers = false;
-          Static.subscriptions = false;
-          Static.awards = false;
-          Static.socials = false;
-          Static.gallery = false;
-          let content = await front.Services.functions.sendApi(
-            `/api/users/${Static.record?.nickname}/profile`,
-            { category: "feed" }
-          );
+          Static.nameCategory = "feed";
+          const url =
+            front.Variable.DataUrl[1] === front.Variable.myInfo?.nickname
+              ? front.Services.functions.makeUrlEvent("me/posts")
+              : front.Services.functions.makeUrlEvent("me/posts", {id: Static.record?.id});
+          const listener = postsListener;
+          Events.userFeed = await Fn.event(url, listener);
+          Static.feedState = false;
           //проверка на error
         }}
         style={
-          Static.feed === true
+          Static.nameCategory === "feed"
             ? `background: no-repeat url('${lentaUser}') center/100%`
             : `background: no-repeat url('${lentaUser_inactive}') center/100%`
         }

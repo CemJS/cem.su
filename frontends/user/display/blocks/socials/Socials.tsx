@@ -5,7 +5,7 @@ import FormSocials from "./FormSocials";
 import SocialsSkeleton from "@elements/skeletonLoading/user/SocialsSkeleton";
 
 export default function () {
-  if (Static.record?.socials && Static.socials) {
+  if (Static.record?.socials && Static.nameCategory === "socials") {
     Func.activeBlocksProfile();
   } else Static.showComp = false;
 

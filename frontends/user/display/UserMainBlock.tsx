@@ -1,4 +1,4 @@
-import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
+import { Cemjsx, Static } from "cemjs-all";
 import Information from "./blocks/information/Information";
 import Questions from "./blocks/questions/Questions";
 import Answers from "./blocks/answers/Answers";
@@ -9,18 +9,23 @@ import Socials from "./blocks/socials/Socials";
 import Feed from "./blocks/feed/Feed";
 import Gallery from "./blocks/gallery/Gallery";
 
+const categoryToComponentMap = {
+  feed: Feed,
+  aboutMe: Information,
+  questions: Questions,
+  answers: Answers,
+  subscribers: Subscribers,
+  subscriptions: Subscriptions,
+  awards: Awards,
+  socials: Socials,
+  gallery: Gallery,
+};
+
 export default function () {
+  const CategoryComponent = categoryToComponentMap[Static.nameCategory] || null;
   return (
     <div class="mb-[5rem] flex max-w-[79rem]">
-      {Static.feed === true ? <Feed /> : null}
-      {Static.aboutMe === true ? <Information /> : null}
-      {Static.questions === true ? <Questions /> : null}
-      {Static.answers === true ? <Answers /> : null}
-      {Static.subscribers === true ? <Subscribers /> : null}
-      {Static.subscriptions === true ? <Subscriptions /> : null}
-      {Static.awards === true ? <Awards /> : null}
-      {Static.socials === true ? <Socials /> : null}
-      {Static.gallery === true ? <Gallery /> : null}
+      <CategoryComponent />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import AwardCreateDate from "./AwardCreateDate";
 import AwardsSkeleton from "@elements/skeletonLoading/user/AwardsSkeleton";
 
 export default function () {
-  if (Static.record?.awards && Static.awards) {
+  if (Static.record?.awards &&  Static.nameCategory === "awards") {
     Func.activeBlocksProfile();
   } else Static.showComp = false;
   

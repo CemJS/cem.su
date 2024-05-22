@@ -12,7 +12,7 @@ import Header from "./Header";
 import QuestionsSkeleton from "@elements/skeletonLoading/user/QuestionsSkeleton";
 
 export default function () {
-  if (Static.record?.questions && Static.questions) {
+  if (Static.record?.questions && Static.nameCategory === "questions") {
     Func.activeBlocksProfile();
   } else Static.showComp = false;
 

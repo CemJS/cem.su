@@ -6,7 +6,7 @@ import dots from "@svg/questions/dots.svg";
 import SubscribersSkeleton from "@elements/skeletonLoading/user/SubscribersSkeleton";
 
 export default function () {
-  if (Static.record?.subscriptions && Static.subscriptions) {
+  if (Static.record?.subscriptions &&  Static.nameCategory === "subscriptions") {
     Func.activeBlocksProfile();
   } else Static.showComp = false;
 

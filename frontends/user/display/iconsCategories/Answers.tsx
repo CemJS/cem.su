@@ -7,15 +7,7 @@ export default function () {
     <div class="relative top-[.125rem] cursor-pointer [padding:0_15px_9px_15px]">
       <i
         onclick={async () => {
-          Static.feed = false;
-          Static.aboutMe = false;
-          Static.questions = false;
-          Static.answers = true;
-          Static.subscribers = false;
-          Static.subscriptions = false;
-          Static.awards = false;
-          Static.socials = false;
-          Static.gallery = false;
+          Static.nameCategory = "answers"
           let content = await front.Services.functions.sendApi(
             `/api/users/${Static.record?.nickname}/profile`,
             { category: "answers" },
@@ -23,7 +15,7 @@ export default function () {
           //   Fn.log('=4b78f5=',Static.record?.statistics)
         }}
         style={
-          Static.answers === true
+          Static.nameCategory === "answers"
             ? `background: no-repeat url('${answers}') center/100%`
             : `background: no-repeat url('${answers_inactive}') center/100%`
         }

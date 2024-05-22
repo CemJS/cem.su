@@ -7,22 +7,14 @@ export default function () {
     <div class="relative top-[.125rem] cursor-pointer [padding:0_15px_9px_15px]">
       <i
         onclick={async () => {
-          Static.feed = false;
-          Static.aboutMe = false;
-          Static.questions = false;
-          Static.answers = false;
-          Static.subscribers = true;
-          Static.subscriptions = false;
-          Static.awards = false;
-          Static.socials = false;
-          Static.gallery = false;
+          Static.nameCategory = "subscribers";
           const content = await front.Services.functions.sendApi(
             `/api/users/${Static.record?.nickname}/profile`,
-            { category: "subscribers" }
+            { category: "subscribers" },
           );
         }}
         style={
-          Static.subscribers === true
+          Static.nameCategory === "subscribers"
             ? `background: no-repeat url('${followers}') center/100%`
             : `background: no-repeat url('${followers_inactive}') center/100%`
         }
