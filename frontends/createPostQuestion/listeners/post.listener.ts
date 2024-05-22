@@ -13,6 +13,21 @@ export default [
       Static.posts = json;
     },
   },
+  // update
+  {
+    type: "update",
+    fn: ({ data }) => {
+      let json = front.Services.functions.strToJson(data);
+      if (!json) {
+        return;
+      }
+      Static.posts.forEach((item, index) => {
+        if (item.id == json.id) {
+          Static.posts[index] = json;
+        }
+      });
+    },
+  },
   // like
   {
     type: "likePost",

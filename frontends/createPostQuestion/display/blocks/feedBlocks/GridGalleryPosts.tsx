@@ -6,7 +6,7 @@ import { Post } from "types/post.type";
 
 export default function () {
   return (
-    <div class="grid w-full [grid-template-columns:repeat(3,_1fr)]">
+    <div class="grid w-full [grid-template-columns:repeat(3,_minmax(60px,1fr))]">
       {Static.posts?.map((item: Post, key: number) => {
         return (
           <div
