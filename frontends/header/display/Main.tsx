@@ -27,12 +27,7 @@ const RenderMenu = function ({ menu }) {
 
 export default function () {
   return (
-    <div
-      class="wrapper"
-      init={($el) => {
-        front.Variable.$el.header = $el;
-      }}
-    >
+    <div class="wrapper">
       <div class="flex items-center justify-between">
         <nav class="flex gap-x-4">
           <a href="/" onclick={Fn.link} class="h-12 sm:h-16">
@@ -49,26 +44,24 @@ export default function () {
             }
           >
             <i class="i i-globe-alt text-xl"></i>
-            <span>
-              {front.Variable.lang ? front.Variable.lang : "Язык"}
-            </span>
+            <span>{front.Variable.lang ? front.Variable.lang : "Язык"}</span>
             <i class="i i-chevron-right text-xl"></i>
           </div>
 
           {front.Variable?.myInfo?.auth ? (
-            <div class="relative ml-2 h-auto w-auto cursor-pointer inline-flex">
+            <div class="relative ml-2 inline-flex h-auto w-auto cursor-pointer">
               <div
-                class="flex justify-center items-center mr-2"
+                class="mr-2 flex items-center justify-center"
                 onclick={() => Fn.initOne("modalNotifications", {})}
               >
                 <i class="i i-bell-alert text-2xl"></i>
               </div>
               <div
-                class="flex justify-center items-center mr-2 relative"
+                class="relative mr-2 flex items-center justify-center"
                 onclick={() => Fn.initOne("modalNotificationsNew", {})}
               >
                 <i class="i i-bell text-2xl"></i>
-                <div class="absolute top-[4px] right-[-6px] w-5 h-5 rounded-full bg-[#1d2029] flex justify-center items-center border-[1px] border-solid border-[#363C50] shadow">
+                <div class="absolute right-[-6px] top-[4px] flex h-5 w-5 items-center justify-center rounded-full border-[1px] border-solid border-[#363C50] bg-[#1d2029] shadow">
                   <span class="text-[10px]">5</span>
                 </div>
               </div>

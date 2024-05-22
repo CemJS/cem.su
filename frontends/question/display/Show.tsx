@@ -835,7 +835,7 @@ export default function () {
               html={Static.record.text}
             ></p>
             {Static.record?.media ? (
-              <div class="pt-4">
+              <div class="py-4">
                 <CubeSlider
                   items={Static.record?.media?.map((media, i) => {
                     return <QuestionMedia mediaItem={media} index={i} />;

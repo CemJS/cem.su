@@ -8,13 +8,9 @@ export default function () {
           <span
             class="flex cursor-pointer items-center justify-center"
             onclick={() => {
-              Fn.linkChange("/");
-              if (front.Variable.$el.header) {
-                front.Variable.$el?.header?.classList?.remove("hide");
-                front.Variable.$el?.footer?.classList?.remove("hide");
-                Static.post = null;
-                Events.post?.close();
-              }
+              front.Variable.hideHeader = false;
+              Fn.initAll();
+              Fn.clearData();
             }}
           >
             <i class="i i-chevron-left text-2xl"></i>
@@ -23,6 +19,7 @@ export default function () {
           <h5 class="line-clamp-1 px-4 text-center text-base font-medium @700:text-xl">
             Предпросмотр
           </h5>
+          <span></span>
         </div>
       </div>
     </div>

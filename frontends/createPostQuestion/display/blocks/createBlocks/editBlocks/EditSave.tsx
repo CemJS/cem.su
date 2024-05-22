@@ -20,14 +20,7 @@ export default function () {
           );
         }
 
-        Static.edit = undefined;
-        Static.data = {
-          languageCode: "ru",
-          forFriends: Static.page == "posts" ? false : undefined,
-          title: Static.page == "questions" ? "" : undefined,
-          text: "",
-          media: [],
-        };
+        Func.reset();
       }}
       class={["btn", "!flex !items-center !justify-center"]}
       disabled={!Static.isValid}

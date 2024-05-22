@@ -9,8 +9,6 @@ export default function () {
             onclick={() => {
               Fn.linkChange(Static.link ? Static.link : "/qsts");
               if (front.Variable.$el.header) {
-                front.Variable.$el.header.classList.remove("hide");
-                front.Variable.$el.footer.classList.remove("hide");
                 Static.record = null;
                 Events.questions?.close();
               }
@@ -37,9 +35,9 @@ export default function () {
                     if (front.Variable.$el.header) {
                       front.Variable.$el?.header?.classList?.remove("hide");
                       front.Variable.$el?.footer?.classList?.remove("hide");
-                      Static.post = null;
-                      Events.post?.close();
                     }
+                    Static.post = null;
+                    Events.post?.close();
                   },
                 });
                 records.push({

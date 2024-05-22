@@ -79,8 +79,6 @@ const callModal = () => {
 };
 
 export default function () {
-  console.log("=b950e2=", front.Variable.myInfo);
-  console.log("=316a35=", Static.posts);
   return (
     <button
       onclick={(e: Event) => {

@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Static, front } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 
 export default function () {
   return (
@@ -12,7 +12,8 @@ export default function () {
               Static.data,
             );
             if (res.error == "") {
-              Fn.linkChange("/");
+              Func.reset();
+              Fn.initOne("alert", { text: "Пост создан", type: "success" });
             }
           } else {
             Fn.initOne("alert", { text: "Заполните пост", type: "danger" });
@@ -25,7 +26,8 @@ export default function () {
               Static.data,
             );
             if (res.error == "") {
-              Fn.linkChange("/qsts");
+              Func.reset();
+              Fn.initOne("alert", { text: "Вопрос создан", type: "success" });
             }
           } else {
             Fn.initOne("alert", { text: "Заполните вопрос", type: "danger" });

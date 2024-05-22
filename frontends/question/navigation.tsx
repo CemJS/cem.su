@@ -4,14 +4,8 @@ import HeaderBack from "./display/HeaderBack";
 
 export default function () {
   if (Static.record) {
-    if (front.Variable.$el.header) {
-      front.Variable.$el.header.classList.add("hide");
-    }
-    if (front.Variable.$el.footer) {
-      front.Variable.$el.footer.classList.add("hide");
-    }
     return (
-      <section>
+      <section class="pt-4">
         <HeaderBack />
         <Show />
       </section>

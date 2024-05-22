@@ -1,4 +1,4 @@
-import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all";
+import { Cemjsx, front, Func, Static, Fn, Events, Ref } from "cemjs-all";
 import Navigation from "./navigation";
 // import postsListener from "./listeners/post.listener";
 import { AudioPlayer } from "@elements/Audio";
@@ -18,15 +18,28 @@ front.listener.finish = () => {
 
 front.func.checkForm = function () {
   if (Static.page == "questions") {
-    Static.form.title.valid
+    Static.form?.title?.valid
       ? (Static.form.isValid = true)
       : (Static.form.isValid = false);
   }
   if (Static.page == "posts") {
-    Static.form.text.value.length > 0
+    Static.form?.text?.value?.length > 0
       ? (Static.form.isValid = true)
       : (Static.form.isValid = false);
   }
+};
+
+front.func.reset = function () {
+  Static.edit = undefined;
+  Static.data = {
+    languageCode: "ru",
+    forFriends: Static.page == "posts" ? false : undefined,
+    title: Static.page == "questions" ? "" : undefined,
+    text: "",
+    media: [],
+  };
+  Static.isValid = false;
+  Ref["text"].value = "";
 };
 
 front.func.checkValid = function () {
@@ -61,7 +74,30 @@ front.func.findIndexByMediaName = (mediaName: string) => {
   return index;
 };
 
+front.destroy = () => {
+  Func.reset();
+};
+
 front.loader = async () => {
+  Static.form = {
+    title: {
+      value: "",
+      valid: false,
+      error: false,
+      placeholder: "Вопрос",
+      view: false,
+      disable: false,
+    },
+    text: {
+      value: "",
+      valid: false,
+      error: false,
+      placeholder: "Комментарий к вопросу",
+      view: false,
+      disable: false,
+    },
+    isValid: false,
+  };
   // Static.feedState = true;
   Static.previewChanged = false;
   Static.origName = "Русский";
@@ -95,6 +131,7 @@ front.loader = async () => {
         text: Static.edit?.text ? Static.edit?.text : "",
         media: Static.edit?.media ? Static.edit?.media : [],
       };
+      Static.form.text.value = Static.edit?.text ? Static.edit?.text : "";
     }
     if (Static.page == "questions") {
       Static.data = {
@@ -105,7 +142,10 @@ front.loader = async () => {
         text: Static.edit?.text ? Static.edit?.text : "",
         media: Static.edit?.media ? Static.edit?.media : [],
       };
+      Static.form.title.value = Static.edit?.title ? Static.edit?.title : "";
+      Static.form.text.value = Static.edit?.text ? Static.edit?.text : "";
     }
+    Func.checkForm();
   } else {
     Static.data = {
       languageCode: "ru",
@@ -115,31 +155,6 @@ front.loader = async () => {
       media: [],
     };
   }
-
-  console.log("=98faee=", Static.data);
-
-  Static.form = {
-    title:
-      Static.page == "questions"
-        ? {
-            value: "",
-            valid: false,
-            error: false,
-            placeholder: "Вопрос",
-            view: false,
-            disable: false,
-          }
-        : undefined,
-    text: {
-      value: "",
-      valid: false,
-      error: false,
-      placeholder: "Комментарий к вопросу",
-      view: false,
-      disable: false,
-    },
-    isValid: false,
-  };
 };
 
 front.display = () => {

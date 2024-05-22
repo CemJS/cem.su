@@ -10,7 +10,6 @@ export default [
       }
 
       Static.questions = json;
-      console.log("=127e7c=", Static.questions);
     },
   },
   {
