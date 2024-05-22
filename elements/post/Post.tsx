@@ -24,7 +24,6 @@ export default function ({
     // Func.initPost($el, index)
     <div
       init={($el) => {
-        console.log("=27d6ae=", 1);
         if (index == Static.posts?.length - 1) {
           const observer = new IntersectionObserver((entries) => {
             entries.forEach(async (entry) => {

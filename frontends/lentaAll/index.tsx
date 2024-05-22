@@ -49,6 +49,13 @@ front.func.findIndexCommentToComment = (id, postIndex, commentIndex) => {
 };
 
 front.loader = async () => {
+  Static.langPosts = "Русский";
+  Static.languageCode = "ru";
+
+  Static.makeFilter = {
+    languageCode: Static.languageCode,
+  };
+
   let url = front.Services.functions.makeUrlEvent("posts");
   console.log("=c23e6a=", postsListener);
   Events.posts = await Fn.event(url, postsListener);
