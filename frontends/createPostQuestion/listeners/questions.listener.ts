@@ -13,6 +13,20 @@ export default [
     },
   },
   {
+    type: "update",
+    fn: ({ data }) => {
+      let json = front.Services.functions.strToJson(data);
+      if (!json) {
+        return;
+      }
+      Static.questions.forEach((item, index) => {
+        if (item.id == json.id) {
+          Static.questions[index] = json;
+        }
+      });
+    },
+  },
+  {
     type: "create",
     fn: ({ data }) => {
       let json = front.Services.functions.strToJson(data);
