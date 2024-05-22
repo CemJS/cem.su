@@ -4,7 +4,7 @@ import lentaUser_inactive from "@svg/sections/lentaUser_inactive.svg";
 import postsListener from "elements/post/listener/posts.listener";
 
 export default function () {
-  console.log("Static.record?", Static.record);
+  // console.log("Static.record?", Static.record);
   
   return (
     <div class="relative top-[.125rem] cursor-pointer [padding:0_15px_9px_15px]">

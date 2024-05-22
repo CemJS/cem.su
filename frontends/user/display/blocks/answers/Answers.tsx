@@ -7,6 +7,14 @@ import dots from "@svg/questions/dots.svg";
 import AnswersBtbMyProf from "./AnswersBtbMyProf";
 import AnswersSkeleton from "@elements/skeletonLoading/user/AnswersSkeleton";
 
+const createClassNames = (baseClasses, skeletonClasses, stateData) => {
+  return `${baseClasses} ${stateData ? "" : skeletonClasses}'`;
+};
+// Базовые классы для всех элементов
+const baseClasses = `box-border`;
+// Классы для анимации, если main компонент не показан
+const skeletonClasses = `animate-pulse text-[#e0e0e000] bg-slate-700 rounded-[.625rem] `;
+
 export default function () {
   // Fn.log("Static.record?.answers", Static.record?.answers)
   if (Static.record?.answers && Static.nameCategory === "answers") {
@@ -15,18 +23,46 @@ export default function () {
 
   return (
     <div class="relative m-0 w-full min-w-full px-[.625rem] py-0 pb-[1.25rem] pt-[.625rem] @1024:pb-[2.5rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%_-_224px)]">
-      <h2 class="mx-0 my-[1.25rem] text-center text-[clamp(15px,_3vw,_20px)] font-bold leading-[115%] text-[--white]">
+      <h2 class="mx-0 my-[1.25rem] text-center text-[clamp(15px,_3vw,_20px)] font-bold leading-[115%]">
         Предложенные ответы
       </h2>
-      <div class="hidden text-[.75rem] leading-[1.25rem] text-[--white] [grid-template-columns:40%_10%_15%_30%_5%] @767:grid">
-        <span class="box-border [&:nth-child(1)]:relative [&:nth-child(1)]:left-[1.75rem]">
+      <div class="hidden text-[.75rem] leading-[1.25rem] [grid-template-columns:40%_10%_15%_30%_5%] @767:grid">
+        <span
+          class={createClassNames(
+            `${baseClasses} [&:nth-child(1)]:relative [&:nth-child(1)]:left-[1.75rem]`,
+            `w-[6.25rem] ${skeletonClasses}`,
+            Static.showComp,
+          )}
+        >
           Вопрос
         </span>
-        <span class="box-border [&:nth-child(2)]:text-center">
+        <span
+          class={createClassNames(
+            `${baseClasses} [&:nth-child(2)]:text-center`,
+            `w-[6.25rem] ${skeletonClasses}`,
+            Static.showComp,
+          )}
+        >
           Комментариев
         </span>
-        <span class="box-border [&:nth-child(3)]:text-center">Рейтинг</span>
-        <span class="box-border">Ответ</span>
+        <span
+          class={createClassNames(
+            `${baseClasses} [&:nth-child(3)]:text-center`,
+            `ml-[2.3125rem] w-[4.25rem] ${skeletonClasses}`,
+            Static.showComp,
+          )}
+        >
+          Рейтинг
+        </span>
+        <span
+          class={createClassNames(
+            `${baseClasses}`,
+            `w-[4.25rem] ${skeletonClasses}`,
+            Static.showComp,
+          )}
+        >
+          Ответ
+        </span>
       </div>
       <div class="mt-[.5rem]">
         {Static.showComp ? (

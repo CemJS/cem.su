@@ -5,11 +5,12 @@ const createClassNames = (baseClasses, conditionClasses, isConditionMet) => {
   return `${baseClasses} ${isConditionMet ? '' : conditionClasses}`;
 };
 
+// Базовые классы для всех элементов
+const baseClasses = 'box-border';
+// Классы для анимации, если main компонент не показан
+const pulseClasses = 'animate-pulse rounded-[.625rem] bg-slate-700 text-[#ffffff00]';
+
 export default function () {
-  // Базовые классы для всех элементов
-  const baseClasses = 'box-border';
-  // Классы для анимации, если компонент не показан
-  const pulseClasses = 'animate-pulse rounded-[.625rem] bg-slate-700 text-[#ffffff00]';
 
   return (
     <div class="hidden text-[.75rem] leading-[1.25rem] text-[--white] @767:grid @767:[grid-template-columns:40%_10%_15%_30%_5%] @970:[grid-template-columns:50%_10%_15%_20%_5%]">
