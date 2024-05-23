@@ -1,6 +1,7 @@
-import { Cemjsx, Fn, Func, Ref, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Ref, Static, front } from "cemjs-all";
 import { AudioPlayer } from "@elements/Audio";
 import SettingsImage from "@elements/media/SettingsImage";
+// import { controller } from "./../../../../../services/functions/uploadMedia";
 
 const RenderLoader = (index) => {
   return (
@@ -49,6 +50,7 @@ const RenderStopLoading = (index) => {
       id="stop_loading"
       onclick={() => {
         Static.data.media.splice(index.index, 1);
+        front.Variable.controllers?.abort();
       }}
       class="absolute left-1/2 top-1/2 z-[2] h-6 w-6 cursor-pointer rounded-[4px] bg-white [transform:translate(-50%,-50%)]"
     ></div>
@@ -118,6 +120,8 @@ export default function () {
                                           Func.findIndex(item),
                                           1,
                                         );
+                                        Static.controller?.abort();
+
                                         Func.checkValid();
                                       }
                                     },
@@ -147,6 +151,7 @@ export default function () {
                                     Func.findIndex(item),
                                     1,
                                   );
+                                  Static.controller?.abort();
                                   Func.checkValid();
                                 },
                               },

@@ -7,10 +7,11 @@ export default function () {
       class="btn btn_dark bg-[--light-gray]"
       onclick={async (e) => {
         Fn.initOne("modalLanguage", {
-          full: true,
+          // full: true,
           callback: (chooseLanguage) => {
             Static.langPosts = chooseLanguage.origName;
             Static.languageCode = chooseLanguage.code;
+            console.log("=ac63b1=", chooseLanguage);
           },
         });
       }}

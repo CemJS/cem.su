@@ -22,7 +22,6 @@ front.func.close = function () {
 };
 
 front.loader = async () => {
-  console.log("=6fcad8=", Static.full);
   if (front.Variable.myInfo) {
     if (!Static.full) {
       Static.languages = await front.Services.functions.IndexDBGetByOne({
@@ -34,7 +33,6 @@ front.loader = async () => {
       alert("База данных закрыта! Перезагрузите страницу.");
     }
     //  = JSON.parse(localStorage.countries)
-    Fn.log("=8477ca=", Static.records);
   }
   // if (!Static.full) {
   //     Static.languages = languages

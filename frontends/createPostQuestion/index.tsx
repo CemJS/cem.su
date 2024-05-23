@@ -4,6 +4,7 @@ import Navigation from "./navigation";
 import { AudioPlayer } from "@elements/Audio";
 import questionsListener from "./listeners/questions.listener";
 import postsListener from "elements/post/listener/posts.listener";
+// import { controller } from "./../../services/functions/uploadMedia";
 
 front.listener.finish = () => {
   if (Static.reload) {
@@ -53,18 +54,23 @@ front.func.uploadMedia = async (file: any, type: string) => {
   let mediaIndex: number =
     Static.data.media.push({ type, mediaName: "", id: Static.id }) - 1;
 
-  let res = await front.Services.functions.uploadMedia(file, type);
+  let uploadMediaFiles = await front.Services.functions.uploadMediaFiles(
+    file,
+    type,
+  );
+  console.log("=e59766=", front.Variable.controllers);
 
-  if (res?.name) {
+  if (uploadMediaFiles?.name) {
     Static.data?.media[mediaIndex]
       ? (Static.data.media[mediaIndex] = {
           type,
-          mediaName: res.name,
+          mediaName: uploadMediaFiles.name,
           id: Static.id,
         })
       : 0;
   } else {
     Static.data?.media.splice(mediaIndex, 1);
+    // controller.abort();
   }
   Func.checkValid();
 };

@@ -8,6 +8,7 @@ export default function ({
   onChoose,
   current = filters[0]?.name,
   className,
+  title,
 }: {
   isOpen?: boolean;
   key: string;
@@ -15,6 +16,7 @@ export default function ({
   onChoose: (value: string) => void;
   current?: string;
   className?: string;
+  title?: string;
 }) {
   !Static["isOpen" + key]
     ? front.Variable.$el.body?.addEventListener("click", (e) => {
@@ -37,7 +39,7 @@ export default function ({
       ]}
     >
       <div>
-        <p class="text-[--textGray]">Сортировать</p>
+        {title ? <p class="text-[--textGray]">{title}</p> : ""}
         <p>
           {
             filters?.filter((item) => item?.name == Static["current" + key])[0]

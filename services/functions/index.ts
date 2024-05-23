@@ -7,7 +7,7 @@ import { indexDB, IndexDBGetByOne } from "./indexDB";
 import "moment/min/locales";
 import { throttle } from "./throttle";
 import { debounce } from "./debounce";
-import uploadMedia from "./uploadMedia";
+import uploadMediaFiles from "./uploadMedia";
 
 export * from "./validForms";
 export * from "./indexDB";
@@ -171,5 +171,5 @@ export {
   IndexDBGetByOne,
   throttle,
   debounce,
-  uploadMedia,
+  uploadMediaFiles,
 };
