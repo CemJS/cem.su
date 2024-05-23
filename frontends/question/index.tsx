@@ -5,40 +5,18 @@ front.listener.finish = () => {
   return;
 };
 
-// ======== videoplayer start ========
-front.func.playAndPause = (video: any) => {
-  // video.paused ? video.play() : video.pause()
-  if (video.paused) {
-    video.play();
-  } else {
-    video.pause();
-  }
-
-  return;
+front.func.checkValid = function () {
+  Static.data?.text?.length > 0 || Static.data?.media?.length > 0
+    ? (Static.isValid = true)
+    : (Static.isValid = false);
 };
 
-front.func.formatTime = (time: any) => {
-  let seconds = Math.floor(time % 60),
-    minutes = Math.floor(time / 60) % 60,
-    hours = Math.floor(time / 3600);
-
-  seconds = seconds < 10 ? Number(`0${seconds}`) : seconds;
-  minutes = minutes < 10 ? Number(`0${minutes}`) : minutes;
-  hours = hours < 10 ? Number(`0${hours}`) : hours;
-
-  if (hours == 0) {
-    return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-  }
-  return `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+front.func.resetForm = function () {
+  Static.data = {
+    text: "",
+    media: [],
+  };
 };
-
-front.func.draggableProgressBar = (e: any) => {
-  let timeLineWidth = Ref.videoTimeLine.clientWidth;
-  Ref.progressBar.style.width = `${e.offsetX}px`;
-  Ref.video.currentTime = (e.offsetX / timeLineWidth) * Ref.video.duration;
-  return;
-};
-// ======== videoplayer end ========
 
 front.func.getDate = (timestamp: any) => {
   return new Date(timestamp);
@@ -200,6 +178,11 @@ front.func.findIndexCommentToComment = (id, answerIndex, commentIndex) => {
 front.loader = async () => {
   Static.open = "Ответить";
 
+  Static.data = {
+    text: "",
+    media: [],
+  };
+
   Static.search = "";
   Static.order = -1;
   Static.types = [
@@ -284,7 +267,6 @@ front.loader = async () => {
           return;
         }
         Static.record.answers = json;
-        console.log("=f80e63=", data);
       },
     },
     // skip

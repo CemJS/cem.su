@@ -1,3 +1,4 @@
+import CreateMedia from "@elements/addMedia/CreateMedia";
 import { Cemjsx, Static, Fn, Func, front } from "cemjs-all";
 
 export default function () {
@@ -35,7 +36,7 @@ export default function () {
             oninput={(e: any) => {
               Static.form.question.value = e.target.value;
               front.Services.functions.formQuestion(Static.form.question);
-              Func.checkForm();
+              Func.checkValid();
             }}
           />
           <div class="modalWindow_field_labelLine">
@@ -68,6 +69,7 @@ export default function () {
             }}
           ></textarea>
         </div>
+        <CreateMedia />
         <div class="d-flex jcc mt-[15px]">
           <button
             onclick={Func.sendQuestion}

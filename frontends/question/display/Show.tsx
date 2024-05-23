@@ -11,6 +11,7 @@ import CubeSlider from "@elements/CubeSlider";
 import QuestionMedia from "./blocks/QuestionMedia";
 import QuestionUser from "./blocks/QuestionUser";
 import QuestionStatistic from "./blocks/QuestionStatistic";
+import CreateMedia from "@elements/addMedia/CreateMedia";
 
 Static.showComments = "Показать комментарии";
 let image = `/contents/images/lenta/avatar_default.png`;
@@ -25,30 +26,47 @@ const RenderNotFound = () => {
 };
 
 const RenderAddAnswer = () => {
+  console.log("=257e2d=", Static.isValid);
   return (
     <div ref={`ans${Static.record.id}`} class="hidden">
       <textarea
-        class="w-full resize-none rounded-[0.9375rem] border-[0] bg-[#313543] p-5 text-[1rem] text-[--white]"
+        class={[
+          "w-full resize-none rounded-[0.9375rem] border-[0] bg-[#313543] p-5 text-[1rem] text-[--white]",
+          Static.disableForm ? "btn_passive" : null,
+        ]}
         cols="20"
         rows="10"
-        value={Static.text}
+        value={Static.data.text}
         oninput={(e) => {
-          Static.text = e.target.value;
+          Static.data.text = e.target.value;
+          Func.checkValid();
         }}
-      ></textarea>
+      >
+        {Static.data.text}
+      </textarea>
+      <CreateMedia />
       <div class="flex justify-center p-10">
         <button
-          class={["btn", !Static.text ? "btn_passive" : null]}
+          class={[
+            "btn",
+            !Static.isValid || Static.disableForm ? "btn_passive" : null,
+          ]}
           type="button"
-          onclick={() => {
+          onclick={async () => {
+            Static.disableForm = true;
             let data = {
-              text: Static.text,
+              text: Static.data.text,
               questionId: Static.record.id,
+              media: Static.data.media,
             };
-            Static.text = "";
+
             Static.open = "Ответить";
-            Ref[`ans${Static.record.id}`].classList.toggle("!block");
-            Func.sendAuth("/api/answers/create", data);
+            let res = await Func.sendAuth("/api/answers/create", data);
+            if (res?.error?.length == 0) {
+              Ref[`ans${Static.record.id}`].classList.toggle("!block");
+              Func.resetForm();
+              Static.disableForm = false;
+            }
           }}
         >
           Отправить
@@ -174,17 +192,18 @@ const RenderAnswer = ({ answer, answerIndex }) => {
             </div>
           )}
 
+          {answer.media ? (
+            <CubeSlider
+              items={answer?.media?.map((it, i) => {
+                return <QuestionMedia mediaItem={it} index={answerIndex + i} />;
+              })}
+              key={answer.id}
+            />
+          ) : (
+            ""
+          )}
           {answer.media?.map((item) => {
-            return item.type == "image" ? (
-              <img
-                src={`/assets/upload/answers/${item.mediaName}`}
-                alt={item.type}
-                class="user-comment__media"
-              />
-            ) : item.type == "video" ? (
-              // <RenderVideo src={`/assets/upload/answers/${item.name}`} />
-              {}
-            ) : null;
+            return;
           })}
           <div
             class="m-0 !ml-[0.3125rem] inline-block cursor-pointer !bg-clip-text pt-[0.625rem] text-[1rem] font-semibold [-webkit-text-fill-color:transparent] [background:linear-gradient(56.57deg,#2973ff_0,#8846d3_51.56%,#ff22ac_105.28%)]"

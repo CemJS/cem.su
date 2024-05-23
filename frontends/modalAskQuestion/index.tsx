@@ -21,7 +21,7 @@ front.func.close = function () {
   }, 500);
 };
 
-front.func.checkForm = function () {
+front.func.checkValid = function () {
   Static.form.question.valid
     ? (Static.form.isValid = true)
     : (Static.form.isValid = false);
@@ -32,6 +32,7 @@ front.func.sendQuestion = function () {
     title: Static.form.question.value,
     text: Static.form.comment.value,
     languageCode: Static.languageCode,
+    media: Static.data.media,
   };
   Fn.log("=87d71d=", data);
   let res = front.Services.functions.sendApi("/api/questions/create", data);
@@ -41,6 +42,8 @@ front.func.sendQuestion = function () {
 front.loader = async () => {
   Static.langQuestion = "Русский";
   Static.languageCode = "ru";
+  Static.data = {};
+  Static.data.media = [];
 
   Static.form = {
     question: {
