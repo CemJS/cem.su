@@ -49,6 +49,7 @@ front.func.checkValid = function () {
     : (Static.isValid = false);
 };
 
+Static.uploadAbortController = new AbortController();
 front.func.uploadMedia = async (file: any, type: string) => {
   Static.id++;
   let mediaIndex: number =
@@ -57,8 +58,9 @@ front.func.uploadMedia = async (file: any, type: string) => {
   let uploadMediaFiles = await front.Services.functions.uploadMediaFiles(
     file,
     type,
+    Static.uploadAbortController?.signal
   );
-  console.log("=e59766=", front.Variable.controllers);
+  // console.log("=e59766=", front.Variable.controllers);
 
   if (uploadMediaFiles?.name) {
     Static.data?.media[mediaIndex]

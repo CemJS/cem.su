@@ -1,11 +1,12 @@
 import { Fn, front } from "cemjs-all";
 
 export const contollers = new Map();
-export default async function (file: any, type: string, url: string = "posts") {
-  front.Variable.controllers = new AbortController();
-  const Variable = front.Variable.controllers;
-  console.log("=4b43a5=", Variable);
-  let signal = Variable.signal;
+export default async function (
+  file: any,
+  type: string,
+  signal: AbortSignal,
+  url: string = "posts",
+) {
   let data = new FormData();
   data.append("media", file);
 
@@ -25,14 +26,22 @@ export default async function (file: any, type: string, url: string = "posts") {
     let res = await answer.json();
 
     return res;
-  } catch {
-    Fn.initOne("alert", {
-      text: `Не удалось загрузить ${errors[type]}`,
-      type: "danger",
-    });
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.log("Загрузка отменена");
+    } else {
+      // ... обработка других ошибок
+    }
     return;
   }
+  // catch {
+  //   Fn.initOne("alert", {
+  //     text: `Не удалось загрузить ${errors[type]}`,
+  //     type: "danger",
+  //   });
+  //   return;
+  // }
 
   // вызовите этот метод для отмены загрузки
-  Variable.abort();
+  // Variable.abort();
 }
