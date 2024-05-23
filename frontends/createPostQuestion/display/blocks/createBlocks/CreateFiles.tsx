@@ -43,11 +43,12 @@ const RenderLoader = (index) => {
 };
 
 const RenderStopLoading = (index) => {
+  console.log("=c58353=", index.index);
   return (
     <div
       id="stop_loading"
       onclick={() => {
-        Static.data.media.splice(index, 1);
+        Static.data.media.splice(index.index, 1);
       }}
       class="absolute left-1/2 top-1/2 z-[2] h-6 w-6 cursor-pointer rounded-[4px] bg-white [transform:translate(-50%,-50%)]"
     ></div>
@@ -111,10 +112,10 @@ export default function () {
                                 func: () => {
                                   Fn.initOne("modalAccept", {
                                     title: "удалить медиа",
-                                    CallBack: (CallBack: boolean) => {
-                                      if (CallBack) {
-                                        Static.data.media.splice(
-                                          Func.findIndexByMediaName(item.name),
+                                    Callback: async (Callback: boolean) => {
+                                      if (Callback) {
+                                        Static.data.media?.splice(
+                                          Func.findIndex(item),
                                           1,
                                         );
                                         Func.checkValid();
@@ -143,9 +144,10 @@ export default function () {
                                 name: "Удалить",
                                 func: () => {
                                   Static.data?.media?.splice(
-                                    Func.findIndexByMediaName(item?.mediaName),
+                                    Func.findIndex(item),
                                     1,
                                   );
+                                  Func.checkValid();
                                 },
                               },
                             ],
@@ -161,9 +163,7 @@ export default function () {
                         alt="poster"
                       />
                       <RenderLoader index={index} />
-                      <RenderStopLoading
-                        index={Func.findIndexByMediaName(item.id)}
-                      />
+                      <RenderStopLoading index={Func.findIndex(item)} />
                     </div>
                   )}
                 </div>
@@ -197,7 +197,7 @@ export default function () {
                   ) : !item?.mediaName && item?.type == "audio" ? (
                     <div>
                       <RenderLoader index={index} />
-                      <RenderStopLoading index={index} />
+                      <RenderStopLoading index={Func.findIndex(item)} />
                     </div>
                   ) : null}
                 </div>

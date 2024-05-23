@@ -1,4 +1,4 @@
-import { Func, Static, front } from "cemjs-all";
+import { Func, Static, front, Fn } from "cemjs-all";
 
 export default [
   // get
@@ -9,8 +9,23 @@ export default [
       if (!json) {
         return;
       }
-
+      Fn.log('=json=', json)
       Static.posts = json;
+    },
+  },
+  // update
+  {
+    type: "update",
+    fn: ({ data }) => {
+      let json = front.Services.functions.strToJson(data);
+      if (!json) {
+        return;
+      }
+      Static.posts.forEach((item, index) => {
+        if (item.id == json.id) {
+          Static.posts[index] = json;
+        }
+      });
     },
   },
   // like

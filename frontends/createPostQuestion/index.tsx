@@ -49,13 +49,19 @@ front.func.checkValid = function () {
 };
 
 front.func.uploadMedia = async (file: any, type: string) => {
-  let mediaIndex: number = Static.data.media.push({ type, mediaName: "" }) - 1;
+  Static.id++;
+  let mediaIndex: number =
+    Static.data.media.push({ type, mediaName: "", id: Static.id }) - 1;
 
   let res = await front.Services.functions.uploadMedia(file, type);
 
   if (res?.name) {
     Static.data?.media[mediaIndex]
-      ? (Static.data.media[mediaIndex] = { type, mediaName: res.name })
+      ? (Static.data.media[mediaIndex] = {
+          type,
+          mediaName: res.name,
+          id: Static.id,
+        })
       : 0;
   } else {
     Static.data?.media.splice(mediaIndex, 1);
@@ -69,12 +75,20 @@ front.func.findIndexByMediaName = (mediaName: string) => {
   );
   return index;
 };
+front.func.findIndex = (item: any) => {
+  let index = Static.data.media?.findIndex(
+    (media) => media?.id == item.id || media?.mediaName == item.mediaName,
+  );
+  console.log("=c2d727=", index);
+  return index;
+};
 
 front.destroy = () => {
   Func.reset();
 };
 
 front.loader = async () => {
+  Static.id = 0;
   Static.form = {
     title: {
       value: "",

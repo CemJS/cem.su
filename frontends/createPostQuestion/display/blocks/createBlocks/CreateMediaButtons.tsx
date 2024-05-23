@@ -72,7 +72,6 @@ const RenderVideoButton = () => {
           });
           if (!err) {
             files.forEach((file) => {
-              console.log("=696c3a=", Func);
               Func.uploadMedia(file, "video");
             });
           } else {

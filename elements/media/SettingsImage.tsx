@@ -10,7 +10,7 @@ export default function ({ clickIconSettings, className = "" }: previewProps) {
   return (
     <div
       class={[
-        "absolute right-[.4375rem] top-[.125rem] z-[10] h-[1.25rem] w-[1.25rem] text-[0]",
+        "absolute right-[.4375rem] top-[.125rem] z-[8] h-[1.25rem] w-[1.25rem] text-[0]",
         `${className}`,
       ]}
     >
