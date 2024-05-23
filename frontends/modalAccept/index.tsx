@@ -17,7 +17,7 @@ front.func.close = function () {
   Ref.modal.classList.remove("opacity-[1]", "scale-[1]");
   setTimeout(() => {
     Fn.clearData();
-    front.Variable.$el.body.style.overflow = "auto";
+    // front.Variable.$el.body.style.overflow = "auto";
   }, 500);
 };
 

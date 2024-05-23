@@ -6,7 +6,7 @@ import Video from "@elements/Video";
 import GallerySkeleton from "@elements/skeletonLoading/user/GallerySkeleton";
 
 let answer;
-Static.mediaLoading = false;
+let mediaLoading = false;
 let abortController; // Добавляем переменную для контроллера
 
 const changeMediaFile = async () => {
@@ -27,13 +27,13 @@ const changeMediaFile = async () => {
         body: formData,
         signal: abortController.signal, // Добавляем сигнал в опции запроса
       };
-      Static.mediaLoading = true;
+      mediaLoading = true;
       try {
         let mediaPush = await fetch("/upload/gallery", options).then((res) =>
           res.json(),
         );
         if (mediaPush) {
-          Static.mediaLoading = false;
+          mediaLoading = false;
         }
         console.log("mediaPush", mediaPush);
 
@@ -49,10 +49,10 @@ const changeMediaFile = async () => {
           Static.record?.gallery.unshift(answer?.result);
         }
       } catch (error) {
-        if (error.name === "AbortError") {
-          console.log("Загрузка отменена");
+        if (error.name === 'AbortError') {
+          console.log('Загрузка отменена');
         } else {
-          console.error("Произошла ошибка при загрузке", error);
+          console.error('Произошла ошибка при загрузке', error);
         }
       }
       Fn.init();
@@ -61,10 +61,11 @@ const changeMediaFile = async () => {
   input.click();
 };
 
+// Функция для отмены загрузки
 const cancelUpload = () => {
-  if (Static.mediaLoading && abortController) {
+  if (mediaLoading && abortController) {
     abortController.abort(); // Отменяем запрос
-    Static.mediaLoading = false;
+    mediaLoading = false;
   }
 };
 
@@ -72,7 +73,7 @@ const RenderStopLoading = () => {
   return (
     <div
       id="stop_loading"
-      onclick={cancelUpload}
+      // onclick={cancelUpload}
       class="z-[2] h-6 w-6 cursor-pointer rounded-[4px] bg-white"
     ></div>
   );
@@ -138,7 +139,6 @@ export default function () {
           ) : (
             <div>
               <RenderLoader />
-              {/* <RenderStopLoading /> */}
             </div>
           )}
         </label>
