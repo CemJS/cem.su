@@ -9,7 +9,7 @@ front.listener.finish = () => {
 front.func.show = function ($el: HTMLElement) {
   setTimeout(() => {
     $el.classList.add("opacity-[1]", "scale-[1]");
-    front.Variable.$el.body.style.overflow = "hidden";
+    front.Variable.$el.body.style.overflow = "auto";
   }, 100);
 };
 

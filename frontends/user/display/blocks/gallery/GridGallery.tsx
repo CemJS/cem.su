@@ -115,6 +115,7 @@ const RenderLoader = () => {
     </div>
   );
 };
+
 export default function () {
   if (Static.record?.gallery && Static.nameCategory === "gallery") {
     Func.activeBlocksProfile();
@@ -138,7 +139,6 @@ export default function () {
           ) : (
             <div>
               <RenderLoader />
-              {/* <RenderStopLoading /> */}
             </div>
           )}
         </label>
