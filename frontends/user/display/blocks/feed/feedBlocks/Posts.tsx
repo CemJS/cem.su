@@ -9,7 +9,7 @@ export default function () {
   } else {
     Static.showComp = false;
   }
-  // console.log("Static.record?.posts", Static.record?.posts);
+  console.log("Static.record", Static.record);
   Static.posts = Static.record?.posts;
   // Fn.log("=Static.posts=1", Static.posts[0]);
 

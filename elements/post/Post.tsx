@@ -7,6 +7,7 @@ import UserPost from "./UserPost";
 import StatisticsPost from "./StatisticsPost";
 import TimePost from "./TimePost";
 import CubeSlider from "@elements/CubeSlider";
+import Avatar from "@elements/ui/Avatar";
 
 export default function ({
   item,
@@ -38,7 +39,7 @@ export default function ({
                   ...skipObject,
                   skip: Static.posts.length,
                 };
-                
+
                 let res = await front.Services.functions.sendApi(skipUrl, skip);
               }
             });
@@ -49,8 +50,15 @@ export default function ({
       class="relative mb-[1.2rem] rounded-[--borderR]"
     >
       <div class="relative flex gap-4 rounded-tl-[--borderR] rounded-tr-[--borderR] p-[0.7rem_1rem] [background:var(--backSecond)]">
-        <UserPost item={item} />
-
+        {/* <UserPost item={item} /> */}
+        <Avatar
+          id={item?.id}
+          nickname={""}
+          avatarName={item?.author?.avatar?.name}
+          frameName={item?.author?.frame?.name}
+          level={item?.author?.statistics?.level}
+          online={item?.online}
+        />
         <div class="flex w-full items-center justify-between">
           <span class="font-medium">{item?.author?.nickname}</span>
           {/* действия */}

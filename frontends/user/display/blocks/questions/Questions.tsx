@@ -1,15 +1,12 @@
 import { Cemjsx, front, Fn, Static, Func, Ref } from "cemjs-all";
 import QuestionCreateDate from "./QuestionCreateDate";
-import defaultGray from "@svg/lenta/defaultGray.svg";
-import leveGray from "@svg/lenta/level_gray.svg";
-import avatarDefault from "@images/lenta/avatar_default.png";
 import closed_question from "@svg/questions/closed_question.svg";
 import best_answer from "@svg/questions/best_answer.svg";
 import open_question from "@svg/questions/open_question.svg";
 import QuestionsBtnMyProf from "./QuestionsBtnMyProf";
-import QuestionsBtnUser from "./QuestionsBtnUser";
 import Header from "./Header";
 import QuestionsSkeleton from "@elements/skeletonLoading/user/QuestionsSkeleton";
+import Avatar from "@elements/ui/Avatar";
 
 export default function () {
   if (Static.record?.questions && Static.nameCategory === "questions") {
@@ -73,7 +70,15 @@ export default function () {
                   </span>
                 </div>
                 <div class="flex items-end max-@767:mb-[1.5625rem] max-@767:pr-[3.125rem]">
-                  <a
+                  <Avatar
+                    id={item?.id}
+                    nickname={item?.bestAnswerAuthor?.nickname}
+                    avatarName={item?.bestAnswerAuthor?.avatar?.name}
+                    frameName={item?.bestAnswerAuthor?.frame?.name}
+                    level={item?.bestAnswerAuthor?.statistics?.level}
+                    online={item?.online}
+                  />
+                  {/* <a
                     href={`/user/${item?.id}`}
                     class={[
                       "left-[-.9375rem] w-[5rem] pl-0 text-inherit no-underline",
@@ -119,7 +124,7 @@ export default function () {
                     ) : (
                       <span class="text-center">---</span>
                     )}
-                  </a>
+                  </a> */}
                   <div class="relative top-[-21px]">
                     <p class="mb-[1rem] mt-0 first:m-0 first:text-[.875rem] first:font-medium first:leading-[1.25rem]">
                       {item?.bestAnswerAuthor?.nickname}

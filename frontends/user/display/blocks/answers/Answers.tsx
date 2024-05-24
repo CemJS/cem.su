@@ -3,9 +3,9 @@ import AnswerCreateDate from "./AnswerCreateDate";
 import defaultGray from "@svg/lenta/defaultGray.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
-import dots from "@svg/questions/dots.svg";
 import AnswersBtbMyProf from "./AnswersBtbMyProf";
 import AnswersSkeleton from "@elements/skeletonLoading/user/AnswersSkeleton";
+import Avatar from "@elements/ui/Avatar";
 
 const createClassNames = (baseClasses, skeletonClasses, stateData) => {
   return `${baseClasses} ${stateData ? "" : skeletonClasses}'`;
@@ -79,7 +79,15 @@ export default function () {
                   }}
                 >
                   <div class="flex">
-                    <a
+                    <Avatar
+                      id={item?.id}
+                      nickname={""}
+                      avatarName={item?.question?.author?.avatar?.name}
+                      frameName={item?.question?.author?.frame?.name}
+                      level={item?.question?.author?.statistics?.level}
+                      online={item?.online}
+                    />
+                    {/* <a
                       // href={`/user/${item?.id}`}
                       class="left-[-.9375rem] w-[5rem] pl-0 text-inherit no-underline"
                     >
@@ -117,8 +125,8 @@ export default function () {
                           ></div>
                         </div>
                       </div>
-                    </a>
-                    <div>
+                    </a> */}
+                    <div class="pl-[.9375rem]">
                       <a class="text-inherit no-underline">
                         <div class="mb-[.625rem] box-border text-[1.125rem] max-@767:pr-[1.25rem]">
                           {item?.question?.text}
