@@ -80,13 +80,16 @@ export default function () {
                 >
                   <div class="flex">
                     <Avatar
-                      id={item?.id}
-                      nickname={""}
-                      avatarName={item?.question?.author?.avatar?.name}
-                      frameName={item?.question?.author?.frame?.name}
-                      level={item?.question?.author?.statistics?.level}
-                      online={item?.online}
+                      avatarData={{
+                        id: item?.id,
+                        nickname: item?.question?.author?.nickname,
+                        avatarName: item?.question?.author?.avatar?.name,
+                        frameName: item?.question?.author?.frame?.name,
+                        level: item?.question?.author?.statistics?.level,
+                        online: item?.online,
+                      }}
                     />
+
                     {/* <a
                       // href={`/user/${item?.id}`}
                       class="left-[-.9375rem] w-[5rem] pl-0 text-inherit no-underline"

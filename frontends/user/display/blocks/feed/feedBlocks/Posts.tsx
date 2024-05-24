@@ -9,7 +9,7 @@ export default function () {
   } else {
     Static.showComp = false;
   }
-  console.log("Static.record", Static.record);
+
   Static.posts = Static.record?.posts;
   // Fn.log("=Static.posts=1", Static.posts[0]);
 
@@ -25,8 +25,8 @@ export default function () {
                 skipObject={{ category: "feed" }}
                 avatar={{
                   id: Static.record?.id,
-                  name: Static.record?.avatar?.name,
-                  frame: Static.record?.frame?.name,
+                  avatarName: Static.record?.avatar?.name,
+                  frameName: Static.record?.frame?.name,
                   level: Static.record?.statistics?.level,
                   online: Static.record?.online,
                 }}

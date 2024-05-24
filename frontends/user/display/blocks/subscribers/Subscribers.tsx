@@ -5,6 +5,7 @@ import leveGray from "@svg/lenta/level_gray.svg";
 import dots from "@svg/questions/dots.svg";
 import { subscriberObject } from "./interface";
 import SubscribersSkeleton from "@elements/skeletonLoading/user/SubscribersSkeleton";
+import Avatar from "@elements/ui/Avatar";
 
 export default function () {
   if (Static.record?.subscribers && Static.nameCategory === "subscribers") {
@@ -23,45 +24,16 @@ export default function () {
           ? Static.record?.subscribers?.map((item: subscriberObject) => {
               return (
                 <div class="relative box-border flex max-h-[9.125rem] rounded-[0] bg-[--black-gray] p-[.9375rem] [border:1px_solid_#363C50] max-@1024:border-x-0 max-@1024:border-b-[0] @1024:rounded-[.75rem]">
-                  <a
-                    href={`/user/${item?.id}`}
-                    class="left-[-0.9375rem] w-[5rem] pl-0 text-inherit no-underline"
-                  >
-                    <div class="relative z-[1] ml-[.625rem] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
-                      <img
-                        class="absolute left-[50%] top-[50%] z-[1] h-[78%] w-[78%] translate-x-[-50%] translate-y-[-50%] rounded-[50%] object-cover"
-                        src={
-                          item?.avatar?.name
-                            ? `/assets/upload/avatar/${item?.avatar?.name}`
-                            : avatarDefault
-                        }
-                      />
-                      <img
-                        class="absolute left-[50%] top-0 z-[2] h-full w-auto translate-x-[-50%]"
-                        src={
-                          item?.frame?.name
-                            ? `/contents/images/lenta/${item?.frame?.name}`
-                            : defaultGray
-                        }
-                      />
-                      <div>
-                        <div class="absolute bottom-0 right-[.3125rem] top-auto z-[2] h-[1.75rem]">
-                          <img class="h-full" src={leveGray} />
-                          <span class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] text-[.75rem] font-bold tracking-[.6px] text-[--white]">
-                            {item?.statistics?.level}
-                          </span>
-                        </div>
-                        <div
-                          class={[
-                            "absolute bottom-[20%] right-[-1%] z-[2] h-[.875rem] w-[.875rem] rounded-[50%] [border:3px_solid_#ffffff]",
-                            item?.online
-                              ? "[background:linear-gradient(225deg,_#72FFB6_0,_#10D194_100%)]"
-                              : "[background:linear-gradient(225deg,_#FF7272_0%,_#D93030_100%)]",
-                          ]}
-                        ></div>
-                      </div>
-                    </div>
-                  </a>
+                  <Avatar
+                    avatarData={{
+                      id: item?.id,
+                      nickname: item?.nickname,
+                      avatarName: item?.avatar?.name,
+                      frameName: item?.frame?.name,
+                      level: item?.statistics?.level,
+                      online: item?.online,
+                    }}
+                  />
                   <div class="ml-[.3125rem] mt-[.625rem]">
                     <p class="mb-0 mt-[.375rem] text-[1.125rem] font-semibold leading-[1.375rem] text-[--white]">
                       {item?.nickname}

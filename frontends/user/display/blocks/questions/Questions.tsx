@@ -12,6 +12,7 @@ export default function () {
   if (Static.record?.questions && Static.nameCategory === "questions") {
     Func.activeBlocksProfile();
   } else Static.showComp = false;
+  console.log("Static.record", Static.record?.questions);
 
   return (
     <div class="relative m-0 w-full min-w-full pb-[1.25rem] pt-[.625rem] @1200:mx-auto @1200:my-0 @1200:min-w-[calc(100%--_224px)] @1200:pb-[2.5rem]">
@@ -71,12 +72,14 @@ export default function () {
                 </div>
                 <div class="flex items-end max-@767:mb-[1.5625rem] max-@767:pr-[3.125rem]">
                   <Avatar
-                    id={item?.id}
-                    nickname={item?.bestAnswerAuthor?.nickname}
-                    avatarName={item?.bestAnswerAuthor?.avatar?.name}
-                    frameName={item?.bestAnswerAuthor?.frame?.name}
-                    level={item?.bestAnswerAuthor?.statistics?.level}
-                    online={item?.online}
+                    avatarData={{
+                      id: item?.id,
+                      nickname: item?.bestAnswerAuthor?.nickname,
+                      avatarName: item?.bestAnswerAuthor?.avatar?.name,
+                      frameName: item?.bestAnswerAuthor?.frame?.name,
+                      level: item?.bestAnswerAuthor?.statistics?.level,
+                      online: item?.online,
+                    }}
                   />
                   {/* <a
                     href={`/user/${item?.id}`}

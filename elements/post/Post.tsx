@@ -54,12 +54,7 @@ export default function ({
       <div class="relative flex gap-4 rounded-tl-[--borderR] rounded-tr-[--borderR] p-[0.7rem_1rem] [background:var(--backSecond)]">
         {/* <UserPost item={item} /> */}
         <Avatar
-          id={avatar?.id}
-          nickname={""}
-          avatarName={avatar?.name}
-          frameName={avatar?.frame}
-          level={avatar?.level}
-          online={avatar?.online}
+        avatarData={avatar}
         />
         <div class="flex w-full items-center justify-between">
           <span class="font-medium">{item?.author?.nickname}</span>
