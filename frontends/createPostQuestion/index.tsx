@@ -44,13 +44,13 @@ front.func.reset = function () {
 };
 
 front.func.checkValid = function () {
-  Static.form.isValid || Static.data?.media?.length > 0 || Static.previewChanged
+  Static.form.isValid || (Static.form.isValid && Static.previewChanged)
     ? (Static.isValid = true)
     : (Static.isValid = false);
 };
 
-Static.uploadAbortController = new AbortController();
 front.func.uploadMedia = async (file: any, type: string) => {
+  Static.uploadAbortController = new AbortController();
   Static.id++;
   let mediaIndex: number =
     Static.data.media.push({ type, mediaName: "", id: Static.id }) - 1;
@@ -58,11 +58,17 @@ front.func.uploadMedia = async (file: any, type: string) => {
   let uploadMediaFiles = await front.Services.functions.uploadMediaFiles(
     file,
     type,
-    Static.uploadAbortController?.signal
+    Static.uploadAbortController?.signal,
   );
-  // console.log("=e59766=", front.Variable.controllers);
 
-  if (uploadMediaFiles?.name) {
+  let errors = {
+    video: "видео",
+    image: "картинку",
+    audio: "аудиозапись",
+  };
+
+  if (uploadMediaFiles?.name && uploadMediaFiles?.name != "AbortError") {
+    console.log("=0bd7a3=", 1);
     Static.data?.media[mediaIndex]
       ? (Static.data.media[mediaIndex] = {
           type,
@@ -71,8 +77,13 @@ front.func.uploadMedia = async (file: any, type: string) => {
         })
       : 0;
   } else {
-    Static.data?.media.splice(mediaIndex, 1);
-    // controller.abort();
+    if (uploadMediaFiles?.name != "AbortError") {
+      Fn.initOne("alert", {
+        text: `Не удалось загрузить ${errors[type]}`,
+        type: "danger",
+      });
+      Static.data?.media.splice(mediaIndex, 1);
+    }
   }
   Func.checkValid();
 };

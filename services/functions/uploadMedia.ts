@@ -1,6 +1,5 @@
 import { Fn, front } from "cemjs-all";
 
-export const contollers = new Map();
 export default async function (
   file: any,
   type: string,
@@ -9,12 +8,6 @@ export default async function (
 ) {
   let data = new FormData();
   data.append("media", file);
-
-  let errors = {
-    video: "видео",
-    image: "картинку",
-    audio: "аудиозапись",
-  };
 
   try {
     let answer = await fetch(`/upload/${url}`, {
@@ -27,20 +20,8 @@ export default async function (
 
     return res;
   } catch (error) {
-    if (error.name === "AbortError") {
-      console.log("Загрузка отменена");
-    } else {
-      // ... обработка других ошибок
-    }
-    return;
+    return error;
   }
-  // catch {
-  //   Fn.initOne("alert", {
-  //     text: `Не удалось загрузить ${errors[type]}`,
-  //     type: "danger",
-  //   });
-  //   return;
-  // }
 
   // вызовите этот метод для отмены загрузки
   // Variable.abort();

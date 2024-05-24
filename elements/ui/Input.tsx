@@ -34,7 +34,7 @@ export default function ({
         autocomplete="off"
         oninput={oninput}
       />
-      <div class="modalWindow_field_labelLine top-[1px] z-[3]">
+      <div class="modalWindow_field_labelLine top-[1px] z-[3] h-[calc(100%_-_2px)]">
         <i class="i i-user"></i>
         <span>{placeholder}</span>
       </div>

@@ -119,7 +119,7 @@ front.loader = async () => {
           return;
         }
 
-        Static.records = json;
+        Static.questions = json;
       },
     },
     {
@@ -129,10 +129,8 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        console.log("=8587af=", json);
 
-        Static.records.unshift(json);
-        console.log("=4d73fb=", Static.records);
+        Static.questions.unshift(json);
       },
     },
     {
@@ -142,7 +140,7 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        Static.records = [...Static.records, ...json];
+        Static.questions = [...Static.questions, ...json];
       },
     },
     {
@@ -153,8 +151,8 @@ front.loader = async () => {
           return;
         }
         console.log("=05c3a3=", id);
-        Static.records = [
-          ...Static.records.filter((record) => record.id != id),
+        Static.questions = [
+          ...Static.questions.filter((record) => record.id != id),
         ];
       },
     },
