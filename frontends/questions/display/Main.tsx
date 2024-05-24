@@ -10,6 +10,8 @@ import openDrop from "@svg/icons/openDropDown.svg";
 import order from "@svg/icons/order.svg";
 import notFound from "@svg/icon/notFound.svg";
 import QuestionOne from "@elements/question/QuestionOne";
+import QuestionOneSkeleton from "@elements/skeletonLoading/questionOne/QuestionOneSkeleton";
+import SubscribersSkeleton from "@elements/skeletonLoading/user/SubscribersSkeleton";
 
 const RenderTitle = () => {
   return (
@@ -281,12 +283,16 @@ export default function () {
             <RenderFilters />
 
             <div class="relative mx-auto mt-[0.9375rem] flex max-w-full flex-wrap items-center justify-between gap-[0.75rem] pb-[6.25rem] @1240:mt-5 @1240:grid @1240:gap-[1.25rem] @1240:[grid-template-columns:repeat(auto-fit,25rem)]">
-              {Static.questions?.length ? (
-                Static.questions?.map((item: any, index: number) => {
-                  return <QuestionOne item={item} index={index} />;
-                })
+              {!Static.showSkeleton ? (
+                Static.questions?.length ? (
+                  Static.questions?.map((item: any, index: number) => {
+                    return <QuestionOne item={item} index={index} />;
+                  })
+                ) : (
+                  <RenderNotFound />
+                )
               ) : (
-                <RenderNotFound />
+                Array.from({ length: 9 }, (_, index) => <QuestionOneSkeleton />)
               )}
             </div>
           </div>

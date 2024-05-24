@@ -123,15 +123,16 @@ export default function ({
         ) : null}
       </div>
       <div class="flex h-[3.875rem] items-center justify-around text-[0.8125rem] text-[#838ba3] [&_span]:inline-flex [&_span]:gap-[0.625rem]">
-        <span>
-          <i class="i i-comment"></i>
+        <span class="inline-flex items-center gap-1">
+          <i class="i i-chat-bubble-left-right"></i>
           {item.statistics.answers}
         </span>
-        <span>
-          <i class="i i-faq"></i>
+        <span class="inline-flex items-center gap-1">
+          <i class="i i-eye"></i>
           {item.statistics.views}
         </span>
-        <span>
+        <span class="inline-flex items-center gap-1">
+          <i class="i i-clock"></i>
           {front.Services.functions.timeStampToDate(
             item.showDate,
             undefined,

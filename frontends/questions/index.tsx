@@ -40,6 +40,8 @@ front.func.getQuestion = async (id) => {
 };
 
 front.loader = async () => {
+  Static.showSkeleton = true;
+
   Static.open = "Ответить";
 
   Static.search = "";
@@ -119,6 +121,7 @@ front.loader = async () => {
           return;
         }
 
+        Static.showSkeleton = false;
         Static.questions = json;
       },
     },
