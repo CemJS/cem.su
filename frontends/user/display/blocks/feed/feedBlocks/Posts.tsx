@@ -23,6 +23,13 @@ export default function () {
                 index={index}
                 skipUrl={`/api/users/${Static.record?.nickname}/profile`}
                 skipObject={{ category: "feed" }}
+                avatar={{
+                  id: Static.record?.id,
+                  name: Static.record?.avatar?.name,
+                  frame: Static.record?.frame?.name,
+                  level: Static.record?.statistics?.level,
+                  online: Static.record?.online,
+                }}
               />
             );
           })

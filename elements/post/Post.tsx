@@ -15,12 +15,14 @@ export default function ({
   skipUrl = "/api/posts",
   hideOptions = false,
   skipObject,
+  avatar
 }: {
   item: Post | any;
   index: number;
   skipUrl?: string;
   hideOptions?: boolean;
   skipObject: any;
+  avatar: any
 }) {
   return (
     // Func.initPost($el, index)
@@ -52,12 +54,12 @@ export default function ({
       <div class="relative flex gap-4 rounded-tl-[--borderR] rounded-tr-[--borderR] p-[0.7rem_1rem] [background:var(--backSecond)]">
         {/* <UserPost item={item} /> */}
         <Avatar
-          id={item?.id}
+          id={avatar?.id}
           nickname={""}
-          avatarName={item?.author?.avatar?.name}
-          frameName={item?.author?.frame?.name}
-          level={item?.author?.statistics?.level}
-          online={item?.online}
+          avatarName={avatar?.name}
+          frameName={avatar?.frame}
+          level={avatar?.level}
+          online={avatar?.online}
         />
         <div class="flex w-full items-center justify-between">
           <span class="font-medium">{item?.author?.nickname}</span>
