@@ -38,7 +38,7 @@ export default function ({
                   ...skipObject,
                   skip: Static.posts.length,
                 };
-                
+
                 let res = await front.Services.functions.sendApi(skipUrl, skip);
               }
             });
