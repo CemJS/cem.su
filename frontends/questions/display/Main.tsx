@@ -282,7 +282,7 @@ export default function () {
             {/* filters */}
             <RenderFilters />
 
-            <div class="relative mx-auto mt-[0.9375rem] flex max-w-full flex-wrap items-center justify-between gap-[0.75rem] pb-[6.25rem] @1240:mt-5 @1240:grid @1240:gap-[1.25rem] @1240:[grid-template-columns:repeat(auto-fit,25rem)]">
+            <div class="relative mx-auto mt-[0.9375rem] flex max-w-full flex-wrap items-center justify-between gap-[0.75rem] pb-[6.25rem] @1240:grid @1240:gap-[1.25rem] @1240:[grid-template-columns:repeat(auto-fit,25rem)] @1280:mt-5">
               {!Static.showSkeleton ? (
                 Static.questions?.length ? (
                   Static.questions?.map((item: any, index: number) => {

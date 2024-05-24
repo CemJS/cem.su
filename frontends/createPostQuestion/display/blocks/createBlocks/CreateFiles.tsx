@@ -50,7 +50,7 @@ const RenderStopLoading = (index) => {
       id="stop_loading"
       onclick={() => {
         Static.data.media.splice(index.index, 1);
-        Static.uploadAbortController?.abort()
+        Static.uploadAbortController?.abort();
       }}
       class="absolute left-1/2 top-1/2 z-[2] h-6 w-6 cursor-pointer rounded-[4px] bg-white [transform:translate(-50%,-50%)]"
     ></div>
@@ -103,9 +103,9 @@ export default function () {
                                   Fn.initOne("modalPreviews", {
                                     callback: (photo) => {
                                       item.preview = photo;
-                                      Static.previewChanged = true;
                                     },
                                   });
+                                  Static.previewChanged = true;
                                   Func.checkValid();
                                 },
                               },

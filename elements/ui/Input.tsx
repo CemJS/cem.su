@@ -7,6 +7,7 @@ export default function ({
   error,
   placeholder,
   className,
+  ref,
 }: {
   oninput: (e: InputEvent) => void;
   isValid: boolean;
@@ -14,6 +15,7 @@ export default function ({
   placeholder: string;
   className?: string;
   value: string;
+  ref: string;
 }) {
   return (
     <div
@@ -28,7 +30,7 @@ export default function ({
       <input
         value={value}
         class="!bg-[#202432]"
-        ref={placeholder + "input"}
+        ref={ref + "input"}
         type="text"
         required
         autocomplete="off"

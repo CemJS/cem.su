@@ -18,6 +18,7 @@ front.listener.finish = () => {
 };
 
 front.func.checkForm = function () {
+  Func.checkTitle();
   if (Static.page == "questions") {
     Static.form?.title?.valid
       ? (Static.form.isValid = true)
@@ -28,6 +29,16 @@ front.func.checkForm = function () {
       ? (Static.form.isValid = true)
       : (Static.form.isValid = false);
   }
+};
+
+front.func.checkTitle = function () {
+  const target = Ref.titleinput;
+  console.log("=e2760e=", target);
+  Static.form.title.value = target.value;
+  Static.data.title = target.value;
+  front.Services.functions.formQuestion(Static.form.title);
+  Func.checkForm();
+  Func.checkValid();
 };
 
 front.func.reset = function () {
