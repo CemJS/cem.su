@@ -5,19 +5,25 @@ import postsListener from "elements/post/listener/posts.listener";
 
 export default function () {
   // console.log("Static.record?", Static.record);
-  
+
   return (
     <div class="relative top-[.125rem] cursor-pointer [padding:0_15px_9px_15px]">
       <i
         onclick={async () => {
           Static.nameCategory = "feed";
-          const url =
-            front.Variable.DataUrl[1] === front.Variable.myInfo?.nickname
-              ? front.Services.functions.makeUrlEvent("me/posts")
-              : front.Services.functions.makeUrlEvent("me/posts", {id: Static.record?.id});
-          const listener = postsListener;
-          Events.userFeed = await Fn.event(url, listener);
-          Static.feedState = false;
+          let content = await front.Services.functions.sendApi(
+            `/api/users/${Static.record?.nickname}/profile`,
+            { category: "feed" },
+          );
+          // const url =
+          //   front.Variable.DataUrl[1] === front.Variable.myInfo?.nickname
+          //     ? front.Services.functions.makeUrlEvent("me/posts")
+          //     : front.Services.functions.makeUrlEvent("me/posts", {
+          //         id: Static.record?.id,
+          //       });
+          // const listener = postsListener;
+          // Events.userFeed = await Fn.event(url, listener);
+          // Static.feedState = false;
           //проверка на error
         }}
         style={

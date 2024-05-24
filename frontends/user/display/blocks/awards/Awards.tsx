@@ -47,7 +47,7 @@ export default function () {
               })
             : Array.from(
                 {
-                  length: 6
+                  length: 1
                 },
                 (_, index) => <AwardsSkeleton key={index} />,
               )}

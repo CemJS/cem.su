@@ -4,6 +4,8 @@ import GridGalleryPosts from "./feedBlocks/GridGalleryPosts";
 import GallerySkeleton from "@elements/skeletonLoading/user/GallerySkeleton";
 
 export default function () {
+  // console.log("Static.record.feed", Static.record);
+  
   if (Static.posts && Static.nameCategory === "feed") {
     Func.activeBlocksProfile();
   } else {

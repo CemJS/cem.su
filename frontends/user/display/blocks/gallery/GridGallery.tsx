@@ -214,7 +214,7 @@ export default function () {
               </div>
             );
           })
-        : Array.from({ length: 6 }, (_, index) => (
+        : Array.from({ length: 1 }, (_, index) => (
             <GallerySkeleton key={index} />
           ))}
     </div>

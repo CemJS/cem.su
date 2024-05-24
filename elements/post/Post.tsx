@@ -13,13 +13,14 @@ export default function ({
   index,
   skipUrl = "/api/posts",
   hideOptions = false,
+  skipObject,
 }: {
   item: Post | any;
   index: number;
   skipUrl?: string;
   hideOptions?: boolean;
+  skipObject: any;
 }) {
-  // console.log("=f17c41=", index);
   return (
     // Func.initPost($el, index)
     <div
@@ -30,10 +31,14 @@ export default function ({
               if (entry.isIntersecting) {
                 observer.unobserve($el);
 
-                console.log("=46d8f4=", 1);
+                console.log("=46d8f4=", 2);
 
-                let skip = { ...Static.makeFilter };
-                skip.skip = Static.posts.length;
+                let skip = {
+                  ...Static.makeFilter,
+                  ...skipObject,
+                  skip: Static.posts.length,
+                };
+                
                 let res = await front.Services.functions.sendApi(skipUrl, skip);
               }
             });

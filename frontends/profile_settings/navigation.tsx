@@ -1,14 +1,14 @@
 import { Cemjsx, Fn, front } from "cemjs-all";
 import Main from "./display/Main";
 import Security from "./display/Security";
-import Sessions from "./display/Sessions";
+import BlackList from "./display/BlackList";
 
 const IfPage = function () {
   switch (front.Variable.DataUrl[2]) {
     case "security":
       return <Security />;
-    case "sessions":
-      return <Sessions />;
+    case "blacklist":
+      return <BlackList />;
   }
 };
 export default function () {

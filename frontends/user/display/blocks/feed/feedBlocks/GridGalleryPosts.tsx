@@ -7,12 +7,12 @@ import { Post } from "types/post.type";
 export default function () {
   return (
     <div class="grid w-full [grid-template-columns:repeat(3,_1fr)]">
-      {Static.posts?.map((item: Post, key: number) => {
+      {Static.record?.posts?.map((item: Post, key: number) => {
         return (
           <div
             init={($el) => {
               console.log("=27d6ae=", 1);
-              if (key == Static.posts?.length - 1) {
+              if (key == Static.record?.posts?.length - 1) {
                 const observer = new IntersectionObserver((entries) => {
                   entries.forEach(async (entry) => {
                     if (entry.isIntersecting) {
@@ -20,10 +20,15 @@ export default function () {
 
                       console.log("=46d8f4=", 1);
 
-                      let skip = { ...Static.makeFilter };
-                      skip.skip = Static.posts.length;
+                      let skip = {
+                        ...Static.makeFilter,
+                        skip: Static.record?.posts?.length,
+                        category: "feed",
+                      };
+                      console.log("skip2", skip);
+                      
                       let res = await front.Services.functions.sendApi(
-                        "/api/me/posts",
+                        `/api/users/${Static.record?.nickname}/profile`,
                         skip,
                       );
                     }

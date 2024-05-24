@@ -170,7 +170,7 @@ export default function () {
             })
           : Array.from(
               {
-                length: Math.min(Static.record?.statistics?.subscribe, 4),
+                length: 1,
               },
               (_, index) => <SocialsSkeleton key={index} />,
             )}

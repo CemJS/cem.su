@@ -45,18 +45,18 @@ export default function () {
             style="-webkit-background-clip: text"
             class={[
               "list-subcategory hidden pb-[.625rem] pl-[.375rem]",
-              Static.category == "sessions"
+              Static.category == "blacklist"
                 ? "[-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(56.57deg,_#2973FF_0%,_#8846D3_51.56%,_#FF22AC_105.28%)]"
                 : null,
             ]}
           >
-            <a href="/profile/settings/sessions" onclick={Fn.link}>
+            <a href="/profile/settings/blacklist" onclick={Fn.link}>
               <span
                 onclick={() => {
-                  Static.category = "sessions";
+                  Static.category = "blacklist";
                 }}
               >
-                Сессии
+                Чёрный список
               </span>
             </a>
           </div>
