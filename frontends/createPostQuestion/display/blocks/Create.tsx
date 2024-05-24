@@ -23,14 +23,18 @@ export default function () {
         {Static.page == "posts" ? <CreateForFriends /> : ""}
         {Static.page == "questions" ? (
           <Input
-            ref="title"
             value={Static.data?.title}
             className="mb-4"
             isValid={Static.data?.title?.length > 0}
             error={Static.form?.title?.error}
             placeholder="Вопрос"
             oninput={(e) => {
-              Func.checkTitle();
+              const target = e.target as HTMLInputElement;
+              Static.form.title.value = target.value;
+              Static.data.title = target.value;
+              front.Services.functions.formQuestion(Static.form.title);
+              Func.checkForm();
+              Func.checkValid();
             }}
           />
         ) : (

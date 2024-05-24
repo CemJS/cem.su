@@ -15,14 +15,14 @@ export default function ({
   skipUrl = "/api/posts",
   hideOptions = false,
   skipObject,
-  avatar
+  avatar,
 }: {
   item: Post | any;
   index: number;
   skipUrl?: string;
   hideOptions?: boolean;
   skipObject: any;
-  avatar: any
+  avatar: any;
 }) {
   return (
     // Func.initPost($el, index)
@@ -33,8 +33,6 @@ export default function ({
             entries.forEach(async (entry) => {
               if (entry.isIntersecting) {
                 observer.unobserve($el);
-
-                console.log("=46d8f4=", 2);
 
                 let skip = {
                   ...Static.makeFilter,
@@ -52,10 +50,8 @@ export default function ({
       class="relative mb-[1.2rem] rounded-[--borderR]"
     >
       <div class="relative flex gap-4 rounded-tl-[--borderR] rounded-tr-[--borderR] p-[0.7rem_1rem] [background:var(--backSecond)]">
-        {/* <UserPost item={item} /> */}
-        <Avatar
-        avatarData={avatar}
-        />
+        {avatar ? <Avatar avatarData={avatar} /> : <UserPost item={item} />}
+
         <div class="flex w-full items-center justify-between">
           <span class="font-medium">{item?.author?.nickname}</span>
           {/* действия */}

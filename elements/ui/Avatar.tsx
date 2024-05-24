@@ -3,9 +3,7 @@ import defaultGray from "@svg/lenta/defaultGray.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 
-export default function ({
-  avatarData,
-}) {
+export default function ({ avatarData }) {
   return (
     <a
       href={`/user/${avatarData?.id}`}
@@ -18,12 +16,18 @@ export default function ({
         <img
           class="absolute left-[50%] top-[50%] z-[1] h-[78%] w-[78%] translate-x-[-50%] translate-y-[-50%] rounded-[50%] object-cover"
           src={
-            avatarData?.avatarName ? `/assets/upload/avatar/${avatarData?.avatarName}` : avatarDefault
+            avatarData?.avatarName
+              ? `/assets/upload/avatar/${avatarData?.avatarName}`
+              : avatarDefault
           }
         />
         <img
           class="absolute left-[50%] top-0 z-[2] h-full w-auto translate-x-[-50%]"
-          src={avatarData?.frameName ? `/contents/images/lenta/${avatarData?.frameName}` : defaultGray}
+          src={
+            avatarData?.frameName
+              ? `/contents/images/lenta/${avatarData?.frameName}`
+              : defaultGray
+          }
         />
         <div>
           <div class="absolute bottom-0 right-[.3125rem] top-auto z-[2] h-[1.75rem]">

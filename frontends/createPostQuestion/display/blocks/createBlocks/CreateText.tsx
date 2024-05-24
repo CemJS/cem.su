@@ -20,8 +20,8 @@ export default function () {
       value={Static.data?.text}
       oninput={(e) => {
         const target = e.target as HTMLInputElement;
-        Static.form.text.value = target.value;
-        Static.data.text = target.value;
+        Static.form.text.value = target?.value;
+        Static.data.text = target?.value;
         Func.checkForm();
         Func.checkValid();
       }}
