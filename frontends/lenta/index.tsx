@@ -49,8 +49,8 @@ front.func.findIndexCommentToComment = (id, postIndex, commentIndex) => {
 };
 
 front.loader = async () => {
+  Static.showPostSkeleton = true;
   let url = front.Services.functions.makeUrlEvent("posts");
-  console.log("=c23e6a=", postsListener);
   Events.posts = await Fn.event(url, postsListener);
   return;
 };

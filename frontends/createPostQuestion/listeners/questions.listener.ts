@@ -9,6 +9,7 @@ export default [
         return;
       }
 
+      Static.showQuestionSkeleton = false;
       Static.questions = json;
     },
   },
@@ -19,7 +20,7 @@ export default [
       if (!json) {
         return;
       }
-      Fn.log("json questions",json)
+      Fn.log("json questions", json);
       Static.questions.forEach((item, index) => {
         if (item.id == json.id) {
           Static.questions[index] = json;

@@ -8,6 +8,8 @@ import StatisticsPost from "./StatisticsPost";
 import TimePost from "./TimePost";
 import CubeSlider from "@elements/CubeSlider";
 import Avatar from "@elements/ui/Avatar";
+import QuestionOneSkeleton from "@elements/skeletonLoading/questionOne/QuestionOneSkeleton";
+import PostSkeleton from "@elements/skeletonLoading/post/PostSkeleton";
 
 export default function ({
   item,
@@ -21,8 +23,8 @@ export default function ({
   index: number;
   skipUrl?: string;
   hideOptions?: boolean;
-  skipObject: any;
-  avatar: any;
+  skipObject?: any;
+  avatar?: any;
 }) {
   return (
     // Func.initPost($el, index)
@@ -47,9 +49,9 @@ export default function ({
           observer.observe($el);
         }
       }}
-      class="relative mb-[1.2rem] rounded-[--borderR]"
+      class="relative mb-[1.2rem] rounded-[--borderR] [background:var(--backSecond)]"
     >
-      <div class="relative flex gap-4 rounded-tl-[--borderR] rounded-tr-[--borderR] p-[0.7rem_1rem] [background:var(--backSecond)]">
+      <div class="relative flex gap-4 rounded-tl-[--borderR] rounded-tr-[--borderR] p-[0.7rem_1rem] ">
         {avatar ? <Avatar avatarData={avatar} /> : <UserPost item={item} />}
 
         <div class="flex w-full items-center justify-between">
@@ -70,9 +72,11 @@ export default function ({
         ""
       )}
 
-      <div class="rounded-bl-[--borderR] rounded-br-[--borderR] p-[0rem_0rem_2rem] px-4 [background:var(--backSecond)]">
-        <TextPost item={item} />
+      <div>
+        <TextPost item={item} index={index} />
+      </div>
 
+      <div class="rounded-bl-[--borderR] rounded-br-[--borderR] p-[0rem_0rem_2rem] px-4 [background:var(--backSecond)]">
         <StatisticsPost item={item} />
 
         {/* <ShowCommentsButton item={item} index={index} /> */}

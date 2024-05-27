@@ -140,7 +140,7 @@ const RenderFilters = () => {
             Static.order == 1 ? (Static.order = -1) : (Static.order = 1);
             Func.updateFilter();
           }}
-          class="h-full cursor-pointer"
+          class="cursor-pointer"
         >
           <img src={order} alt="Сортировать" class="block" />
         </div>

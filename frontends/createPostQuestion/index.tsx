@@ -107,6 +107,8 @@ front.destroy = () => {
 };
 
 front.loader = async () => {
+  Static.showPostSkeleton = true;
+  Static.showQuestionSkeleton = true;
   Static.id = 0;
   Static.form = {
     title: {

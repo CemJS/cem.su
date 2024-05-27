@@ -21,11 +21,14 @@ export default [
         return;
       }
 
+      setTimeout(() => {
+        Static.showPostSkeleton = false;
+      }, 300);
       Static.posts = json;
     },
   },
-   // update
-   {
+  // update
+  {
     type: "update",
     fn: ({ data }) => {
       let json = front.Services.functions.strToJson(data);

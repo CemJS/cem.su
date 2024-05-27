@@ -91,8 +91,12 @@ class Gallery {
 
     // счётчик
     this.size > 1
-      ? (this.counter.textContent = `${this.currentSlide + 1} / ${this.size}`)
-      : (this.counter.style.display = "none");
+      ? this.counter
+        ? (this.counter.textContent = `${this.currentSlide + 1} / ${this.size}`)
+        : ""
+      : this.counter
+        ? (this.counter.style.display = "none")
+        : "";
 
     let counterSlides = 0;
     Array.from(this.cube.children).forEach(async (slideNode: any, i) => {
@@ -283,7 +287,7 @@ export { Gallery };
 
 export const init = function (element: HTMLElement) {
   let cube: HTMLElement = element.querySelector("#cube");
-  let counter: HTMLElement = element.querySelector("#counter");
+  let counter: HTMLElement = element?.querySelector("#counter");
   let galleryRun;
   !galleryRun ? (galleryRun = new Gallery(element, cube, counter)) : "";
 };
@@ -295,11 +299,15 @@ export default function ({ items, key = "" }) {
       class="relative mx-auto h-full w-full [&_img]:w-full"
       ref={`slider${key}`}
     >
-      <div
-        ref={`counter${key}`}
-        id="counter"
-        class="pointer-events-none absolute right-3 top-3 z-10 flex min-w-[26px] items-center justify-center rounded-[10px] p-[5px] text-center font-semibold [background:rgba(0,0,0,0.6);]"
-      ></div>
+      {items.length > 1 ? (
+        <div
+          ref={`counter${key}`}
+          id="counter"
+          class="pointer-events-none absolute right-3 top-3 z-10 flex min-w-[26px] items-center justify-center rounded-[10px] p-[5px] text-center font-semibold [background:rgba(0,0,0,0.6);]"
+        ></div>
+      ) : (
+        ""
+      )}
 
       <div class="line h-full w-full touch-none [perspective:1200px]">
         <div

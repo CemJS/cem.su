@@ -17,5 +17,5 @@
       "@elements/*": ["./elements/*.tsx"]
     }
   },
-  "include": ["global.d.ts", "./frontends/**/*", "./elements/**/*"]
+  "include": ["global.d.ts", "./frontends/**/*", "./elements/**/**/*"]
 }
