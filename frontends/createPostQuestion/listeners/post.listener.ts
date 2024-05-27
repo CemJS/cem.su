@@ -1,6 +1,17 @@
 import { Func, Static, front, Fn } from "cemjs-all";
 
 export default [
+  {
+    type: "create",
+    fn: ({ data }) => {
+      let json = front.Services.functions.strToJson(data);
+      if (!json) {
+        return;
+      }
+
+      Static.posts.unshift(json);
+    },
+  },
   // get
   {
     type: "get",
