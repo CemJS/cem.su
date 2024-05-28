@@ -318,6 +318,7 @@ front.loader = async () => {
         }
         Static.record.answers.unshift(json);
         Static.record.statistics.answers++;
+        front.loader(); // временное решение (медиа съезжают при добавлении)
       },
     },
     // like

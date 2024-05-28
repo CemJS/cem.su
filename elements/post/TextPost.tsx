@@ -13,6 +13,7 @@ export default function ({ item, index }: { item: Post; index?: number }) {
             : "";
         }}
         id="text"
+        style="word-break:break-word;"
         class={[
           "w-full break-words px-4 pt-2 [&_a]:bg-transparent [&_a]:!bg-clip-text [&_a]:!text-transparent [&_a]:[background:--mainGradient] [&_p]:pb-4",
           !Static[`showItem${item.id}`] && item?.media?.length > 0

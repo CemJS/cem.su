@@ -8,8 +8,6 @@ import StatisticsPost from "./StatisticsPost";
 import TimePost from "./TimePost";
 import CubeSlider from "@elements/CubeSlider";
 import Avatar from "@elements/ui/Avatar";
-import QuestionOneSkeleton from "@elements/skeletonLoading/questionOne/QuestionOneSkeleton";
-import PostSkeleton from "@elements/skeletonLoading/post/PostSkeleton";
 
 export default function ({
   item,
@@ -26,8 +24,9 @@ export default function ({
   skipObject?: any;
   avatar?: any;
 }) {
+  console.log("=ad9e08=", item);
+
   return (
-    // Func.initPost($el, index)
     <div
       init={($el) => {
         if (index == Static.posts?.length - 1) {

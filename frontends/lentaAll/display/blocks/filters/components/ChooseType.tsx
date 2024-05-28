@@ -5,24 +5,19 @@ import type { Post as PostType } from "types/post.type";
 
 const types = [
   {
-    name: "audio",
-    icon: "/contents/images/lentaAll/types/audio.svg",
+    name: "all",
   },
   {
-    name: "all",
-    icon: "/contents/images/lentaAll/types/all.svg",
+    name: "photo",
   },
   {
     name: "video",
-    icon: "/contents/images/lentaAll/types/video.svg",
   },
   {
     name: "audio",
-    icon: "/contents/images/lentaAll/types/audio.svg",
   },
   {
     name: "text",
-    icon: "/contents/images/lentaAll/types/text.svg",
   },
 ];
 
@@ -32,7 +27,15 @@ export default function () {
       {types.map((type) => {
         return (
           <div class="cursor-pointer" id="type">
-            <img class="max-w-[70px]" src={type.icon} alt={type.name} />
+            <img
+              onclick={() => {
+                Static.type = type.name;
+                Func.updateFilter();
+              }}
+              class="max-w-[70px]"
+              src={`/contents/images/lentaAll/types/${type.name + (Static.type == type.name ? "-active" : "")}.svg`}
+              alt={type.name}
+            />
           </div>
         );
       })}

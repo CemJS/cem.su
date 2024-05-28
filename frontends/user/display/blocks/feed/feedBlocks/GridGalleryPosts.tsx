@@ -5,28 +5,25 @@ import Video from "@elements/Video";
 import { Post } from "types/post.type";
 
 export default function () {
+  Static.posts = Static.record?.posts;
   return (
-    <div class="grid w-full [grid-template-columns:repeat(3,_1fr)]">
+    <div class="grid w-full [grid-template-columns:repeat(3,_minmax(100px,1fr))]">
       {Static.record?.posts?.map((item: Post, key: number) => {
         return (
           <div
             init={($el) => {
-              console.log("=27d6ae=", 1);
-              if (key == Static.record?.posts?.length - 1) {
+              if (key == Static.posts?.length - 1) {
                 const observer = new IntersectionObserver((entries) => {
                   entries.forEach(async (entry) => {
                     if (entry.isIntersecting) {
                       observer.unobserve($el);
 
-                      console.log("=46d8f4=", 1);
-
+                      console.log("=d5187c=", 1);
                       let skip = {
-                        ...Static.makeFilter,
-                        skip: Static.record?.posts?.length,
                         category: "feed",
+                        skip: Static.posts.length,
                       };
-                      console.log("skip2", skip);
-                      
+
                       let res = await front.Services.functions.sendApi(
                         `/api/users/${Static.record?.nickname}/profile`,
                         skip,

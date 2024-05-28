@@ -11,7 +11,7 @@ export default function () {
           callback: (chooseLanguage) => {
             Static.langPosts = chooseLanguage.origName;
             Static.languageCode = chooseLanguage.code;
-            console.log("=ac63b1=", chooseLanguage);
+            Func.updateFilter();
           },
         });
       }}

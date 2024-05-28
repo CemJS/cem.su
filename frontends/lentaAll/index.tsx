@@ -48,7 +48,19 @@ front.func.findIndexCommentToComment = (id, postIndex, commentIndex) => {
   );
 };
 
+front.func.updateFilter = () => {
+  Static.makeFilter = {
+    type: Static.type ? Static.type : "all",
+    sort: Static.sort ? Static.sort : "lentaUsers",
+    languageCode: Static.languageCode
+      ? Static.languageCode
+      : front.Variable.myInfo.country.code,
+  };
+  console.log("=3d161c=", Static.makeFilter);
+};
+
 front.loader = async () => {
+  Func.updateFilter();
   Static.langPosts = "Русский";
   Static.languageCode = "ru";
 

@@ -145,10 +145,10 @@ class Gallery {
   }
 
   destroyEvents() {
-    window.removeEventListener("resize", this.debouncedResizeGallery);
-    this.lineNode.removeEventListener("pointerdown", this.startDrag);
-    window.removeEventListener("pointerup", this.stopDrag);
-    window.removeEventListener("pointercancel", this.stopDrag);
+    window?.removeEventListener("resize", this.debouncedResizeGallery);
+    this.lineNode?.removeEventListener("pointerdown", this.startDrag);
+    window?.removeEventListener("pointerup", this.stopDrag);
+    window?.removeEventListener("pointercancel", this.stopDrag);
   }
 
   resizeGallery() {
@@ -285,19 +285,33 @@ function debounce(func, time = 100) {
 
 export { Gallery };
 
-export const init = function (element: HTMLElement) {
-  let cube: HTMLElement = element.querySelector("#cube");
-  let counter: HTMLElement = element?.querySelector("#counter");
-  let galleryRun;
-  !galleryRun ? (galleryRun = new Gallery(element, cube, counter)) : "";
-};
+// const init = function (element: HTMLElement) {
+//   let cube: HTMLElement = element.querySelector("#cube");
+//   let counter: HTMLElement = element?.querySelector("#counter");
+//   let galleryRun;
+//   !galleryRun
+//     ? (galleryRun = new Gallery(element, cube, Ref[`counter${key}`]))
+//     : "";
+// };
 
 export default function ({ items, key = "" }) {
+  const init = function (element: HTMLElement) {
+    // let cube: HTMLElement = element.querySelector("#cube");
+    // let counter: HTMLElement = element?.querySelector("#counter");
+    let galleryRun;
+    !galleryRun
+      ? (galleryRun = new Gallery(
+          Ref[`slider${key}`],
+          Ref[`cube${key}`],
+          Ref[`counter${key}`],
+        ))
+      : "";
+  };
   return (
     <div
-      init={init}
       class="relative mx-auto h-full w-full [&_img]:w-full"
       ref={`slider${key}`}
+      init={() => init(Ref[`counter${key}`])}
     >
       {items.length > 1 ? (
         <div
@@ -319,7 +333,7 @@ export default function ({ items, key = "" }) {
             return (
               <div
                 id="slide"
-                ref={`slide${i}`}
+                ref={`slide${i + key}`}
                 class={[
                   "w-full flex-shrink-0 select-none bg-[--back700] [backface-visibility:hidden] [transform-origin:0_0] [transform-style:preserve-3d] [&_img]:pointer-events-none [&_img]:select-none",
                 ]}
