@@ -1,6 +1,7 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
 
+
 front.listener.finish = () => {
   return;
 };
@@ -26,8 +27,7 @@ front.func.close = function () {
   }, 500);
 };
 
-
-front.loader = async () => {
+front.loader = () => {
   Static.tabs = [
     {
       name: 'Вопросы',
