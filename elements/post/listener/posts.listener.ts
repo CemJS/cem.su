@@ -27,6 +27,21 @@ export default [
       Static.posts = json;
     },
   },
+  {
+    type: "filter",
+    fn: ({ data }) => {
+      let json = front.Services.functions.strToJson(data);
+      if (!json) {
+        return;
+      }
+
+      setTimeout(() => {
+        Static.showPostSkeleton = false;
+      }, 300);
+      Static.posts = json;
+      Fn.log('=3b6941=', Static.posts)
+    },
+  },
   // update
   {
     type: "update",
