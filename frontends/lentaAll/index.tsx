@@ -56,7 +56,6 @@ front.func.updateFilter = () => {
       ? Static.languageCode
       : front.Variable.myInfo.country.code,
   };
-  console.log("=3d161c=", Static.makeFilter);
 };
 
 front.loader = async () => {
@@ -69,7 +68,6 @@ front.loader = async () => {
   };
 
   let url = front.Services.functions.makeUrlEvent("posts");
-  console.log("=c23e6a=", postsListener);
   Events.posts = await Fn.event(url, postsListener);
   return;
 };

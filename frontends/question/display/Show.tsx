@@ -13,6 +13,7 @@ import QuestionUser from "./blocks/QuestionUser";
 import QuestionStatistic from "./blocks/QuestionStatistic";
 import CreateMedia from "@elements/addMedia/CreateMedia";
 import QuestionAnswer from "./blocks/QuestionAnswer";
+import QuestionAddAnswer from "./blocks/QuestionAddAnswer";
 
 Static.showComments = "Показать комментарии";
 let image = `/contents/images/lenta/avatar_default.png`;
@@ -22,57 +23,6 @@ const RenderNotFound = () => {
     <div class="not_found col-span-full w-full">
       <img src={notFound} alt="Нет записей" />
       Нет записей
-    </div>
-  );
-};
-
-const RenderAddAnswer = () => {
-  return (
-    <div ref={`ans${Static.record.id}`} class="hidden">
-      <textarea
-        class={[
-          "w-full resize-none rounded-[0.9375rem] border-[0] bg-[#313543] p-5 text-[1rem] text-[--white]",
-          Static.disableForm ? "btn_passive" : null,
-        ]}
-        cols="20"
-        rows="10"
-        value={Static.data.text}
-        oninput={(e) => {
-          Static.data.text = e.target.value;
-          Func.checkValid();
-        }}
-      >
-        {Static.data.text}
-      </textarea>
-      <CreateMedia />
-      <div class="flex justify-center p-10">
-        <button
-          class={[
-            "btn",
-            !Static.isValid || Static.disableForm ? "btn_passive" : null,
-          ]}
-          type="button"
-          onclick={async () => {
-            Static.disableForm = true;
-            let data = {
-              text: Static.data.text,
-              questionId: Static.record.id,
-              media: Static.data.media,
-            };
-            console.log("=1e5279=", Static.data.media);
-            Static.open = "Ответить";
-            let res = await Func.sendAuth("/api/answers/create", data);
-            if (res?.error?.length == 0) {
-              Ref[`ans${Static.record.id}`].classList.toggle("!block");
-              Func.resetForm();
-              Static.isValid = false;
-              Static.disableForm = false;
-            }
-          }}
-        >
-          Отправить
-        </button>
-      </div>
     </div>
   );
 };
@@ -115,7 +65,7 @@ export default function () {
           </div>
 
           <div class="mx-auto mt-10 max-w-[53.125rem]">
-            {!Static.record.closed ? <RenderAddAnswer /> : null}
+            {!Static.record.closed ? <QuestionAddAnswer /> : null}
 
             {Static.record.answers?.length > 0 ? (
               <div

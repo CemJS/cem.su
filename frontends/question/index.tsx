@@ -176,6 +176,7 @@ front.func.findIndexCommentToComment = (id, answerIndex, commentIndex) => {
 };
 
 front.loader = async () => {
+  console.log("=971041=", Static.record);
   Static.open = "Ответить";
 
   Static.data = {
@@ -318,7 +319,7 @@ front.loader = async () => {
         }
         Static.record.answers.unshift(json);
         Static.record.statistics.answers++;
-        front.loader(); // временное решение (медиа съезжают при добавлении)
+        // front.loader(); // временное решение (медиа съезжают при добавлении)
       },
     },
     // like

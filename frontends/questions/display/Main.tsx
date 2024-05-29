@@ -155,7 +155,7 @@ const RenderFilters = () => {
 const RenderAskInput = () => {
   return (
     <div class="relative flex flex-col gap-5 @767:flex-row">
-      <div class="relative order-[1] w-full before:absolute before:left-5 before:top-4 before:h-[1.5625rem] before:w-[1.5625rem] before:![background-size:100%_100%] before:[background:url(/contents/svg/questions/search_icon.svg)] before:[content:''] @767:order-none">
+      <div class="relative order-[1] w-full before:absolute before:left-5 before:top-4 before:h-[1.5625rem] before:w-[1.5625rem] before:![background-size:100%_100%] before:[background:url(/contents/svg/questions/search_icon.svg)] before:[content:''] before:![transition:0s] @767:order-none">
         <input
           oninput={(e) => {
             Static.search = e.target.value;

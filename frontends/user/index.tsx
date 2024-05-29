@@ -60,7 +60,7 @@ front.listener.clickAny = function (e) {
 
 front.loader = async () => {
   Static.nameCategory = "aboutMe";
-  // Fn.log('=be3efb=', 5555)
+  Fn.log("=be3efb=", 5555);
   if (front.Variable.DataUrl[0] && front.Variable.DataUrl[0] == "user") {
     let url = front.Services.functions.makeUrlEvent(
       `users/${front.Variable?.DataUrl[1]}/profile`,
