@@ -18,7 +18,6 @@ export default function () {
                     if (entry.isIntersecting) {
                       observer.unobserve($el);
 
-                      console.log("=d5187c=", 1);
                       let skip = {
                         category: "feed",
                         skip: Static.posts.length,

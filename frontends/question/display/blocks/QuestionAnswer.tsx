@@ -262,7 +262,16 @@ export default function ({ answer, answerIndex }) {
               if (front.Variable.myInfo.id == answer.author.id) {
                 records.push({
                   name: "Удалить",
-                  func: () => Func.deleteAnswer(answer.id),
+                  func: () => {
+                    Fn.initOne("modalAccept", {
+                      title: "удалить свой ответ",
+                      Callback: async (CallBack: boolean) => {
+                        if (CallBack) {
+                          Func.deleteAnswer(answer.id);
+                        }
+                      },
+                    });
+                  },
                   type: "danger",
                 });
               }

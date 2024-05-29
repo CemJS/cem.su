@@ -24,8 +24,6 @@ export default function ({
   skipObject?: any;
   avatar?: any;
 }) {
-  console.log("=ad9e08=", item);
-
   return (
     <div
       init={($el) => {

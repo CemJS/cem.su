@@ -30,20 +30,20 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 // поиск индекса
 
 front.func.findIndexPost = (id) => {
-  return Static.records.findIndex((item) => item.id == id);
+  return Static.posts.findIndex((item) => item.id == id);
 };
 
 front.func.findIndexComment = (id, postIndex) => {
-  return Static.records[postIndex].comments.findIndex((item) => item.id == id);
+  return Static.posts[postIndex].comments.findIndex((item) => item.id == id);
 };
 
 front.func.findIndexCommentToComment = (id, postIndex, commentIndex) => {
   console.log("=b53b67=", id);
   console.log(
     "=09f769=",
-    Static.records[postIndex].comments[commentIndex].comments,
+    Static.posts[postIndex].comments[commentIndex].comments,
   );
-  return Static.records[postIndex].comments[commentIndex].comments.findIndex(
+  return Static.posts[postIndex].comments[commentIndex].comments.findIndex(
     (item) => item.id == id,
   );
 };
