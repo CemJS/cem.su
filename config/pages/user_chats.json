@@ -1,5 +1,5 @@
 {
-  "regex": "/profile/chats",
+  "regex": "/profile/chats/",
   "front": [
     "chats",
     "menu"

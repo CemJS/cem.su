@@ -299,7 +299,7 @@ export default function ({ items, key = "" }) {
     // let cube: HTMLElement = element.querySelector("#cube");
     // let counter: HTMLElement = element?.querySelector("#counter");
     let galleryRun;
-    console.log("=bf9eec=", Ref[`slider${key}`]);
+    // console.log("=bf9eec=", Ref[`slider${key}`]);
     !galleryRun
       ? (galleryRun = new Gallery(
           Ref[`slider${key}`],

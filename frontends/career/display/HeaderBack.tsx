@@ -14,7 +14,7 @@ export default function () {
           </span>
 
           <h5 class="line-clamp-1 px-4 text-center text-base font-medium @700:text-xl">
-            Карьера
+            {front.Variable.words?.chapters?.career}
           </h5>
 
           <span

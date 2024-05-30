@@ -39,32 +39,32 @@ front.loader = async () => {
   Static.sections = [
     {
       icon: "lenta",
-      name: "Лента пользователей",
+      name: front.Variable.words?.chapters?.lenta,
       link: "/lenta",
     },
     {
       icon: "qa",
-      name: "Вопросы и ответы",
+      name: front.Variable.words?.chapters?.qa,
       link: "/questions",
     },
-    {
-      icon: "chart-bar",
-      name: "ICO Рейтинг",
-      link: "/list-icostartups",
-    },
-    {
-      icon: "rocket-launch",
-      name: "Стартапы",
-      link: "/list-startups",
-    },
+    // {
+    //   icon: "chart-bar",
+    //   name: "ICO Рейтинг",
+    //   link: "/list-icostartups",
+    // },
+    // {
+    //   icon: "rocket-launch",
+    //   name: "Стартапы",
+    //   link: "/list-startups",
+    // },
     {
       icon: "arrow-path-rounded-square",
-      name: "Обменники",
+      name: front.Variable.words?.chapters?.exchanges,
       link: "/exchanges",
     },
     {
       icon: "users",
-      name: "Пользователи",
+      name: front.Variable.words?.chapters?.users,
       link: "/users",
     }
   ];
@@ -72,48 +72,48 @@ front.loader = async () => {
   Static.menu = [
     {
       icon: "user",
-      name: "Профиль",
+      name: front.Variable.words?.chapters?.profile,
       link: `/user/${front.Variable?.myInfo?.nickname}`,
     },
     {
       icon: "trophy",
-      name: "Награды",
+      name: front.Variable.words?.chapters?.awards,
       link: "#",
     },
     {
       icon: "currency-dollar",
-      name: "Мои активы",
+      name: front.Variable.words?.chapters?.assets,
       link: "/profile/wallet",
     },
-    {
-      icon: "user-group",
-      name: "Партнерская программа",
-      link: "/user/affiliate",
-    },
+    // {
+    //   icon: "user-group",
+    //   name: "Партнерская программа",
+    //   link: "/user/affiliate",
+    // },
     {
       icon: "cog-6-tooth",
-      name: "Настройки",
+      name: front.Variable.words?.chapters?.settings,
       link: "/profile/settings",
     },
     {
       icon: "arrow-right-start-on-rectangle",
-      name: "Выход",
+      name: front.Variable.words?.exit,
       link: "#",
     },
   ];
 
   Static.submenu = [
     {
-      name: "Компания",
+      name: front.Variable.words?.company,
       opened: false,
       options: [
         {
-          name: "О нас",
+          name: front.Variable.words?.chapters?.about,
           link: "/about",
           target: false,
         },
         {
-          name: "Карьера",
+          name: front.Variable.words?.chapters?.career,
           link: "/career",
           target: false,
         },
@@ -125,38 +125,38 @@ front.loader = async () => {
       ],
     },
     {
-      name: "Поддержка",
+      name: front.Variable.words?.support,
       opened: false,
       options: [
         {
-          name: "Контакты",
+          name: front.Variable.words?.chapters?.contacts,
           link: "/contacts",
           target: false,
         },
       ],
     },
     {
-      name: "Правила",
+      name: front.Variable.words?.rules,
       options: [
         {
-          name: "Пользовательское соглашение",
+          name: front.Variable.words?.chapters?.userInvitation,
           link: "/terms-of-service",
           target: false,
         },
         {
-          name: "Политика использования данных",
+          name: front.Variable.words?.chapters?.dataUsagePolicy,
           link: "/data-policy",
           target: false,
         },
         {
-          name: "Политика cookies",
+          name: front.Variable.words?.chapters?.cookiesPolicy,
           link: "/cookies-policy",
           target: false,
         },
       ],
     },
     {
-      name: "CEM",
+      name: front.Variable.words?.cem,
       opened: false,
       options: [
         {

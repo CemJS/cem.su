@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import Preview from "./Preview";
 import RoadMap from "./RoadMap";
 import Team from "./Team";
@@ -17,7 +17,7 @@ import PreviewStandart from "./PreviewStandart";
 const aboutSlides: any = [
   {
     cover: trading,
-    name: "Карьера",
+    name: front.Variable.words?.chapters?.career,
     desc: "Объединяя криптоэнтузиастов с профессионалами крипторынка, участников коммьюнити с проектами и стартапами, мы стремимся чтобы каждый пользователь экосистемы Crypto Emergency нашел свой выигрыш - мы реализовываем модель WIN/WIN. Соединение соискателей с работодателями, проекты с фрилансерами - это одна из стратегий этой модели. Мы поможем людям со всего мира найти работу в сфере криптоиндустрии и IT.",
     link: "/vacancies",
   },

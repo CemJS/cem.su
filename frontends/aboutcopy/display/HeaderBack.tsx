@@ -18,7 +18,7 @@ export default function () {
               -webkit-box-orient: vertical;"
             class="flex items-center overflow-hidden text-xl"
           >
-            О нас
+            {front.Variable.words?.chapters?.about}
           </h5>
 
           <span

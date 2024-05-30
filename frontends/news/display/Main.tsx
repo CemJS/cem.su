@@ -36,25 +36,26 @@ const HeaderBack = function ({ title }) {
 }
 
 export default function () {
+    Fn.log('=news=', Static.news)
     return (
         <div>
             <HeaderBack title="Новости" />
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 @464:gap-4">
                 {
-                    Static.records.map((item, index) => {
+                    Static.news.map((item, index) => {
                         return (
                             <div class="cursor-pointer rounded-2xl relative bg-[#303545] grid grid-cols-[5rem_1fr] grid-rows-[1.5rem_2.5rem_auto] p-[0.8rem] gap-3 [grid-template-areas:'image_title'_'image_desc'_'statistics_statistics'] @870:block @870:pt-5 @870:pr-5 @870:pl-5 @870:pb-10"
                                 init={($el: any) => {
-                                    if (index == Static.records?.length - 1) {
+                                    if (index == Static.news?.length - 1) {
                                         const observer = new IntersectionObserver((entries) => {
                                             entries.forEach(async (entry) => {
                                                 if (entry.isIntersecting) {
                                                     observer.unobserve($el);
-                                                    front.Services.functions.sendApi("/api/events/News", {
+                                                    front.Services.functions.sendApi("/api/events/news", {
                                                         action: "skip",
                                                         lang: "ru",
                                                         category: Static.activeItem,
-                                                        skip: Static.records.length
+                                                        skip: Static.news.length
                                                     });
                                                 }
                                             });

@@ -1,5 +1,4 @@
 import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
-import footer from "@json/footer";
 import appStore from "@svg/icons/appStore.svg";
 import playMarket from "@svg/icons/playMarket.svg";
 import socials from "@json/footerSocial";
@@ -15,7 +14,7 @@ export default function () {
     >
       <div class="wrapper flex flex-col gap-[2.125rem] lg:gap-[4.125rem]">
         <div class="flex flex-col justify-between gap-[30px] sm:grid sm:grid-cols-2 sm:gap-5 lg:grid-cols-5">
-          {footer.map((item, i) => {
+          {Static.footer.map((item, i) => {
             return (
               <div
                 ref={`list${i}`}
@@ -43,9 +42,9 @@ export default function () {
                           class="relative block hover:!bg-clip-text hover:text-transparent hover:[background:--mainGradient]"
                           onclick={Fn.link}
                           target={
-                            footer[i].target ? footer[i].target[index] : ""
+                            Static.footer[i].target ? Static.footer[i].target[index] : ""
                           }
-                          href={footer[i].href[index]}
+                          href={Static.footer[i].href[index]}
                         >
                           <span>{item}</span>
                         </a>

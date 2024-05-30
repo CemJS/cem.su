@@ -10,7 +10,7 @@ export default function () {
           Fn.initOne("modalServices", {});
         }}
       >
-        Сервисы
+        {front.Variable.words?.services}
       </div>
       <div
         class="btn btn_dark"
