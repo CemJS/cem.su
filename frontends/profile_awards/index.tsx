@@ -10,7 +10,6 @@ front.func.test = () => {
   return;
 };
 
-
 export type Award = {
   icon: String;
   title: string;
@@ -59,6 +58,82 @@ front.loader = async () => {
           description: '30 вопрос задан на платформе',
           progress: 0,
           maxProgress: 30,
+        },
+        {
+          icon: awardIcon,
+          title: 'Любопытство',
+          reward: '0.8 CEMD',
+          description: '30 вопрос задан на платформе',
+          progress: 0,
+          maxProgress: 30,
+        },
+        {
+          icon: awardIcon,
+          title: 'Любопытство',
+          reward: '0.8 CEMD',
+          description: '30 вопрос задан на платформе',
+          progress: 0,
+          maxProgress: 30,
+        }
+      ],
+      [ 
+        {
+          icon: awardIcon,
+          title: 'Ответчик',
+          reward: '10 EXP',
+          description: '1 предложенный ответ на вопрос на платформе',
+          progress: 0,
+          maxProgress: 1,
+        },
+      ],
+      [
+        {
+          icon: awardIcon,
+          title: 'Отличник',
+          reward: '0.5 cemd',
+          description: '1 ответ выбран лучшим',
+          progress: 0,
+          maxProgress: 1,
+        },
+      ],
+      [ 
+        {
+          icon: awardIcon,
+          title: 'Ответчик',
+          reward: '10 EXP',
+          description: '1 предложенный ответ на вопрос на платформе',
+          progress: true,
+          maxProgress: 1,
+        },
+      ],
+      [
+        {
+          icon: awardIcon,
+          title: 'Отличник',
+          reward: '0.5 cemd',
+          description: '1 ответ выбран лучшим',
+          progress: 0,
+          maxProgress: 1,
+        },
+      ],
+      [
+        {
+          icon: awardIcon,
+          title: 'Отличник',
+          reward: '0.5 cemd',
+          description: '1 ответ выбран лучшим',
+          progress: 0,
+          maxProgress: 1,
+        },
+      ],
+      [
+        {
+          icon: awardIcon,
+          title: 'Отличник',
+          reward: '0.5 cemd',
+          description: '1 ответ выбран лучшим',
+          progress: 0,
+          maxProgress: 1,
         },
       ]
     ]
