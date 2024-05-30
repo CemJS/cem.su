@@ -52,8 +52,8 @@ export default function () {
                                                 if (entry.isIntersecting) {
                                                     observer.unobserve($el);
                                                     front.Services.functions.sendApi("/api/events/news", {
-                                                        action: "skip",
-                                                        lang: "ru",
+                                                        // action: "skip",
+                                                        lang: front.Variable.words?.code,
                                                         category: Static.activeItem,
                                                         skip: Static.news.length
                                                     });

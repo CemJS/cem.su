@@ -1,10 +1,11 @@
 import { Cemjsx, front, Func, Static, Fn, Events, Ref } from "cemjs-all"
 import Navigation from "./navigation"
+import Category from "./display/Category"
 
 front.listener.finish = async () => {
     return
 }
-// =============================
+
 front.func.dragging = (e) => {
     if (!Static.isDragging) return
     Ref.categoryLineList.classList.add("category-line__list_dragging")
@@ -46,15 +47,16 @@ front.func.updateIcons = (e: any) => {
 }
 
 
-// =============================
-
 front.loader = async () => {
     Static.isDragging = false
     Static.activeItem = "all"
-    // =======================
 
     Static.news = []
-    let url = front.Services.functions.makeUrlEvent("news", {})
+    let url = front.Services.functions.makeUrlEvent("news", {
+        lang: front.Variable.words?.code,
+        category: Static.activeItem,
+        skip: 0
+    })
     let listener = [
         {
             type: "get",
@@ -65,6 +67,17 @@ front.loader = async () => {
                 Static.news = json
             },
         },
+        {
+            type: "message",
+            fn: ({ data }) => {
+              let json = front.Services.functions.strToJson(data);
+              if (!json) {
+                return;
+              }
+        
+              Static.news = json;
+            },
+          },
         {
             type: "add",
             fn: ({ data }) => {

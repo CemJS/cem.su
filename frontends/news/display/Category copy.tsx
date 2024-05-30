@@ -28,7 +28,7 @@ export default function () {
             // if (Static.activeItem == "all") return
             Static.activeItem = "all"
             // Events.news.change(front.Services.functions.makeUrlEvent("News", { lang: "ru" }))
-            front.Services.functions.sendApi("/api/events/News", {
+            front.Services.functions.sendApi("/api/events/news", {
               action: "category",
               category: Static.activeItem,
               lang: "ru",
