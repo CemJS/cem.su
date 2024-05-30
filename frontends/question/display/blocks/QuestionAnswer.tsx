@@ -128,7 +128,7 @@ export default function ({ answer, answerIndex }) {
             </div>
           )}
 
-          {answer.media ? (
+          {answer.media.length > 0 ? (
             <CubeSlider
               items={answer?.media?.map((it, i) => {
                 return <QuestionMedia mediaItem={it} index={answer?.id} />;

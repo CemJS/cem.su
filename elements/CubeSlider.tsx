@@ -1,7 +1,6 @@
 import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
 
 const GalleryLineclass = "line";
-const GalleryGraggableclass = "gallery_draggable";
 
 class Gallery {
   element: HTMLElement;
@@ -13,7 +12,7 @@ class Gallery {
   size: number; // количество слайдов галереи
   currentSlide: number; // первый слайд
   countSlides: number;
-  lineNode: any;
+  lineNode: HTMLElement;
   dotsNode: any;
   slideItems: any;
   widthContainer: any;
@@ -34,11 +33,17 @@ class Gallery {
   cube: any;
   counter: any;
 
-  constructor(element: HTMLElement, cube: HTMLElement, counter: HTMLElement) {
+  constructor(
+    element: HTMLElement,
+    cube: HTMLElement,
+    counter: HTMLElement,
+    lineNode: HTMLElement,
+  ) {
     this.element = element;
     this.cube = cube;
+    this.lineNode = lineNode;
     this.counter = counter;
-    this.elementCount = this.cube.children.length;
+    this.elementCount = this.cube?.children?.length;
     this.countSlides = 1;
     this.size = Math.ceil(this.elementCount / this.countSlides); // определяем кол-во слайдов галереи
     this.currentSlide = 0;
@@ -68,12 +73,13 @@ class Gallery {
   }
 
   manageHTML() {
-    this.lineNode = this.element.querySelector(`.${GalleryLineclass}`);
-    this.counter = this.element.querySelector(`#counter`);
-    this.cube = this.element.querySelector(`#cube`);
+    // this.lineNode = this.element.querySelector(`#line`);
+    // this.counter = this.element.querySelector(`#counter`);
+    // this.cube = this.element.querySelector(`#cube`);
   }
 
   setParameters() {
+    // this.manageHTML();
     const coordsContainer = this.element.getBoundingClientRect();
     this.widthContainer = coordsContainer.width;
     this.x = -(this.currentSlide * 90);
@@ -83,11 +89,24 @@ class Gallery {
       ? (this.cube.style.cursor = `grab`)
       : (this.cube.style.cursor = "");
 
-    this.lineNode.style.width = `${this.widthContainer}px`;
+    if (this.lineNode.classList.contains("line")) {
+      this.lineNode.style.width = `${this.widthContainer}px`;
+    } else {
+      this.lineNode.style.display = `none`;
+      this.counter.style.display = `none`;
+    }
 
     // поворот куба
     this.cube.style.transform = `translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(${this.x}deg)`;
     this.cube.style.transformOrigin = `50% 50% -${this.widthContainer / 2}px`;
+
+    if (this.size > 1 && this.counter) {
+      this.counter.textContent = `${this.currentSlide + 1} / ${this.size}`;
+      this.counter.style.display = ""; // Сброс display стиля чтобы показать счётчик
+      this.counter.style.width = "auto"; // Явно задаем ширину для counter
+    } else if (this.counter) {
+      this.counter.style.display = "none";
+    }
 
     // счётчик
     this.size > 1
@@ -285,46 +304,42 @@ function debounce(func, time = 100) {
 
 export { Gallery };
 
-// const init = function (element: HTMLElement) {
-//   let cube: HTMLElement = element.querySelector("#cube");
-//   let counter: HTMLElement = element?.querySelector("#counter");
-//   let galleryRun;
-//   !galleryRun
-//     ? (galleryRun = new Gallery(element, cube, Ref[`counter${key}`]))
-//     : "";
-// };
-
 export default function ({ items, key = "" }) {
   const init = function (element: HTMLElement) {
-    // let cube: HTMLElement = element.querySelector("#cube");
-    // let counter: HTMLElement = element?.querySelector("#counter");
-    let galleryRun;
-    // console.log("=bf9eec=", Ref[`slider${key}`]);
-    !galleryRun
-      ? (galleryRun = new Gallery(
-          Ref[`slider${key}`],
-          Ref[`cube${key}`],
-          Ref[`counter${key}`],
-        ))
-      : "";
+    if (Ref[`galleryInstance${key}`]) {
+      Ref[`galleryInstance${key}`].destroyEvents();
+    }
+    Ref[`galleryInstance${key}`] = new Gallery(
+      Ref[`slider${key}`],
+      Ref[`cube${key}`],
+      Ref[`counter${key}`],
+      Ref[`line${key}`],
+    );
   };
+  {
+    Ref?.[`slider${key}`] ? init(Ref[`slider${key}`]) : null;
+  }
   return (
     <div
       class="relative mx-auto h-full w-full [&_img]:w-full"
       ref={`slider${key}`}
-      init={() => init(Ref[`counter${key}`])}
+      init={() => init(Ref[`slider${key}`])}
     >
+      {key}
       {items.length > 1 ? (
         <div
           ref={`counter${key}`}
-          id="counter"
+          id={`counter${key}`}
           class="pointer-events-none absolute right-3 top-3 z-10 flex min-w-[26px] items-center justify-center rounded-[10px] p-[5px] text-center font-semibold [background:rgba(0,0,0,0.6);]"
         ></div>
       ) : (
         ""
       )}
 
-      <div class="line h-full w-full touch-none [perspective:1200px]">
+      <div
+        ref={`line${key}`}
+        class="line h-full w-full touch-none [perspective:1200px]"
+      >
         <div
           id="cube"
           ref={`cube${key}`}
@@ -333,7 +348,7 @@ export default function ({ items, key = "" }) {
           {items?.map((item, i) => {
             return (
               <div
-                id="slide"
+                id={`slide${i + key}`}
                 ref={`slide${i + key}`}
                 class={[
                   "w-full flex-shrink-0 select-none bg-[--back700] [backface-visibility:hidden] [transform-origin:0_0] [transform-style:preserve-3d] [&_img]:pointer-events-none [&_img]:select-none",

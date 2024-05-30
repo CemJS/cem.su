@@ -51,9 +51,7 @@ front.func.closeEdit = (id) => {
 front.func.getQuestion = async (id) => {
   let url = front.Services.functions.makeUrlEvent(`questions/${id}`);
 
-  console.log("=c01a68=", id);
   Events.question = await Fn.event(url, Static.questionListener);
-  console.log("=5e6d17=", id);
 
   front.Services.functions.sendApi(`/api/questions/${id}/answers`, {});
 };
@@ -317,7 +315,7 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        Static.record.answers.unshift(json);
+        Static.record.answers.splice(0, 0, json);
         Static.record.statistics.answers++;
         // front.loader(); // временное решение (медиа съезжают при добавлении)
       },
