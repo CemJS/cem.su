@@ -1,0 +1,4 @@
+{
+  "regex": "/profile/awards",
+  "front": ["header", "profile_awards", "footer"]
+}

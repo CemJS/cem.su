@@ -8,11 +8,11 @@ type HeaderItem = {
 function HeaderItem({ text, nameNotify }: HeaderItem ) {
   const nonActiveStyle = "relative flex z-[1] h-10 w-full cursor-pointer items-center justify-center rounded-[--borderR] [background:rgba(255,255,255,0.09)] [transition:all_0.35s_ease-in-out] max-w-80 [&amp;.active_#active]:opacity-100 [&amp;.active_span]:font-bold [&amp;:hover_span]:font-bold"
   const activeStyle = `${nonActiveStyle} [&.active_#active]:opacity-100 active`
-
+  
   return (
     <button 
       class={ Static.activeNotify === nameNotify ? activeStyle : nonActiveStyle }
-      onclick={ () => { 
+      onclick={ () => {
         Static.activeNotify = nameNotify;
         toggleAnimation();
       }}

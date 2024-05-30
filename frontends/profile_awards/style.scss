@@ -1,0 +1,132 @@
+.notifications {
+  &__container {
+    max-width: 1240px;
+    margin: 0 auto;
+
+    @media (max-width: 1320px) {
+      margin: 0 40px;
+    }
+
+    @media (max-width: 992px) {
+      margin: 0 20px;
+    }
+  }
+
+  &__header {
+    width: 100%;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    padding: 25px;
+    padding-bottom: 0px;
+    border-radius: 5px;
+    background: #2e3340;
+
+    h2 {
+      font-size: 24px;
+
+      @media (max-width: 479px) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    &_item {
+      padding-bottom: 10px;
+      color: #dbdbdb;
+      cursor: pointer;
+
+      @media (max-width: 479px) {
+        font-size: 13px;
+      }
+
+      &_active {
+        padding-bottom: 10px;
+        color: var(--white);
+        border-bottom: 3px solid;
+        border-image-slice: 0% 0% 100 0%;
+        border-image-source: linear-gradient(
+          89.03deg,
+          #679fef 0.54%,
+          #a87fff 97.66%
+        );
+      }
+    }
+  }
+
+  &__list {
+    &_item {
+      padding: 20px 25px 20px 25px;
+      transition: 0.5s;
+      cursor: pointer;
+
+      @media (max-width: 479px) {
+        padding-bottom: 10px;
+      }
+
+      img {
+        height: 25px;
+        margin-right: 10px;
+      }
+
+      p {
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 125%;
+        color: #efefef;
+        margin-bottom: 10px;
+        display: inline-block;
+
+        @media (max-width: 479px) {
+          font-size: 12px;
+        }
+      }
+
+      span {
+        display: block;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 125%;
+        color: #b8c0cd;
+
+        @media (max-width: 479px) {
+          font-size: 12px;
+        }
+
+        &:last-child {
+          margin-top: 15px;
+          color: #767c85;
+        }
+      }
+
+      &_nickname {
+        margin-top: 2px;
+
+        a {
+          margin-left: 5px;
+          font-size: 14px;
+          color: #b8c0cd;
+          margin-top: 0px;
+          background: linear-gradient(
+            45deg,
+            #3bade3 0,
+            #576fe6 45%,
+            #9844b7 57%,
+            #ff357f 70%
+          );
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
