@@ -53,7 +53,7 @@ front.loader = async () => {
     Static.activeItem = "all"
     // =======================
 
-    Static.records = []
+    Static.news = []
     let url = front.Services.functions.makeUrlEvent("news", {})
     let listener = [
         {
@@ -61,8 +61,8 @@ front.loader = async () => {
             fn: ({ data }) => {
                 let json = front.Services.functions.strToJson(data)
                 if (!json) { return }
-                // Fn.log('=0b636f=', "Static.records", "get", json)
-                Static.records = json
+                Fn.log('=0b636f=', "Static.news", "get", json)
+                Static.news = json
             },
         },
         {
@@ -70,9 +70,20 @@ front.loader = async () => {
             fn: ({ data }) => {
                 let json = front.Services.functions.strToJson(data)
                 if (!json) { return }
-                Static.records.push(...json)
+                Static.news.push(...json)
             },
-        }
+        },
+        // skip
+        {
+            type: "skip",
+            fn: ({ data }) => {
+            let json = front.Services.functions.strToJson(data);
+            if (!json) {
+                return;
+            }
+            Static.news = [...Static.news, ...json];
+            },
+        },
     ]
     Events.news = await Fn.event(url, listener)
 

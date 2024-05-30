@@ -107,12 +107,12 @@ export default function () {
   return (
     <main class="relative overflow-hidden">
       <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-solid border-[#363C50]">
-        Разделы
+        {front.Variable.words?.chapters?.chapters}
       </span>
       <RenderSidebarMenu menu={Static.sections} />
       {front.Variable.Auth ?
         <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#363C50]">
-          Меню
+          {front.Variable.words?.chapters?.menu}
         </span>
         : null}
       {front.Variable.Auth ? <RenderSidebarMenu menu={Static.menu} /> : null}
@@ -124,10 +124,9 @@ export default function () {
       </span>
       <RenderSidebarSubmenu submenu={Static.submenu} />
       <span class="font-semibold text-lg p-4 w-full block bg-[#1d2029] border-b-[1px] border-t-[1px] border-solid border-[#363C50]">
-        Социальные сети
+      {front.Variable.words?.chapters?.socials}
       </span>
       <div
-        // class="sidebar-downloads"
         class="grid grid-cols-2 p-4 pb-0 gap-2"
       >
         <a

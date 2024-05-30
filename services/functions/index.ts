@@ -79,7 +79,7 @@ export const loader = async function (Variable: any, Fn: any) {
 
   eventSource.addEventListener("get", async ({ data }) => {
     let json = strToJson(data);
-    console.log("=022338=", json);
+    // console.log("=myInfo=", json);
     if (json) {
       let inx = await indexDB({ json });
     } else {
@@ -99,20 +99,17 @@ export const loader = async function (Variable: any, Fn: any) {
 
     const lang = localStorage.lang;
     // console.log("=7d2281=", lang);
-    Variable.words = await IndexDBGetByOne({
+    let words = await IndexDBGetByOne({
       base: "linguaData",
       key: "translations",
     });
 
-    Variable.words = Variable?.words[0];
-    // console.log("=b7bda2=", Variable?.words);
-    Array.isArray(Variable.words)
-      ? (Variable.words = Variable?.words?.find((item) => item?.code == lang))
-      : null;
-    // console.log("=b7bda2=", Variable.words);
+    Variable.words = words[0][1];
+    // Array.isArray(Variable.words)
+    //   ? (Variable.words = Variable?.words?.find((item) => item?.code == lang))
+    //   : null;
 
-    Variable.words = Variable.words?.notify;
-    // console.log("=02c186=", Variable.words);
+    // Variable.words = Variable.words?.notify;
 
     if (
       !localStorage.countries_update ||
