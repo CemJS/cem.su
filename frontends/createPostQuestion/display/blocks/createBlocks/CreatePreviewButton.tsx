@@ -1,7 +1,7 @@
 import CubeSlider from "@elements/CubeSlider";
+import Media from "@elements/Media";
 import Post from "@elements/post/Post";
 import { Cemjsx, Fn, Static, front } from "cemjs-all";
-import QuestionMedia from "frontends/question/display/blocks/QuestionMedia";
 import QuestionStatistic from "frontends/question/display/blocks/QuestionStatistic";
 import QuestionUser from "frontends/question/display/blocks/QuestionUser";
 
@@ -46,7 +46,9 @@ const callModal = () => {
   };
   if (Static.page == "posts") {
     Fn.initOne("previewModal", {
-      item: () => <Post item={item} index={-1} hideOptions={true} />,
+      item: () => (
+        <Post item={item} index={new Date().getTime()} hideOptions={true} />
+      ),
     });
   }
   if (Static.page == "questions") {
@@ -64,8 +66,9 @@ const callModal = () => {
             <div class="pt-4">
               <CubeSlider
                 items={Static.data?.media?.map((media, i) => {
-                  return <QuestionMedia mediaItem={media} index={i} />;
+                  return <Media mediaItem={media} index={i} />;
                 })}
+                key={String(new Date().getTime())}
               />
             </div>
           ) : (
@@ -82,6 +85,7 @@ export default function () {
   return (
     <button
       onclick={(e: Event) => {
+        console.log("=36b22c=", 1);
         e.preventDefault();
         Static.isValid ? callModal() : null;
       }}

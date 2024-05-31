@@ -42,7 +42,7 @@ export default function ({ item, index }: { item: Post; index: number }) {
                 title: "удалить свой пост",
                 Callback: async (CallBack: boolean) => {
                   if (CallBack) {
-                    Func.delete(item);
+                    Func.delete(item, index);
                   }
                 },
               });

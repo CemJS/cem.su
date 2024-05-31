@@ -58,11 +58,6 @@ export default function () {
       <div class="flex justify-between">
         <div
           onclick={() => {
-            console.log(
-              "=696eeb=",
-              Ref.container.offsetWidth,
-              Ref.container.offsetHeight,
-            );
             Static.cropper.crop();
             setTimeout(() => {
               Static.cropper.setData({ width: "100%", height: "100%" });

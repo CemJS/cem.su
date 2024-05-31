@@ -105,18 +105,17 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 
 // запросы
 
-front.func.delete = async (item) => {
+front.func.delete = async (item, index) => {
   let res = await Func.sendAuth(`/api/posts/${item?.id}/delete`, {});
-  console.log("=be736f=", res);
   if (res.status == 200) {
-    item.hide = true;
+    Static.posts.splice(index, 1);
+  } else {
+    Fn.initOne("alert", { text: "Не удалось удалить пост", type: "danger" });
   }
-  console.log("=6dc889=", Static.posts);
   return;
 };
 
 front.func.follow = async (item) => {
-  console.log("=3f6bdc=", item.id);
   let res;
   !item?.subscribed
     ? (res = await Func.sendAuth(

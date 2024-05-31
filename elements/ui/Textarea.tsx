@@ -6,6 +6,7 @@ export default function ({
   className,
   value,
   ref,
+  error,
 }: {
   oninput: (e: InputEvent) => void;
   // isValid: boolean;
@@ -28,6 +29,9 @@ export default function ({
       <textarea ref={ref} class="!bg-[#202432]" rows="3" oninput={oninput}>
         {value}
       </textarea>
+      <p class="modalWindow_field__status" style="color:#E84142">
+        {error}
+      </p>
     </div>
   );
 }

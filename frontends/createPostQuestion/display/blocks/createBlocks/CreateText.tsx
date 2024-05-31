@@ -1,5 +1,5 @@
 import Textarea from "@elements/ui/Textarea";
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 
 export default function () {
   return (
@@ -18,10 +18,12 @@ export default function () {
     <Textarea
       ref={"text"}
       value={Static.data?.text}
+      error={Static.form?.text?.error}
       oninput={(e) => {
         const target = e.target as HTMLInputElement;
         Static.form.text.value = target?.value;
         Static.data.text = target?.value;
+        front.Services.functions.formQuestion(Static.form.text);
         Func.checkForm();
         Func.checkValid();
       }}
