@@ -6,37 +6,39 @@ type Swiper = {
     awards: TAward[];
 }
 export default function({ awards }: Swiper) {
-    const values = {
-        translateX: 0,
-        translateY: 0,
-        translateZ: 0,
-        rotateZ: 0,
+    function shuffleRight() {
+        changeStyle();
+        moveFirstElToEnd();
     }
 
-    function getRotateZ() {
-        return values.rotateZ = values.rotateZ + 2;
+    function moveFirstElToEnd() {
+        const node = document.querySelectorAll('.testAward')[1];
+        const element = node.childNodes[0] as HTMLElement;
+        
+        node.removeChild(element);
+        node.appendChild(element);
     }
 
-    function getTranslateY() {
-        return values.translateY = values.translateY + 220;
-    }
+    function changeStyle () {
+        const node = document.querySelectorAll('.testAward')[1];
+        const nodeList = node.childNodes;
 
-    function getTranslateZ() {
-        return values.translateZ = values.translateZ - 100;
-    }
-
-    function getTranslateX() {
-        const res = [7.25, 13, 17.25, 20][values.translateX];
-            
-        values.translateX++;
-        if(values.translateX > 3) values.translateX = 3;
-
-        return res;
+        nodeList.forEach((el: HTMLElement, i) => {
+            if( i === 0 ) {
+                el.classList.remove(`card-${i}`);
+                el.classList.add(`card-6`);
+            }
+            else {
+                el.classList.remove(`card-${i}`);
+                el.classList.add(`card-${i - 1}`);
+            }
+                
+        })
     }
 
     return (
-        <div class="w-full sm:max-w-60 relative z-10" style="perspective: 1200px;">
-            <div class="h-full flex conatinerA">
+        <div class="w-full sm:max-w-60 relative swiperTest" >
+            <div class="swiper-wrapperTest testAward" onclick={shuffleRight}>
                 { awards.map((award, i) => {
                     return <Award
                         icon={ award.icon }
@@ -45,8 +47,9 @@ export default function({ awards }: Swiper) {
                         description={ award.description }
                         progress={ award.progress }
                         maxProgress={ award.maxProgress }
-                        classes={ i === 0 ? 'relative z-[10]' : `secondary-award z-[${10-i}]` }
-                        style={ i !== 0 ? `transform: translate3d(calc(${getTranslateX()}% - ${getTranslateY()}px), 0px, ${getTranslateZ()}px) rotateZ(${getRotateZ()}deg) scale(1);` : null }
+                        ariaLabelStart={ i + 1 }
+                        ariaLabelEnd={ awards.length }
+                        classes={ `card-${i}` }
                     />
                 })}
             </div>

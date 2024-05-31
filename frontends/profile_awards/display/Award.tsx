@@ -1,11 +1,16 @@
 import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all";
 import plusIcon from "@svg/personalAwards/plus.svg";
-import type { Award } from '..';
+import type { Award as TAward } from '..';
 
-
-export default function ({ icon, title, reward, description, progress, maxProgress, classes, style }: Award & { classes?: string, style?: string } ) {
+interface Award extends TAward  {
+  classes?: string;
+  style?: string;
+  ariaLabelStart: number;
+  ariaLabelEnd: number;
+}
+export default function ({ icon, title, reward, description, progress, maxProgress, classes, style, ariaLabelStart, ariaLabelEnd }: Award ) {
   return (
-    <div class={ classes + " w-full h-full" } style={ style }>
+    <div class={ classes + " w-full h-full" } style={ style } role="group" aria-label={ ariaLabelStart + ' / ' + ariaLabelEnd }>
 
       <div class="relative flex flex-col sm:items-center p-7 sm:pt-10 sm:pb-8 sm:px-11 cursor-grab bg-[#33394a] rounded-md border border-[#52586A] w-full sm:max-w-60 h-full">
 

@@ -1,17 +1,72 @@
-.secondary-award {
+.swiperTest {
   position: relative;
-  transform-origin: center bottom;
-  backface-visibility: hidden;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  transition-property: transform;
-  overflow: hidden;
-  box-sizing: content-box;
-  flex-shrink: 0;
+  touch-action: pan-y;
+  overflow: visible;
+  perspective: 800px;
+  z-index: 10 !important;
 }
 
-.containerA {
+.swiper-wrapperTest {
+  display: flex;
+  height: 100%;
   transition-property: transform;
-  transition-timing-function: 1;
+  transition-timing-function: linear;
   transform-style: preserve-3d;
+  position: relative;
+}
+
+.card {
+  flex-shrink: 0;
+  transform-origin: center;
+  backface-visibility: hidden;
+  transition-property: transform;
+
+  &-0 {
+    @extend .card;
+
+    transform: translate3d(0px, 0px, 0px) rotateZ(0deg); 
+    z-index: 10
+  }
+
+  &-1 {
+    @extend .card;
+
+    transform: translate3d(calc(7.25% - 220px), 0px, -100px) rotateZ(2deg); 
+    z-index: 9
+  }
+
+  &-2 {
+    @extend .card;
+
+    transform: translate3d(calc(13% - 440px), 0px, -200px) rotateZ(4deg); 
+    z-index: 8
+  }
+
+  &-3 {
+    @extend .card;
+
+    transform: translate3d(calc(17.25% - 660px), 0px, -300px) rotateZ(6deg); 
+    z-index: 7
+  }
+
+  &-4 {
+    @extend .card;
+
+    transform: translate3d(calc(20% - 880px), 0px, -400px) rotateZ(6deg); 
+    z-index: 6
+  }
+
+  &-5 {
+    @extend .card;
+
+    transform: translate3d(calc(20% - 1100px), 0px, -500px) rotateZ(6deg); 
+    z-index: 5
+  }
+
+  &-6 {
+    @extend .card;
+
+    transform: translate3d(calc(20% - 1320px), 0px, -600px) rotateZ(6deg); 
+    z-index: 4
+  }
 }
