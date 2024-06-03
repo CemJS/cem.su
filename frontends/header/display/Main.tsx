@@ -1,6 +1,5 @@
-import { Cemjsx, Fn, front, Func, Events } from "cemjs-all";
+import { Cemjsx, Fn, front, Func, Events, Static } from "cemjs-all";
 import logo from "@svg/logo.svg";
-import menu from "@json/menu";
 import frameDefault from "@svg/lenta/default.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
@@ -14,7 +13,7 @@ const RenderMenu = function ({ menu }) {
           <li
             class="cursor-pointer whitespace-nowrap"
             onclick={async () => {
-              Fn.linkChange(`${item.url}`, { item: 5, test: 7, t: "hhh" });
+              Fn.linkChange(`${item.url}`);
             }}
           >
             {item.name}
@@ -33,18 +32,18 @@ export default function () {
           <a href="/" onclick={Fn.link} class="h-12 sm:h-16">
             <img class="h-full" src={logo} alt="Crypto Emergency" />
           </a>
-          <RenderMenu menu={menu} />
+          <RenderMenu menu={Static.menu} />
         </nav>
 
         <div class="flex items-center gap-x-4">
           <div
             class="btn btn_dark hidden sm:flex"
             onclick={() =>
-              Fn.initOne("modalLanguage", { title: "Выбор основного языка" })
+              Fn.initOne("modalLanguage", { title: front.Variable.words?.language })
             }
           >
             <i class="i i-globe-alt text-xl"></i>
-            <span>{front.Variable.lang ? front.Variable.lang : "Язык"}</span>
+            <span>{front.Variable.lang ? front.Variable.lang : front.Variable.words?.language}</span>
             <i class="i i-chevron-right text-xl"></i>
           </div>
 
@@ -62,7 +61,7 @@ export default function () {
               >
                 <i class="i i-bell text-2xl"></i>
                 <div class="absolute right-[-6px] top-[4px] flex h-5 w-5 items-center justify-center rounded-full border-[1px] border-solid border-[#363C50] bg-[#1d2029] shadow">
-                  <span class="text-[10px]">5</span>
+                  <span class="text-[10px]">{front.Variable.myInfo?.statistics?.level}</span>
                 </div>
               </div>
               <div
@@ -118,13 +117,13 @@ export default function () {
           ) : (
             <div class="flex cursor-pointer items-center gap-2">
               <span onclick={() => Fn.initOne("modalAuthtorization", {})}>
-                Вход
+                {front.Variable.words?.input}
               </span>
               <button
                 class="btn"
                 onclick={() => Fn.initOne("modalRegistration", {})}
               >
-                Регистрация
+                {front.Variable.words?.registration}
               </button>
             </div>
           )}

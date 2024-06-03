@@ -14,7 +14,7 @@ export default function () {
             <i class="i i-chevron-left text-2xl"></i>
           </span>
 
-          <h5 class="@700:text-xl text-center px-4 line-clamp-1 font-medium text-base">Политика cookies</h5>
+          <h5 class="@700:text-xl text-center px-4 line-clamp-1 font-medium text-base">{front.Variable?.words?.chapters?.cookiePolicy}</h5>
 
           <span
             class="relative cursor-pointer w-8 after:content-['...'] after:absolute after:text-5xl after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%]"

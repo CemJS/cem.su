@@ -25,11 +25,11 @@ const HeaderBack = function ({ title }) {
               Fn.initOne("modalTools", {
                 records: [
                   {
-                    name: "Скопировать URL",
+                    name: front.Variable.words?.tools?.copyURL
                   },
                   {
-                    name: "Поделиться",
-                  },
+                    name: front.Variable.words?.tools?.share
+                  }
                 ],
               })
             }
@@ -76,7 +76,6 @@ export default function () {
         </div>
         <div class="flex items-center gap-1">
           <i class="i i-eye"></i>
-          {/* {Static.record.statistics?.rating} */}
         </div>
         <div class="flex items-center gap-1">
           <i class="i i-comment"></i>

@@ -21,10 +21,10 @@ const HeaderBack = function ({ title }) {
                         onclick={() => Fn.initOne("modalTools", {
                             records: [
                                 {
-                                    name: "Скопировать URL"
+                                    name: front.Variable.words?.tools?.copyURL
                                 },
                                 {
-                                    name: "Поделиться"
+                                    name: front.Variable.words?.tools?.share
                                 }
                             ]
                         })}
@@ -36,10 +36,10 @@ const HeaderBack = function ({ title }) {
 }
 
 export default function () {
-    Fn.log('=news=', Static.news)
+    // Fn.log('=news=', Static.news)
     return (
         <div>
-            <HeaderBack title={front.Variable.words?.news} />
+            <HeaderBack title={front.Variable.words?.chapters?.news} />
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 @464:gap-4">
                 {
                     Static.news.map((item, index) => {
