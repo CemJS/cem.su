@@ -13,9 +13,9 @@ export default function () {
       <thead class="text-[1.125rem]">
         <tr class="hidden grid-cols-1 @330:[grid-template-columns:0.5fr_0.5fr_0.5fr] @410:grid-cols-3 @650:grid @650:min-h-[5rem] @650:items-center @650:[grid-template-columns:1fr_1fr_2fr_2fr]">
           <th>#</th>
-          <th class="flex items-center justify-start">Название</th>
-          <th>Цена (USDT)</th>
-          <th>Изм.(24ч)</th>
+          <th class="flex items-center justify-start">{front.Variable.words?.title}</th>
+          <th> {`${front.Variable.words?.price} (USDT)`}</th>
+          <th> {`${front.Variable.words?.change}.(24${front.Variable.words?.hour})`} </th>
         </tr>
       </thead>
       <tbody class="block rounded-tl-[--borderR] rounded-tr-[--borderR] text-[1rem] font-medium [border:none] @450:[border:1px_solid_var(--border)]">
