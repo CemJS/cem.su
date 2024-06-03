@@ -1,72 +1,94 @@
-.swiperTest {
+.swiper {
   position: relative;
   touch-action: pan-y;
   overflow: visible;
-  perspective: 800px;
-  z-index: 10 !important;
+  perspective: 1200px;
+  z-index: 1;
 }
 
-.swiper-wrapperTest {
+.swiper-wrapper {
   display: flex;
+  width: 100%;
   height: 100%;
   transition-property: transform;
-  transition-timing-function: linear;
+  transition-timing-function: initial;
   transform-style: preserve-3d;
   position: relative;
+  z-index: 1;
+  cursor: grab;
 }
 
-.card {
+.swiper-card {
   flex-shrink: 0;
-  transform-origin: center;
+  transform-origin: center bottom;
   backface-visibility: hidden;
+  overflow: hidden;
   transition-property: transform;
+  transform-style: preserve-3d;
 
   &-0 {
-    @extend .card;
-
-    transform: translate3d(0px, 0px, 0px) rotateZ(0deg); 
-    z-index: 10
+    transform:
+      translate3d(0px, 0px, 0px) 
+      rotateZ(0deg);
+    z-index: 9 
   }
 
   &-1 {
-    @extend .card;
-
-    transform: translate3d(calc(7.25% - 220px), 0px, -100px) rotateZ(2deg); 
-    z-index: 9
+    transform: 
+      translate3d(calc(7.25% - 240px), 0px, -100px) 
+      rotateZ(2deg); 
+    z-index: 8 
   }
 
   &-2 {
-    @extend .card;
-
-    transform: translate3d(calc(13% - 440px), 0px, -200px) rotateZ(4deg); 
-    z-index: 8
+    transform: 
+      translate3d(calc(13% - 480px), 0px, -200px) 
+      rotateZ(4deg);
+    z-index: 7 
   }
 
   &-3 {
-    @extend .card;
-
-    transform: translate3d(calc(17.25% - 660px), 0px, -300px) rotateZ(6deg); 
-    z-index: 7
+    transform: 
+      translate3d(calc(17.25% - 720px), 0px, -300px) 
+      rotateZ(6deg); 
+    z-index: 6 
   }
 
   &-4 {
-    @extend .card;
-
-    transform: translate3d(calc(20% - 880px), 0px, -400px) rotateZ(6deg); 
-    z-index: 6
-  }
-
-  &-5 {
-    @extend .card;
-
-    transform: translate3d(calc(20% - 1100px), 0px, -500px) rotateZ(6deg); 
+    transform: 
+      translate3d(calc(20% - 960px), 0px, -400px)
+      rotateZ(6deg); 
     z-index: 5
   }
 
-  &-6 {
-    @extend .card;
-
-    transform: translate3d(calc(20% - 1320px), 0px, -600px) rotateZ(6deg); 
+  &-5 {
+    transform: 
+      translate3d(calc(20% - 1200px), 0px, -400px)
+      rotateZ(6deg); 
     z-index: 4
+  }
+
+  &-6 {
+    transform:
+      translate3d(calc(20% - 1440px), 0px, -400px)
+      rotateZ(6deg);
+    z-index: 3;
+  }
+}
+
+@keyframes first-card {
+  50% {
+    transform: 
+      translate3d(calc(-50% + 0px), -13%, -50px) 
+      rotateZ(-15deg);
+    scale: 0.75;
+  }
+
+  100% {
+    transform:
+      translate3d(calc(20% - 1440px), 0px, -400px)
+      rotateZ(6deg);
+    z-index: 4;
+    scale: 1;
   }
 }

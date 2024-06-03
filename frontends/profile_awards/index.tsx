@@ -1,4 +1,4 @@
-import { Cemjsx, front, Func, Static, Fn } from "cemjs-all";
+import { Cemjsx, front, Func, Fn } from "cemjs-all";
 import Navigation from "./navigation";
 import awardIcon from "@svg/personalAwards/badge1.svg";
 
@@ -9,6 +9,12 @@ front.listener.finish = () => {
 front.func.test = () => {
   return;
 };
+
+front.loader = () => {
+
+}
+
+front.Static.a = {}
 
 export type Award = {
   icon: String;
@@ -155,7 +161,7 @@ front.loader = async () => {
     ]
   } 
 
-  Static.awards = result;
+  Static.awards<ServerResponse> = result;
 
   return;
 };

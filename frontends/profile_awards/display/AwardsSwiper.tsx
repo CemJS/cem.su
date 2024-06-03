@@ -1,44 +1,54 @@
 import { Cemjsx, Fn, Static, front, Ref } from "cemjs-all";
 import type { Award as TAward } from '..';
 import Award from './Award';
+import TranslateCard from "./TranslateCard";
 
 type Swiper = {
     awards: TAward[];
 }
 export default function({ awards }: Swiper) {
-    function shuffleRight() {
-        changeStyle();
-        moveFirstElToEnd();
+    function setEvent() {
+        let grab: boolean;
+        let startPageX: number;
+
+        Ref.swiper.addEventListener("pointerdown", (e) => {
+            document.getElementsByTagName("body")[0].style.cursor = "grabbing"
+            Ref.swiper.style.cursor = "grabbing"
+            grab = true
+            startPageX = e.pageX;
+        });
+
+        document.addEventListener("pointerup", () => {
+            document.getElementsByTagName("body")[0].style.cursor = "default"
+            Ref.swiper.style.cursor = "grab"
+            grab = false
+        });
+
+        document.addEventListener("pointermove", (e: MouseEvent) => {
+            if (!grab) return;
+
+            Static.x = e.pageX - startPageX;
+
+            new TranslateCard(e.pageX - startPageX, Ref.swiper);
+        });
     }
 
-    function moveFirstElToEnd() {
-        const node = document.querySelectorAll('.testAward')[1];
-        const element = node.childNodes[0] as HTMLElement;
-        
-        node.removeChild(element);
-        node.appendChild(element);
-    }
-
-    function changeStyle () {
-        const node = document.querySelectorAll('.testAward')[1];
-        const nodeList = node.childNodes;
-
-        nodeList.forEach((el: HTMLElement, i) => {
-            if( i === 0 ) {
-                el.classList.remove(`card-${i}`);
-                el.classList.add(`card-6`);
+    function click() {
+        Ref.swiper.childNodes.forEach((el: HTMLElement, i) => {
+            if ( i === 0 ) {
+                el.classList.remove(`swiper-card-0`)
+                el.classList.add(`swiper-card-6`)
+            } else {
+                el.classList.remove(`swiper-card-${i}`)
+                el.classList.add(`swiper-card-${i - 1}`)
             }
-            else {
-                el.classList.remove(`card-${i}`);
-                el.classList.add(`card-${i - 1}`);
-            }
-                
         })
     }
 
+
     return (
-        <div class="w-full sm:max-w-60 relative swiperTest" >
-            <div class="swiper-wrapperTest testAward" onclick={shuffleRight}>
+        <div class="w-full sm:max-w-60 relative swiper">
+            <div class="swiper-wrapper" ref="swiper" init={ setEvent } onclick={ click }>
                 { awards.map((award, i) => {
                     return <Award
                         icon={ award.icon }
@@ -49,7 +59,7 @@ export default function({ awards }: Swiper) {
                         maxProgress={ award.maxProgress }
                         ariaLabelStart={ i + 1 }
                         ariaLabelEnd={ awards.length }
-                        classes={ `card-${i}` }
+                        classes={ "swiper-card swiper-card-" + i }
                     />
                 })}
             </div>

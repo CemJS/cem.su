@@ -4,15 +4,14 @@ import type { Award as TAward } from '..';
 
 interface Award extends TAward  {
   classes?: string;
-  style?: string;
   ariaLabelStart: number;
   ariaLabelEnd: number;
 }
-export default function ({ icon, title, reward, description, progress, maxProgress, classes, style, ariaLabelStart, ariaLabelEnd }: Award ) {
+export default function ({ icon, title, reward, description, progress, maxProgress, classes, ariaLabelStart, ariaLabelEnd }: Award ) {
   return (
-    <div class={ classes + " w-full h-full" } style={ style } role="group" aria-label={ ariaLabelStart + ' / ' + ariaLabelEnd }>
+    <div class={ classes + " w-full h-full" } role="group" aria-label={ ariaLabelStart + ' / ' + ariaLabelEnd }>
 
-      <div class="relative flex flex-col sm:items-center p-7 sm:pt-10 sm:pb-8 sm:px-11 cursor-grab bg-[#33394a] rounded-md border border-[#52586A] w-full sm:max-w-60 h-full">
+      <div class="relative flex flex-col sm:items-center p-7 sm:pt-10 sm:pb-8 sm:px-11 bg-[#33394a] rounded-md border border-[#52586A] w-full sm:max-w-60 h-full">
 
         <div class="absolute right-0 top-3 flex items-center gap-2 font-extrabold text-xs bg-white rounded-l-3xl text-[#3E3F5E] uppercase py-3 px-2">
           <img src={ plusIcon } alt="plus reward" />

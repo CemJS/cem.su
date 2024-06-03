@@ -1,5 +1,4 @@
 import { Cemjsx, Fn, Static, front, Ref } from 'cemjs-all';
-import Award from './Award';
 import AwardsSwiper from './AwardsSwiper';
 import type { ServerResponse } from '..';
 
