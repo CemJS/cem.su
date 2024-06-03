@@ -59,7 +59,13 @@ front.loader = async () => {
     // },
     {
       icon: "arrow-path-rounded-square",
+      // name: "Биржи",
       name: front.Variable.words?.chapters?.exchanges,
+      link: "/exchangers",
+    },
+    {
+      icon: "arrow-path-rounded-square",
+      name: front.Variable.words?.chapters?.exchangers,
       link: "/exchanges",
     },
     {
