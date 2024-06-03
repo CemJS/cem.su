@@ -9,12 +9,9 @@ export default function ({ item, index }) {
             entries.forEach(async (entry) => {
               if (entry.isIntersecting) {
                 observer.unobserve($el);
-                let res = front.Services.functions.sendApi(
-                  "/api/exchanges",
-                  {
-                    skip: Static.records?.length,
-                  },
-                );
+                let res = front.Services.functions.sendApi("/api/exchanges", {
+                  skip: Static.records?.length,
+                });
               }
             });
           });
@@ -30,8 +27,6 @@ export default function ({ item, index }) {
           </div>
           <div class="flex pt-[1.25rem] text-center text-[1.125rem]">
             {item.listCoins?.map((el: any, index: number) => {
-              // console.log("el", el);
-
               return (
                 <img
                   src={`/contents/coins/${el?.mediaName}.svg`}

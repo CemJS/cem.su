@@ -401,9 +401,7 @@ export class AudioPlayer extends HTMLElement {
 
   volumeChange() {
     this.volume = this.volumeEl.value / 100;
-    // this.gainNode.gain.value = this.volume;
     this.audio.volume = this.volume;
-    // console.log("=5e7c34=", this.gainNode.gain);
   }
 
   render() {

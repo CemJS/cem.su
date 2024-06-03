@@ -155,7 +155,7 @@ const RenderFilters = () => {
 const RenderAskInput = () => {
   return (
     <div class="relative flex flex-col gap-5 @767:flex-row">
-      <div class="relative order-[1] w-full before:absolute before:left-5 before:top-4 before:h-[1.5625rem] before:w-[1.5625rem] before:![background-size:100%_100%] before:[background:url(/contents/svg/questions/search_icon.svg)] before:[content:''] before:![transition:0s] @767:order-none">
+      <div class="relative order-[1] w-full placeholder:![transition:0s] before:absolute before:left-5 before:top-4 before:h-[1.5625rem] before:w-[1.5625rem] before:![background-size:100%_100%] before:[background:url(/contents/svg/questions/search_icon.svg)] before:[content:''] @767:order-none">
         <input
           oninput={(e) => {
             Static.search = e.target.value;
@@ -166,7 +166,7 @@ const RenderAskInput = () => {
               Static.timer = undefined;
             }, 600);
           }}
-          class="text[--white] m-[0_auto] h-[3.4375rem] w-full rounded-[1.875rem] border-none bg-[#2b3040] pl-[3.75rem] text-[1rem] [background-position:left_1.25rem_bottom_1.25rem] [transition:0.5s] placeholder:text-[#9198b3] focus:scale-100 focus:outline-none focus:[border:0.0625rem_solid_var(--border)] focus:placeholder:text-transparent"
+          class="text[--white] m-[0_auto] h-[3.4375rem] w-full rounded-[1.875rem] border-none bg-[#2b3040] pl-[3.75rem] text-[1rem] [background-position:left_1.25rem_bottom_1.25rem] [transition:outline_0.5s,border_0.5s] placeholder:text-[#9198b3] focus:scale-100 focus:outline-none focus:[border:0.0625rem_solid_var(--border)] focus:placeholder:text-transparent"
           type="text"
           placeholder="Поиск по вопросам"
         />
@@ -258,8 +258,6 @@ const TurnOffFilters = () => {
 };
 
 export default function () {
-  console.log("question");
-
   return (
     <div
       onclick={(e) => {

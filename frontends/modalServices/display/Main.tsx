@@ -1,21 +1,31 @@
 import { Cemjsx, Static, Fn, Func } from "cemjs-all";
-import platformServices from "@json/platformServices";
 
 const RenderListServices = function () {
   return (
-    <div class="services">
-      {platformServices.map((item) => {
+    <div 
+      class="grid grid-cols-[repeat(auto-fit,minmax(8rem,1fr))] overflow-y-scroll h-[15rem] max-h-[15rem] gap-4"
+    >
+      {Static.platformServices.map((item) => {
         return (
           <a
-            class="services__item"
+            class="flex flex-col justify-between items-center cursor-pointer"
             onclick={() => {
+              Fn.linkChange(item.link)
               Func.close();
             }}
           >
-            <div class="services__item-img">
-              <i class={["i", `i-${item.icon}`]}></i>
+            <div 
+              class="w-[4rem] h-[4rem] overflow-hidden flex items-center justify-between bg-[linear-gradient(to_left,#2973ff,#8846d3,#ff22ac)] hover:bg-right transition-all rounded"
+            >
+              <div class="flex justify-center items-center h-full w-full">
+                <i class={["i", `i-${item.icon}`, "text-2xl"]}></i>
+              </div>
             </div>
-            <span class="services__item-text">{item.name}</span>
+            <span 
+              class="whitespace-nowrap text-base"
+            >
+              {item.name}
+            </span>
           </a>
         );
       })}
@@ -25,7 +35,7 @@ const RenderListServices = function () {
 
 export default function () {
   return (
-    <main id="modal_main">
+    <main>
       <div class="mt-[15px]">
         <RenderListServices />
       </div>

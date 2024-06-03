@@ -6,14 +6,12 @@ export default function () {
       onclick={async (e: Event) => {
         e.preventDefault();
         if (Static.page == "posts") {
-          console.log("=88a782=", Static.data);
           let res = await front.Services.functions.sendApi(
             `/api/posts/${Static.edit?.id}/update`,
             Static.data,
           );
         }
         if (Static.page == "questions") {
-          console.log("=88a782=", Static.data);
           let res = await front.Services.functions.sendApi(
             `/api/questions/${Static.edit?.id}/update`,
             Static.data,

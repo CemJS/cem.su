@@ -148,7 +148,6 @@ export default function ({ src, key, poster = "" }) {
                 class="i i-play"
                 ref={`playAndPause${key}`}
                 onclick={() => {
-                  console.log("=ff7156=", Ref[`video${key}`]);
                   Func.playAndPause(Ref[`video${key}`]);
                 }}
               ></i>

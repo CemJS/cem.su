@@ -121,11 +121,6 @@ front.func.findIndexComment = (id, postIndex) => {
 };
 
 front.func.findIndexCommentToComment = (id, postIndex, commentIndex) => {
-  console.log("=b53b67=", id);
-  console.log(
-    "=09f769=",
-    Static.records[postIndex].comments[commentIndex].comments,
-  );
   return Static.records[postIndex].comments[commentIndex].comments.findIndex(
     (item) => item.id == id,
   );

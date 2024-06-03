@@ -77,7 +77,6 @@ front.func.edit = (id) => {
   Func.hideInputs();
   Static.currentEditing = id;
   Static[`isEditing${id}`] = true;
-  console.log("=b5ccd4=", Static);
 };
 
 front.func.closeEdit = (id) => {
@@ -112,7 +111,6 @@ front.func.deleteComment = async (
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   if (front.Variable.Auth) {
     let res = await front.Services.functions.sendApi(url, data, method);
-    console.log("=55a7bd=", res);
     if (res?.status == 409) {
       Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
       return;
