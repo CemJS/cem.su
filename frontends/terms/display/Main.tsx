@@ -1,4 +1,4 @@
-import { Cemjsx } from "cemjs-all";
+import { Cemjsx, front } from "cemjs-all";
 
 export default function () {
   return (
@@ -108,7 +108,7 @@ export default function () {
             личности), если вы не дадите нам на это специальное разрешение.
           </p>
         </div>
-        <h2 class="title">Политика использования данных</h2>
+        <h2 class="title">{front.Variable?.words?.chapters?.dataUsagePolicy}</h2>
         <div class="content">
           <p>
             Для предоставления нашего Сервиса нам необходимо собирать и

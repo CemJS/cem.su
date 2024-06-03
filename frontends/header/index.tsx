@@ -18,6 +18,22 @@ front.func.test = () => {
 
 front.loader = () => {
   document.body.classList.add("pt-[5.0625rem]");
+
+  Static.menu = [
+    {
+      name: front.Variable.words?.chapters?.contacts,
+      url: "/contacts"
+    },
+    {
+      name: front.Variable.words?.chapters?.about,
+      url: "/about"
+    },
+    {
+      name: front.Variable.words?.chapters?.news,
+      url: "/news"
+    }
+  ]
+
   return;
 };
 
