@@ -10,7 +10,9 @@ export default function () {
               <div
                 id="item"
                 onclick={() => {
-                  Fn.linkChange(`/question/show/${item.id}`);
+                  Fn.linkChange(`/question/show/${item.id}`, {
+                    link: "/create/qst",
+                  });
                 }}
                 key={index}
                 class="text block aspect-square"

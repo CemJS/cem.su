@@ -10,6 +10,7 @@ front.listener.finish = () => {
 
 front.destroy = () => {
   Events.user?.close();
+  document.body.classList.remove("pt-[5.0625rem]");
 };
 
 front.func.test = () => {
@@ -17,7 +18,9 @@ front.func.test = () => {
 };
 
 front.loader = () => {
-  document.body.classList.add("pt-[5.0625rem]");
+  !front.Variable.hideHeader
+    ? document.body.classList.add("pt-[5.0625rem]")
+    : document.body.classList.remove("pt-[5.0625rem]");
   return;
 };
 

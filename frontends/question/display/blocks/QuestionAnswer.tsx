@@ -366,6 +366,7 @@ export default function ({ answer, answerIndex }) {
                           value={Static[`edit${comment.id}`]}
                           oninput={(e) => {
                             Static[`edit${comment.id}`] = e.target.value;
+                            console.log(Static[`edit${comment.id}`]);
                           }}
                         ></textarea>
                       </div>
@@ -600,9 +601,7 @@ export default function ({ answer, answerIndex }) {
                             <button
                               class={[
                                 "m-0 flex w-10 cursor-pointer justify-between self-center border-none bg-transparent p-0 [filter:invert(96%)_sepia(5%)_saturate(6439%)_hue-rotate(180deg)_brightness(95%)_contrast(76%)] [transform:none]",
-                                !Static[
-                                  `${answerIndex}${commentIndex}${commIndex}`
-                                ]
+                                !Static[`edit${comm.id}`]
                                   ? "btn_passive"
                                   : null,
                               ]}

@@ -32,7 +32,9 @@ export default function () {
                   }
                 }}
                 onclick={() => {
-                  Fn.linkChange(`/post/show/${item.id}`);
+                  Fn.linkChange(`/post/show/${item.id}`, {
+                    link: "/create/pst",
+                  });
                 }}
                 key={key}
                 class="text block aspect-square"

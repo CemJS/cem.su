@@ -1,4 +1,4 @@
 {
   "regex": "/post",
-  "front": ["post", "menu", "footer"]
+  "front": ["post", "menu"]
 }

@@ -14,6 +14,16 @@ front.func.resetForm = function () {
     text: "",
     media: [],
   };
+  Static.form = {
+    text: {
+      value: "",
+      valid: false,
+      error: false,
+      placeholder: "Комментарий к вопросу",
+      view: false,
+      disable: false,
+    },
+  };
 };
 
 front.func.getDate = (timestamp: any) => {
@@ -178,8 +188,6 @@ front.func.findIndexCommentToComment = (id, answerIndex, commentIndex) => {
 // };
 
 front.loader = async () => {
-  console.log("=971041=", Static.record);
-
   Static.form = {
     text: {
       value: "",
@@ -321,6 +329,9 @@ front.loader = async () => {
         Static.record.answers = Static.record.answers.filter(
           (item) => item.id != id,
         );
+        Static.record.statistics.answers--;
+
+        Fn.init();
       },
     },
     // create answer

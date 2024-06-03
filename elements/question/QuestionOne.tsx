@@ -8,10 +8,12 @@ export default function ({
   item,
   index,
   skipUrl = "/api/questions",
+  link,
 }: {
   item: any;
   index: number;
   skipUrl?: string;
+  link?: string;
 }) {
   return (
     <div
@@ -20,7 +22,7 @@ export default function ({
       onclick={async () => {
         // Func.getQuestion(item.id);
         // Fn.clearData();
-        Fn.linkChange(`/question/show/${item.id}`);
+        Fn.linkChange(`/question/show/${item.id}`, { link });
       }}
       init={($el: any) => {
         // if ((item.id = "6601828fffbbd9f5a898715a")) {

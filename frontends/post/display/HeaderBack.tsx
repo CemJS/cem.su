@@ -8,7 +8,7 @@ export default function () {
           <span
             class="flex cursor-pointer items-center justify-center"
             onclick={() => {
-              Fn.linkChange("/");
+              Fn.linkChange(Static.link ? Static.link : "/");
               if (front.Variable.$el.header) {
                 front.Variable.$el?.header?.classList?.remove("hide");
                 front.Variable.$el?.footer?.classList?.remove("hide");

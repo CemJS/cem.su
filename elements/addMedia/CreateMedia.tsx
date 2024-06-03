@@ -34,7 +34,6 @@ front.func.uploadMedia = async (file: any, type: string) => {
   };
 
   if (uploadMediaFiles?.name && uploadMediaFiles?.name != "AbortError") {
-    console.log("=0bd7a3=", 1);
     Static.data?.media[mediaIndex]
       ? (Static.data.media[mediaIndex] = {
           type,

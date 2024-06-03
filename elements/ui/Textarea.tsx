@@ -28,7 +28,13 @@ export default function ({
         // isValid ? "modalWindow_field__valid" : null,
       ]}
     >
-      <textarea ref={ref} class="!bg-[#202432]" rows="3" oninput={oninput}>
+      <textarea
+        value={value}
+        ref={ref}
+        class="!bg-[#202432]"
+        rows="3"
+        oninput={oninput}
+      >
         {value}
       </textarea>
       <p
