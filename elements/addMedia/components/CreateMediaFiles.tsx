@@ -50,7 +50,7 @@ const RenderStopLoading = (index) => {
       id="stop_loading"
       onclick={() => {
         Static.data.media.splice(index.index, 1);
-        Static.uploadAbortController?.abort()
+        Static.uploadAbortController?.abort();
       }}
       class="absolute left-1/2 top-1/2 z-[2] h-6 w-6 cursor-pointer rounded-[4px] bg-white [transform:translate(-50%,-50%)]"
     ></div>
@@ -71,6 +71,7 @@ export default function () {
             "@970:grid-cols-[calc(20%_-_8px)_calc(20%_-_8px)_calc(20%_-_8px)_calc(20%_-_8px)_calc(20%_-_8px)]",
             "@500:grid-cols-[calc(33.3%_-_6.66px)_calc(33.3%_-_6.66px)_calc(33.3%_-_6.66px)]",
             "grid-cols-[calc(50%_-_5px)_calc(50%_-_5px)]",
+            "[&:not(:has(+_#audio-container))]:rounded-[10px]",
           ]}
           // max-h-[12.5rem]
         >
@@ -183,7 +184,7 @@ export default function () {
           id="audio-container"
           ref="audio-container"
           class={[
-            "flex w-full flex-col items-center justify-center gap-[0.625rem] overflow-y-auto bg-[#313543] p-[0.625rem_1.5625rem] [border:1px_solid_#44495c] first:rounded-se-[10px] first:rounded-ss-[10px]",
+            "flex w-full flex-col items-center justify-center gap-[0.625rem] overflow-y-auto rounded-ee-[10px] rounded-es-[10px] bg-[#313543] p-[0.625rem_1.5625rem] [border:1px_solid_#44495c] first:rounded-se-[10px] first:rounded-ss-[10px]",
           ]}
         >
           {Static.data.media

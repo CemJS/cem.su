@@ -53,10 +53,10 @@ export default function () {
         </div>
         <tr class="hidden min-h-[5rem] grid-cols-4 items-center @700:grid">
           <th class="hidden items-center justify-start px-[.625rem] py-0 @700:flex">
-            Название
+          {front.Variable.words?.title}
           </th>
-          <th class="hidden px-[.625rem] @700:flex justify-center">Рейтинг</th>
-          <th class="hidden px-[.625rem] @700:flex justify-start">График</th>
+          <th class="hidden px-[.625rem] @700:flex justify-center">{front.Variable.words?.rating}</th>
+          <th class="hidden px-[.625rem] @700:flex justify-start">{front.Variable.words?.chart}</th>
           <th class="flex justify-end px-[.625rem]"></th>
         </tr>
       </thead>
@@ -69,10 +69,7 @@ export default function () {
                 class="hidden min-h-[5rem] grid-cols-4 items-center @700:grid [border-bottom:1px_solid_var(--border)] py-[.625rem] px-[.9375rem]"
                 isVisible={() => {
                   if (index == Static.records.length - 3) {
-                    // console.log('=индкекс равен =', index, 'Static.records.length - 3', Static.records.length - 3)
-                    Static.moreid =
-                      Static.records[Static.records.length - 1]._id;
-                    // fn("addEvent")
+                    Static.moreid = Static.records[Static.records.length - 1]._id;
                   }
                 }}
                 init={($el: any) => {
@@ -112,13 +109,10 @@ export default function () {
                   <div class="mx-0 mt-auto h-full w-[12.625rem] rounded-[--btnR] p-[0.0725rem] [background:var(--mainGradient)]">
                     <a href={item?.url} onclick={Fn.link}>
                       <button class="relative z-[1] h-[2.625rem] w-full min-w-[9.375rem] cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--noble_black] text-center text-[1rem] font-semibold text-[--white] outline-none before:absolute before:bottom-0 before:left-0 before:right-0 before:top-0 before:z-[-1] before:h-full before:w-full before:opacity-0 before:content-[''] before:[background:var(--mainGradient)] before:[transition:all_0.3s_ease-in-out] hover:before:opacity-100">
-                        Торговать
+                        {front.Variable.words?.trading}
                       </button>
                     </a>
                   </div>
-                  {/* <a class="btn_border-wrap btn_border" >
-                          <span>Торговать</span>
-                        </a> */}
                 </td>
               </tr>
               <Card item={item} index={index} />

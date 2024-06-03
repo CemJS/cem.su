@@ -6,9 +6,9 @@ import { AudioPlayer } from "@elements/Audio";
 if (!customElements.get("audio-player")) {
   customElements.define("audio-player", AudioPlayer);
 }
-export default function () {
+export default function ({ className }: { className?: string }) {
   return (
-    <div>
+    <div class={`${className}`}>
       <CreateMediaFiles />
       <CreateMediaButtons />
     </div>
@@ -58,6 +58,5 @@ front.func.findIndex = (item: any) => {
   let index = Static.data.media?.findIndex(
     (media) => media?.id == item.id || media?.mediaName == item.mediaName,
   );
-  console.log("=c2d727=", index);
   return index;
 };

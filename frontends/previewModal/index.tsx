@@ -10,6 +10,8 @@ front.func.test = () => {
 };
 
 front.destroy = () => {
+  console.log("=c7bfe1=", 1);
+  return;
   front.Variable.hideHeader = false;
   Fn.initAll();
 };

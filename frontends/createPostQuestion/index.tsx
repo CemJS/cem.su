@@ -24,7 +24,7 @@ front.func.checkForm = function () {
       : (Static.form.isValid = false);
   }
   if (Static.page == "posts") {
-    Static.form?.text?.value?.length > 0
+    Static.form?.text?.valid
       ? (Static.form.isValid = true)
       : (Static.form.isValid = false);
   }
@@ -98,7 +98,6 @@ front.func.findIndex = (item: any) => {
   let index = Static.data.media?.findIndex(
     (media) => media?.id == item.id || media?.mediaName == item.mediaName,
   );
-  console.log("=c2d727=", index);
   return index;
 };
 
@@ -190,7 +189,7 @@ front.loader = async () => {
 
 front.display = () => {
   return (
-    <div>
+    <div test="createpst">
       <Navigation />
     </div>
   );

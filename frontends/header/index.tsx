@@ -17,12 +17,13 @@ front.func.test = () => {
 };
 
 front.loader = () => {
+  document.body.classList.add("pt-[5.0625rem]");
   return;
 };
 
 front.display = () => {
   return (
-    <header class="z-10 border-b-[1px] border-solid border-[#2d3243] bg-[#24283a] py-2 font-medium">
+    <header class="fixed left-0 right-0 top-0 z-10 border-b-[1px] border-solid border-[#2d3243] bg-[#24283a] py-2 font-medium">
       <Navigation />
     </header>
   );

@@ -6,6 +6,8 @@ export default function ({
   className,
   value,
   ref,
+  error,
+  classNameStatus,
 }: {
   oninput: (e: InputEvent) => void;
   // isValid: boolean;
@@ -13,6 +15,7 @@ export default function ({
   error?: string;
   placeholder?: string;
   className?: string;
+  classNameStatus?: string;
   ref?: string;
 }) {
   return (
@@ -28,6 +31,12 @@ export default function ({
       <textarea ref={ref} class="!bg-[#202432]" rows="3" oninput={oninput}>
         {value}
       </textarea>
+      <p
+        class={["modalWindow_field__status", classNameStatus]}
+        style="color:#E84142"
+      >
+        {error}
+      </p>
     </div>
   );
 }

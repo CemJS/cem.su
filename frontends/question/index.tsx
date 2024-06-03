@@ -6,9 +6,7 @@ front.listener.finish = () => {
 };
 
 front.func.checkValid = function () {
-  Static.data?.text?.length > 0 || Static.data?.media?.length > 0
-    ? (Static.isValid = true)
-    : (Static.isValid = false);
+  Static.form?.text?.valid ? (Static.isValid = true) : (Static.isValid = false);
 };
 
 front.func.resetForm = function () {
@@ -173,8 +171,26 @@ front.func.findIndexCommentToComment = (id, answerIndex, commentIndex) => {
   ].comments.findIndex((item) => item.id == id);
 };
 
+// front.func.checkForm = function () {
+//   Static.form?.text?.valid
+//     ? (Static.form.isValid = true)
+//     : (Static.form.isValid = false);
+// };
+
 front.loader = async () => {
   console.log("=971041=", Static.record);
+
+  Static.form = {
+    text: {
+      value: "",
+      valid: false,
+      error: false,
+      placeholder: "Комментарий к вопросу",
+      view: false,
+      disable: false,
+    },
+  };
+
   Static.open = "Ответить";
 
   Static.data = {

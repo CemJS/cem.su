@@ -7,12 +7,14 @@ export default function ({
   error,
   placeholder,
   className,
+  classNameStatus,
 }: {
   oninput: (e: InputEvent) => void;
   isValid: boolean;
   error: string;
   placeholder: string;
   className?: string;
+  classNameStatus?: string;
   value: string;
 }) {
   return (
@@ -38,7 +40,10 @@ export default function ({
         <i class="i i-user"></i>
         <span>{placeholder}</span>
       </div>
-      <p class="modalWindow_field__status" style="color:#E84142">
+      <p
+        class={["modalWindow_field__status", classNameStatus]}
+        style="color:#E84142"
+      >
         {error}
       </p>
     </div>

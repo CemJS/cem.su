@@ -1,5 +1,6 @@
 export default {
   content: ["./frontends/**/*.{tsx,js}", "./elements/**/*.{tsx,js}"],
+  safelist: ["pt-16"],
   theme: {
     extend: {
       screens: {
