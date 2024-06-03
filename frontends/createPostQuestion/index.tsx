@@ -189,7 +189,7 @@ front.loader = async () => {
 
 front.display = () => {
   return (
-    <div>
+    <div test="createpst">
       <Navigation />
     </div>
   );

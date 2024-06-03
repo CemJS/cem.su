@@ -6,6 +6,7 @@ import QuestionStatistic from "frontends/question/display/blocks/QuestionStatist
 import QuestionUser from "frontends/question/display/blocks/QuestionUser";
 
 const callModal = () => {
+  console.log("=callModal=");
   let myInfo = front.Variable.myInfo;
   let item = {
     id: "1",

@@ -17,7 +17,7 @@ front.func.test = () => {
 };
 
 front.loader = () => {
-  document.body.classList.add("pt-16");
+  document.body.classList.add("pt-[5.0625rem]");
   return;
 };
 

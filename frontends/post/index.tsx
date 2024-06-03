@@ -106,7 +106,7 @@ front.loader = async () => {
 
 front.display = () => {
   return (
-    <div class="mt-[25px] px-3">
+    <div class="mt-[25px] px-3" test="post">
       <Navigation />
     </div>
   );

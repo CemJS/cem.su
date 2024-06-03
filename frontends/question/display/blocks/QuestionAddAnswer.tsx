@@ -9,12 +9,13 @@ export default function () {
         ref={"text"}
         value={Static.data?.text}
         error={Static.form?.text?.error}
+        classNameStatus="mt-[10px]"
         oninput={(e) => {
           const target = e.target as HTMLInputElement;
           Static.form.text.value = target?.value;
           Static.data.text = target?.value;
           front.Services.functions.formQuestion(Static.form.text);
-          Func?.checkForm();
+          Func?.checkValid();
           // Func.checkValid();
         }}
       />
@@ -33,7 +34,7 @@ export default function () {
       >
         {Static.data.text}
       </textarea> */}
-      <CreateMedia />
+      <CreateMedia className={"mt-3"} />
       <div class="flex justify-center p-10">
         <button
           class={[
@@ -43,14 +44,14 @@ export default function () {
           type="button"
           onclick={async () => {
             Static.disableForm = true;
-            let data = {
+            const data = {
               text: Static.data.text,
               questionId: Static.record.id,
               media: Static.data.media,
             };
             console.log("=1e5279=", Static.data.media);
             Static.open = "Ответить";
-            let res = await Func.sendAuth("/api/answers/create", data);
+            const res = await Func.sendAuth("/api/answers/create", data);
             if (res?.error?.length == 0) {
               Ref[`ans${Static.record.id}`].classList.toggle("!block");
               Func.resetForm();

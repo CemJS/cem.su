@@ -8,9 +8,9 @@ export default function () {
           <span
             class="flex cursor-pointer items-center justify-center"
             onclick={() => {
+              Fn.clearData();
               front.Variable.hideHeader = false;
               Fn.initAll();
-              Fn.clearData();
             }}
           >
             <i class="i i-chevron-left text-2xl"></i>
