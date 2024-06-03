@@ -52,7 +52,7 @@ export default function () {
             Static.showComp,
           )}
         >
-          Рейтинг
+          {front.Variable.words?.rating}
         </span>
         <span
           class={createClassNames(
@@ -153,7 +153,7 @@ export default function () {
                 </div>
                 <div class="relative box-border inline-block text-left max-@767:mr-[1.5625rem] max-@767:mt-[1.25rem] @767:text-center">
                   <span class="relative top-0 inline pr-[.625rem] @767:absolute @767:top-[2.1875rem] @767:hidden">
-                    Рейтинг
+                    {front.Variable.words?.rating}
                   </span>
                   <span class="relative top-0 text-[.9375rem] font-bold @767:absolute @767:top-[2.1875rem]">
                     {item?.statistics?.rating}

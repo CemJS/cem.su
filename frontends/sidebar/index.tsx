@@ -45,7 +45,7 @@ front.loader = async () => {
     {
       icon: "qa",
       name: front.Variable.words?.chapters?.qa,
-      link: "/questions",
+      link: "/qsts",
     },
     // {
     //   icon: "chart-bar",
@@ -59,7 +59,6 @@ front.loader = async () => {
     // },
     {
       icon: "arrow-path-rounded-square",
-      // name: "Биржи",
       name: front.Variable.words?.chapters?.exchanges,
       link: "/exchangers",
     },

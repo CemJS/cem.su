@@ -8,7 +8,7 @@ export default function () {
       <thead class="text-[1.125rem]">
         <tr class="hidden grid-cols-3 @700:grid">
           <th class="hidden items-center justify-start px-[.9375rem] py-[.625rem] @700:flex">
-            Название
+            {front.Variable.words?.title}
           </th>
           <th class="hidden items-center justify-center px-[.9375rem] py-[.625rem] @700:flex">
             Коины

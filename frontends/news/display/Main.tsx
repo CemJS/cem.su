@@ -39,7 +39,7 @@ export default function () {
     Fn.log('=news=', Static.news)
     return (
         <div>
-            <HeaderBack title="Новости" />
+            <HeaderBack title={front.Variable.words?.news} />
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 @464:gap-4">
                 {
                     Static.news.map((item, index) => {
