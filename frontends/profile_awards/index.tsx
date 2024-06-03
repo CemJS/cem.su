@@ -1,4 +1,4 @@
-import { Cemjsx, front, Func, Static, Fn } from "cemjs-all";
+import { Cemjsx, front, Func, Fn } from "cemjs-all";
 import Navigation from "./navigation";
 import awardIcon from "@svg/personalAwards/badge1.svg";
 
@@ -10,6 +10,11 @@ front.func.test = () => {
   return;
 };
 
+front.loader = () => {
+
+}
+
+front.Static.a = {}
 
 export type Award = {
   icon: String;
@@ -58,13 +63,105 @@ front.loader = async () => {
           reward: '0.8 CEMD',
           description: '30 вопрос задан на платформе',
           progress: 0,
-          maxProgress: 30,
+          maxProgress: 6,
         },
-      ]
+        {
+          icon: awardIcon,
+          title: 'Любопытство',
+          reward: '0.8 CEMD',
+          description: '30 вопрос задан на платформе',
+          progress: 0,
+          maxProgress: 7,
+        },
+        {
+          icon: awardIcon,
+          title: 'Любопытство',
+          reward: '0.8 CEMD',
+          description: '30 вопрос задан на платформе',
+          progress: 0,
+          maxProgress: 8,
+        },
+        {
+          icon: awardIcon,
+          title: 'Любопытство',
+          reward: '0.8 CEMD',
+          description: '30 вопрос задан на платформе',
+          progress: 0,
+          maxProgress: 9,
+        },
+        {
+          icon: awardIcon,
+          title: 'Любопытство',
+          reward: '0.8 CEMD',
+          description: '30 вопрос задан на платформе',
+          progress: 0,
+          maxProgress: 10,
+        }
+      ],
+      // [ 
+      //   {
+      //     icon: awardIcon,
+      //     title: 'Ответчик',
+      //     reward: '10 EXP',
+      //     description: '1 предложенный ответ на вопрос на платформе',
+      //     progress: 0,
+      //     maxProgress: 1,
+      //   },
+      // ],
+      // [
+      //   {
+      //     icon: awardIcon,
+      //     title: 'Отличник',
+      //     reward: '0.5 cemd',
+      //     description: '1 ответ выбран лучшим',
+      //     progress: 0,
+      //     maxProgress: 1,
+      //   },
+      // ],
+      // [ 
+      //   {
+      //     icon: awardIcon,
+      //     title: 'Ответчик',
+      //     reward: '10 EXP',
+      //     description: '1 предложенный ответ на вопрос на платформе',
+      //     progress: true,
+      //     maxProgress: 1,
+      //   },
+      // ],
+      // [
+      //   {
+      //     icon: awardIcon,
+      //     title: 'Отличник',
+      //     reward: '0.5 cemd',
+      //     description: '1 ответ выбран лучшим',
+      //     progress: 0,
+      //     maxProgress: 1,
+      //   },
+      // ],
+      // [
+      //   {
+      //     icon: awardIcon,
+      //     title: 'Отличник',
+      //     reward: '0.5 cemd',
+      //     description: '1 ответ выбран лучшим',
+      //     progress: 0,
+      //     maxProgress: 1,
+      //   },
+      // ],
+      // [
+      //   {
+      //     icon: awardIcon,
+      //     title: 'Отличник',
+      //     reward: '0.5 cemd',
+      //     description: '1 ответ выбран лучшим',
+      //     progress: 0,
+      //     maxProgress: 1,
+      //   },
+      // ]
     ]
   } 
 
-  Static.awards = result;
+  Static.awards<ServerResponse> = result;
 
   return;
 };
