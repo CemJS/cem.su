@@ -62,7 +62,7 @@ export default function () {
                       },
                     },
                     {
-                      name: "Задать вопрос",
+                      name: front.Variable?.words?.qa?.askQuestion,
                       func: () => {
                         let params;
                         if (

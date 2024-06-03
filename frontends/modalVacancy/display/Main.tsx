@@ -135,7 +135,7 @@ export default function () {
             !Static.form.isValid ? "disabled" : null,
           ]}
         >
-          Отправить
+          {front.Variable?.words?.tools?.send}
         </button>
       </div>
     </main>

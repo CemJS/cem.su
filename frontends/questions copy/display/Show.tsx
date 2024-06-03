@@ -350,7 +350,7 @@ export default function () {
                     front.Services.functions.sendApi("/api/questions", data);
                   }}
                 >
-                  Отправить
+                  {front.Variable?.words?.tools?.send}
                 </button>
               </div>
             </div>

@@ -163,7 +163,7 @@ const RenderForm = () => {
           Static.form.isValid ? "grayscale-0" : null,
         ]}
       >
-        Отправить
+        {front.Variable?.words?.tools?.send}
       </button>
     </form>
   );

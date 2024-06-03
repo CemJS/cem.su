@@ -50,7 +50,7 @@ front.loader = async () => {
       value: "",
       valid: false,
       error: false,
-      placeholder: "Вопрос",
+      placeholder: front.Variable?.words?.qa?.question,
       view: false,
       disable: false,
     },

@@ -1,4 +1,4 @@
-import { Cemjsx, Static } from "cemjs-all";
+import { Cemjsx, Static, front } from "cemjs-all";
 import copy from "@svg/icons/copy.svg";
 import share from "@svg/icons/share.svg";
 import empty from "@svg/icons/affiliateEmptyPartners.svg";
@@ -30,7 +30,7 @@ const RenderCard = () => {
             >
               <img
                 src={copy}
-                alt="Скопировать"
+                alt={front.Variable.words?.tools?.copy}
               />
             </button>
             <button

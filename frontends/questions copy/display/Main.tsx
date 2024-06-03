@@ -21,7 +21,7 @@ const RenderTypeFilter = () => {
       class="filter"
     >
       <div class="filter__left">
-        <p class="filter__title">Сортировать</p>
+        <p class="filter__title">{front.Variable?.words?.tools?.sort}</p>
         <p class="filter__current">
           {Static.types.filter((item) => item.name == Static.type)[0].text}
         </p>
@@ -57,7 +57,7 @@ const RenderSortFilter = () => {
       class="filter"
     >
       <div class="filter__left">
-        <p class="filter__title">Сортировать</p>
+        <p class="filter__title">{front.Variable?.words?.tools?.sort}</p>
         <p class="filter__current">
           {Static.sorts.filter((item) => item.name == Static.sort)[0].text}
         </p>
@@ -119,10 +119,9 @@ export default function () {
       <div class="questions">
         <div class="wrapper wrapper_padding">
           <div class="questions__container">
-            <h4>Последние вопросы</h4>
+            <h4>{front.Variable?.words?.qa?.lastQuestions}</h4>
             <p class="questions__description">
-              Задавайте свои вопросы, получайте грамотные и понятные ответы на
-              родном языке, совершенно бесплатно.
+              {front.Variable?.words?.qa?.descChapterQA}
             </p>
             <div class="questions__gpt questions__gpt_margin">
               <div class="avatar__icon">
@@ -159,7 +158,7 @@ export default function () {
                   </div>
                 </div>
                 <button class="questions__gpt-btn btn">
-                  Спросить Chat GPT
+                  {front.Variable?.words?.qa?.askQuestion} Chat GPT
                 </button>
               </div>
             </div>
@@ -189,7 +188,7 @@ export default function () {
                   }
                 }}
               >
-                задать вопрос
+                {front.Variable?.words?.qa?.askQuestion}
               </button>
             </div>
             <div class="questions__filters">
@@ -210,7 +209,7 @@ export default function () {
                 >
                   <img
                     src={order}
-                    alt="Сортировать"
+                    alt={front.Variable?.words?.tools?.sort}
                     class="questions__filter-triangles"
                   />
                 </div>

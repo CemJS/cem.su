@@ -57,7 +57,7 @@ export default function () {
                 userId: Static.record.author.id,
                 complainTo: {
                   name: "questions",
-                  text: "вопрос",
+                  text: front.Variable?.words?.qa?.question.toLowerCase(),
                   id: Static.record?.id,
                 },
               });

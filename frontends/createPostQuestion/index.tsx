@@ -113,7 +113,7 @@ front.loader = async () => {
       value: "",
       valid: false,
       error: false,
-      placeholder: "Вопрос",
+      placeholder: front.Variable?.words?.qa?.question,
       view: false,
       disable: false,
     },
@@ -134,7 +134,7 @@ front.loader = async () => {
   Static.isValid = false;
   Static.pageMap = {
     posts: "пост",
-    questions: "вопрос",
+    questions: front.Variable?.words?.qa?.question.toLowerCase(),
   };
 
   if (front.Variable.DataUrl[1] && front.Variable.DataUrl[1] == "pst") {

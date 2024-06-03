@@ -20,7 +20,7 @@ export default function () {
             <i class="i i-chevron-left"></i>
           </span>
 
-          <h5 class="back-title">Вопрос</h5>
+          <h5 class="back-title">{front.Variable?.words?.qa?.question}</h5>
 
           <span
             class="back-ellipsis"

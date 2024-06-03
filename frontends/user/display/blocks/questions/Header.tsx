@@ -1,4 +1,4 @@
-import { Cemjsx, Static } from 'cemjs-all';
+import { Cemjsx, Static, front } from 'cemjs-all';
 
 // Функция для создания классов для элементов
 const createClassNames = (baseClasses, conditionClasses, isConditionMet) => {
@@ -21,7 +21,7 @@ export default function () {
           Static.showComp
         )}
       >
-        Вопрос
+        {front.Variable?.words?.qa?.question}
       </span>
       <span
         class={createClassNames(

@@ -60,7 +60,7 @@ export default function () {
             }
           }}
         >
-          Отправить
+          {front.Variable?.words?.tools?.send}
         </button>
       </div>
     </div>

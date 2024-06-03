@@ -27,7 +27,7 @@ export default function () {
             className="mb-4"
             isValid={Static.data?.title?.length > 0}
             error={Static.form?.title?.error}
-            placeholder="Вопрос"
+            placeholder={front.Variable?.words?.qa?.question}
             oninput={(e) => {
               const target = e.target as HTMLInputElement;
               Static.form.title.value = target.value;

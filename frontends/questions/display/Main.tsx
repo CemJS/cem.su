@@ -16,10 +16,9 @@ import SubscribersSkeleton from "@elements/skeletonLoading/user/SubscribersSkele
 const RenderTitle = () => {
   return (
     <div id="top">
-      <h4>Последние вопросы</h4>
+      <h4>{front.Variable?.words?.qa?.lastQuestions}</h4>
       <p class="mb-5 max-w-[26.9375rem] text-[1rem] leading-[1.75rem] text-[#9198b3]">
-        Задавайте свои вопросы, получайте грамотные и понятные ответы на родном
-        языке, совершенно бесплатно.
+        {front.Variable?.words?.qa?.descChapterQA}
       </p>
     </div>
   );
@@ -39,7 +38,7 @@ const RenderTypeFilter = () => {
       class="filterOne relative z-0 flex min-h-[5rem] w-full max-w-full cursor-pointer items-center justify-between rounded-[--borderR] bg-[--light-gray] p-[0.625rem_1.25rem] @767:max-w-[18.75rem]"
     >
       <div>
-        <p class="text-[--textGray]">Сортировать</p>
+        <p class="text-[--textGray]">{front.Variable?.words?.tools?.sort}</p>
         <p>{Static.types.filter((item) => item.name == Static.type)[0].text}</p>
       </div>
       <img src={openDrop} alt="" class="block" />
@@ -79,7 +78,7 @@ const RenderSortFilter = () => {
       class="filterOne relative z-0 flex min-h-[5rem] w-full max-w-full cursor-pointer items-center justify-between rounded-[--borderR] bg-[--light-gray] p-[0.625rem_1.25rem] @767:max-w-[18.75rem]"
     >
       <div>
-        <p class="text-[--textGray]">Сортировать</p>
+        <p class="text-[--textGray]">{front.Variable?.words?.tools?.sort}</p>
         <p>{Static.sorts.filter((item) => item.name == Static.sort)[0].text}</p>
       </div>
       <img src={openDrop} alt="" />
@@ -142,7 +141,7 @@ const RenderFilters = () => {
           }}
           class="cursor-pointer"
         >
-          <img src={order} alt="Сортировать" class="block" />
+          <img src={order} alt={front.Variable?.words?.tools?.sort} class="block" />
         </div>
       </div>
       <div class="relative flex w-full max-w-full cursor-pointer items-center gap-[0.9375rem] @767:max-w-[18.75rem]">
@@ -168,7 +167,7 @@ const RenderAskInput = () => {
           }}
           class="text[--white] m-[0_auto] h-[3.4375rem] w-full rounded-[1.875rem] border-none bg-[#2b3040] pl-[3.75rem] text-[1rem] [background-position:left_1.25rem_bottom_1.25rem] [transition:outline_0.5s,border_0.5s] placeholder:text-[#9198b3] focus:scale-100 focus:outline-none focus:[border:0.0625rem_solid_var(--border)] focus:placeholder:text-transparent"
           type="text"
-          placeholder="Поиск по вопросам"
+          placeholder={front.Variable?.words?.qa?.searchQuestions}
         />
       </div>
       <button
@@ -181,7 +180,7 @@ const RenderAskInput = () => {
           }
         }}
       >
-        задать вопрос
+        {front.Variable?.words?.qa?.askQuestion}
       </button>
     </div>
   );
@@ -189,7 +188,7 @@ const RenderAskInput = () => {
 
 const RenderChatGpt = () => {
   return (
-    <div class="relative z-0 mb-5 flex max-w-[19.375rem] items-center justify-between gap-[0.625rem] rounded-[--borderR] bg-[--prestige-blue] p-[0.9375rem]">
+    <div class="relative z-0 mb-5 flex max-w-[20.5rem] items-center justify-between gap-[0.625rem] rounded-[--borderR] bg-[--prestige-blue] p-[0.9375rem]">
       {/* avatar */}
       <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
         <img
@@ -230,7 +229,7 @@ const RenderChatGpt = () => {
             </a>
           </div>
         </div>
-        <button class="btn font-bold">Спросить Chat GPT</button>
+        <button class="btn font-bold">{front.Variable?.words?.qa?.askQuestion} Chat GPT</button>
       </div>
     </div>
   );
@@ -240,7 +239,7 @@ const RenderNotFound = () => {
   return (
     <div class="not_found col-span-full w-full">
       <img src={notFound} alt="Нет записей" />
-      Нет записей
+      {front.Variable?.words?.notFoundRecords}
     </div>
   );
 };

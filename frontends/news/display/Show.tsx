@@ -25,7 +25,7 @@ const HeaderBack = function ({ title }) {
               Fn.initOne("modalTools", {
                 records: [
                   {
-                    name: front.Variable.words?.tools?.copyURL
+                    name: `${front.Variable.words?.tools?.copy} URL`
                   },
                   {
                     name: front.Variable.words?.tools?.share

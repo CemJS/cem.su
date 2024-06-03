@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import programs from "json/program.json";
 import banners from "json/affiliateBanners.json";
 import copy from "@svg/icons/copy.svg";
@@ -72,9 +72,9 @@ const RenderLinkInput = () => {
       >
         <img
           src={copy}
-          alt="Скопировать"
+          alt={front.Variable.words?.tools?.copy}
         />
-        Скопировать
+        {front.Variable.words?.tools?.copy}
       </button>
     </div>
   );
@@ -103,9 +103,9 @@ const RenderTagInput = () => {
       >
         <img
           src={copy}
-          alt="Скопировать"
+          alt={front.Variable.words?.tools?.copy}
         />
-        Скопировать
+        {front.Variable.words?.tools?.copy}
       </button>
     </div>
   );

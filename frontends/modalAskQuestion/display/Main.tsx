@@ -75,7 +75,7 @@ export default function () {
             onclick={Func.sendQuestion}
             class={["btn", !Static.form.isValid ? "btn_passive" : null]}
           >
-            Отправить
+            {front.Variable?.words?.tools?.send}
           </button>
         </div>
       </div>

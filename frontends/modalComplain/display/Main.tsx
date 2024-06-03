@@ -98,7 +98,7 @@ export default function () {
             !(Static.currentComplains[0]?.length > 0) ? "btn_passive" : null,
           ]}
         >
-          Отправить
+          {front.Variable?.words?.tools?.send}
         </button>
       </div>
     </main>
