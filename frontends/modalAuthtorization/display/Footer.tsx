@@ -30,7 +30,7 @@ export default function () {
             Func.close();
           }}
         >
-          Вход
+          {front.Variable.words?.input}
         </button>
         <div
           class="btn_border-wrap w-full h-[3.2rem]"
@@ -39,7 +39,7 @@ export default function () {
             Fn.initOne("modalRegistration", {});
           }}
         >
-          <button class="btn_border w-full h-full">РЕГИСТРАЦИЯ</button>
+          <button class="btn_border w-full h-full">{front.Variable.words?.registration.toLocaleUpperCase()}</button>
         </div>
       </div>
     </footer>

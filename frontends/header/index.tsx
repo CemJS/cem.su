@@ -21,6 +21,23 @@ front.loader = () => {
   !front.Variable.hideHeader
     ? document.body.classList.add("pt-[5.0625rem]")
     : document.body.classList.remove("pt-[5.0625rem]");
+  document.body.classList.add("pt-[5.0625rem]");
+
+  Static.menu = [
+    {
+      name: front.Variable.words?.chapters?.contacts,
+      url: "/contacts",
+    },
+    {
+      name: front.Variable.words?.chapters?.about,
+      url: "/about",
+    },
+    {
+      name: front.Variable.words?.chapters?.news,
+      url: "/news",
+    },
+  ];
+
   return;
 };
 

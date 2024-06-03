@@ -10,7 +10,7 @@ const RenderFieldTitle = function () {
         <input
           type="text"
           value={Static.edit ? Static?.work[Static.key]?.title : ""}
-          placeholder="Название"
+          placeholder={front.Variable.words?.title}
           oninput={(event: InputEvent) => {
             const target = event.target as HTMLInputElement;
             Static.edit

@@ -1,11 +1,11 @@
-import { Cemjsx, Fn } from "cemjs-all";
+import { Cemjsx, Fn, front } from "cemjs-all";
 
 export default function () {
   return (
     <div class="page">
       <div class="wrapper wrapper_padding">
         <h1 class="title !text-[clamp(2.2rem,1.5vw,3rem)] !leading-[2.5rem]">
-          Политика Cookies
+        {front.Variable?.words?.chapters?.cookiePolicy}
         </h1>
         <p class="page__date">Редакция от 2021-12-16</p>
         <div class="title">ЧТО ТАКОЕ ФАЙЛЫ COOKIE?</div>

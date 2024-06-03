@@ -1,11 +1,11 @@
-import { Cemjsx, Fn } from "cemjs-all";
+import { Cemjsx, Fn, front } from "cemjs-all";
 
 export default function () {
   return (
     <div class="page">
       <div class="wrapper wrapper_padding">
         <h1 class="title !text-[clamp(2.2rem,1.5vw,3rem)] !leading-[2.5rem]">
-          Политика использования данных
+          {front.Variable?.words?.chapters?.dataUsagePolicy}
         </h1>
         <p class="page__date">Редакция от 2022-02-21</p>
         <div class="content">
@@ -20,7 +20,7 @@ export default function () {
             использования данных.
           </p>
         </div>
-        <h2 class="title">Политика использования данных Crypto Emergency</h2>
+        <h2 class="title">{`${front.Variable?.words?.chapters?.dataUsagePolicy} Crypto Emergency`}</h2>
         <div class="content">
           <p>
             Эта политика описывает то, какую информацию мы обрабатываем для

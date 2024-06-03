@@ -2,12 +2,12 @@ import { Cemjsx, Func, front } from "cemjs-all";
 
 export default function () {
   return (
-    <header class="modal-header">
-      <h2 class="text-[clamp(1.2rem,2vw,1.5rem)] leading-[125%]">
+    <header class="flex justify-between items-center mb-5">
+      <h2 class="text-2xl max-@464:text-lg font-bold">
         {front.Variable.words?.services}
       </h2>
       <button class="btn btn_dark" onclick={Func.close}>
-        <i class="i i-x-mark"></i>
+        <i class="i i-x-mark text-base sm:text-2xl"></i>
       </button>
     </header>
   );
