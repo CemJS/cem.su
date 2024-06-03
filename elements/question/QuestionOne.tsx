@@ -28,9 +28,7 @@ export default function ({
         // }
         if (index == Static.questions?.length - 1) {
           const observer = new IntersectionObserver((entries) => {
-            console.log("=IntersectionObserver=", 1);
             entries.forEach(async (entry) => {
-              console.log("=entry=", 1);
               if (entry.isIntersecting) {
                 observer.unobserve($el);
                 let skip = { ...Static.makeFilter };

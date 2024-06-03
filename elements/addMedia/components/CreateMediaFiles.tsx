@@ -44,7 +44,6 @@ const RenderLoader = (index) => {
 };
 
 const RenderStopLoading = (index) => {
-  console.log("=c58353=", index.index);
   return (
     <div
       id="stop_loading"

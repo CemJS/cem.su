@@ -6,7 +6,6 @@ import QuestionStatistic from "frontends/question/display/blocks/QuestionStatist
 import QuestionUser from "frontends/question/display/blocks/QuestionUser";
 
 const callModal = () => {
-  console.log("=callModal=");
   let myInfo = front.Variable.myInfo;
   let item = {
     id: "1",
@@ -86,7 +85,6 @@ export default function () {
   return (
     <button
       onclick={(e: Event) => {
-        console.log("=36b22c=", 1);
         e.preventDefault();
         Static.isValid ? callModal() : null;
       }}

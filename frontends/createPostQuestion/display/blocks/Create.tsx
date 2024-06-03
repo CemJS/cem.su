@@ -12,7 +12,6 @@ import EditSave from "./createBlocks/editBlocks/EditSave";
 import Input from "@elements/ui/Input";
 
 export default function () {
-  console.log("=f8fed5=", 11234);
   return (
     <div id="post-create">
       <h2 class="mb-5 mt-10 text-[26px] font-medium text-white" id="title">

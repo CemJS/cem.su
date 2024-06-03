@@ -35,7 +35,6 @@ const changeMediaFile = async () => {
         if (mediaPush) {
           Static.mediaLoading = false;
         }
-        console.log("mediaPush", mediaPush);
 
         const edit = {
           type: mediaPush?.mimetype,
@@ -50,9 +49,12 @@ const changeMediaFile = async () => {
         }
       } catch (error) {
         if (error.name === "AbortError") {
-          console.log("Загрузка отменена");
+          Fn.initOne("alert", { text: "Загрузка отменена", type: "danger" });
         } else {
-          console.error("Произошла ошибка при загрузке", error);
+          Fn.initOne("alert", {
+            text: "Произошла ошибка при загрузке",
+            type: "danger",
+          });
         }
       }
       Fn.init();
@@ -191,8 +193,6 @@ export default function () {
                                         );
 
                                       if (del?.status === 200) {
-                                        console.log("true");
-
                                         Static.record.gallery = array;
                                       }
                                     }
