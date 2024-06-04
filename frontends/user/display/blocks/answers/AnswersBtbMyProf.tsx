@@ -14,7 +14,7 @@ export default function ({ item, key }) {
               type: "danger",
               func: () =>
                 Fn.initOne("modalAccept", {
-                  title: "удалить свой ответ",
+                  title: front.Variable?.words?.qa?.deleteYourAnswer,
                   Callback: async (CallBack: boolean) => {
                     if (CallBack) {
                       const url = `/api/answers/${item?.id}/delete`;

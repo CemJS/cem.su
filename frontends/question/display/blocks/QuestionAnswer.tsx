@@ -254,7 +254,7 @@ export default function ({ answer, answerIndex }) {
 
                 !Static.record.closed
                   ? records.push({
-                      name: "Выбрать лучшим",
+                      name: front.Variable?.words?.qa?.chooseBest,
                       func: () => Func.bestAnswer(answer.id),
                     })
                   : null;
@@ -264,7 +264,7 @@ export default function ({ answer, answerIndex }) {
                   name: front.Variable?.words?.tools?.delete,
                   func: () => {
                     Fn.initOne("modalAccept", {
-                      title: "удалить свой ответ",
+                      title: front.Variable?.words?.qa?.deleteYourAnswer,
                       Callback: async (CallBack: boolean) => {
                         if (CallBack) {
                           Func.deleteAnswer(answer.id);

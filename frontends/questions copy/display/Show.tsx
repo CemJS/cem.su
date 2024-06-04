@@ -574,7 +574,7 @@ export default function () {
                               ) {
                                 !Static.record.closed
                                   ? records.push({
-                                      name: "Выбрать лучшим",
+                                      name: front.Variable?.words?.qa?.chooseBest,
                                       func: () => Func.bestAnswer(answer.id),
                                     })
                                   : null;
