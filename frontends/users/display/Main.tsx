@@ -11,7 +11,7 @@ export default function () {
   
   return (
     <div class="wrapper ml-auto mr-auto w-[calc(100%_-_60px)] pb-[6.25rem] pt-[3.125rem] @1200:ml-auto @1200:mr-auto @1240:w-full">
-      <h1 class="text-balance text-center">Пользователи</h1>
+      <h1 class="text-balance text-center">{front.Variable?.words?.chapters?.users}</h1>
       <Filters />
       <div class="users-list gap relative grid min-h-[12.5rem] grid-cols-[100%] [grid-gap:.75rem] @950:grid-cols-[calc(50%_-_8px)_calc(50%_-_8px)] @1200:grid-cols-[calc(33.3%_-_8px)_calc(33.3%_-_8px)_calc(33.3%_-_8px)]">
         {Static.records?.map((item: UsersObject, index: number) => {
@@ -124,7 +124,7 @@ export default function () {
                     {item?.statistic?.answer}
                   </span>
                   <span class="last:text-[clamp(10px,_2vw,_13px)] last:uppercase last:text-[#bfc4ce]">
-                    ответов
+                  {front.Variable?.words?.user?.answers}
                   </span>
                 </div>
                 <div class="user-info flex h-[1.25rem] flex-col items-center  [&:nth-child(2)]:w-[40%] [&:nth-child(2)]:border-0 [&:nth-child(2)]:[border-left:_1px_solid_#707DA0] [&:nth-child(2)]:[border-right:_1px_solid_#707DA0]">
@@ -132,7 +132,7 @@ export default function () {
                     {item.statistic.subscribe}
                   </span>
                   <span class="last:text-[clamp(10px,_2vw,_13px)] last:uppercase last:text-[#bfc4ce]">
-                    подписчиков
+                    {front.Variable?.words?.user?.subscribes}
                   </span>
                 </div>
                 <div class="user-info flex h-[1.25rem] flex-col items-center [&:nth-child(3)]:w-[30%]">
@@ -140,19 +140,19 @@ export default function () {
                     {item.statistic.view}
                   </span>
                   <span class="last:text-[clamp(10px,_2vw,_13px)] last:uppercase last:text-[#bfc4ce]">
-                    просмотров
+                    {front.Variable?.words?.user?.views}
                   </span>
                 </div>
               </div>
               <div class="buttons flex items-center justify-center gap-[1.875rem] pt-[2rem]">
                 <button class="m-[.625rem] mt-10 h-[3.2rem] w-[50%] cursor-pointer whitespace-nowrap rounded-[0.5rem] border-none px-[1rem] py-[0.8rem] text-[1rem] text-[--white] [background-size:125%] [background:--mainGradient] [outline:none] [transition:all_0.2s_ease-out] hover:bg-right active:scale-[0.97]">
-                  Написать
+                {front.Variable?.words?.tools?.toWrite}
                 </button>
                 <button
                   class="m-[.625rem] mt-10 h-[3.2rem] w-[50%] cursor-pointer whitespace-nowrap rounded-[0.5rem] border-none px-[1rem] py-[0.8rem] text-[1rem] text-[--white] [background-size:125%] [background:--mainGradient] [outline:none] [transition:all_0.2s_ease-out] hover:bg-right active:scale-[0.97]"
                   onclick={() => Func.follow(item)}
                 >
-                  Подписаться
+                  {front.Variable?.words?.tools?.subscribe}
                   {/* {!item?.subscribed ? "Подписаться" : "Отписаться"} */}
                 </button>
               </div>

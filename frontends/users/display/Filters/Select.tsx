@@ -24,7 +24,7 @@ export default function () {
           class="flex h-[3.5625rem] w-full cursor-pointer items-center rounded-[.625rem] bg-[--prestige-blue] bg-no-repeat pb-0 pl-[1.875rem] pr-[4.375rem] pt-0 text-[1rem] font-semibold text-[--white] [background-position:_bottom_calc(50%_-_0rem)_right_.9375rem] [border:1px_solid_#474c5a] focus:[outline:none] @550:w-[15.625rem]"
           type="text"
           readonly="true"
-          value={Static.lang?.origName ? Static.lang?.origName : "Язык"}
+          value={Static.lang?.origName ? Static.lang?.origName : front.Variable?.words?.language}
         />
       </div>
 
@@ -52,7 +52,7 @@ export default function () {
           class="flex h-[3.5625rem] w-full cursor-pointer items-center rounded-[.625rem] bg-[--prestige-blue] bg-no-repeat pb-0 pl-[1.875rem] pr-[4.375rem] pt-0 text-[1rem] font-semibold text-[--white] [background-position:_bottom_calc(50%_-_0rem)_right_.9375rem] [border:1px_solid_#474c5a] focus:[outline:none] @550:w-[15.625rem]"
           type="text"
           readonly="true"
-          value={Static.country ? Static.country?.origName : "Страна"}
+          value={Static.country ? Static.country?.origName : front.Variable?.words?.country?.title}
         />
       </div>
     </div>

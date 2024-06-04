@@ -7,7 +7,7 @@ export default function Select_Frame_App() {
         <input
           type="text"
           value={
-            Static?.info?.country ? Static?.info?.country?.origName : "Страна"
+            Static?.info?.country ? Static?.info?.country?.origName : front.Variable?.words?.country?.title
           }
           oninput={(event: InputEvent) => {
             const target = event.target as HTMLInputElement;

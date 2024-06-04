@@ -28,7 +28,7 @@ export default function () {
           ]}
           for="basic"
         >
-          Пользователи
+          {front.Variable?.words?.chapters?.users}
         </label>
       </div>
 
@@ -54,7 +54,7 @@ export default function () {
           ]}
           for="creator"
         >
-          Создатели контента
+          {front.Variable?.words?.chapters?.contentCreators}
         </label>
       </div>
 
@@ -80,7 +80,7 @@ export default function () {
           ]}
           for="expert"
         >
-          Эксперты
+          {front.Variable?.words?.chapters?.experts}
         </label>
       </div>
       <button

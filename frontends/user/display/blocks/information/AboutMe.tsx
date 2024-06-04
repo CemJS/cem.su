@@ -45,7 +45,7 @@ export default function () {
             </div>
             <div class="flex w-full">
               <span class="mr-[.9375rem] block text-[--white] odd:mb-[1.25rem] odd:text-[1rem] odd:font-normal odd:leading-[1.5rem] odd:text-[#ADADAD]">
-                Страна
+                {front.Variable?.words?.country?.title}
               </span>
               <div>
                 <div class="border-0 bg-transparent p-0 text-inherit">

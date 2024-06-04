@@ -112,7 +112,7 @@ export default function () {
         />
         <RenderFieldCountry
           country={Static.country}
-          placeholder="Страна"
+          placeholder={front.Variable?.words?.country?.title}
           className="mt-[25px]"
         />
       </div>
