@@ -71,7 +71,7 @@ export default function () {
 
 
       <p class="mt-4 text-sm sm:text-base">
-        При использовании платформы вы соглашаетесь с{" "}
+        {front.Variable?.words?.form?.usePlatform}{" "}
         <span
           class="link"
           onclick={() => {
@@ -79,7 +79,7 @@ export default function () {
             Fn.linkChange("/terms-of-service");
           }}
         >
-          поликикой сайта.
+          {front.Variable?.words?.form?.agreePolice}.
         </span>
       </p>
 
@@ -90,7 +90,7 @@ export default function () {
           Fn.initOne("modalForgotPassword", {});
         }}
       >
-        Забыли пароль?
+        {front.Variable?.words?.form?.forgotPassword}?
       </span>
     </main>
   );
