@@ -23,9 +23,6 @@ export default function () {
         const target = e.target as HTMLInputElement;
         Static.form.text.value = target?.value;
         Static.data.text = target?.value;
-        Static.page == "pst"
-          ? front.Services.functions.formQuestion(Static.form.text)
-          : "";
         Func.checkForm();
         Func.checkValid();
       }}

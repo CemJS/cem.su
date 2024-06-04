@@ -1,10 +1,8 @@
 import { Cemjsx, front, Func, Static, Fn, Events, Ref } from "cemjs-all";
 import Navigation from "./navigation";
-// import postsListener from "./listeners/post.listener";
 import { AudioPlayer } from "@elements/Audio";
 import questionsListener from "./listeners/questions.listener";
 import postsListener from "elements/post/listener/posts.listener";
-// import { controller } from "./../../services/functions/uploadMedia";
 
 front.listener.finish = () => {
   if (Static.reload) {
@@ -19,15 +17,24 @@ front.listener.finish = () => {
 
 front.func.checkForm = function () {
   if (Static.page == "questions") {
-    Static.form?.title?.valid
-      ? (Static.form.isValid = true)
-      : (Static.form.isValid = false);
+    Func.checkTitle();
   }
   if (Static.page == "posts") {
-    Static.form?.text?.valid
-      ? (Static.form.isValid = true)
-      : (Static.form.isValid = false);
+    Func.checkText();
   }
+};
+
+front.func.checkTitle = function () {
+  front.Services.functions.formQuestion(Static.form.title);
+  Static.form?.title?.valid
+    ? (Static.form.isValid = true)
+    : (Static.form.isValid = false);
+};
+front.func.checkText = function () {
+  front.Services.functions.formQuestion(Static.form.text);
+  Static.form?.text?.valid
+    ? (Static.form.isValid = true)
+    : (Static.form.isValid = false);
 };
 
 front.func.reset = function () {
@@ -47,6 +54,7 @@ front.func.checkValid = function () {
   Static.form.isValid || (Static.form.isValid && Static.previewChanged)
     ? (Static.isValid = true)
     : (Static.isValid = false);
+  console.log("=6a696c=", Static.form);
 };
 
 front.func.uploadMedia = async (file: any, type: string) => {
@@ -163,6 +171,7 @@ front.loader = async () => {
       Static.form.text.value = Static.edit?.text ? Static.edit?.text : "";
       front.Services.functions.formQuestion(Static.form.title);
       Func.checkForm();
+      Func.checkValid();
     }
     if (Static.page == "questions") {
       Static.data = {
@@ -178,6 +187,7 @@ front.loader = async () => {
     }
     front.Services.functions.formQuestion(Static.form.text);
     Func.checkForm();
+    Func.checkValid();
   } else {
     Static.data = {
       languageCode: "ru",
