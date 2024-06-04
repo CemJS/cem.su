@@ -49,24 +49,24 @@ front.func.sendForm = async () => {
       Func.clearForm();
       Fn.initOne("alert", {
         icon: success,
-        title: "Спасибо!",
-        text: "Скоро с Вами свяжется наш менеджер!",
+        title: front.Variable?.words?.thanks,
+        text: front.Variable?.words?.notices?.contactManager,
       });
     } else {
       Fn.initOne("alert", {
         icon: success,
-        title: "Повторите попытку",
+        title: front.Variable?.words?.notices?.retry,
         text: front.Variable?.words?.notices?.requestError,
         type: "danger",
       });
     }
   } else {
-    !Static.form.name.valid ? (Static.form.name.error = "Введите имя") : null;
+    !Static.form.name.valid ? (Static.form.name.error = `${front.Variable?.words?.form?.enterName}`) : null;
     !Static.form.email.valid
-      ? (Static.form.email.error = "Введите email")
+      ? (Static.form.email.error = `${front.Variable?.words?.form?.enterEmail}`)
       : null;
     !Static.form.comment.valid
-      ? (Static.form.comment.error = "Введите сообщение")
+      ? (Static.form.comment.error = `${front.Variable?.words?.form?.enterMessage}`)
       : null;
   }
 

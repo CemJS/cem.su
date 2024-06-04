@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import previewImg from "@images/careerBg.png";
 
 import yan from "@images/about/team/team1.png";

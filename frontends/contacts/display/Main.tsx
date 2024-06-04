@@ -5,9 +5,9 @@ const RenderForm = () => {
   return (
     <form class="w-full rounded-[1.25rem] border border-solid border-[--border-color] bg-[--backModal] p-5 lg:w-1/2 lg:p-10">
       <h4 class="mb-2 text-[clamp(1.2rem,2vw,1.6rem)] font-medium leading-[1.2]">
-        Обратная связь
+        {front.Variable?.words?.contacts?.feedBack}
       </h4>
-      <p class="mb-[1.625rem]">Напишите нам, и мы с вами свяжемся!</p>
+      <p class="mb-[1.625rem]">{front.Variable?.words?.contacts?.writeUs}!</p>
       <div class="mb-8 flex flex-col">
         <div
           class={[
@@ -39,7 +39,7 @@ const RenderForm = () => {
             ]}
           >
             <i class="i i-user"></i>
-            <span>Имя*</span>
+            <span>{front.Variable?.words?.user?.name}*</span>
           </div>
           <div class="absolute right-[0.9375rem] top-[-2.375rem] text-[clamp(0.7rem,2vw,0.8rem)] font-medium text-[#E84142] [transition:color_0.3s_ease-in-out]">
             {Static.form.name.error}
@@ -117,7 +117,7 @@ const RenderForm = () => {
             ]}
           >
             <i class="i i-user"></i>
-            <span>Телеграм</span>
+            <span>Telegram</span>
           </div>
           <div class="absolute right-[0.9375rem] top-[-2.375rem] text-[clamp(0.7rem,2vw,0.8rem)] font-medium text-[#E84142] [transition:color_0.3s_ease-in-out]">
             {Static.form.telegram.error}
@@ -140,7 +140,7 @@ const RenderForm = () => {
               front.Services.functions.formComment(Static.form.comment);
               Func.checkForm();
             }}
-            placeholder="Введите ваше сообщение*"
+            placeholder={`${front.Variable?.words?.comments?.comment}*`}
             class={[
               "peer absolute z-[3] w-full resize-none rounded-[--borderR] border border-solid border-[--fiolet] bg-transparent px-[1.875rem] pt-3 text-base leading-[1.5rem] text-[--white] outline-none [transition:border_0.1s_ease]",
               Static.form.comment.error ? "!border-red-600" : null,
@@ -174,16 +174,15 @@ const RenderDestination = () => {
     <div class="order-[-1] flex w-full max-w-[33.4375rem] flex-col gap-[1.5625rem] lg:order-1 lg:gap-[3.75rem]">
       <div class="flex flex-col gap-[0.5rem]">
         <h4 class="text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.375rem] text-[--white]">
-          Филиал в России:
+          {front.Variable?.words?.contacts?.branchRussia}:
         </h4>
         <p class="text-[clamp(1rem,3vw,2rem)] leading-8 text-[--white]">
-          г. Новороссийск​, ул.Набережная им. Адмирала Серебрякова, 27а, ​4
-          этаж, офис 39
+          {front.Variable?.words?.contacts?.addressOffice}
         </p>
       </div>
       <div class="flex flex-col gap-[0.5rem]">
         <h4 class="text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.375rem] text-[--white]">
-          Адрес:
+          {front.Variable?.words?.contacts?.address}:
         </h4>
         <p class="text-[clamp(1rem,3vw,2rem)] leading-8 text-[--white]">
           Business address: Didzioji Str. 14-1, Vilnius, the Republic of
@@ -192,7 +191,7 @@ const RenderDestination = () => {
       </div>
       <div class="flex flex-col gap-[0.5rem]">
         <h4 class="text-[clamp(1rem,1.5vw,1.3rem)] font-light leading-[1.375rem] text-[--white]">
-          E-mail:
+          Email:
         </h4>
         <a
           onclick={Fn.link}

@@ -59,14 +59,14 @@ front.func.sendForm = async () => {
     if (!res.error) {
       Fn.initOne("alert", {
         icon: success,
-        title: "Спасибо!",
-        text: "Скоро с Вами свяжется наш менеджер!",
+        title: front.Variable?.words?.thanks,
+        text: front.Variable?.words?.notices?.contactManager,
       });
       Func.close();
     } else {
       Fn.initOne("alert", {
         icon: success,
-        title: "Повторите попытку",
+        title: front.Variable?.words?.notices?.retry,
         text: front.Variable?.words?.notices?.requestError,
         type: "danger",
       });
