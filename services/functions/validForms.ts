@@ -147,11 +147,12 @@ export const formTelegram = async function (form: Form) {
 
 export const formComment = async function (form: Form) {
   if (!form.value.length) {
-    form.error = false;
+    form.error = "Введите сообщение";
     form.valid = false;
     return false;
   }
   let check = validComment(form.value);
+  console.log("=da49ea=", check);
   if (check) {
     form.error = false;
     form.valid = true;
@@ -217,7 +218,10 @@ export const formPassword = async function (form: Form) {
   }
 };
 
-export const formConfirmPassword = async function (formPass: Form, formConfirmPass: Form) {
+export const formConfirmPassword = async function (
+  formPass: Form,
+  formConfirmPass: Form,
+) {
   if (!formPass.value.length && !formConfirmPass.value.length) {
     formPass.error, (formConfirmPass.error = false);
     formPass.valid, (formConfirmPass.valid = false);

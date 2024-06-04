@@ -1,4 +1,4 @@
-import { Cemjsx, Static } from "cemjs-all";
+import { Cemjsx, Func, Static } from "cemjs-all";
 
 export default function () {
   return (
@@ -53,6 +53,7 @@ export default function () {
           class="rounded-lg border border-blue-800 bg-transparent px-3 py-1.5 text-center text-xs font-medium text-blue-800 hover:bg-blue-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-200 dark:border-blue-600 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-blue-800"
           data-dismiss-target="#alert-additional-content-1"
           aria-label="Close"
+          onclick={Func.close}
         >
           Dismiss
         </button>

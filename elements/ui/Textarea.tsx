@@ -8,7 +8,8 @@ export default function ({
   ref,
   error,
   classNameStatus,
-  classNameTextarea
+  classNameTextarea,
+  classNameStyle,
 }: {
   oninput: (e: InputEvent) => void;
   // isValid: boolean;
@@ -18,6 +19,7 @@ export default function ({
   className?: string;
   classNameStatus?: string;
   classNameTextarea?: string;
+  classNameStyle?: string;
   ref?: string;
 }) {
   return (
@@ -32,14 +34,21 @@ export default function ({
       <textarea
         value={value}
         ref={ref}
-        class={{"w-full resize-none rounded-[--borderR] !bg-[#202432] bg-transparent p-[0.625rem_1.875rem] text-white outline-none [border:1px_solid_var(--fiolet)]",classNameTextarea}}
+        class={[
+          "w-full resize-none rounded-[--borderR] !bg-[#202432] bg-transparent p-[0.625rem_1.875rem] text-white outline-none [border:1px_solid_var(--fiolet)]",
+          classNameTextarea,
+        ]}
+        style={classNameStyle}
         rows="3"
         oninput={oninput}
       >
         {value}
       </textarea>
       <p
-        class={["modalWindow_field__status", classNameStatus]}
+        class={[
+          "absolute right-[0.9375rem] top-[-24px] text-[clamp(0.7rem,2vw,0.8rem)] font-medium text-[#E84142] [transition:color_0.3s_ease-in-out]",
+          classNameStatus,
+        ]}
         style="color:#E84142"
       >
         {error}

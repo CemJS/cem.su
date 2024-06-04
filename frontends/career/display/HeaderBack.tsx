@@ -19,7 +19,23 @@ export default function () {
 
           <span
             class="relative w-8 cursor-pointer after:absolute after:left-0 after:top-0 after:translate-x-[-10%] after:translate-y-[-80%] after:text-5xl after:content-['...']"
-            onclick={() => Fn.initOne("modalTools", {})}
+            onclick={() =>
+              Fn.initOne("modalTools", {
+                shareUrl: window.location,
+                records: [
+                  {
+                    name: "Скопировать URL",
+                    func: () => {
+                      navigator.clipboard
+                        .writeText(window.location.href)
+                        .then(() => {
+                          Fn.initOne("alert", { text: "Скопировано" });
+                        });
+                    },
+                  },
+                ],
+              })
+            }
           ></span>
         </div>
       </div>

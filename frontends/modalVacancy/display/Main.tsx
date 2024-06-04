@@ -132,15 +132,20 @@ export default function () {
         <Textarea
           value={Static.form.comment.value}
           placeholder={Static.form.comment.placeholder}
+          error={Static.form.comment.error}
           oninput={(e: any) => {
             Static.form.comment.value = e.target.value;
-            front.Services.functions.formComment(this.Static.form.comment);
+            front.Services.functions.formComment(Static.form.comment);
+            console.log("=07ca29=", Static.form);
             Func.checkForm();
           }}
-          classNameTextarea={`${[
-            Static.form.comment.error ? " contacts__form-input_error" : "",
-            Static.form.comment.valid ? " contacts__form-input_success" : "",
-          ]}`}
+          classNameStyle={`${
+            Static.form.comment.valid
+              ? " border:1px solid var(--success-color);"
+              : ""
+          }
+            ${Static.form.comment.error ? " border:1px solid #E84142;" : ""},
+          }`}
         />
         <button
           onclick={Func.sendForm}
