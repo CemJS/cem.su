@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import folder from "@svg/about/goal_1.svg";
 import safe from "@svg/about/goal_2.svg";
 import access from "@svg/about/goal_3.svg";
@@ -7,28 +7,26 @@ import pin from "@svg/about/goal_4.svg";
 const goals = [
   {
     img: folder,
-    title: "Поднять крипто грамотность населения",
-    description:
-      "Мы создали платформу, где любой желающий может найти ответ на свой вопрос, и обрести навыки инвестирования в криптовалюту.",
+    title: front.Variable?.words?.goals?.title1,
+    description: front.Variable?.words?.goals?.desc1,
     classItem: "crypto",
   },
   {
     img: safe,
-    title: "Объединить людей",
-    description: "Создать мульти интернациональное комьюнити по всему миру.",
+    title: front.Variable?.words?.goals?.title2,
+    description: front.Variable?.words?.goals?.desc2,
     classItem: "unite",
   },
   {
     img: access,
-    title: "Бесплатный доступ",
-    description:
-      "Весь функционал на сайте не потребует от вас никаких вложений!",
+    title: front.Variable?.words?.goals?.title3,
+    description: front.Variable?.words?.goals?.desc3,
     classItem: "access",
   },
   {
     img: pin,
-    title: "Создание метавселенной",
-    description: "Объединение всех продуктов компании в одной метавселенной.",
+    title: front.Variable?.words?.goals?.title4,
+    description: front.Variable?.words?.goals?.desc4,
     classItem: "meta",
   },
 ];
@@ -45,7 +43,7 @@ export default function () {
         leading-6 text-[#FFFFFF] 
         max-sm:mb-[25px]"
       >
-        Наши цели
+        {front.Variable?.words?.goals?.ourGoals}
       </h2>
       <div
         class="grid-rows-auto

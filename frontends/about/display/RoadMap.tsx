@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import previewImg from "@images/careerBg.png";
 import blockchain from "@images/about/main/blockchain.jpg";
 import rocket from "@svg/about/roadmap/rocket.svg";
@@ -11,45 +11,45 @@ import arrowUp from "@svg/about/roadmap/arrowUp.svg";
 
 const roadmap = [
   {
-    title: "Старт проекта",
-    date: "15 июня 2021г.",
-    desc: "Crypto Emergency - это платформа, на которой вы сможете найти все ответы на вопросы, касающиеся крипто индустрии.",
+    title: front.Variable?.words?.roadmap?.startProject?.title,
+    date: front.Variable?.words?.roadmap?.startProject?.date,
+    desc: front.Variable?.words?.roadmap?.startProject?.desc,
     icon: rocket,
   },
   {
-    title: "Собственный Блокчейн СЕМ",
-    date: "19 мая 2022г.",
-    desc: "Crypto Emergency - это платформа, на которой вы сможете найти все ответы на вопросы, касающиеся крипто индустрии.",
+    title: front.Variable?.words?.roadmap?.blockchain?.title,
+    date: front.Variable?.words?.roadmap?.blockchain?.date,
+    desc: front.Variable?.words?.roadmap?.blockchain?.desc,
     icon: blockchain,
   },
   {
-    title: "Кошелёк Cem Wallet",
-    date: "Сентябрь 2022г.",
-    desc: "Crypto Emergency - это платформа, на которой вы сможете найти все ответы на вопросы, касающиеся крипто индустрии.",
+    title: front.Variable?.words?.roadmap?.wallet?.title,
+    date: front.Variable?.words?.roadmap?.wallet?.date,
+    desc: front.Variable?.words?.roadmap?.wallet?.desc,
     icon: wallet,
   },
   {
-    title: "Сообщество DAO",
-    date: "Лето 2023г.",
-    desc: "Crypto Emergency - это платформа, на которой вы сможете найти все ответы на вопросы, касающиеся крипто индустрии.",
+    title: front.Variable?.words?.roadmap?.community?.title,
+    date: front.Variable?.words?.roadmap?.community?.date,
+    desc: front.Variable?.words?.roadmap?.community?.desc,
     icon: community,
   },
   {
-    title: "Крипто Университет",
-    date: "Осень 2023г.",
-    desc: "Crypto Emergency - это платформа, на которой вы сможете найти все ответы на вопросы, касающиеся крипто индустрии.",
+    title: front.Variable?.words?.roadmap?.university?.title,
+    date: front.Variable?.words?.roadmap?.university?.date,
+    desc: front.Variable?.words?.roadmap?.university?.desc,
     icon: univercity,
   },
   {
-    title: "Собственная Биржа",
-    date: "Начало 2024г.",
-    desc: "Crypto Emergency - это платформа, на которой вы сможете найти все ответы на вопросы, касающиеся крипто индустрии.",
+    title: front.Variable?.words?.roadmap?.exchange?.title,
+    date: front.Variable?.words?.roadmap?.exchange?.date,
+    desc: front.Variable?.words?.roadmap?.exchange?.desc,
     icon: exchange,
   },
   {
-    title: "Новостная нейросеть",
-    date: "Конец 2024г.",
-    desc: "Crypto Emergency - это платформа, на которой вы сможете найти все ответы на вопросы, касающиеся крипто индустрии.",
+    title: front.Variable?.words?.roadmap?.neuralNetwork?.title,
+    date: front.Variable?.words?.roadmap?.neuralNetwork?.date,
+    desc: front.Variable?.words?.roadmap?.neuralNetwork?.desc,
     icon: network,
   },
 ];
@@ -57,12 +57,12 @@ const RenderRoadMap = function ({ items }) {
   return (
     <div class="roadmapNew">
       <h1 class="z-[1] mx-0 my-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
-        Дорожная карта
+        {front.Variable?.words?.chapters?.roadmap}
       </h1>
       <div class="relative mx-auto my-[3.125rem] max-w-[1080px] px-[1.25rem] py-0 text-[#2B3040] ">
         <div class="absolute left-[2.5rem] top-[1.25rem] h-full w-[.25rem] bg-[white] [animation:moveline_5s_linear_forwards] [transform:translateX(-50%)] @772:left-[50%]">
           <div class="absolute bottom-[0] left-[50%] flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-[50%] bg-[#f2f2f2] shadow-[0_0_0_4px_#fff,_inset_0_2px_0_#00000014,_0_3px_0_4px_#0000000d] [transform:translateX(-50%)]">
-            <img class="w-[1.25rem]" src={arrowUp} alt="Иконка" />
+            <img class="w-[1.25rem]" src={arrowUp} alt="Icon" />
           </div>
         </div>
         {items.map((item: any, index: number) => {

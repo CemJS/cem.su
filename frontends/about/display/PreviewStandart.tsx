@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import lines from "@svg/lines.svg";
 
 export default function () {
@@ -42,10 +42,7 @@ export default function () {
            font-normal 
            text-[#FFFFFF]"
         >
-          Объединяем криптоэнтузиастов всего мира на единой многофункциональной
-          платформе Crypto Emergency, которая даст им все необходимые
-          инструменты для общения, обучения, заработка и создания собственного
-          контента.
+          {front.Variable?.words?.contacts?.combining}
         </p>
       </div>
       <div

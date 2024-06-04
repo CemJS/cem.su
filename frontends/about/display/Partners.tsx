@@ -1,4 +1,4 @@
-import { Cemjsx, Static } from "cemjs-all";
+import { Cemjsx, Static, front } from "cemjs-all";
 import b4 from "@images/partners/b4.png";
 import bein from "@images/partners/bein.png";
 import crypto from "@images/partners/crypto.png";
@@ -58,7 +58,7 @@ export default function () {
   return (
     <div class="partners">
       <h2 class="z-[10] mx-0 py-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
-        Информационные партнёры
+        {front.Variable?.words?.chapters?.infoPartners}
       </h2>
       <div
         class="before:@600:w-[10rem] @1240:w-[1240px] relative z-[1] mx-auto my-0 w-screen overflow-hidden bg-transparent before:absolute before:left-0 before:top-0 before:h-full before:w-[5rem] before:bg-[linear-gradient(to_right,_var(--back-color)_0%,_transparent_100%)] before:content-['']"
@@ -74,7 +74,7 @@ export default function () {
                 <img
                   class="m-[.9375rem] w-full object-contain"
                   src={item.logo}
-                  alt="Партнёр"
+                  alt={front.Variable?.words?.user?.partner}
                 />
               </li>
             );
@@ -95,7 +95,7 @@ export default function () {
                 <img
                   class="m-[.9375rem] w-full object-contain"
                   src={item.logo}
-                  alt="Партнёр"
+                  alt={front.Variable?.words?.user?.partner}
                 />
               </li>
             );

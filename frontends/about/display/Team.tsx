@@ -71,7 +71,7 @@ export default function () {
                     onclick={this.Fn.link}
                   >
                     <span class="h-full block">{front.Variable?.words?.user?.goToProfile}</span>
-                    <img class="w-[1.375rem]" src={logo} alt="Присоединиться к телеграм каналу" />
+                    <img class="w-[1.375rem]" src={logo} alt={front.Variable?.words?.tools?.goOver} />
                   </a>
                 </div>
               </div>

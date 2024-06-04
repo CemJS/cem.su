@@ -1,4 +1,4 @@
-import { Cemjsx } from "cemjs-all"
+import { Cemjsx, front } from "cemjs-all"
 
 interface Params {
     items: Array<Item>
@@ -62,7 +62,7 @@ const display = function (params: Params) {
                                 <div class={`${mainClass}_item_content`}>
                                     <div class={`${mainClass}_item_name`}>{item.name}</div>
                                     <div class={`${mainClass}_item_desc`}>{item.desc}</div>
-                                    {item?.link ? <a href={item.link} class="btn btn_timing" onclick={this.Fn.link}>Перейти</a> : null}
+                                    {item?.link ? <a href={item.link} class="btn btn_timing" onclick={this.Fn.link}>{front.Variable?.words?.tools?.goOver}</a> : null}
                                 </div>
                             </div>
                         )
