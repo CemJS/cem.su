@@ -22,18 +22,7 @@ export default function () {
             onclick={() =>
               Fn.initOne("modalTools", {
                 shareUrl: window.location,
-                records: [
-                  {
-                    name: "Скопировать URL",
-                    func: () => {
-                      navigator.clipboard
-                        .writeText(window.location.href)
-                        .then(() => {
-                          Fn.initOne("alert", { text: "Скопировано" });
-                        });
-                    },
-                  },
-                ],
+                copyURL: true,
               })
             }
           ></span>

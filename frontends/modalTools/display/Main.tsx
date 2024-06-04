@@ -1,4 +1,4 @@
-import { Cemjsx, Static, Func, Ref, front } from "cemjs-all";
+import { Cemjsx, Static, Func, Ref, front, Fn } from "cemjs-all";
 
 export default function () {
   return (
@@ -37,9 +37,25 @@ export default function () {
                 class="cursor-pointer rounded-[1rem] border border-solid border-slate-700 bg-slate-700 p-[0.8rem] text-center font-medium [transition:var(--tran-03)] hover:border-slate-700 hover:bg-slate-800 active:bg-slate-900"
                 onclick={() => {
                   Func.share();
+                  Func.close();
                 }}
               >
                 Поделиться
+              </li>
+            ) : null}
+            {Static.copyURL ? (
+              <li
+                class="cursor-pointer rounded-[1rem] border border-solid border-slate-700 bg-slate-700 p-[0.8rem] text-center font-medium [transition:var(--tran-03)] hover:border-slate-700 hover:bg-slate-800 active:bg-slate-900"
+                onclick={() => {
+                  navigator.clipboard
+                    .writeText(window.location.href)
+                    .then(() => {
+                      Fn.initOne("alert", { text: "Скопировано" });
+                    });
+                  Func.close();
+                }}
+              >
+                Скопировать URL
               </li>
             ) : null}
 
