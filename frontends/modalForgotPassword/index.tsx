@@ -41,7 +41,7 @@ front.func.sendCode = async function () {
             step: Static.currentStep
         })
     if (answer.error) {
-        Static.form.email.error = "Пользователь с таким email не найден!"
+        Static.form.email.error = front.Variable?.words?.form?.busyEmail
         Static.form.email.valid = false
         return
     }
@@ -89,7 +89,7 @@ front.func.checkForm = async function () {
                 })
             console.log('=94b29f=', answer)
             if (answer.error) {
-                Static.form.code.error = "Код указан не верно!"
+                Static.form.code.error = front.Variable?.words?.form?.invalidCode
 
                 Static.code.forEach((item: number, index: number) => {
                     Static.code[index] = null
@@ -160,7 +160,7 @@ front.loader = () => {
             value: "",
             valid: false,
             error: false,
-            placeholder: "Новый пароль:",
+            placeholder: front.Variable?.words?.form?.newPawword,
             view: false,
             disable: false
         },

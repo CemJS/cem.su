@@ -6,7 +6,7 @@ export default function () {
     <div class="w-1/4 transition-all">
       <div class="flex flex-col h-full justify-between gap-7">
         <h3 class="text-lg font-semibold max-@600:text-base text-center">
-          Поздравляем, Вы успешно сменили пароль!
+          {front.Variable?.words?.notices?.happyChangePassword}
         </h3>
         <div class="flex justify-center items-center">
           <img class="w-[min(50%,100px)]" src={done} alt="Успешно сменили пароль" />
@@ -19,7 +19,7 @@ export default function () {
               Func.close();
             }}
           >
-            Перейти в личный кабинет
+            {front.Variable?.words?.tools?.goOverPersonalAccount}
           </button>
         </div>
       </div>
