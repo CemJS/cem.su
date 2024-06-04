@@ -27,7 +27,7 @@ export default function ({ src, key, poster = "" }) {
       }}
       onmouseleave={() => {
         setTimeout(() => {
-          Ref[`videoContainer${key}`].classList.remove(
+          Ref[`videoContainer${key}`]?.classList?.remove(
             "video-container_showControlls",
           );
         }, 300);
@@ -226,7 +226,7 @@ export default function ({ src, key, poster = "" }) {
                 onclick={() => {
                   let position = document.documentElement.scrollTop;
 
-                  Ref[`videoContainer${key}`].classList.toggle(
+                  Ref[`videoContainer${key}`]?.classList?.toggle(
                     "video-container_fullscreen",
                   );
                   if (document.fullscreenElement) {
@@ -253,11 +253,11 @@ export default function ({ src, key, poster = "" }) {
                           "fullscreenchange",
                           fullscreen,
                         );
-                        Ref[`fullScreen${key}`].classList.replace(
+                        Ref[`fullScreen${key}`]?.classList?.replace(
                           "i-arrows-pointing-in",
                           "i-arrows-pointing-out",
                         );
-                        Ref[`videoContainer${key}`].classList.remove(
+                        Ref[`videoContainer${key}`]?.classList?.remove(
                           "video-container_fullscreen",
                         );
                         document.documentElement.scrollTo(0, position);

@@ -161,6 +161,8 @@ front.loader = async () => {
         media: Static.edit?.media ? Static.edit?.media : [],
       };
       Static.form.text.value = Static.edit?.text ? Static.edit?.text : "";
+      front.Services.functions.formQuestion(Static.form.title);
+      Func.checkForm();
     }
     if (Static.page == "questions") {
       Static.data = {
@@ -174,6 +176,7 @@ front.loader = async () => {
       Static.form.title.value = Static.edit?.title ? Static.edit?.title : "";
       Static.form.text.value = Static.edit?.text ? Static.edit?.text : "";
     }
+    front.Services.functions.formQuestion(Static.form.text);
     Func.checkForm();
   } else {
     Static.data = {

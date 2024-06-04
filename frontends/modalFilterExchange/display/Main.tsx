@@ -5,25 +5,27 @@ const RenderSearch = function () {
   return (
     <div
       class={[
-        "w-full relative h-[3.125rem] leading-[3.125rem]",
-        Static.searchText ? "h-[30px] leading-[30px] [transform:translate(-15px,_-16px)] scale-[0.88] z-[5] top-0" : null,
+        "relative h-[3.125rem] w-full leading-[3.125rem]",
+        Static.searchText
+          ? "top-0 z-[5] h-[30px] scale-[0.88] leading-[30px] [transform:translate(-15px,_-16px)]"
+          : null,
       ]}
     >
       <input
-      class="peer absolute w-full [outline:none] focus:[&.in-viewTest]:opacity-0 text-[1rem] py-0 px-[1.875rem] leading-[3.125rem] rounded-[--borderR] [border:1px_solid_var(--fiolet)] bg-transparent [transition:border_0.1s_ease] z-[3] text-[--white] resize-none font-ie"
+        class="font-ie peer absolute z-[3] w-full resize-none rounded-[--borderR] bg-transparent px-[1.875rem] py-0 text-[1rem] leading-[3.125rem] text-[--white] [border:1px_solid_var(--fiolet)] [outline:none] [transition:border_0.1s_ease] focus:[&.in-viewTest]:opacity-0"
         type="text"
         autocomplete="off"
         oninput={(e: any) => {
           Static.searchText = e.target.value.toLowerCase();
-          Static.coins = Static.records.filter((item) => {
-            if (item.name.toLowerCase().includes(Static.searchText)) {
+          Static.coins = Static.records?.filter((item) => {
+            if (item.name.toLowerCase()?.includes(Static.searchText)) {
               return true;
             }
           });
         }}
       />
-      <div class="peer-focus:h-[1.875rem] peer-focus:leading-[1.875rem] peer-focus:[transform:translate(-15px,_-16px)_scale(0.88)] peer-focus:z-[5] absolute text-[1rem] py-0 px-[.625rem] my-0 mx-[1.25rem] bg-[--backModal] [transition:0.2s_ease] flex items-center gap-[.625rem] text-[--secondary-text]">
-        <i class="i-user text-[1.3rem] !font-['cemicons'] normal-case [-webkit-font-smoothing:antialiased] [font-style:normal] [font-variant:normal] [font-weight:normal] leading-[1] before:content-['\e920']"></i>
+      <div class="absolute mx-[1.25rem] my-0 flex items-center gap-[.625rem] bg-[--backModal] px-[.625rem] py-0 text-[1rem] text-[--secondary-text] [transition:0.2s_ease] peer-focus:z-[5] peer-focus:h-[1.875rem] peer-focus:leading-[1.875rem] peer-focus:[transform:translate(-15px,_-16px)_scale(0.88)]">
+        <i class="i-user !font-['cemicons'] text-[1.3rem] normal-case leading-[1] [-webkit-font-smoothing:antialiased] [font-style:normal] [font-variant:normal] [font-weight:normal] before:content-['\e920']"></i>
         <span class="">Поиск</span>
       </div>
     </div>
@@ -32,7 +34,7 @@ const RenderSearch = function () {
 
 const RenderNotFound = function () {
   return (
-    <div class="notFound absolute top-[50%] left-[50%] [transform:translate(-50%,_-50%)] flex items-center justify-center flex-col z-0 gap-[0.5rem]">
+    <div class="notFound absolute left-[50%] top-[50%] z-0 flex flex-col items-center justify-center gap-[0.5rem] [transform:translate(-50%,_-50%)]">
       <img src={notFound} alt="Not found" />
       <span>Не найдено</span>
     </div>
@@ -41,18 +43,20 @@ const RenderNotFound = function () {
 
 const RenderListCoins = function ({ coins }) {
   // console.log("coins", coins);
-  
+
   return (
-    <ul class="@464:grid-cols-2 grid-cols-1 [grid-template-rows:auto] @464:[grid-template-rows:repeat(auto-fill,_3rem)] gap-[ 0.6rem] overflow-x-hidden min-h-[23rem] h-[23rem] overflow-y-auto
-    min-height: 23rem;
-    height: 23rem;
-    overflow-x: hidden;">
+    <ul
+      class="gap-[ 0.6rem] min-height: 23rem; height: 23rem; overflow-x: hidden; h-[23rem] min-h-[23rem]
+    grid-cols-1 overflow-y-auto
+    overflow-x-hidden [grid-template-rows:auto]
+    @464:grid-cols-2 @464:[grid-template-rows:repeat(auto-fill,_3rem)]"
+    >
       {coins?.map((item) => {
         // Fn.log('=125deb=', item)
         return (
           <li
             class={[
-              "m-[.3125rem] p-[0.6rem] h-fit cursor-pointer [transition:var(--tran-03)] rounded-[--borderR] flex items-center gap-[0.5rem] bg-transparent [border:1px_solid_var(--border-color)] hover:[background-image:var(--mainGradient)]",
+              "m-[.3125rem] flex h-fit cursor-pointer items-center gap-[0.5rem] rounded-[--borderR] bg-transparent p-[0.6rem] [border:1px_solid_var(--border-color)] [transition:var(--tran-03)] hover:[background-image:var(--mainGradient)]",
               Static.filterCoins?.includes(item?.name)
                 ? "[background-image:var(--mainGradient)]"
                 : null,
@@ -85,8 +89,8 @@ export default function () {
     <main class="w-[80ch] max-w-full ">
       <RenderSearch />
 
-      <div class="mt-[.9375rem] relative h-[23rem] min-h-[23rem]">
-        {Static.coins.length > 0 ? (
+      <div class="relative mt-[.9375rem] h-[23rem] min-h-[23rem]">
+        {Static.coins?.length > 0 ? (
           <RenderListCoins coins={Static.coins} />
         ) : (
           <RenderNotFound />

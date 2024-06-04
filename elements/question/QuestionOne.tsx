@@ -3,6 +3,7 @@ import frameDefault from "@svg/lenta/default.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
+import QuestionIcons from "./components/QuestionIcons.jsx";
 
 export default function ({
   item,
@@ -44,15 +45,15 @@ export default function ({
       }}
     >
       <div class="relative">
-        <a
-          onclick={(e) => {
-            e.stopPropagation();
-            Fn.link(e);
-          }}
-          href={`/user/${item?.author.nickname}`}
-          class="relative inline-flex h-auto w-auto"
-        >
-          <div class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]">
+        <div class="relative inline-flex h-auto w-auto">
+          <a
+            onclick={(e) => {
+              e.stopPropagation();
+              Fn.link(e);
+            }}
+            href={`/user/${item?.author.nickname}`}
+            class="relative z-[1] h-[4.5rem] w-[4.1875rem] min-w-[2.9375rem]"
+          >
             <img
               class="absolute left-1/2 top-1/2 z-[1] h-[78%] w-[78%] rounded-[50%] object-cover [transform:translateX(-50%)_translateY(-50%)]"
               src={
@@ -92,13 +93,14 @@ export default function ({
                 </div>
               </div>
             )}
-          </div>
+          </a>
           <div class="absolute left-20 top-5 mb-2 block leading-[24px]">
             <span class="inline text-[0.875rem] font-semibold leading-[1.375rem] text-[--white]">
               {item?.author?.nickname}
             </span>
+            <QuestionIcons item={item} />
           </div>
-        </a>
+        </div>
         <div class="btn_border-wrap absolute right-0 top-0 h-auto !w-[4.6rem] cursor-default">
           <button class="btn_border !h-[1.6875rem] !text-[0.75rem] !font-semibold hover:bg-[--black-gray]">
             {item.language?.origName}
