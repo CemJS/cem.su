@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import logo_apple from "@images/social_networks/logo_apple.png";
 import logo_android from "@images/social_networks/logo_android.png";
 import cem_assist from "@images/social_networks/cem_assist.png";
@@ -12,7 +12,7 @@ const developments = [
     appStore: "https://apps.apple.com/ru/app/cem-assistant/id6448629326",
     playMarket:
       "https://play.google.com/store/apps/details?id=com.cemassistant&hl=ru",
-    desc: "Приложение CEM Assistent - это бесплатное приложение, которое позволяет пользоваться чатом GPT и генератором картинок абсолютно бесплатно. Также реализована функция сохранения заметок, что позволяет пользователям сохранять и организовывать свои записи и идеи. Cem Assistent может быть полезен каждому!",
+    desc: front.Variable?.words?.developments?.assistantDesc,
   },
   {
     name: "CEM Wallet",
@@ -20,7 +20,7 @@ const developments = [
     appStore: "https://apps.apple.com/ru/app/cem-wallet/id1637300554",
     playMarket:
       "https://play.google.com/store/apps/details?id=com.cemwallet&hl=en&gl=US",
-    desc: "CEM Wallet - это некастодиальный кошелек для криптовалюты. Он предоставляет пользователям безопасное и удобное место для хранения и управления их криптовалютных активов. Приложение является надёжным инструментом для управления криптовалютными активами.",
+    desc: front.Variable?.words?.developments?.walletDesc,
   },
   {
     name: "Crypto Emergency",
@@ -28,7 +28,7 @@ const developments = [
     appStore: "https://apps.apple.com/es/app/crypto-emergency/id1635628021",
     playMarket:
       "https://play.google.com/store/apps/details?id=com.cryptoemergency&hl=en&gl=US",
-    desc: "Crypto Emergency - это платформа, на которой вы сможете найти все ответы на вопросы, касающиеся крипто индустрии. Первая в мире специализированная социальная сеть для взаимодействия всех участников международного крипто-рынка. На данный момент платформа поддерживает 60 языков, что дает практически безграничные возможности общения, поиска и размещения материалов.",
+    desc: front.Variable?.words?.developments?.cemDesc,
   },
 ];
 
@@ -36,7 +36,7 @@ export default function () {
   return (
     <div class="flex flex-col items-center">
       <h2 class="z-[1] mx-0 my-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
-        Наши разработки
+        {front.Variable?.words?.chapters?.ourDevelopments}
       </h2>
       <div class="@700:grid @700:grid-cols-2 @700:[grid-template-areas:'emergency_emergency'_'assistant_wallet'] @700:gap-[1.5625rem] @1100:grid-cols-3 @1100:max-w-[68.75rem] contents">
         {developments.map((item, index) => {

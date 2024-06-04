@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import discord from "@images/social_networks/discord.png";
 import facebook from "@svg/social_networks/facebook.svg";
 import github from "@images/social_networks/github.png";
@@ -69,7 +69,7 @@ const sand = (e: any) => {
 export default function () {
   return (
     <div class="socials">
-      <h2 class="about_subtitle">Социальные сети</h2>
+      <h2 class="about_subtitle">{front.Variable?.words?.chapters?.socials}</h2>
       <ul class="socials_list">
         {socials.map((item) => {
           return (

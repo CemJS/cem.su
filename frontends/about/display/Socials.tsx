@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import discord from "@images/social_networks/discord.png";
 import facebook from "@svg/social_networks/facebook.svg";
 import github from "@images/social_networks/github.png";
@@ -72,7 +72,7 @@ export default function () {
   return (
     <div class="mb-[3.75rem] flex flex-col items-center justify-center px-[.625rem] py-0">
       <h2 class="z-[1] mx-0 mb-[.9375rem] mt-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
-        Социальные сети
+        {front.Variable?.words?.chapters?.socials}
       </h2>
       <ul class="grid list-none grid-cols-5 gap-[.3125rem] p-0 @550:flex @550:gap-[.9375rem]">
         {socials.map((item, index) => {
@@ -158,15 +158,7 @@ export default function () {
       </ul>
       <div class="max-w-[56.25rem]">
         <p class="z-[1] m-0 pb-[1.5625rem] text-justify text-[clamp(.875rem,2vw,1rem)] font-medium italic leading-[1.5]">
-          Присоединяйтесь к нашей уникальной социальной сети CryptoEmergency и
-          получите доступ к самой актуальной информации о криптовалютах и
-          блокчейне. Скачайте наше приложение и станьте частью нашей экосистемы.
-          У нас вы сможете общаться с единомышленниками, делиться своими идеями
-          и получать ценные советы от опытных трейдеров и инвесторов.
-          Присоединяйтесь к нам прямо сейчас и не упустите возможность быть в
-          курсе последних новостей и трендов в мире криптовалют. Скачайте
-          приложение CryptoEmergency и станьте частью нашей успешной и
-          инновационной экосистемы уже сегодня!
+          {front.Variable?.words?.contacts?.joinSocialNetwork}
         </p>
       </div>
     </div>

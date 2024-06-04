@@ -11,25 +11,25 @@ const team = [
   {
     image: yan,
     name: "Ян Кривоносов",
-    post: "CEO и Founder",
+    post: front.Variable?.words?.positions?.founder,
     link: "/user/Yan_Krivonosov",
   },
   {
     image: igor,
     name: "Игорь Еньшин",
-    post: "Технический директор",
+    post: front.Variable?.words?.positions?.techDirector,
     link: "/user/Betarost",
   },
   {
     image: anya,
     name: "Анна Рыжкова",
-    post: "Руководитель дизайн отдела",
+    post: front.Variable?.words?.positions?.designDirector,
     link: "/user/Anyaryzhkova",
   },
   {
     image: dima,
     name: "Дмитрий Белов",
-    post: "Управляющий директор",
+    post: front.Variable?.words?.positions?.managingDirector,
     link: "/user/Dmitrii_Belov",
   },
 ];
@@ -38,7 +38,7 @@ export default function () {
   return (
     <div>
       <h2 class="z-[1] mx-0 my-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
-        Команда
+        {front.Variable?.words?.team}
       </h2>
       <div class="grid grid-cols-1 gap-[1.25rem] @600:grid-cols-2 @1100:grid-cols-4">
         {team.map((item) => {
@@ -70,7 +70,7 @@ export default function () {
                     class="btn hover:bg-right p-[.625rem] flex gap-[.625rem] justify-between items-center w-fit [transform:translateZ(2.4rem)]"
                     onclick={this.Fn.link}
                   >
-                    <span class="h-full block">Перейти в профиль</span>
+                    <span class="h-full block">{front.Variable?.words?.user?.goToProfile}</span>
                     <img class="w-[1.375rem]" src={logo} alt="Присоединиться к телеграм каналу" />
                   </a>
                 </div>
