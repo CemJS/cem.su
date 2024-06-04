@@ -49,19 +49,19 @@ front.loader = async () => {
   Static.types = [
     {
       name: "All",
-      text: "Все вопросы",
+      text: front.Variable?.words?.qa?.filters?.all,
     },
     {
       name: "opened",
-      text: "Ожидающие ответа",
+      text: front.Variable?.words?.qa?.filters?.opened,
     },
     {
       name: "closed",
-      text: "Закрытые вопросы",
+      text: front.Variable?.words?.qa?.filters?.closed,
     },
     {
       name: "best",
-      text: "Закрытые с лучшим ответом",
+      text: front.Variable?.words?.qa?.filters?.best,
     },
   ];
 
@@ -76,15 +76,15 @@ front.loader = async () => {
   Static.sorts = [
     {
       name: "date",
-      text: "По дате",
+      text: front.Variable?.words?.qa?.filters?.date,
     },
     {
       name: "views",
-      text: "По просмотрам",
+      text: front.Variable?.words?.qa?.filters?.views,
     },
     {
       name: "answers",
-      text: "По ответам",
+      text: front.Variable?.words?.qa?.filters?.answers,
     },
   ];
 
