@@ -5,7 +5,7 @@ export default function () {
     <div class="w-1/4 transition-all">
       <div class="flex flex-col gap-4">
         <div class="flex flex-col">
-          <h3 class="mb-4 text-lg font-semibold max-@600:text-base">Заполните информация о себе</h3>
+          <h3 class="mb-4 text-lg font-semibold max-@600:text-base">{front.Variable?.words?.user?.fillAboutMyself}</h3>
 
           <div class="relative">
             <div class="absolute top-2 left-4 pointer-events-none">
@@ -40,7 +40,7 @@ export default function () {
                       );
 
                       if (answer.error) {
-                        Static.form.nickName.error = "Логин занят!";
+                        Static.form.nickName.error = front.Variable?.words?.form?.loginUnavailable;
                         Static.form.nickName.valid = false;
                       }
                       Func.checkForm();
@@ -67,7 +67,7 @@ export default function () {
               >
                 <div class="w-[250px] shadow-[1px_6px_0px_-4px_rgba(0,0,0,0.15),3px_4px_4px_-1px_rgba(0,0,0,0.15);] bg-[#202432] border border-solid border-[#474c5a] invisible opacity-0 absolute top-[10px] right-[-75px] -translate-x-2/4 -translate-y-2/4 translate-z-[10px] p-3 rounded-md  transition-all before:absolute before:w-[15px] before:h-[15px] before:z-[-1] before:border-t-[1px] before:border-t-solid before:border-t-[#474c5a] before:border-r-[1px] before:border-r-solid before:border-r-[#474c5a] before:bg-[#202432] before:top-1/2 before:right-0 before:translate-x-1/2 before:rotate-[45deg]" ref="tooltipContent">
                   <p class="text-sm font-medium leading-5 translate-z-[20px]">
-                    Логин не должен начинаться с цифр и спецсимволов
+                    {front.Variable?.words?.form?.loginWarning}
                   </p>
                 </div>
               </div>
@@ -161,7 +161,7 @@ export default function () {
               );
               // Fn.log('=answer step 2=', answer)
               if (answer.error == "already register") {
-                Static.form.nickName.error = "Логин занят!"
+                Static.form.nickName.error = front.Variable?.words?.form?.loginUnavailable
                 Static.form.nickName.valid = false
                 return
               }
@@ -175,7 +175,7 @@ export default function () {
               return;
             }}
           >
-            Далее
+            {front.Variable?.words?.tools?.next}
           </button>
         </div>
       </div>

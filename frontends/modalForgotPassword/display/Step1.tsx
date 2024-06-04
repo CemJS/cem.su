@@ -6,7 +6,7 @@ export default function () {
     <div class="w-1/4 transition-all" ref="slidePage">
       <div class="flex flex-col">
         <h3 class="mb-4 text-lg font-semibold max-@600:text-base">
-          Подтвердите адрес электронной почты
+          {front.Variable?.words?.form?.confirm?.email}
         </h3>
 
         <div class="relative">

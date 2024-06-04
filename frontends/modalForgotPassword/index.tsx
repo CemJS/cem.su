@@ -168,7 +168,7 @@ front.loader = () => {
             value: "",
             valid: false,
             error: false,
-            placeholder: "Подтвердите пароль:",
+            placeholder: front.Variable?.words?.form?.confirm?.pass,
             view: false,
             disable: false
         },

@@ -147,7 +147,7 @@ export default function () {
 
               if (answer.error) {
                 Static.form.change_pass.isValid = false;
-                Static.form.change_pass.error = "Неверно введены данные!";
+                Static.form.change_pass.error = front.Variable?.words?.notices?.incorrectlyData;
                 alert(answer.error);
                 return;
               }

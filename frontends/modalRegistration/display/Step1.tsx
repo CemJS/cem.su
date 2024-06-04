@@ -6,7 +6,7 @@ export default function () {
     <div class="w-1/4 transition-all" ref="slidePage">
       <div class="flex flex-col">
         <h3 class="mb-4 text-lg font-semibold max-@600:text-base">
-          Подтвердите адрес электронной почты
+          {front.Variable?.words?.form?.confirm?.email}
         </h3>
 
         <div class="relative">
@@ -105,7 +105,7 @@ export default function () {
             {Static.time > 0 ? (
               <div>
                 <p class="inline-block">
-                  Запросить новый код подтверждения можно через{" "}
+                {front.Variable?.words?.form?.requestNewCodeAfter}{" "}
                   <span class="pl-3">
                     {Static.time < 10
                       ? `0 : 0${Static.time}`
@@ -121,7 +121,7 @@ export default function () {
                   return;
                 }}
               >
-                Запросить код снова
+                {front.Variable?.words?.form?.requestNewCode}
               </button>
             )}
           </div>
@@ -138,7 +138,7 @@ export default function () {
               return;
             }}
           >
-            <span>Получить код подтверждение</span>
+            <span>{front.Variable?.words?.form?.receiveCode}</span>
           </button>
         </div>
       )}

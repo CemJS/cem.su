@@ -21,7 +21,7 @@ export default function () {
               Static.form.email.error = true;
               Static.form.pass.error = true;
               Static.form.isValid = false;
-              Static.form.error = "Неверно введены данные!";
+              Static.form.error = front.Variable?.words?.notices?.incorrectlyData;
 
               return;
             }

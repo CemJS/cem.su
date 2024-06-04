@@ -1,3 +1,4 @@
+import { front } from "cemjs-all"
 import {
   validLogin,
   validEmail,
@@ -52,7 +53,7 @@ export const formLogin = function (form: Form) {
     form.valid = true;
     return true;
   } else {
-    form.error = "Неверный login";
+    form.error = front.Variable?.words?.form?.invalidLogin;
     form.valid = false;
     return false;
   }
@@ -70,7 +71,7 @@ export const formEmail = function (form: Form) {
     form.valid = true;
     return true;
   } else {
-    form.error = "Неверный e-mail";
+    form.error = front.Variable?.words?.form?.invalidEmail;
     form.valid = false;
     return false;
   }
@@ -103,7 +104,7 @@ export const formNickName = async function (form: Form) {
     form.valid = true;
     return true;
   } else {
-    form.error = "Логин недоступен";
+    form.error = front.Variable?.words?.form?.loginUnavailable;
     form.valid = false;
     return false;
   }
@@ -121,7 +122,7 @@ export const formName = async function (form: Form) {
     form.valid = true;
     return true;
   } else {
-    form.error = "Введите имя";
+    form.error = front.Variable?.words?.form?.enterName;
     form.valid = false;
     return false;
   }
@@ -156,7 +157,7 @@ export const formComment = async function (form: Form) {
     form.valid = true;
     return true;
   } else {
-    form.error = "Введите сообщение";
+    form.error = front.Variable?.words?.form?.enterMessage;
     form.valid = false;
     return false;
   }

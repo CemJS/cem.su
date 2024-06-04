@@ -11,7 +11,7 @@ front.func.checkName = () => {
     Static.form.name.err = false;
   } else {
     Static.form.name.valid = false;
-    Static.form.name.err = "Введите никнейм";
+    Static.form.name.err = front.Variable?.words?.form?.enterNickname;
   }
   return;
 };
@@ -23,7 +23,7 @@ front.func.checkEmail = () => {
     Static.form.email.err = false;
   } else {
     Static.form.email.valid = false;
-    Static.form.email.err = "Неверный email";
+    Static.form.email.err = front.Variable?.words?.form?.invalidEmail;
   }
   return;
 };
@@ -34,7 +34,7 @@ front.func.checkMessage = () => {
     Static.form.message.err = false;
   } else {
     Static.form.message.valid = false;
-    Static.form.message.err = "Введите сообщение";
+    Static.form.message.err = front.Variable?.words?.form?.enterMessage;
   }
   return;
 };

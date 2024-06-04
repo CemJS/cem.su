@@ -5,7 +5,7 @@ const RenderFieldName = function () {
     <div class="p-0">
       <div class="mt-[1.25rem]">
         <label class="mb-[.5rem] block text-[1rem] font-medium leading-[115%] text-[#9CA2B5]">
-          Введите название
+          {front.Variable?.words?.form?.enterTitle}
         </label>
         <input
           type="text"
@@ -83,7 +83,7 @@ export default function () {
     <div>
       {/* <RenderField
         field={Static?.info?.fullName ? Static?.info?.fullName : ""}
-        placeholder="Введите название"
+        placeholder={front.Variable?.words?.form?.enterTitle}
       /> */}
       <RenderFieldName />
       <RenderFielddetails />

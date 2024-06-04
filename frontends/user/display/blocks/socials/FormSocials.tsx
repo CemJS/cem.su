@@ -158,7 +158,7 @@ export default function () {
         <input
           class="mb-[.625rem] h-[2.5rem] w-full rounded-[.625rem] bg-[#313543] pl-[.625rem] text-[#F9F8F8] [border:1px_solid_#44495c] [outline:none]"
           value={data?.name}
-          placeholder="Введите название"
+          placeholder={front.Variable?.words?.form?.enterTitle}
           oninput={(event: InputEvent) => {
             const target = event.target as HTMLInputElement;
             data.name = target.value;

@@ -79,13 +79,9 @@ front.func.sendForm = async () => {
       });
     }
   } else {
-    !Static.form.name.valid ? (Static.form.name.error = "Введите имя") : null;
-    !Static.form.email.valid
-      ? (Static.form.email.error = "Введите email")
-      : null;
-    !Static.form.comment.valid
-      ? (Static.form.comment.error = "Введите сообщение")
-      : null;
+    !Static.form.name.valid ? (Static.form.name.error = front.Variable?.words?.form?.enterName) : null;
+    !Static.form.email.valid ? (Static.form.email.error = front.Variable?.words?.form?.enterEmail) : null;
+    !Static.form.comment.valid ? (Static.form.comment.error = front.Variable?.words?.form?.enterMessage) : null;
   }
 
   return;
@@ -113,7 +109,7 @@ front.loader = () => {
       value: "",
       valid: false,
       error: false,
-      placeholder: "Введите ваше сообщение*",
+      placeholder: front.Variable?.words?.form?.enterMessage,
       view: false,
       disable: false,
     },

@@ -6,7 +6,7 @@ export default function () {
     <div class="w-1/4 transition-all">
       {/* <div class="flex flex-col h-full justify-between gap-7"> */}
       <div class="h-full">
-        <h3 class="text-lg font-semibold max-@600:text-base">Придумайте пароль</h3>
+        <h3 class="text-lg font-semibold max-@600:text-base">{front.Variable?.words?.form?.createPassword}</h3>
         {/* ---------------------------- */}
         <div class="relative mt-4">
           <div class="absolute top-2 left-4 pointer-events-none">
@@ -46,7 +46,7 @@ export default function () {
             >
               <div class="w-[250px] shadow-[1px_6px_0px_-4px_rgba(0,0,0,0.15),3px_4px_4px_-1px_rgba(0,0,0,0.15);] bg-[#202432] border border-solid border-[#474c5a] invisible opacity-0 absolute top-[10px] right-[-75px] -translate-x-2/4 -translate-y-2/4 translate-z-[10px] p-3 rounded-md  transition-all before:absolute before:w-[15px] before:h-[15px] before:z-[-1] before:border-t-[1px] before:border-t-solid before:border-t-[#474c5a] before:border-r-[1px] before:border-r-solid before:border-r-[#474c5a] before:bg-[#202432] before:top-1/2 before:right-0 before:translate-x-1/2 before:rotate-[45deg]" ref="tooltipContent">
                 <p class="text-sm font-medium leading-5 translate-z-[20px]">
-                  Пароль должен содержать спецсимволы !?&$
+                  {front.Variable?.words?.form?.passwordWarning}
                 </p>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function () {
                 Static.form.isValid = false;
                 Func.clickPrev();
                 front.Services.functions.formNickName(Static.form.nickName);
-                Static.form.nickName.error = "Логин занят!"
+                Static.form.nickName.error = front.Variable?.words?.form?.loginUnavailable
                 Static.form.nickName.valid = false
                 front.Services.functions.formLang(Static.form.mainLang);
                 front.Services.functions.formCountry(Static.form.country);
@@ -143,7 +143,7 @@ export default function () {
                 Static.form.isValid = false;
                 Func.clickPrevBegin();
                 front.Services.functions.formNickName(Static.form.nickName);
-                Static.form.email.error = "Email занят!"
+                Static.form.email.error = front.Variable?.words?.form.busyEmail
                 Static.form.email.valid = false
                 Static.form.email.disable = false
                 front.Services.functions.formLang(Static.form.mainLang);
@@ -163,7 +163,7 @@ export default function () {
                 front.Services.functions.formNickName(Static.form.nickName);
                 front.Services.functions.formLang(Static.form.mainLang);
                 front.Services.functions.formCountry(Static.form.country);
-                Static.form.email.error = "Email занят! Получите новый код на другую почту"
+                Static.form.email.error = front.Variable?.words?.form.busyEmailAnotherCode,
                 Static.form.email.valid = false
                 Static.form.email.disable = false
                 Func.checkForm();
@@ -176,16 +176,16 @@ export default function () {
 
               if (answer.error) {
                 Static.form.isValid = false;
-                Static.form.error = "Неверные данные";
+                Static.form.error = front.Variable?.words?.notices?.incorrectlyData;
                 return;
               }
 
               Func.clickNext();
-              Fn.log("=b02443=", front.Variable.myInfo);
+              // Fn.log("=myInfo=", front.Variable.myInfo);
               return;
             }}
           >
-            Далее
+            {front.Variable?.words?.tools?.next}
           </button>
         </div>
       </div>

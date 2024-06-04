@@ -1,7 +1,6 @@
 import { Cemjsx, front, Func, Static, Fn, Ref } from "cemjs-all"
 import Navigation from "./navigation"
 
-
 front.listener.finish = () => {
     return
 }
@@ -45,7 +44,7 @@ front.func.checkForm = async function () {
                     code: Static.form.code.value
                 })
             if (answer.error) {
-                Static.form.code.error = "Код указан не верно!"
+                Static.form.code.error = front.Variable?.words?.form?.invalidCode
 
                 Static.code.forEach((item: number, index: number) => {
                     Static.code[index] = null
@@ -104,7 +103,7 @@ front.func.checkLogin = async function () {
     );
     // Fn.log('=answer step 2=', answer)
     if (answer.error == "already register") {
-        Static.form.nickName.error = "Логин занят!"
+        Static.form.nickName.error = front.Variable?.words?.form?.loginUnavailable
         Static.form.nickName.valid = false
         return
     }
@@ -151,7 +150,7 @@ front.func.sendCode = async function () {
 
     console.log('=87b61d=', answer.error)
     if (answer.error) {
-        Static.form.email.error = "Пользователь с таким email уже существует!"
+        Static.form.email.error = front.Variable?.words?.form?.busyEmail
         Static.form.email.valid = false
         return
     }
@@ -209,7 +208,7 @@ front.loader = () => {
             value: "",
             valid: false,
             error: false,
-            placeholder: "Логин",
+            placeholder: front.Variable?.words?.form?.login,
             view: false,
             disable: false
         },
@@ -218,7 +217,7 @@ front.loader = () => {
             nameOrig: null,
             valid: false,
             error: false,
-            placeholder: "Выбрать язык",
+            placeholder: front.Variable?.words?.form?.chooseLang,
             view: false,
             disable: false
         },
@@ -227,7 +226,7 @@ front.loader = () => {
             nameOrig: null,
             valid: false,
             error: false,
-            placeholder: "Выбрать страну",
+            placeholder: front.Variable?.words?.form?.chooseCountry,
             view: false,
             disable: false
         },
@@ -235,7 +234,7 @@ front.loader = () => {
             value: "",
             valid: false,
             error: false,
-            placeholder: "Пароль:",
+            placeholder: front.Variable?.words?.form?.pass,
             view: false,
             disable: false
         },
@@ -243,7 +242,7 @@ front.loader = () => {
             value: "",
             valid: false,
             error: false,
-            placeholder: "Подтвердите пароль:",
+            placeholder: front.Variable?.words?.form?.confirm?.pass,
             view: false,
             disable: false
         },

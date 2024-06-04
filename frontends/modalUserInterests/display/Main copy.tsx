@@ -52,7 +52,7 @@ export default function () {
       <div class="py-15">
         <RenderField
           field="{Static.interest?.title}"
-          placeholder="Введите название"
+          placeholder={front.Variable?.words?.form?.enterTitle}
         />
         <h3 class="mt-[25px]">Укажите подробности</h3>
         <RenderFieldTextarea about={Static.interest?.description} />

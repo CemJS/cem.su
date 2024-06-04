@@ -50,7 +50,7 @@ front.loader = () => {
             value: "",
             valid: false,
             error: false,
-            placeholder: "Введите пароль",
+            placeholder: front.Variable?.words?.form?.enterPassword,
             view: false,
             disable: false
         },
