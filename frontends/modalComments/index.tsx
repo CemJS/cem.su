@@ -112,7 +112,7 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   if (front.Variable.Auth) {
     let res = await front.Services.functions.sendApi(url, data, method);
     if (res?.status == 409) {
-      Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
+      Fn.initOne("alert", { text: front.Variable?.words?.notices?.ratingAccrued, type: "danger" });
       return;
     }
     return res;

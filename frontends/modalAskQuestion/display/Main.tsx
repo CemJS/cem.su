@@ -48,7 +48,7 @@ export default function () {
           </p>
         </div>
 
-        <h3 class="mt-[15px]">Комментарий к вопросу</h3>
+        <h3 class="mt-[15px]">{front.Variable?.words?.comments?.commentToQuestion}</h3>
 
         <div
           class={[

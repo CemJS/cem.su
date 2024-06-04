@@ -58,7 +58,7 @@ front.loader = async () => {
       value: "",
       valid: false,
       error: false,
-      placeholder: "Комментарий к вопросу",
+      placeholder: front.Variable?.words?.comments?.commentToQuestion,
       view: false,
       disable: false,
     },

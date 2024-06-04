@@ -56,7 +56,7 @@ front.func.sendForm = async () => {
       Fn.initOne("alert", {
         icon: success,
         title: "Повторите попытку",
-        text: "Ошибка запроса!",
+        text: front.Variable?.words?.notices?.requestError,
         type: "danger",
       });
     }

@@ -19,7 +19,7 @@ front.func.resetForm = function () {
       value: "",
       valid: false,
       error: false,
-      placeholder: "Комментарий к вопросу",
+      placeholder: front.Variable?.words?.comments?.commentToQuestion,
       view: false,
       disable: false,
     },
@@ -135,11 +135,11 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
     let res = await front.Services.functions.sendApi(url, data, method);
     console.log("=55a7bd=", res);
     if (res?.status == 409) {
-      Fn.initOne("alert", { text: "Рейтинг уже начислен", type: "danger" });
+      Fn.initOne("alert", { text: front.Variable?.words?.notices?.ratingAccrued, type: "danger" });
       return;
     }
     if (res?.error) {
-      Fn.initOne("alert", { text: "Ошибка запроса" });
+      Fn.initOne("alert", { text: front.Variable?.words?.notices?.requestError });
       return;
     }
     return res;
@@ -193,7 +193,7 @@ front.loader = async () => {
       value: "",
       valid: false,
       error: false,
-      placeholder: "Комментарий к вопросу",
+      placeholder: front.Variable?.words?.comments?.commentToQuestion,
       view: false,
       disable: false,
     },
