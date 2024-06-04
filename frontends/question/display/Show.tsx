@@ -15,7 +15,7 @@ import CreateMedia from "@elements/addMedia/CreateMedia";
 import QuestionAnswer from "./blocks/QuestionAnswer";
 import QuestionAddAnswer from "./blocks/QuestionAddAnswer";
 
-Static.showComments = "Показать комментарии";
+Static.showComments = front.Variable?.words?.comments?.showComments;
 let image = `/contents/images/lenta/avatar_default.png`;
 
 const RenderNotFound = () => {

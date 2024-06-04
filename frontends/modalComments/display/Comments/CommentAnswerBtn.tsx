@@ -15,7 +15,7 @@ export default function ({ item }) {
         }
       }}
     >
-      Ответить
+      {front.Variable?.words?.qa?.toAnswer}
     </span>
   );
 }

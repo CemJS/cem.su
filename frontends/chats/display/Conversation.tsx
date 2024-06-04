@@ -1,4 +1,4 @@
-import { Cemjsx, Fn } from "cemjs-all"
+import { Cemjsx, Fn, front } from "cemjs-all"
 import frameDefault from "@svg/lenta/default.svg";
 import avatarDefault from "@images/lenta/avatar_default.png";
 import teamLogo from "@svg/lenta/mini_logo.svg";
@@ -144,7 +144,7 @@ const RenderMainConversation = () => {
                     <i class="i i-forward"></i>Переслать
                   </li>
                   <li class="rounded-b-lg flex items-center text-sm px-2 py-1 gap-2 cursor-pointer hover:bg-slate-700 active:bg-slate-800 transition-all">
-                    <i class="i i-trash"></i>Удалить
+                    <i class="i i-trash"></i>{front.Variable?.words?.tools?.delete}
                   </li>
                 </ul>
               </div>
@@ -168,7 +168,7 @@ const RenderMainConversation = () => {
                     <i class="i i-forward"></i>Переслать
                   </li>
                   <li class="rounded-b-lg flex items-center text-sm px-2 py-1 gap-2 cursor-pointer hover:bg-slate-700 active:bg-slate-800 transition-all">
-                    <i class="i i-trash"></i>Удалить
+                    <i class="i i-trash"></i>{front.Variable?.words?.tools?.delete}
                   </li>
                 </ul>
               </div>
@@ -247,7 +247,7 @@ const RenderMainConversation = () => {
                     <i class="i i-forward"></i>Переслать
                   </li>
                   <li class="rounded-b-lg flex items-center text-sm px-2 py-1 gap-2 cursor-pointer hover:bg-slate-700 active:bg-slate-800 transition-all">
-                    <i class="i i-trash"></i>Удалить
+                    <i class="i i-trash"></i>{front.Variable?.words?.tools?.delete}
                   </li>
                 </ul>
               </div>
@@ -271,7 +271,7 @@ const RenderMainConversation = () => {
                     <i class="i i-forward"></i>Переслать
                   </li>
                   <li class="rounded-b-lg flex items-center text-sm px-2 py-1 gap-2 cursor-pointer hover:bg-slate-700 active:bg-slate-800 transition-all">
-                    <i class="i i-trash"></i>Удалить
+                    <i class="i i-trash"></i>{front.Variable?.words?.tools?.delete}
                   </li>
                 </ul>
               </div>
@@ -295,7 +295,7 @@ const RenderMainConversation = () => {
                     <i class="i i-forward"></i>Переслать
                   </li>
                   <li class="rounded-b-lg flex items-center text-sm px-2 py-1 gap-2 cursor-pointer hover:bg-slate-700 active:bg-slate-800 transition-all">
-                    <i class="i i-trash"></i>Удалить
+                    <i class="i i-trash"></i>{front.Variable?.words?.tools?.delete}
                   </li>
                 </ul>
               </div>
@@ -370,7 +370,7 @@ const RenderMainConversation = () => {
                     <i class="i i-forward"></i>Переслать
                   </li>
                   <li class="rounded-b-lg flex items-center text-sm px-2 py-1 gap-2 cursor-pointer hover:bg-slate-700 active:bg-slate-800 transition-all">
-                    <i class="i i-trash"></i>Удалить
+                    <i class="i i-trash"></i>{front.Variable?.words?.tools?.delete}
                   </li>
                 </ul>
               </div>
@@ -394,7 +394,7 @@ const RenderMainConversation = () => {
                     <i class="i i-forward"></i>Переслать
                   </li>
                   <li class="rounded-b-lg flex items-center text-sm px-2 py-1 gap-2 cursor-pointer hover:bg-slate-700 active:bg-slate-800 transition-all">
-                    <i class="i i-trash"></i>Удалить
+                    <i class="i i-trash"></i>{front.Variable?.words?.tools?.delete}
                   </li>
                 </ul>
               </div>

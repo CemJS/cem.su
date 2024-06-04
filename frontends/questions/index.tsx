@@ -42,7 +42,7 @@ front.func.getQuestion = async (id) => {
 front.loader = async () => {
   Static.showSkeleton = true;
 
-  Static.open = "Ответить";
+  Static.open = front.Variable?.words?.qa?.toAnswer;
 
   Static.search = "";
   Static.order = -1;

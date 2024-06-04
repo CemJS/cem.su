@@ -155,7 +155,7 @@ export default function ({
             // front.Services.functions.sendApi("/api/answers/create", data);
           }}
         >
-          Ответить
+          {front.Variable?.words?.qa?.toAnswer}
         </button>
       </div>
     </div>

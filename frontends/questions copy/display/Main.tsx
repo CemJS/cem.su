@@ -362,7 +362,7 @@ export default function () {
                           //   Fn.link(e);
                           // }}
                         >
-                          Ответить
+                          {front.Variable?.words?.qa?.toAnswer}
                         </button>
                       </div>
                     </div>

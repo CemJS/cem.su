@@ -31,7 +31,7 @@ export default function () {
 
               if (front.Variable?.myInfo.id == Static.post?.author.id) {
                 records.push({
-                  name: "Редактировать",
+                  name: front.Variable?.words?.tools?.edit,
                   func: () => {
                     Fn.linkChange("/create/pst", { edit: Static.post });
                     Static.post = null;
@@ -40,7 +40,7 @@ export default function () {
                 });
 
                 records.push({
-                  name: "Удалить",
+                  name: front.Variable?.words?.tools?.delete,
                   func: () => {
                     Fn.initOne("modalAccept", {
                       title: "удалить свой пост",

@@ -50,7 +50,7 @@ export default function () {
               media: Static.data.media,
             };
             console.log("=1e5279=", Static.data.media);
-            Static.open = "Ответить";
+            Static.open = front.Variable?.words?.qa?.toAnswer;
             const res = await Func.sendAuth("/api/answers/create", data);
             if (res?.error?.length == 0) {
               Ref[`ans${Static.record.id}`].classList.toggle("!block");

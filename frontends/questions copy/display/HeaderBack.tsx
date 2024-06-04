@@ -27,7 +27,7 @@ export default function () {
             onclick={() => {
               let records = [];
               if (front.Variable.myInfo.id == Static.record.author.id) {
-                records.push({ name: "Удалить", func: Func.deleteQuestion });
+                records.push({ name: front.Variable?.words?.tools?.delete, func: Func.deleteQuestion });
                 !Static.record.closed
                   ? records.push({
                     name: "Закрыть вопрос",

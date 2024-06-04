@@ -55,7 +55,7 @@ export default function () {
                             }
                           }}
                         >
-                          Удалить
+                          {front.Variable?.words?.tools?.delete}
                         </button>
                       </div>
                     </td>
@@ -93,7 +93,7 @@ export default function () {
                               }
                             }}
                           >
-                            Удалить
+                            {front.Variable?.words?.tools?.delete}
                           </button>
                         </div>
                       </div>

@@ -3,7 +3,7 @@ import frameDefault from "@svg/lenta/default.svg";
 import teamLogo from "@svg/lenta/mini_logo.svg";
 import leveGray from "@svg/lenta/level_gray.svg";
 
-Static.showComments = "Показать комментарии";
+Static.showComments = front.Variable?.words?.comments?.showComments;
 let image = `/contents/images/lenta/avatar_default.png`;
 
 export default function ({ item }) {

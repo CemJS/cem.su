@@ -65,13 +65,13 @@ export default function ({ to = "" }) {
                       if (front.Variable.myInfo.id == comment.author.id) {
                         Func.isEditable(comment.showDate)
                           ? records.push({
-                              name: "Редактировать",
+                              name: front.Variable?.words?.tools?.edit,
                               func: () => Func.edit(comment.id),
                             })
                           : null;
 
                         records.push({
-                          name: "Удалить",
+                          name: front.Variable?.words?.tools?.delete,
                           func: () => Func.deleteComment(comment.id, Static.id),
                           type: "danger",
                         });
@@ -141,13 +141,13 @@ export default function ({ to = "" }) {
                             if (front.Variable.myInfo.id == comm.author.id) {
                               Func.isEditable(comm.showDate)
                                 ? records.push({
-                                    name: "Редактировать",
+                                    name: front.Variable?.words?.tools?.edit,
                                     func: () => Func.edit(comm.id),
                                   })
                                 : null;
 
                               records.push({
-                                name: "Удалить",
+                                name: front.Variable?.words?.tools?.delete,
                                 func: () =>
                                   Func.deleteComment(
                                     comm.id,

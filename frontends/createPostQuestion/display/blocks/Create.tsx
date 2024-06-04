@@ -15,7 +15,7 @@ export default function () {
   return (
     <div id="post-create">
       <h2 class="mb-5 mt-10 text-[26px] font-medium text-white" id="title">
-        {!Static.edit ? "Создать" : "Редактировать"}{" "}
+        {!Static.edit ? "Создать" : front.Variable?.words?.tools?.edit}{" "}
         {Static.page ? Static.pageMap[Static.page] : ""}
       </h2>
       <form id="create__form">

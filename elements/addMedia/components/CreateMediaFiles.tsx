@@ -110,7 +110,7 @@ export default function () {
                                 },
                               },
                               {
-                                name: "Удалить",
+                                name: front.Variable?.words?.tools?.delete,
                                 func: () => {
                                   Fn.initOne("modalAccept", {
                                     title: "удалить медиа",
@@ -145,7 +145,7 @@ export default function () {
                           Fn.initOne("modalTools", {
                             records: [
                               {
-                                name: "Удалить",
+                                name: front.Variable?.words?.tools?.delete,
                                 func: () => {
                                   Static.data?.media?.splice(
                                     Func.findIndex(item),

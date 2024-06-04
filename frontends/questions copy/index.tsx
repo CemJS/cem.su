@@ -131,7 +131,7 @@ front.func.bestAnswer = async (id: string) => {
 };
 
 front.loader = async () => {
-  Static.open = "Ответить";
+  Static.open = front.Variable?.words?.qa?.toAnswer;
 
   Static.search = "";
   Static.order = -1;

@@ -19,9 +19,9 @@ export default function ({ item }) {
         <div class="btn_border-wrap !m-0 !w-full @600:!w-[12.625rem] ">
           <button
             onclick={(e: any) => {
-              Static.open == "Ответить"
+              Static.open == front.Variable?.words?.qa?.toAnswer
                 ? (Static.open = "Отменить")
-                : (Static.open = "Ответить");
+                : (Static.open = front.Variable?.words?.qa?.toAnswer);
               Ref[`ans${item?.id}`].classList.toggle("!block");
             }}
             class="btn_border"

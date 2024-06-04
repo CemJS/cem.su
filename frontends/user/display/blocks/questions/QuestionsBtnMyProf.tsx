@@ -11,7 +11,7 @@ export default function ({ item, key }) {
           if (front.Variable?.DataUrl[1] === front.Variable?.myInfo?.nickname) {
             records.push(
               {
-                name: "Удалить",
+                name: front.Variable?.words?.tools?.delete,
                 type: "danger",
                 func: () =>
                   Fn.initOne("modalAccept", {

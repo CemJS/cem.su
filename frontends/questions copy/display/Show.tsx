@@ -245,7 +245,7 @@ export default function () {
   if (!Static.record?.id) {
     return <div>не найдено</div>;
   }
-  Static.showComments = "Показать комментарии";
+  Static.showComments = front.Variable?.words?.comments?.showComments;
   let image = `/contents/images/lenta/avatar_default.png`;
   return (
     <div>
@@ -310,9 +310,9 @@ export default function () {
                 <div class="questions__item-open btn_border-wrap">
                   <button
                     onclick={(e: any) => {
-                      Static.open == "Ответить"
+                      Static.open == front.Variable?.words?.qa?.toAnswer
                         ? (Static.open = "Отменить")
-                        : (Static.open = "Ответить");
+                        : (Static.open = front.Variable?.words?.qa?.toAnswer);
                       Ref[`ans${Static.record.id}`].classList.toggle(
                         "answer_active",
                       );
@@ -455,7 +455,7 @@ export default function () {
                               el.parentElement.nextSibling.firstChild.firstChild.focus();
                             }}
                           >
-                            Ответить
+                            {front.Variable?.words?.qa?.toAnswer}
                           </div>
                         </div>
                         <div class="user-comment__comment user-comment__form">
@@ -506,10 +506,10 @@ export default function () {
                                     .lastChild;
 
                                 if (elemComments.style.display == "none") {
-                                  Static.showComments = "Скрыть комментарии";
+                                  Static.showComments = front.Variable?.words?.comments?.hideComments;
                                   elemComments.style = "display: block";
                                 } else {
-                                  Static.showComments = "Показать комментарии";
+                                  Static.showComments = front.Variable?.words?.comments?.showComments;
                                   elemComments.style = "display: none";
                                 }
                               }}
@@ -583,7 +583,7 @@ export default function () {
                                 front.Variable.myInfo.id == answer.author.id
                               ) {
                                 records.push({
-                                  name: "Удалить",
+                                  name: front.Variable?.words?.tools?.delete,
                                   func: Func.deleteQuestion,
                                 });
                               }
@@ -713,7 +713,7 @@ export default function () {
                                       "display: flex";
                                   }}
                                 >
-                                  Ответить
+                                  {front.Variable?.words?.qa?.toAnswer}
                                 </span>
                                 <div
                                   class="user-comment__settings"
@@ -934,7 +934,7 @@ export default function () {
                                           el.parentElement.parentElement.lastChild.firstChild.firstChild.focus();
                                         }}
                                       >
-                                        Ответить
+                                        {front.Variable?.words?.qa?.toAnswer}
                                       </span>
                                       <div
                                         class="user-comment__settings"

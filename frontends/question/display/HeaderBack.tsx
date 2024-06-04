@@ -27,7 +27,7 @@ export default function () {
               let records = [];
               if (front.Variable.myInfo.id == Static.record.author.id) {
                 records.push({
-                  name: "Редактировать",
+                  name: front.Variable?.words?.tools?.edit,
                   func: () => {
                     Fn.linkChange("/create/qst", {
                       edit: Static.record,
@@ -41,7 +41,7 @@ export default function () {
                   },
                 });
                 records.push({
-                  name: "Удалить",
+                  name: front.Variable?.words?.tools?.delete,
                   func: Func.deleteQuestion,
                   type: "danger",
                 });

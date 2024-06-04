@@ -199,7 +199,7 @@ front.loader = async () => {
     },
   };
 
-  Static.open = "Ответить";
+  Static.open = front.Variable?.words?.qa?.toAnswer;
 
   Static.data = {
     text: "",

@@ -10,7 +10,7 @@ export default function ({ item, key }) {
           Fn.initOne("modalTools", {
             records: [
               {
-                name: "Удалить",
+                name: front.Variable?.words?.tools?.delete,
                 type: "danger",
                 func: () =>
                   Fn.initOne("modalAccept", {

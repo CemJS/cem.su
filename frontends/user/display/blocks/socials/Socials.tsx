@@ -131,7 +131,7 @@ export default function () {
                         onclick={() => {
                           let records = [
                             {
-                              name: "Удалить",
+                              name: front.Variable?.words?.tools?.delete,
                               type: "danger",
                               func: () =>
                                 Fn.initOne("modalAccept", {

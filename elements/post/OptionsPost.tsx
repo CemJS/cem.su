@@ -11,7 +11,7 @@ export default function ({ item, index }: { item: Post; index: number }) {
 
         if (front.Variable?.myInfo.id == item?.author.id) {
           records.push({
-            name: "Редактировать",
+            name: front.Variable?.words?.tools?.edit,
             func: () => {
               if (front.Variable.DataUrl[1] == "pst") {
                 front.Variable.$el.body.scroll({
@@ -36,7 +36,7 @@ export default function ({ item, index }: { item: Post; index: number }) {
             },
           });
           records.push({
-            name: "Удалить",
+            name: front.Variable?.words?.tools?.delete,
             func: () => {
               Fn.initOne("modalAccept", {
                 title: "удалить свой пост",

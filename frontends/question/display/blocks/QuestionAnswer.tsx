@@ -152,7 +152,7 @@ export default function ({ answer, answerIndex }) {
               }
             }}
           >
-            Ответить
+            {front.Variable?.words?.qa?.toAnswer}
           </div>
         </div>
         <div
@@ -183,7 +183,7 @@ export default function ({ answer, answerIndex }) {
                 answerId: answer.id,
               };
               Static[`${answerIndex}`] = "";
-              Static[`showComments${answerIndex}`] = "Скрыть комментарии";
+              Static[`showComments${answerIndex}`] = front.Variable?.words?.comments?.hideComments;
               Ref[`inputAns${answerIndex}`].classList.toggle("!flex");
               Func.sendAuth(`/api/answers/${answer.id}/comment`, data);
             }}
@@ -195,12 +195,12 @@ export default function ({ answer, answerIndex }) {
           <div class="relative ml-[0.3125rem] mt-[1rem] [transform:translate(0,0)]">
             <button
               init={() =>
-                (Static[`showComments${answerIndex}`] = "Показать комментарии")
+                (Static[`showComments${answerIndex}`] = front.Variable?.words?.comments?.showComments)
               }
               class="relative block min-h-[2rem] w-max cursor-pointer overflow-hidden rounded-[0.1875rem] border-none bg-transparent pl-[0.625rem] pr-[0.625rem] pt-0 text-center text-[0.875rem] font-semibold text-[--white] no-underline "
               onclick={(e) => {
                 if (
-                  Static[`showComments${answerIndex}`] == "Показать комментарии"
+                  Static[`showComments${answerIndex}`] == front.Variable?.words?.comments?.showComments
                 ) {
                   if (!answer.comments?.length) {
                     front.Services.functions.sendApi(
@@ -209,9 +209,9 @@ export default function ({ answer, answerIndex }) {
                     );
                   }
 
-                  Static[`showComments${answerIndex}`] = "Скрыть комментарии";
+                  Static[`showComments${answerIndex}`] = front.Variable?.words?.comments?.hideComments;
                 } else {
-                  Static[`showComments${answerIndex}`] = "Показать комментарии";
+                  Static[`showComments${answerIndex}`] = front.Variable?.words?.comments?.showComments;
                 }
               }}
             >
@@ -247,7 +247,7 @@ export default function ({ answer, answerIndex }) {
               if (front.Variable.myInfo.id == Static.record.author.id) {
                 Func.isEditable(answer.showDate)
                   ? records.push({
-                      name: "Редактировать",
+                      name: front.Variable?.words?.tools?.edit,
                       func: () => Func.edit(answer.id),
                     })
                   : null;
@@ -261,7 +261,7 @@ export default function ({ answer, answerIndex }) {
               }
               if (front.Variable.myInfo.id == answer.author.id) {
                 records.push({
-                  name: "Удалить",
+                  name: front.Variable?.words?.tools?.delete,
                   func: () => {
                     Fn.initOne("modalAccept", {
                       title: "удалить свой ответ",
@@ -292,7 +292,7 @@ export default function ({ answer, answerIndex }) {
         </div>
       </div>
       {answer.comments.length > 0 &&
-      Static[`showComments${answerIndex}`] == "Скрыть комментарии" ? (
+      Static[`showComments${answerIndex}`] == front.Variable?.words?.comments?.hideComments ? (
         <div class="mb-[-0.625rem] bg-[#242835] pb-[0.4rem] [border-radius:0_0_0.9375rem_0.9375rem]">
           {answer.comments?.map((comment, commentIndex) => {
             return (
@@ -441,7 +441,7 @@ export default function ({ answer, answerIndex }) {
                       }
                     }}
                   >
-                    Ответить
+                    {front.Variable?.words?.qa?.toAnswer}
                   </span>
                   <div
                     class="ml-[0.625rem] flex h-[1.375rem] w-[1.875rem] cursor-pointer items-center"
@@ -450,13 +450,13 @@ export default function ({ answer, answerIndex }) {
                       if (front.Variable.myInfo.id == comment.author.id) {
                         Func.isEditable(comment.showDate)
                           ? records.push({
-                              name: "Редактировать",
+                              name: front.Variable?.words?.tools?.edit,
                               func: () => Func.edit(comment.id),
                             })
                           : null;
 
                         records.push({
-                          name: "Удалить",
+                          name: front.Variable?.words?.tools?.delete,
                           func: () => Func.deleteComment(comment.id, answer.id),
                           type: "danger",
                         });
@@ -672,7 +672,7 @@ export default function ({ answer, answerIndex }) {
                             }
                           }}
                         >
-                          Ответить
+                          {front.Variable?.words?.qa?.toAnswer}
                         </span>
                         <div
                           class="ml-[0.625rem] flex h-[1.375rem] w-[1.875rem] cursor-pointer items-center"
@@ -681,13 +681,13 @@ export default function ({ answer, answerIndex }) {
                             if (front.Variable.myInfo.id == comm.author.id) {
                               Func.isEditable(comm.showDate)
                                 ? records.push({
-                                    name: "Редактировать",
+                                    name: front.Variable?.words?.tools?.edit,
                                     func: () => Func.edit(comm.id),
                                   })
                                 : null;
 
                               records.push({
-                                name: "Удалить",
+                                name: front.Variable?.words?.tools?.delete,
                                 func: () =>
                                   Func.deleteComment(
                                     comm.id,
