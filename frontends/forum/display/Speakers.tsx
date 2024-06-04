@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Ref, Static } from "cemjs-all";
+import { Cemjsx, Fn, Ref, Static, front } from "cemjs-all";
 import speakers from "@json/forum/forumSpeakers";
 
 let arrFinish = [];
@@ -98,13 +98,13 @@ export default function () {
             Ref.buttonSpan.innerText = "Скрыть";
           } else {
             Static.howMutchSpeakers = 6;
-            Ref.buttonSpan.textContent = "Показать всех";
+            Ref.buttonSpan.textContent = front.Variable?.words?.tools?.showAll;
           }
           Fn.log("=9b27aa=", speakers);
         }}
       >
         <span ref="buttonSpan" class="underline">
-          Показать всех
+        {front.Variable?.words?.tools?.showAll}
         </span>
       </div>
     </section>

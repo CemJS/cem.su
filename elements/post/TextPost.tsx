@@ -64,7 +64,7 @@ export default function ({ item, index }: { item: Post; index?: number }) {
           }}
           class="inline-block cursor-pointer px-4 font-medium text-[--polar-mist]"
         >
-          Показать всё
+          {front.Variable?.words?.tools?.showAll}
         </div>
       ) : null}
     </div>

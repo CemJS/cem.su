@@ -1,6 +1,6 @@
 import { Cemjsx, Static, Ref, Fn, front } from "cemjs-all";
 
-let x1,
+  let x1,
   y1 = null;
 export default function ({ items, active }) {
   return (

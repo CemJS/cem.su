@@ -110,7 +110,7 @@ front.func.delete = async (item, index) => {
   if (res.status == 200) {
     Static.posts.splice(index, 1);
   } else {
-    Fn.initOne("alert", { text: "Не удалось удалить пост", type: "danger" });
+    Fn.initOne("alert", { text: front.Variable?.words?.notices.notDeletePost, type: "danger" });
   }
   return;
 };

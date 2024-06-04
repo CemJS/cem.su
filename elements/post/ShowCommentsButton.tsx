@@ -11,7 +11,7 @@ export default function ({ item, index }: { item: Post; index: number }) {
         });
       }}
     >
-      {`Комментарии (${item.statistics.comments})`}
+      {`${front.Variable?.words?.comments.comments} (${item.statistics.comments})`}
       <div class="absolute top-0 z-[-1] inline-block h-[3.4375rem] w-[27.5rem] bg-[#3bade3] [background:linear-gradient(45deg,#3bade3_0%,#576fe6_10%,#9844b7_70%,#ff357f_90%)] [transform:translateX(-20.625rem)]   [transition:transform_400ms_ease-in]"></div>
     </button>
   );
