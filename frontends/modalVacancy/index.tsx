@@ -9,7 +9,7 @@ front.listener.finish = () => {
 front.func.show = function ($el: HTMLElement) {
   setTimeout(() => {
     $el.classList.add("modal__active");
-    front.Variable.$el.body.style.overflow = 'hidden';
+    front.Variable.$el.body.style.overflow = "hidden";
   }, 100);
 };
 
@@ -17,12 +17,16 @@ front.func.close = function () {
   Ref.modal.classList.remove("modal__active");
   setTimeout(() => {
     Fn.clearData();
-    front.Variable.$el.body.style.overflow = 'auto';
+    front.Variable.$el.body.style.overflow = "auto";
   }, 500);
 };
 
 front.func.checkForm = async function () {
-  if (Static.form.email.valid && Static.form.name.valid && Static.form.comment.valid) {
+  if (
+    Static.form.email.valid &&
+    Static.form.name.valid &&
+    Static.form.comment.valid
+  ) {
     Static.form.isValid = true;
   } else {
     Static.form.isValid = false;
@@ -55,7 +59,10 @@ front.func.sendForm = async () => {
         telegram: Static.form.telegram.value,
       },
     };
-    let res = await front.Services.functions.sendApi("api/tg/crypto-emergency", data);
+    let res = await front.Services.functions.sendApi(
+      "api/tg/crypto-emergency",
+      data,
+    );
     if (!res.error) {
       Fn.initOne("alert", {
         icon: success,
@@ -73,8 +80,12 @@ front.func.sendForm = async () => {
     }
   } else {
     !Static.form.name.valid ? (Static.form.name.error = "Введите имя") : null;
-    !Static.form.email.valid ? (Static.form.email.error = "Введите email") : null;
-    !Static.form.comment.valid ? (Static.form.comment.error = "Введите сообщение") : null;
+    !Static.form.email.valid
+      ? (Static.form.email.error = "Введите email")
+      : null;
+    !Static.form.comment.valid
+      ? (Static.form.comment.error = "Введите сообщение")
+      : null;
   }
 
   return;
@@ -119,9 +130,9 @@ front.loader = () => {
 
   // front.Variable.Auth = true;
   if (front.Variable.Auth) {
-    Static.form.name.value = "testMyInfoName";
+    Static.form.name.value = front.Variable.myInfo.fullname;
     Static.form.name.valid = true;
-    Static.form.email.value = "testMyinfoEmail";
+    Static.form.email.value = front.Variable.myInfo.email;
     Static.form.email.valid = true;
   }
   return;

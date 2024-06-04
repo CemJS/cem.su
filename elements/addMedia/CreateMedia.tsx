@@ -6,7 +6,9 @@ import { AudioPlayer } from "@elements/Audio";
 if (!customElements.get("audio-player")) {
   customElements.define("audio-player", AudioPlayer);
 }
-export default function ({ className }: { className?: string }) {
+export default function (
+  { className }: { className?: string } = { className: "" },
+) {
   return (
     <div class={`${className}`}>
       <CreateMediaFiles />

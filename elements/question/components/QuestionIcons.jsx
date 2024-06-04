@@ -1,7 +1,6 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 
 export default function ({ item }) {
-  console.log(item, "item");
   return (
     <div id="icons" class="flex gap-2">
       {item?.closed ? (

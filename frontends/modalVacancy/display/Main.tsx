@@ -1,3 +1,4 @@
+import Textarea from "@elements/ui/Textarea";
 import { Cemjsx, Static, front, Func, Ref, Fn } from "cemjs-all";
 
 export default function () {
@@ -97,7 +98,7 @@ export default function () {
             {Static.form.telegram.error}
           </div>
         </div>
-        <div
+        {/* <div
           class={[
             "modalWindow_field textarea",
             [
@@ -127,7 +128,20 @@ export default function () {
           <p class="modalWindow_field__status" style="color:#E84142">
             {Static.form.comment.error}
           </p>
-        </div>
+        </div> */}
+        <Textarea
+          value={Static.form.comment.value}
+          placeholder={Static.form.comment.placeholder}
+          oninput={(e: any) => {
+            Static.form.comment.value = e.target.value;
+            front.Services.functions.formComment(this.Static.form.comment);
+            Func.checkForm();
+          }}
+          classNameTextarea={`${[
+            Static.form.comment.error ? " contacts__form-input_error" : "",
+            Static.form.comment.valid ? " contacts__form-input_success" : "",
+          ]}`}
+        />
         <button
           onclick={Func.sendForm}
           class={[

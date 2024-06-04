@@ -8,6 +8,7 @@ export default function ({
   ref,
   error,
   classNameStatus,
+  classNameTextarea
 }: {
   oninput: (e: InputEvent) => void;
   // isValid: boolean;
@@ -16,14 +17,14 @@ export default function ({
   placeholder?: string;
   className?: string;
   classNameStatus?: string;
+  classNameTextarea?: string;
   ref?: string;
 }) {
   return (
     <div
       class={[
-        "modalWindow_field",
         "mt-[15px]",
-        "modalWindow_field-textarea",
+        "relative h-auto w-full leading-normal",
         className,
         // isValid ? "modalWindow_field__valid" : null,
       ]}
@@ -31,7 +32,7 @@ export default function ({
       <textarea
         value={value}
         ref={ref}
-        class="!bg-[#202432]"
+        class={{"w-full resize-none rounded-[--borderR] !bg-[#202432] bg-transparent p-[0.625rem_1.875rem] text-white outline-none [border:1px_solid_var(--fiolet)]",classNameTextarea}}
         rows="3"
         oninput={oninput}
       >

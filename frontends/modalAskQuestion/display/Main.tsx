@@ -48,7 +48,9 @@ export default function () {
           </p>
         </div>
 
-        <h3 class="mt-[15px]">{front.Variable?.words?.comments?.commentToQuestion}</h3>
+        <h3 class="mt-[15px]">
+          {front.Variable?.words?.comments?.commentToQuestion}
+        </h3>
 
         <div
           class={[
@@ -69,7 +71,7 @@ export default function () {
             }}
           ></textarea>
         </div>
-        <CreateMedia />
+        <CreateMedia className="" />
         <div class="d-flex jcc mt-[15px]">
           <button
             onclick={Func.sendQuestion}
