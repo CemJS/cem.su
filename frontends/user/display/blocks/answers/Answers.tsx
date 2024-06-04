@@ -61,7 +61,7 @@ export default function () {
             Static.showComp,
           )}
         >
-          Ответ
+          {front.Variable?.words?.qa?.answer}
         </span>
       </div>
       <div class="mt-[.5rem]">

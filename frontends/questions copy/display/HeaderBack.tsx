@@ -30,7 +30,7 @@ export default function () {
                 records.push({ name: front.Variable?.words?.tools?.delete, func: Func.deleteQuestion });
                 !Static.record.closed
                   ? records.push({
-                    name: "Закрыть вопрос",
+                    name: front.Variable?.words?.qa?.closedQuestion,
                     func: Func.closeQuestion,
                   })
                   : null;

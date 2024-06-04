@@ -281,7 +281,7 @@ export default function ({ answer, answerIndex }) {
                 userId: answer.author.id,
                 complainTo: {
                   name: "answers",
-                  text: "ответ",
+                  text: front.Variable?.words?.qa?.answer,
                   id: answer?.id,
                 },
               });
@@ -467,7 +467,7 @@ export default function ({ answer, answerIndex }) {
                         userId: comment.author.id,
                         complainTo: {
                           name: "comments",
-                          text: "комментарий",
+                          text: front.Variable?.words?.comments?.comment,
                           id: comment?.id,
                         },
                       });
@@ -702,7 +702,7 @@ export default function ({ answer, answerIndex }) {
                               userId: comm.author.id,
                               complainTo: {
                                 name: "comments",
-                                text: "комментарий",
+                                text: front.Variable?.words?.comments?.comment,
                                 id: comm?.id,
                               },
                             });

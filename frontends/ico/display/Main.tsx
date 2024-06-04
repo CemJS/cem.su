@@ -68,8 +68,8 @@ const RenderItems = function ({ items }) {
         </div>
         {!items.length ? (
           <div class="notFound">
-            <img src={notFound} alt="Нет записей" />
-            Нет записей
+            <img src={notFound} alt={front.Variable?.words?.notFoundRecords} />
+            {front.Variable?.words?.notFoundRecords}
           </div>
         ) : null}
         <div

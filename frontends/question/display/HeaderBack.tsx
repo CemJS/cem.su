@@ -18,7 +18,7 @@ export default function () {
           </span>
 
           <h5 class="line-clamp-1 px-4 text-center text-base font-medium @700:text-xl">
-            Вопрос
+            {front.Variable?.words?.qa?.question}
           </h5>
 
           <span
@@ -47,7 +47,7 @@ export default function () {
                 });
                 !Static.record.closed
                   ? records.push({
-                      name: "Закрыть вопрос",
+                      name: front.Variable?.words?.qa?.closedQuestion,
                       func: Func.closeQuestion,
                     })
                   : null;

@@ -6,8 +6,8 @@ const RenderItems = function ({ items }) {
   if (!items.length) {
     return (
       <div class="notFound">
-        <img src={notFound} alt="Нет записей" />
-        Нет записей
+        <img src={notFound} alt={front.Variable?.words?.notFoundRecords} />
+        {front.Variable?.words?.notFoundRecords}
       </div>
     );
   }

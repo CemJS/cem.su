@@ -21,15 +21,15 @@ let image = `/contents/images/lenta/avatar_default.png`;
 const RenderNotFound = () => {
   return (
     <div class="not_found col-span-full w-full">
-      <img src={notFound} alt="Нет записей" />
-      Нет записей
+      <img src={notFound} alt={front.Variable?.words?.notFoundRecords} />
+      {front.Variable?.words?.notFoundRecords}
     </div>
   );
 };
 
 export default function () {
   if (!Static.record?.id) {
-    return <div>не найдено</div>;
+    return <div>{front.Variable?.words?.notFoundRecords}</div>;
   }
   return (
     <div>

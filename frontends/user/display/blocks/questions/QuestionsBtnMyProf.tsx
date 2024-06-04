@@ -30,10 +30,10 @@ export default function ({ item, key }) {
                   }),
               },
               {
-                name: "Закрыть вопрос",
+                name: front.Variable?.words?.qa?.closedQuestion,
                 func: () =>
                   Fn.initOne("modalAccept", {
-                    title: "закрыть свой вопрос",
+                    title: front.Variable?.words?.qa?.closedYourQuestion,
                     Callback: async (CallBack: boolean) => {
                       if (CallBack) {
                         item.isClosed = true;

@@ -58,9 +58,9 @@ const RenderItems = function ({ items }) {
           <div class="notFound">
             <img
               src={notFound}
-              alt="Нет записей"
+              alt={front.Variable?.words?.notFoundRecords}
             />
-            Нет записей
+            {front.Variable?.words?.notFoundRecords}
           </div>
         ) : null}
         <div
