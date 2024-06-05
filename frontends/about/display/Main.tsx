@@ -62,7 +62,7 @@ export default function () {
       {/* <Preview
         items={aboutSlides}
         options={titleOptions}/> */}
-      <div class="wrapper !max-w-[78rem] z-[100]">
+      <div class="wrapper relative z-[5] !max-w-[78rem]">
         <Goals />
         <Faq />
         <Team />

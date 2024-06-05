@@ -1,7 +1,4 @@
 {
   "url": "/about",
-  "front": [
-    "about",
-    "menu"
-  ]
+  "front": ["about", "menu", "footer"]
 }

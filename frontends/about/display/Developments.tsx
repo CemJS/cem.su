@@ -2,19 +2,18 @@ import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import logo_apple from "@images/social_networks/logo_apple.png";
 import logo_android from "@images/social_networks/logo_android.png";
 
-
 export default function () {
   return (
     <div class="flex flex-col items-center">
       <h2 class="z-[1] mx-0 my-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
         {front.Variable?.words?.chapters?.ourDevelopments}
       </h2>
-      <div class="@700:grid @700:grid-cols-2 @700:[grid-template-areas:'emergency_emergency'_'assistant_wallet'] @700:gap-[1.5625rem] @1100:grid-cols-3 @1100:max-w-[68.75rem] contents">
+      <div class="contents @700:grid @700:grid-cols-2 @700:gap-[1.5625rem] @700:[grid-template-areas:'emergency_emergency'_'assistant_wallet'] @1100:max-w-[68.75rem] @1100:grid-cols-3">
         {Static.developments.map((item, index) => {
           return (
             <div
               class={[
-                "max-@700:m-[.625rem] relative z-[1] p-[clamp(10px,_2vw,_20px)_clamp(10px,_2vw,_20px)_0_clamp(10px,_2vw,_20px)] pb-[4.0625rem] [box-shadow:5px_10px_20px_#00000033] [transition:0.4s_ease-in-out] before:absolute before:left-0 before:top-0 before:h-full before:w-[75%] before:bg-[#ffffff33] before:[content:'']",
+                "relative z-[1] p-[clamp(10px,_2vw,_20px)_clamp(10px,_2vw,_20px)_0_clamp(10px,_2vw,_20px)] pb-[4.0625rem] [box-shadow:5px_10px_20px_#00000033] [transition:0.4s_ease-in-out] before:absolute before:left-0 before:top-0 before:h-full before:w-[75%] before:bg-[#ffffff33] before:[content:''] max-@700:m-[.625rem]",
                 `developments_item_${index + 1}`,
               ]}
             >
@@ -28,10 +27,10 @@ export default function () {
                 <a
                   href={item.appStore}
                   onclick={this.Fn.link}
-                  class="flex items-center justify-between gap-[.625rem] border-[.0625rem] border-[#ffffff] p-[.625rem]"
+                  class="flex  items-center justify-between gap-[.625rem] border-[.0625rem] border-[#ffffff] p-[.625rem]"
                 >
                   <img src={logo_apple} alt="AppStore" class="w-[1.5625rem]" />
-                  AppStore
+                  <span class="hidden @420:inline">AppStore</span>
                 </a>
                 <a
                   href={item.playMarket}
@@ -43,7 +42,7 @@ export default function () {
                     alt="PlayMarket"
                     class="w-[1.5625rem]"
                   />
-                  PlayMarket
+                  <span class="hidden @420:inline">PlayMarket</span>
                 </a>
               </div>
             </div>

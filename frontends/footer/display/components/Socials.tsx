@@ -70,11 +70,8 @@ const sand = (e: any) => {
 };
 export default function () {
   return (
-    <div class="mb-[3.75rem] flex flex-col items-center justify-center px-[.625rem] py-0">
-      <h2 class="z-[1] mx-0 mb-[.9375rem] mt-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
-        {front.Variable?.words?.chapters?.socials}
-      </h2>
-      <ul class="mb-[25px] flex list-none flex-wrap items-center justify-center gap-[.3125rem] p-0 @550:flex @550:gap-[.9375rem]">
+    <div class="flex flex-col items-center justify-center px-[.625rem] py-0">
+      <ul class="flex list-none flex-wrap items-center justify-center gap-[.3125rem] p-0 @550:flex @550:gap-[.9375rem]">
         {socials.map((item, index) => {
           return (
             <li class="group z-[1] hover:z-[5]">
@@ -156,11 +153,6 @@ export default function () {
           );
         })}
       </ul>
-      <div class="max-w-[56.25rem]">
-        <p class="z-[1] m-0 pb-[1.5625rem] text-justify text-[clamp(.875rem,2vw,1rem)] font-medium italic leading-[1.5]">
-          {front.Variable?.words?.contacts?.joinSocialNetwork}
-        </p>
-      </div>
     </div>
   );
 }

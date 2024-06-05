@@ -3,6 +3,7 @@ import appStore from "@svg/icons/appStore.svg";
 import playMarket from "@svg/icons/playMarket.svg";
 import socials from "@json/footerSocial";
 import show from "@svg/icons/footerShow.svg";
+import Socials from "./components/Socials";
 
 export default function () {
   return (
@@ -42,7 +43,9 @@ export default function () {
                           class="relative block hover:!bg-clip-text hover:text-transparent hover:[background:--mainGradient]"
                           onclick={Fn.link}
                           target={
-                            Static.footer[i].target ? Static.footer[i].target[index] : ""
+                            Static.footer[i].target
+                              ? Static.footer[i].target[index]
+                              : ""
                           }
                           href={Static.footer[i].href[index]}
                         >
@@ -85,7 +88,7 @@ export default function () {
         <div class="flex flex-col items-center justify-between gap-7 py-5 [border-top:1px_solid_#353944]">
           <div class="order-1">©2020-2024 Crypto Emergency</div>
           <div class="flex flex-wrap justify-center gap-[0.9375rem]">
-            {socials.map((item, i) => {
+            {/* {socials.map((item, i) => {
               return (
                 <a
                   href={!Array.isArray(item.href) ? item.href : ""}
@@ -133,7 +136,8 @@ export default function () {
                   ) : null}
                 </a>
               );
-            })}
+            })} */}
+            <Socials />
           </div>
         </div>
       </div>

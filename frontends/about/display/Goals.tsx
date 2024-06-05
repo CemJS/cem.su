@@ -1,5 +1,10 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 
+function capitalizeFirstLetter(string) {
+  if (!string) return string; // Проверка на пустую строку
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export default function () {
   return (
     <div>
@@ -12,12 +17,12 @@ export default function () {
         leading-6 text-[#FFFFFF] 
         max-sm:mb-[25px]"
       >
-        {front.Variable?.words?.goals?.ourGoals}
+        {capitalizeFirstLetter(front.Variable?.words?.goals?.ourGoals)}
       </h2>
       <div
         class="grid-rows-auto
        relative 
-       z-10 
+       z-[5] 
        mb-6 
        grid !grid-cols-1 !gap-5 @464:!grid-cols-2 @992:!grid-cols-4 @992:gap-4"
       >
@@ -26,7 +31,7 @@ export default function () {
             <div
               style="backdrop-filter: blur(10px);"
               class={[
-                "hover:before:@767:[clip-path:circle(300px_at_80%_-65%)] group relative h-[265px] overflow-hidden rounded-[1.25rem] border-[0.0625rem] border-solid border-[#ffffff0d] bg-[#ffffff05] before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-[#A87FFF] before:opacity-50 before:content-[''] before:[clip-path:circle(300px_at_80%_-70%)] before:[transition:0.5s_ease-in-out] after:absolute after:bottom-[10%] after:left-[-15%] after:text-[7rem] after:font-extrabold after:italic after:text-[#ff22ac0d] hover:before:[clip-path:circle(300px_at_80%_-40%)] @464:h-[20rem] hover:before:@464:[clip-path:circle(300px_at_80%_-60%)] @992:h-[28.125rem] before:@992:[clip-path:circle(300px_at_80%_-20%)] hover:before:@992:[clip-path:circle(300px_at_94%_-35%)]",
+                "group relative h-[265px] overflow-hidden rounded-[1.25rem] border-[0.0625rem] border-solid border-[#ffffff0d] bg-[#ffffff05] before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-[#A87FFF] before:opacity-50 before:content-[''] before:[clip-path:circle(300px_at_80%_-70%)] before:[transition:0.5s_ease-in-out] after:absolute after:bottom-[10%] after:left-[-15%] after:text-[7rem] after:font-extrabold after:italic after:text-[#ff22ac0d] hover:before:[clip-path:circle(300px_at_80%_-40%)] @464:h-[20rem] hover:before:@464:[clip-path:circle(300px_at_80%_-60%)] hover:before:@767:[clip-path:circle(300px_at_80%_-65%)] @992:h-[28.125rem] before:@992:[clip-path:circle(300px_at_80%_-20%)] hover:before:@992:[clip-path:circle(300px_at_94%_-35%)]",
 
                 item.classItem === "crypto"
                   ? "after:content-['Crypto']"
@@ -41,16 +46,16 @@ export default function () {
             >
               <div class="absolute top-0 z-[1000] h-[13.75rem] w-full translate-y-0 [transition:0.5s] @992:top-[50%] @992:translate-y-[-50%] group-hover:@992:top-0 group-hover:@992:translate-y-0">
                 <img
-                  class="@767:w-[3.8125rem] @767:top-[5%] @767:right-[5%] @767:translate-x-[-5] @767:translate-y-[-5%] absolute left-auto right-[5%] top-[10%] w-[4.375rem] translate-x-[-5%] translate-y-[-10%] @992:left-[50%] @992:top-[50%] @992:w-[100px] @992:translate-x-[-50%] @992:translate-y-[-50%]"
+                  class="absolute left-auto right-[5%] top-[10%] w-[4.375rem] translate-x-[-5%] translate-y-[-10%] @767:right-[5%] @767:top-[5%] @767:w-[3.8125rem] @767:translate-x-[-5] @767:translate-y-[-5%] @992:left-[50%] @992:top-[50%] @992:w-[100px] @992:translate-x-[-50%] @992:translate-y-[-50%]"
                   src={item.img}
                 ></img>
               </div>
               {/* @:992:[transition:1s] @767:top-[33%] @767:bottom-auto @767:h-auto z-10 @464:top-[35%] @992:absolute @992:top-[45%] @992:w-full @992:text-center */}
               <div class="absolute z-10 w-full text-center [transition:1s] max-[998px]:top-[33%] max-[767px]:top-[33%] max-[464px]:top-[45%] @992:bottom-[0] @992:h-[100px] group-hover:@992:h-[210px]">
-                <h4 class="@767:text-[1.25rem] relative m-0 px-[.625rem] py-0 text-[1.150rem] font-semibold tracking-[.0625rem] text-[#FFFFFF]">
+                <h4 class="relative m-0 px-[.625rem] py-0 text-[1.150rem] font-semibold tracking-[.0625rem] text-[#FFFFFF] @767:text-[1.25rem]">
                   {item.title}
                 </h4>
-                <div class="@767:visible @767:opacity-100 px-[1.25rem] py-[.625rem] text-[.875rem] leading-[1.125rem] [transition:0.3s] @464:text-[.75rem] @992:invisible @992:text-[.875rem] @992:opacity-0 group-hover:@992:visible group-hover:@992:opacity-100 group-hover:@992:delay-[0.5s]">
+                <div class="px-[1.25rem] py-[.625rem] text-[.875rem] leading-[1.125rem] [transition:0.3s] @464:text-[.75rem] @767:visible @767:opacity-100 @992:invisible @992:text-[.875rem] @992:opacity-0 group-hover:@992:visible group-hover:@992:opacity-100 group-hover:@992:delay-[0.5s]">
                   {item.description}
                 </div>
               </div>
