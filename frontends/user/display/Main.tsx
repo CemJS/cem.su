@@ -5,7 +5,6 @@ import Categories from "./Categories";
 import UserMainBlock from "./UserMainBlock";
 
 export default function () {
-  //  Fn.log("Static.record", Static.record)
   return (
     <div class="c-main-body">
       <div class="wrapper px-0 @767:px-[1rem]">

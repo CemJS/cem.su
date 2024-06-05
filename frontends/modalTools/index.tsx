@@ -84,8 +84,6 @@ front.loader = () => {
   //   });
   // }
   if (Static.userId && front.Variable.myInfo.id != Static.userId) {
-    console.log("=83340e=", Static.complainTo);
-
     let userId = Static.userId;
 
     if (Static.complainTo) {

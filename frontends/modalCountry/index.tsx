@@ -32,7 +32,6 @@ front.loader = async () => {
     alert("База данных закрыта! Перезагрузите страницу.");
   }
   //  = JSON.parse(localStorage.countries)
-  Fn.log("=8477ca=", Static.records);
   // let url = front.Services.functions.makeUrlEvent("Countries", {})
   // let listener = [
   //     {

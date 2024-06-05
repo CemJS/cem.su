@@ -35,7 +35,6 @@ export default function () {
                   Static.activeIndex = index;
                   Ref.activeTab.style.left = `${Ref.tabItem1.offsetWidth * Static.activeIndex}px`;
                   Static.speakersTabName = item.name;
-                  Fn.log("tab", speakers, arrFinish);
                   Ref.speakersContent.classList.add("animated");
                   setTimeout(() => {
                     Ref.speakersContent.classList.remove("animated");
@@ -55,7 +54,7 @@ export default function () {
         {/* speakers */}
 
         <div
-          class="@1000:grid-cols-3 @1000:gap-[80px] grid grid-cols-1 gap-[7vw] [transition:2s_linear] @550:grid-cols-2 "
+          class="grid grid-cols-1 gap-[7vw] [transition:2s_linear] @550:grid-cols-2 @1000:grid-cols-3 @1000:gap-[80px] "
           ref="speakersContent"
         >
           {speakers
@@ -100,7 +99,6 @@ export default function () {
             Static.howMutchSpeakers = 6;
             Ref.buttonSpan.textContent = front.Variable?.words?.tools?.showAll;
           }
-          Fn.log("=9b27aa=", speakers);
         }}
       >
         <span ref="buttonSpan" class="underline">

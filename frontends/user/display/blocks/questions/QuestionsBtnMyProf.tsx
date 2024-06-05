@@ -38,7 +38,6 @@ export default function ({ item, key }) {
                       if (CallBack) {
                         item.isClosed = true;
                         const url = `/api/questions/${item?.id}/close`;
-                        console.log("url", url);
                         Func.sendAuth(url, {});
                       }
                     },

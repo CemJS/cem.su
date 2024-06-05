@@ -153,7 +153,6 @@ front.loader = async () => {
         if (!id) {
           return;
         }
-        console.log("=05c3a3=", id);
         Static.questions = [
           ...Static.questions.filter((record) => record.id != id),
         ];

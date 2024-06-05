@@ -52,7 +52,6 @@ const RenderItems = function ({ items }) {
                 }}
                 onclick={(e) => {
                   Static.record = item;
-                  Fn.log("=af157b=", item);
                   Fn.linkChange(`/list-startups/show/${item.id}`);
                 }}
                 isVisible={() => {

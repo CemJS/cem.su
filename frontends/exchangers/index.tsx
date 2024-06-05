@@ -1,22 +1,24 @@
-import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all"
-import Navigation from "./navigation"
+import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all";
+import Navigation from "./navigation";
 
 front.listener.finish = () => {
-  return
-}
+  return;
+};
 const filterCoin = function ({ choosenCoin }) {
-  this.Static.network = choosenCoin
-}
+  this.Static.network = choosenCoin;
+};
 
 front.func.test = () => {
-  return
-}
+  return;
+};
 
 front.loader = async () => {
   Static.tradeFilter = {
     cat: "CEX",
-  }
-  let url = front.Services.functions.makeUrlEvent("exchangers", { category: Static.tradeFilter.cat });
+  };
+  let url = front.Services.functions.makeUrlEvent("exchangers", {
+    category: Static.tradeFilter.cat,
+  });
 
   let listener = [
     {
@@ -26,7 +28,6 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        // Fn.log("=68682c=", "get", json);
         Static.records = json;
       },
     },
@@ -37,21 +38,20 @@ front.loader = async () => {
         if (!json) {
           return;
         }
-        // Fn.log("=68682c=", "add", json);
         Static.records.push(...json);
       },
     },
   ];
   Events.exchangers = await Fn.event(url, listener);
-  return
-}
+  return;
+};
 
 front.display = () => {
   return (
     <div class="wrapper">
       <Navigation />
     </div>
-  )
-}
+  );
+};
 
-export { front }
+export { front };

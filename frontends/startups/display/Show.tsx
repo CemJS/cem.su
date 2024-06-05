@@ -110,7 +110,7 @@ export default function () {
               </div>
             </div>
             <div class="flex flex-col gap-[1.5625rem]">
-              <p class="!h-auto overflow-y-scroll pr-[0.625rem] @992:h-[21.75rem]">
+              <p class="!h-auto overflow-y-auto pr-[0.625rem] @992:h-[21.75rem]">
                 {Static.record.description}
               </p>
               {Static.record.social?.length ? (

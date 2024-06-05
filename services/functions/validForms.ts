@@ -1,4 +1,4 @@
-import { front } from "cemjs-all"
+import { front } from "cemjs-all";
 import {
   validLogin,
   validEmail,
@@ -152,7 +152,6 @@ export const formComment = async function (form: Form) {
     return false;
   }
   let check = validComment(form.value);
-  console.log("=da49ea=", check);
   if (check) {
     form.error = false;
     form.valid = true;

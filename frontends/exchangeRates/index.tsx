@@ -1,56 +1,56 @@
-import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all"
-import Navigation from "./navigation"
-
+import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all";
+import Navigation from "./navigation";
 
 front.listener.finish = () => {
-    return
-}
+  return;
+};
 
 front.func.test = () => {
-    return
-}
+  return;
+};
 
 front.loader = async () => {
-    Static.records = []
-    let url = front.Services.functions.makeUrlEvent("coins-courses", {})
+  Static.records = [];
+  let url = front.Services.functions.makeUrlEvent("coins-courses", {});
 
-    let listener = [
-        {
-            type: "get",
-            fn: ({ data }) => {
-                let json = front.Services.functions.strToJson(data)
-                if (!json) { return }
-                // Fn.log('=2efb55= get', json)
-                Static.records = json
-            },
-        },
-        {
-            type: "update",
-            fn: ({ data }) => {
-                let json = front.Services.functions.strToJson(data)
-                if (!json) { return }
-                // Fn.log('=2efb55= update', json)
+  let listener = [
+    {
+      type: "get",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
+        Static.records = json;
+      },
+    },
+    {
+      type: "update",
+      fn: ({ data }) => {
+        let json = front.Services.functions.strToJson(data);
+        if (!json) {
+          return;
+        }
 
-                for (let item of Static.records) {
-                    if (item.coin == json.coin) {
-                        item.price = json.price
-                    }
-                }
-                Fn.log('=06e685=', Static.records)
-            },
-        },
-    ]
+        for (let item of Static.records) {
+          if (item.coin == json.coin) {
+            item.price = json.price;
+          }
+        }
+      },
+    },
+  ];
 
-    Events.banners = await Fn.event(url, listener)
-    return
-}
+  Events.banners = await Fn.event(url, listener);
+  return;
+};
 
 front.display = () => {
-    return (
-        <div class="wrapper">
-            <Navigation />
-        </div>
-    )
-}
+  return (
+    <div class="wrapper">
+      <Navigation />
+    </div>
+  );
+};
 
-export { front }
+export { front };

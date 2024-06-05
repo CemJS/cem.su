@@ -136,7 +136,6 @@ export default function () {
           oninput={(e: any) => {
             Static.form.comment.value = e.target.value;
             front.Services.functions.formComment(Static.form.comment);
-            console.log("=07ca29=", Static.form);
             Func.checkForm();
           }}
           classNameStyle={`${

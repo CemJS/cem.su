@@ -1,20 +1,20 @@
-import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all"
-import Navigation from "./navigation"
+import { Cemjsx, front, Func, Static, Fn, Events } from "cemjs-all";
+import Navigation from "./navigation";
 
 front.listener.finish = () => {
-  return
-}
+  return;
+};
 
 const filterCoin = function ({ choosenCoin }) {
-  this.Static.network = choosenCoin
-}
+  this.Static.network = choosenCoin;
+};
 
 front.func.test = () => {
-  return
-}
+  return;
+};
 
 front.loader = async () => {
-  Static.filterCoins = []
+  Static.filterCoins = [];
 
   let url = front.Services.functions.makeUrlEvent("exchanges");
 
@@ -23,12 +23,10 @@ front.loader = async () => {
       type: "get",
       fn: ({ data }) => {
         let json = front.Services.functions.strToJson(data);
-        console.log("json", json);
-        
+
         if (!json) {
           return;
         }
-        // Fn.log("=68682c=", "get", json);
 
         Static.records = json;
       },
@@ -46,15 +44,15 @@ front.loader = async () => {
   ];
   Events.exchangers = await Fn.event(url, listener);
 
-  return
-}
+  return;
+};
 
 front.display = () => {
   return (
     <div>
       <Navigation />
     </div>
-  )
-}
+  );
+};
 
-export { front }
+export { front };

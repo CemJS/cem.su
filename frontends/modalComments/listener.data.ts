@@ -11,7 +11,6 @@ export default [
         return;
       }
       Static.comments = comments;
-      Fn.log("=b46cd5=", comments);
     },
   },
   // create
@@ -71,7 +70,6 @@ export default [
       if (!Array.isArray(Static.comments[commentIndex].comments)) {
         Static.comments[commentIndex].comments = [];
       }
-      console.log("=a347da=", Static.comments[commentIndex]);
       Static.comments[commentIndex].comments.push(comment);
     },
   },

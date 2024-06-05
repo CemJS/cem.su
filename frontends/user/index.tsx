@@ -13,11 +13,16 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   if (front.Variable.Auth) {
     let res = await front.Services.functions.sendApi(url, data, method);
     if (res?.status == 409) {
-      Fn.initOne("alert", { text: front.Variable?.words?.notices?.ratingAccrued, type: "danger" });
+      Fn.initOne("alert", {
+        text: front.Variable?.words?.notices?.ratingAccrued,
+        type: "danger",
+      });
       return;
     }
     if (res?.error) {
-      Fn.initOne("alert", { text: front.Variable?.words?.notices?.requestError });
+      Fn.initOne("alert", {
+        text: front.Variable?.words?.notices?.requestError,
+      });
     }
     return res;
   } else {
@@ -60,25 +65,21 @@ front.listener.clickAny = function (e) {
 
 front.loader = async () => {
   Static.nameCategory = "aboutMe";
-  Fn.log("=be3efb=", 5555);
   if (front.Variable.DataUrl[0] && front.Variable.DataUrl[0] == "user") {
     let url = front.Services.functions.makeUrlEvent(
       `users/${front.Variable?.DataUrl[1]}/profile`,
       {},
     );
-    // Fn.log("=2b8a89=", url);
     let listener = [
       {
         type: "get",
         fn: ({ data }) => {
           let json = front.Services.functions.strToJson(data);
-          Fn.log("json", json);
 
           if (!json) {
             return;
           }
           Static.record = json;
-          // Fn.log("Static.record", Static.record);
         },
       },
       {
@@ -99,7 +100,6 @@ front.loader = async () => {
 };
 
 front.display = () => {
-  // Fn.log('=1255b6=',1243)
   return (
     <div>
       <Navigation />

@@ -49,7 +49,6 @@ export default function () {
               questionId: Static.record.id,
               media: Static.data.media,
             };
-            console.log("=1e5279=", Static.data.media);
             Static.open = front.Variable?.words?.qa?.toAnswer;
             const res = await Func.sendAuth("/api/answers/create", data);
             if (res?.error?.length == 0) {

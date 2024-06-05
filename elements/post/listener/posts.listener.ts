@@ -39,7 +39,6 @@ export default [
         Static.showPostSkeleton = false;
       }, 300);
       Static.posts = json;
-      Fn.log("=posts results=", Static.posts);
     },
   },
   // update

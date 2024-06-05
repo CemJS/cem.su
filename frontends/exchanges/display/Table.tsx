@@ -22,12 +22,10 @@ export default function () {
                   filterCoins: Static.filterCoins,
                   callback: async (filterCoinsFromModal: []) => {
                     Static.filterCoins = filterCoinsFromModal;
-                    // console.log("filterCoins", Static.filterCoins);
                     let res = front.Services.functions.sendApi(
                       "/api/exchanges",
                       {
                         coins: Static.filterCoins,
-                        // "uuid": `${localStorage?.uuid}`,
                       },
                     );
                     if (!filterCoinsFromModal.length) {
@@ -49,13 +47,9 @@ export default function () {
                 filterCoins: Static.filterCoins,
                 callback: async (filterCoinsFromModal: []) => {
                   Static.filterCoins = filterCoinsFromModal;
-                  // console.log("filterCoins", Static.filterCoins);
-                  let res = front.Services.functions.sendApi(
-                    "/api/exchanges",
-                    {
-                      coins: Static.filterCoins,
-                    },
-                  );
+                  let res = front.Services.functions.sendApi("/api/exchanges", {
+                    coins: Static.filterCoins,
+                  });
                   if (!filterCoinsFromModal.length) {
                     return;
                   }
@@ -65,17 +59,14 @@ export default function () {
           />
         </div>
         {Static.records?.map((item: any, index: any) => {
-          // console.log("item", item);
           return (
             <div>
               <tr
                 class="hidden grid-cols-3 items-center [border-bottom:1px_solid_var(--border)] @700:grid"
                 isVisible={() => {
                   if (index == Static.records?.length - 3) {
-                    // console.log('=индкекс равен =', index, 'Static.records.length - 3', Static.records.length - 3)
                     Static.moreid =
                       Static.records[Static.records.length - 1]?._id;
-                    // fn("addEvent")
                   }
                 }}
                 init={($el: any) => {
@@ -115,7 +106,7 @@ export default function () {
                 <td class="flex items-center justify-end px-[.9375rem] py-[.625rem]">
                   <div class="mx-0 mt-auto h-full w-[12.625rem] rounded-[--btnR] p-[0.0725rem] [background:var(--mainGradient)]">
                     <a href={item?.url} onclick={Fn.link}>
-                      <button class="bg-[--noble_black] relative z-[1] h-[2.625rem] w-full min-w-[9.375rem] cursor-pointer overflow-hidden rounded-[--btnR] border-none text-center text-[1rem] font-semibold text-[--white] outline-none before:absolute before:bottom-0 before:left-0 before:right-0 before:top-0 before:z-[-1] before:h-full before:w-full before:opacity-0 before:content-[''] before:[background:var(--mainGradient)] before:[transition:all_0.3s_ease-in-out] hover:before:opacity-100">
+                      <button class="relative z-[1] h-[2.625rem] w-full min-w-[9.375rem] cursor-pointer overflow-hidden rounded-[--btnR] border-none bg-[--noble_black] text-center text-[1rem] font-semibold text-[--white] outline-none before:absolute before:bottom-0 before:left-0 before:right-0 before:top-0 before:z-[-1] before:h-full before:w-full before:opacity-0 before:content-[''] before:[background:var(--mainGradient)] before:[transition:all_0.3s_ease-in-out] hover:before:opacity-100">
                         Обменять
                       </button>
                     </a>

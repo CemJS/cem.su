@@ -133,13 +133,17 @@ front.func.deleteComment = async (
 front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   if (front.Variable.Auth) {
     let res = await front.Services.functions.sendApi(url, data, method);
-    console.log("=55a7bd=", res);
     if (res?.status == 409) {
-      Fn.initOne("alert", { text: front.Variable?.words?.notices?.ratingAccrued, type: "danger" });
+      Fn.initOne("alert", {
+        text: front.Variable?.words?.notices?.ratingAccrued,
+        type: "danger",
+      });
       return;
     }
     if (res?.error) {
-      Fn.initOne("alert", { text: front.Variable?.words?.notices?.requestError });
+      Fn.initOne("alert", {
+        text: front.Variable?.words?.notices?.requestError,
+      });
       return;
     }
     return res;
@@ -151,7 +155,6 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 //
 
 front.func.hideInputs = () => {
-  console.log("=00e74a=", Static.currentEditing);
   Func.closeEdit(Static.currentEditing);
   let inputs = document.querySelectorAll("#form");
   let arr = [...inputs];
@@ -171,11 +174,6 @@ front.func.findIndexComment = (id, answerIndex) => {
 };
 
 front.func.findIndexCommentToComment = (id, answerIndex, commentIndex) => {
-  console.log("=b53b67=", id);
-  console.log(
-    "=09f769=",
-    Static.record.answers[answerIndex].comments[commentIndex].comments,
-  );
   return Static.record.answers[answerIndex].comments[
     commentIndex
   ].comments.findIndex((item) => item.id == id);
@@ -441,8 +439,6 @@ front.loader = async () => {
           ? Static.record.answers[answerIndex]?.comments[commentIndex].comments
               ?.length
           : 0;
-
-        console.log("=759005=", comments);
 
         Static.record.answers[answerIndex].statistics.comments -= comments + 1;
 

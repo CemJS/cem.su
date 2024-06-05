@@ -63,7 +63,6 @@ front.func.close = function () {
 };
 
 front.loader = async () => {
-  console.log("=c2ee37=", Static.defaultRatio);
   !Static.defaultRatio
     ? (Static.ratio = "16:9")
     : (Static.ratio = Static.defaultRatio);

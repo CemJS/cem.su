@@ -23,7 +23,6 @@ front.func.throttle = (timeout) => {
 };
 
 front.loader = async () => {
-  Fn.log("=38f35e=", Static.record);
   Static.makeFilter = {
     cat: "All",
     active: "Active",
@@ -100,7 +99,6 @@ front.loader = async () => {
           if (!json) {
             return;
           }
-          console.log("=23143c=", json);
           Static.record = json;
         },
       },

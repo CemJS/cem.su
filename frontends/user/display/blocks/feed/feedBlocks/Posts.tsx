@@ -11,7 +11,6 @@ export default function () {
   }
 
   Static.posts = Static.record?.posts;
-  // Fn.log("=Static.posts=1", Static.posts[0]);
 
   return (
     <div>

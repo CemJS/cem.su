@@ -17,11 +17,16 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
   if (front.Variable.Auth) {
     let res = await front.Services.functions.sendApi(url, data, method);
     if (res?.status == 409) {
-      Fn.initOne("alert", { text: front.Variable?.words?.notices?.ratingAccrued, type: "danger" });
+      Fn.initOne("alert", {
+        text: front.Variable?.words?.notices?.ratingAccrued,
+        type: "danger",
+      });
       return;
     }
     if (res?.error) {
-      Fn.initOne("alert", { text: front.Variable?.words?.notices?.requestError });
+      Fn.initOne("alert", {
+        text: front.Variable?.words?.notices?.requestError,
+      });
     }
     return res;
   } else {
@@ -33,7 +38,6 @@ front.func.sendAuth = async (url: string, data: object, method = "POST") => {
 
 front.func.delete = async (item) => {
   let res = await Func.sendAuth(`/api/posts/${item?.id}/delete`, {});
-  console.log("=be736f=", res);
   if (res.status == 200) {
     if (front.Variable.$el.header) {
       front.Variable.$el?.header?.classList?.remove("hide");
@@ -77,11 +81,6 @@ front.func.findIndexComment = (id, postIndex) => {
 };
 
 front.func.findIndexCommentToComment = (id, postIndex, commentIndex) => {
-  console.log("=b53b67=", id);
-  console.log(
-    "=09f769=",
-    Static.records[postIndex].comments[commentIndex].comments,
-  );
   return Static.records[postIndex].comments[commentIndex].comments.findIndex(
     (item) => item.id == id,
   );
