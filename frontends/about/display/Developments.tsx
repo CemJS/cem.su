@@ -1,36 +1,7 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import logo_apple from "@images/social_networks/logo_apple.png";
 import logo_android from "@images/social_networks/logo_android.png";
-import cem_assist from "@images/social_networks/cem_assist.png";
-import wallet_icon from "@images/social_networks/wallet_icon.png";
-import crypto_emergency from "@images/social_networks/crypto_emergency.svg";
 
-const developments = [
-  {
-    name: "CEM Assistant",
-    logo: cem_assist,
-    appStore: "https://apps.apple.com/ru/app/cem-assistant/id6448629326",
-    playMarket:
-      "https://play.google.com/store/apps/details?id=com.cemassistant&hl=ru",
-    desc: front.Variable?.words?.developments?.assistantDesc,
-  },
-  {
-    name: "CEM Wallet",
-    logo: wallet_icon,
-    appStore: "https://apps.apple.com/ru/app/cem-wallet/id1637300554",
-    playMarket:
-      "https://play.google.com/store/apps/details?id=com.cemwallet&hl=en&gl=US",
-    desc: front.Variable?.words?.developments?.walletDesc,
-  },
-  {
-    name: "Crypto Emergency",
-    logo: crypto_emergency,
-    appStore: "https://apps.apple.com/es/app/crypto-emergency/id1635628021",
-    playMarket:
-      "https://play.google.com/store/apps/details?id=com.cryptoemergency&hl=en&gl=US",
-    desc: front.Variable?.words?.developments?.cemDesc,
-  },
-];
 
 export default function () {
   return (
@@ -39,7 +10,7 @@ export default function () {
         {front.Variable?.words?.chapters?.ourDevelopments}
       </h2>
       <div class="@700:grid @700:grid-cols-2 @700:[grid-template-areas:'emergency_emergency'_'assistant_wallet'] @700:gap-[1.5625rem] @1100:grid-cols-3 @1100:max-w-[68.75rem] contents">
-        {developments.map((item, index) => {
+        {Static.developments.map((item, index) => {
           return (
             <div
               class={[

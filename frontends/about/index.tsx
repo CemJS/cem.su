@@ -12,6 +12,9 @@ import community from "@svg/about/roadmap/community.svg";
 import univercity from "@svg/about/roadmap/university.svg";
 import exchange from "@svg/about/roadmap/exchange.svg";
 import network from "@svg/about/roadmap/network.svg";
+import cem_assist from "@images/social_networks/cem_assist.png";
+import wallet_icon from "@images/social_networks/wallet_icon.png";
+import crypto_emergency from "@images/social_networks/crypto_emergency.svg";
 
 export const start = function () {};
 
@@ -110,6 +113,35 @@ front.loader = () => {
       date: front.Variable?.words?.roadmap?.neuralNetwork?.date,
       desc: front.Variable?.words?.roadmap?.neuralNetwork?.desc,
       icon: network,
+    },
+  ];
+
+  
+
+Static.developments = [
+    {
+      name: "CEM Assistant",
+      logo: cem_assist,
+      appStore: "https://apps.apple.com/ru/app/cem-assistant/id6448629326",
+      playMarket:
+        "https://play.google.com/store/apps/details?id=com.cemassistant&hl=ru",
+      desc: front.Variable?.words?.developments?.assistantDesc,
+    },
+    {
+      name: "CEM Wallet",
+      logo: wallet_icon,
+      appStore: "https://apps.apple.com/ru/app/cem-wallet/id1637300554",
+      playMarket:
+        "https://play.google.com/store/apps/details?id=com.cemwallet&hl=en&gl=US",
+      desc: front.Variable?.words?.developments?.walletDesc,
+    },
+    {
+      name: "Crypto Emergency",
+      logo: crypto_emergency,
+      appStore: "https://apps.apple.com/es/app/crypto-emergency/id1635628021",
+      playMarket:
+        "https://play.google.com/store/apps/details?id=com.cryptoemergency&hl=en&gl=US",
+      desc: front.Variable?.words?.developments?.cemDesc,
     },
   ];
   return;
