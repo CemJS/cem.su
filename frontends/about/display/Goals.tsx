@@ -1,37 +1,7 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
-import folder from "@svg/about/goal_1.svg";
-import safe from "@svg/about/goal_2.svg";
-import access from "@svg/about/goal_3.svg";
-import pin from "@svg/about/goal_4.svg";
-
-const goals = [
-  {
-    img: folder,
-    title: front.Variable?.words?.goals?.title1,
-    description: front.Variable?.words?.goals?.desc1,
-    classItem: "crypto",
-  },
-  {
-    img: safe,
-    title: front.Variable?.words?.goals?.title2,
-    description: front.Variable?.words?.goals?.desc2,
-    classItem: "unite",
-  },
-  {
-    img: access,
-    title: front.Variable?.words?.goals?.title3,
-    description: front.Variable?.words?.goals?.desc3,
-    classItem: "access",
-  },
-  {
-    img: pin,
-    title: front.Variable?.words?.goals?.title4,
-    description: front.Variable?.words?.goals?.desc4,
-    classItem: "meta",
-  },
-];
 
 export default function () {
+  console.log('=goals=', front.Variable?.words?.goals?.title1)
   return (
     <div>
       <h2
@@ -52,7 +22,7 @@ export default function () {
        mb-6 
        grid !grid-cols-1 !gap-5 @464:!grid-cols-2 @992:!grid-cols-4 @992:gap-4"
       >
-        {goals.map((item: any) => {
+        {Static.goals.map((item: any) => {
           return (
             <div
               style="backdrop-filter: blur(10px);"
