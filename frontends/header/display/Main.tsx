@@ -39,11 +39,23 @@ export default function () {
           <div
             class="btn btn_dark hidden sm:flex"
             onclick={() =>
-              Fn.initOne("modalLanguage", { title: front.Variable.words?.language })
+              Fn.initOne("modalLanguage", {
+                title: front.Variable.words?.language,
+                callback: (item) => {
+                  localStorage.setItem("lang", item.code);
+                  localStorage.setItem("origLang", item.origName);
+                  front.Variable.languageCode = item.code;
+                  front.Variable.Lang = item.origName;
+                },
+              })
             }
           >
             <i class="i i-globe-alt text-xl"></i>
-            <span>{front.Variable.lang ? front.Variable.lang : front.Variable.words?.language}</span>
+            <span>
+              {front.Variable.lang
+                ? front.Variable.lang
+                : front.Variable.words?.language}
+            </span>
             <i class="i i-chevron-right text-xl"></i>
           </div>
 
@@ -61,7 +73,9 @@ export default function () {
               >
                 <i class="i i-bell text-2xl"></i>
                 <div class="absolute right-[-6px] top-[4px] flex h-5 w-5 items-center justify-center rounded-full border-[1px] border-solid border-[#363C50] bg-[#1d2029] shadow">
-                  <span class="text-[10px]">{front.Variable.myInfo?.statistics?.level}</span>
+                  <span class="text-[10px]">
+                    {front.Variable.myInfo?.statistics?.level}
+                  </span>
                 </div>
               </div>
               <div

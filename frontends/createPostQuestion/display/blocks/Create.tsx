@@ -10,6 +10,7 @@ import CreateMediaButtons from "./createBlocks/CreateMediaButtons";
 import EditCancel from "./createBlocks/editBlocks/EditCancel";
 import EditSave from "./createBlocks/editBlocks/EditSave";
 import Input from "@elements/ui/Input";
+import CreateMediaFiles from "@elements/addMedia/components/CreateMediaFiles";
 
 export default function () {
   return (
@@ -18,7 +19,7 @@ export default function () {
         {!Static.edit ? "Создать" : front.Variable?.words?.tools?.edit}{" "}
         {Static.page ? Static.pageMap[Static.page] : ""}
       </h2>
-      <form id="create__form">
+      <form id="create__form" onsubmit={(e: Event) => e.preventDefault()}>
         <CreateLang />
         {Static.page == "posts" ? <CreateForFriends /> : ""}
         {Static.page == "questions" ? (
@@ -40,8 +41,9 @@ export default function () {
         ) : (
           ""
         )}
-        {Static.data?.media?.length ? <CreateFiles /> : null}
         <CreateText />
+        {Static.data?.media?.length ? <CreateMediaFiles /> : null}
+
         <CreateMediaButtons />
 
         <div class="mx-auto flex max-w-[500px] gap-4 py-[20px] @410:gap-[30px]">

@@ -57,20 +57,20 @@ Static.endPartners = partners.slice(partners.length / 2);
 export default function () {
   return (
     <div class="partners">
-      <h2 class="z-[10] mx-0 py-[1.5625rem] text-balance text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
+      <h2 class="z-[10] mx-0 text-balance py-[1.5625rem] text-center text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-normal text-[#FFFFFF]">
         {front.Variable?.words?.chapters?.infoPartners}
       </h2>
       <div
-        class="before:@600:w-[10rem] @1240:w-[1240px] relative z-[1] mx-auto my-0 w-screen overflow-hidden bg-transparent before:absolute before:left-0 before:top-0 before:h-full before:w-[5rem] before:bg-[linear-gradient(to_right,_var(--back-color)_0%,_transparent_100%)] before:content-['']"
+        class="relative z-[1] mx-auto my-0 w-screen overflow-hidden bg-transparent before:absolute before:left-0 before:top-0 before:h-full before:w-[5rem] before:bg-[linear-gradient(to_right,_var(--back-color)_0%,_transparent_100%)] before:content-[''] before:@600:w-[10rem] @1240:w-[1240px]"
         ref="marqueeStart"
       >
         <ul
           class="mx-0 my-[.4375rem] flex h-full list-none gap-[.625rem] [animation:scrolling_40s_linear_infinite_normal_none_running] hover:[animation-play-state:_paused]"
           ref="marqueeContentStart"
         >
-          {Static.startPartners.map((item: any) => {
+          {Static.startPartners?.map((item: any) => {
             return (
-              <li class="@1240:w-[calc(100vw_/_6)] z-[1] flex w-[calc(100vw_/_3)] flex-shrink-[0] items-center justify-center whitespace-nowrap rounded-[1rem] bg-[#ffffff17] p-[.9375rem] text-[clamp(0.9rem,_3vw,_1.3rem)] font-semibold uppercase [transition:0.3s_ease-in-out] hover:border-[#ffffff17] hover:bg-transparent hover:[transform:scale(0.98)] @700:w-[calc(100vw_/_4)]">
+              <li class="z-[1] flex w-[calc(100vw_/_3)] flex-shrink-[0] items-center justify-center whitespace-nowrap rounded-[1rem] bg-[#ffffff17] p-[.9375rem] text-[clamp(0.9rem,_3vw,_1.3rem)] font-semibold uppercase [transition:0.3s_ease-in-out] hover:border-[#ffffff17] hover:bg-transparent hover:[transform:scale(0.98)] @700:w-[calc(100vw_/_4)] @1240:w-[calc(100vw_/_6)]">
                 <img
                   class="m-[.9375rem] w-full object-contain"
                   src={item.logo}
@@ -82,16 +82,16 @@ export default function () {
         </ul>
       </div>
       <div
-        class="before:@600:w-[10rem] @1240:w-[1240px] @1100: relative z-[1] mx-auto my-0 w-screen overflow-hidden bg-transparent before:absolute before:left-0 before:top-0 before:h-full before:w-[5rem] before:bg-[linear-gradient(to_right,_var(--back-color)_0%,_transparent_100%)] before:content-['']"
+        class="@1100: relative z-[1] mx-auto my-0 w-screen overflow-hidden bg-transparent before:absolute before:left-0 before:top-0 before:h-full before:w-[5rem] before:bg-[linear-gradient(to_right,_var(--back-color)_0%,_transparent_100%)] before:content-[''] before:@600:w-[10rem] @1240:w-[1240px]"
         ref="marqueeEnd"
       >
         <ul
           class="mx-0 my-[.4375rem] flex h-full list-none gap-[.625rem] pt-[.625rem] [animation:scrolling_45s_linear_infinite_reverse] hover:[animation-play-state:_paused]"
           ref="marqueeContentEnd"
         >
-          {Static.endPartners.map((item: any) => {
+          {Static.endPartners?.map((item: any) => {
             return (
-              <li class="@1240:w-[calc(100vw_/_6)] z-[1] flex w-[calc(100vw_/_3)] flex-shrink-[0] items-center justify-center whitespace-nowrap rounded-[1rem] bg-[#ffffff17] p-[.9375rem] text-[clamp(0.9rem,_3vw,_1.3rem)] font-semibold uppercase [transition:0.3s_ease-in-out] hover:border-[#ffffff17] hover:bg-transparent hover:[transform:scale(0.98)] @700:w-[calc(100vw_/_4)]">
+              <li class="z-[1] flex w-[calc(100vw_/_3)] flex-shrink-[0] items-center justify-center whitespace-nowrap rounded-[1rem] bg-[#ffffff17] p-[.9375rem] text-[clamp(0.9rem,_3vw,_1.3rem)] font-semibold uppercase [transition:0.3s_ease-in-out] hover:border-[#ffffff17] hover:bg-transparent hover:[transform:scale(0.98)] @700:w-[calc(100vw_/_4)] @1240:w-[calc(100vw_/_6)]">
                 <img
                   class="m-[.9375rem] w-full object-contain"
                   src={item.logo}

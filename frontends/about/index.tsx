@@ -5,20 +5,32 @@ import safe from "@svg/about/goal_2.svg";
 import access from "@svg/about/goal_3.svg";
 import pin from "@svg/about/goal_4.svg";
 
-export const start = function () { }
+export const start = function () {};
 
 front.listener.finish = () => {
   Static.root = document.documentElement;
-  Static.marqueeElementsDisplayed = getComputedStyle(Static.root).getPropertyValue("--marquee_elements_displayed")
+  Static.marqueeElementsDisplayed = getComputedStyle(
+    Static.root,
+  ).getPropertyValue("--marquee_elements_displayed");
 
-  Static.root.style.setProperty("--marquee_elements", Ref.marqueeContentStart.children.length)
-  Static.root.style.setProperty("--marquee_elements", Ref.marqueeContentEnd.children.length)
+  Static.root.style.setProperty(
+    "--marquee_elements",
+    Ref.marqueeContentStart?.children?.length,
+  );
+  Static.root.style.setProperty(
+    "--marquee_elements",
+    Ref.marqueeContentEnd?.children?.length,
+  );
 
   for (let i = 0; i < Static.marqueeElementsDisplayed; i++) {
-      Ref.marqueeContentStart.appendChild(Ref.marqueeContentStart.children[i].cloneNode(true));
-      Ref.marqueeContentEnd.appendChild(Ref.marqueeContentEnd.children[i].cloneNode(true));
+    Ref.marqueeContentStart?.appendChild(
+      Ref.marqueeContentStart?.children?.[i]?.cloneNode(true),
+    );
+    Ref.marqueeContentEnd?.appendChild(
+      Ref.marqueeContentEnd?.children?.[i]?.cloneNode(true),
+    );
   }
-}
+};
 
 front.loader = () => {
   Static.goals = [
@@ -48,10 +60,9 @@ front.loader = () => {
     },
   ];
   return;
-}
+};
 
 front.display = () => {
-
   return (
     <div>
       <Navigation />

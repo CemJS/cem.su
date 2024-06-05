@@ -44,9 +44,9 @@ export default function () {
         {team.map((item) => {
           return (
             <div class="team_item group">
-              <div class="z-[10] relative px-[5rem] py-[10rem] [transform-style:preserve-3d] [transition:transform_1.5s] group-hover:[transform:rotateY(180deg)]">
+              <div class="relative z-[10] px-[5rem] py-[10rem] [transform-style:preserve-3d] [transition:transform_1.5s] group-hover:[transform:rotateY(180deg)]">
                 <div
-                  class="absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-end bg-[#171b2742] bg-contain bg-no-repeat p-4 bg-blend-overlay [transform-style:preserve-3d] [backface-visibility:hidden] [background-position:center_1.25rem] before:absolute before:inset-[1rem] before:content-[''] before:[border:3px_solid_var(--akebi-purple)] before:[transform:translateZ(2rem)] @1100:bg-cover"
+                  class="absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-end bg-[#171b2742] bg-contain bg-no-repeat p-4 bg-blend-overlay [backface-visibility:hidden] [background-position:center_1.25rem] [transform-style:preserve-3d] before:absolute before:inset-[1rem] before:content-[''] before:[border:3px_solid_var(--akebi-purple)] before:[transform:translateZ(2rem)] @1100:bg-cover"
                   style={`background-image: url(${item.image});`}
                 >
                   <div class="w-[98%] bg-[#31354180] p-[0.5rem] [transform:translateZ(2rem)]">
@@ -62,16 +62,22 @@ export default function () {
                 </div>
 
                 <div
-                  class="absolute bottom-0 left-0 right-0 top-0 flex flex-col justify-end bg-contain bg-no-repeat p-4 bg-blend-overlay [transform-style:preserve-3d] [backface-visibility:hidden] [background-position:center_1.25rem] @1100:bg-cover [transform:rotateY(180deg)] gap-[0.5rem] items-center"
+                  class="absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-end gap-[0.5rem] bg-contain bg-no-repeat p-4 bg-blend-overlay [backface-visibility:hidden] [background-position:center_1.25rem] [transform-style:preserve-3d] [transform:rotateY(180deg)] @1100:bg-cover"
                   style={`background-image: url(${item.image});`}
                 >
                   <a
                     href={item.link}
-                    class="btn hover:bg-right p-[.625rem] flex gap-[.625rem] justify-between items-center w-fit [transform:translateZ(2.4rem)]"
+                    class="btn flex w-fit items-center justify-between gap-[.625rem] p-[.625rem] [transform:translateZ(2.4rem)] hover:bg-right"
                     onclick={this.Fn.link}
                   >
-                    <span class="h-full block">{front.Variable?.words?.user?.goToProfile}</span>
-                    <img class="w-[1.375rem]" src={logo} alt={front.Variable?.words?.tools?.goOver} />
+                    <span class="block">
+                      {front.Variable?.words?.user?.goToProfile}
+                    </span>
+                    <img
+                      class="w-[1.375rem]"
+                      src={logo}
+                      alt={front.Variable?.words?.tools?.goOver}
+                    />
                   </a>
                 </div>
               </div>

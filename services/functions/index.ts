@@ -24,6 +24,7 @@ export const strToJson = function (data: string) {
 
 export const makeUrlEvent = function (url: string, params: any = {}) {
   url = `/api/events/${url}?uuid=${localStorage.uuid}`;
+  // url = `/api/events/${url}?uuid=${localStorage.uuid}&lang=${localStorage.lang}`;
   for (let key in params) {
     url += `&${key}=${params[key]}`;
   }
@@ -87,6 +88,7 @@ export const loader = async function (Variable: any, Fn: any) {
     }
 
     !localStorage.lang ? localStorage.setItem("lang", "ru") : null;
+    !localStorage.origLang ? localStorage.setItem("origLang", "Русский") : null;
     localStorage.suuid = json.suuid;
     localStorage.suuid = json.suuid;
     localStorage.countriesLastUpdateDate = json.countriesLastUpdateDate;
@@ -94,17 +96,22 @@ export const loader = async function (Variable: any, Fn: any) {
     localStorage.translationsLastUpdateDate = json.translationsLastUpdateDate;
     Variable.Auth = json.auth;
     Variable.myInfo = json;
-    Variable.Lang = "Русский";
-    Variable.notifies = { awards: [], questions: [], system: [] };
 
-    const lang = localStorage.lang;
+    Variable.Lang = localStorage.origLang;
+    Variable.languageCode = localStorage.lang;
+    Variable.notifies = {
+      awards: [],
+      questions: [],
+      system: [],
+    };
+
     // console.log("=7d2281=", lang);
     let words = await IndexDBGetByOne({
       base: "linguaData",
       key: "translations",
     });
 
-    Variable.words = words[0][1];
+    Variable.words = words?.[0]?.[1];
     // Array.isArray(Variable.words)
     //   ? (Variable.words = Variable?.words?.find((item) => item?.code == lang))
     //   : null;
