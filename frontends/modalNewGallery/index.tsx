@@ -1,6 +1,5 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all";
 import Navigation from "./navigation";
-import languages from "@json/languages";
 
 front.listener.finish = () => {
   return;
@@ -23,10 +22,10 @@ front.func.close = function () {
 
 front.loader = async () => {
   Static.complains = [
-    { text: "Оскорбление/ Нецензурная лексика.", value: "abusive" },
-    { text: "Подозрительный контент", value: "poison" },
-    { text: "Непристойный контент", value: "obscene" },
-    { text: "Вредоносная ссылка", value: "malicious" },
+    { text: front.Variable?.words?.complaints?.obscene, value: "abusive" },
+    { text: front.Variable?.words?.complaints?.suspectContent, value: "poison" },
+    { text: front.Variable?.words?.complaints?.indecent, value: "obscene" },
+    { text: front.Variable?.words?.complaints?.harmLink, value: "malicious" },
   ];
 
   Static.currentComplains = [];

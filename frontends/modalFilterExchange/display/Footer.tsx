@@ -1,4 +1,4 @@
-import { Cemjsx, Func, Static } from "cemjs-all";
+import { Cemjsx, Func, Static, front } from "cemjs-all";
 
 export default function () {
   return (
@@ -13,7 +13,7 @@ export default function () {
             Func.close();
           }}
         >
-          Применить
+          {front.Variable?.words?.tools?.apply}
         </button>
         <div class="mx-auto w-full rounded-[--btnR] p-[0.0725rem] [background:var(--mainGradient)]">
           <button
@@ -22,7 +22,7 @@ export default function () {
               Static.filterCoins = [];
             }}
           >
-            Сбросить
+            {front.Variable?.words?.tools?.cancel}
           </button>
         </div>
       </div>

@@ -6,7 +6,7 @@ export default function Select_Frame_App() {
       <input
         type="text"
         value={Static?.info?.fullName ? Static?.info?.fullName : ""}
-        placeholder="Имя"
+        placeholder={front.Variable?.words?.user?.name}
         oninput={(event: InputEvent) => {
           const target = event.target as HTMLInputElement;
           Static.info.fullName = target.value;

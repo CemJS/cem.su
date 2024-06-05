@@ -96,7 +96,7 @@ export default function Select_Frame_App() {
           class="h-full w-full rounded-[.9375rem] bg-[--backModal] text-center [transition:1s] hover:[background:none]"
         >
           <span class="text-[1.375rem] font-semibold leading-[3.75rem] text-[--white]">
-            Выбрать
+            {front.Variable?.words?.tools?.choose}
           </span>
         </div>
       </div>

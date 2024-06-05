@@ -175,7 +175,7 @@ export const formLang = async function (form: Form) {
     form.valid = true;
     return true;
   } else {
-    form.error = "Выберите язык";
+    form.error = front.Variable?.words?.errors?.chooseLang;
     form.valid = false;
     return false;
   }
@@ -193,7 +193,7 @@ export const formCountry = async function (form: Form) {
     form.valid = true;
     return true;
   } else {
-    form.error = "Выберите страну";
+    form.error = front.Variable?.words?.errors?.chooseCountry;
     form.valid = false;
     return false;
   }
@@ -211,7 +211,7 @@ export const formPassword = async function (form: Form) {
     form.valid = true;
     return true;
   } else {
-    form.error = "Слишком легкий пароль";
+    form.error = front.Variable?.words?.errors?.lightPassword;
     form.valid = false;
     return false;
   }
@@ -232,7 +232,7 @@ export const formConfirmPassword = async function (
     formConfirmPass.valid = true;
     return true;
   } else {
-    formConfirmPass.error = "Пароли не совпадают";
+    formConfirmPass.error = front.Variable?.words?.form?.passwordNotMatch;
     formConfirmPass.valid = false;
     return false;
   }
@@ -250,7 +250,7 @@ export const formQuestion = async function (form: Form) {
     form.valid = true;
     return true;
   } else {
-    form.error = "Минимум 5 символов";
+    form.error = front.Variable?.words?.errors?.minLength;
     form.valid = false;
     return false;
   }

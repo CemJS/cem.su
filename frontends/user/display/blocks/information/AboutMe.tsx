@@ -23,7 +23,7 @@ export default function () {
           <div class="mt-[1.9375rem]">
             <div class="flex w-full">
               <span class="mr-[.9375rem] block text-[--white] odd:mb-[1.25rem] odd:text-[1rem] odd:font-normal odd:leading-[1.5rem] odd:text-[#ADADAD]">
-                Имя
+                {front.Variable?.words?.user?.name}
               </span>
               <div>
                 <div class="border-0 bg-transparent p-0 text-inherit">
@@ -34,7 +34,7 @@ export default function () {
             </div>
             <div class="flex w-full">
               <span class="mr-[.9375rem] block text-[--white] odd:mb-[1.25rem] odd:text-[1rem] odd:font-normal odd:leading-[1.5rem] odd:text-[#ADADAD]">
-                Специализация
+                {front.Variable?.words?.user?.specialization}
               </span>
               <div>
                 <div class="border-0 bg-transparent p-0 text-inherit">
@@ -67,7 +67,7 @@ export default function () {
             </div>
             <div class="flex w-full">
               <span class="mr-[.9375rem] block text-[--white] odd:mb-[1.25rem] odd:text-[1rem] odd:font-normal odd:leading-[1.5rem] odd:text-[#ADADAD]">
-                Зарегистрирован
+                {front.Variable?.words?.user?.registered}
               </span>
               <div>
                 <div class="border-0 bg-transparent p-0 text-inherit">

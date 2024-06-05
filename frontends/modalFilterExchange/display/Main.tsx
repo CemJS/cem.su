@@ -1,4 +1,4 @@
-import { Cemjsx, Func, Static, Fn, Ref } from "cemjs-all";
+import { Cemjsx, Func, Static, Fn, Ref, front } from "cemjs-all";
 import notFound from "@svg/notFound.svg";
 
 const RenderSearch = function () {
@@ -26,7 +26,7 @@ const RenderSearch = function () {
       />
       <div class="absolute mx-[1.25rem] my-0 flex items-center gap-[.625rem] bg-[--backModal] px-[.625rem] py-0 text-[1rem] text-[--secondary-text] [transition:0.2s_ease] peer-focus:z-[5] peer-focus:h-[1.875rem] peer-focus:leading-[1.875rem] peer-focus:[transform:translate(-15px,_-16px)_scale(0.88)]">
         <i class="i-user !font-['cemicons'] text-[1.3rem] normal-case leading-[1] [-webkit-font-smoothing:antialiased] [font-style:normal] [font-variant:normal] [font-weight:normal] before:content-['\e920']"></i>
-        <span class="">Поиск</span>
+        <span class="">{front.Variable?.words?.search}</span>
       </div>
     </div>
   );
@@ -36,7 +36,7 @@ const RenderNotFound = function () {
   return (
     <div class="notFound absolute left-[50%] top-[50%] z-0 flex flex-col items-center justify-center gap-[0.5rem] [transform:translate(-50%,_-50%)]">
       <img src={notFound} alt="Not found" />
-      <span>Не найдено</span>
+      <span>{front.Variable?.words?.notFoundRecords}</span>
     </div>
   );
 };

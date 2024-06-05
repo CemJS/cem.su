@@ -4,7 +4,6 @@ import { DisplaySchedule } from "@elements/GallerySchedule";
 import { DisplayImages } from "@elements/GalleryForumImages";
 
 export default function () {
-  console.log("=eff4de=", Static);
   return (
     <div
       class="modalWindow"

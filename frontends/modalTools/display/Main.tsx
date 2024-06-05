@@ -40,7 +40,7 @@ export default function () {
                   Func.close();
                 }}
               >
-                Поделиться
+                {front.Variable?.words?.tools?.share}
               </li>
             ) : null}
             {Static.copyURL ? (
@@ -50,12 +50,12 @@ export default function () {
                   navigator.clipboard
                     .writeText(window.location.href)
                     .then(() => {
-                      Fn.initOne("alert", { text: "Скопировано" });
+                      Fn.initOne("alert", { text: front.Variable?.words?.notices?.copied });
                     });
                   Func.close();
                 }}
               >
-                Скопировать URL
+                {front.Variable?.words?.tools?.copy} URL
               </li>
             ) : null}
 
@@ -82,7 +82,7 @@ export default function () {
                 Func.close();
               }}
             >
-              Отмена
+              {front.Variable?.words?.tools?.cancel}
             </li>
           </ul>
         </div>

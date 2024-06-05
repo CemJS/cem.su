@@ -5,7 +5,7 @@ export default function Select_Frame_App() {
     <div>
       <input
         type="date"
-        placeholder="Дата рождения"
+        placeholder={front.Variable?.words?.user?.dateBirthday}
         value={
           Static?.info?.information?.birthday
             ? Static?.info?.information?.birthday

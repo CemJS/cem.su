@@ -76,13 +76,6 @@ front.func.blacklistUser = async () => {
 //
 
 front.loader = () => {
-  // if (Static.shareUrl) {
-  //   Static.records.push({
-  //     name: "Поделиться",
-
-  //     func: () => Func.share,
-  //   });
-  // }
   if (Static.userId && front.Variable.myInfo.id != Static.userId) {
     let userId = Static.userId;
 
@@ -90,7 +83,7 @@ front.loader = () => {
       let { name, text, id } = Static.complainTo;
 
       Static.records.push({
-        name: `Пожаловаться на ${text}`,
+        name: `${front.Variable?.words?.complaints?.complainAbout} ${text}`,
         func: () => {
           Fn.initOne("modalComplain", {
             callback: (categories) => {
@@ -106,7 +99,7 @@ front.loader = () => {
     }
 
     Static.records.push({
-      name: "Пожаловаться на пользователя",
+      name: front.Variable?.words?.complaints?.reportUser,
       func: () => {
         Fn.initOne("modalComplain", {
           callback: (categories) => {
@@ -125,19 +118,19 @@ front.loader = () => {
     Static.userId &&
     front.Variable.myInfo.id != Static.userId
   ) {
-    !Static.records.find((i) => i.name == "В чёрный список")
+    !Static.records.find((i) => i.name == front.Variable?.words?.complaints?.inBlackList)
       ? (Static.records = [
           ...Static.records,
           {
-            name: "В чёрный список",
+            name: front.Variable?.words?.complaints?.inBlackList,
 
             func: () => {
               Fn.initOne("modalAccept", {
-                title: "Добавить пользователя в черный список",
+                title: front.Variable?.words?.complaints?.addUserBlackList,
                 Callback: async (CallBack: boolean) => {
                   if (CallBack) {
                     Fn.initOne("alert", {
-                      text: "Пользователь добавлен в чёрный список",
+                      text: front.Variable?.words?.complaints?.addedUserBlackList,
                       type: "danger",
                     });
                     Func.blacklistUser();

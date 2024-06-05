@@ -10,7 +10,7 @@ export default function Select_Frame_App() {
             ? Static?.info?.information?.speciality
             : ""
         }
-        placeholder="Специализация"
+        placeholder={front.Variable?.words?.user?.specialization}
         oninput={(event: InputEvent) => {
           const target = event.target as HTMLInputElement;
           Static.info.information.speciality = target.value;
