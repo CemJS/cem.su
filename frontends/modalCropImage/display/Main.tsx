@@ -76,7 +76,7 @@ export default function () {
           Загрузить
         </div>
         <div class="btn btn_reset !w-[48%]" onclick={Func.close}>
-          Отменить
+          {front.Variable?.words?.tools?.cancel}
         </div>
       </div>
     </main>

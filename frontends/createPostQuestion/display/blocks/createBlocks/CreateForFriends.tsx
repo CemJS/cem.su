@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 
 export default function () {
   return (
@@ -24,7 +24,7 @@ export default function () {
           id="before"
           class="absolute left-0 top-[-2px] z-[1] block h-6 w-6 rounded-[4px] border bg-white content-[''] [border:2px_solid_#dfdfdf] [transition:background_0.1s_linear,border_0.1s_linear]"
         ></div>
-        Только для друзей
+          {front.Variable?.words?.filters?.forFriends}
         <div
           id="after"
           class="absolute left-[3px] top-[2px] z-[2] block h-6 w-6 opacity-0 content-[''] ![background-size:18px_16px] [background:url('/contents/svg/users/checked.svg')_no-repeat] [transition:opacity_0.1s_linear]"

@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 
 export default function () {
   return (
@@ -8,7 +8,7 @@ export default function () {
       }}
       class={["btn", "!flex !items-center !justify-center"]}
     >
-      <span>Отменить</span>
+      <span>{front.Variable?.words?.tools?.cancel}</span>
     </button>
   );
 }

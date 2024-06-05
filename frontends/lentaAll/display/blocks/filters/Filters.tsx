@@ -15,8 +15,8 @@ export default function () {
             Func.updateFilter();
           }}
           filters={[
-            { name: "lentaUsers", text: "Лента пользователей" },
-            { name: "forFriends", text: "Лента моих друзей" },
+            { name: "lentaUsers", text: front.Variable?.words?.user?.lentaUser },
+            { name: "forFriends", text: front.Variable?.words?.user?.lentaMyFriends },
           ]}
           key={"forFriends"}
         />

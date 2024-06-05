@@ -135,7 +135,7 @@ export default function () {
           Прикрепить
         </button>
         <button onclick={Func.close} id="close" class="btn w-full grayscale">
-          Отменить
+          {front.Variable?.words?.tools?.cancel}
         </button>
       </div>
     </main>

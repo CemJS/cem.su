@@ -23,7 +23,7 @@ export default function () {
       class={["btn", "!flex !items-center !justify-center"]}
       disabled={!Static.isValid}
     >
-      <span>Сохранить</span>
+      <span>{front.Variable?.words?.tools?.save}</span>
     </button>
   );
 }

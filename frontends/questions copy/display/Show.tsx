@@ -311,7 +311,7 @@ export default function () {
                   <button
                     onclick={(e: any) => {
                       Static.open == front.Variable?.words?.qa?.toAnswer
-                        ? (Static.open = "Отменить")
+                        ? (Static.open = front.Variable?.words?.tools?.cancel)
                         : (Static.open = front.Variable?.words?.qa?.toAnswer);
                       Ref[`ans${Static.record.id}`].classList.toggle(
                         "answer_active",

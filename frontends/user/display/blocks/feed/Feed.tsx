@@ -20,8 +20,8 @@ export default function () {
             <div class="mb-1 flex w-full items-center justify-between">
               <h2 class="m-[20px_0] text-center text-[20px] font-bold leading-[115%] text-white">
                 {front.Variable.DataUrl[1] === front.Variable.myInfo?.nickname
-                  ? "Моя лента"
-                  : "Лента пользователя"}
+                  ? front.Variable?.words?.user?.myLenta
+                  : front.Variable?.words?.user?.lentaUser}
               </h2>
               <ul class="m-0 flex list-none items-stretch gap-2 p-0 [&_li]:p-[7px_3px]">
                 <li

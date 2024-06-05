@@ -70,9 +70,9 @@ front.func.uploadMedia = async (file: any, type: string) => {
   );
 
   let errors = {
-    video: "видео",
-    image: "картинку",
-    audio: "аудиозапись",
+    video: front.Variable?.words?.types?.video,
+    image: front.Variable?.words?.types?.image,
+    audio: front.Variable?.words?.types?.audio,
   };
 
   if (uploadMediaFiles?.name && uploadMediaFiles?.name != "AbortError") {
@@ -86,7 +86,7 @@ front.func.uploadMedia = async (file: any, type: string) => {
   } else {
     if (uploadMediaFiles?.name != "AbortError") {
       Fn.initOne("alert", {
-        text: `Не удалось загрузить ${errors[type]}`,
+        text: `${front.Variable?.words?.notices?.failedUpload} ${errors[type]}`,
         type: "danger",
       });
       Static.data?.media.splice(mediaIndex, 1);
@@ -141,7 +141,7 @@ front.loader = async () => {
   Static.show = "grid";
   Static.isValid = false;
   Static.pageMap = {
-    posts: "пост",
+    posts: front.Variable?.words?.post?.title,
     questions: front.Variable?.words?.qa?.question.toLowerCase(),
   };
 

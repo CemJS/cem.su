@@ -42,7 +42,7 @@ const RenderPhotoButton = () => {
           } else {
             Fn.initOne("alert", {
               type: "danger",
-              text: "Неверный формат фото",
+              text: front.Variable?.words?.notices?.invalidFormatPhoto,
             });
           }
 
@@ -77,7 +77,7 @@ const RenderVideoButton = () => {
           } else {
             Fn.initOne("alert", {
               type: "danger",
-              text: "Неверный формат видео",
+              text: front.Variable?.words?.notices?.invalidFormatVideo,
             });
           }
 
@@ -117,7 +117,7 @@ const RenderAudioButton = () => {
           } else {
             Fn.initOne("alert", {
               type: "danger",
-              text: "Неверный формат аудио",
+              text: front.Variable?.words?.notices?.invalidFormatAudio,
             });
           }
 

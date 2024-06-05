@@ -1,9 +1,9 @@
-import { Cemjsx, Fn, Static } from "cemjs-all";
+import { Cemjsx, Fn, Static, front } from "cemjs-all";
 
 export default function () {
   return (
     <div id="lang" class="mb-4 flex items-center gap-4">
-      <label class="text-[16px] font-medium text-[#9ca2b5]">Ваш язык:</label>
+      <label class="text-[16px] font-medium text-[#9ca2b5]">{front.Variable?.words?.language}:</label>
       <span
         class="cursor-pointer underline"
         onclick={() => {

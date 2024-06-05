@@ -13,10 +13,10 @@ export default function () {
             );
             if (res.error == "") {
               Func.reset();
-              Fn.initOne("alert", { text: "Пост создан", type: "success" });
+              Fn.initOne("alert", { text: front.Variable?.words?.post?.createdPost, type: "success" });
             }
           } else {
-            Fn.initOne("alert", { text: "Заполните пост", type: "danger" });
+            Fn.initOne("alert", { text: front.Variable?.words?.post?.fillPost, type: "danger" });
           }
         }
         if (Static.page == "questions") {
@@ -27,10 +27,10 @@ export default function () {
             );
             if (res.error == "") {
               Func.reset();
-              Fn.initOne("alert", { text: "Вопрос создан", type: "success" });
+              Fn.initOne("alert", { text: front.Variable?.words?.qa?.createdQuestion, type: "success" });
             }
           } else {
-            Fn.initOne("alert", { text: "Заполните вопрос", type: "danger" });
+            Fn.initOne("alert", { text: front.Variable?.words?.qa?.fillQuestion, type: "danger" });
           }
         }
       }}
@@ -40,7 +40,7 @@ export default function () {
         !Static.isValid ? "!btn_reset" : null,
       ]}
     >
-      <span>Создать</span>
+      <span>{front.Variable?.words?.tools?.create}</span>
     </button>
   );
 }
