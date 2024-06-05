@@ -1,58 +1,6 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
-import previewImg from "@images/careerBg.png";
-import blockchain from "@images/about/main/blockchain.jpg";
-import rocket from "@svg/about/roadmap/rocket.svg";
-import wallet from "@svg/about/roadmap/wallet.svg";
-import community from "@svg/about/roadmap/community.svg";
-import univercity from "@svg/about/roadmap/university.svg";
-import exchange from "@svg/about/roadmap/exchange.svg";
-import network from "@svg/about/roadmap/network.svg";
 import arrowUp from "@svg/about/roadmap/arrowUp.svg";
 
-const roadmap = [
-  {
-    title: front.Variable?.words?.roadmap?.startProject?.title,
-    date: front.Variable?.words?.roadmap?.startProject?.date,
-    desc: front.Variable?.words?.roadmap?.startProject?.desc,
-    icon: rocket,
-  },
-  {
-    title: front.Variable?.words?.roadmap?.blockchain?.title,
-    date: front.Variable?.words?.roadmap?.blockchain?.date,
-    desc: front.Variable?.words?.roadmap?.blockchain?.desc,
-    icon: blockchain,
-  },
-  {
-    title: front.Variable?.words?.roadmap?.wallet?.title,
-    date: front.Variable?.words?.roadmap?.wallet?.date,
-    desc: front.Variable?.words?.roadmap?.wallet?.desc,
-    icon: wallet,
-  },
-  {
-    title: front.Variable?.words?.roadmap?.community?.title,
-    date: front.Variable?.words?.roadmap?.community?.date,
-    desc: front.Variable?.words?.roadmap?.community?.desc,
-    icon: community,
-  },
-  {
-    title: front.Variable?.words?.roadmap?.university?.title,
-    date: front.Variable?.words?.roadmap?.university?.date,
-    desc: front.Variable?.words?.roadmap?.university?.desc,
-    icon: univercity,
-  },
-  {
-    title: front.Variable?.words?.roadmap?.exchange?.title,
-    date: front.Variable?.words?.roadmap?.exchange?.date,
-    desc: front.Variable?.words?.roadmap?.exchange?.desc,
-    icon: exchange,
-  },
-  {
-    title: front.Variable?.words?.roadmap?.neuralNetwork?.title,
-    date: front.Variable?.words?.roadmap?.neuralNetwork?.date,
-    desc: front.Variable?.words?.roadmap?.neuralNetwork?.desc,
-    icon: network,
-  },
-];
 const RenderRoadMap = function ({ items }) {
   return (
     <div class="roadmapNew">
@@ -159,7 +107,7 @@ const observerRoadmap = new IntersectionObserver((entries) => {
 export default function () {
   return (
     <div>
-      <RenderRoadMap items={roadmap}></RenderRoadMap>
+      <RenderRoadMap items={Static.roadmap}></RenderRoadMap>
     </div>
   );
 }
