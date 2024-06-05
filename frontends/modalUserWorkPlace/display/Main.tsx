@@ -29,12 +29,12 @@ const RenderFieldRange = function () {
     <div class="p-0">
       <div class="mt-[1.25rem]">
         <label class="mb-[.5rem] block text-[1rem] font-medium leading-[115%] text-[#9CA2B5]">
-          Укажите сроки
+          {front.Variable?.words?.filters?.selectTime}
         </label>
         <input
           type="text"
           value={Static.edit ? Static?.work[Static.key]?.period : ""}
-          placeholder="Сроки"
+          placeholder={front.Variable?.words?.filters?.deadlines}
           oninput={(event: InputEvent) => {
             const target = event.target as HTMLInputElement;
             Static.edit
@@ -53,7 +53,7 @@ const RenderFielddetails = function () {
     <div class="p-0">
       <div class="mt-[1.25rem]">
         <label class="mb-[.5rem] block text-[1rem] font-medium leading-[115%] text-[#9CA2B5]">
-          Укажите подробности
+          {front.Variable?.words?.notices?.details}
         </label>
         <textarea
           type="text"

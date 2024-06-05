@@ -54,7 +54,7 @@ export default function () {
           field="{Static.interest?.title}"
           placeholder={front.Variable?.words?.form?.enterTitle}
         />
-        <h3 class="mt-[25px]">Укажите подробности</h3>
+        <h3 class="mt-[25px]">{front.Variable?.words?.notices?.details}</h3>
         <RenderFieldTextarea about={Static.interest?.description} />
       </div>
     </main>

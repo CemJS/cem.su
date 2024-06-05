@@ -30,7 +30,7 @@ const RenderFielddetails = function () {
     <div class="p-0">
       <div class="mt-[1.25rem]">
         <label class="mb-[.5rem] block text-[1rem] font-medium leading-[115%] text-[#9CA2B5]">
-          Укажите подробности
+          {front.Variable?.words?.notices?.details}
         </label>
         <textarea
           type="text"

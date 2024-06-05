@@ -117,7 +117,7 @@ front.loader = () => {
       value: "",
       valid: false,
       error: false,
-      placeholder: "Имя*",
+      placeholder: `${front.Variable?.words?.user?.name}*`,
       view: false,
       disable: false,
     },
