@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import previewImg from "@images/careerBg.png";
 
 export default function () {
@@ -11,10 +11,10 @@ export default function () {
       <div class="relative flex justify-between ">
         <div class="w-full pb-[6.5rem] pt-[1.875rem] text-center md:w-1/2 md:pb-[17.5rem] md:pt-[8.75rem] md:text-left">
           <h1 class="mb-[1.875rem] text-[clamp(2.5rem,6vw,4.375rem)] font-bold">
-            Карьера в Crypto Emergency
+            {front?.Variable?.words?.career?.careerCem}
           </h1>
           <p class="text-[clamp(1rem,3vw,1.25rem)] font-medium text-[--textGray]">
-            Присоединяйтесь к нашей команде.
+            {front?.Variable?.words?.career?.joinTeam}
           </p>
         </div>
         <img

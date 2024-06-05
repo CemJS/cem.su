@@ -1,7 +1,6 @@
 import { Cemjsx, Fn, front, Static, Events } from "cemjs-all";
 
 export default function () {
-  // Fn.log('=f24bd3=',Static.titleHead)
   return (
     <div class="fixed left-0 right-0 top-0 z-[10] w-full border-b-[1px] border-solid border-[#2d3243] bg-[#1d2029] py-3">
       <div class="wrapper">

@@ -1,4 +1,4 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import vacancies from "json/career/careerVacancies.json";
 
 export default function () {
@@ -34,7 +34,7 @@ export default function () {
             <div class="mb-5 flex flex-col justify-between gap-[0.625rem] xl:flex-row">
               <div class="mr-[0.625rem] rounded-[0.3125rem] border border-solid border-[--border-color] bg-[--light-gray-2] p-[0.625rem]">
                 <h4 class="mb-4 text-[clamp(0.9rem,2vw,1.0625rem)] font-semibold">
-                  Обязанности:
+                  {front.Variable?.words?.career?.duties}:
                 </h4>
                 {item.responsibilities.map((item) => {
                   return (
@@ -46,7 +46,7 @@ export default function () {
               </div>
               <div class="mr-[0.625rem] rounded-[0.3125rem] border border-solid border-[--border-color] bg-[--light-gray-2] p-[0.625rem]">
                 <h4 class="mb-4 text-[clamp(0.9rem,2vw,1.0625rem)] font-semibold">
-                  Обязанности:
+                  {front.Variable?.words?.career?.duties}:
                 </h4>
                 {item.requirements.map((item) => {
                   return (
@@ -63,7 +63,7 @@ export default function () {
               })}
             </div>
             <h4 class="mb-4 text-[clamp(0.9rem,2vw,1.0625rem)] font-semibold">
-              Ключевые навыки
+              {front.Variable?.words?.career?.keySkills}:
             </h4>
             <div class="flex flex-wrap gap-[0.3125rem]">
               {item.skills.map((item) => {
@@ -81,17 +81,17 @@ export default function () {
                 }
                 class="btn_border"
               >
-                Отликнуться
+                {front.Variable?.words?.tools?.respond}
               </button>
             </div>
           </div>
         );
       })}
       <h2 class="mx-auto max-w-[43.5rem] py-12 text-center text-[clamp(2rem,3vw,4rem)] font-bold">
-        Ждем ТЕБЯ
-        <br />в нашей
+        {front.Variable?.words?.career?.waitYou}
+        <br />{front.Variable?.words?.career?.inOur}
         <br />
-        команде!
+        {front.Variable?.words?.career?.team}
       </h2>
     </section>
   );

@@ -1,11 +1,11 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import professions from "json/career/careerProfessions.json";
 
 export default function () {
   return (
     <section class="mb-40">
       <h2 class="mx-auto mb-[3.75rem] max-w-[43.5rem] text-center text-[clamp(2.5rem,4vw,4.75rem)] font-bold">
-        Выбери свою профессию
+        {front.Variable?.words?.career?.chooseProfession}
       </h2>
       <div class="grid grid-cols-1 gap-[1.375rem] sm:grid-cols-2 xl:grid-cols-3">
         {professions.map((item, index) => {

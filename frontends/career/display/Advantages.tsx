@@ -1,11 +1,11 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import advantages from "json/career/careerAdvantages.json";
 
 export default function () {
   return (
     <section class="mb-40">
       <h2 class="mx-auto mb-[3.75rem] max-w-[43.5rem] text-center text-[clamp(2.5rem,4vw,4.75rem)] font-bold">
-        Преимущества
+        {front.Variable?.words?.chapters?.advantages}
       </h2>
       <div class="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-2 xl:grid-cols-4">
         {advantages.map((item) => {

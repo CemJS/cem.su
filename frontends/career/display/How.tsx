@@ -1,11 +1,11 @@
-import { Cemjsx, Fn, Func, Static } from "cemjs-all";
+import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 import steps from "json/career/careerSteps.json";
 
 export default function () {
   return (
     <section class="mb-40">
       <h2 class="mx-auto mb-[3.75rem] max-w-[43.5rem] text-center text-[clamp(2.5rem,4vw,4.75rem)] font-bold">
-        Как устроиться в нашу компанию?
+        {front.Variable?.words?.career?.chapters?.howWorkCompany}
       </h2>
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
         {steps.map((item, index) => {
