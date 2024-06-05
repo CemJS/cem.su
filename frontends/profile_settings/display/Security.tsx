@@ -154,13 +154,13 @@ export default function () {
             }}
           >
             <span style="text-decoration: none; text-transform: uppercase;">
-              применить
+              {front.Variable?.words?.tools?.apply}
             </span>
           </button>
         </div>
         <div class="w-full px-0 py-[1.875rem] [border-bottom:1px_solid_#31374A] first:pb-[.625rem] first:pt-0 @600:w-[21.875rem]">
           <p class="mb-[1rem] text-[1.125rem] font-semibold">
-            Вы можете удалить свой профиль
+            {front.Variable?.words?.user?.youCanDeleteProfile}
           </p>
           <div class="profile-settings__delete_user">
             <button
@@ -179,7 +179,7 @@ export default function () {
               }}
             >
               <span style="text-decoration: none;text-transform: uppercase;">
-                удалить профиль
+                {front.Variable?.words?.user?.deleteProfile}
               </span>
             </button>
           </div>

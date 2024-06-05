@@ -98,7 +98,7 @@ export default function () {
                           Fn.initOne("modalTools", {
                             records: [
                               {
-                                name: "Превью",
+                                name: front.Variable?.words?.media?.preview,
                                 func: () => {
                                   Fn.initOne("modalPreviews", {
                                     callback: (photo) => {

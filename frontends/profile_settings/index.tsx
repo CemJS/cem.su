@@ -37,7 +37,7 @@ front.loader = async () => {
             value: "",
             valid: false,
             error: false,
-            placeholder: "Старый пароль:",
+            placeholder: front.Variable?.words?.form?.oldPassword,
             view: false,
             disable: false
         },
@@ -45,7 +45,7 @@ front.loader = async () => {
             value: "",
             valid: false,
             error: false,
-            placeholder: "Новый пароль:",
+            placeholder: front.Variable?.words?.form?.newPassword,
             view: false,
             disable: false
         },

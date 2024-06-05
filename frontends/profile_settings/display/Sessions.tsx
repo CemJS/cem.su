@@ -3,7 +3,7 @@ import { Cemjsx, front } from "cemjs-all";
 export default function () {
   return (
     <section class="listExchange effect_lines">
-      <h1 class="general__title">Список активных сессий</h1>
+      <h1 class="general__title">{front.Variable?.words?.user?.listActiveSessions}</h1>
       <div class="listExchange_table_wrapper">
         <table class="listExchange__table table">
           <thead class="listExchange__table-head">
@@ -12,13 +12,13 @@ export default function () {
                 class="listExchange__table-name disable-table-name"
                 style="justify-content: start;"
               >
-                Браузер
+                {front.Variable?.words?.browser}
               </th>
               <th class="listExchange__table-coins disable-table-name">
-                Платформа
+                {front.Variable?.words?.platform}
               </th>
               <th class="listExchange__table-coins disable-table-name">
-                Действия
+                {front.Variable?.words?.actions}
               </th>
             </tr>
           </thead>

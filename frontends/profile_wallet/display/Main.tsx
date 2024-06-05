@@ -8,12 +8,12 @@ import nav_arrow from "@svg/events/show/nav_arrow.svg";
 const RenderTop = () => {
   return (
     <div class="relative">
-      <h1 class="mt-0 flex justify-center text-[1.3rem]">Мои активы</h1>
+      <h1 class="mt-0 flex justify-center text-[1.3rem]">{front.Variable?.words?.user?.myAssets}</h1>
 
       <div class="absolute top-[50%] mb-10 flex cursor-pointer items-center justify-start gap-[12px] [transform:translateY(-50%)]">
         <img src={nav_arrow} alt="" />
         <a href="/" onclick={Fn.link}>
-          <span>Назад</span>
+          <span>{front.Variable?.words?.tools?.back}</span>
         </a>
       </div>
     </div>
@@ -28,7 +28,7 @@ const RenderCard = () => {
         class="relative mb-[10px] aspect-[0] w-full max-w-[420px] rounded-[20px] bg-cover p-[40px_60px_40px_30px] [background-image:url('/contents/images/wallet/card.png')]"
       >
         <div class="mb-5 flex flex-col text-[20px] font-semibold leading-[1]">
-          <p class="mb-[10px] text-[15px] font-medium leading-[1]">Мой счет</p>
+          <p class="mb-[10px] text-[15px] font-medium leading-[1]">{front.Variable?.words?.user?.myScore}</p>
           <div class="flex gap-[10px]">
             <p class="mb-0 truncate text-[36px] font-semibold leading-[1]">
               {Static.balance}
@@ -57,9 +57,9 @@ const RenderCard = () => {
         />
         <div class="absolute bottom-[-10px] right-[10px] rounded-[8px] p-[5px_5px] text-center text-[8px] font-semibold text-[#a8d7e0] [transform:translateY(-50%)] ">
           <p>
-            Обмен CEM доступен
+            {front.Variable?.words?.cem?.exchangeCem}
             <br />
-            от 10 CEMD
+            {front.Variable?.words?.from} 10 CEMD
           </p>
         </div>
 
@@ -76,7 +76,7 @@ const RenderCard = () => {
           //   });
           // }}
         >
-          Обменять
+          {front.Variable?.words?.tools?.exchange}
         </button>
       </div>
     </div>
@@ -151,7 +151,7 @@ const RenderTable = () => {
           class="flex select-none items-center gap-2 rounded-full px-3 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-gray-200 transition-all hover:bg-gray-200/10 active:bg-gray-200/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none @767:px-6 [&_#text]:hidden @767:[&_#text]:inline"
           type="button"
         >
-          <span id="text">Next</span>
+          <span id="text">{front.Variable?.words?.tools?.next}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -237,12 +237,12 @@ const RenderTable = () => {
           <thead>
             <tr class="text-[13px] font-medium text-[#8991a8] [border-bottom:1px_solid_#8991a8] [&_th]:p-[10px_15px]">
               <th class="sticky left-0 flex items-center justify-start gap-[17px] bg-[#1d2029]">
-                Type
+                {front.Variable?.words?.type}
               </th>
-              <th>Date</th>
-              <th>Transaction</th>
-              <th>Sum</th>
-              <th>Status</th>
+              <th>{front.Variable?.words?.date}</th>
+              <th>{front.Variable?.words?.transaction}</th>
+              <th>{front.Variable?.words?.sum}</th>
+              <th>{front.Variable?.words?.status}</th>
             </tr>
           </thead>
           <tbody ref="elementContainer">

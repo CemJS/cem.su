@@ -132,7 +132,7 @@ export default function () {
           id="pin"
           class="btn w-full"
         >
-          Прикрепить
+          {front.Variable?.words?.tools?.apply}
         </button>
         <button onclick={Func.close} id="close" class="btn w-full grayscale">
           {front.Variable?.words?.tools?.cancel}
