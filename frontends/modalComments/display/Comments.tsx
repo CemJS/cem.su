@@ -162,7 +162,7 @@ export default function ({ to = "" }) {
                               userId: comm.author.id,
                               complainTo: {
                                 name: "comments",
-                                text: "комментарий",
+                                text: front.Variable?.words?.comments?.comment,
                                 id: comm?.id,
                               },
                             });

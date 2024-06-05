@@ -43,7 +43,7 @@ export default function () {
                   name: front.Variable?.words?.tools?.delete,
                   func: () => {
                     Fn.initOne("modalAccept", {
-                      title: "удалить свой пост",
+                      title: front.Variable?.words?.post?.deleteMyPost,
                       Callback: async (CallBack: boolean) => {
                         if (CallBack) {
                           Func.delete(Static.post);
@@ -60,7 +60,7 @@ export default function () {
                 front.Variable?.Auth
               ) {
                 records.push({
-                  name: !Static.post?.subscribed ? "Подписаться" : "Отписаться",
+                  name: !Static.post?.subscribed ? front.Variable?.words?.tools?.subscribe : front.Variable?.words?.tools?.unsubscribe,
                   func: () => Func.follow(Static.post),
                 });
               }
@@ -71,7 +71,7 @@ export default function () {
                 userId: Static.post?.author.id,
                 complainTo: {
                   name: "posts",
-                  text: "пост",
+                  text: front.Variable?.words?.post?.title,
                   id: Static.post?.id,
                 },
               });

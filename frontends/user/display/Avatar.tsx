@@ -109,7 +109,7 @@ export default function () {
                         userId: "",
                         complainTo: {
                           name: "posts",
-                          text: "пост",
+                          text: front.Variable?.words?.post?.title,
                           id: "",
                         },
                       });

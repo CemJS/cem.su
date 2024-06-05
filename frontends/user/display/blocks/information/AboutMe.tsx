@@ -18,7 +18,7 @@ export default function () {
           <p class="relative left-[-.375rem] top-[-.375rem] mb-[2.5rem] text-[1rem] font-normal leading-[1.25rem] text-[--white]">
             {Static.record?.information?.about
               ? Static.record?.information?.about
-              : "Обо мне"}
+              : front.Variable?.words?.user?.aboutMe}
           </p>
           <div class="mt-[1.9375rem]">
             <div class="flex w-full">
@@ -56,7 +56,7 @@ export default function () {
             </div>
             <div class="flex w-full">
               <span class="mr-[.9375rem] block text-[--white] odd:mb-[1.25rem] odd:text-[1rem] odd:font-normal odd:leading-[1.5rem] odd:text-[#ADADAD]">
-                Город
+                {front.Variable?.words?.country?.city}
               </span>
               <div>
                 <div class="border-0 bg-transparent p-0 text-inherit">

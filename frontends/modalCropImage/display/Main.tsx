@@ -73,7 +73,7 @@ export default function () {
           }}
           class="btn !w-[48%]"
         >
-          Загрузить
+          {front.Variable?.words?.tools?.download}
         </div>
         <div class="btn btn_reset !w-[48%]" onclick={Func.close}>
           {front.Variable?.words?.tools?.cancel}

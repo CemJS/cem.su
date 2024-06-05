@@ -26,7 +26,7 @@ const RenderTestButtons = () => {
           })
         }
       >
-        Модалка редактирования "Обо мне"
+        Модалка редактирования {front.Variable?.words?.user?.aboutMe}
       </button>
       {/* модалка редактирования  -> передаем object "interest" о пользователе */}
       <button
@@ -750,7 +750,7 @@ export default function () {
             });
             console.log("get", get);
           } else {
-            alert("База данных закрыта! Перезагрузите страницу.");
+            alert(front.Variable?.words?.notices?.bdClosedReloadPage);
           }
         }}
       >

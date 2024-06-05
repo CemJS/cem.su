@@ -67,7 +67,7 @@ export default function ({ item, index }: { item: Post; index: number }) {
           userId: item?.author.id,
           complainTo: {
             name: "posts",
-            text: "пост",
+            text: front.Variable?.words?.post?.title,
             id: item?.id,
           },
         });

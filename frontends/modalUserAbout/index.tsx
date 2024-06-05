@@ -1,6 +1,5 @@
 import { Cemjsx, front, Func, Static, Fn, Ref, Events } from "cemjs-all"
 import Navigation from "./navigation"
-import languages from '@json/languages'
 
 
 front.listener.finish = () => {

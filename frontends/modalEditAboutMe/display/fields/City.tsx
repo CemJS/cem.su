@@ -8,7 +8,7 @@ export default function Select_Frame_App() {
         value={
           Static?.info?.information?.city ? Static?.info?.information?.city : ""
         }
-        placeholder="Город"
+        placeholder={front.Variable?.words?.country?.city}
         oninput={(event: InputEvent) => {
           const target = event.target as HTMLInputElement;
           Static.info.information.city = target.value;

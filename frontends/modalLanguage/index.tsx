@@ -30,7 +30,7 @@ front.loader = async () => {
       });
       // console.log("get", Static.records);
     } else {
-      alert("База данных закрыта! Перезагрузите страницу.");
+      alert(front.Variable?.words?.notices?.bdClosedReloadPage);
     }
     //  = JSON.parse(localStorage.countries)
   }

@@ -85,16 +85,16 @@ export default function () {
   return (
     <main id="modal_main">
       <div class="pY-15 modal_scroll">
-        <h3>Обо мне</h3>
+        <h3>{front.Variable?.words?.user?.aboutMe}</h3>
         <RenderFieldTextarea about={Static.information.about} />
         <RenderField
           field={Static.fullName}
-          placeholder="Полное имя"
+          placeholder={front.Variable?.words?.user?.fullName}
           className="mt-30"
         />
         <RenderField
           field={Static.information.speciality}
-          placeholder="Специализация"
+          placeholder={front.Variable?.words?.user?.specialization}
           className="mt-30"
         />
         <RenderField
@@ -102,12 +102,12 @@ export default function () {
             Static.information.birthday,
             ".",
           )}
-          placeholder="Дата рождения"
+          placeholder={front.Variable?.words?.user?.dateBirthday}
           className="mt-30 modalWindow_field__disabled"
         />
         <RenderField
           field={Static.information.city}
-          placeholder="Город"
+          placeholder={front.Variable?.words?.country?.city}
           className="mt-30"
         />
         <RenderFieldCountry

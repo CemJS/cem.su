@@ -3,7 +3,7 @@ import { Cemjsx, Static, front, Fn } from "cemjs-all";
 export default function Select_Frame_App() {
   return (
     <textarea
-      placeholder="Обо мне"
+      placeholder={front.Variable?.words?.user?.aboutMe}
       value={
         Static?.info?.information?.about ? Static?.info?.information?.about : ""
       }
