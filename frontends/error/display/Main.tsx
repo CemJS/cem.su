@@ -615,10 +615,8 @@ const RenderTestButtons = () => {
 export default function () {
   return (
     <div class="mx-auto flex w-full max-w-[44.875rem] flex-col items-center justify-center gap-[1.5625rem] p-[4.25rem_0.5rem_13.625rem] sm:p-[4.25rem_7.625rem_12.25rem_7.625rem]">
-      {/* <p class="error_text">Страница не найдена</p> */}
-      {/* <p class="">Страница не найдена</p> */}
       <p class="mb-12 text-center text-[clamp(2.5rem,2vw,3.75rem)] font-semibold leading-[3rem] [text-shadow:0.125rem_0.625rem_0.625rem_#000]">
-        Страница не найдена
+        {front.Variable?.words?.notices?.pageNotFound}
       </p>
       <img
         src={error}

@@ -1,4 +1,4 @@
-import { Cemjsx, Static, Fn, Func } from "cemjs-all";
+import { Cemjsx, Static, Fn, Func, front } from "cemjs-all";
 import notFound from "@svg/notFound.svg";
 
 // const RenderSearch = function () {
@@ -73,7 +73,7 @@ const RenderNotFound = function () {
   return (
     <div class="notFound">
       <img src={notFound} alt="Not found" />
-      <span>Не найдено</span>
+      <span>{front.Variable?.words?.notFoundRecords}</span>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { Cemjsx, Fn, Func, Static, front } from "cemjs-all";
 
 export default function () {
-  console.log('=goals=', front.Variable?.words?.goals?.title1)
   return (
     <div>
       <h2
